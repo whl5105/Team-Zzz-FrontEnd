@@ -3,7 +3,7 @@ import React from "react";
 const Main = (props) => {
   return (
     <React.Fragment>
-      <div>main page</div>
+      <div>mainpage</div>
     </React.Fragment>
   );
 };
