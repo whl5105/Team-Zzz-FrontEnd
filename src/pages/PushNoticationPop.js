@@ -9,8 +9,8 @@ import { actionCreators as noticeActions } from "../redux/modules/notice";
 
 const PushNoticationPop = (props) => {
   const [modal, setModal] = React.useState(true); // 모달창
-  const [notice, setNotice] = React.useState(false); // 알림 유무
-  const [day, setDay] = React.useState("AM"); // 오전, 오후 설정
+  const [notice, setNotice] = React.useState(true); // 알림 유무
+  const [day, setDay] = React.useState("PM"); // 오전, 오후 설정
   const [hour, setHour] = React.useState("12"); // 시 설정
   const [minutes, setMinutes] = React.useState("00"); // 분 설정
 
@@ -72,6 +72,7 @@ const PushNoticationPop = (props) => {
             onClick={() => {
               setNotice(!notice);
             }}
+            defaultChecked
           />
         </p>
         <div>
