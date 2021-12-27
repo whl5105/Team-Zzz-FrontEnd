@@ -1,6 +1,7 @@
 // 푸시 알림 팝업 페이지
 import React from "react";
 import Modal from "react-modal";
+import Switch from "@mui/material/Switch";
 
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -15,6 +16,7 @@ const PushNoticationPop = (props) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
+  const label = { inputProps: { "aria-label": "Switch demo" } };
 
   const modalOff = () => {
     setModal(false);
@@ -22,9 +24,11 @@ const PushNoticationPop = (props) => {
   };
 
   const send = () => {
-    if (!notice) { // 알림 안받는 경우 → 미들웨어에 기본값을 설정 해줘야 합니다.
+    if (!notice) {
+      // 알림 안받는 경우 → 미들웨어에 기본값을 설정 해줘야 합니다.
       dispatch(noticeActions.noticePopDB(notice));
-    } else { // 알림 받는 경우
+    } else {
+      // 알림 받는 경우
       dispatch(noticeActions.noticePopDB(notice, day, hour, minutes));
     }
   };
@@ -61,14 +65,15 @@ const PushNoticationPop = (props) => {
         }}
       >
         <h1>푸쉬 알림 여부</h1>
-        <p>수면 기록 알림을 받으시겠습니까?</p>
-        알림 :
-        <input
-          type="checkbox"
-          onClick={() => {
-            setNotice(!notice);
-          }}
-        ></input>
+        <p>
+          수면 기록 알림을 받으시겠습니까? &nbsp;
+          <Switch
+            {...label}
+            onClick={() => {
+              setNotice(!notice);
+            }}
+          />
+        </p>
         <div>
           {notice ? (
             <>
