@@ -7,7 +7,7 @@ import { Switch, Route, Link } from "react-router-dom";
 //page
 import NotFound from "../pages/NotFound";
 import Main from "../pages/Main";
-import Test from "../pages/Test";
+import Clock from "../pages/Clock";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <ConnectedRouter history={history}>
         <Switch>
           <Route path="/" exact component={Main} />
-          <Route path="/test" exact component={Test} />
+          <Route path="/test" exact component={Clock} />
           <Route>
             <NotFound />
           </Route>
