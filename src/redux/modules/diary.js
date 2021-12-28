@@ -2,11 +2,11 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
 
+
 // -- actions --
-// const SET_USER = "SET_USER";
 
 // -- action creators --
-// const setUser = createAction(SET_USER, (username) => ({ username }));
+
 
 // -- initialState --
 const initialState = {
@@ -80,5 +80,6 @@ export default handleActions(
 const actionCreators = {
   noticePopDB,
 };
+
 
 export { actionCreators };

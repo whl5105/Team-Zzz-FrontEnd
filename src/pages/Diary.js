@@ -1,7 +1,8 @@
-// Diary.js
-
 import React from "react";
 import moment from "moment";
+
+import { history } from "../redux/configureStore";
+
 
 const Diary = () => {
   const [getMoment, setMoment] = React.useState(moment());
@@ -106,6 +107,14 @@ const Diary = () => {
           })}
         </div>
       </div>
+      <button
+        onClick={() => {
+          history.push(`/diaryWrite/4`);
+        }}
+      >
+        다이어리 생성,수정
+      </button>
+
     </>
   );
 };
