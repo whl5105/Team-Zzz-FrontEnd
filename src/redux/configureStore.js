@@ -8,7 +8,6 @@ import User from "./modules/user";
 import Notice from "./modules/notice";
 import Diary from "./modules/diary";
 
-
 //---- history----
 export const history = createBrowserHistory();
 
