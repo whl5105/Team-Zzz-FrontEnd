@@ -1,24 +1,24 @@
 import React from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
-
 import { history } from "../redux/configureStore";
+
+import sleep1 from '../images/character/sleep1.png'
 
 const Diary = () => {
   const [getMoment, setMoment] = React.useState(moment());
   const [monthDay, setMonthDay] = React.useState(0);
-  const month = getMoment; // month === moment();
-  const arr = new Array(monthDay).fill(""); // 한꺼번에 배열 채우기
-
+  const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
   const diaryList = useSelector((state) => state.diary.diaryList);
+  const [test, setTest] = React.useState(arr);
 
   React.useEffect(() => {
     const today = new Date(moment()); // 오늘 날짜
-    const day = new Date(month); // 사용자가 선택한 날짜
+    const day = new Date(getMoment); // 사용자가 선택한 날짜
 
     if (
-      today.getFullYear() + today.getMonth() ===
-      day.getFullYear() + day.getMonth()
+      today.getFullYear() + (today.getMonth() + 1) ===
+      day.getFullYear() + (day.getMonth() + 1)
     ) {
       // 오늘
       const days = new Date(today).getDate();
@@ -32,7 +32,7 @@ const Diary = () => {
       setMonthDay(days);
     } else {
       // 이번년도
-      if (day.getMonth > today.getMonth()) {
+      if (day.getMonth + 1 > today.getMonth() + 1) {
         // 다음달
         setMonthDay(0);
       } else {
@@ -53,21 +53,23 @@ const Diary = () => {
     // 3) diaryIndex에 있는 객체 데이터를 arr의 index에 넣는다. (이때, index는 0부터 시작하기 때문에 +1을 해줘서 일(day)와 맞춘다.)
     arr.forEach((arrItem, arrIndex) => {
       diaryList.forEach((diaryItem, diaryIndex) => {
-        if (arrIndex + 1 === parseInt(diaryList[diaryIndex]?.day)) {
+        if (arrIndex + 1 === parseInt(diaryList[diaryIndex].day)) {
           arr[arrIndex] = diaryList[diaryIndex];
         }
       });
     });
+
+    setTest(arr);
   }, [getMoment, monthDay]);
 
   const diaryDetail = (index) => {
-    const day = new Date(month);
+    const day = new Date(getMoment);
     console.log(day.getMonth() + 1 + "월", index + "일");
   };
 
   return (
     <>
-      <div style={{ marginTop: "5%" }}>
+      <div>
         <div>
           <button
             onClick={() => {
@@ -77,7 +79,7 @@ const Diary = () => {
             이전달
           </button>
           &nbsp;
-          <span>{month.format("YYYY 년 MM 월")}</span>
+          <span>{getMoment.format("YYYY 년 MM 월")}</span>
           {/* YYYY는 년도 MM 은 달입니다. */}
           &nbsp;
           <button
@@ -92,30 +94,42 @@ const Diary = () => {
         <div
           style={{
             backgroundColor: "gray",
-            width: "30%",
-            height: "70vh",
+            width: "50%",
+            height: "80vh",
             margin: "auto",
             display: "flex",
             flexWrap: "wrap",
             padding: "10px",
           }}
         >
-          {arr.map((item, index) => {
+          {test.map((item, index) => {
             return (
-              <div style={{ height: "90px" }}>
+              <div key={index + 1 + "days"}>
                 <div
-                  key={index + 1 + "days"}
                   style={{
-                    backgroundColor: "pink",
-                    width: "50px",
-                    height: "50px",
-                    borderRadius: "50px",
+                    // eslint-disable-next-line no-template-curly-in-string
+                    backgroundImage: `url(${sleep1})`,
+                    width: "70px",
                     margin: "12px",
                   }}
                   onClick={() => {
                     diaryDetail(index + 1);
                   }}
-                ></div>
+                >
+                  {item.feelScore ? (
+                    <div style={{ height: "80px" }}>
+                      {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                      <img
+                        src={require(`../images/character/feel${item.feelScore}.png`)}
+                      />
+                    </div>
+                  ) : (
+                    <div style={{ height: "80px" }}>
+                      {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                      <img src={require(`../images/character/feel1.png`)} />
+                    </div>
+                  )}
+                </div>
                 <div>{index + 1}</div>
               </div>
             );
