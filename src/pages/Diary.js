@@ -44,6 +44,11 @@ const Diary = () => {
     }
   }, [month]);
 
+  const diaryDetail = (index) => {
+    const day = new Date(month);
+    console.log(day.getMonth() + 1 + "월", index + "일");
+  };
+
   return (
     <>
       <div style={{ marginTop: "5%" }}>
@@ -83,7 +88,7 @@ const Diary = () => {
             return (
               <div style={{ height: "90px" }}>
                 <div
-                  key={index+1}
+                  key={index + 1}
                   style={{
                     backgroundColor: "pink",
                     width: "50px",
@@ -91,8 +96,11 @@ const Diary = () => {
                     borderRadius: "50px",
                     margin: "12px",
                   }}
+                  onClick={() => {
+                    diaryDetail(index + 1);
+                  }}
                 ></div>
-                <div>{index+1}</div>
+                <div>{index + 1}</div>
               </div>
             );
           })}
