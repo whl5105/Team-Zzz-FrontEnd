@@ -3,7 +3,6 @@ import moment from "moment";
 
 import { history } from "../redux/configureStore";
 
-
 const Diary = () => {
   const [getMoment, setMoment] = React.useState(moment());
   const [monthDay, setMonthDay] = React.useState(0);
@@ -114,7 +113,6 @@ const Diary = () => {
       >
         다이어리 생성,수정
       </button>
-
     </>
   );
 };
