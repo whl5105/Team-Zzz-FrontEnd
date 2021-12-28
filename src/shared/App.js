@@ -12,6 +12,8 @@ import Clock from "../pages/Clock";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Push from "./Push";
+import Diary from "../pages/Diary";
+import DiaryWrite from "../components/DiaryWrite";
 
 function App() {
   return (
@@ -22,8 +24,15 @@ function App() {
           <Route path="/clock" exact component={Clock} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-          <Route path="/pushNotication" exact component={PushNoticationPop}></Route>
+
           <Route path="/push" exact component={Push} />
+          <Route
+            path="/pushNotication"
+            exact
+            component={PushNoticationPop}
+          ></Route>
+          <Route path="/diary" exact component={Diary}></Route>
+          <Route path="/diaryWrite/:dayId" exact component={DiaryWrite}></Route>
           <Route>
             <NotFound />
           </Route>
