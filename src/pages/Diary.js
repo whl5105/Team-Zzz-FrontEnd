@@ -108,7 +108,7 @@ const Diary = () => {
       </div>
       <button
         onClick={() => {
-          history.push(`/diaryWrite/4`);
+          history.push(`/diaryWrite/2`);
         }}
       >
         다이어리 생성,수정

@@ -4,26 +4,48 @@ import React from "react";
 import styled from "styled-components";
 
 const Charater = (props) => {
-  const { shape, size, src } = props;
+  const { shape, size, src, positoin, _onClick } = props;
 
   const styles = {
     size: size,
+    positoin: positoin,
   };
 
   if (shape === "circle") {
     return <ImageCircle {...styles}></ImageCircle>;
   }
-
+  //-- 표정 --
+  if (shape === "feel") {
+    return (
+      <ImgIcon
+        onClick={_onClick}
+        {...styles}
+        src={require(`../images/character/feel${props.feelNumber}.png`)}
+      />
+    );
+  }
+  //-- 느낌 --
+  if (shape === "sleep") {
+    return (
+      <ImgIcon
+        {...styles}
+        src={require(`../images/character/sleep${props.sleepNumber}.png`)}
+      />
+    );
+  }
+  // -- 캐릭터 혼합 --
   if (shape === "charater") {
     return (
       <React.Fragment>
         <IconBox {...styles}>
           <ImgIcon
+            onClick={_onClick}
             {...styles}
             style={{ zIndex: "3" }}
-            src={require(`../images/character/feel${props.fellNumber}.png`)}
+            src={require(`../images/character/feel${props.feelNumber}.png`)}
           />
           <ImgIcon
+            onClick={_onClick}
             {...styles}
             style={{ zIndex: "2" }}
             src={require(`../images/character/sleep${props.sleepNumber}.png`)}
@@ -41,6 +63,7 @@ Charater.defaultProps = {
   shape: "circle",
   src: "../images/character/sleep0.png",
   size: 24,
+  _onClick: () => {},
 };
 const ImageCircle = styled.div`
   --size: ${(props) => props.size}px;
@@ -65,7 +88,7 @@ const IconBox = styled.div`
 const ImgIcon = styled.img`
   --size: ${(props) => props.size}px;
   width: var(--size);
-  position: absolute;
+  position: ${(props) => props.positoin};
 `;
 
 export default Charater;
