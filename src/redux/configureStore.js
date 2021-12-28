@@ -7,6 +7,7 @@ import { connectRouter } from "connected-react-router";
 import User from "./modules/user";
 import Notice from "./modules/notice";
 import Voice from "./modules/voice";
+import Diary from "./modules/diary";
 
 //---- history----
 export const history = createBrowserHistory();
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   user: User,
   notice: Notice,
   voice: Voice,
+  diary: Diary,
   router: connectRouter(history),
 });
 
