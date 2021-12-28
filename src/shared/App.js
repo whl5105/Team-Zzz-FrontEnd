@@ -11,6 +11,7 @@ import PushNoticationPop from "../pages/PushNoticationPop";
 import Clock from "../pages/Clock";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
+import Voice from '../pages/Voice';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/pushNotication" exact component={PushNoticationPop}></Route>
+          <Route path="/voice" exact component={Voice}></Route>
           <Route>
             <NotFound />
           </Route>

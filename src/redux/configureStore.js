@@ -6,6 +6,7 @@ import { connectRouter } from "connected-react-router";
 //-- module (import module 여기에 모아주세요!)--
 import User from "./modules/user";
 import Notice from "./modules/notice";
+import Voice from "./modules/voice";
 
 //---- history----
 export const history = createBrowserHistory();
@@ -14,7 +15,7 @@ export const history = createBrowserHistory();
 const rootReducer = combineReducers({
   user: User,
   notice: Notice,
-
+  voice: Voice,
   router: connectRouter(history),
 });
 
