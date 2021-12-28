@@ -7,7 +7,9 @@ import Charater from "../elements/Charater";
 
 const DiaryWrite = (props) => {
   const diaryList = useSelector((state) => state.diary.diaryList); //다이어리 데이터
-  console.log(diaryList);
+  // console.log(diaryList);
+  const feel = React.useRef();
+  console.log(feel);
 
   const [modal, setModal] = React.useState(true); // 모달창
 
@@ -16,13 +18,17 @@ const DiaryWrite = (props) => {
   // console.log(diaryDayId);
   const isDay = diaryDayId ? true : false;
   let diaryData = isDay ? diaryList.find((p) => p.day === diaryDayId) : null; //다이어리 해당일자 데이터 찾기
-  console.log(isDay);
-  console.log(diaryData);
+  // console.log(isDay);
+  // console.log(diaryData);
   const [dayData, setDayData] = React.useState(diaryData ? diaryData : null);
-  console.log(dayData);
+  // console.log(dayData);
   const modalOff = () => {
     setModal(false);
     history.push("/diary");
+  };
+
+  const handleChange = (e) => {
+    console.log("ddd");
   };
 
   React.useEffect(() => {}, []);
@@ -61,24 +67,52 @@ const DiaryWrite = (props) => {
           <Charater
             shape="charater"
             size="180"
-            fellNumber="0"
+            positoin="absolute"
+            feelNumber="0"
             sleepNumber="0"
           />
         ) : (
           <Charater
             shape="charater"
             size="180"
-            fellNumber={dayData.feelScore}
+            positoin="absolute"
+            feelNumber={dayData.feelScore}
             sleepNumber={dayData.sleepScore}
           />
         )}
 
-        <div>자고 일어난 후 느낌
-          
+        <div style={{ display: "felx" }}>
+          <p>자고 일어난 후 느낌</p>
+          <Charater
+            shape="feel"
+            size="40"
+            feelNumber="1"
+            name="2"
+            _onClicke={handleChange}
+            // defaultValue={dayData.day}
+          />
+          <Charater shape="feel" size="40" feelNumber="2" />
+          <Charater shape="feel" size="40" feelNumber="3" />
+          <Charater shape="feel" size="40" feelNumber="4" />
+          <Charater shape="feel" size="40" feelNumber="5" />
         </div>
-        <div>수면시간이 충분했는지</div>
-        <div>메모</div>
-        <button>수정하기</button>
+        <div style={{ display: "felx" }}>
+          <p>수면시간이 충분했는지</p>
+          <Charater shape="sleep" size="40" sleepNumber="1" />
+          <Charater shape="sleep" size="40" sleepNumber="2" />
+          <Charater shape="sleep" size="40" sleepNumber="3" />
+          <Charater shape="sleep" size="40" sleepNumber="4" />
+          <Charater shape="sleep" size="40" sleepNumber="5" />
+        </div>
+        <div>
+          메모
+          {!dayData ? (
+            <input type="text" ref={feel}></input>
+          ) : (
+            <p>{dayData.comment}</p>
+          )}
+        </div>
+        {!dayData ? <button>등록하기</button> : <button>수정하기</button>}
       </Modal>
     </React.Fragment>
   );
