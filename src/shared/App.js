@@ -8,6 +8,9 @@ import { Switch, Route, Link } from "react-router-dom";
 import NotFound from "../pages/NotFound";
 import Main from "../pages/Main";
 import Clock from "../pages/Clock";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
+
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
         <Switch>
           <Route path="/" exact component={Main} />
           <Route path="/test" exact component={Clock} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+
           <Route>
             <NotFound />
           </Route>
