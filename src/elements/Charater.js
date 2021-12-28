@@ -4,11 +4,12 @@ import React from "react";
 import styled from "styled-components";
 
 const Charater = (props) => {
-  const { shape, size, src, _onClick, margin } = props;
+  const { shape, size, src, _onClick, margin, position } = props;
 
   const styles = {
     size: size,
-    margin: margin
+    margin: margin,
+    position: position,
   };
 
   if (shape === "circle") {
@@ -66,13 +67,13 @@ const IconBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  ${props => props.margin ? `margin : ${props.margin}` : `margin: 0 auto;`}
+  ${(props) => (props.margin ? `margin : ${props.margin}` : `margin: 0 auto;`)}
 `;
 
 const ImgIcon = styled.img`
   --size: ${(props) => props.size}px;
   width: var(--size);
-  position: absolute;
+  position: ${(props) => props.position};
 `;
 
 export default Charater;

@@ -105,6 +105,7 @@ const Diary = () => {
                   <Charater
                     shape="charater"
                     size="70"
+                    position="absolute"
                     feelNumber={item.feelScore}
                     sleepNumber={item.sleepScore}
                     _onClick={() => {
@@ -116,6 +117,7 @@ const Diary = () => {
                   <Charater
                     shape="charater"
                     size="70"
+                    position="absolute"
                     feelNumber={0}
                     sleepNumber={0}
                     _onClick={() => {
