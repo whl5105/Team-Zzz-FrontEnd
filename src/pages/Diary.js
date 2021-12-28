@@ -72,7 +72,7 @@ const Diary = () => {
               setMoment(getMoment.clone().subtract(1, "month"));
             }}
           >
-            이전달
+            저번달
           </button>
           &nbsp;
           <span>{getMoment.format("YYYY 년 MM 월")}</span>
@@ -90,8 +90,8 @@ const Diary = () => {
         <div
           style={{
             backgroundColor: "#dddddd",
-            width: "50%",
-            height: "80vh",
+            width: "30%",
+            height: "100vh",
             margin: "auto",
             display: "flex",
             flexWrap: "wrap",

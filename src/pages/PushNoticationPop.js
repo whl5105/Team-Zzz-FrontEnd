@@ -10,7 +10,7 @@ import { actionCreators as noticeActions } from "../redux/modules/notice";
 const PushNoticationPop = (props) => {
   const [modal, setModal] = React.useState(true); // 모달창
   const [notice, setNotice] = React.useState(true); // 알림 유무
-  const [day, setDay] = React.useState("PM"); // 오전, 오후 설정
+  const [day, setDay] = React.useState("PM"); // 오전(true), 오후(false) 설정
   const [hour, setHour] = React.useState(12); // 시 설정
   const [minutes, setMinutes] = React.useState(0); // 분 설정
 
@@ -24,7 +24,13 @@ const PushNoticationPop = (props) => {
       dispatch(noticeActions.noticePopDB(notice));
     } else {
       // 알림 받는 경우
-      dispatch(noticeActions.noticePopDB(notice, day, hour, minutes));
+      let _day = true;
+      if(day === 'AM'){
+        _day = true;
+      }else{ // "PM"
+        _day = false;
+      }
+      dispatch(noticeActions.noticePopDB(notice, _day, hour, minutes));
     }
   };
 
