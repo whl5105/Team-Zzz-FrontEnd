@@ -12,7 +12,6 @@ import Clock from "../pages/Clock";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Diary from "../pages/Diary";
-//components
 import DiaryWrite from "../components/DiaryWrite";
 
 function App() {
