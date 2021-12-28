@@ -2,12 +2,16 @@
 
 import React from "react";
 import moment from "moment";
+import { useSelector } from "react-redux";
 
 const Diary = () => {
+
   const [getMoment, setMoment] = React.useState(moment());
   const [monthDay, setMonthDay] = React.useState(0);
   const month = getMoment; // month === moment();
   const arr = new Array(monthDay).fill(""); // 한꺼번에 배열 채우기
+
+  const diaryList = useSelector((state)=>state.diary.diaryList);
 
   React.useEffect(() => {
     const today = new Date(moment()); // 오늘 날짜
@@ -42,6 +46,8 @@ const Diary = () => {
         setMonthDay(days);
       }
     }
+
+    console.log(diaryList)
   }, [month]);
 
   const diaryDetail = (index) => {
