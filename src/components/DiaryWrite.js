@@ -3,6 +3,7 @@ import Modal from "react-modal";
 
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
+import Charater from "../elements/Charater";
 
 const DiaryWrite = (props) => {
   const diaryList = useSelector((state) => state.diary.diaryList); //다이어리 데이터
@@ -15,10 +16,10 @@ const DiaryWrite = (props) => {
   // console.log(diaryDayId);
   const isDay = diaryDayId ? true : false;
   let diaryData = isDay ? diaryList.find((p) => p.day === diaryDayId) : null; //다이어리 해당일자 데이터 찾기
-  // console.log(isDay);
-  // console.log(diaryData);
+  console.log(isDay);
+  console.log(diaryData);
   const [dayData, setDayData] = React.useState(diaryData ? diaryData : null);
-  // console.log(dayData);
+  console.log(dayData);
   const modalOff = () => {
     setModal(false);
     history.push("/diary");
@@ -56,8 +57,25 @@ const DiaryWrite = (props) => {
           },
         }}
       >
-        <div>기본이미지</div>
-        <div>자고 일어난 후 느낌</div>
+        {!dayData ? (
+          <Charater
+            shape="charater"
+            size="180"
+            fellNumber="0"
+            sleepNumber="0"
+          />
+        ) : (
+          <Charater
+            shape="charater"
+            size="180"
+            fellNumber={dayData.feelScore}
+            sleepNumber={dayData.sleepScore}
+          />
+        )}
+
+        <div>자고 일어난 후 느낌
+          
+        </div>
         <div>수면시간이 충분했는지</div>
         <div>메모</div>
         <button>수정하기</button>

@@ -2,8 +2,7 @@ import React from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
-
-import sleep1 from '../images/character/sleep1.png'
+import Charater from "../elements/Charater";
 
 const Diary = () => {
   const [getMoment, setMoment] = React.useState(moment());
@@ -93,7 +92,7 @@ const Diary = () => {
         <p>{monthDay}</p>
         <div
           style={{
-            backgroundColor: "gray",
+            backgroundColor: "#dddddd",
             width: "50%",
             height: "80vh",
             margin: "auto",
@@ -105,31 +104,25 @@ const Diary = () => {
           {test.map((item, index) => {
             return (
               <div key={index + 1 + "days"}>
-                <div
-                  style={{
-                    // eslint-disable-next-line no-template-curly-in-string
-                    backgroundImage: `url(${sleep1})`,
-                    width: "70px",
-                    margin: "12px",
-                  }}
-                  onClick={() => {
-                    diaryDetail(index + 1);
-                  }}
-                >
-                  {item.feelScore ? (
-                    <div style={{ height: "80px" }}>
-                      {/* eslint-disable-next-line jsx-a11y/alt-text */}
-                      <img
-                        src={require(`../images/character/feel${item.feelScore}.png`)}
-                      />
-                    </div>
-                  ) : (
-                    <div style={{ height: "80px" }}>
-                      {/* eslint-disable-next-line jsx-a11y/alt-text */}
-                      <img src={require(`../images/character/feel1.png`)} />
-                    </div>
-                  )}
-                </div>
+                {item.feelScore && item.sleepScore ? (
+                  <Charater
+                    shape="charater"
+                    size="70"
+                    feelNumber={item.feelScore}
+                    sleepNumber={item.sleepScore}
+                    _onClick={()=>{diaryDetail(index + 1)}}
+                    margin="10px"
+                  />
+                ) : (
+                  <Charater
+                    shape="charater"
+                    size="70"
+                    feelNumber={0}
+                    sleepNumber={0}
+                    _onClick={()=>{diaryDetail(index + 1)}}
+                    margin="10px"
+                  />
+                )}
                 <div>{index + 1}</div>
               </div>
             );
