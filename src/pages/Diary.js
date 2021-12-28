@@ -14,10 +14,10 @@ const Diary = () => {
   React.useEffect(() => {
     const today = new Date(moment()); // 오늘 날짜
     const day = new Date(getMoment); // 사용자가 선택한 날짜
-
+    
     if (
-      today.getFullYear() + (today.getMonth() + 1) ===
-      day.getFullYear() + (day.getMonth() + 1)
+      today.getFullYear() + "_" + today.getMonth() ===
+      day.getFullYear() + "_" + day.getMonth()
     ) {
       // 오늘
       const days = new Date(today).getDate();
@@ -27,20 +27,16 @@ const Diary = () => {
       setMonthDay(0);
     } else if (today.getFullYear() > day.getFullYear()) {
       // 전년도
-      const days = new Date(day.getFullYear(), day.getMonth() + 1, 0).getDate(); // 사용한 선택한 날짜의 일수
+      const days = new Date(day.getFullYear(), day.getMonth(), 0).getDate(); // 사용한 선택한 날짜의 일수
       setMonthDay(days);
     } else {
       // 이번년도
-      if (day.getMonth + 1 > today.getMonth() + 1) {
+      if (day.getMonth > today.getMonth()) {
         // 다음달
         setMonthDay(0);
       } else {
         // 저번달
-        const days = new Date(
-          day.getFullYear(),
-          day.getMonth() + 1,
-          0
-        ).getDate(); // 사용한 선택한 날짜의 일수
+        const days = new Date(day.getFullYear(), day.getMonth(), 0).getDate(); // 사용한 선택한 날짜의 일수
         setMonthDay(days);
       }
     }
@@ -110,7 +106,9 @@ const Diary = () => {
                     size="70"
                     feelNumber={item.feelScore}
                     sleepNumber={item.sleepScore}
-                    _onClick={()=>{diaryDetail(index + 1)}}
+                    _onClick={() => {
+                      diaryDetail(index + 1);
+                    }}
                     margin="10px"
                   />
                 ) : (
@@ -119,7 +117,9 @@ const Diary = () => {
                     size="70"
                     feelNumber={0}
                     sleepNumber={0}
-                    _onClick={()=>{diaryDetail(index + 1)}}
+                    _onClick={() => {
+                      diaryDetail(index + 1);
+                    }}
                     margin="10px"
                   />
                 )}
