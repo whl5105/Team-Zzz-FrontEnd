@@ -9,7 +9,7 @@ const Diary = () => {
   const [monthDay, setMonthDay] = React.useState(0);
   const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
   const diaryList = useSelector((state) => state.diary.diaryList);
-  const sleepAvg = diaryList[diaryList.length-1].sleepAvg;
+  const sleepAvg = diaryList[diaryList.length - 1].sleepAvg;
   const [test, setTest] = React.useState(arr);
 
   React.useEffect(() => {
@@ -91,7 +91,6 @@ const Diary = () => {
           style={{
             backgroundColor: "#dddddd",
             width: "30%",
-            height: "100vh",
             margin: "auto",
             display: "flex",
             flexWrap: "wrap",
