@@ -2,11 +2,9 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
 
-
 // -- actions --
 
 // -- action creators --
-
 
 // -- initialState --
 const initialState = {
@@ -23,6 +21,7 @@ const initialState = {
       sleepScore: "5",
       comment: "오늘은 아구찜 먹음",
     },
+
     {
       day: "5",
       feelScore: "5",
@@ -80,6 +79,5 @@ export default handleActions(
 const actionCreators = {
   noticePopDB,
 };
-
 
 export { actionCreators };
