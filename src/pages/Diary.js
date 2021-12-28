@@ -88,7 +88,7 @@ const Diary = () => {
             return (
               <div style={{ height: "90px" }}>
                 <div
-                  key={index + 1}
+                  key={index + 1 + "days"}
                   style={{
                     backgroundColor: "pink",
                     width: "50px",

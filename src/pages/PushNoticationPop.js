@@ -18,11 +18,6 @@ const PushNoticationPop = (props) => {
   const dispatch = useDispatch();
   const label = { inputProps: { "aria-label": "Switch demo" } };
 
-  const modalOff = () => {
-    setModal(false);
-    history.push("/");
-  };
-
   const send = () => {
     if (!notice) {
       // 알림 안받는 경우 → 미들웨어에 기본값을 설정 해줘야 합니다.
@@ -38,7 +33,6 @@ const PushNoticationPop = (props) => {
       <Modal
         isOpen={modal}
         ariaHideApp={false}
-        onRequestClose={modalOff}
         style={{
           overlay: {
             position: "fixed",
