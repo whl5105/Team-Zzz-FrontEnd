@@ -1,17 +1,16 @@
-// Diary.js
-
 import React from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
 
-const Diary = () => {
+import { history } from "../redux/configureStore";
 
+const Diary = () => {
   const [getMoment, setMoment] = React.useState(moment());
   const [monthDay, setMonthDay] = React.useState(0);
   const month = getMoment; // month === moment();
   const arr = new Array(monthDay).fill(""); // 한꺼번에 배열 채우기
 
-  const diaryList = useSelector((state)=>state.diary.diaryList);
+  const diaryList = useSelector((state) => state.diary.diaryList);
 
   React.useEffect(() => {
     const today = new Date(moment()); // 오늘 날짜
@@ -47,8 +46,19 @@ const Diary = () => {
       }
     }
 
-    console.log(diaryList)
-  }, [month]);
+    // index => 0, diaryList => day랑 서로 일치를 해야 함.
+    // 1) 해당 월의 일수 길이만큼의 배열에 배열 연산자 forEach를 돌린다.
+    // 2) 서버에서 가져온 diaryList 배열의 길이만큼 forEach를 돌린다.
+    // ※ 이중 반복문을 돌리는 것과 같다.
+    // 3) diaryIndex에 있는 객체 데이터를 arr의 index에 넣는다. (이때, index는 0부터 시작하기 때문에 +1을 해줘서 일(day)와 맞춘다.)
+    arr.forEach((arrItem, arrIndex) => {
+      diaryList.forEach((diaryItem, diaryIndex) => {
+        if (arrIndex + 1 === parseInt(diaryList[diaryIndex]?.day)) {
+          arr[arrIndex] = diaryList[diaryIndex];
+        }
+      });
+    });
+  }, [getMoment, monthDay]);
 
   const diaryDetail = (index) => {
     const day = new Date(month);
@@ -112,6 +122,13 @@ const Diary = () => {
           })}
         </div>
       </div>
+      <button
+        onClick={() => {
+          history.push(`/diaryWrite/4`);
+        }}
+      >
+        다이어리 생성,수정
+      </button>
     </>
   );
 };
