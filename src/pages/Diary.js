@@ -58,6 +58,7 @@ const Diary = () => {
     });
 
     setList(arr);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getMoment, monthDay]);
 
   const diaryDetail = (index) => {
@@ -89,10 +90,12 @@ const Diary = () => {
             다음달
           </button>
         </div>
+        <br/>
         <div
           style={{
             backgroundColor: "aliceblue",
             width: "300px",
+            minHeight: "600px",
             margin: "auto",
             display: "flex",
             flexWrap: "wrap",
@@ -133,9 +136,9 @@ const Diary = () => {
           })}
         </div>
       </div>
-
+      <br/>
       <p>저번주보다 {sleepAvg}% 더 잘 주무셨어요!</p>
-
+      <br/>
       <Navigation></Navigation>
     </>
   );
