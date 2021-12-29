@@ -4,12 +4,12 @@ import React from "react";
 import styled from "styled-components";
 
 const Charater = (props) => {
-  const { shape, size, src, _onClick, margin, positoin } = props;
+  const { shape, size, src, _onClick, margin, position } = props;
 
   const styles = {
     size: size,
     margin: margin,
-    positoin: positoin,
+    position: position,
   };
 
   if (shape === "circle") {
@@ -93,7 +93,7 @@ const IconBox = styled.div`
 const ImgIcon = styled.img`
   --size: ${(props) => props.size}px;
   width: var(--size);
-  position: ${(props) => props.positoin};
+  position: ${(props) => props.position};
 `;
 
 export default Charater;
