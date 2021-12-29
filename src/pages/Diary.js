@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
 import Charater from "../elements/Charater";
 
-import Navigation from '../components/Navigation'
+import Navigation from "../components/Navigation";
 
 const Diary = () => {
   const [getMoment, setMoment] = React.useState(moment());
@@ -58,7 +58,7 @@ const Diary = () => {
     });
 
     setList(arr);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getMoment, monthDay]);
 
   const diaryDetail = (index) => {
@@ -90,7 +90,7 @@ const Diary = () => {
             다음달
           </button>
         </div>
-        <br/>
+        <br />
         <div
           style={{
             backgroundColor: "aliceblue",
@@ -136,9 +136,17 @@ const Diary = () => {
           })}
         </div>
       </div>
-      <br/>
+      <button
+        onClick={() => {
+          history.push(`/diaryWrite/3`);
+        }}
+      >
+        다이어리 생성,수정
+      </button>
+
+      <br />
       <p>저번주보다 {sleepAvg}% 더 잘 주무셨어요!</p>
-      <br/>
+      <br />
       <Navigation></Navigation>
     </>
   );
