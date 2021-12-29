@@ -4,13 +4,15 @@ import { useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
 import Charater from "../elements/Charater";
 
+import Navigation from '../components/Navigation'
+
 const Diary = () => {
   const [getMoment, setMoment] = React.useState(moment());
   const [monthDay, setMonthDay] = React.useState(0);
   const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
   const diaryList = useSelector((state) => state.diary.diaryList);
   const sleepAvg = diaryList[diaryList.length - 1].sleepAvg;
-  const [test, setTest] = React.useState(arr);
+  const [list, setList] = React.useState(arr);
 
   React.useEffect(() => {
     const today = new Date(moment()); // 오늘 날짜
@@ -55,17 +57,19 @@ const Diary = () => {
       });
     });
 
-    setTest(arr);
+    setList(arr);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getMoment, monthDay]);
 
   const diaryDetail = (index) => {
     const day = new Date(getMoment);
     console.log(day.getMonth() + 1 + "월", index + "일");
+    history.push(`/diaryWrite/${index}`);
   };
 
   return (
     <>
-      <div>
+      <div style={{ marginTop: "3%" }}>
         <div>
           <button
             onClick={() => {
@@ -86,25 +90,25 @@ const Diary = () => {
             다음달
           </button>
         </div>
-        <p>{monthDay}</p>
+        <br/>
         <div
           style={{
-            backgroundColor: "#dddddd",
-            width: "30%",
-            height: "100vh",
+            backgroundColor: "aliceblue",
+            width: "300px",
+            minHeight: "600px",
             margin: "auto",
             display: "flex",
             flexWrap: "wrap",
             padding: "10px",
           }}
         >
-          {test.map((item, index) => {
+          {list.map((item, index) => {
             return (
               <div key={index + 1 + "days"}>
                 {item.feelScore && item.sleepScore ? (
                   <Charater
                     shape="charater"
-                    size="70"
+                    size="40"
                     position="absolute"
                     feelNumber={item.feelScore}
                     sleepNumber={item.sleepScore}
@@ -116,7 +120,7 @@ const Diary = () => {
                 ) : (
                   <Charater
                     shape="charater"
-                    size="70"
+                    size="40"
                     position="absolute"
                     feelNumber={0}
                     sleepNumber={0}
@@ -132,15 +136,10 @@ const Diary = () => {
           })}
         </div>
       </div>
-      <button
-        onClick={() => {
-          history.push(`/diaryWrite/2`);
-        }}
-      >
-        다이어리 생성,수정
-      </button>
-
+      <br/>
       <p>저번주보다 {sleepAvg}% 더 잘 주무셨어요!</p>
+      <br/>
+      <Navigation></Navigation>
     </>
   );
 };

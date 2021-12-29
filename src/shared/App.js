@@ -14,6 +14,7 @@ import Signup from "../pages/Signup";
 import Push from "./Push";
 import Diary from "../pages/Diary";
 import DiaryWrite from "../components/DiaryWrite";
+import Voice from "../pages/Voice";
 import RequireLogin from "../components/RequireLogin";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           ></Route>
           <Route path="/diary" exact component={Diary}></Route>
           <Route path="/diaryWrite/:dayId" exact component={DiaryWrite}></Route>
+          <Route path="/voice" exact component={Voice}></Route>
           <Route>
             <NotFound />
           </Route>

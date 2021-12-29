@@ -67,7 +67,7 @@ const DiaryWrite = (props) => {
           <Charater
             shape="charater"
             size="180"
-            positoin="absolute"
+            position="absolute"
             feelNumber="0"
             sleepNumber="0"
           />
@@ -75,7 +75,7 @@ const DiaryWrite = (props) => {
           <Charater
             shape="charater"
             size="180"
-            positoin="absolute"
+            position="absolute"
             feelNumber={dayData.feelScore}
             sleepNumber={dayData.sleepScore}
           />
