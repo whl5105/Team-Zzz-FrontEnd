@@ -66,10 +66,10 @@ const initialState = {
 const getDiaryDB = (year, month) => {
   return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
-    console.log("userIdx : " + userIdx);
+    const yyyymm = `${year}-${month}`;
 
     try {
-      const response = apis.getDiary(userIdx, year, month);
+      const response = apis.getDiary(userIdx, yyyymm);
       console.log("getDiaryDB response : ", response.data);
 
       dispatch(get_diary(response.data));

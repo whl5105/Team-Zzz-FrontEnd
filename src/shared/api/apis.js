@@ -21,7 +21,7 @@ export const apis = {
   postVoice: (voiceFile) => instanceRecord.post("/api/voice", { voiceFile }),
 
   //-- diary --
-  getDiary: (userIdx, year, month) => instance.get(`/api/diary/${userIdx}`, { year, month }), //월별 다이어리 데이터
+  getDiary: (userIdx, yyyymm) => instance.get(`/api/diary/${userIdx}`, { yyyymm }), //월별 다이어리 데이터
   postDiary: (
     year,
     month,

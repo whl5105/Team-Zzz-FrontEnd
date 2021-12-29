@@ -16,6 +16,7 @@ import Diary from "../pages/Diary";
 import DiaryWrite from "../components/DiaryWrite";
 import Voice from "../pages/Voice";
 import RequireLogin from "../components/RequireLogin";
+import Asmr from "../pages/Asmr";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/diary" exact component={Diary}></Route>
           <Route path="/diaryWrite/:dayId" exact component={DiaryWrite}></Route>
           <Route path="/voice" exact component={Voice}></Route>
+          <Route path="/asmr" exact component={Asmr}></Route>
           <Route>
             <NotFound />
           </Route>
