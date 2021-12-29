@@ -3,8 +3,12 @@ import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
 
 // -- actions --
+const GET_DIARY = "GETDIARY";
 
 // -- action creators --
+const get_diary = createAction(GET_DIARY, (diaryListInfo) => ({
+  diaryListInfo,
+}));
 
 // -- initialState --
 const initialState = {
@@ -59,25 +63,35 @@ const initialState = {
 };
 
 // -- middleware actions --
-const noticePopDB = (notice, day = "", hour = "", minutes = "") => {
+const getDiaryDB = (year, month) => {
   return function (dispatch, getState, { history }) {
-    console.log(notice, day, hour, minutes);
+    const userIdx = "?";
+
+    try {
+      const response = apis.getDiary(userIdx, year, month);
+      console.log("getDiaryDB response : ", response.data);
+
+      dispatch(get_diary(response.data));
+    } catch (error) {
+      console.log("getDiaryDB Error : ", error);
+    }
   };
 };
 
 // -- reducer --
 export default handleActions(
   {
-    // [SET_USER]: (state, action) =>
-    //   produce(state, (draft) => {
-    //   }),
+    [GET_DIARY]: (state, action) =>
+      produce(state, (draft) => {
+        draft.diaryList = action.payload.diaryListInfo;
+      }),
   },
   initialState
 );
 
 // -- action creator export --
 const actionCreators = {
-  noticePopDB,
+  getDiaryDB,
 };
 
 export { actionCreators };

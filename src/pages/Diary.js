@@ -1,10 +1,11 @@
 import React from "react";
 import moment from "moment";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as diaryActions } from "../redux/modules/diary";
 import { history } from "../redux/configureStore";
 import Charater from "../elements/Charater";
 
-import Navigation from '../components/Navigation'
+import Navigation from "../components/Navigation";
 
 const Diary = () => {
   const [getMoment, setMoment] = React.useState(moment());
@@ -13,10 +14,17 @@ const Diary = () => {
   const diaryList = useSelector((state) => state.diary.diaryList);
   const sleepAvg = diaryList[diaryList.length - 1].sleepAvg;
   const [list, setList] = React.useState(arr);
+  const dispatch = useDispatch();
+
+  const getDiaryInfo = async (year, month) => {
+    await dispatch(diaryActions.getDiaryDB(year, month))
+  };
 
   React.useEffect(() => {
     const today = new Date(moment()); // 오늘 날짜
     const day = new Date(getMoment); // 사용자가 선택한 날짜
+
+    getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
 
     if (
       today.getFullYear() + "_" + today.getMonth() ===
@@ -58,7 +66,7 @@ const Diary = () => {
     });
 
     setList(arr);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getMoment, monthDay]);
 
   const diaryDetail = (index) => {
@@ -90,7 +98,7 @@ const Diary = () => {
             다음달
           </button>
         </div>
-        <br/>
+        <br />
         <div
           style={{
             backgroundColor: "aliceblue",
@@ -136,9 +144,9 @@ const Diary = () => {
           })}
         </div>
       </div>
-      <br/>
+      <br />
       <p>저번주보다 {sleepAvg}% 더 잘 주무셨어요!</p>
-      <br/>
+      <br />
       <Navigation></Navigation>
     </>
   );
