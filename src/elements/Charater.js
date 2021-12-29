@@ -15,18 +15,38 @@ const Charater = (props) => {
   if (shape === "circle") {
     return <ImageCircle {...styles}></ImageCircle>;
   }
-
+  //-- 표정 --
+  if (shape === "feel") {
+    return (
+      <ImgIcon
+        onClick={_onClick}
+        {...styles}
+        src={require(`../images/character/feel${props.feelNumber}.png`)}
+      />
+    );
+  }
+  //-- 느낌 --
+  if (shape === "sleep") {
+    return (
+      <ImgIcon
+        {...styles}
+        src={require(`../images/character/sleep${props.sleepNumber}.png`)}
+      />
+    );
+  }
+  // -- 캐릭터 혼합 --
   if (shape === "charater") {
     return (
       <React.Fragment>
         <IconBox {...styles}>
           <ImgIcon
+            onClick={_onClick}
             {...styles}
             style={{ zIndex: "3" }}
             src={require(`../images/character/feel${props.feelNumber}.png`)}
-            onClick={_onClick}
           />
           <ImgIcon
+            onClick={_onClick}
             {...styles}
             style={{ zIndex: "2" }}
             src={require(`../images/character/sleep${props.sleepNumber}.png`)}
@@ -45,7 +65,7 @@ Charater.defaultProps = {
   shape: "circle",
   src: "../images/character/sleep0.png",
   size: 24,
-  onClick: () => {},
+  _onClick: () => {},
 };
 
 const ImageCircle = styled.div`
