@@ -136,7 +136,7 @@ const Diary = () => {
 
       <p>저번주보다 {sleepAvg}% 더 잘 주무셨어요!</p>
 
-      <Navigation marginTop="8.55%"></Navigation>
+      <Navigation></Navigation>
     </>
   );
 };
