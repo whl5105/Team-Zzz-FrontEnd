@@ -7,11 +7,19 @@ const Asmr = ({ location }) => {
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "all"
   );
+  const history = useHistory();
   const dispatch = useDispatch();
   // const asmrInfo = useSelector((state)=>state.asmr.asmrList);
- 
+
   React.useEffect(() => {
-    console.log("컴포넌트 마운트");
+    const arr = ["all", "nature", "place", "object"];
+
+    arr.forEach((arrItem) => {
+      if (arrItem !== getCategory) { // 비활성화
+        document.getElementById(arrItem).style.color = "black";
+      }
+      document.getElementById(getCategory).style.color = "white"; // 활성화
+    });
 
     // 카테고리 값(getCategory)가 바뀌면 dispatch를 새로한다.
     // 조건문 써서 카테고리별로 분류해서 보내던 지 전체랑 다른 카테고리로 나눠서 보내면 될 듯
@@ -19,9 +27,16 @@ const Asmr = ({ location }) => {
 
   return (
     <>
-      <p>ASMR 페이지</p>
+      <div
+        onClick={() => {
+          history.push("/");
+        }}
+      >
+        ASMR 페이지
+      </div>
       <div style={{ display: "flex", margin: "0px 40%" }}>
         <Category
+          id="all"
           onClick={() => {
             setCategory("all");
           }}
@@ -29,6 +44,7 @@ const Asmr = ({ location }) => {
           전체
         </Category>
         <Category
+          id="nature"
           onClick={() => {
             setCategory("nature");
           }}
@@ -36,6 +52,7 @@ const Asmr = ({ location }) => {
           자연
         </Category>
         <Category
+          id="place"
           onClick={() => {
             setCategory("place");
           }}
@@ -43,6 +60,7 @@ const Asmr = ({ location }) => {
           공간
         </Category>
         <Category
+          id="object"
           onClick={() => {
             setCategory("object");
           }}
@@ -60,7 +78,6 @@ const Category = styled.div`
   height: 50px;
   line-height: 50px;
   background-color: gray;
-  color: white;
 `;
 
 export default Asmr;
