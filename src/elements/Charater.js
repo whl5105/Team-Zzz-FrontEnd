@@ -32,7 +32,7 @@ const Charater = (props) => {
         {...styles}
         onClick={_onClick}
         data-value={props.sleepNumber}
-        name="seelpScore"
+        name="sleepScore"
         src={require(`../images/character/sleep${props.sleepNumber}.png`)}
       />
     );
