@@ -6,7 +6,7 @@ const Main = (props) => {
   return (
     <React.Fragment>
       <div>mainpage</div>
-      <Navigation></Navigation>
+      <Navigation marginTop="40%"></Navigation>
     </React.Fragment>
   );
 };

@@ -14,7 +14,7 @@ const Navigation = (props) => {
           width: "20%",
           backgroundColor: "#dddddd",
           margin: "auto",
-          marginTop: "40%",
+          marginTop: `${props.marginTop ? props.marginTop : ""}`,
           padding: "20px",
         }}
       >

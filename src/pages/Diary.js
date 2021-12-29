@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { history } from "../redux/configureStore";
 import Charater from "../elements/Charater";
 
+import Navigation from '../components/Navigation'
+
 const Diary = () => {
   const [getMoment, setMoment] = React.useState(moment());
   const [monthDay, setMonthDay] = React.useState(0);
@@ -133,6 +135,8 @@ const Diary = () => {
       </div>
 
       <p>저번주보다 {sleepAvg}% 더 잘 주무셨어요!</p>
+
+      <Navigation marginTop="8.55%"></Navigation>
     </>
   );
 };
