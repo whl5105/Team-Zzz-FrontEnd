@@ -65,7 +65,8 @@ const initialState = {
 // -- middleware actions --
 const getDiaryDB = (year, month) => {
   return function (dispatch, getState, { history }) {
-    const userIdx = "?";
+    const userIdx = localStorage.getItem("userIdx");
+    console.log("userIdx : " + userIdx);
 
     try {
       const response = apis.getDiary(userIdx, year, month);

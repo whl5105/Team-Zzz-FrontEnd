@@ -24,8 +24,10 @@ const Diary = () => {
     const today = new Date(moment()); // 오늘 날짜
     const day = new Date(getMoment); // 사용자가 선택한 날짜
 
-    getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
-
+    if(!diaryList){
+      getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
+    }
+    
     if (
       today.getFullYear() + "_" + today.getMonth() ===
       day.getFullYear() + "_" + day.getMonth()

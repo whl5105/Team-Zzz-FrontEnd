@@ -1,10 +1,8 @@
-import zIndex from "@mui/material/styles/zIndex";
-import { style } from "@mui/system";
 import React from "react";
 import styled from "styled-components";
 
 const Charater = (props) => {
-  const { shape, size, src, _onClick, margin, position } = props;
+  const { shape, size, src, _onClick, margin, position, is_me } = props;
 
   const styles = {
     size: size,
@@ -20,6 +18,8 @@ const Charater = (props) => {
     return (
       <ImgIcon
         onClick={_onClick}
+        data-value={props.feelNumber}
+        name="feelScore"
         {...styles}
         src={require(`../images/character/feel${props.feelNumber}.png`)}
       />
@@ -30,6 +30,9 @@ const Charater = (props) => {
     return (
       <ImgIcon
         {...styles}
+        onClick={_onClick}
+        data-value={props.sleepNumber}
+        name="sleepScore"
         src={require(`../images/character/sleep${props.sleepNumber}.png`)}
       />
     );
@@ -50,7 +53,6 @@ const Charater = (props) => {
             {...styles}
             style={{ zIndex: "2" }}
             src={require(`../images/character/sleep${props.sleepNumber}.png`)}
-            onClick={_onClick}
           />
         </IconBox>
       </React.Fragment>
@@ -66,6 +68,7 @@ Charater.defaultProps = {
   src: "../images/character/sleep0.png",
   size: 24,
   _onClick: () => {},
+  is_me: false,
 };
 
 const ImageCircle = styled.div`
@@ -94,6 +97,7 @@ const ImgIcon = styled.img`
   --size: ${(props) => props.size}px;
   width: var(--size);
   position: ${(props) => props.position};
+  ${(props) => (props.is_me ? `border : "1px solid #000"` : "")}
 `;
 
 export default Charater;
