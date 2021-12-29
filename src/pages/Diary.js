@@ -61,6 +61,7 @@ const Diary = () => {
   const diaryDetail = (index) => {
     const day = new Date(getMoment);
     console.log(day.getMonth() + 1 + "월", index + "일");
+    history.push(`/diaryWrite/${index}`)
   };
 
   return (
@@ -133,7 +134,7 @@ const Diary = () => {
       </div>
       <button
         onClick={() => {
-          history.push(`/diaryWrite/4`);
+          history.push(`/diaryWrite/2`);
         }}
       >
         다이어리 생성,수정
