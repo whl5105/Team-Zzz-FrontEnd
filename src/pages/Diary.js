@@ -9,7 +9,7 @@ const Diary = () => {
   const [monthDay, setMonthDay] = React.useState(0);
   const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
   const diaryList = useSelector((state) => state.diary.diaryList);
-  const sleepAvg = diaryList[diaryList.length-1].sleepAvg;
+  const sleepAvg = diaryList[diaryList.length - 1].sleepAvg;
   const [test, setTest] = React.useState(arr);
 
   React.useEffect(() => {
@@ -105,6 +105,7 @@ const Diary = () => {
                   <Charater
                     shape="charater"
                     size="70"
+                    position="absolute"
                     feelNumber={item.feelScore}
                     sleepNumber={item.sleepScore}
                     _onClick={() => {
@@ -116,6 +117,7 @@ const Diary = () => {
                   <Charater
                     shape="charater"
                     size="70"
+                    position="absolute"
                     feelNumber={0}
                     sleepNumber={0}
                     _onClick={() => {
@@ -132,7 +134,7 @@ const Diary = () => {
       </div>
       <button
         onClick={() => {
-          history.push(`/diaryWrite/2`);
+          history.push(`/diaryWrite/3`);
         }}
       >
         다이어리 생성,수정

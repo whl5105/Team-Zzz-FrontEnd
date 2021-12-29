@@ -58,6 +58,7 @@ const initialState = {
   ],
 };
 
+
 // -- middleware actions --
 const noticePopDB = (notice, day = "", hour = "", minutes = "") => {
   return function (dispatch, getState, { history }) {
