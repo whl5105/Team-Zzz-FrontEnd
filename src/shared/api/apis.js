@@ -10,8 +10,8 @@ export const apis = {
   //kakaoLogin: (code) => instance.get("/api/", code), // 카카오로그인 : 백과 이야기 후 api수정 필요함
 
   getNotice: () => instance.get("/api/notice"), //수면기록 팝업창 :백과 이야기 후 api수정 필요함
-  postNotice: (isNotice, timePA, hour, min) =>
-    instance.post("/api/notice", { isNotice, timePA, hour, min }),
+  postNotice: (sleepChk, timePA, hour, min) =>
+    instance.post("/api/notice", { sleepChk, timePA, hour, min }),
 
   //-- main , asmr --
   main: () => instance.get("/api/main"),

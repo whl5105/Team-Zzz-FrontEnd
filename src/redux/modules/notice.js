@@ -15,8 +15,15 @@ const initialState = {
 
 // -- middleware actions --
 const noticePopDB = (notice, day = false, hour = 0, minutes = 0) => {
-  return function (dispatch, getState, { history }) {
+  return async function (dispatch, getState, { history }) {
     console.log(notice, day, hour, minutes);
+
+    try{
+      const response = await apis.postNotice(notice, day, hour, minutes);
+      console.log("noticePopDB response : ", response.data);
+    }catch(error){
+      console.log("noticeDB Error : ", error)
+    }
   };
 };
 
