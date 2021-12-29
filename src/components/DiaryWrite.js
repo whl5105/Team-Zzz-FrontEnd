@@ -167,6 +167,7 @@ const DiaryWrite = (props) => {
                 </div>
               )}
             </div>
+
             <p>{dayData.comment}</p>
             <button
               onClick={() => {

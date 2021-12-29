@@ -16,7 +16,7 @@ const initialState = {
       comment: "오늘은 아구찜 먹음",
     },
     {
-      day: "3",
+      day: "4",
       feelScore: "5",
       sleepScore: "5",
       comment: "오늘은 아구찜 먹음",
