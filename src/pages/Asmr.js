@@ -61,6 +61,9 @@ const Asmr = ({ location }) => {
       });
       setSound(object);
     }
+
+    // 4) 카테고리가 바뀌면 활성화된 음원 초기화
+    setPlay([]);
   }, [getCategory]);
 
   const select = (categoryIdx, asmrUrl) => {
@@ -74,9 +77,12 @@ const Asmr = ({ location }) => {
       });
       setPlay(arr);
 
-      // 선택한 음원 비활성화
+      // 선택한 음원 비활성화 style
       const deleteItem = document.getElementById(categoryIdx);
       deleteItem.style.backgroundColor = "gray";
+
+      // 음원 재생 중지 시킴
+      soundPause(asmrUrl);
     } else {
       // 활성화
       if (play.length > 2) {
@@ -85,11 +91,28 @@ const Asmr = ({ location }) => {
         const arr = [...play, asmrUrl];
         setPlay(arr);
 
-        // 선택한 음원 활성화
+        // 선택한 음원 활성화 style
         const selectItem = document.getElementById(categoryIdx);
         selectItem.style.backgroundColor = "#dddddd";
+
+        // 음원 재생 시킴
+        soundPlay(asmrUrl);
       }
     }
+  };
+
+  // 음원 재생
+  const soundPlay = (asmrUrl) => {
+    const audio = new Audio(asmrUrl); // Audio 객체를 생성해서 음악을 재생한다.
+    audio.loop = true; // 반복재생 여부
+    audio.volume = 1; // 볼륨
+    audio.play(); // 음원 재생
+  };
+
+  // 음원 중지
+  const soundPause = (asmrUrl) => {
+    const audio = new Audio(asmrUrl);
+    audio.pause(); // 음원 재생 중지
   };
 
   return (
@@ -151,6 +174,16 @@ const Asmr = ({ location }) => {
           );
         })}
       </div>
+
+      {play.length > 0 ? (
+        <button
+          onClick={() => {
+            console.log("음원 url 가지고 이동!!!", play);
+          }}
+        >
+          음량 조절 하러 가기
+        </button>
+      ) : null}
     </>
   );
 };
