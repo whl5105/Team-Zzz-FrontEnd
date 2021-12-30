@@ -12,6 +12,7 @@ const Asmr = ({ location }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
+  const [play, setPlay] = React.useState([]);
 
   React.useEffect(() => {
     // 1) 카테고리별 활성화 유무
@@ -62,6 +63,35 @@ const Asmr = ({ location }) => {
     }
   }, [getCategory]);
 
+  const select = (categoryIdx, asmrUrl) => {
+    if (play.includes(asmrUrl)) {
+      // 비활성화
+      let arr = [...play];
+      arr = arr.filter((item) => {
+        if (asmrUrl !== item) {
+          return item;
+        }
+      });
+      setPlay(arr);
+
+      // 선택한 음원 비활성화
+      const deleteItem = document.getElementById(categoryIdx);
+      deleteItem.style.backgroundColor = "gray";
+    } else {
+      // 활성화
+      if (play.length > 2) {
+        window.alert("음원은 3개까지만 담으실 수 있습니다.");
+      } else {
+        const arr = [...play, asmrUrl];
+        setPlay(arr);
+
+        // 선택한 음원 활성화
+        const selectItem = document.getElementById(categoryIdx);
+        selectItem.style.backgroundColor = "#dddddd";
+      }
+    }
+  };
+
   return (
     <>
       <div
@@ -109,9 +139,10 @@ const Asmr = ({ location }) => {
         {sound.map((item) => {
           return (
             <Sound
+              id={item.categoryIdx}
               key={item.categoryIdx}
               onClick={() => {
-                console.log(item.asmrUrl);
+                select(item.categoryIdx, item.asmrUrl);
               }}
             >
               <p>{item.asmrUrl}</p>
