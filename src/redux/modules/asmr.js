@@ -22,7 +22,7 @@ const initialState = {
     },
     {
       categoryIdx: "2",
-      categoryName: "물체",
+      categoryName: "전체",
       title: "빗소리",
       asmrUrl: "asmrUrl",
       iconUrl: "iconUrl",
@@ -30,7 +30,7 @@ const initialState = {
 
     {
       categoryIdx: "3",
-      categoryName: "자연",
+      categoryName: "전체",
       title: "빗소리",
       asmrUrl: "asmrUrl",
       iconUrl: "iconUrl",
