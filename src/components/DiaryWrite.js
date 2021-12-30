@@ -23,9 +23,12 @@ const DiaryWrite = (props) => {
   const previewList = useSelector((state) => state.diary.preview);
   console.log(previewList);
   const [preview, setPreview] = React.useState({
-    previewFeel: "0",
-    previewSleep: "0",
+    previewFeel: "",
+    previewSleep: "",
+    previewFeelScore: "",
+    previewSleepScore: "",
   });
+  console.log(preview);
 
   //다이어리 데이터
   const [state, setState] = React.useState({
@@ -50,10 +53,21 @@ const DiaryWrite = (props) => {
   //프리뷰 데이터
   React.useEffect(() => {
     setPreview({
+      ...preview,
       previewFeel: previewList.previewFeel,
       previewSleep: previewList.previewSleep,
+      previewFeelScore: previewList.previewFeelScore,
+      previewSleepScore: previewList.previewSleepScore,
     });
   }, [previewList]);
+
+  const editClick = () => {
+    if (preview.previewFeelScore === "0" || preview.previewSleepScore === "0") {
+      window.alert("두개 다 선택 해야합니다.");
+    } else {
+      console.log(preview.previewFeelScore, preview.previewSleepScore);
+    }
+  };
 
   return (
     <React.Fragment>
@@ -71,7 +85,7 @@ const DiaryWrite = (props) => {
             <FeelBox edit />
             <SleepBox edit />
             <input type="text" />
-            <button>적용하기</button>
+            <button onClick={editClick}>적용하기</button>
           </>
         ) : (
           // 다이어리 데이터가 있을경우
@@ -100,6 +114,7 @@ const DiaryWrite = (props) => {
                 )}
                 <FeelBox edit />
                 <SleepBox edit />
+                <button onClick={editClick}>등록하기</button>
               </>
             ) : (
               // 수정 전 - 비활성
@@ -113,15 +128,15 @@ const DiaryWrite = (props) => {
                 />
                 <FeelBox />
                 <SleepBox />
+                <button
+                  onClick={() => {
+                    setEdit(!edit);
+                  }}
+                >
+                  수정하기
+                </button>
               </>
             )}
-            <button
-              onClick={() => {
-                setEdit(!edit);
-              }}
-            >
-              {edit ? "등록" : "수정하기"}
-            </button>
           </div>
         )}
       </ModalPopUp>

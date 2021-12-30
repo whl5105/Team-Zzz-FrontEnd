@@ -7,11 +7,13 @@ const SET_PREVIEW_FEEL = "SET_PREVIEW_FEEL";
 const SET_PREVIEW_SLEEP = "SET_PREVIEW_SLEEP";
 
 // -- action creators --
-const setPreviewFeel = createAction(SET_PREVIEW_FEEL, (state) => ({
-  state,
+const setPreviewFeel = createAction(SET_PREVIEW_FEEL, (preview, score) => ({
+  preview,
+  score,
 }));
-const setPreviewSleep = createAction(SET_PREVIEW_SLEEP, (state) => ({
-  state,
+const setPreviewSleep = createAction(SET_PREVIEW_SLEEP, (preview, score) => ({
+  preview,
+  score,
 }));
 
 const GET_DIARY = "GETDIARY";
@@ -75,6 +77,8 @@ const initialState = {
   preview: {
     previewFeel: "0",
     previewSleep: "0",
+    previewFeelScore: "0",
+    previewSleepScore: "0",
   },
 };
 
@@ -100,11 +104,15 @@ export default handleActions(
   {
     [SET_PREVIEW_FEEL]: (state, action) =>
       produce(state, (draft) => {
-        draft.preview.previewFeel = action.payload.state;
+        draft.preview.previewFeel = action.payload.preview;
+        draft.preview.previewFeelScore = action.payload.score;
+        console.log(draft.preview.previewFeelScore);
       }),
     [SET_PREVIEW_SLEEP]: (state, action) =>
       produce(state, (draft) => {
-        draft.preview.previewSleep = action.payload.state;
+        draft.preview.previewSleep = action.payload.preview;
+        draft.preview.previewSleepScore = action.payload.score;
+        console.log(action.payload.score);
       }),
     [GET_DIARY]: (state, action) =>
       produce(state, (draft) => {
