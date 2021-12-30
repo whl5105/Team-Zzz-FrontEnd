@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Charater = (props) => {
-  const { shape, size, src, _onClick, margin, position, is_me } = props;
+  const { shape, size, src, _onClick, margin, position, is_me, name } = props;
 
   const styles = {
     size: size,
@@ -19,7 +19,7 @@ const Charater = (props) => {
       <ImgIcon
         onClick={_onClick}
         data-value={props.feelNumber}
-        name="feelScore"
+        // name={props.name}
         {...styles}
         src={require(`../images/character/feel${props.feelNumber}.png`)}
       />
@@ -32,7 +32,7 @@ const Charater = (props) => {
         {...styles}
         onClick={_onClick}
         data-value={props.sleepNumber}
-        name="sleepScore"
+        // name="sleepScore"
         src={require(`../images/character/sleep${props.sleepNumber}.png`)}
       />
     );

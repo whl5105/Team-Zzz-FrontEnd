@@ -5,6 +5,7 @@ import Charater from "../elements/Charater";
 
 import { useSelector, useDispatch } from "react-redux";
 import FeelBox from "./FeelBox";
+import SleepBox from "./SleepBox";
 
 const DiaryWrite = (props) => {
   const diaryList = useSelector((state) => state.diary.diaryList); //다이어리 데이터
@@ -13,25 +14,29 @@ const DiaryWrite = (props) => {
   let diaryData = isDay ? diaryList.find((p) => p.day === diaryDayId) : null; //다이어리 해당일자 데이터 찾기
   const [dayData, setDayData] = React.useState(diaryData ? diaryData : null);
 
-  const [edit, setEdit] = React.useState(false); // 수정 버튼
+  const [edit, setEdit] = React.useState(false);
+  const [editPreview, setEditPreview] = React.useState(false); // 수정 미리보기 활성, 비활성
+  console.log(diaryData);
+  console.log(editPreview);
 
-  const arr_list = new Array(5).fill("");
-  const [arr, setArr] = React.useState(arr_list);
+  //프리뷰 데이터
+  const previewList = useSelector((state) => state.diary.preview);
+  console.log(previewList);
+  const [preview, setPreview] = React.useState({
+    previewFeel: "0",
+    previewSleep: "0",
+  });
 
+  //다이어리 데이터
   const [state, setState] = React.useState({
     feelScore: "0",
     sleepScore: "0",
   });
+
   const { feelScore, sleepScore } = state;
+  const { previewFeel, previewSleep } = preview;
 
-  //아이콘 클릭
-  const iconClick = (e) => {
-    setState({
-      ...state,
-      [e.target.name]: e.target.dataset.value,
-    });
-  };
-
+  //다이어리 데이터
   React.useEffect(() => {
     if (dayData) {
       setState({
@@ -42,135 +47,74 @@ const DiaryWrite = (props) => {
     }
   }, []);
 
+  //프리뷰 데이터
+  React.useEffect(() => {
+    setPreview({
+      previewFeel: previewList.previewFeel,
+      previewSleep: previewList.previewSleep,
+    });
+  }, [previewList]);
+
   return (
     <React.Fragment>
       <ModalPopUp>
+        {/* 다이어리 데이터가 없을 경우 - 활성 */}
         {!dayData ? (
-          <div>
+          <>
             <Charater
               shape="charater"
               size="180"
               position="absolute"
-              feelNumber={feelScore}
-              sleepNumber={sleepScore}
+              feelNumber={previewFeel}
+              sleepNumber={previewSleep}
             />
-            <div>
-              <p>자고 일어난 후 느낌</p>
-              <FeelBox />
-              {/* <div style={{ display: "flex" }}>
-                {arr.map((arr, idx) => {
-                  return (
-                    <div key={idx}>
-                      <Charater
-                        shape="feel"
-                        size="40"
-                        feelNumber={idx + 1}
-                        _onClick={iconClick}
-                      />
-                    </div>
-                  );
-                })}
-              </div> */}
-            </div>
-            <div>
-              <p>수면시간이 충분했는지</p>
-              <div style={{ display: "flex" }}>
-                {arr.map((arr, idx) => {
-                  return (
-                    <div key={idx}>
-                      <Charater
-                        shape="sleep"
-                        size="40"
-                        sleepNumber={idx + 1}
-                        _onClick={iconClick}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <input type="text"></input>
-            <button>등록하기</button>
-          </div>
+            <FeelBox edit />
+            <SleepBox edit />
+            <input type="text" />
+            <button>적용하기</button>
+          </>
         ) : (
+          // 다이어리 데이터가 있을경우
           <div>
-            <Charater
-              shape="charater"
-              size="180"
-              position="absolute"
-              feelNumber={feelScore}
-              sleepNumber={sleepScore}
-            />
-            <div>
-              <p>자고 일어난 후 느낌</p>
-              {edit ? (
-                <div style={{ display: "flex" }}>
-                  {arr.map((arr, idx) => {
-                    return (
-                      <div key={idx}>
-                        <Charater
-                          shape="feel"
-                          size="40"
-                          feelNumber={idx + 1}
-                          _onClick={iconClick}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div style={{ display: "flex" }}>
-                  {arr.map((arr, idx) => {
-                    return (
-                      <div key={idx}>
-                        <Charater
-                          shape="charater"
-                          size="40"
-                          position="absolute"
-                          feelNumber={idx + 1}
-                          sleepNumber={0}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-            <div>
-              <p>수면시간이 충분했는지</p>
-              {edit ? (
-                <div style={{ display: "flex" }}>
-                  {arr.map((arr, idx) => {
-                    return (
-                      <div key={idx}>
-                        <Charater
-                          shape="sleep"
-                          size="40"
-                          sleepNumber={idx + 1}
-                          _onClick={iconClick}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div style={{ display: "flex" }}>
-                  {arr.map((arr, idx) => {
-                    return (
-                      <div key={idx}>
-                        <Charater
-                          shape="sleep"
-                          size="40"
-                          sleepNumber={idx + 1}
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-
-            <p>{dayData.comment}</p>
+            {/* 수정 중- 활성 상태*/}
+            {edit ? (
+              <>
+                {/* 변경 중인 캐릭터 정보 */}
+                {editPreview ? (
+                  <Charater
+                    shape="charater"
+                    size="180"
+                    position="absolute"
+                    feelNumber={previewFeel}
+                    sleepNumber={previewSleep}
+                  />
+                ) : (
+                  // 변경 전 캐릭터 정보
+                  <Charater
+                    shape="charater"
+                    size="180"
+                    position="absolute"
+                    feelNumber={feelScore}
+                    sleepNumber={sleepScore}
+                  />
+                )}
+                <FeelBox edit />
+                <SleepBox edit />
+              </>
+            ) : (
+              // 수정 전 - 비활성
+              <>
+                <Charater
+                  shape="charater"
+                  size="180"
+                  position="absolute"
+                  feelNumber={feelScore}
+                  sleepNumber={sleepScore}
+                />
+                <FeelBox />
+                <SleepBox />
+              </>
+            )}
             <button
               onClick={() => {
                 setEdit(!edit);
