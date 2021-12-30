@@ -17,6 +17,8 @@ import DiaryWrite from "../components/DiaryWrite";
 import Voice from "../pages/Voice";
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
+import Mypage from "../pages/MyPage";
+import MyPageNotification from "../pages/MyPageNotification";
 
 function App() {
   return (
@@ -38,6 +40,12 @@ function App() {
           <Route path="/diaryWrite/:dayId" exact component={DiaryWrite}></Route>
           <Route path="/voice" exact component={Voice}></Route>
           <Route path="/asmr" exact component={Asmr}></Route>
+          <Route path="/mypage" exact component={Mypage} />
+          <Route
+            path="/mypageNotice/:userIdx"
+            exact
+            component={MyPageNotification}
+          ></Route>
           <Route>
             <NotFound />
           </Route>

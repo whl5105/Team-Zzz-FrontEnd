@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 
+import audioUrl1 from "../audio/asmrUrl1.MP3";
+import audioUrl2 from "../audio/asmrUrl2.MP3";
+import audioUrl3 from "../audio/asmrUrl3.MP3";
+
 const Asmr = ({ location }) => {
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
@@ -66,7 +70,7 @@ const Asmr = ({ location }) => {
     setPlay([]);
   }, [getCategory]);
 
-  const select = (categoryIdx, asmrUrl) => {
+  const select = (asmrUrl) => {
     if (play.includes(asmrUrl)) {
       // 비활성화
       let arr = [...play];
@@ -77,12 +81,12 @@ const Asmr = ({ location }) => {
       });
       setPlay(arr);
 
-      // 선택한 음원 비활성화 style
-      const deleteItem = document.getElementById(categoryIdx);
-      deleteItem.style.backgroundColor = "gray";
-
       // 음원 재생 중지 시킴
-      soundPause(asmrUrl);
+      playBack("pause", asmrUrl);
+
+      // 선택한 음원 비활성화 style
+      const deleteItem = document.getElementById(asmrUrl);
+      deleteItem.style.backgroundColor = "gray";
     } else {
       // 활성화
       if (play.length > 2) {
@@ -91,28 +95,29 @@ const Asmr = ({ location }) => {
         const arr = [...play, asmrUrl];
         setPlay(arr);
 
-        // 선택한 음원 활성화 style
-        const selectItem = document.getElementById(categoryIdx);
-        selectItem.style.backgroundColor = "#dddddd";
-
         // 음원 재생 시킴
-        soundPlay(asmrUrl);
+        playBack("play", asmrUrl);
+
+        // 선택한 음원 활성화 style
+        const selectItem = document.getElementById(asmrUrl);
+        selectItem.style.backgroundColor = "#dddddd";
       }
     }
   };
 
-  // 음원 재생
-  const soundPlay = (asmrUrl) => {
-    const audio = new Audio(asmrUrl); // Audio 객체를 생성해서 음악을 재생한다.
-    audio.loop = true; // 반복재생 여부
-    audio.volume = 1; // 볼륨
-    audio.play(); // 음원 재생
-  };
+  // 음원 재생 여부
+  const playBack = (status, asmrUrl) => {
+    const url = document.getElementById(asmrUrl);
+    const audio = new Audio(audioUrl1); // Audio 객체를 생성해서 음악을 재생한다.
 
-  // 음원 중지
-  const soundPause = (asmrUrl) => {
-    const audio = new Audio(asmrUrl);
-    audio.pause(); // 음원 재생 중지
+    if (status === "play") {
+      audio.loop = true; // 반복재생 여부
+      audio.volume = 0.5; // 볼륨
+      audio.play(); // 음원 재생
+    } else if (status === "pause") {
+      audio.pause(); // 음원 재생 중지
+      audio.currentTime = 0;
+    }
   };
 
   return (
@@ -162,10 +167,10 @@ const Asmr = ({ location }) => {
         {sound.map((item) => {
           return (
             <Sound
-              id={item.categoryIdx}
+              id={item.asmrUrl}
               key={item.categoryIdx}
               onClick={() => {
-                select(item.categoryIdx, item.asmrUrl);
+                select(item.asmrUrl);
               }}
             >
               <p>{item.asmrUrl}</p>

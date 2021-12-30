@@ -13,7 +13,9 @@ const Clock = (props) => {
   const [ampm4, setampm4] = React.useState("");
   const [wakeup_hour4, setwakeup_hour4] = React.useState(0);
   const [wakeup_min4, setwakeup_min4] = React.useState(0);
-
+  const arr = new Array(12).fill("");
+  // const [hours, setHours] = React.useState(arr);
+  
   // const [wakeup_time, setwakeup_time] =React.useState(0);
 
   function search() {
@@ -114,13 +116,11 @@ if(date==='오후'){
       setwakeup_hour4(restime4)
     }
 
-    console.log(ampm ,wakeup_hour, wakeup_min)
 }
 else{
 
   var setTime = new Date(2021, 11,27, hour, minute);
-  // setTime.setMinutes(0);
-  // console.log(setTime)
+
   let res4 = new Date(setTime.getTime() - 270*60000);
   let res3 = new Date(res4.getTime() - 90*60000);
   let res2 = new Date(res3.getTime() - 90*60000);
@@ -178,13 +178,8 @@ else{
       setwakeup_hour4(restime4)
     }
 
-    // console.log(ampm ,wakeup_hour, wakeup_min)
 
   }
-
-
-
-
   
   }
   return (
@@ -194,32 +189,14 @@ else{
         <option value="오후">오후</option>
       </select>
       <select id="hour" style={{ margin: "5px" }}>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
+        {arr.map((list, idx)=>{
+            return (<option key={idx+1} value={idx+1}>{idx+1}</option>)
+        })}
       </select>
       <select id="minute" style={{ margin: "5px" }}>
-        <option value="00">00</option>
-        <option value="05">05</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-        <option value="25">25</option>
-        <option value="30">30</option>
-        <option value="35">35</option>
-        <option value="40">40</option>
-        <option value="45">45</option>
-        <option value="50">50</option>
-        <option value="55">55</option>
+      {arr.map((list, idx)=>{
+            return (<option key={idx+1} value={idx*5}>{idx*5}</option>)
+        })}
       </select>
      
       <input
