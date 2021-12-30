@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Charater = (props) => {
-  const { shape, size, src, _onClick, margin, position, is_me, name } = props;
+  const { shape, size, src, _onClick, margin, position, name, text, children } =
+    props;
 
   const styles = {
     size: size,
@@ -16,25 +17,32 @@ const Charater = (props) => {
   //-- 표정 --
   if (shape === "feel") {
     return (
-      <ImgIcon
-        onClick={_onClick}
-        data-value={props.feelNumber}
-        // name={props.name}
-        {...styles}
-        src={require(`../images/character/feel${props.feelNumber}.png`)}
-      />
+      <div>
+        <ImgIcon
+          {...styles}
+          onClick={_onClick}
+          data-value={props.feelNumber}
+          name={name}
+          src={require(`../images/character/feel${props.feelNumber}.png`)}
+        ></ImgIcon>
+        {children}
+      </div>
     );
   }
   //-- 느낌 --
   if (shape === "sleep") {
     return (
-      <ImgIcon
-        {...styles}
-        onClick={_onClick}
-        data-value={props.sleepNumber}
-        // name="sleepScore"
-        src={require(`../images/character/sleep${props.sleepNumber}.png`)}
-      />
+      <div>
+        <ImgIcon
+          {...styles}
+          onClick={_onClick}
+          data-value={props.sleepNumber}
+          // name="sleepScore"
+          name={name}
+          src={require(`../images/character/sleep${props.sleepNumber}.png`)}
+        ></ImgIcon>
+        {children}
+      </div>
     );
   }
   // -- 캐릭터 혼합 --
@@ -43,15 +51,17 @@ const Charater = (props) => {
       <React.Fragment>
         <IconBox {...styles}>
           <ImgIcon
-            onClick={_onClick}
             {...styles}
+            onClick={_onClick}
             style={{ zIndex: "3" }}
+            name={name}
             src={require(`../images/character/feel${props.feelNumber}.png`)}
           />
           <ImgIcon
-            onClick={_onClick}
             {...styles}
+            onClick={_onClick}
             style={{ zIndex: "2" }}
+            name={name}
             src={require(`../images/character/sleep${props.sleepNumber}.png`)}
           />
         </IconBox>
@@ -68,7 +78,8 @@ Charater.defaultProps = {
   src: "../images/character/sleep0.png",
   size: 24,
   _onClick: () => {},
-  is_me: false,
+  children: null,
+  text: false,
 };
 
 const ImageCircle = styled.div`
