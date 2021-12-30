@@ -16,18 +16,20 @@ const Diary = () => {
   const [list, setList] = React.useState(arr);
   const dispatch = useDispatch();
 
+  const scoreList = ["1", "3", "5", "4", "2"];
+
   const getDiaryInfo = async (year, month) => {
-    await dispatch(diaryActions.getDiaryDB(year, month))
+    await dispatch(diaryActions.getDiaryDB(year, month));
   };
 
   React.useEffect(() => {
     const today = new Date(moment()); // 오늘 날짜
     const day = new Date(getMoment); // 사용자가 선택한 날짜
 
-    if(!diaryList){
+    if (!diaryList) {
       getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
     }
-    
+
     if (
       today.getFullYear() + "_" + today.getMonth() ===
       day.getFullYear() + "_" + day.getMonth()
@@ -116,17 +118,19 @@ const Diary = () => {
             return (
               <div key={index + 1 + "days"}>
                 {item.feelScore && item.sleepScore ? (
-                  <Charater
-                    shape="charater"
-                    size="40"
-                    position="absolute"
-                    feelNumber={item.feelScore}
-                    sleepNumber={item.sleepScore}
-                    _onClick={() => {
-                      diaryDetail(index + 1);
-                    }}
-                    margin="10px"
-                  />
+                  <>
+                    <Charater
+                      shape="charater"
+                      size="40"
+                      position="absolute"
+                      feelNumber={scoreList.indexOf(item.feelScore) + 1}
+                      sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
+                      _onClick={() => {
+                        diaryDetail(index + 1);
+                      }}
+                      margin="10px"
+                    />
+                  </>
                 ) : (
                   <Charater
                     shape="charater"
