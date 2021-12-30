@@ -2,7 +2,7 @@ import axios from "axios";
 import { getCookie } from "../Cookie";
 
 // const USER_TOKEN = `Bearer ${getToken("authorization")}`;
-const USER_TOKEN = getCookie("authorization");
+const USER_TOKEN = localStorage.setItem("token");
 
 const instance = axios.create({
   timeout: 3000,
@@ -35,6 +35,5 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
 
 export default instance;
