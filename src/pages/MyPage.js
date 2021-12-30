@@ -7,7 +7,9 @@ import { actionCreators as userActions } from "../redux/modules/user";
 const Mypage = (props) => {
   const dispatch = useDispatch();
   const userIdx = useSelector((state) => state.user.user.userIdx);
-  console.log(userIdx)
+  const userId = useSelector((state) => state.user.user.userId);
+  const userNotice = useSelector((state)=> state.notice);
+  console.log(userNotice);
   localStorage.setItem("token", "dklfhdlksfdlkfdlfkdl"); // middleware에서 set해야하는데 테스트를위해 token 세팅 예시
   const token = localStorage.getItem("token");
   const [is_token, setLogin] = React.useState(token);
@@ -59,12 +61,18 @@ const Mypage = (props) => {
                   //   margin: "0px",
                   position: "relative",
                   top: "40%",
-                  left: "-14%",
+                  left: "-5%",
                   //   transform: "translate(-0%, -50%)",
-                  cursor: "pointer",
                 }}
               >
                 알림
+              </span>
+              <span 
+                style={{position: "relative",
+                top: "40%",
+                left: "0%",}}
+              >
+         {userNotice.time.timePA}{userNotice.time.hour}:{userNotice.time.min}
               </span>
               <span
                 style={{
@@ -96,7 +104,7 @@ const Mypage = (props) => {
                   cursor: "pointer",
                 }}
                 onClick={() => (
-                  localStorage.removeItem("token"), history.push("/")
+                  dispatch(userActions.logoutDB())
                 )} // dispatch 로 해줘야하는부분
               >
                 로그아웃

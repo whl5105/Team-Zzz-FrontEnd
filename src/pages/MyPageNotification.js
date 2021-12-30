@@ -4,15 +4,18 @@ import Modal from "react-modal";
 import Switch from "@mui/material/Switch";
 
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
 
 const MyPageNotification = (props) => {
+  const hours = useSelector((state)=> state.notice.time.hour);
+  const minute = useSelector((state)=> state.notice.time.min);
+
   const [modal, setModal] = React.useState(true); // 모달창
   const [notice, setNotice] = React.useState(true); // 알림 유무
   const [day, setDay] = React.useState("PM"); // 오전(true), 오후(false) 설정
-  const [hour, setHour] = React.useState(12); // 시 설정
-  const [minutes, setMinutes] = React.useState(0); // 분 설정
+  const [hour, setHour] = React.useState(hours); // 시 설정
+  const [minutes, setMinutes] = React.useState(minute); // 분 설정
   const userIdx = props.match.params.userIdx; 
 //   console.log(userIdx)
 
@@ -23,7 +26,7 @@ const MyPageNotification = (props) => {
   const send = () => {
     if (!notice) {
       // 알림 안받는 경우 → 미들웨어에 기본값을 설정 해줘야 합니다.
-      dispatch(noticeActions.noticePopDB(notice));
+      dispatch(noticeActions.noticeDB(notice));
     } else {
       // 알림 받는 경우
       let _day = true;
@@ -32,7 +35,8 @@ const MyPageNotification = (props) => {
       }else{ // "PM"
         _day = false;
       }
-      dispatch(noticeActions.noticePopDB(notice, _day, hour, minutes));
+      dispatch(noticeActions.noticeDB(notice, _day, hour, minutes));
+      history.push('/mypage')
     }
   };
 
