@@ -4,6 +4,7 @@ import ModalPopUp from "./ModalPopUp";
 import Charater from "../elements/Charater";
 
 import { useSelector, useDispatch } from "react-redux";
+import FeelBox from "./FeelBox";
 
 const DiaryWrite = (props) => {
   const diaryList = useSelector((state) => state.diary.diaryList); //다이어리 데이터
@@ -55,7 +56,8 @@ const DiaryWrite = (props) => {
             />
             <div>
               <p>자고 일어난 후 느낌</p>
-              <div style={{ display: "flex" }}>
+              <FeelBox />
+              {/* <div style={{ display: "flex" }}>
                 {arr.map((arr, idx) => {
                   return (
                     <div key={idx}>
@@ -68,7 +70,7 @@ const DiaryWrite = (props) => {
                     </div>
                   );
                 })}
-              </div>
+              </div> */}
             </div>
             <div>
               <p>수면시간이 충분했는지</p>
