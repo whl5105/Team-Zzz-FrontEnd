@@ -13,7 +13,7 @@ const setLogin = createAction(LOGIN, (user) => ({ user }));
 
 // -- initialState --
 const initialState = {
-  // user: null,
+  user: {userIdx : 1},
   errMessage: "",
   is_login: false,
 };
