@@ -3,8 +3,11 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
+import AsmrPopUp from "../components/AsmrPopUp";
+
 
 const Asmr = ({ location }) => {
+  console.log(location);
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
   );
@@ -14,7 +17,8 @@ const Asmr = ({ location }) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-
+  const [openModal, setOpenmodal] = React.useState(false)
+ console.log(openModal)
   React.useEffect(() => {
     // 1) 카테고리별 활성화 유무
     const arr = ["전체", "자연", "공간", "물체"];
@@ -117,6 +121,7 @@ const Asmr = ({ location }) => {
 
   return (
     <>
+    <div>  {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
       <div
         onClick={() => {
           history.push("/");
@@ -178,12 +183,15 @@ const Asmr = ({ location }) => {
       {play.length > 0 ? (
         <button
           onClick={() => {
+            setOpenmodal(true)
             console.log("음원 url 가지고 이동!!!", play);
           }}
         >
           음량 조절 하러 가기
         </button>
       ) : null}
+    { openModal&& <AsmrPopUp play={play} closeModal={setOpenmodal} />}
+    </div>
     </>
   );
 };

@@ -37,7 +37,7 @@ const Login = () => {
     } else {
       setIsState(true);
       console.log("아이디 비번 확인완료 ");
-      dispatch(userActions.signupDB(id, pwd));
+      dispatch(userActions.loginDB(id, pwd));
     }
   };
   // 서버에서 받아온 요청이 다를 경우
