@@ -72,7 +72,7 @@ const Mypage = (props) => {
                 top: "40%",
                 left: "0%",}}
               >
-         {userNotice.time.timePA}{userNotice.time.hour}:{userNotice.time.min}
+         {userNotice.time.sleepChk&&userNotice.time.timePA}{userNotice.time.sleepChk&&userNotice.time.hour}{userNotice.time.sleepChk&&`:`}{userNotice.time.sleepChk&&userNotice.time.min}
               </span>
               <span
                 style={{

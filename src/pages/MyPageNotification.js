@@ -8,12 +8,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
 
 const MyPageNotification = (props) => {
+  const notices = useSelector((state)=> state.notice.time.sleepChk)
+  const days = useSelector((state)=> state.notice.time.timePA) 
   const hours = useSelector((state)=> state.notice.time.hour);
   const minute = useSelector((state)=> state.notice.time.min);
-
+//   console.log(notices)
   const [modal, setModal] = React.useState(true); // 모달창
-  const [notice, setNotice] = React.useState(true); // 알림 유무
-  const [day, setDay] = React.useState("PM"); // 오전(true), 오후(false) 설정
+  const [notice, setNotice] = React.useState(notices); // 알림 유무
+  const [day, setDay] = React.useState(days); // 오전("AM"), 오후("PM") 설정
   const [hour, setHour] = React.useState(hours); // 시 설정
   const [minutes, setMinutes] = React.useState(minute); // 분 설정
   const userIdx = props.match.params.userIdx; 
@@ -21,22 +23,16 @@ const MyPageNotification = (props) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const label = { inputProps: { "aria-label": "Switch demo" } };
+  const label = { inputProps: {  "aria-label": "Switch demo" } };
    console.log(label)
   const send = () => {
     if (!notice) {
       // 알림 안받는 경우 → 미들웨어에 기본값을 설정 해줘야 합니다.
       dispatch(noticeActions.noticeDB(notice));
     } else {
-      // 알림 받는 경우
-      let _day = true;
-      if(day === 'AM'){
-        _day = true;
-      }else{ // "PM"
-        _day = false;
-      }
-      dispatch(noticeActions.noticeDB(notice, _day, hour, minutes));
-      history.push('/mypage')
+     
+      dispatch(noticeActions.noticeDB(notice, day, hour, minutes));
+    //   history.push('/mypage')
     }
   };
 
@@ -61,11 +57,11 @@ const MyPageNotification = (props) => {
         <p>
           수면 기록 알림을 받으시겠습니까? &nbsp;
           <Switch
-            {...label}
+            checked={notice}
             onClick={() => {
               setNotice(!notice);
             }}
-            defaultChecked
+           
           />
         </p>
         <div>
@@ -78,7 +74,7 @@ const MyPageNotification = (props) => {
                   onChange={(e) => {
                     setDay(e.target.value);
                   }}
-                  value={day}
+                value={day}
                 >
                   <option value="AM">오전</option>
                   <option value="PM">오후</option>
