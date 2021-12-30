@@ -12,12 +12,12 @@ const setNotice = createAction(SET_NOTICE, (notice) => ({ notice }));
 // -- initialState --
 const initialState = {
   // user: null,
-  time: {
-    sleepChk: true,
-    timePA: false,
-    hour: 11,
-    min: 0,
-  },
+  time :{
+    sleepChk: false,
+    timePA : "AM",
+    hour : 12,
+    min : 0,
+  }
 };
 
 // -- middleware actions --
@@ -32,11 +32,12 @@ const noticePopDB = (notice, day = false, hour = 0, minutes = 0) => {
   };
 };
 
-const noticeDB = (notice, day = false, hour = 0, minutes = 0) => {
+const noticeDB = (notice, day = "AM", hour = 1, minutes = 0) => {
   return function (dispatch, getState, { history }) {
     const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
     console.log(info);
-    dispatch(setNotice(info));
+    dispatch(setNotice(info))
+    history.push('/mypage');
   };
 };
 
