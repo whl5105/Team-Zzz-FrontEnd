@@ -18,28 +18,28 @@ const Main = (props) => {
       >
         <Category
           onClick={() => {
-            history.push({ pathname: "/asmr", category: "all" });
+            history.push({ pathname: "/asmr", category: "전체" });
           }}
         >
           더보기
         </Category>
         <Category
           onClick={() => {
-            history.push({ pathname: "/asmr", category: "nature" });
+            history.push({ pathname: "/asmr", category: "자연" });
           }}
         >
           자연
         </Category>
         <Category
           onClick={() => {
-            history.push({ pathname: "/asmr", category: "place" });
+            history.push({ pathname: "/asmr", category: "공간" });
           }}
         >
           공간
         </Category>
         <Category
           onClick={() => {
-            history.push({ pathname: "/asmr", category: "object" });
+            history.push({ pathname: "/asmr", category: "물체" });
           }}
         >
           물체
