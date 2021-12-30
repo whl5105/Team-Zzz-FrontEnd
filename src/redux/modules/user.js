@@ -13,7 +13,11 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 
 // -- initialState --
 const initialState = {
-  user: {userIdx : 1},
+  user: {
+    userIdx : 1,
+    userId : "test01",
+    noticeSet: false,
+  },
   errMessage: "",
   is_login: false,
 };
@@ -61,6 +65,20 @@ export const loginDB =
     }
   };
 
+  const logoutDB = () => {
+    return function (dispatch, getState, { history }) {
+      // dispatch(logOut());
+      localStorage.removeItem("userIdx");
+      localStorage.removeItem("token");
+      localStorage.removeItem("noticeSet");
+      alert("로그아웃 되었습니다.");
+      history.push("/");
+      window.location.reload();
+    };
+  };
+
+
+
 // -- reducer --
 export default handleActions(
   {
@@ -81,6 +99,7 @@ export default handleActions(
 const actionCreators = {
   signupDB,
   loginDB,
+  logoutDB,
 };
 
 export { actionCreators };
