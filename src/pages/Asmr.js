@@ -4,21 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 
-import audioUrl1 from "../audio/asmrUrl1.MP3";
-import audioUrl2 from "../audio/asmrUrl2.MP3";
-import audioUrl3 from "../audio/asmrUrl3.MP3";
-
 const Asmr = ({ location }) => {
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
   );
   const [sound, setSound] = React.useState([]);
-  const history = useHistory();
-  const dispatch = useDispatch();
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const [play, setPlay] = React.useState([]);
 
-  const audio = new Audio(audioUrl1);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     // 1) 카테고리별 활성화 유무
@@ -72,7 +67,7 @@ const Asmr = ({ location }) => {
     setPlay([]);
   }, [getCategory]);
 
-  const select = async (asmrUrl) => {
+  const select = (asmrUrl) => {
     let playList = []; // 선택된 음원만 play 할 배열
 
     if (play.includes(asmrUrl)) {
@@ -93,6 +88,7 @@ const Asmr = ({ location }) => {
       // 활성화
       if (play.length > 2) {
         window.alert("음원은 3개까지만 담으실 수 있습니다.");
+        playList = [...play];
       } else {
         const arr = [...play, asmrUrl];
         setPlay(arr);
@@ -104,14 +100,19 @@ const Asmr = ({ location }) => {
       }
     }
 
+    console.log(playList.length);
     // 배열에 있는 음원만 다시 재생....
-    playList.forEach((item) => {
-      const audioPlayBack = new Audio(item);
+    if (playList.length === 0) {
+      console.log("재생 할 거 없음");
+    } else {
+      playList.forEach((item) => {
+        const audioPlayBack = new Audio(item);
 
-      audioPlayBack.loop = true;
-      audioPlayBack.volume = 0.5;
-      audioPlayBack.play(); // 음원 재생
-    });
+        audioPlayBack.loop = true;
+        audioPlayBack.volume = 0.5;
+        audioPlayBack.play(); // 음원 재생
+      });
+    }
   };
 
   return (
