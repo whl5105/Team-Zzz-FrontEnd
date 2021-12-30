@@ -4,8 +4,8 @@ import instanceRecord from "./instanceRecord";
 export const apis = {
   //-- user --
   signup: (id, password) =>
-    instance.post("/api/auth/register", { id, password }), //회원가입
-  login: (id, password) => instance.post("/api/auth/login", { id, password }), //로그인
+    instance.post("/api/register", { id, password }), //회원가입
+  login: (id, password) => instance.post("/api/login", { id, password }), //로그인
   //kakaoLogin: (code) => instance.get("/api/", code), // 카카오로그인 : 백과 이야기 후 api수정 필요함
 
   getNotice: () => instance.get("/api/notice"), //수면기록 팝업창 :백과 이야기 후 api수정 필요함

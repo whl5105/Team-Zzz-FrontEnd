@@ -57,7 +57,7 @@ const Signup = (props) => {
   //---- 비밀번호 중복 확인  ----
   const onChangePasswordCheck = (e) => {
     setPwdCheck(e.target.value);
-    if (pwd === pwd_check) {
+    if (pwd === e.target.value) {
       setPwdCheckMessage("비밀번호를 똑같이 입력했어요 : )");
       setIsPwdCheck(true);
     } else {
