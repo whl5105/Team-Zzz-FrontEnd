@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getCookie } from "../Cookie";
+// import { getCookie } from "../Cookie";
 
 // const USER_TOKEN = `Bearer ${getToken("authorization")}`;
 const USER_TOKEN = localStorage.getItem("token");

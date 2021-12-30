@@ -1,10 +1,7 @@
 import React, { useState, useRef } from "react";
 
-// redux
-import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore.js";
-
-//modules
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const Login = () => {

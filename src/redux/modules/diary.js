@@ -3,9 +3,16 @@ import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
 
 // -- actions --
+const SET_PREVIEW_FEEL = "SET_PREVIEW_FEEL";
+const SET_PREVIEW_SLEEP = "SET_PREVIEW_SLEEP";
 
 // -- action creators --
-
+const setPreviewFeel = createAction(SET_PREVIEW_FEEL, (state) => ({
+  state,
+}));
+const setPreviewSleep = createAction(SET_PREVIEW_SLEEP, (state) => ({
+  state,
+}));
 // -- initialState --
 const initialState = {
   diaryList: [
@@ -56,8 +63,12 @@ const initialState = {
       sleepAvg: 20,
     },
   ],
+  //미리보기
+  preview: {
+    previewFeel: "0",
+    previewSleep: "0",
+  },
 };
-
 
 // -- middleware actions --
 const noticePopDB = (notice, day = "", hour = "", minutes = "") => {
@@ -69,9 +80,14 @@ const noticePopDB = (notice, day = "", hour = "", minutes = "") => {
 // -- reducer --
 export default handleActions(
   {
-    // [SET_USER]: (state, action) =>
-    //   produce(state, (draft) => {
-    //   }),
+    [SET_PREVIEW_FEEL]: (state, action) =>
+      produce(state, (draft) => {
+        draft.preview.previewFeel = action.payload.state;
+      }),
+    [SET_PREVIEW_SLEEP]: (state, action) =>
+      produce(state, (draft) => {
+        draft.preview.previewSleep = action.payload.state;
+      }),
   },
   initialState
 );
@@ -79,6 +95,8 @@ export default handleActions(
 // -- action creator export --
 const actionCreators = {
   noticePopDB,
+  setPreviewFeel,
+  setPreviewSleep,
 };
 
 export { actionCreators };
