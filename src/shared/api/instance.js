@@ -1,8 +1,7 @@
 import axios from "axios";
-import { getCookie } from "../Cookie";
 
 // const USER_TOKEN = `Bearer ${getToken("authorization")}`;
-const USER_TOKEN = localStorage.setItem("token");
+const USER_TOKEN = localStorage.getItem("token");
 
 const instance = axios.create({
   timeout: 3000,
