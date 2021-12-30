@@ -17,14 +17,14 @@ const initialState = {
       categoryIdx: "1",
       categoryName: "전체",
       title: "빗소리",
-      asmrUrl: "asmrUrl1",
+      asmrUrl: "audioUrl1",
       iconUrl: "iconUrl",
     },
     {
       categoryIdx: "2",
       categoryName: "전체",
       title: "빗소리",
-      asmrUrl: "asmrUrl2",
+      asmrUrl: "audioUrl2",
       iconUrl: "iconUrl",
     },
 
@@ -32,7 +32,7 @@ const initialState = {
       categoryIdx: "3",
       categoryName: "전체",
       title: "빗소리",
-      asmrUrl: "asmrUrl3",
+      asmrUrl: "audioUrl3",
       iconUrl: "iconUrl",
     },
     {

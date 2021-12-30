@@ -18,6 +18,8 @@ const Asmr = ({ location }) => {
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const [play, setPlay] = React.useState([]);
 
+  const audio = new Audio(audioUrl1);
+
   React.useEffect(() => {
     // 1) 카테고리별 활성화 유무
     const arr = ["전체", "자연", "공간", "물체"];
@@ -70,7 +72,9 @@ const Asmr = ({ location }) => {
     setPlay([]);
   }, [getCategory]);
 
-  const select = (asmrUrl) => {
+  const select = async (asmrUrl) => {
+    let playList = []; // 선택된 음원만 play 할 배열
+
     if (play.includes(asmrUrl)) {
       // 비활성화
       let arr = [...play];
@@ -80,9 +84,7 @@ const Asmr = ({ location }) => {
         }
       });
       setPlay(arr);
-
-      // 음원 재생 중지 시킴
-      playBack("pause", asmrUrl);
+      playList = [...arr];
 
       // 선택한 음원 비활성화 style
       const deleteItem = document.getElementById(asmrUrl);
@@ -94,30 +96,22 @@ const Asmr = ({ location }) => {
       } else {
         const arr = [...play, asmrUrl];
         setPlay(arr);
-
-        // 음원 재생 시킴
-        playBack("play", asmrUrl);
+        playList = [...arr];
 
         // 선택한 음원 활성화 style
         const selectItem = document.getElementById(asmrUrl);
         selectItem.style.backgroundColor = "#dddddd";
       }
     }
-  };
 
-  // 음원 재생 여부
-  const playBack = (status, asmrUrl) => {
-    const url = document.getElementById(asmrUrl);
-    const audio = new Audio(audioUrl1); // Audio 객체를 생성해서 음악을 재생한다.
+    // 배열에 있는 음원만 다시 재생....
+    playList.forEach((item) => {
+      const audioPlayBack = new Audio(item);
 
-    if (status === "play") {
-      audio.loop = true; // 반복재생 여부
-      audio.volume = 0.5; // 볼륨
-      audio.play(); // 음원 재생
-    } else if (status === "pause") {
-      audio.pause(); // 음원 재생 중지
-      audio.currentTime = 0;
-    }
+      audioPlayBack.loop = true;
+      audioPlayBack.volume = 0.5;
+      audioPlayBack.play(); // 음원 재생
+    });
   };
 
   return (
