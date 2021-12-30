@@ -11,7 +11,7 @@ const Navigation = (props) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          width: "20%",
+          width: "300px",
           backgroundColor: "#dddddd",
           margin: "auto",
           marginTop: `${props.marginTop ? props.marginTop : ""}`,
