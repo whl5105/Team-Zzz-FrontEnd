@@ -4,10 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 
-import audioUrl1 from "../audio/asmrUrl1.MP3";
-import audioUrl2 from "../audio/asmrUrl2.MP3";
-import audioUrl3 from "../audio/asmrUrl3.MP3";
-
 const Asmr = ({ location }) => {
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
@@ -17,8 +13,6 @@ const Asmr = ({ location }) => {
   const dispatch = useDispatch();
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const [play, setPlay] = React.useState([]);
-
-  const audio = new Audio(audioUrl1);
 
   React.useEffect(() => {
     // 1) 카테고리별 활성화 유무
