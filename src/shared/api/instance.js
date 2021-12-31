@@ -9,8 +9,8 @@ const instance = axios.create({
   headers: {
     "Content-Type": "application/json; charset=utf-8",
     "X-Requested-With": "XMLHttpRequest",
-    authorization: USER_TOKEN,
-    Accept: "application/json",
+    "authorization": USER_TOKEN,
+    "Accept": "application/json",
   },
 });
 //request
