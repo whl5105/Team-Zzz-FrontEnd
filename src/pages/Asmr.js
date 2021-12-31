@@ -5,7 +5,13 @@ import { useHistory, useLocation } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 import AsmrPopUp from "../components/AsmrPopUp";
 
+import asmrUrl1 from "../audio/asmrUrl1.mp3"
+import asmrUrl2 from "../audio/asmrUrl2.mp3"
+import asmrUrl3 from "../audio/asmrUrl3.mp3"
+
+
 const Asmr = (props) => {
+  
   const location = useLocation();
   
   const [song1, setSong1] = React.useState(new Audio());
