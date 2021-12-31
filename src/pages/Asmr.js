@@ -9,7 +9,12 @@ import asmrUrl1 from "../audio/asmrUrl1.mp3"
 import asmrUrl2 from "../audio/asmrUrl2.mp3"
 import asmrUrl3 from "../audio/asmrUrl3.mp3"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9bb5c2e26e2e872889888b5471ea058986adf734
 const Asmr = (props) => {
+  
   const location = useLocation();
 
   const [getCategory, setCategory] = React.useState(
@@ -18,10 +23,6 @@ const Asmr = (props) => {
   const [sound, setSound] = React.useState([]);
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const [play, setPlay] = React.useState([]);
-
-  const [song1, setSong1] = React.useState(new Audio());
-  const [song2, setSong2] = React.useState(new Audio());
-  const [song3, setSong3] = React.useState(new Audio());
 
   const history = useHistory();
   const dispatch = useDispatch();

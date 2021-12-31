@@ -8,10 +8,6 @@ import { actionCreators as userActions } from "../redux/modules/diary";
 const FeelBox = (props) => {
   const dispatch = useDispatch();
 
-  // const arr_list = new Array(5).fill("");
-  // const [arr, setArr] = React.useState(arr_list);
-
-  // const [arr, setArr] = React.useState(["1", "3", "5", "4", "2"]);
   const [arr, setArr] = React.useState([
     { text: "과하게피곤", score: "1" },
     { text: "피곤", score: "3" },
@@ -19,14 +15,6 @@ const FeelBox = (props) => {
     { text: "에너지 넘침", score: "4" },
     { text: "과하게잠", score: "2" },
   ]);
-
-  const iconClick = (e) => {
-    console.log(e.target.name);
-    const previewFeel = e.target.dataset.value;
-    const previewFeelScore = e.target.name;
-
-    dispatch(userActions.setPreviewFeel(previewFeel, previewFeelScore));
-  };
 
   return (
     <div>
@@ -42,7 +30,7 @@ const FeelBox = (props) => {
                   name={arr.score}
                   // text={arr.text}
                   feelNumber={idx + 1}
-                  _onClick={iconClick}
+                  _onClick={props._onClick}
                 >
                   {arr.text}
                 </Charater>

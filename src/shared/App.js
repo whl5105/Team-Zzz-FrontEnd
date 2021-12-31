@@ -37,7 +37,7 @@ function App() {
             component={PushNoticationPop}
           ></Route>
           <Route path="/diary" exact component={Diary}></Route>
-          <Route path="/diaryWrite/:dayId" exact component={DiaryWrite}></Route>
+          <Route path="/diaryWrite" exact component={DiaryWrite}></Route>
           <Route path="/voice" exact component={Voice}></Route>
           <Route path="/asmr" exact component={Asmr}></Route>
           <Route path="/mypage" exact component={Mypage} />
