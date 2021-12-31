@@ -1,15 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 import AsmrPopUp from "../components/AsmrPopUp";
 
-import audioUrl1 from "../audio/audioUrl1.MP3";
-import audioUrl2 from "../audio/audioUrl2.mp3";
-import audioUrl3 from "../audio/audioUrl3.mp3";
-
-const Asmr = ({ location }) => {
+const Asmr = (props) => {
+  const location = useLocation();
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
   );
