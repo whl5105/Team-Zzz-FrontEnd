@@ -9,14 +9,14 @@ import asmrUrl1 from "../audio/asmrUrl1.mp3"
 import asmrUrl2 from "../audio/asmrUrl2.mp3"
 import asmrUrl3 from "../audio/asmrUrl3.mp3"
 
-
 const Asmr = (props) => {
   
   const location = useLocation();
+  
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());
- 
+
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
   );
@@ -78,6 +78,14 @@ const Asmr = (props) => {
 
     // 4) 카테고리가 바뀌면 활성화된 음원 초기화
     setPlay([]);
+
+    // 5) 카테고리가 바뀌면 play 중이던 음원 싹다 중지
+    song1.pause();
+    song2.pause();
+    song3.pause();
+    setSong1(new Audio());
+    setSong2(new Audio());
+    setSong3(new Audio());
   }, [getCategory]);
 
   const select = (asmrUrl) => {
@@ -211,7 +219,14 @@ const Asmr = (props) => {
             음량 조절 하러 가기
           </button>
         ) : null}
-        {openModal && <AsmrPopUp play={song1} play2={song2} play3={song3} closeModal={setOpenmodal} />}
+        {openModal && (
+          <AsmrPopUp
+            play={song1}
+            play2={song2}
+            play3={song3}
+            closeModal={setOpenmodal}
+          />
+        )}
       </div>
     </>
   );

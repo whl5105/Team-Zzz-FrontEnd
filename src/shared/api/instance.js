@@ -7,7 +7,7 @@ const instance = axios.create({
   baseURL: "http://54.180.109.58:3000",
   // headers: {
   //   // "Content-Type": "application/json; charset=utf-8",
-  //   // "X-Requested-With": "XMLHttpRequest",
+  //   //9bb5c2e26e2e872889888b5471ea058986adf734 "X-Requested-With": "XMLHttpRequest",
   //   // authorization: USER_TOKEN,
   //   Accept: "application/json",
   // },

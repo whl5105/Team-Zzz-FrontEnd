@@ -9,8 +9,6 @@ const Mypage = (props) => {
   const userIdx = useSelector((state) => state.user.user.userIdx);
   const userId = useSelector((state) => state.user.user.userId);
   const userNotice = useSelector((state)=> state.notice);
-  console.log(userNotice);
-  localStorage.setItem("token", "dklfhdlksfdlkfdlfkdl"); // middleware에서 set해야하는데 테스트를위해 token 세팅 예시
   const token = localStorage.getItem("token");
   const [is_token, setLogin] = React.useState(token);
   console.log(is_token);
