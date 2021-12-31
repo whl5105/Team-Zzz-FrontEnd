@@ -3,26 +3,26 @@ import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
 
 // -- actions --
-const SET_PREVIEW_FEEL = "SET_PREVIEW_FEEL";
-const SET_PREVIEW_SLEEP = "SET_PREVIEW_SLEEP";
+// const SET_PREVIEW_FEEL = "SET_PREVIEW_FEEL";
+// const SET_PREVIEW_SLEEP = "SET_PREVIEW_SLEEP";
 const GET_DIARY = "GETDIARY";
 const ADD_DIARY = "POST_DIARY";
 
 // -- action creators --
-const setPreviewFeel = createAction(SET_PREVIEW_FEEL, (preview, score) => ({
-  preview,
-  score,
-}));
-const setPreviewSleep = createAction(SET_PREVIEW_SLEEP, (preview, score) => ({
-  preview,
-  score,
-}));
+// const setPreviewFeel = createAction(SET_PREVIEW_FEEL, (preview, score) => ({
+//   preview,
+//   score,
+// }));
+// const setPreviewSleep = createAction(SET_PREVIEW_SLEEP, (preview, score) => ({
+//   preview,
+//   score,
+// }));
 // -- action creators --
 const get_diary = createAction(GET_DIARY, (diaryListInfo) => ({
   diaryListInfo,
 }));
-const add_diary = createAction(ADD_DIARY, (diaryList) => ({
-  diaryList,
+const add_diary = createAction(ADD_DIARY, (diaryListInfo) => ({
+  diaryListInfo,
 }));
 
 // -- initialState --
@@ -70,17 +70,17 @@ const initialState = {
       sleepScore: "3",
       comment: "오늘은 아구찜 먹음",
     },
-    {
-      sleepAvg: 20,
-    },
   ],
-  //미리보기
-  preview: {
-    previewFeel: "0",
-    previewSleep: "0",
-    previewFeelScore: "0",
-    previewSleepScore: "0",
-  },
+
+  sleepAvg: 20,
+
+  // //미리보기
+  // preview: {
+  //   previewFeel: "0",
+  //   previewSleep: "0",
+  //   previewFeelScore: "0",
+  //   previewSleepScore: "0",
+  // },
 };
 
 // -- middleware actions --
@@ -99,7 +99,7 @@ const getDiaryDB = (year, month) => {
     }
   };
 };
-
+//다이어리 기록 추가
 const addDiaryDB = (year, month, diaryListInfo) => {
   return function (dispatch, getState, { history }) {
     const yearMonth = `${year}-${month}`;
@@ -108,15 +108,18 @@ const addDiaryDB = (year, month, diaryListInfo) => {
       yearMonth: yearMonth,
       ...diaryListInfo,
     };
+    console.log(diaryListInfo);
     try {
       const res = apis.postDiary(diary_info);
       console.log("postDiaryDB response : ", res);
       dispatch(add_diary(diaryListInfo));
+      history.replace("/diary");
     } catch (error) {
       console.log("postDiaryDB Error : ", error);
     }
   };
 };
+//다이어리 편집
 const editDiaryDB = (year, month, diaryListInfo) => {
   return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
@@ -139,18 +142,18 @@ const editDiaryDB = (year, month, diaryListInfo) => {
 // -- reducer --
 export default handleActions(
   {
-    [SET_PREVIEW_FEEL]: (state, action) =>
-      produce(state, (draft) => {
-        draft.preview.previewFeel = action.payload.preview;
-        draft.preview.previewFeelScore = action.payload.score;
-        console.log(draft.preview.previewFeelScore);
-      }),
-    [SET_PREVIEW_SLEEP]: (state, action) =>
-      produce(state, (draft) => {
-        draft.preview.previewSleep = action.payload.preview;
-        draft.preview.previewSleepScore = action.payload.score;
-        console.log(action.payload.score);
-      }),
+    // [SET_PREVIEW_FEEL]: (state, action) =>
+    //   produce(state, (draft) => {
+    //     draft.preview.previewFeel = action.payload.preview;
+    //     draft.preview.previewFeelScore = action.payload.score;
+    //     console.log(draft.preview.previewFeelScore);
+    //   }),
+    // [SET_PREVIEW_SLEEP]: (state, action) =>
+    //   produce(state, (draft) => {
+    //     draft.preview.previewSleep = action.payload.preview;
+    //     draft.preview.previewSleepScore = action.payload.score;
+    //     console.log(action.payload.score);
+    //   }),
     [GET_DIARY]: (state, action) =>
       produce(state, (draft) => {
         draft.diaryList = action.payload.diaryListInfo;
@@ -158,6 +161,7 @@ export default handleActions(
     [ADD_DIARY]: (state, action) =>
       produce(state, (draft) => {
         draft.diaryList.push(action.payload.diaryListInfo);
+        console.log(action.payload.diaryListInfo);
       }),
   },
   initialState
@@ -165,8 +169,8 @@ export default handleActions(
 
 // -- action creator export --
 const actionCreators = {
-  setPreviewFeel,
-  setPreviewSleep,
+  // setPreviewFeel,
+  // setPreviewSleep,
   getDiaryDB,
   addDiaryDB,
 };
