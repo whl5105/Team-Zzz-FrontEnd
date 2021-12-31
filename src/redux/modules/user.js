@@ -15,8 +15,8 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 // -- initialState --
 const initialState = {
   user: {
-    userIdx : 1,
-    userId : "test01",
+    userIdx: 1,
+    userId: "test01",
     noticeSet: false,
   },
   errMessage: "",
@@ -29,16 +29,10 @@ export const signupDB =
   (userId, password) =>
   async (dispatch, getState, { history }) => {
     try {
-
-      axios.post("http://54.180.109.58:3000/api/register",{userId, password})
-      .then((res)=>{
-        console.log(res);
-      })
-
-      // const res = await apis.signup(userid, password);
-      // console.log(res.result);
-      // window.alert("회원가입이 완료되었습니다. 로그인 해주세요");
-      // history.replace("/login");
+      const res = await apis.signup(userId, password);
+      console.log(res.retult);
+      window.alert("회원가입이 완료되었습니다. 로그인 해주세요");
+      history.replace("/login");
     } catch (err) {
       console.log(`오류 발생!${err}`);
       dispatch(signup(err.errMessage));
@@ -49,49 +43,40 @@ export const loginDB =
   (userId, password) =>
   async (dispatch, getState, { history }) => {
     try {
-      
-      axios.post("http://54.180.109.58:3000/api/login",{userId, password})
-      .then((res)=>{
-        console.log(res);
-      })
-
-
-      // const res = await apis.login(userId, password);
+      const res = await apis.login(userId, password);
+      console.log(res);
       // let username = res.data[0].userId;
-      // // setCookie("token", res.data[1].token, 7);
-      // //로컬 스토리지 저장
-      // localStorage.setItem("userIdx", res.userIdx);
-      // localStorage.setItem("noticeSet", res.noticeSet);
-      // localStorage.setItem("token", res.token);
-      // dispatch(
-      //   setUser({
-      //     userIdx: res.userIdx,
-      //     userId: res.userId,
-      //     loginCnt: res.loginCnt,
-      //     noticeSet: res.noticeSet,
-      //   })
-      // );
+      //로컬 스토리지 저장
+      localStorage.setItem("userIdx", res.userIdx);
+      localStorage.setItem("noticeSet", res.noticeSet);
+      localStorage.setItem("token", res.token);
+      dispatch(
+        setUser({
+          userIdx: res.userIdx,
+          userId: res.userId,
+          loginCnt: res.loginCnt,
+          noticeSet: res.noticeSet,
+        })
+      );
       // window.alert(`${username}님 환영합니다`);
-      // history.replace("/");
+      history.replace("/");
     } catch (err) {
       window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
       console.log(`오류 발생!${err}`);
     }
   };
 
-  const logoutDB = () => {
-    return function (dispatch, getState, { history }) {
-      // dispatch(logOut());
-      localStorage.removeItem("userIdx");
-      localStorage.removeItem("token");
-      localStorage.removeItem("noticeSet");
-      alert("로그아웃 되었습니다.");
-      history.push("/");
-      window.location.reload();
-    };
+const logoutDB = () => {
+  return function (dispatch, getState, { history }) {
+    // dispatch(logOut());
+    localStorage.removeItem("userIdx");
+    localStorage.removeItem("token");
+    localStorage.removeItem("noticeSet");
+    alert("로그아웃 되었습니다.");
+    history.push("/");
+    window.location.reload();
   };
-
-
+};
 
 // -- reducer --
 export default handleActions(
