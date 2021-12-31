@@ -41,9 +41,9 @@ const initialState = {
       comment: "오늘은 아구찜 먹음",
     },
     {
-      day: "5",
-      feelScore: "3",
-      sleepScore: "3",
+      day: "8",
+      feelScore: "5",
+      sleepScore: "5",
       comment: "오늘은 아구찜 먹음",
     },
     {
@@ -70,6 +70,10 @@ const initialState = {
       sleepScore: "3",
       comment: "오늘은 아구찜 먹음",
     },
+    {
+      sleepAvg: "user not data send",
+    },
+
   ],
 
   sleepAvg: 20,

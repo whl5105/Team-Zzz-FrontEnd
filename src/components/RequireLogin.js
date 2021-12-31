@@ -3,18 +3,19 @@ import React from "react";
 import Modal from "react-modal";
 import { history } from "../redux/configureStore";
 const RequireLogin = (props) => {
-  const [modal, setModal] = React.useState(true); // 모달창
+  const [modal, setModal] = React.useState(props.modal ? true : false); // 모달창
+
+  const modalOff = () => {    
+    setModal(false);
+    props.setDiaryModal(false);
+  };
 
   return (
     <>
-      <text>컨텐츠</text>
       <Modal
         isOpen={modal}
         ariaHideApp={false}
-        onRequestClose={() =>
-          setModal(!modal)
-          //  ,history.push("/login")
-        }
+        onRequestClose={modalOff}
         style={{
           overlay: {
             position: "fixed",
@@ -22,19 +23,19 @@ const RequireLogin = (props) => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "rgba(255, 255, 255, 0.75)",
+            backgroundColor: "rgba(255, 255, 255, 0)",
           },
           content: {
             position: "absolute",
             top: "200px",
-            left: "10%",
-            width: "80%",
-            height: "30%",
+            left: "40%",
+            width: "20%",
+            height: "40%",
             border: "1px solid #ccc",
             background: "#C4C4C4ff",
             overflow: "auto",
             WebkitOverflowScrolling: "touch",
-            borderRadius: "30px 30px 0px 0px",
+            borderRadius: "30px",
             outline: "none",
             padding: "0px",
           },
@@ -84,7 +85,7 @@ const RequireLogin = (props) => {
           </button>
           <button
             style={{ width: "100%", height: "50px", border: "none" }}
-            onClick={() => setModal(!modal)}
+            onClick={modalOff}
           >
             아니오
           </button>
