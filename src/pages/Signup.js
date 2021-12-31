@@ -29,8 +29,9 @@ const Signup = (props) => {
   //---- 아이디 유효성 검사  ----
   const idCheck = (e) => {
     const idRegExp = /^[a-zA-z0-9]{5,10}$/;
-    setId(e.target.value);
-    if (!idRegExp.test(id)) {
+    const idCurrent = e.target.value;
+    setId(idCurrent);
+    if (!idRegExp.test(idCurrent)) {
       setIdMessage("5글자 이상 10글자 미만으로 입력해주세요.");
       setIsId(false);
     } else {
@@ -42,9 +43,10 @@ const Signup = (props) => {
   //---- 비밀번호 유효성 검사  ----
   const onChangePassword = (e) => {
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
-    setPwd(e.target.value);
+    const passwordCurrent = e.target.value;
+    setPwd(passwordCurrent);
 
-    if (!passwordRegex.test(pwd)) {
+    if (!passwordRegex.test(passwordCurrent)) {
       setPwdMessage(
         "숫자+영문자 조합으로 8자리 이상 20자리 이하로 입력해주세요!"
       );
@@ -56,8 +58,9 @@ const Signup = (props) => {
   };
   //---- 비밀번호 중복 확인  ----
   const onChangePasswordCheck = (e) => {
-    setPwdCheck(e.target.value);
-    if (pwd === e.target.value) {
+    const pwdCurrent = e.target.value;
+    setPwdCheck(pwdCurrent);
+    if (pwd === pwdCurrent) {
       setPwdCheckMessage("비밀번호를 똑같이 입력했어요 : )");
       setIsPwdCheck(true);
     } else {
@@ -116,7 +119,7 @@ const Signup = (props) => {
           </Span>
         )}
       </div>
-      {/* -- 회원가입 버튼 */}
+      {/* -- 회원가입 버튼 --*/}
       <button onClick={signUpClick}>회원가입</button>
     </React.Fragment>
   );

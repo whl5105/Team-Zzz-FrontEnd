@@ -5,6 +5,8 @@ import { apis } from "../../shared/api/apis";
 // -- actions --
 const SET_PREVIEW_FEEL = "SET_PREVIEW_FEEL";
 const SET_PREVIEW_SLEEP = "SET_PREVIEW_SLEEP";
+const GET_DIARY = "GETDIARY";
+const ADD_DIARY = "POST_DIARY";
 
 // -- action creators --
 const setPreviewFeel = createAction(SET_PREVIEW_FEEL, (preview, score) => ({
@@ -15,12 +17,12 @@ const setPreviewSleep = createAction(SET_PREVIEW_SLEEP, (preview, score) => ({
   preview,
   score,
 }));
-
-const GET_DIARY = "GETDIARY";
-
 // -- action creators --
 const get_diary = createAction(GET_DIARY, (diaryListInfo) => ({
   diaryListInfo,
+}));
+const add_diary = createAction(ADD_DIARY, (diaryList) => ({
+  diaryList,
 }));
 
 // -- initialState --
@@ -38,7 +40,6 @@ const initialState = {
       sleepScore: "4",
       comment: "오늘은 아구찜 먹음",
     },
-
     {
       day: "5",
       feelScore: "3",
@@ -99,6 +100,42 @@ const getDiaryDB = (year, month) => {
   };
 };
 
+const addDiaryDB = (year, month, diaryListInfo) => {
+  return function (dispatch, getState, { history }) {
+    const yearMonth = `${year}-${month}`;
+    //요청보낼 다이어리 리스트
+    const diary_info = {
+      yearMonth: yearMonth,
+      ...diaryListInfo,
+    };
+    try {
+      const res = apis.postDiary(diary_info);
+      console.log("postDiaryDB response : ", res);
+      dispatch(add_diary(diaryListInfo));
+    } catch (error) {
+      console.log("postDiaryDB Error : ", error);
+    }
+  };
+};
+const editDiaryDB = (year, month, diaryListInfo) => {
+  return function (dispatch, getState, { history }) {
+    const userIdx = localStorage.getItem("userIdx");
+    const yearMonth = `${year}-${month}`;
+    //요청보낼 다이어리 리스트
+    const diary_info = {
+      yearMonth: yearMonth,
+      ...diaryListInfo,
+    };
+    try {
+      const res = apis.postDiary(userIdx, diary_info);
+      console.log("postDiaryDB response : ", res);
+      dispatch(add_diary(diaryListInfo));
+    } catch (error) {
+      console.log("postDiaryDB Error : ", error);
+    }
+  };
+};
+
 // -- reducer --
 export default handleActions(
   {
@@ -118,6 +155,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.diaryList = action.payload.diaryListInfo;
       }),
+    [ADD_DIARY]: (state, action) =>
+      produce(state, (draft) => {
+        draft.diaryList.push(action.payload.diaryListInfo);
+      }),
   },
   initialState
 );
@@ -127,6 +168,7 @@ const actionCreators = {
   setPreviewFeel,
   setPreviewSleep,
   getDiaryDB,
+  addDiaryDB,
 };
 
 export { actionCreators };
