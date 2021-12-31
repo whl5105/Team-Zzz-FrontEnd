@@ -5,6 +5,15 @@ import Navigation from "../components/Navigation";
 
 const Main = (props) => {
   const history = useHistory();
+  React.useEffect(() => {
+    const noticeSet = localStorage.getItem("noticeSet");
+
+    if (!noticeSet) {
+      history.push("/pushNotication");
+    } else {
+      console.log("알림 설정 했어요");
+    }
+  }, []);
   return (
     <div>
       <div>main page</div>

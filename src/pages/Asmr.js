@@ -78,6 +78,14 @@ const Asmr = (props) => {
 
     // 4) 카테고리가 바뀌면 활성화된 음원 초기화
     setPlay([]);
+
+    // 5) 카테고리가 바뀌면 play 중이던 음원 싹다 중지
+    song1.pause();
+    song2.pause();
+    song3.pause();
+    setSong1(new Audio());
+    setSong2(new Audio());
+    setSong3(new Audio());
   }, [getCategory]);
 
   const select = (asmrUrl) => {

@@ -26,6 +26,9 @@ const PushNoticationPop = (props) => {
       // 알림 받는 경우
       dispatch(noticeActions.noticePopDB(notice, day, hour, minutes));
     }
+
+    localStorage.setItem("noticeSet", true);
+    window.location.href = "/";
   };
 
   return (
@@ -40,7 +43,7 @@ const PushNoticationPop = (props) => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "rgba(15, 15, 15, 0.79)",
+            backgroundColor: "rgba(15, 15, 15, 0)",
           },
           content: {
             position: "absolute",
