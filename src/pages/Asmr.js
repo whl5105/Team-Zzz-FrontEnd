@@ -19,10 +19,6 @@ const Asmr = (props) => {
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const [play, setPlay] = React.useState([]);
 
-  const [song1, setSong1] = React.useState(new Audio());
-  const [song2, setSong2] = React.useState(new Audio());
-  const [song3, setSong3] = React.useState(new Audio());
-
   const history = useHistory();
   const dispatch = useDispatch();
   const [openModal, setOpenmodal] = React.useState(false);
