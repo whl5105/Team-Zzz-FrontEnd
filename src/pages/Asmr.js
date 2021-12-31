@@ -7,6 +7,11 @@ import AsmrPopUp from "../components/AsmrPopUp";
 
 const Asmr = (props) => {
   const location = useLocation();
+  
+  const [song1, setSong1] = React.useState(new Audio());
+  const [song2, setSong2] = React.useState(new Audio());
+  const [song3, setSong3] = React.useState(new Audio());
+ 
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
   );
@@ -111,14 +116,17 @@ const Asmr = (props) => {
         // 음원 선택 시 활성화 되면서 음원 재생
         if (!song1.src) {
           song1.src = asmrUrl;
+          song1.volume = 0.5;
           song1.loop = true;
           song1.play();
         } else if (!song2.src) {
           song2.src = asmrUrl;
+          song2.volume = 0.5;
           song2.loop = true;
           song2.play();
         } else if (!song3.src) {
           song3.src = asmrUrl;
+          song3.volume = 0.5;
           song3.loop = true;
           song3.play();
         }
@@ -202,7 +210,7 @@ const Asmr = (props) => {
             음량 조절 하러 가기
           </button>
         ) : null}
-        {openModal && <AsmrPopUp play={play} closeModal={setOpenmodal} />}
+        {openModal && <AsmrPopUp play={song1} play2={song2} play3={song3} closeModal={setOpenmodal} />}
       </div>
     </>
   );
