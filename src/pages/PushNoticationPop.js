@@ -24,13 +24,7 @@ const PushNoticationPop = (props) => {
       dispatch(noticeActions.noticePopDB(notice));
     } else {
       // 알림 받는 경우
-      let _day = true;
-      if(day === 'AM'){
-        _day = true;
-      }else{ // "PM"
-        _day = false;
-      }
-      dispatch(noticeActions.noticePopDB(notice, _day, hour, minutes));
+      dispatch(noticeActions.noticePopDB(notice, day, hour, minutes));
     }
   };
 

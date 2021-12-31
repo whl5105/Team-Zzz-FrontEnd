@@ -1,9 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import RequireLogin from "../components/RequireLogin";
 
 const Navigation = (props) => {
   const history = useHistory();
+  const token = localStorage.getItem("token");
+  const [diaryModal, setDiaryModal] = React.useState(false);
+
+  const diary = () => {
+    if (!token) {
+      setDiaryModal(true);
+    } else {
+      history.push("/diary");
+    }
+  };
 
   return (
     <>
@@ -32,13 +43,15 @@ const Navigation = (props) => {
         >
           <Icon></Icon>ASMR
         </div>
-        <div
-          onClick={() => {
-            history.push("/diary");
-          }}
-        >
+        <div onClick={diary}>
           <Icon></Icon>다이어리
         </div>
+        {diaryModal && (
+          <RequireLogin
+            modal={diaryModal}
+            setDiaryModal={setDiaryModal}
+          ></RequireLogin>
+        )}
         <div
           onClick={() => {
             history.push("/mypage");

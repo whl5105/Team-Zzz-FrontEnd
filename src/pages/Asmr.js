@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 import AsmrPopUp from "../components/AsmrPopUp";
 
-
-
-
-const Asmr = ({ location }) => {
+const Asmr = (props) => {
+  const location = useLocation();
   
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
@@ -21,10 +19,14 @@ const Asmr = ({ location }) => {
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const [play, setPlay] = React.useState([]);
 
+  const [song1, setSong1] = React.useState(new Audio());
+  const [song2, setSong2] = React.useState(new Audio());
+  const [song3, setSong3] = React.useState(new Audio());
+
   const history = useHistory();
   const dispatch = useDispatch();
   const [openModal, setOpenmodal] = React.useState(false);
-  
+
   React.useEffect(() => {
     // 1) 카테고리별 활성화 유무
     const arr = ["전체", "자연", "공간", "물체"];
@@ -114,21 +116,20 @@ const Asmr = ({ location }) => {
         // 음원 선택 시 활성화 되면서 음원 재생
         if (!song1.src) {
           song1.src = asmrUrl;
+          song1.volume = 0.5;
           song1.loop = true;
-          song1.volume=0.5;
           song1.play();
         } else if (!song2.src) {
           song2.src = asmrUrl;
-          song2.volume=0.5;
+          song2.volume = 0.5;
           song2.loop = true;
           song2.play();
         } else if (!song3.src) {
           song3.src = asmrUrl;
-          song3.volume=0.5;
+          song3.volume = 0.5;
           song3.loop = true;
           song3.play();
         }
-
 
         // 선택한 음원 활성화 style
         const selectItem = document.getElementById(asmrUrl);
@@ -203,7 +204,6 @@ const Asmr = ({ location }) => {
           <button
             onClick={() => {
               setOpenmodal(true);
-             
               console.log("음원 url 가지고 이동!!!", play);
             }}
           >

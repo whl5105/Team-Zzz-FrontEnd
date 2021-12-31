@@ -76,7 +76,11 @@ const Diary = () => {
   const diaryDetail = (index) => {
     const day = new Date(getMoment);
     console.log(day.getMonth() + 1 + "월", index + "일");
-    history.push(`/diaryWrite/${index}`);
+    history.push({
+      pathname: `/diaryWrite/${index}`,
+      month: day.getMonth() + 1,
+      day: index,
+    });
   };
 
   return (
@@ -151,7 +155,11 @@ const Diary = () => {
         </div>
       </div>
       <br />
-      <p>저번주보다 {sleepAvg}% 더 잘 주무셨어요!</p>
+      <p>
+        {sleepAvg === "user not data send"
+          ? "수면 기록이 없으세요! 수면 기록을 남겨 주세요"
+          : sleepAvg}
+      </p>
       <br />
       <Navigation></Navigation>
     </>

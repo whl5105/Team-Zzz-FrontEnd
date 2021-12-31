@@ -54,6 +54,7 @@ const Signup = (props) => {
       setIsPassword(true);
     }
   };
+
   //---- 비밀번호 중복 확인  ----
   const onChangePasswordCheck = (e) => {
     setPwdCheck(e.target.value);
@@ -74,7 +75,7 @@ const Signup = (props) => {
     }
     dispatch(userActions.signupDB(id, pwd));
 
-    //중복아이디 일 경우
+    //중복 아이디 일 경우
     if (errMessage) {
       setIdMessage("이미 있는 아이디 입니다.");
       setIsId(false);
