@@ -45,7 +45,7 @@ const Main = (props) => {
           물체
         </Category>
       </div>
-      <Navigation marginTop="30%"></Navigation>
+      <Navigation marginTop="20%"></Navigation>
     </div>
   );
 };

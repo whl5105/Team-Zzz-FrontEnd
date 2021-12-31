@@ -5,7 +5,7 @@ const USER_TOKEN = localStorage.getItem("token");
 
 const instance = axios.create({
   timeout: 3000,
-  baseURL: "",
+  baseURL: "http://54.180.109.58:3000",
   headers: {
     "Content-Type": "application/json; charset=utf-8",
     "X-Requested-With": "XMLHttpRequest",
