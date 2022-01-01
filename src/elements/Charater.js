@@ -31,7 +31,7 @@ const Charater = (props) => {
         {is_me ? (
           <ImgIcon
             {...styles}
-            style={{ border: `${(props) => props.border} ` }}
+            // style={{ border: `1px solid red ` }}
             onClick={_onClick}
             data-value={props.feelNumber}
             name={name}
@@ -40,6 +40,7 @@ const Charater = (props) => {
         ) : (
           <ImgIcon
             {...styles}
+            // style={{ border: `1px solid red ` }}
             onClick={_onClick}
             data-value={props.feelNumber}
             name={name}
@@ -103,7 +104,7 @@ Charater.defaultProps = {
   children: null,
   text: false,
   is_click: "",
-  border: false,
+  // border: "none",
 };
 
 const ImageCircle = styled.div`
@@ -133,6 +134,7 @@ const ImgIcon = styled.img`
   width: var(--size);
   position: ${(props) => props.position};
   border-radius: 50%;
+  ${(props) => (props.is_me ? `border : 1px solid red` : ``)}
 `;
 
 export default Charater;
