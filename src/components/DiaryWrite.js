@@ -11,7 +11,13 @@ import SleepBox from "./SleepBox";
 const DiaryWrite = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
-
+  //crud적용 후 다이어리로 넘겨줄 데이터
+  const pushData = {
+    pathname: "/diary",
+    year: location.year,
+    month: location.month,
+  };
+  console.log(pushData);
   const scoreList = ["1", "3", "5", "4", "2"];
 
   const diaryList = useSelector((state) => state.diary.diaryList); //다이어리 데이터
@@ -72,7 +78,12 @@ const DiaryWrite = (props) => {
       };
       // console.log(location.year, location.month, diaryListInfo);
       dispatch(
-        diaryActions.addDiaryDB(location.year, location.month, diaryListInfo)
+        diaryActions.addDiaryDB(
+          location.year,
+          location.month,
+          diaryListInfo,
+          pushData
+        )
       );
     }
   };
@@ -89,14 +100,19 @@ const DiaryWrite = (props) => {
       };
       console.log(diaryListInfo);
       dispatch(
-        diaryActions.editDiaryDB(location.year, location.month, diaryListInfo)
+        diaryActions.editDiaryDB(
+          location.year,
+          location.month,
+          diaryListInfo,
+          pushData
+        )
       );
     }
   };
   // 삭제
   const deleteClick = () => {
     dispatch(
-      diaryActions.deleteDiaryDB(location.year, location.month, diaryDayId)
+      diaryActions.deleteDiaryDB(location.year, location.month, diaryDayId , pushData)
     );
   };
 
