@@ -2,16 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import nextIcon from "../images/icon/nextIcon.svg";
+import PushNoticationPop from "../pages/PushNoticationPop";
 
 const Main = (props) => {
   const history = useHistory();
+  const [noticationModal, setNoticationModal] = React.useState(false);
 
   React.useEffect(() => {
     const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
     const token = localStorage.getItem("token");
 
     if (!noticeSet && token) {
-      history.push("/pushNotication");
+      setNoticationModal(true);
     } else {
       console.log("알림 설정 했어요");
     }
@@ -43,6 +45,13 @@ const Main = (props) => {
         title="모든 소리"
         subTitle="모든 소리 들어보기"
       ></Category>
+
+      {noticationModal && (
+        <PushNoticationPop
+          modal={noticationModal}
+          setNoticationModal={setNoticationModal}
+        ></PushNoticationPop>
+      )}
     </>
   );
 };
