@@ -103,7 +103,7 @@ const getDiaryDB = (year, month) => {
   };
 };
 //다이어리 기록 추가
-const addDiaryDB = (year, month, diaryListInfo) => {
+const addDiaryDB = (year, month, diaryListInfo, pushData) => {
   return function (dispatch, getState, { history }) {
     const yearMonth = `${year}-${month}`;
     //요청보낼 다이어리 리스트
@@ -116,14 +116,15 @@ const addDiaryDB = (year, month, diaryListInfo) => {
       const res = apis.addDiary(diary_info);
       console.log("addDiaryDB response : ", res);
       dispatch(add_diary(diaryListInfo));
-      history.replace("/diary");
+      // console.log(pushData);
+      history.replace(pushData);
     } catch (error) {
       console.log("addDiaryDB Error : ", error);
     }
   };
 };
 //다이어리 편집
-const editDiaryDB = (year, month, diaryListInfo) => {
+const editDiaryDB = (year, month, diaryListInfo, pushData) => {
   return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
     const yearMonth = `${year}-${month}`;
@@ -137,21 +138,21 @@ const editDiaryDB = (year, month, diaryListInfo) => {
       const res = apis.editDiaryDB(userIdx, diary_info);
       console.log("editDiaryDB response : ", res);
       dispatch(edit_diary(diaryListInfo));
-      history.replace("/diary");
+      history.replace(pushData);
     } catch (error) {
       console.log("editDiaryDB Error : ", error);
     }
   };
 };
 //다이어리 삭제
-const deleteDiaryDB = (year, month, day) => {
+const deleteDiaryDB = (year, month, day, pushData) => {
   return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
     const yearMonth = `${year}-${month}`;
     try {
       const res = apis.deleteDiary(userIdx, yearMonth, day);
       console.log("postDiaryDB response : ", res);
-      history.replace("/diary");
+      history.replace(pushData);
       dispatch(delete_diary(day));
     } catch (error) {
       console.log("deleteDiaryDB Error : ", error);

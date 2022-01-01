@@ -5,7 +5,6 @@ import Charater from "../elements/Charater";
 import { useDispatch, useSelector } from "react-redux";
 
 const FeelBox = (props) => {
-
   const [arr, setArr] = React.useState([
     { text: "과하게피곤", score: "1" },
     { text: "피곤", score: "3" },
@@ -28,6 +27,8 @@ const FeelBox = (props) => {
                   name={arr.score}
                   feelNumber={idx + 1}
                   _onClick={props._onClick}
+                  border="1px solid red"
+                  is_me
                 >
                   {arr.text}
                 </Charater>
