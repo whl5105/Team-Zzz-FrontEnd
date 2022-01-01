@@ -94,9 +94,9 @@ const getDiaryDB = (year, month) => {
 
     try {
       const response = apis.getDiary(userIdx, yearMonth);
-      console.log("getDiaryDB response : ", response.data);
+      console.log("getDiaryDB response : ", response);
 
-      dispatch(get_diary(response.data));
+      dispatch(get_diary(response));
     } catch (error) {
       console.log("getDiaryDB Error : ", error);
     }

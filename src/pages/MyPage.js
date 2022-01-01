@@ -3,10 +3,11 @@ import React from "react";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as noticeActions } from "../redux/modules/notice";
 
 const Mypage = (props) => {
   const dispatch = useDispatch();
-  const userIdx = useSelector((state) => state.user.user.userIdx);
+  const userIdx = localStorage.getItem("userIdx");
   const userId = useSelector((state) => state.user.user.userId);
   const userNotice = useSelector((state) => state.notice);
   console.log(userNotice);
@@ -15,6 +16,7 @@ const Mypage = (props) => {
   console.log(is_token);
   React.useEffect(() => {
     setLogin(token);
+    dispatch(noticeActions.getNoticeDB());
   }, []);
 
   if (is_token) {

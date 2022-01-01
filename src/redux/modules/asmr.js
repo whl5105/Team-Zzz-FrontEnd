@@ -71,9 +71,9 @@ const getAsmrDB = () => {
   return function (dispatch, getState, { history }) {
     try {
       const response = apis.getAsmr();
-      console.log("getAsmrDB response : ", response.data);
+      console.log("getAsmrDB response : ", response);
 
-      dispatch(get_asmr(response.data));
+      dispatch(get_asmr(response));
     } catch (error) {
       console.log("getAsmrDB Error : ", error);
     }
