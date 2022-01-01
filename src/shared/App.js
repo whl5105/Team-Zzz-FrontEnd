@@ -19,6 +19,7 @@ import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
 import Mypage from "../pages/MyPage";
 import MyPageNotification from "../pages/MyPageNotification";
+import Navigation from "../components/Navigation";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
             <NotFound />
           </Route>
         </Switch>
+        <Navigation marginTop="20%"></Navigation>
       </ConnectedRouter>
     </div>
   );
