@@ -91,9 +91,9 @@ const PushNoticationPop = (props) => {
           },
         }}
       >
-        <h1>푸쉬 알림 여부</h1>
-        <p>
-          수면 기록 알림을 받으시겠습니까? &nbsp;
+        <h1>매일 알림 받고 기록하기</h1>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          수면 기록 알림 받기 &nbsp;
           <Switch
             {...label}
             onClick={() => {
@@ -101,19 +101,46 @@ const PushNoticationPop = (props) => {
             }}
             defaultChecked
           />
-        </p>
+        </div>
         <div>
           {notice ? (
             <>
-              <p>시간은 언제가 좋으세요?</p>
               <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-                <p>매일</p>
-                <DropDown title={"PM"} dropdownItems={checkItems}></DropDown>
-                <DropDown title={"12"} dropdownItems={hourItems}></DropDown>
-                <DropDown title={"00"} dropdownItems={minutesItems}></DropDown>
+                <DropDown
+                  condition={""}
+                  title={"PM"}
+                  dropdownItems={checkItems}
+                  state={setDay}
+                ></DropDown>
+                <DropDown
+                  condition={"시"}
+                  title={"12"}
+                  dropdownItems={hourItems}
+                  state={setHour}
+                ></DropDown>
+                <DropDown
+                  condition={"분"}
+                  title={"00"}
+                  dropdownItems={minutesItems}
+                  state={setMinutes}
+                ></DropDown>
               </div>
             </>
-          ) : null}
+          ) : (
+            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+              <DropDown state="disabled" condition={""} title={"PM"}></DropDown>
+              <DropDown
+                state="disabled"
+                condition={"시"}
+                title={"12"}
+              ></DropDown>
+              <DropDown
+                state="disabled"
+                condition={"분"}
+                title={"00"}
+              ></DropDown>
+            </div>
+          )}
           <button onClick={send}>확인</button>
         </div>
       </Modal>

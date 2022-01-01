@@ -11,19 +11,32 @@ const Dropdown = (props) => {
 
   const onSelectItem = (name) => {
     setItem(name);
+    props.state(name);
     setIsActive(false);
   };
 
+  // 알림 비활성화일 때
+  if (props.state === "disabled") {
+    return (
+      <DisabledDropDownContainer>
+        <DropdownBody color="gray">
+          <ItemName>{`${props.title}${props.condition}`}</ItemName>
+        </DropdownBody>
+      </DisabledDropDownContainer>
+    );
+  }
+
+  // 알림 활성화일 때
   return (
     <DropdownContainer>
       <DropdownBody onClick={onActiveToggle}>
         {item ? (
           <>
-            <ItemName>{item}</ItemName>
+            <ItemName>{`${item}${props.condition}`}</ItemName>
           </>
         ) : (
           <>
-            <DropdownSelect>{props.title}</DropdownSelect>
+            <DropdownSelect>{`${props.title}${props.condition}`}</DropdownSelect>
           </>
         )}
       </DropdownBody>
@@ -36,7 +49,7 @@ const Dropdown = (props) => {
                 onSelectItem(dropdowmItem);
               }}
             >
-              <p>{dropdowmItem}</p>
+              <p>{`${dropdowmItem}${props.condition}`}</p>
             </DropdownItemContainer>
           ))}
       </DropdownMenu>
@@ -52,11 +65,21 @@ const DropdownContainer = styled.div`
 
   &:hover {
     cursor: pointer;
+    border: 3px solid #fbc037;
+    border-radius: 10px;
   }
+`;
+
+const DisabledDropDownContainer = styled.div`
+  width: 100px;
+  margin: auto;
+  text-align: center;
+  border: 1px solid gray;
 `;
 
 const DropdownBody = styled.div`
   align-items: center;
+  color: ${(props) => props.color && props.color};
 `;
 
 const DropdownSelect = styled.p`
@@ -70,12 +93,16 @@ const DropdownMenu = styled.ul`
   overflow: scroll;
   background-color: white;
   position: absolute;
+  margin-top: -1px;
+  margin-left: -3px;
+  border: 3px solid #fbc037;
+  border-radius: 10px;
 `;
 
 const DropdownItemContainer = styled.li`
   display: flex;
   justify-content: space-between;
-  margin-left: -3px;
+  margin-left: -5px;
 
   &:last-child {
     border-bottom: none;
