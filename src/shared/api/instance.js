@@ -23,8 +23,7 @@ const instance = axios.create({
 // );
 instance.interceptors.request.use(
   (config) => {
-    const USER_TOKEN = `Bearer ${localStorage.getItem("token")}`;
-    console.log(USER_TOKEN);
+    const USER_TOKEN = `Bearer ${localStorage.getItem("token")}`; 
     config.headers["Content-Type"] = "application/json; charset=utf-8";
     config.headers["X-Requested-With"] = "XMLHttpRequest";
     config.headers["Authorization"] = USER_TOKEN ? USER_TOKEN : "";
