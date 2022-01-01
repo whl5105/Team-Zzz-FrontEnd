@@ -12,14 +12,13 @@ const MyPageNotification = (props) => {
   const days = useSelector((state)=> state.notice.time.timePA) 
   const hours = useSelector((state)=> state.notice.time.hour);
   const minute = useSelector((state)=> state.notice.time.min);
-//   console.log(notices)
+
   const [modal, setModal] = React.useState(true); // 모달창
   const [notice, setNotice] = React.useState(notices); // 알림 유무
   const [day, setDay] = React.useState(days); // 오전("AM"), 오후("PM") 설정
   const [hour, setHour] = React.useState(hours); // 시 설정
   const [minutes, setMinutes] = React.useState(minute); // 분 설정
   const userIdx = props.match.params.userIdx; 
-//   console.log(userIdx)
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -31,8 +30,7 @@ const MyPageNotification = (props) => {
       dispatch(noticeActions.noticeDB(notice));
     } else {
      
-      dispatch(noticeActions.noticeDB(notice, day, hour, minutes));
-    //   history.push('/mypage')
+      dispatch(noticeActions.noticeDB(notice, day, hour, minutes))
     }
   };
 

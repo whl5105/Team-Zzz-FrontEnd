@@ -6,8 +6,8 @@ import Navigation from "../components/Navigation";
 const Main = (props) => {
   const history = useHistory();
   React.useEffect(() => {
-    const noticeSet = localStorage.getItem("noticeSet");
-
+    const noticeSet = JSON.parse(localStorage.getItem("noticeSet"))
+    console.log(noticeSet)
     if (!noticeSet) {
       history.push("/pushNotication");
     } else {
