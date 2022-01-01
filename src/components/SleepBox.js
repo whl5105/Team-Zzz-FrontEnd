@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { actionCreators as userActions } from "../redux/modules/diary";
 
 const SleepBox = (props) => {
+  const { previewSleep } = props;
   const dispatch = useDispatch();
 
   const [arr, setArr] = React.useState([
@@ -30,6 +31,7 @@ const SleepBox = (props) => {
                   name={arr.score}
                   sleepNumber={idx + 1}
                   _onClick={props._onClick}
+                  is_click={previewSleep === String(idx + 1) ? true : false}
                 >
                   {arr.text}
                 </Charater>

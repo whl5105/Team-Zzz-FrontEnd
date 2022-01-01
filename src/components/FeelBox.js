@@ -5,6 +5,8 @@ import Charater from "../elements/Charater";
 import { useDispatch, useSelector } from "react-redux";
 
 const FeelBox = (props) => {
+  const { previewFeel } = props;
+  console.log(typeof props.previewFeel);
   const [arr, setArr] = React.useState([
     { text: "과하게피곤", score: "1" },
     { text: "피곤", score: "3" },
@@ -27,8 +29,7 @@ const FeelBox = (props) => {
                   name={arr.score}
                   feelNumber={idx + 1}
                   _onClick={props._onClick}
-                  border="1px solid red"
-                  is_me
+                  is_click={previewFeel === String(idx + 1) ? true : false}
                 >
                   {arr.text}
                 </Charater>

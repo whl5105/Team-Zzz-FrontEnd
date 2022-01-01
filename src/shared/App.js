@@ -22,6 +22,8 @@ import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
 
 function App() {
+  
+
   return (
     <div className="App">
       <ConnectedRouter history={history}>
