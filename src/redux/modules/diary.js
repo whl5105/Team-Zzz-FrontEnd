@@ -116,7 +116,7 @@ const addDiaryDB = (year, month, diaryListInfo, pushData) => {
       const res = apis.addDiary(diary_info);
       console.log("addDiaryDB response : ", res);
       dispatch(add_diary(diaryListInfo));
-      // console.log(pushData);
+      console.log(pushData);
       history.replace(pushData);
     } catch (error) {
       console.log("addDiaryDB Error : ", error);
@@ -138,6 +138,7 @@ const editDiaryDB = (year, month, diaryListInfo, pushData) => {
       const res = apis.editDiaryDB(userIdx, diary_info);
       console.log("editDiaryDB response : ", res);
       dispatch(edit_diary(diaryListInfo));
+      console.log(pushData);
       history.replace(pushData);
     } catch (error) {
       console.log("editDiaryDB Error : ", error);
@@ -153,6 +154,7 @@ const deleteDiaryDB = (year, month, day, pushData) => {
       const res = apis.deleteDiary(userIdx, yearMonth, day);
       console.log("postDiaryDB response : ", res);
       history.replace(pushData);
+      console.log(pushData);
       dispatch(delete_diary(day));
     } catch (error) {
       console.log("deleteDiaryDB Error : ", error);
