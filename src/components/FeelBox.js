@@ -8,11 +8,11 @@ const FeelBox = (props) => {
   const { previewFeel } = props;
   console.log(typeof props.previewFeel);
   const [arr, setArr] = React.useState([
-    { text: "과하게피곤", score: "1" },
-    { text: "피곤", score: "3" },
-    { text: "적당", score: "5" },
-    { text: "에너지 넘침", score: "4" },
-    { text: "과하게잠", score: "2" },
+    { text: "과하게피곤", score: 1 },
+    { text: "피곤", score: 3 },
+    { text: "적당", score: 5 },
+    { text: "에너지 넘침", score: 4 },
+    { text: "과하게잠", score: 2 },
   ]);
 
   return (
@@ -29,7 +29,7 @@ const FeelBox = (props) => {
                   name={arr.score}
                   feelNumber={idx + 1}
                   _onClick={props._onClick}
-                  is_click={previewFeel === String(idx + 1) ? true : false}
+                  is_click={previewFeel === idx + 1 ? true : false}
                 >
                   {arr.text}
                 </Charater>

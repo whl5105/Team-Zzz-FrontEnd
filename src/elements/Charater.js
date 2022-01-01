@@ -27,6 +27,7 @@ const Charater = (props) => {
   }
   //-- 표정 --
   if (shape === "feel") {
+    console.log(props.feelNumber);
     return (
       <div>
         <ImgIcon

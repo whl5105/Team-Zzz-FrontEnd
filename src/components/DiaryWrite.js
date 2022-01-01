@@ -11,7 +11,7 @@ import SleepBox from "./SleepBox";
 const DiaryWrite = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const scoreList = ["1", "3", "5", "4", "2"];
+  const scoreList = [1, 3, 5, 4, 2];
 
   //crud적용 후 다이어리로 넘겨줄 데이터
   const pushData = {
@@ -21,7 +21,6 @@ const DiaryWrite = (props) => {
   };
 
   const diaryList = useSelector((state) => state.diary.diaryList); //다이어리 데이터
-  // const previewList = useSelector((state) => state.diary.preview); //프리뷰 데이터
   const diaryDayId = location.day; //선택된 일자
   const isDay = diaryDayId ? true : false;
   let diaryData = isDay ? diaryList.find((p) => p.day === diaryDayId) : null; //다이어리 해당일자 데이터 찾기
@@ -30,7 +29,6 @@ const DiaryWrite = (props) => {
     diaryData ? diaryData.comment : ""
   );
   const [edit, setEdit] = React.useState(false);
-  const [editPreview, setEditPreview] = React.useState(false); // 수정 미리보기 활성, 비활성
 
   //다이어리 데이터
   const [state, setState] = React.useState({
@@ -44,11 +42,11 @@ const DiaryWrite = (props) => {
 
   //다이어리 데이터
   React.useEffect(() => {
-    const scoreList = ["1", "3", "5", "4", "2"];
+    const scoreList = [1, 3, 5, 4, 2];
     if (dayData) {
       setState({
-        feel: String(scoreList.indexOf(dayData.feelScore) + 1),
-        sleep: String(scoreList.indexOf(dayData.sleepScore) + 1),
+        feel: scoreList.indexOf(dayData.feelScore) + 1,
+        sleep: scoreList.indexOf(dayData.sleepScore) + 1,
         feelScore: dayData.feelScore,
         sleepScore: dayData.sleepScore,
       });
@@ -62,7 +60,7 @@ const DiaryWrite = (props) => {
 
   //추가 버튼 클릭
   const addClick = () => {
-    if (feel === "0" || sleep === "0") {
+    if (feel === 0 || sleep === 0) {
       window.alert("두개 다 선택 해야합니다.");
     } else {
       const diaryListInfo = {
@@ -81,13 +79,9 @@ const DiaryWrite = (props) => {
       );
     }
   };
-  const editChange = () => {
-    setEdit(!edit);
-  };
-  console.log(edit);
   // 수정
   const editClick = () => {
-    if (feel === "0" || sleep === "0") {
+    if (feel === 0 || sleep === 0) {
       window.alert("두개 다 선택 해야합니다.");
     } else {
       const diaryListInfo = {
@@ -127,21 +121,23 @@ const DiaryWrite = (props) => {
   const feelClick = (e) => {
     setState({
       ...state,
-      feel: e.target.dataset.value,
-      feelScore: e.target.name,
+      feel: Number(e.target.dataset.value),
+      feelScore: Number(e.target.name),
     });
     // setEditPreview(true);
   };
   //아이콘 클릭 2
   const sleepClick = (e) => {
+    console.log(typeof e.target.dataset.value);
     setState({
       ...state,
-      sleep: e.target.dataset.value,
-      sleepScore: e.target.name,
+      sleep: Number(e.target.dataset.value),
+      sleepScore: Number(e.target.name),
     });
     // setEditPreview(true);
   };
-
+  console.log(feelScore);
+  console.log(scoreList.indexOf(String(feelScore)) + 1);
   return (
     <React.Fragment>
       <ModalPopUp pushData={pushData}>
@@ -195,7 +191,13 @@ const DiaryWrite = (props) => {
                 <SleepBox />
                 <div>{dayData.comment}</div>
                 <button onClick={deleteClick}>삭제하기</button>
-                <button onClick={editChange}>수정하기</button>
+                <button
+                  onClick={() => {
+                    setEdit(!edit);
+                  }}
+                >
+                  수정하기
+                </button>
               </>
             )}
           </div>
