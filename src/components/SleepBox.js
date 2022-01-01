@@ -1,14 +1,8 @@
 import React from "react";
-
 import Charater from "../elements/Charater";
-
-import { useDispatch, useSelector } from "react-redux";
-// import { actionCreators as userActions } from "../redux/modules/diary";
 
 const SleepBox = (props) => {
   const { previewSleep } = props;
-  const dispatch = useDispatch();
-
   const [arr, setArr] = React.useState([
     { text: "부족++", score: 1 },
     { text: "부족", score: 3 },

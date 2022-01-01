@@ -2,18 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Charater = (props) => {
-  const {
-    shape,
-    size,
-    _onClick,
-    margin,
-    position,
-    name,
-    text,
-    children,
-    is_click,
-    border,
-  } = props;
+  const { shape, size, _onClick, margin, position, name, children, is_click } =
+    props;
 
   const styles = {
     size: size,

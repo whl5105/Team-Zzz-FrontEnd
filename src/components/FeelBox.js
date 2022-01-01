@@ -1,12 +1,8 @@
 import React from "react";
-
 import Charater from "../elements/Charater";
-
-import { useDispatch, useSelector } from "react-redux";
 
 const FeelBox = (props) => {
   const { previewFeel } = props;
-  console.log(typeof props.previewFeel);
   const [arr, setArr] = React.useState([
     { text: "과하게피곤", score: 1 },
     { text: "피곤", score: 3 },
