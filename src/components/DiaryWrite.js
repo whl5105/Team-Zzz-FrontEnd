@@ -112,7 +112,12 @@ const DiaryWrite = (props) => {
   // 삭제
   const deleteClick = () => {
     dispatch(
-      diaryActions.deleteDiaryDB(location.year, location.month, diaryDayId , pushData)
+      diaryActions.deleteDiaryDB(
+        location.year,
+        location.month,
+        diaryDayId,
+        pushData
+      )
     );
   };
 
@@ -159,7 +164,7 @@ const DiaryWrite = (props) => {
   console.log(scoreList.indexOf(feelScore) + 1);
   return (
     <React.Fragment>
-      <ModalPopUp>
+      <ModalPopUp pushData={pushData}>
         {/* 다이어리 데이터가 없을 경우 - 활성 */}
         {!dayData ? (
           <>

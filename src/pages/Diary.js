@@ -4,11 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../redux/modules/diary";
 import { history } from "../redux/configureStore";
 import Charater from "../elements/Charater";
+import { useLocation } from "react-router-dom";
 
 import Navigation from "../components/Navigation";
 import DiaryWrite from "../components/DiaryWrite";
 
 const Diary = () => {
+  const location = useLocation();
+  console.log(location.year);
   const [getMoment, setMoment] = React.useState(moment());
   const [monthDay, setMonthDay] = React.useState(0);
   const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
@@ -57,7 +60,7 @@ const Diary = () => {
     }
 
     // 년, 월이 바뀔 때마다 서버에 데이터를 새로 요청한다.
-    console.log("년, 월에 맞춰 api 새로 dispatch 하기")
+    console.log("년, 월에 맞춰 api 새로 dispatch 하기");
     // getDiaryInfo(day.getFullYear(), day.getMonth() + 1);
 
     // index => 0, diaryList => day랑 서로 일치를 해야 함.

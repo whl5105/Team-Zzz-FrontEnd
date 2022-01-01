@@ -4,12 +4,12 @@ import Modal from "react-modal";
 import { history } from "../redux/configureStore";
 
 const ModalPopUp = (props) => {
-  const { children } = props;
+  const { children, pushData } = props;
   const [modal, setModal] = React.useState(true); // 모달창
   //-- 모달 닫기 --
   const modalOff = (props) => {
     setModal(false);
-    history.goBack();
+    history.replace(pushData);
   };
   return (
     <div>
