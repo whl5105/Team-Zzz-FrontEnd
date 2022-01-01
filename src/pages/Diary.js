@@ -169,7 +169,7 @@ const Diary = () => {
           : sleepAvg}
       </p>
       <br />
-      <Navigation></Navigation>
+      {/* <Navigation></Navigation> */}
     </>
   );
 };
