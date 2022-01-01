@@ -5,14 +5,13 @@ import { useHistory, useLocation } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 import AsmrPopUp from "../components/AsmrPopUp";
 
-import asmrUrl1 from "../audio/asmrUrl1.mp3"
-import asmrUrl2 from "../audio/asmrUrl2.mp3"
-import asmrUrl3 from "../audio/asmrUrl3.mp3"
+import asmrUrl1 from "../audio/asmrUrl1.mp3";
+import asmrUrl2 from "../audio/asmrUrl2.mp3";
+import asmrUrl3 from "../audio/asmrUrl3.mp3";
 
 const Asmr = (props) => {
-  
   const location = useLocation();
-  
+
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());
@@ -86,6 +85,13 @@ const Asmr = (props) => {
     setSong1(new Audio());
     setSong2(new Audio());
     setSong3(new Audio());
+
+    // 6) 컴포넌트 사라질 때 음원도 정지 시킴
+    return () => {
+      song1.pause();
+      song2.pause();
+      song3.pause();
+    };
   }, [getCategory]);
 
   const select = (asmrUrl) => {

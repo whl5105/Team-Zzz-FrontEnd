@@ -69,6 +69,7 @@ const Category = (props) => {
         <div>
           <img src={nextIcon}></img>
         </div>
+        {/* position : relative / position : absolute를 사용하면 될 것 같다! */}
       </CategoryStyle>
     </>
   );
