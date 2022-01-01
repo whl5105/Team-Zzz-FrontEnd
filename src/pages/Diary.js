@@ -37,24 +37,27 @@ const Diary = () => {
       // 오늘
       const days = new Date(today).getDate();
       setMonthDay(days);
-    } else if (today.getFullYear() < day.getFullYear()) {
+    } else if (today.getFullYear() + 1 < day.getFullYear() + 1) {
       // 다음년도
       setMonthDay(0);
-    } else if (today.getFullYear() > day.getFullYear()) {
+    } else if (today.getFullYear() + 1 > day.getFullYear() + 1) {
       // 전년도
       const days = new Date(day.getFullYear(), day.getMonth(), 0).getDate(); // 사용한 선택한 날짜의 일수
       setMonthDay(days);
     } else {
       // 이번년도
-      if (day.getMonth > today.getMonth()) {
+      if (day.getMonth() + 1 > today.getMonth() + 1) {
         // 다음달
         setMonthDay(0);
       } else {
-        // 저번달
         const days = new Date(day.getFullYear(), day.getMonth(), 0).getDate(); // 사용한 선택한 날짜의 일수
         setMonthDay(days);
       }
     }
+
+    // 년, 월이 바뀔 때마다 서버에 데이터를 새로 요청한다.
+    console.log("년, 월에 맞춰 api 새로 dispatch 하기")
+    // getDiaryInfo(day.getFullYear(), day.getMonth() + 1);
 
     // index => 0, diaryList => day랑 서로 일치를 해야 함.
     // 1) 해당 월의 일수 길이만큼의 배열에 배열 연산자 forEach를 돌린다.
