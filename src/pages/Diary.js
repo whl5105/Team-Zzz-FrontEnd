@@ -18,7 +18,6 @@ const Diary = () => {
       ? moment(`${location.year}-${location.month}-01`)
       : moment()
   );
-  console.log(getMoment);
   const [monthDay, setMonthDay] = React.useState(0);
   const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
   const diaryList = useSelector((state) => state.diary.diaryList);
