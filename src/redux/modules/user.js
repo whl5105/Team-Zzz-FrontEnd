@@ -59,7 +59,7 @@ export const loginDB =
         })
       );
       // window.alert(`${username}님 환영합니다`);
-      window.location.href = "/";
+      history.replace("/");
     } catch (err) {
       window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
       console.log(`오류 발생!${err}`);
