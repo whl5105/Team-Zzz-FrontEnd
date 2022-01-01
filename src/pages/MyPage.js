@@ -9,13 +9,14 @@ const Mypage = (props) => {
   const dispatch = useDispatch();
   const userIdx = localStorage.getItem("userIdx");
   const userId = useSelector((state) => state.user.user.userId);
-  const userNotice = useSelector((state)=> state.notice);
+  const userNotice = useSelector((state) => state.notice);
+  console.log(userNotice);
   const token = localStorage.getItem("token");
   const [is_token, setLogin] = React.useState(token);
   console.log(is_token);
   React.useEffect(() => {
     setLogin(token);
-    dispatch(noticeActions.getNoticeDB())
+    dispatch(noticeActions.getNoticeDB());
   }, []);
 
   if (is_token) {
@@ -67,12 +68,11 @@ const Mypage = (props) => {
               >
                 알림
               </span>
-              <span 
-                style={{position: "relative",
-                top: "40%",
-                left: "0%",}}
-              >
-         {userNotice.time.sleepChk&&userNotice.time.timePA}{userNotice.time.sleepChk&&userNotice.time.hour}{userNotice.time.sleepChk&&`:`}{userNotice.time.sleepChk&&userNotice.time.min}
+              <span style={{ position: "relative", top: "40%", left: "0%" }}>
+                {userNotice.time.sleepChk && userNotice.time.timePA}
+                {userNotice.time.sleepChk && userNotice.time.hour}
+                {userNotice.time.sleepChk && `:`}
+                {userNotice.time.sleepChk && userNotice.time.min}
               </span>
               <span
                 style={{
@@ -103,9 +103,7 @@ const Mypage = (props) => {
                   transform: "translate(-0%, -50%)",
                   cursor: "pointer",
                 }}
-                onClick={() => (
-                  dispatch(userActions.logoutDB())
-                )} // dispatch 로 해줘야하는부분
+                onClick={() => dispatch(userActions.logoutDB())} // dispatch 로 해줘야하는부분
               >
                 로그아웃
               </p>

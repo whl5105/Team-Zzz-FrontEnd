@@ -6,6 +6,7 @@ import { history } from "../redux/configureStore";
 import Charater from "../elements/Charater";
 
 import Navigation from "../components/Navigation";
+import DiaryWrite from "../components/DiaryWrite";
 
 const Diary = () => {
   const [getMoment, setMoment] = React.useState(moment());
@@ -81,9 +82,9 @@ const Diary = () => {
     console.log(day.getMonth() + 1 + "월", index + "일");
     history.push({
       pathname: "/diaryWrite",
-      year: day.getFullYear(),
-      month: day.getMonth() + 1,
-      day: index,
+      year: String(day.getFullYear()),
+      month: String(day.getMonth() + 1),
+      day: String(index),
     });
   };
 

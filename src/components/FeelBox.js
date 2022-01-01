@@ -3,10 +3,8 @@ import React from "react";
 import Charater from "../elements/Charater";
 
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/diary";
 
 const FeelBox = (props) => {
-  const dispatch = useDispatch();
 
   const [arr, setArr] = React.useState([
     { text: "과하게피곤", score: "1" },
@@ -28,7 +26,6 @@ const FeelBox = (props) => {
                   shape="feel"
                   size="40"
                   name={arr.score}
-                  // text={arr.text}
                   feelNumber={idx + 1}
                   _onClick={props._onClick}
                 >
@@ -47,7 +44,6 @@ const FeelBox = (props) => {
                   shape="feel"
                   size="40"
                   name={arr.score}
-                  // text={arr.text}
                   feelNumber={idx + 1}
                 >
                   {arr.text}

@@ -30,7 +30,7 @@ const ModalPopUp = (props) => {
             position: "absolute",
             top: "60px",
             left: "35%",
-            width: "30%",
+            width: "20%",
             height: "80%",
             border: "1px solid #ccc",
             background: "#fff",
@@ -39,6 +39,7 @@ const ModalPopUp = (props) => {
             borderRadius: "4px",
             outline: "none",
             padding: "20px",
+            zIndex: "100",
           },
         }}
       >

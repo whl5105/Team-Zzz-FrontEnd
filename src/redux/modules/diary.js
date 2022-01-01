@@ -7,6 +7,8 @@ import { apis } from "../../shared/api/apis";
 // const SET_PREVIEW_SLEEP = "SET_PREVIEW_SLEEP";
 const GET_DIARY = "GETDIARY";
 const ADD_DIARY = "POST_DIARY";
+const EDIT_DIARY = "EDIT_DIARY";
+const DELETE_DIARY = "POST_DDELETE_DIARYIARY";
 
 // -- action creators --
 // const setPreviewFeel = createAction(SET_PREVIEW_FEEL, (preview, score) => ({
@@ -23,6 +25,12 @@ const get_diary = createAction(GET_DIARY, (diaryListInfo) => ({
 }));
 const add_diary = createAction(ADD_DIARY, (diaryListInfo) => ({
   diaryListInfo,
+}));
+const edit_diary = createAction(EDIT_DIARY, (diaryListInfo) => ({
+  diaryListInfo,
+}));
+const delete_diary = createAction(DELETE_DIARY, (day) => ({
+  day,
 }));
 
 // -- initialState --
@@ -73,18 +81,9 @@ const initialState = {
     {
       sleepAvg: "user not data send",
     },
-
   ],
 
   sleepAvg: 20,
-
-  // //미리보기
-  // preview: {
-  //   previewFeel: "0",
-  //   previewSleep: "0",
-  //   previewFeelScore: "0",
-  //   previewSleepScore: "0",
-  // },
 };
 
 // -- middleware actions --
@@ -114,12 +113,12 @@ const addDiaryDB = (year, month, diaryListInfo) => {
     };
     console.log(diaryListInfo);
     try {
-      const res = apis.postDiary(diary_info);
-      console.log("postDiaryDB response : ", res);
+      const res = apis.addDiary(diary_info);
+      console.log("addDiaryDB response : ", res);
       dispatch(add_diary(diaryListInfo));
       history.replace("/diary");
     } catch (error) {
-      console.log("postDiaryDB Error : ", error);
+      console.log("addDiaryDB Error : ", error);
     }
   };
 };
@@ -134,11 +133,28 @@ const editDiaryDB = (year, month, diaryListInfo) => {
       ...diaryListInfo,
     };
     try {
-      const res = apis.postDiary(userIdx, diary_info);
-      console.log("postDiaryDB response : ", res);
-      dispatch(add_diary(diaryListInfo));
+      console.log(diaryListInfo);
+      const res = apis.editDiaryDB(userIdx, diary_info);
+      console.log("editDiaryDB response : ", res);
+      dispatch(edit_diary(diaryListInfo));
+      history.replace("/diary");
     } catch (error) {
-      console.log("postDiaryDB Error : ", error);
+      console.log("editDiaryDB Error : ", error);
+    }
+  };
+};
+//다이어리 삭제
+const deleteDiaryDB = (year, month, day) => {
+  return function (dispatch, getState, { history }) {
+    const userIdx = localStorage.getItem("userIdx");
+    const yearMonth = `${year}-${month}`;
+    try {
+      const res = apis.deleteDiary(userIdx, yearMonth, day);
+      console.log("postDiaryDB response : ", res);
+      history.replace("/diary");
+      dispatch(delete_diary(day));
+    } catch (error) {
+      console.log("deleteDiaryDB Error : ", error);
     }
   };
 };
@@ -146,18 +162,6 @@ const editDiaryDB = (year, month, diaryListInfo) => {
 // -- reducer --
 export default handleActions(
   {
-    // [SET_PREVIEW_FEEL]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     draft.preview.previewFeel = action.payload.preview;
-    //     draft.preview.previewFeelScore = action.payload.score;
-    //     console.log(draft.preview.previewFeelScore);
-    //   }),
-    // [SET_PREVIEW_SLEEP]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     draft.preview.previewSleep = action.payload.preview;
-    //     draft.preview.previewSleepScore = action.payload.score;
-    //     console.log(action.payload.score);
-    //   }),
     [GET_DIARY]: (state, action) =>
       produce(state, (draft) => {
         draft.diaryList = action.payload.diaryListInfo;
@@ -166,6 +170,27 @@ export default handleActions(
       produce(state, (draft) => {
         draft.diaryList.push(action.payload.diaryListInfo);
         console.log(action.payload.diaryListInfo);
+      }),
+    [EDIT_DIARY]: (state, action) =>
+      produce(state, (draft) => {
+        // draft.diaryList.push(action.payload.diaryListInfo);
+        console.log(typeof action.payload.diaryListInfo.day);
+        console.log(typeof draft.diaryList[0].day);
+        let idx = draft.diaryList.findIndex(
+          (d) => d.day === action.payload.diaryListInfo.day
+        );
+        draft.diaryList[idx] = {
+          ...draft.diaryList[idx],
+          ...action.payload.diaryListInfo,
+        };
+      }),
+    [DELETE_DIARY]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(typeof action.payload.day);
+        const new_diaryList = draft.diaryList.filter((d, idx) => {
+          return action.payload.day !== d.day;
+        });
+        draft.diaryList = new_diaryList;
       }),
   },
   initialState
@@ -177,6 +202,8 @@ const actionCreators = {
   // setPreviewSleep,
   getDiaryDB,
   addDiaryDB,
+  editDiaryDB,
+  deleteDiaryDB,
 };
 
 export { actionCreators };
