@@ -5,7 +5,11 @@ import { history } from "../redux/configureStore";
 const RequireLogin = (props) => {
   const [modal, setModal] = React.useState(props.modal ? true : false); // 모달창
 
-  const modalOff = () => {    
+  const modalOff = (path = null) => {
+    if (path) {
+      history.push(path);
+    }
+
     setModal(false);
     props.setDiaryModal(false);
   };
@@ -79,7 +83,9 @@ const RequireLogin = (props) => {
               border: "none",
               margin: "0px 1px 0px 0px",
             }}
-            onClick={() => history.push("/login")}
+            onClick={() => {
+              modalOff("/login");
+            }}
           >
             예
           </button>
