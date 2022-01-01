@@ -15,7 +15,6 @@ const Navigation = (props) => {
 
   const diary = () => {
     const token = localStorage.getItem("token");
-
     if (!token) {
       setDiaryModal(true);
     } else {

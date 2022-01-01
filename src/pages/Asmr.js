@@ -9,13 +9,20 @@ import asmrUrl1 from "../audio/asmrUrl1.mp3";
 import asmrUrl2 from "../audio/asmrUrl2.mp3";
 import asmrUrl3 from "../audio/asmrUrl3.mp3";
 
+export const test =(url)=>{
+ 
+  const deleteItem = document.getElementById(url[0]);
+      deleteItem.style.backgroundColor = "gray";
+  
+    } 
+
 const Asmr = (props) => {
   const location = useLocation();
 
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());
-
+  console.log(song1)
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
   );
@@ -26,6 +33,8 @@ const Asmr = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [openModal, setOpenmodal] = React.useState(false);
+  // const [test1, setTest1] =React.useState(test.arr);
+  
 
   React.useEffect(() => {
     // 1) 카테고리별 활성화 유무
@@ -227,9 +236,14 @@ const Asmr = (props) => {
         ) : null}
         {openModal && (
           <AsmrPopUp
+           test1={setPlay}
+            list={play}
             play={song1}
             play2={song2}
             play3={song3}
+            setPlay={setSong1}
+            setPlay2={setSong2}
+            setPlay3={setSong3}
             closeModal={setOpenmodal}
           />
         )}
