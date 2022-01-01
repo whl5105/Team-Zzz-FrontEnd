@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
 
 const PushNoticationPop = (props) => {
-  const [modal, setModal] = React.useState(true); // 모달창
+  const [modal, setModal] = React.useState(props.modal ? true : false); // 모달창
   const [notice, setNotice] = React.useState(true); // 알림 유무
   const [day, setDay] = React.useState("PM"); // 오전(true), 오후(false) 설정
   const [hour, setHour] = React.useState(12); // 시 설정
@@ -28,7 +28,7 @@ const PushNoticationPop = (props) => {
     }
 
     localStorage.setItem("noticeSet", true);
-    window.location.href = "/";
+    props.setNoticationModal(false);
   };
 
   return (

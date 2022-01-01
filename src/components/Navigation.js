@@ -3,6 +3,12 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import RequireLogin from "../components/RequireLogin";
 
+// 아이콘 이미지 import
+import homeIcon from "../images/navigation/homeIcon.svg";
+import asmrIcon from "../images/navigation/asmrIcon.svg";
+import diaryIcon from "../images/navigation/diaryIcon.svg";
+import myPageIcon from "../images/navigation/myPageIcon.svg";
+
 const Navigation = (props) => {
   const history = useHistory();
   const [diaryModal, setDiaryModal] = React.useState(false);
@@ -23,11 +29,13 @@ const Navigation = (props) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          width: "300px",
-          backgroundColor: "#dddddd",
+          width: "375px",
+          height: "48px",
+          backgroundColor: "#2A2245",
+          color: "white",
           margin: "auto",
           marginTop: `${props.marginTop ? props.marginTop : ""}`,
-          padding: "10px",
+          padding: "10px 20px",
         }}
       >
         <div
@@ -35,17 +43,17 @@ const Navigation = (props) => {
             history.push("/");
           }}
         >
-          <Icon></Icon>홈
+          <Icon categoryImage={homeIcon}></Icon>홈
         </div>
         <div
           onClick={() => {
             history.push("/asmr");
           }}
         >
-          <Icon></Icon>ASMR
+          <Icon categoryImage={asmrIcon}></Icon>ASMR
         </div>
         <div onClick={diary}>
-          <Icon></Icon>다이어리
+          <Icon categoryImage={diaryIcon}></Icon>다이어리
         </div>
         {diaryModal && (
           <RequireLogin
@@ -58,7 +66,7 @@ const Navigation = (props) => {
             history.push("/mypage");
           }}
         >
-          <Icon></Icon>마이
+          <Icon categoryImage={myPageIcon}></Icon>마이
         </div>
       </div>
     </>
@@ -68,7 +76,9 @@ const Navigation = (props) => {
 const Icon = styled.div`
   width: 30px;
   height: 30px;
-  border: 1px dotted black;
+  background-image: url(${(props) => props.categoryImage});
+  background-repeat: no-repeat;
+  background-size: cover;
   margin: auto;
 `;
 
