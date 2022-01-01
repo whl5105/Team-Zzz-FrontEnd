@@ -8,9 +8,8 @@ const Mypage = (props) => {
   const dispatch = useDispatch();
   const userIdx = useSelector((state) => state.user.user.userIdx);
   const userId = useSelector((state) => state.user.user.userId);
-  const userNotice = useSelector((state)=> state.notice);
+  const userNotice = useSelector((state) => state.notice);
   console.log(userNotice);
-  localStorage.setItem("token", "dklfhdlksfdlkfdlfkdl"); // middleware에서 set해야하는데 테스트를위해 token 세팅 예시
   const token = localStorage.getItem("token");
   const [is_token, setLogin] = React.useState(token);
   console.log(is_token);
@@ -67,12 +66,11 @@ const Mypage = (props) => {
               >
                 알림
               </span>
-              <span 
-                style={{position: "relative",
-                top: "40%",
-                left: "0%",}}
-              >
-         {userNotice.time.sleepChk&&userNotice.time.timePA}{userNotice.time.sleepChk&&userNotice.time.hour}{userNotice.time.sleepChk&&`:`}{userNotice.time.sleepChk&&userNotice.time.min}
+              <span style={{ position: "relative", top: "40%", left: "0%" }}>
+                {userNotice.time.sleepChk && userNotice.time.timePA}
+                {userNotice.time.sleepChk && userNotice.time.hour}
+                {userNotice.time.sleepChk && `:`}
+                {userNotice.time.sleepChk && userNotice.time.min}
               </span>
               <span
                 style={{
@@ -103,9 +101,7 @@ const Mypage = (props) => {
                   transform: "translate(-0%, -50%)",
                   cursor: "pointer",
                 }}
-                onClick={() => (
-                  dispatch(userActions.logoutDB())
-                )} // dispatch 로 해줘야하는부분
+                onClick={() => dispatch(userActions.logoutDB())} // dispatch 로 해줘야하는부분
               >
                 로그아웃
               </p>

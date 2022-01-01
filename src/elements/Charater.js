@@ -2,8 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 const Charater = (props) => {
-  const { shape, size, src, _onClick, margin, position, name, text, children } =
-    props;
+  const {
+    shape,
+    size,
+    _onClick,
+    margin,
+    position,
+    name,
+    text,
+    children,
+    is_me,
+    border,
+  } = props;
 
   const styles = {
     size: size,
@@ -18,13 +28,25 @@ const Charater = (props) => {
   if (shape === "feel") {
     return (
       <div>
-        <ImgIcon
-          {...styles}
-          onClick={_onClick}
-          data-value={props.feelNumber}
-          name={name}
-          src={require(`../images/character/feel${props.feelNumber}.png`)}
-        ></ImgIcon>
+        {is_me ? (
+          <ImgIcon
+            {...styles}
+            style={{ border: `${(props) => props.border} ` }}
+            onClick={_onClick}
+            data-value={props.feelNumber}
+            name={name}
+            src={require(`../images/character/feel${props.feelNumber}.png`)}
+          ></ImgIcon>
+        ) : (
+          <ImgIcon
+            {...styles}
+            onClick={_onClick}
+            data-value={props.feelNumber}
+            name={name}
+            src={require(`../images/character/feel${props.feelNumber}.png`)}
+          ></ImgIcon>
+        )}
+
         {children}
       </div>
     );
@@ -80,6 +102,8 @@ Charater.defaultProps = {
   _onClick: () => {},
   children: null,
   text: false,
+  is_click: "",
+  border: false,
 };
 
 const ImageCircle = styled.div`
@@ -108,7 +132,7 @@ const ImgIcon = styled.img`
   --size: ${(props) => props.size}px;
   width: var(--size);
   position: ${(props) => props.position};
-  ${(props) => (props.is_me ? `border : "1px solid #000"` : "")}
+  border-radius: 50%;
 `;
 
 export default Charater;

@@ -25,7 +25,6 @@ const DiaryWrite = (props) => {
   const [comment, setComment] = React.useState(
     diaryData ? diaryData.comment : ""
   );
-
   const [edit, setEdit] = React.useState(false);
   const [editPreview, setEditPreview] = React.useState(false); // 수정 미리보기 활성, 비활성
 
@@ -43,6 +42,8 @@ const DiaryWrite = (props) => {
         feelScore: dayData.feelScore,
         sleepScore: dayData.sleepScore,
       });
+    } else {
+      return;
     }
     console.log(state);
   }, []);
@@ -75,6 +76,29 @@ const DiaryWrite = (props) => {
       );
     }
   };
+  // 수정
+  const editClick = () => {
+    if (preview.previewFeelScore === "0" || preview.previewSleepScore === "0") {
+      window.alert("두개 다 선택 해야합니다.");
+    } else {
+      const diaryListInfo = {
+        day: location.day,
+        feelScore: preview.previewFeelScore,
+        sleepScore: preview.previewSleepScore,
+        comment: comment,
+      };
+      console.log(diaryListInfo);
+      dispatch(
+        diaryActions.editDiaryDB(location.year, location.month, diaryListInfo)
+      );
+    }
+  };
+  // 삭제
+  const deleteClick = () => {
+    dispatch(
+      diaryActions.deleteDiaryDB(location.year, location.month, diaryDayId)
+    );
+  };
 
   //Comment Input
   const inputChange = (e) => {
@@ -88,6 +112,7 @@ const DiaryWrite = (props) => {
     previewFeelScore: "0",
     previewSleepScore: "0",
   });
+  console.log(preview);
 
   //아이콘 클릭 1
   const feelClick = (e) => {
@@ -98,6 +123,7 @@ const DiaryWrite = (props) => {
       previewFeel: e.target.dataset.value,
       previewFeelScore: e.target.name,
     });
+    setEditPreview(true);
   };
   //아이콘 클릭 2
   const sleepClick = (e) => {
@@ -108,11 +134,13 @@ const DiaryWrite = (props) => {
       previewSleep: e.target.dataset.value,
       previewSleepScore: e.target.name,
     });
+    setEditPreview(true);
   };
 
   const { feelScore, sleepScore } = state;
   const { previewFeel, previewSleep } = preview;
-  console.log(scoreList.indexOf(feelScore + 1));
+  console.log(edit);
+  console.log(scoreList.indexOf(feelScore) + 1);
   return (
     <React.Fragment>
       <ModalPopUp>
@@ -155,13 +183,13 @@ const DiaryWrite = (props) => {
                     position="absolute"
                     // feelNumber={feelScore}
                     feelNumber={scoreList.indexOf(feelScore) + 1}
-                    sleepNumber={sleepScore}
+                    sleepNumber={scoreList.indexOf(sleepScore) + 1}
                   />
                 )}
                 <FeelBox edit _onClick={feelClick} />
                 <SleepBox edit _onClick={sleepClick} />
                 <Input value={comment} onChange={inputChange} />
-                <button>수정완료</button>
+                <button onClick={editClick}>수정완료</button>
               </>
             ) : (
               // 수정 전 - 비활성
@@ -170,14 +198,14 @@ const DiaryWrite = (props) => {
                   shape="charater"
                   size="180"
                   position="absolute"
-                  feelNumber={feelScore}
-                  sleepNumber={sleepScore}
+                  feelNumber={scoreList.indexOf(feelScore) + 1}
+                  sleepNumber={scoreList.indexOf(sleepScore) + 1}
                 />
                 <FeelBox />
                 <SleepBox />
                 <div>{dayData.comment}</div>
 
-                <button>삭제하기</button>
+                <button onClick={deleteClick}>삭제하기</button>
                 <button
                   onClick={() => {
                     setEdit(!edit);
@@ -193,6 +221,7 @@ const DiaryWrite = (props) => {
     </React.Fragment>
   );
 };
+
 const Input = (props) => {
   const { onChange, value } = props;
 
