@@ -85,6 +85,7 @@ const CategoryStyle = styled.div`
 
 const Text = styled.p`
   height: 5px;
+  text-align: left;
 `;
 
 export default Main;
