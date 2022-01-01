@@ -4,9 +4,16 @@ import { useHistory } from "react-router-dom";
 import nextIcon from "../images/icon/nextIcon.svg";
 import PushNoticationPop from "../pages/PushNoticationPop";
 
+import DropDown from "../elements/DropDown";
+
 const Main = (props) => {
-  const history = useHistory();
-  const [noticationModal, setNoticationModal] = React.useState(false);
+  const [noticationModal, setNoticationModal] = React.useState(true);
+
+  const dropdownItems = [
+    { id: "1", name: "1" },
+    { id: "2", name: "2" },
+    { id: "3", name: "3" },
+  ];
 
   React.useEffect(() => {
     const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));

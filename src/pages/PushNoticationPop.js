@@ -6,6 +6,7 @@ import Switch from "@mui/material/Switch";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
+import DropDown from "../elements/DropDown";
 
 const PushNoticationPop = (props) => {
   const [modal, setModal] = React.useState(props.modal ? true : false); // 모달창
@@ -14,9 +15,38 @@ const PushNoticationPop = (props) => {
   const [hour, setHour] = React.useState(12); // 시 설정
   const [minutes, setMinutes] = React.useState(0); // 분 설정
 
-  const history = useHistory();
   const dispatch = useDispatch();
   const label = { inputProps: { "aria-label": "Switch demo" } };
+
+  const checkItems = ["AM", "PM"];
+  const hourItems = [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+  ];
+  const minutesItems = [
+    "00",
+    "05",
+    "10",
+    "15",
+    "20",
+    "25",
+    "30",
+    "35",
+    "40",
+    "45",
+    "50",
+    "55",
+  ];
 
   const send = () => {
     if (!notice) {
@@ -78,65 +108,9 @@ const PushNoticationPop = (props) => {
               <p>시간은 언제가 좋으세요?</p>
               <div style={{ display: "flex", justifyContent: "space-evenly" }}>
                 <p>매일</p>
-                <select
-                  onChange={(e) => {
-                    setDay(e.target.value);
-                  }}
-                  value={day}
-                >
-                  <option value="AM">오전</option>
-                  <option value="PM">오후</option>
-                </select>
-                <select
-                  onChange={(e) => {
-                    setHour(e.target.value);
-                  }}
-                  value={hour}
-                >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
-                  <option>11</option>
-                  <option>12</option>
-                  {/* <option>13</option>
-                  <option>14</option>
-                  <option>15</option>
-                  <option>16</option>
-                  <option>17</option>
-                  <option>18</option>
-                  <option>19</option>
-                  <option>20</option>
-                  <option>21</option>
-                  <option>22</option>
-                  <option>23</option>
-                  <option>24</option> */}
-                </select>
-                <select
-                  onChange={(e) => {
-                    setMinutes(e.target.value);
-                  }}
-                  value={minutes}
-                >
-                  <option>00</option>
-                  <option>05</option>
-                  <option>10</option>
-                  <option>15</option>
-                  <option>20</option>
-                  <option>25</option>
-                  <option>30</option>
-                  <option>35</option>
-                  <option>40</option>
-                  <option>45</option>
-                  <option>50</option>
-                  <option>55</option>
-                </select>
+                <DropDown title={"PM"} dropdownItems={checkItems}></DropDown>
+                <DropDown title={"12"} dropdownItems={hourItems}></DropDown>
+                <DropDown title={"00"} dropdownItems={minutesItems}></DropDown>
               </div>
             </>
           ) : null}
