@@ -51,7 +51,7 @@ function App() {
             <NotFound />
           </Route>
         </Switch>
-        <Navigation marginTop="20%"></Navigation>
+        <Navigation></Navigation>
       </ConnectedRouter>
     </div>
   );
