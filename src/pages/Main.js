@@ -7,8 +7,9 @@ const Main = (props) => {
   const history = useHistory();
   React.useEffect(() => {
     const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
-    console.log(noticeSet);
-    if (!noticeSet) {
+    const token = localStorage.getItem("token");
+
+    if (!noticeSet && token) {
       history.push("/pushNotication");
     } else {
       console.log("알림 설정 했어요");
