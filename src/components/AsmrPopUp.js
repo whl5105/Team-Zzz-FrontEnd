@@ -2,9 +2,9 @@ import { fontWeight, margin, textAlign } from "@mui/system";
 import React, { useEffect } from "react";
 import Modal from "react-modal";
 import { history } from "../redux/configureStore";
+import { test } from "../pages/Asmr";
 
-
-const AsmrPopUp = ({closeModal, play, play2, play3} ) => {
+const AsmrPopUp = ({closeModal, test1, list, play, play2, play3, setPlay, setPlay2, setPla3} ) => {
 //   const [modal, setModal] = React.useState(true); // 모달창
 
 const [song1, setSong1] =React.useState(play)
@@ -22,15 +22,37 @@ const [Volume3, setVolume3] =React.useState(song3.volume*100);
 
 const VolumeChange=(e)=>{
     setVolume(e.target.value)
-    song1.volume=(Volume*0.01)
+    song1.volume=(e.target.value*0.01)
 }
 const VolumeChange2=(e)=>{
     setVolume2(e.target.value)
-    song2.volume=(Volume2*0.01)
+    song2.volume=(e.target.value*0.01)
 }
 const VolumeChange3=(e)=>{
     setVolume3(e.target.value)
-    song3.volume=(Volume3*0.01)
+    song3.volume=(e.target.value*0.01)
+}
+
+const deleteVolume =(e)=>{ 
+ if(song1){
+   console.log(list)
+   test(list);
+  song1.pause();
+  setPlay(new Audio());
+  var arr = [];
+  if (list.includes(list[0])) {
+    // 비활성화
+     arr = [...list];
+    console.log(arr);
+    arr = arr.filter((item) => {
+      if (list[0] !== item) {
+        return item;
+      }
+    });
+   
+  }
+  test1(arr)
+ }
 }
 
 useEffect(()=>{
@@ -95,14 +117,18 @@ useEffect(()=>{
             볼륨조절 
             {Volume}%
           </p>
-          <input 
+          <div style={{display:"flex", justifyContent:"space-around"  }}><input 
           type="range" 
           id ="volume"
           value={Volume}
           min="0" 
           max="100" 
-          onChange={VolumeChange } 
+          onChange={VolumeChange} 
           />
+          <p
+           onClick ={deleteVolume}
+          >delete</p></div>
+          
          {song2.src!==""? <><p
             style={{
               fontSize: "13px",
@@ -113,14 +139,18 @@ useEffect(()=>{
           >
             볼륨조절 
             {Volume2}%
-          </p><input 
+          </p><div style={{display:"flex", justifyContent:"space-around"  }}><input 
           type="range" 
           id ="volume2"
           value={Volume2}
           min="0" 
           max="100" 
           onChange={VolumeChange2} 
-          /></>: null} 
+          />
+          <p
+           onClick ={()=>(console.log("삭제"))}
+          >delete</p>
+          </div></>: null} 
            {song3.src!==""? <><p
             style={{
               fontSize: "13px",
