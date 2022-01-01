@@ -1,6 +1,6 @@
 import axios from "axios";
 const USER_TOKEN = `Bearer ${localStorage.getItem("token")}`;
-
+console.log(USER_TOKEN)
 const instance = axios.create({
   timeout: 3000,
   // baseURL: "",

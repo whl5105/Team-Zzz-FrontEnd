@@ -21,6 +21,10 @@ const MyPageNotification = (props) => {
   const userIdx = props.match.params.userIdx; 
 //   console.log(userIdx)
 
+
+
+
+
   const history = useHistory();
   const dispatch = useDispatch();
   const label = { inputProps: {  "aria-label": "Switch demo" } };
@@ -31,8 +35,7 @@ const MyPageNotification = (props) => {
       dispatch(noticeActions.noticeDB(notice));
     } else {
      
-      dispatch(noticeActions.noticeDB(notice, day, hour, minutes));
-    //   history.push('/mypage')
+      dispatch(noticeActions.noticeDB(notice, day, hour, minutes))
     }
   };
 
