@@ -5,10 +5,11 @@ import RequireLogin from "../components/RequireLogin";
 
 const Navigation = (props) => {
   const history = useHistory();
-  const token = localStorage.getItem("token");
   const [diaryModal, setDiaryModal] = React.useState(false);
 
   const diary = () => {
+    const token = localStorage.getItem("token");
+
     if (!token) {
       setDiaryModal(true);
     } else {
