@@ -24,7 +24,7 @@ const Diary = () => {
   const sleepAvg = diaryList[diaryList.length - 1].sleepAvg;
   const [list, setList] = React.useState(arr);
 
-  const scoreList = ["1", "3", "5", "4", "2"];
+  const scoreList = [1, 3, 5, 4, 2];
 
   const getDiaryInfo = async (year, month) => {
     await dispatch(diaryActions.getDiaryDB(year, month));

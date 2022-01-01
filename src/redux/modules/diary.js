@@ -37,49 +37,28 @@ const delete_diary = createAction(DELETE_DIARY, (day) => ({
 const initialState = {
   diaryList: [
     {
-      day: "1",
-      feelScore: "5",
-      sleepScore: "5",
+      day: 1,
+      feelScore: 5,
+      sleepScore: 5,
       comment: "오늘은 아구찜 먹음",
     },
     {
-      day: "4",
-      feelScore: "4",
-      sleepScore: "4",
+      day: 4,
+      feelScore: 4,
+      sleepScore: 4,
       comment: "오늘은 아구찜 먹음",
     },
     {
-      day: "8",
-      feelScore: "5",
-      sleepScore: "5",
+      day: 8,
+      feelScore: 5,
+      sleepScore: 5,
       comment: "오늘은 아구찜 먹음",
     },
     {
-      day: "6",
-      feelScore: "2",
-      sleepScore: "2",
+      day: 6,
+      feelScore: 2,
+      sleepScore: 2,
       comment: "오늘은 아구찜 먹음",
-    },
-    {
-      day: "7",
-      feelScore: "1",
-      sleepScore: "1",
-      comment: "오늘은 아구찜 먹음",
-    },
-    {
-      day: "9",
-      feelScore: "2",
-      sleepScore: "2",
-      comment: "오늘은 아구찜 먹음",
-    },
-    {
-      day: "22",
-      feelScore: "3",
-      sleepScore: "3",
-      comment: "오늘은 아구찜 먹음",
-    },
-    {
-      sleepAvg: "user not data send",
     },
   ],
 
