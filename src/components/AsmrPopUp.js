@@ -119,7 +119,7 @@ const AsmrPopUp = (props) => {
             top: "250px",
             left: "10%",
             width: "80%",
-            height: "50%",
+            height: "60%",
             border: "1px solid #ccc",
             background: "#C4C4C4ff",
             overflow: "auto",
@@ -163,8 +163,18 @@ const AsmrPopUp = (props) => {
                   max="100"
                   onChange={VolumeChange}
                 />
-                <p>{song1.src}</p>
-                <p onClick={deleteVolume}>delete</p>
+                <p>음원 이름</p>
+                <p
+                  style={{
+                    backgroundColor: "gray",
+                    color: "white",
+                    fontSize: "20px",
+                    borderRadius: "5px",
+                  }}
+                  onClick={deleteVolume}
+                >
+                  delete
+                </p>
               </div>
             </>
           ) : null}
@@ -191,8 +201,18 @@ const AsmrPopUp = (props) => {
                   max="100"
                   onChange={VolumeChange2}
                 />
-                <p>{song2.src}</p>
-                <p onClick={deleteVolume2}>delete</p>
+                <p>음원 이름</p>
+                <p
+                  style={{
+                    backgroundColor: "gray",
+                    color: "white",
+                    fontSize: "20px",
+                    borderRadius: "5px",
+                  }}
+                  onClick={deleteVolume2}
+                >
+                  delete
+                </p>
               </div>
             </>
           ) : null}
@@ -218,8 +238,18 @@ const AsmrPopUp = (props) => {
                   max="100"
                   onChange={VolumeChange3}
                 />
-                <p>{song3.src}</p>
-                <p onClick={deleteVolume3}>delete</p>
+                <p>음원 이름</p>
+                <p
+                  style={{
+                    backgroundColor: "gray",
+                    color: "white",
+                    fontSize: "20px",
+                    borderRadius: "5px",
+                  }}
+                  onClick={deleteVolume3}
+                >
+                  delete
+                </p>
               </div>
             </>
           ) : null}
