@@ -2,49 +2,55 @@ import React from "react";
 import styled from "styled-components";
 
 const Dropdown = (props) => {
-  const [day, setDay] = React.useState(props.dayActive);
-  const [hour, setHour] = React.useState(props.hourActive);
-  const [minutes, setMinutes] = React.useState(props.minutesActive);
+  // const [day, setDay] = React.useState(
+  //   props.dayActive ? props.dayActive : false
+  // );
+  // const [hour, setHour] = React.useState(
+  //   props.hourActive ? props.hourActive : false
+  // );
+  // const [minutes, setMinutes] = React.useState(
+  //   props.minutesActive ? props.minutesActive : false
+  // );
   const [item, setItem] = React.useState(null);
 
-  const onActiveToggle = async () => {
+  const onActiveToggle = () => {
     if (props.condition === "") {
-      await dayChange();
+      dayChange();
     } else if (props.condition === "시") {
-      await hourChange();
+      hourChange();
     } else if (props.condition === "분") {
-      await minutesChange();
+      minutesChange();
     }
   };
 
   const dayChange = () => {
-    props.setDayActive(!day);
+    props.setDayActive(!props.dayActive);
     props.setHourActive(false);
     props.setMinutesActive(false);
   };
 
   const hourChange = () => {
     props.setDayActive(false);
-    props.setHourActive(!hour);
+    props.setHourActive(!props.hourActive);
     props.setMinutesActive(false);
   };
 
   const minutesChange = () => {
     props.setDayActive(false);
     props.setHourActive(false);
-    props.setMinutesActive(!minutes);
+    props.setMinutesActive(!props.minutesActive);
   };
 
   const onSelectItem = (name) => {
     setItem(name);
     props.state(name);
 
-    if (day) {
-      setDay(!day);
-    } else if (hour) {
-      setHour(!hour);
-    } else if (minutes) {
-      setMinutes(!minutes);
+    if (props.dayActive) {
+      props.setDayActive(!props.dayActive);
+    } else if (props.hourActive) {
+      props.setHourActive(!props.hourActive);
+    } else if (props.minutesActive) {
+      props.setMinutesActive(!props.minutesActive);
     }
   };
 
@@ -73,8 +79,8 @@ const Dropdown = (props) => {
           </>
         )}
       </DropdownBody>
-      {day ? (
-        <DropdownMenu id="type2" isActive={day}>
+      {props.dayActive ? (
+        <DropdownMenu id="type2" isActive={props.dayActive}>
           {props.dayItems &&
             props.dayItems.map((item) => (
               <DropdownItemContainer
@@ -89,8 +95,8 @@ const Dropdown = (props) => {
         </DropdownMenu>
       ) : null}
 
-      {hour ? (
-        <DropdownMenu id="type2" isActive={hour}>
+      {props.hourActive ? (
+        <DropdownMenu id="type2" isActive={props.hourActive}>
           {props.hourItems &&
             props.hourItems.map((item) => (
               <DropdownItemContainer
@@ -105,8 +111,8 @@ const Dropdown = (props) => {
         </DropdownMenu>
       ) : null}
 
-      {minutes ? (
-        <DropdownMenu id="type2" isActive={minutes}>
+      {props.minutesActive ? (
+        <DropdownMenu id="type2" isActive={props.minutesActive}>
           {props.minutesItems &&
             props.minutesItems.map((item) => (
               <DropdownItemContainer

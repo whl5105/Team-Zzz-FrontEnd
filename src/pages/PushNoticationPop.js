@@ -103,6 +103,9 @@ const PushNoticationPop = (props) => {
             {...label}
             onClick={() => {
               setNotice(!notice);
+              // setDayActive(false);
+              // setHourActive(false);
+              // setMinutes(false);
             }}
             style={{ color: "#FBC037" }}
             color="default"
