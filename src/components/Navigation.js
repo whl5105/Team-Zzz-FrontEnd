@@ -23,61 +23,83 @@ const Navigation = (props) => {
   };
 
   return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "375px",
-          height: "48px",
-          backgroundColor: "#2A2245",
-          color: "white",
-          margin: "auto",
-          marginTop: `${props.marginTop ? props.marginTop : ""}`,
-          padding: "10px 20px",
+    <Gnb>
+      {/* <div
+        style={
+          {
+            // width: "100%",
+            // position: "absolute",
+            // bottom: "0",
+            // display: "flex",
+            // justifyContent: "space-between",
+            // backgroundColor: "#2A2245",
+            // color: "white",
+            // padding: "10px 20px",
+            // boxSizing: "border-box",
+          }
+        }
+      > */}
+      <Box
+        onClick={() => {
+          history.push("/");
         }}
       >
-        <div
-          onClick={() => {
-            history.push("/");
-          }}
-        >
-          <Icon categoryImage={homeIcon}></Icon>홈
-        </div>
-        <div
-          onClick={() => {
-            history.push("/asmr");
-          }}
-        >
-          <Icon categoryImage={asmrIcon}></Icon>ASMR
-        </div>
-        <div onClick={diary}>
-          <Icon categoryImage={diaryIcon}></Icon>다이어리
-        </div>
-        {diaryModal && (
-          <RequireLogin
-            modal={diaryModal}
-            setDiaryModal={setDiaryModal}
-          ></RequireLogin>
-        )}
-        <div
-          onClick={() => {
-            history.push("/mypage");
-          }}
-        >
-          <Icon categoryImage={myPageIcon}></Icon>마이
-        </div>
-      </div>
-    </>
+        <Icon categoryImage={homeIcon}></Icon>홈
+      </Box>
+
+      <Box
+        onClick={() => {
+          history.push("/asmr");
+        }}
+      >
+        <Icon categoryImage={asmrIcon}></Icon>ASMR
+      </Box>
+
+      <Box onClick={diary}>
+        <Icon categoryImage={diaryIcon}></Icon>다이어리
+      </Box>
+
+      {diaryModal && (
+        <RequireLogin
+          modal={diaryModal}
+          setDiaryModal={setDiaryModal}
+        ></RequireLogin>
+      )}
+      <Box
+        onClick={() => {
+          history.push("/mypage");
+        }}
+      >
+        <Icon categoryImage={myPageIcon}></Icon>마이
+      </Box>
+      {/* </div> */}
+    </Gnb>
   );
 };
 
+const Gnb = styled.div`
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: #2a2245;
+  color: white;
+  padding: 4px 20px 2px 20px;
+  box-sizing: border-box;
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  line-height: ${({ theme }) => theme.lineHeight.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Regular};
+`;
+const Box = styled.div`
+  width: 75px;
+`;
 const Icon = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   background-image: url(${(props) => props.categoryImage});
   background-repeat: no-repeat;
-  background-size: cover;
+  /* background-size: cover; */
   margin: auto;
 `;
 

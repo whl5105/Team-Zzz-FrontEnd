@@ -2,14 +2,24 @@ import React from "react";
 import styled from "styled-components";
 
 const Charater = (props) => {
-  const { shape, size, _onClick, margin, position, name, children, is_click } =
-    props;
+  const {
+    shape,
+    size,
+    _onClick,
+    margin,
+    position,
+    name,
+    children,
+    is_click,
+    bg,
+  } = props;
 
   const styles = {
     size: size,
     margin: margin,
     position: position,
     is_click: is_click,
+    bg: bg,
   };
 
   if (shape === "circle") {
@@ -112,7 +122,8 @@ const ImgIcon = styled.img`
   width: var(--size);
   position: ${(props) => props.position};
   border-radius: 50%;
-  ${(props) => (props.is_click ? `border : 1px solid red` : ``)}
+  ${(props) => (props.is_click ? `border : 1px solid red;` : ``)}
+  ${(props) => (props.bg ? `background-color : #eee;` : ``)}
 `;
 
 export default Charater;
