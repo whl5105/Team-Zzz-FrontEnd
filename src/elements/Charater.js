@@ -2,23 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const Charater = (props) => {
-  const {
-    shape,
-    size,
-    _onClick,
-    margin,
-    position,
-    name,
-    text,
-    children,
-    is_me,
-    border,
-  } = props;
+  const { shape, size, _onClick, margin, position, name, children, is_click } =
+    props;
 
   const styles = {
     size: size,
     margin: margin,
     position: position,
+    is_click: is_click,
   };
 
   if (shape === "circle") {
@@ -26,28 +17,16 @@ const Charater = (props) => {
   }
   //-- 표정 --
   if (shape === "feel") {
+    console.log(props.feelNumber);
     return (
       <div>
-        {is_me ? (
-          <ImgIcon
-            {...styles}
-            // style={{ border: `1px solid red ` }}
-            onClick={_onClick}
-            data-value={props.feelNumber}
-            name={name}
-            src={require(`../images/character/feel${props.feelNumber}.png`)}
-          ></ImgIcon>
-        ) : (
-          <ImgIcon
-            {...styles}
-            // style={{ border: `1px solid red ` }}
-            onClick={_onClick}
-            data-value={props.feelNumber}
-            name={name}
-            src={require(`../images/character/feel${props.feelNumber}.png`)}
-          ></ImgIcon>
-        )}
-
+        <ImgIcon
+          {...styles}
+          onClick={_onClick}
+          data-value={props.feelNumber}
+          name={name}
+          src={require(`../images/character/feel${props.feelNumber}.png`)}
+        ></ImgIcon>
         {children}
       </div>
     );
@@ -103,8 +82,7 @@ Charater.defaultProps = {
   _onClick: () => {},
   children: null,
   text: false,
-  is_click: "",
-  // border: "none",
+  is_click: false,
 };
 
 const ImageCircle = styled.div`
@@ -134,7 +112,7 @@ const ImgIcon = styled.img`
   width: var(--size);
   position: ${(props) => props.position};
   border-radius: 50%;
-  ${(props) => (props.is_me ? `border : 1px solid red` : ``)}
+  ${(props) => (props.is_click ? `border : 1px solid red` : ``)}
 `;
 
 export default Charater;
