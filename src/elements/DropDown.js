@@ -2,15 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const Dropdown = (props) => {
-  // const [day, setDay] = React.useState(
-  //   props.dayActive ? props.dayActive : false
-  // );
-  // const [hour, setHour] = React.useState(
-  //   props.hourActive ? props.hourActive : false
-  // );
-  // const [minutes, setMinutes] = React.useState(
-  //   props.minutesActive ? props.minutesActive : false
-  // );
   const [item, setItem] = React.useState(null);
 
   const onActiveToggle = () => {
