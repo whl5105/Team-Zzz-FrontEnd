@@ -4,8 +4,9 @@ import { useHistory } from "react-router-dom";
 import nextIcon from "../images/icon/nextIcon.svg";
 import PushNoticationPop from "../pages/PushNoticationPop";
 
+import Swiper from "../components/Swiper";
+
 const Main = (props) => {
-  const history = useHistory();
   const [noticationModal, setNoticationModal] = React.useState(false);
 
   React.useEffect(() => {
@@ -21,6 +22,10 @@ const Main = (props) => {
 
   return (
     <>
+      {/* swiper 부분 */}
+      <Swiper></Swiper>
+
+      {/* 카테고리 부분 */}
       <Category
         path="/asmr"
         category="자연"
@@ -46,6 +51,7 @@ const Main = (props) => {
         subTitle="모든 소리 들어보기"
       ></Category>
 
+      {/* 첫 로그인 시 알림 설정 팝업 부분 */}
       {noticationModal && (
         <PushNoticationPop
           modal={noticationModal}
