@@ -9,12 +9,11 @@ import asmrUrl1 from "../audio/asmrUrl1.mp3";
 import asmrUrl2 from "../audio/asmrUrl2.mp3";
 import asmrUrl3 from "../audio/asmrUrl3.mp3";
 
-export const deleteSong =(url)=>{
- console.log(url)
+export const deleteSong = (url) => {
+  console.log(url);
   const deleteItem = document.getElementById(url);
-      deleteItem.style.backgroundColor = "gray";
-  
-    } 
+  deleteItem.style.backgroundColor = "gray";
+};
 
 const Asmr = (props) => {
   const location = useLocation();
@@ -22,7 +21,7 @@ const Asmr = (props) => {
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());
-  console.log(song1)
+  console.log(song1);
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
   );
@@ -34,7 +33,6 @@ const Asmr = (props) => {
   const dispatch = useDispatch();
   const [openModal, setOpenmodal] = React.useState(false);
   // const [test1, setTest1] =React.useState(test.arr);
-  
 
   React.useEffect(() => {
     // 1) 카테고리별 활성화 유무
@@ -174,7 +172,7 @@ const Asmr = (props) => {
         >
           ASMR 페이지
         </div>
-        <div style={{ display: "flex", margin: "0px 40%" }}>
+        <div style={{ display: "flex", margin: "auto", width: "350px" }}>
           <Category
             id="전체"
             onClick={() => {
@@ -208,7 +206,7 @@ const Asmr = (props) => {
             물체
           </Category>
         </div>
-        <div style={{ margin: "0px 40%", display: "flex", flexWrap: "wrap" }}>
+        <div style={{ margin: "auto", display: "flex", flexWrap: "wrap" }}>
           {sound.map((item) => {
             return (
               <Sound
@@ -236,7 +234,7 @@ const Asmr = (props) => {
         ) : null}
         {openModal && (
           <AsmrPopUp
-           setList={setPlay}
+            setList={setPlay}
             list={play}
             play={song1}
             play2={song2}
