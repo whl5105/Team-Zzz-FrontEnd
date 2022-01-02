@@ -100,6 +100,8 @@ const PushNoticationPop = (props) => {
             onClick={() => {
               setNotice(!notice);
             }}
+            style={{ color: "#FBC037" }}
+            color="default"
             defaultChecked
           />
         </div>
