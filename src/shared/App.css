@@ -36,10 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-/* 스크롤바 막대 설정*/
-.type2::-webkit-scrollbar-thumb {
-  height: 17%;
-  background-color: rgba(33, 133, 133, 1);
-  border-radius: 10px;
-}

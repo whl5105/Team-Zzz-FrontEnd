@@ -6,7 +6,7 @@ const Dropdown = (props) => {
   const [item, setItem] = React.useState(null);
 
   const onActiveToggle = () => {
-    setIsActive((prev) => !prev);
+    setIsActive(true);
   };
 
   const onSelectItem = (name) => {
