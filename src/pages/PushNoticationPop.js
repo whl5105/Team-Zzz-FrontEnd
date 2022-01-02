@@ -18,6 +18,10 @@ const PushNoticationPop = (props) => {
   const dispatch = useDispatch();
   const label = { inputProps: { "aria-label": "Switch demo" } };
 
+  const [dayActive, setDayActive] = React.useState(false);
+  const [hourActive, setHourActive] = React.useState(false);
+  const [minutesActive, setMinutesActive] = React.useState(false);
+
   const dayItems = ["AM", "PM"];
   const hourItems = [
     "1",
@@ -110,21 +114,33 @@ const PushNoticationPop = (props) => {
             <>
               <div style={{ display: "flex", justifyContent: "space-evenly" }}>
                 <DropDown
+                  dayActive={dayActive}
+                  setDayActive={setDayActive}
+                  setHourActive={setHourActive}
+                  setMinutesActive={setMinutesActive}
                   condition={""}
                   title={"PM"}
-                  dropdownItems={dayItems}
+                  dayItems={dayItems}
                   state={setDay}
                 ></DropDown>
                 <DropDown
+                  hourActive={hourActive}
+                  setDayActive={setDayActive}
+                  setHourActive={setHourActive}
+                  setMinutesActive={setMinutesActive}
                   condition={"시"}
                   title={"12"}
-                  dropdownItems={hourItems}
+                  hourItems={hourItems}
                   state={setHour}
                 ></DropDown>
                 <DropDown
+                  minutesActive={minutesActive}
+                  setDayActive={setDayActive}
+                  setHourActive={setHourActive}
+                  setMinutesActive={setMinutesActive}
                   condition={"분"}
                   title={"00"}
-                  dropdownItems={minutesItems}
+                  minutesItems={minutesItems}
                   state={setMinutes}
                 ></DropDown>
               </div>

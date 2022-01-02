@@ -2,17 +2,50 @@ import React from "react";
 import styled from "styled-components";
 
 const Dropdown = (props) => {
-  const [isActive, setIsActive] = React.useState(false);
+  const [day, setDay] = React.useState(props.dayActive);
+  const [hour, setHour] = React.useState(props.hourActive);
+  const [minutes, setMinutes] = React.useState(props.minutesActive);
   const [item, setItem] = React.useState(null);
 
-  const onActiveToggle = () => {
-    setIsActive(!isActive);
+  const onActiveToggle = async () => {
+    if (props.condition === "") {
+      await dayChange();
+    } else if (props.condition === "시") {
+      await hourChange();
+    } else if (props.condition === "분") {
+      await minutesChange();
+    }
+  };
+
+  const dayChange = () => {
+    props.setDayActive(!day);
+    props.setHourActive(false);
+    props.setMinutesActive(false);
+  };
+
+  const hourChange = () => {
+    props.setDayActive(false);
+    props.setHourActive(!hour);
+    props.setMinutesActive(false);
+  };
+
+  const minutesChange = () => {
+    props.setDayActive(false);
+    props.setHourActive(false);
+    props.setMinutesActive(!minutes);
   };
 
   const onSelectItem = (name) => {
     setItem(name);
     props.state(name);
-    setIsActive(false);
+
+    if (day) {
+      setDay(!day);
+    } else if (hour) {
+      setHour(!hour);
+    } else if (minutes) {
+      setMinutes(!minutes);
+    }
   };
 
   // 알림 비활성화일 때
@@ -40,19 +73,53 @@ const Dropdown = (props) => {
           </>
         )}
       </DropdownBody>
-      <DropdownMenu id="type2" isActive={isActive}>
-        {props.dropdownItems &&
-          props.dropdownItems.map((dropdowmItem) => (
-            <DropdownItemContainer
-              key={dropdowmItem}
-              onClick={() => {
-                onSelectItem(dropdowmItem);
-              }}
-            >
-              <p>{`${dropdowmItem}${props.condition}`}</p>
-            </DropdownItemContainer>
-          ))}
-      </DropdownMenu>
+      {day ? (
+        <DropdownMenu id="type2" isActive={day}>
+          {props.dayItems &&
+            props.dayItems.map((item) => (
+              <DropdownItemContainer
+                key={item}
+                onClick={() => {
+                  onSelectItem(item);
+                }}
+              >
+                <p>{`${item}${props.condition}`}</p>
+              </DropdownItemContainer>
+            ))}
+        </DropdownMenu>
+      ) : null}
+
+      {hour ? (
+        <DropdownMenu id="type2" isActive={hour}>
+          {props.hourItems &&
+            props.hourItems.map((item) => (
+              <DropdownItemContainer
+                key={item}
+                onClick={() => {
+                  onSelectItem(item);
+                }}
+              >
+                <p>{`${item}${props.condition}`}</p>
+              </DropdownItemContainer>
+            ))}
+        </DropdownMenu>
+      ) : null}
+
+      {minutes ? (
+        <DropdownMenu id="type2" isActive={minutes}>
+          {props.minutesItems &&
+            props.minutesItems.map((item) => (
+              <DropdownItemContainer
+                key={item}
+                onClick={() => {
+                  onSelectItem(item);
+                }}
+              >
+                <p>{`${item}${props.condition}`}</p>
+              </DropdownItemContainer>
+            ))}
+        </DropdownMenu>
+      ) : null}
     </DropdownContainer>
   );
 };
