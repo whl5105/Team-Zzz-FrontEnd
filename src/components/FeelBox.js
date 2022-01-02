@@ -26,6 +26,7 @@ const FeelBox = (props) => {
                   feelNumber={idx + 1}
                   _onClick={props._onClick}
                   is_click={previewFeel === idx + 1 ? true : false}
+                  bg
                 >
                   {arr.text}
                 </Charater>
@@ -43,6 +44,7 @@ const FeelBox = (props) => {
                   size="40"
                   name={arr.score}
                   feelNumber={idx + 1}
+                  bg
                 >
                   {arr.text}
                 </Charater>
