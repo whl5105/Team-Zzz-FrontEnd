@@ -1,19 +1,14 @@
 import React from "react";
-
 import Charater from "../elements/Charater";
 
-import { useDispatch, useSelector } from "react-redux";
-// import { actionCreators as userActions } from "../redux/modules/diary";
-
 const SleepBox = (props) => {
-  const dispatch = useDispatch();
-
+  const { previewSleep } = props;
   const [arr, setArr] = React.useState([
-    { text: "부족++", score: "1" },
-    { text: "부족", score: "3" },
-    { text: "적당", score: "5" },
-    { text: "과잉", score: "4" },
-    { text: "과잉++", score: "2" },
+    { text: "부족++", score: 1 },
+    { text: "부족", score: 3 },
+    { text: "적당", score: 5 },
+    { text: "과잉", score: 4 },
+    { text: "과잉++", score: 2 },
   ]);
 
   return (
@@ -30,6 +25,7 @@ const SleepBox = (props) => {
                   name={arr.score}
                   sleepNumber={idx + 1}
                   _onClick={props._onClick}
+                  is_click={previewSleep === idx + 1 ? true : false}
                 >
                   {arr.text}
                 </Charater>

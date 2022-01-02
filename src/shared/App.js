@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Switch, Route, Link } from "react-router-dom";
@@ -23,38 +24,48 @@ import Navigation from "../components/Navigation";
 
 function App() {
   return (
-    <div className="App">
-      <ConnectedRouter history={history}>
-        <Switch>
-          <Route path="/" exact component={Main} />
-          <Route path="/clock" exact component={Clock} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/requireLogin" exact component={RequireLogin} />
-          <Route path="/push" exact component={Push} />
-          <Route
-            path="/pushNotication"
-            exact
-            component={PushNoticationPop}
-          ></Route>
-          <Route path="/diary" exact component={Diary}></Route>
-          <Route path="/diaryWrite" exact component={DiaryWrite}></Route>
-          <Route path="/voice" exact component={Voice}></Route>
-          <Route path="/asmr" exact component={Asmr}></Route>
-          <Route path="/mypage" exact component={Mypage} />
-          <Route
-            path="/mypageNotice/:userIdx"
-            exact
-            component={MyPageNotification}
-          ></Route>
-          <Route>
-            <NotFound />
-          </Route>
-        </Switch>
-        <Navigation></Navigation>
-      </ConnectedRouter>
-    </div>
+    <Wrap>
+      <div className="App">
+        <ConnectedRouter history={history}>
+          <Switch>
+            <Route path="/" exact component={Main} />
+            <Route path="/clock" exact component={Clock} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/signup" exact component={Signup} />
+            <Route path="/requireLogin" exact component={RequireLogin} />
+            <Route path="/push" exact component={Push} />
+            <Route
+              path="/pushNotication"
+              exact
+              component={PushNoticationPop}
+            ></Route>
+            <Route path="/diary" exact component={Diary}></Route>
+            <Route path="/diaryWrite" exact component={DiaryWrite}></Route>
+            <Route path="/voice" exact component={Voice}></Route>
+            <Route path="/asmr" exact component={Asmr}></Route>
+            <Route path="/mypage" exact component={Mypage} />
+            <Route
+              path="/mypageNotice/:userIdx"
+              exact
+              component={MyPageNotification}
+            ></Route>
+            <Route>
+              <NotFound />
+            </Route>
+          </Switch>
+          <Navigation></Navigation>
+        </ConnectedRouter>
+      </div>
+    </Wrap>
   );
 }
+const Wrap = styled.div`
+  width: 375px;
+  height: 812px;
+  border: 1px solid red;
+  background: red;
+  position: relative;
+  margin: 0 auto;
+`;
 
 export default App;

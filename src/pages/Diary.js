@@ -89,9 +89,9 @@ const Diary = () => {
     console.log(day.getMonth() + 1 + "월", index + "일");
     history.push({
       pathname: "/diaryWrite",
-      year: String(day.getFullYear()),
-      month: String(day.getMonth() + 1),
-      day: String(index),
+      year: day.getFullYear(),
+      month: day.getMonth() + 1,
+      day: index,
     });
   };
 
