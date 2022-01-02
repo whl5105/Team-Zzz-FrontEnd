@@ -18,7 +18,7 @@ const PushNoticationPop = (props) => {
   const dispatch = useDispatch();
   const label = { inputProps: { "aria-label": "Switch demo" } };
 
-  const checkItems = ["AM", "PM"];
+  const dayItems = ["AM", "PM"];
   const hourItems = [
     "1",
     "2",
@@ -74,6 +74,7 @@ const PushNoticationPop = (props) => {
             right: 0,
             bottom: 0,
             backgroundColor: "rgba(15, 15, 15, 0)",
+            zIndex: "1",
           },
           content: {
             position: "absolute",
@@ -109,7 +110,7 @@ const PushNoticationPop = (props) => {
                 <DropDown
                   condition={""}
                   title={"PM"}
-                  dropdownItems={checkItems}
+                  dropdownItems={dayItems}
                   state={setDay}
                 ></DropDown>
                 <DropDown
@@ -141,6 +142,7 @@ const PushNoticationPop = (props) => {
               ></DropDown>
             </div>
           )}
+
           <button onClick={send}>확인</button>
         </div>
       </Modal>

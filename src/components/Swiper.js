@@ -15,7 +15,6 @@ const MainSwiper = () => {
             width: "335px",
             height: "170px",
             backgroundColor: "#FFF5F1",
-            // zIndex : "-1", 를 널으면 안눌림
             borderRadius: "12px",
           }}
           spaceBetween={8}

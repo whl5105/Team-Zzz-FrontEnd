@@ -6,7 +6,7 @@ const Dropdown = (props) => {
   const [item, setItem] = React.useState(null);
 
   const onActiveToggle = () => {
-    setIsActive(true);
+    setIsActive(!isActive);
   };
 
   const onSelectItem = (name) => {
@@ -63,11 +63,11 @@ const DropdownContainer = styled.div`
   text-align: center;
   border: 1px solid gray;
 
-  &:hover {
+  /* &:hover {
     cursor: pointer;
     border: 3px solid #fbc037;
     border-radius: 10px;
-  }
+  } */
 `;
 
 const DisabledDropDownContainer = styled.div`
@@ -97,6 +97,7 @@ const DropdownMenu = styled.ul`
   margin-left: -3px;
   border: 3px solid #fbc037;
   border-radius: 10px;
+  overflow-x: hidden; // 가로 축 스크롤 감추기
 `;
 
 const DropdownItemContainer = styled.li`
