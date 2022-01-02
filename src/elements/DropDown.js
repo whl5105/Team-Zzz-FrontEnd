@@ -125,20 +125,21 @@ const DropdownContainer = styled.div`
   width: 100px;
   margin: auto;
   text-align: center;
-  border: 1px solid gray;
+  border: 1.5px solid gray;
+  border-radius: 10px;
 
-  /* &:hover {
+  &:hover {
     cursor: pointer;
-    border: 3px solid #fbc037;
-    border-radius: 10px;
-  } */
+    border: 2px solid #fbc037;
+  }
 `;
 
 const DisabledDropDownContainer = styled.div`
   width: 100px;
   margin: auto;
   text-align: center;
-  border: 1px solid gray;
+  border: 1.5px solid gray;
+  border-radius: 10px;
 `;
 
 const DropdownBody = styled.div`
@@ -159,7 +160,7 @@ const DropdownMenu = styled.ul`
   position: absolute;
   margin-top: -1px;
   margin-left: -3px;
-  border: 3px solid #fbc037;
+  border: 2px solid #fbc037;
   border-radius: 10px;
   overflow-x: hidden; // 가로 축 스크롤 감추기
 `;
@@ -167,7 +168,7 @@ const DropdownMenu = styled.ul`
 const DropdownItemContainer = styled.li`
   display: flex;
   justify-content: space-between;
-  margin-left: -5px;
+  margin-left: -6px;
 
   &:last-child {
     border-bottom: none;
