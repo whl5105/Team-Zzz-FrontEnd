@@ -17,14 +17,14 @@ const initialState = {
       categoryIdx: "1",
       categoryName: "전체",
       title: "빗소리",
-      asmrUrl: "/static/media/asmrUrl1.e1a931fffbb8c53b3aec.mp3",
+      asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
       iconUrl: "iconUrl",
     },
     {
       categoryIdx: "2",
       categoryName: "전체",
       title: "빗소리",
-      asmrUrl: "/static/media/asmrUrl2.87170d18833bd2e7d081.mp3",
+      asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
       iconUrl: "iconUrl",
     },
 
@@ -32,7 +32,7 @@ const initialState = {
       categoryIdx: "3",
       categoryName: "전체",
       title: "빗소리",
-      asmrUrl: "/static/media/asmrUrl3.9dfe306bceaca2e8f2c1.mp3",
+      asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
       iconUrl: "iconUrl",
     },
     {
@@ -46,7 +46,7 @@ const initialState = {
       categoryIdx: "5",
       categoryName: "전체",
       title: "빗소리",
-      asmrUrl: "asmrUrl5",
+      asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
       iconUrl: "iconUrl",
     },
     {

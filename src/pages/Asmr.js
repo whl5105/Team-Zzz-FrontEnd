@@ -9,9 +9,9 @@ import asmrUrl1 from "../audio/asmrUrl1.mp3";
 import asmrUrl2 from "../audio/asmrUrl2.mp3";
 import asmrUrl3 from "../audio/asmrUrl3.mp3";
 
-export const test =(url)=>{
- 
-  const deleteItem = document.getElementById(url[0]);
+export const deleteSong =(url)=>{
+ console.log(url)
+  const deleteItem = document.getElementById(url);
       deleteItem.style.backgroundColor = "gray";
   
     } 
@@ -236,7 +236,7 @@ const Asmr = (props) => {
         ) : null}
         {openModal && (
           <AsmrPopUp
-           test1={setPlay}
+           setList={setPlay}
             list={play}
             play={song1}
             play2={song2}
