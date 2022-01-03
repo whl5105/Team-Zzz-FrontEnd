@@ -7,7 +7,7 @@ import PushNoticationPop from "../pages/PushNoticationPop";
 import Swiper from "../components/Swiper";
 
 const Main = (props) => {
-  const [noticationModal, setNoticationModal] = React.useState(false);
+  const [noticationModal, setNoticationModal] = React.useState(true);
 
   React.useEffect(() => {
     const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
