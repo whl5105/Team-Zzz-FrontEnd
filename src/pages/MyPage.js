@@ -145,169 +145,163 @@ const Mypage = (props) => {
           </Banner>
 
           <div
-           style={{
-             position:"absolute",
-             width:"375px",
-             height:"20px",
-             left:"0px",
-             top:"249px",
-             backgroundColor:"rgba(7,9,34,0.8)",
-           }}
-          >
-
-
-          </div>
-
-
-          <div
-            style={{ 
-              display : "flex",
-              flexDirection:"row",
-              alignItems:"center",
-              padding:"16px 0px",
-
-              position: "absolute",
-              width:"335px",
-              height:"56px",
-              left:"20px",
-              top:"271px",
-              boxSizing:"border-box",
-            }}
-          >
-            <div
-             style={{
-               display:"flex",
-               flexDirection:"row",
-               alignItems:"flex-start",
-               padding:"0px",
-
-               position:"static",
-               width:"305px",
-               height:"24px",
-               left:"0px",
-               top:"16px",
-
-               flex:"none",
-               order:"0",
-               flexGrow:"1",
-               margin:"0px 6px",
-             }}
-            
-            >
-              <Box>
-              <Icon categoryImage={userIcon}></Icon>
-            </Box>
-            <p
-              style={{
-                position:"static",
-                width:"271px",
-                height:"24px",
-                left:"34px",
-                top: `calc(50%-24/2)`,
-
-                fontSize:"16px",
-                lineHeight:"24px",
-                letterSpacing:"-0.3px",
-                color: "white",
-                cursor: "pointer",
-              }}
-            >
-              내 정보
-            </p>
-            </div> 
-            <div
             style={{
-              // position: "absolute",
-              width: "24px",
-              height: "16px",
+              position: "absolute",
+              width: "375px",
+              height: "20px",
               left: "0px",
-              top: "0px",
+              top: "249px",
+              backgroundColor: "rgba(7,9,34,0.8)",
             }}
-          >
-            <Box
-              style={{
-                width: "10px",
-                height: "16px",
-                margin: "0px",
-                backgroundImage: `url(${path})`,
-              }}
-            ></Box>
-          </div>
+          ></div>
 
-          </div>
-
-          <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            padding: "16px 0px",
-            position: "absolute",
-            width: "335px",
-            height: "56px",
-            left: "20px",
-            top: "327px",
-            boxSizing: "border-box",
-          }}
-          onClick={() => history.push("/notice")}
-        >
           <div
             style={{
               display: "flex",
               flexDirection: "row",
-              alignItems: "flex-start",
-              padding: "0px",
-              position: "static",
-              width: "305px",
-              height: "24px",
-              left: "0px",
-              top: "16px",
-              flex: "none",
-              order: "0",
-              flexGrow: "1",
-              margin: "0px 6px",
+              alignItems: "center",
+              padding: "16px 0px",
+
+              position: "absolute",
+              width: "335px",
+              height: "56px",
+              left: "20px",
+              top: "271px",
+              boxSizing: "border-box",
             }}
           >
-            <Box>
-              <Icon categoryImage={noticeIcon}></Icon>
-            </Box>
-            <p
+            <div
               style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "flex-start",
+                padding: "0px",
+
                 position: "static",
-                width: "271px",
+                width: "305px",
                 height: "24px",
-                left: "34px",
-                top: `calc(50%-24/2)`,
-                color: "white",
-                fontSize: "16px",
-                lineHeight: "24px",
-                letterSpacing: "-0.3px",
-                margin: "0px",
-                cursor: "pointer",
+                left: "0px",
+                top: "16px",
+
+                flex: "none",
+                order: "0",
+                flexGrow: "1",
+                margin: "0px 6px",
               }}
             >
-              공지사항
-            </p>
+              <Box>
+                <Icon categoryImage={userIcon}></Icon>
+              </Box>
+              <p
+                style={{
+                  position: "static",
+                  width: "271px",
+                  height: "24px",
+                  left: "34px",
+                  top: `calc(50%-24/2)`,
+
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  letterSpacing: "-0.3px",
+                  color: "white",
+                  cursor: "pointer",
+                }}
+              >
+                내 정보
+              </p>
+            </div>
+            <div
+              style={{
+                // position: "absolute",
+                width: "24px",
+                height: "16px",
+                left: "0px",
+                top: "0px",
+              }}
+            >
+              <Box
+                style={{
+                  width: "10px",
+                  height: "16px",
+                  margin: "0px",
+                  backgroundImage: `url(${path})`,
+                }}
+              ></Box>
+            </div>
           </div>
+
           <div
             style={{
-              // position: "absolute",
-              width: "24px",
-              height: "16px",
-              left: "0px",
-              top: "0px",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              padding: "16px 0px",
+              position: "absolute",
+              width: "335px",
+              height: "56px",
+              left: "20px",
+              top: "327px",
+              boxSizing: "border-box",
             }}
+            onClick={() => history.push("/notice")}
           >
-            <Box
+            <div
               style={{
-                width: "10px",
-                height: "16px",
-                margin: "0px",
-                backgroundImage: `url(${path})`,
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "flex-start",
+                padding: "0px",
+                position: "static",
+                width: "305px",
+                height: "24px",
+                left: "0px",
+                top: "16px",
+                flex: "none",
+                order: "0",
+                flexGrow: "1",
+                margin: "0px 6px",
               }}
-            ></Box>
+            >
+              <Box>
+                <Icon categoryImage={noticeIcon}></Icon>
+              </Box>
+              <p
+                style={{
+                  position: "static",
+                  width: "271px",
+                  height: "24px",
+                  left: "34px",
+                  top: `calc(50%-24/2)`,
+                  color: "white",
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  letterSpacing: "-0.3px",
+                  margin: "0px",
+                  cursor: "pointer",
+                }}
+              >
+                공지사항
+              </p>
+            </div>
+            <div
+              style={{
+                // position: "absolute",
+                width: "24px",
+                height: "16px",
+                left: "0px",
+                top: "0px",
+              }}
+            >
+              <Box
+                style={{
+                  width: "10px",
+                  height: "16px",
+                  margin: "0px",
+                  backgroundImage: `url(${path})`,
+                }}
+              ></Box>
+            </div>
           </div>
-        </div>
         </div>
       </React.Fragment>
     );
@@ -336,7 +330,7 @@ const Mypage = (props) => {
         >
           마이페이지
         </p>
-        
+
         <div
           style={{
             display: "flex",
@@ -483,7 +477,6 @@ const Mypage = (props) => {
             ></Box>
           </div>
         </div>
-     
       </div>
     </React.Fragment>
   );
@@ -502,7 +495,7 @@ const Icon = styled.div`
   background-image: url(${(props) => props.categoryImage});
   background-repeat: no-repeat;
   /* background-size: cover; */
-  margin: 2px 0px; 
+  margin: 2px 0px;
   cursor: pointer;
 `;
 
