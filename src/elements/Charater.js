@@ -14,6 +14,8 @@ const Charater = (props) => {
     bg,
   } = props;
 
+
+
   const styles = {
     size: size,
     margin: margin,

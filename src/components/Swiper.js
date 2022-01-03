@@ -13,8 +13,10 @@ const MainSwiper = () => {
         <Swiper
           style={{
             width: "335px",
-            height: "170px",
-            backgroundColor: "#FFF5F1",
+            // height: "170px",
+            height: "",
+            paddingBottom: "10px",
+            backgroundColor: "red",
             borderRadius: "12px",
           }}
           spaceBetween={8}
@@ -25,8 +27,18 @@ const MainSwiper = () => {
           }}
           autoplay={{ delay: 3000 }}
         >
-          <SwiperSlide>슬라이더1</SwiperSlide>
-          <SwiperSlide>슬라이더2</SwiperSlide>
+          <SwiperSlide
+            style={{
+              width: "335px",
+              // height: "170px",
+              height: "160px",
+              backgroundColor: "#FFF5F1",
+              borderRadius: "12px",
+            }}
+          >
+            슬라이더1
+          </SwiperSlide>
+          {/* {/* <SwiperSlide>슬라이더2</SwiperSlide> */}
           <SwiperSlide>슬라이더3</SwiperSlide>
         </Swiper>
       </div>
