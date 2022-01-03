@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import nextIcon from "../images/icon/nextIcon.svg";
+import nextIcon from "../static/images/icon/nextIcon.svg";
 import PushNoticationPop from "../pages/PushNoticationPop";
 
 import Swiper from "../components/Swiper";

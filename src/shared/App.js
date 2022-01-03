@@ -66,7 +66,7 @@ const Wrap = styled.div`
   width: 375px;
   height: 812px;
   border: 1px solid red;
-  background: red;
+  background: white;
   position: relative;
   margin: 0 auto;
 `;

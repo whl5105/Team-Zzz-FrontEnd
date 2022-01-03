@@ -16,7 +16,7 @@ const Signup = (props) => {
   const [pwd, setPwd] = React.useState("");
   const [pwd_check, setPwdCheck] = React.useState("");
 
-  //-- 오류메시지 상태저장--
+  //-- 오류 메시지 상태저장--
   const [idMessage, setIdMessage] = React.useState("");
   const [pwdMessage, setPwdMessage] = React.useState("");
   const [pwdCheckMessage, setPwdCheckMessage] = React.useState("");
@@ -35,7 +35,7 @@ const Signup = (props) => {
       setIdMessage("5글자 이상 10글자 미만으로 입력해주세요.");
       setIsId(false);
     } else {
-      setIdMessage("");
+      setIdMessage("사용 가능한 아이디입니다.");
       setIsId(true);
     }
   };
@@ -47,9 +47,7 @@ const Signup = (props) => {
     setPwd(passwordCurrent);
 
     if (!passwordRegex.test(passwordCurrent)) {
-      setPwdMessage(
-        "숫자+영문자 조합으로 8자리 이상 20자리 이하로 입력해주세요!"
-      );
+      setPwdMessage("숫자+영문자 조합으로 8~20자리로 입력해주세요!");
       setIsPassword(false);
     } else {
       setPwdMessage("안전한 비밀번호에요 : )");
@@ -87,37 +85,49 @@ const Signup = (props) => {
 
   return (
     <React.Fragment>
+      <div>
+        회원가입
+      </div>
       {/* -- 아이디 --  */}
       <div>
-        <input placeholder="5~10자로 입력해주세요." onChange={idCheck} />
-        {id.length > 0 && (
+        <input placeholder="아이디" onChange={idCheck} />
+        <br />
+        {id.length > 0 ? (
           <Span className={`${isId ? "success" : "error"}`}>{idMessage}</Span>
+        ) : (
+          <Span>영문 대,소문자, 숫자를 포함(5-10자)</Span>
         )}
       </div>
       {/* -- 비밀번호 --  */}
       <div>
         <input
           type="password"
-          placeholder="8~20자 영문 대 소문자, 숫자"
+          placeholder="아이디"
           onChange={onChangePassword}
         ></input>
-        {pwd.length > 0 && (
+        <br />
+        {pwd.length > 0 ? (
           <Span className={`${isPassword ? "success" : "error"}`}>
             {pwdMessage}
           </Span>
+        ) : (
+          <Span>영문 대,소문자, 숫자를 포함(8-20자)</Span>
         )}
       </div>
       {/* -- 비밀번호 확인 -- */}
       <div>
         <input
           type="password"
-          placeholder="비밀번호를 한번 더 입력해주세요"
+          placeholder="비밀번호 확인"
           onChange={onChangePasswordCheck}
         ></input>
-        {pwd_check.length > 0 && (
+        <br />
+        {pwd_check.length > 0 ? (
           <Span className={`${isPwdCheck ? "success" : "error"}`}>
             {pwdCheckMessage}
           </Span>
+        ) : (
+          <Span>영문 대,소문자, 숫자를 포함(8-20자)</Span>
         )}
       </div>
       {/* -- 회원가입 버튼 --*/}
@@ -129,10 +139,10 @@ const Span = styled.span`
   margin-bottom: 12px;
   font-size: 14px;
   &.success {
-    color: #437244;
+    color: #4791ff;
   }
   &.error {
-    color: #ff2727;
+    color: #ff473d;
   }
 `;
 
