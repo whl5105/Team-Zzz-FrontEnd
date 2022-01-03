@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
 import styled from "styled-components";
-import "../static/fonts/font.css";
+
 
 // 아이콘 이미지 import
 import userIcon from "../static/images/mypage/userIcon.svg";
