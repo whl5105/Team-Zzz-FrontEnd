@@ -26,7 +26,6 @@ const Mypage = (props) => {
           style={{
             display: "inline-block",
             width: "375px",
-            border: "1px solid black",
             alignContent: "center",
           }}
         >
