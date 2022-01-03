@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
 import DropDown from "../elements/DropDown";
+import Toggle from "../elements/Toggle";
 
 const PushNoticationPop = (props) => {
   const [modal, setModal] = React.useState(props.modal ? true : false); // 모달창
@@ -16,8 +17,6 @@ const PushNoticationPop = (props) => {
   const [minutes, setMinutes] = React.useState(0); // 분 설정
 
   const dispatch = useDispatch();
-  const label = { inputProps: { "aria-label": "Switch demo" } };
-
   const [dayActive, setDayActive] = React.useState(false);
   const [hourActive, setHourActive] = React.useState(false);
   const [minutesActive, setMinutesActive] = React.useState(false);
@@ -99,18 +98,7 @@ const PushNoticationPop = (props) => {
         <h1>매일 알림 받고 기록하기</h1>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           수면 기록 알림 받기 &nbsp;
-          <Switch
-            {...label}
-            onClick={() => {
-              setNotice(!notice);
-              setDayActive(false);
-              setHourActive(false);
-              setMinutes(false);
-            }}
-            style={{ color: "#FBC037" }}
-            color="default"
-            defaultChecked
-          />
+          <Toggle notice={notice} setNotice={setNotice} label=" "></Toggle>
         </div>
         <div>
           {notice ? (
