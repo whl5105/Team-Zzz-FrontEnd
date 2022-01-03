@@ -4,6 +4,14 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
+import styled from "styled-components";
+import "../static/fonts/font.css";
+
+
+// 아이콘 이미지 import
+import userIcon from "../static/images/mypage/userIcon.svg"
+import noticeIcon from "../static/images/mypage/noticeIcon.svg"
+
 
 const Mypage = (props) => {
   const dispatch = useDispatch();
@@ -131,50 +139,162 @@ const Mypage = (props) => {
     <React.Fragment>
       <div
         style={{
-          display: "inline-block",
+          // display: "inline-block",
+          position: "relative",
           width: "375px",
-          height: "790px",
-          border: "1px solid black",
-          alignContent: "center",
+          height: "812px",
+          // backgroundColor: "#2a2245",
+          // opacity: "0.9",
+          // alignContent: "center",
         }}
       >
-        <div style={{ position: "relative", top: "80px" }}>
+        <p
+          style={{
+            position: "absolute",
+            width: "102px",
+            height: "22px",
+            left: "20px",
+            top: "70px",
+            fontSize:"22px",
+            lineHeight:"100%",
+            color: "white",
+            margin: "0px",
+          }}
+        >
+          마이페이지
+        </p>
+        {/* <div style={{ position: "relative", top: "80px" }}> */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            padding: "16px 0px",
+            position: "absolute",
+            width: "335px",
+            height: "56px",
+            left: "20px",
+            top:"112px",
+            margin: "0px",
+            boxSizing:"border-box",
+          }}
+        >
           <div
-            style={{ width: "100%", height: "65px", verticalAlign: "middle" }}
+            style={{
+              display:"flex",
+              flexDirection:"row",
+              alignItems:"flex-start",
+              padding: "0px",
+              
+              position : "static",
+              width: "305px",
+              height: "24px",
+              left: "0px",
+              top: "16px",
+              color: "white",
+              flex:"none",
+              order: "0",
+              flexGrow:"1",
+              margin: "0px 6px",
+            }}
+            onClick={() => history.push("/login")}
           >
+            <Box>
+            <Icon 
+            categoryImage={userIcon}
+            
+            ></Icon>
+            </Box>
             <p
-              style={{
-                margin: "0px",
-                position: "relative",
-                top: "50%",
-                left: "-34%",
-                transform: "translate(-0%, -50%)",
-                cursor: "pointer",
-              }}
-              onClick={() => history.push("/login")}
-            >
-              로그인 하기
-            </p>
-          </div>
-
-          <div style={{ width: "100%", height: "65px", background: "#C4C4C4" }}>
-            <p
-              style={{
-                margin: "0px",
-                position: "relative",
-                top: "50%",
-                left: "-35%",
-                transform: "translate(-0%, -50%)",
-                cursor: "pointer",
-              }}
-            >
-              공지사항
+            style={{
+              position:"static",
+              width: "271px",
+              height: "24px",
+              left: "34px",
+              top: `calc(50%-24/2)`,
+              margin: "0px",
+              lineHeight:"24px",
+              letterSpacing:"-0.3px"
+              
+            }}
+          >
+            로그인 하기
             </p>
           </div>
         </div>
+
+        <div style={{ 
+          display:"flex",
+          flexDirection:"row",
+          alignItems:"center",
+          padding: "16px 0px",
+          position:"absolute",
+          width:"335px",
+          height:"56px",
+          left:"20px",
+          top:"168px",
+          boxSizing:"border-box", 
+          }}>
+            <div style={{
+              display:"flex",
+              flexDirection:"row",
+              alignItems:"flex-start",
+              padding:"0px",
+              position: "static",
+              width:"305px",
+              height:"24px",
+              left:"0px",
+              top:"16px",
+              flex:"none",
+              order: "0",
+              flexGrow:"1",
+              margin:"0px 6px",
+
+            }}>
+               <Box>
+            <Icon 
+            categoryImage={noticeIcon}
+            
+            ></Icon>
+            </Box>
+          <p
+            style={{
+              position:"static",
+              width: "271px",
+              height:"24px",
+              left: "34px",
+              top:`calc(50%-24/2)`,
+              color: "white",
+              fontSize:"16px",
+              lineHeight:"24px",
+              letterSpacing:"-0.3px",
+              margin: "0px",
+            }}
+          >
+            공지사항
+          </p>
+          </div>
+        </div>
+        {/* </div> */}
       </div>
     </React.Fragment>
   );
 };
+const Box  = styled.div`
+  width: 24px;
+  height: 24px;
+  /* background-size: cover; */
+  margin: 0px 10px;
+ 
+`;
+
+const Icon = styled.div`
+  width: 20px;
+  height: 20px;
+  background-image: url(${(props) => props.categoryImage});
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+  margin: 0px;
+`;
 
 export default Mypage;

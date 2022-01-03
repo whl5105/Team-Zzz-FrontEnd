@@ -75,7 +75,6 @@ const WrapBox = styled.div`
 const Wrap = styled.div`
   width: 375px;
   height: 812px;
-  border: 1px solid ${({ theme }) => theme.colors.bg};
   background-color: ${({ theme }) => theme.colors.bg};
   position: relative;
   margin: 0 auto;

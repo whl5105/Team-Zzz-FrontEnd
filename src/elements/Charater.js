@@ -87,7 +87,7 @@ const Charater = (props) => {
 //-- defaultProps --
 Charater.defaultProps = {
   shape: "circle",
-  src: "../images/character/sleep0.png",
+  src: "../static/images/character/sleep0.png",
   size: 24,
   _onClick: () => {},
   children: null,
