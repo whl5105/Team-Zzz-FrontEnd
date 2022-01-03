@@ -1,4 +1,4 @@
-import { fontWeight, margin, textAlign } from "@mui/system";
+import styled from "styled-components";
 import React from "react";
 import Modal from "react-modal";
 import { history } from "../redux/configureStore";
@@ -27,78 +27,87 @@ const RequireLogin = (props) => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "rgba(255, 255, 255, 0)",
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            zIndex: "1",
           },
           content: {
             position: "absolute",
-            top: "200px",
-            left: "40%",
-            width: "20%",
-            height: "40%",
-            border: "1px solid #ccc",
-            background: "#C4C4C4ff",
+            width: "300px",
+            height: "173px",
+            margin: "auto",
+            background: "#ffffff",
             overflow: "auto",
             WebkitOverflowScrolling: "touch",
-            borderRadius: "30px",
+            borderRadius: "12px",
             outline: "none",
-            padding: "0px",
           },
         }}
       >
-        <div>
-          <p
-            style={{
-              fontSize: "13px",
-              fontWeight: "700",
-              textAlign: "center",
-              margin: "40px 0px 0px 0px",
-            }}
-          >
-            해당 서비스는 로그인 후 이용 가능합니다
-          </p>
-          <p
-            style={{
-              fontSize: "13px",
-              fontWeight: "500",
-              textAlign: "center",
-              margin: "10px 0px 0px 0px",
-            }}
-          >
-            로그인하러 가시겠습니까?
-          </p>
+        <div style={{ marginTop: "20px" }}>
+          <Title>로그인이 필요합니다.</Title>
+          <SubTitle>로그인 화면으로 이동 하시겠습니까?</SubTitle>
         </div>
-        <div
-          style={{
-            display: "flex",
-            alignContent: "flex-end",
-            position: "absolute",
-            bottom: "0px",
-            width: "100%",
-          }}
-        >
-          <button
-            style={{
-              width: "100%",
-              height: "50px",
-              border: "none",
-              margin: "0px 1px 0px 0px",
-            }}
+        <div>
+          <Button
+            border="1px solid #DADADA"
+            color="#696969"
+            backgroundColor="#ffffff"
+            onClick={modalOff}
+          >
+            아니오
+          </Button>
+          <Button
+            border="none"
+            color="#ffffff"
+            backgroundColor="#FBC037"
             onClick={() => {
               modalOff("/login");
             }}
           >
             예
-          </button>
-          <button
-            style={{ width: "100%", height: "50px", border: "none" }}
-            onClick={modalOff}
-          >
-            아니오
-          </button>
+          </Button>
         </div>
       </Modal>
     </>
   );
 };
+
+const Title = styled.p`
+  width: 295px;
+  height: 27px;
+  margin: auto;
+  margin-bottom: 12px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray_9};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
+  line-height: ${({ theme }) => theme.lineHeight.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  letter-spacing: -0.3px;
+`;
+
+const SubTitle = styled.p`
+  width: 295px;
+  height: 22px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray_7};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  line-height: ${({ theme }) => theme.lineHeight.ssmall}
+  font-weight: ${({ theme }) => theme.fontWeight.Regular};
+  letter-spacing: -0.3px;
+`;
+
+const Button = styled.button`
+  width: 130px;
+  height: 48px;
+  border-radius: 8px;
+  border: ${(props) => props.border};
+  color: ${(props) => props.color};
+  background-color: ${(props) => props.backgroundColor};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  line-height: ${({ theme }) => theme.lineHeight.xxl}
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  letter-spacing: -0.3px;
+  margin: 10px;
+`;
 
 export default RequireLogin;

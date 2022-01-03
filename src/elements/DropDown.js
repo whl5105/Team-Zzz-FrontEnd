@@ -50,7 +50,7 @@ const Dropdown = (props) => {
     return (
       <DisabledDropDownContainer>
         <DropdownBody color="gray">
-          <p>{`${props.title}${props.condition}`}</p>
+          <Content>{`${props.title}${props.condition}`}</Content>
         </DropdownBody>
       </DisabledDropDownContainer>
     );
@@ -62,11 +62,11 @@ const Dropdown = (props) => {
       <DropdownBody onClick={onActiveToggle}>
         {item ? (
           <>
-            <p>{`${item}${props.condition}`}</p>
+            <Content>{`${item}${props.condition}`}</Content>
           </>
         ) : (
           <>
-            <p>{`${props.title}${props.condition}`}</p>
+            <Content>{`${props.title}${props.condition}`}</Content>
           </>
         )}
       </DropdownBody>
@@ -129,6 +129,7 @@ const DropdownContainer = styled.div`
   border: 1.5px solid gray;
   border-radius: 10px;
   display: absolute;
+  box-sizing: border-box;
 
   &:hover {
     cursor: pointer;
@@ -141,18 +142,21 @@ const DisabledDropDownContainer = styled.div`
   height: 48px;
   margin: auto;
   text-align: center;
-  border: 1.5px solid #ccc;
+  border: 1.5px solid gray;
   border-radius: 10px;
+  display: absolute;
+  box-sizing: border-box;
 `;
 
 const DropdownBody = styled.div`
   align-items: center;
+  margin-top: "-5px";
   color: ${(props) => props.color && props.color};
 `;
 
 const DropdownMenu = styled.ul`
   display: ${(props) => (props.isActive ? `block` : `none`)};
-  width: 54px;
+  width: 51px;
   max-height: 110px;
   overflow: scroll;
   background-color: white;
@@ -173,6 +177,10 @@ const DropdownItemContainer = styled.li`
   &:last-child {
     border-bottom: none;
   }
+`;
+
+const Content = styled.p`
+  margin-top: 12px;
 `;
 
 export default Dropdown;

@@ -13,11 +13,11 @@ const fontSizes = {
 const lineHeight = {
   ssmall: 1.5,
   small: 1.6,
-  base: 1.6,
-  lg: 1.6,
-  xl: 1.6,
-  xxl: 1.6,
-  xxxl: 1.4,
+  base: 1.7,
+  lg: 1.8,
+  xl: 1.9,
+  xxl: 2.0,
+  xxxl: 2.1,
   // titleSize: calcRem(50),
 };
 const fontWeight = {
@@ -26,7 +26,11 @@ const fontWeight = {
   Bold: 700,
 };
 const colors = {
-  main: "#FCCD5F",
+  main_1: "#FBC037",
+  main_2: "#FCCD5F",
+  main_3: "#FCD371",
+  main_4: "#FDE09B",
+  main_5: "#FEECC3",
   bg: "#101340",
   white: "#ffffff",
   gray_1: "#f8f8f8",

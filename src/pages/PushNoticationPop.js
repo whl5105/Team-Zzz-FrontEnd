@@ -88,15 +88,14 @@ const PushNoticationPop = (props) => {
           },
           content: {
             position: "absolute",
-            width: "320px",
+            width: "300px",
             height: "260px",
-            top: "-150px",
+            margin: "auto",
             background: "#ffffff",
             overflow: "auto",
             WebkitOverflowScrolling: "touch",
             borderRadius: "12px",
             outline: "none",
-            margin: "auto",
           },
         }}
       >
@@ -181,7 +180,7 @@ const ToggleSwitch = styled.div`
   letter-spacing: -0.3px;
   display: flex;
   justify-content: space-between;
-  width: 318px;
+  width: 300px;
   height: 30px;
   left: 20px;
   top: 67px;
@@ -190,12 +189,12 @@ const ToggleSwitch = styled.div`
 
 const Button = styled.button`
   position: static;
-  width: 295px;
+  width: 280px;
   height: 48px;
   border: none;
   border-radius: 8px;
-  margin: 30px 13px 0px 13px;
-  background-color: ${({ theme }) => theme.colors.main};
+  margin: 30px 10px 0px 10px;
+  background-color: ${({ theme }) => theme.colors.main_1};
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
