@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import styled from "styled-components";
 
 import { history } from "../redux/configureStore.js";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,39 +49,101 @@ const Login = () => {
 
   return (
     <React.Fragment>
+      <Title>로그인</Title>
       <div>
-        <input
+        <Input
           placeholder="아이디"
           name="id"
           value={id}
           onChange={onChange}
-        ></input>
+        ></Input>
       </div>
       <div>
-        <input
+        <Input
           placeholder="비밀번호"
           type="password"
           name="pwd"
           value={pwd}
           onChange={onChange}
-        ></input>
+        ></Input>
       </div>
-      {!isState && <span>{Message}</span>}
+      {!isState && (
+        <Span className={`${isState ? "success" : "error"}`}>{Message}</Span>
+      )}
       <div>
-        <button type="submit" onClick={loginClick}>
+        <Button type="submit" onClick={loginClick}>
           로그인
-        </button>
-        <button
+        </Button>
+        <SignUp
           type="submit"
           onClick={() => {
             history.push("/signup");
           }}
         >
-          회원가입
-        </button>
+          회원가입 하기
+        </SignUp>
       </div>
     </React.Fragment>
   );
 };
+
+const Title = styled.div`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.xxl};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  margin: 20px;
+`;
+
+const Span = styled.span`
+  margin: 10px 65px;
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+
+  &.success {
+    color: #4791ff;
+  }
+
+  &.error {
+    color: #ff473d;
+  }
+`;
+
+const Input = styled.input`
+  width: 310px;
+  height: 45px;
+  padding: 7px;
+  border: none;
+  border-radius: 8px;
+  margin: 10px 23px;
+  font-size: ${({ theme }) => theme.fontSizes.small};
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const Button = styled.button`
+  width: 320px;
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  margin: 15px 24px;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  background-color: ${({ theme }) => theme.colors.main_1};
+`;
+
+const SignUp = styled.p`
+  width: 110px;
+  margin: 15px auto;
+  padding: 5px;
+  text-align: center;
+  border-bottom: 1px solid white;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-weight: ${({ theme }) => theme.fontWeight.Regular};
+`;
 
 export default Login;

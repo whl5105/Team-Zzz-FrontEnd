@@ -64,21 +64,21 @@ function App() {
     </WrapBox>
   );
 }
+
 const WrapBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 `;
+
 const Wrap = styled.div`
   width: 375px;
   height: 812px;
+  /* border: 1px solid ${({ theme }) => theme.colors.bg};
+  background-color: ${({ theme }) => theme.colors.bg}; */
   border: 1px solid red;
-<<<<<<< HEAD
-  background: white;
-=======
-  background-color: ${({ theme }) => theme.colors.bg};
->>>>>>> aa1e1b5b3b960dbf6c60284edf8e14482f302ff6
+  background-color: red;
   position: relative;
   margin: 0 auto;
 `;

@@ -156,12 +156,12 @@ const DropdownBody = styled.div`
 
 const DropdownMenu = styled.ul`
   display: ${(props) => (props.isActive ? `block` : `none`)};
-  width: 51px;
+  width: 90px;
   max-height: 110px;
   overflow: scroll;
   background-color: white;
   position: absolute;
-  margin-top: 1px;
+  margin-top: 12px;
   margin-left: -3px;
   border: 2px solid #fbc037;
   border-radius: 10px;
@@ -188,7 +188,8 @@ const DropdownMenu = styled.ul`
 const DropdownItemContainer = styled.li`
   display: flex;
   justify-content: space-between;
-  margin-left: -7px;
+  margin-left: 31px;
+  margin-top: 10px;
 
   &:last-child {
     border-bottom: none;
