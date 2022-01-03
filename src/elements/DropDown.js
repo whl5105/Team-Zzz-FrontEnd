@@ -156,23 +156,40 @@ const DropdownBody = styled.div`
 
 const DropdownMenu = styled.ul`
   display: ${(props) => (props.isActive ? `block` : `none`)};
-  width: 51px;
+  width: 90px;
   max-height: 110px;
   overflow: scroll;
   background-color: white;
   position: absolute;
-  margin-top: -5px;
+  margin-top: 12px;
   margin-left: -3px;
   border: 2px solid #fbc037;
   border-radius: 10px;
   overflow-x: hidden; // 가로 축 스크롤 감추기
   display: absolute;
+
+  &::-webkit-scrollbar {
+    /*  스크롤바 막대 너비 설정 */
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    /* 스크롤바 막대 높이 설정 : 현재가 제일 작은 값 */
+    height: 10px;
+    border-radius: 100px;
+    box-shadow: inset 0 0 10px gray;
+  }
 `;
 
 const DropdownItemContainer = styled.li`
   display: flex;
   justify-content: space-between;
-  margin-left: -7px;
+  margin-left: 31px;
+  margin-top: 10px;
 
   &:last-child {
     border-bottom: none;

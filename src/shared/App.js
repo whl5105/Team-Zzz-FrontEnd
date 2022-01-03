@@ -64,12 +64,14 @@ function App() {
     </WrapBox>
   );
 }
+
 const WrapBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 `;
+
 const Wrap = styled.div`
   width: 375px;
   height: 812px;
