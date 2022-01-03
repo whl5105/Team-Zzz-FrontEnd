@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
+import GlobalStyle from "../static/styles/GlobalStyle";
 import theme from "./theme";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
@@ -22,13 +23,16 @@ import Asmr from "../pages/Asmr";
 import Mypage from "../pages/MyPage";
 import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
+import Header from "../components/Header";
 
 function App() {
   return (
-    <Wrap>
+    <WrapBox>
       <ThemeProvider theme={theme}>
-        <div className="App">
+        <GlobalStyle />
+        <Wrap className="App">
           <ConnectedRouter history={history}>
+            <Header></Header>
             <Switch>
               <Route path="/" exact component={Main} />
               <Route path="/clock" exact component={Clock} />
@@ -57,16 +61,22 @@ function App() {
             </Switch>
             <Navigation></Navigation>
           </ConnectedRouter>
-        </div>
+        </Wrap>
       </ThemeProvider>
-    </Wrap>
+    </WrapBox>
   );
 }
+const WrapBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
 const Wrap = styled.div`
   width: 375px;
   height: 812px;
   border: 1px solid red;
-  background: red;
+  background-color: ${({ theme }) => theme.colors.bg};
   position: relative;
   margin: 0 auto;
 `;
