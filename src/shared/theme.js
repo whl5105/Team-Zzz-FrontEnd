@@ -25,24 +25,41 @@ const fontWeight = {
   Medium: 500,
   Bold: 700,
 };
+const colors = {
+  main: "#FCCD5F",
+  bg: "#101340",
+  white: "#ffffff",
+  gray_1: "#f8f8f8",
+  gray_2: "#f3f3f3",
+  gray_3: "#ececec",
+  gray_4: "#dadada",
+  gray_5: "#c4c4c4",
+  gray_6: "#a1a1a1",
+  gray_7: "#696969",
+  gray_8: "#3b3b3b",
+  gray_9: "#222222",
+  black: "#000000",
+};
 
-// const paddings = {
-//   small: calcRem(8),
-//   base: calcRem(10),
-//   lg: calcRem(12),
-//   xl: calcRem(14),
-//   xxl: calcRem(16),
-//   xxxl: calcRem(18),
-// };
+const paddings = {
+  small: calcRem(8),
+  base: calcRem(10),
+  lg: calcRem(12),
+  xl: calcRem(14),
+  xxl: calcRem(16),
+  xxxl: calcRem(18),
+  xxxxl: calcRem(20),
+};
 
-// const margins = {
-//   small: calcRem(8),
-//   base: calcRem(10),
-//   lg: calcRem(12),
-//   xl: calcRem(14),
-//   xxl: calcRem(16),
-//   xxxl: calcRem(18),
-// };
+const margins = {
+  small: calcRem(8),
+  base: calcRem(10),
+  lg: calcRem(12),
+  xl: calcRem(14),
+  xxl: calcRem(16),
+  xxxl: calcRem(18),
+  xxxxl: calcRem(20),
+};
 
 // const interval = {
 //   base: calcRem(50),
@@ -55,20 +72,17 @@ const fontWeight = {
 //   base: `${calcRem(10)} 0 ${calcRem(10)} 0`,
 // };
 
+const horizontalityInterval = {
+  small: `0 ${calcRem(16)}`,
+  base: `0 ${calcRem(20)}`,
+};
+
 // const deviceSizes = {
 //   mobileS: "320px",
 //   mobileM: "375px",
 //   mobileL: "450px",
 //   tablet: "768px",
 //   tabletL: "1024px",
-// };
-
-// const colors = {
-//   black: "#000000",
-//   white: "#FFFFFF",
-//   gray_1: "#222222",
-//   gray_2: "#767676",
-//   green_1: "#3cb46e",
 // };
 
 // const device = {
@@ -83,11 +97,12 @@ const theme = {
   fontSizes,
   lineHeight,
   fontWeight,
-  // colors,
+  colors,
+  paddings,
+  margins,
+  horizontalityInterval,
   // deviceSizes,
   // device,
-  // paddings,
-  // margins,
   // interval,
   // verticalInterval,
   // gradient,

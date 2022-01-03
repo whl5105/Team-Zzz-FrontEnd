@@ -83,7 +83,7 @@ const Gnb = styled.div`
   bottom: 0;
   display: flex;
   justify-content: space-between;
-  background-color: #2a2245;
+  background-color: #2a2245; 
   color: white;
   padding: 4px 20px 2px 20px;
   box-sizing: border-box;
