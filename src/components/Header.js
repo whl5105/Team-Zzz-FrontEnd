@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { history } from "../redux/configureStore.js";
+
 import Logo from "../static/images/header/logo.svg";
 import Writing from "../static/images/header/writing.svg";
 
@@ -8,7 +10,13 @@ const Header = (props) => {
   return (
     <div>
       <HeaderBox>
-        <img src={Logo} alt="logo" />
+        <img
+          src={Logo}
+          alt="logo"
+          onClick={() => {
+            history.push("/");
+          }}
+        />
         <img src={Writing} alt="writing" />
       </HeaderBox>
     </div>
