@@ -6,6 +6,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Switch, Route, Link } from "react-router-dom";
 // import "./App.css";
+// import "../static/fonts/font.css";
 
 //page
 import NotFound from "../pages/NotFound";

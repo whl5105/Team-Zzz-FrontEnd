@@ -25,9 +25,9 @@ const MainSwiper = () => {
           }}
           autoplay={{ delay: 3000 }}
         >
-          <SwiperSlide>슬라이더1</SwiperSlide>
-          <SwiperSlide>슬라이더2</SwiperSlide>
-          <SwiperSlide>슬라이더3</SwiperSlide>
+          <SwiperSlide>swiper</SwiperSlide>
+          <SwiperSlide>swiper</SwiperSlide>
+          <SwiperSlide>swiper</SwiperSlide>
         </Swiper>
       </div>
     </main>
