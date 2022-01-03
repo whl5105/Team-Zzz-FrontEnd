@@ -50,7 +50,7 @@ const Dropdown = (props) => {
     return (
       <DisabledDropDownContainer>
         <DropdownBody color="gray">
-          <ItemName>{`${props.title}${props.condition}`}</ItemName>
+          <Content>{`${props.title}${props.condition}`}</Content>
         </DropdownBody>
       </DisabledDropDownContainer>
     );
@@ -58,15 +58,15 @@ const Dropdown = (props) => {
 
   // 알림 활성화일 때
   return (
-    <DropdownContainer>
+    <DropdownContainer className="dropdown">
       <DropdownBody onClick={onActiveToggle}>
         {item ? (
           <>
-            <ItemName>{`${item}${props.condition}`}</ItemName>
+            <Content>{`${item}${props.condition}`}</Content>
           </>
         ) : (
           <>
-            <DropdownSelect>{`${props.title}${props.condition}`}</DropdownSelect>
+            <Content>{`${props.title}${props.condition}`}</Content>
           </>
         )}
       </DropdownBody>
@@ -122,11 +122,14 @@ const Dropdown = (props) => {
 };
 
 const DropdownContainer = styled.div`
-  width: 100px;
+  width: 93px;
+  height: 48px;
   margin: auto;
   text-align: center;
-  border: 2px solid gray;
+  border: 1.5px solid gray;
   border-radius: 10px;
+  display: absolute;
+  box-sizing: border-box;
 
   &:hover {
     cursor: pointer;
@@ -135,48 +138,49 @@ const DropdownContainer = styled.div`
 `;
 
 const DisabledDropDownContainer = styled.div`
-  width: 100px;
+  width: 93px;
+  height: 48px;
   margin: auto;
   text-align: center;
-  border: 2px solid #ccc;
+  border: 1.5px solid gray;
   border-radius: 10px;
+  display: absolute;
+  box-sizing: border-box;
 `;
 
 const DropdownBody = styled.div`
   align-items: center;
+  margin-top: "-5px";
   color: ${(props) => props.color && props.color};
-`;
-
-const DropdownSelect = styled.p`
-  font-weight: bold;
 `;
 
 const DropdownMenu = styled.ul`
   display: ${(props) => (props.isActive ? `block` : `none`)};
-  width: 60px;
-  max-height: 200px;
+  width: 51px;
+  max-height: 110px;
   overflow: scroll;
   background-color: white;
   position: absolute;
-  margin-top: -1px;
+  margin-top: -5px;
   margin-left: -3px;
   border: 2px solid #fbc037;
   border-radius: 10px;
   overflow-x: hidden; // 가로 축 스크롤 감추기
+  display: absolute;
 `;
 
 const DropdownItemContainer = styled.li`
   display: flex;
   justify-content: space-between;
-  margin-left: -3px;
+  margin-left: -7px;
 
   &:last-child {
     border-bottom: none;
   }
 `;
 
-const ItemName = styled.p`
-  font-weight: bold;
+const Content = styled.p`
+  margin-top: 12px;
 `;
 
 export default Dropdown;

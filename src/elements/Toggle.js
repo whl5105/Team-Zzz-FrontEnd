@@ -1,5 +1,4 @@
 import React from "react";
-import Switch from "@mui/material/Switch";
 
 const Toggle = (props) => {
   return (

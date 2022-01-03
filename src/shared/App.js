@@ -17,7 +17,6 @@ import Signup from "../pages/Signup";
 import Push from "./Push";
 import Diary from "../pages/Diary";
 import DiaryWrite from "../components/DiaryWrite";
-import Voice from "../pages/Voice";
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
 import Mypage from "../pages/MyPage";
@@ -47,7 +46,6 @@ function App() {
               ></Route>
               <Route path="/diary" exact component={Diary}></Route>
               <Route path="/diaryWrite" exact component={DiaryWrite}></Route>
-              <Route path="/voice" exact component={Voice}></Route>
               <Route path="/asmr" exact component={Asmr}></Route>
               <Route path="/mypage" exact component={Mypage} />
               <Route
@@ -76,7 +74,11 @@ const Wrap = styled.div`
   width: 375px;
   height: 812px;
   border: 1px solid red;
+<<<<<<< HEAD
+  background: white;
+=======
   background-color: ${({ theme }) => theme.colors.bg};
+>>>>>>> aa1e1b5b3b960dbf6c60284edf8e14482f302ff6
   position: relative;
   margin: 0 auto;
 `;

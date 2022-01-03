@@ -65,7 +65,7 @@ const Navigation = (props) => {
 };
 
 const Gnb = styled.div`
-  width: 100%;
+  width: 375px;
   position: absolute;
   bottom: 0;
   display: flex;
