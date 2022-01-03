@@ -125,7 +125,7 @@ const DropdownContainer = styled.div`
   width: 100px;
   margin: auto;
   text-align: center;
-  border: 1.5px solid gray;
+  border: 2px solid gray;
   border-radius: 10px;
 
   &:hover {
@@ -138,7 +138,7 @@ const DisabledDropDownContainer = styled.div`
   width: 100px;
   margin: auto;
   text-align: center;
-  border: 1.5px solid gray;
+  border: 2px solid #ccc;
   border-radius: 10px;
 `;
 
@@ -168,7 +168,7 @@ const DropdownMenu = styled.ul`
 const DropdownItemContainer = styled.li`
   display: flex;
   justify-content: space-between;
-  margin-left: -6px;
+  margin-left: -3px;
 
   &:last-child {
     border-bottom: none;
