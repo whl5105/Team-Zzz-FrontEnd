@@ -64,6 +64,14 @@ const PushNoticationPop = (props) => {
     props.setNoticationModal(false);
   };
 
+  React.useEffect(() => {
+    if (!notice) {
+      setDayActive(false);
+      setHourActive(false);
+      setMinutesActive(false);
+    }
+  }, [notice]);
+
   return (
     <>
       <Modal
