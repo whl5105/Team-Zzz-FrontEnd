@@ -10,6 +10,7 @@ const fontSizes = {
   xxxl: calcRem(24),
   // titleSize: calcRem(50),
 };
+
 const lineHeight = {
   ssmall: 1.5,
   small: 1.6,
@@ -20,11 +21,13 @@ const lineHeight = {
   xxxl: 2.1,
   // titleSize: calcRem(50),
 };
+
 const fontWeight = {
   Regular: 400,
   Medium: 500,
   Bold: 700,
 };
+
 const colors = {
   main_1: "#FBC037",
   main_2: "#FCCD5F",
