@@ -21,7 +21,6 @@ const Asmr = (props) => {
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());
-  console.log(song1);
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
   );
