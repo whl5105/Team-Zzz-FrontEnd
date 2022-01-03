@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
+import GlobalStyle from "../static/styles/GlobalStyle";
 import theme from "./theme";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
@@ -28,6 +29,7 @@ function App() {
   return (
     <WrapBox>
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <Wrap className="App">
           <ConnectedRouter history={history}>
             <Header></Header>

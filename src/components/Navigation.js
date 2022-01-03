@@ -4,10 +4,10 @@ import { useHistory } from "react-router-dom";
 import RequireLogin from "../components/RequireLogin";
 
 // 아이콘 이미지 import
-import homeIcon from "../images/navigation/homeIcon.svg";
-import asmrIcon from "../images/navigation/asmrIcon.svg";
-import diaryIcon from "../images/navigation/diaryIcon.svg";
-import myPageIcon from "../images/navigation/myPageIcon.svg";
+import homeIcon from "../static/images/navigation/homeIcon.svg";
+import asmrIcon from "../static/images/navigation/asmrIcon.svg";
+import diaryIcon from "../static/images/navigation/diaryIcon.svg";
+import myPageIcon from "../static/images/navigation/myPageIcon.svg";
 
 const Navigation = (props) => {
   const history = useHistory();
@@ -29,7 +29,7 @@ const Navigation = (props) => {
           history.push("/");
         }}
       >
-        <Icon categoryImage={homeIcon}></Icon>홈
+        <Icon categoryImage={homeIcon} />홈
       </Box>
 
       <Box
@@ -37,11 +37,13 @@ const Navigation = (props) => {
           history.push("/asmr");
         }}
       >
-        <Icon categoryImage={asmrIcon}></Icon>ASMR
+        <Icon categoryImage={asmrIcon} />
+        ASMR
       </Box>
 
       <Box onClick={diary}>
-        <Icon categoryImage={diaryIcon}></Icon>다이어리
+        <Icon categoryImage={diaryIcon} />
+        다이어리
       </Box>
 
       {diaryModal && (
@@ -55,7 +57,8 @@ const Navigation = (props) => {
           history.push("/mypage");
         }}
       >
-        <Icon categoryImage={myPageIcon}></Icon>마이
+        <Icon categoryImage={myPageIcon} />
+        마이
       </Box>
     </Gnb>
   );
@@ -69,6 +72,7 @@ const Gnb = styled.div`
   justify-content: space-between;
   background-color: ${({ theme }) => theme.colors.bg};
   padding: 4px 20px 2px 20px;
+  text-align: center;
   box-sizing: border-box;
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.ssmall};

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Logo from "../images/header/logo.svg";
-import Writing from "../images/header/writing.svg";
+import Logo from "../static/images/header/logo.svg";
+import Writing from "../static/images/header/writing.svg";
 
 const Header = (props) => {
   return (
