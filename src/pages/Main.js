@@ -21,11 +21,12 @@ const Main = (props) => {
   }, []);
 
   return (
-    <>
+    <Container>
       {/* swiper 부분 */}
-      <Swiper></Swiper>
-
+      <Swiper />
+      {/* <Asmr> */}
       {/* 카테고리 부분 */}
+      {/* <Title>당신의 편안한 밤을 위해</Title> */}
       <Category
         path="/asmr"
         category="자연"
@@ -50,6 +51,7 @@ const Main = (props) => {
         title="모든 소리"
         subTitle="모든 소리 들어보기"
       ></Category>
+      {/* </Asmr> */}
 
       {/* 첫 로그인 시 알림 설정 팝업 부분 */}
       {noticationModal && (
@@ -58,7 +60,7 @@ const Main = (props) => {
           setNoticationModal={setNoticationModal}
         ></PushNoticationPop>
       )}
-    </>
+    </Container>
   );
 };
 
@@ -67,7 +69,7 @@ const Category = (props) => {
   return (
     <>
       <CategoryStyle
-        style={{ display: "flex", justifyContent: "space-between" }}
+        // style={{ display: "flex", justifyContent: "space-between" }}
         onClick={() => {
           history.push({
             pathname: `${props.path}`,
@@ -75,32 +77,41 @@ const Category = (props) => {
           });
         }}
       >
-        <div style={{ height: "80px", lineHeight: "80px" }}>
+        <div
+        // style={{ height: "80px", lineHeight: "80px" }}
+        >
           <Text>{props.title}</Text>
           <Text>
             <small>{props.subTitle}</small>
           </Text>
         </div>
         <div>
-          <img src={nextIcon}></img>
+          <img src={nextIcon} alt="nextIcon" />
         </div>
       </CategoryStyle>
     </>
   );
 };
 
+const Container = styled.div`
+  overflow-y: scroll;
+  height: 88%;
+  padding: ${({ theme }) => theme.horizontalityInterval.base};
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
 const CategoryStyle = styled.div`
-  width: 335px;
-  height: 125px;
-  line-height: 125px;
-  border-radius: 12px;
+  /* width: 100%; */
+  /* line-height: 125px; */
+  /* border-radius: 12px; */
   background-color: gray;
-  margin: 15px auto;
+  /* margin: 15px auto; */
 `;
 
 const Text = styled.p`
-  height: 5px;
-  text-align: left;
+  /* height: 5px;
+  text-align: left; */
 `;
 
 export default Main;

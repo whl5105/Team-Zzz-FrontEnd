@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
+import GlobalStyle from "../static/styles/GlobalStyle";
 import theme from "./theme";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
@@ -16,19 +17,21 @@ import Signup from "../pages/Signup";
 import Push from "./Push";
 import Diary from "../pages/Diary";
 import DiaryWrite from "../components/DiaryWrite";
-import Voice from "../pages/Voice";
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
 import Mypage from "../pages/MyPage";
 import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
+import Header from "../components/Header";
 
 function App() {
   return (
-    <Wrap>
+    <WrapBox>
       <ThemeProvider theme={theme}>
-        <div className="App">
+        <GlobalStyle />
+        <Wrap className="App">
           <ConnectedRouter history={history}>
+            <Header></Header>
             <Switch>
               <Route path="/" exact component={Main} />
               <Route path="/clock" exact component={Clock} />
@@ -43,7 +46,6 @@ function App() {
               ></Route>
               <Route path="/diary" exact component={Diary}></Route>
               <Route path="/diaryWrite" exact component={DiaryWrite}></Route>
-              <Route path="/voice" exact component={Voice}></Route>
               <Route path="/asmr" exact component={Asmr}></Route>
               <Route path="/mypage" exact component={Mypage} />
               <Route
@@ -57,16 +59,21 @@ function App() {
             </Switch>
             <Navigation></Navigation>
           </ConnectedRouter>
-        </div>
+        </Wrap>
       </ThemeProvider>
-    </Wrap>
+    </WrapBox>
   );
 }
+const WrapBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
 const Wrap = styled.div`
   width: 375px;
   height: 812px;
-  border: 1px solid red;
-  background: #101340;
+  background-color: ${({ theme }) => theme.colors.bg};
   position: relative;
   margin: 0 auto;
 `;

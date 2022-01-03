@@ -1,9 +1,8 @@
 // 푸시 알림 팝업 페이지
 import React from "react";
 import Modal from "react-modal";
-import Switch from "@mui/material/Switch";
+import styled from "styled-components";
 
-import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
 import DropDown from "../elements/DropDown";
@@ -23,15 +22,15 @@ const PushNoticationPop = (props) => {
 
   const dayItems = ["AM", "PM"];
   const hourItems = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
     "10",
     "11",
     "12",
@@ -84,30 +83,27 @@ const PushNoticationPop = (props) => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "rgba(15, 15, 15, 0)",
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
             zIndex: "1",
           },
           content: {
             position: "absolute",
-            top: "60px",
-            left: "35%",
-            width: "30%",
-            height: "80%",
-            border: "1px solid #ccc",
-            background: "#fff",
+            width: "300px",
+            height: "260px",
+            margin: "auto",
+            background: "#ffffff",
             overflow: "auto",
             WebkitOverflowScrolling: "touch",
-            borderRadius: "4px",
+            borderRadius: "12px",
             outline: "none",
-            padding: "20px",
           },
         }}
       >
-        <h1>매일 알림 받고 기록하기</h1>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          수면 기록 알림 받기 &nbsp;
+        <Title>매일 알림 받고 기록하기</Title>
+        <ToggleSwitch>
+          수면 기록 알림 받기
           <Toggle notice={notice} setNotice={setNotice} label=" "></Toggle>
-        </div>
+        </ToggleSwitch>
         <div>
           {notice ? (
             <>
@@ -159,12 +155,49 @@ const PushNoticationPop = (props) => {
               ></DropDown>
             </div>
           )}
-
-          <button onClick={send}>확인</button>
         </div>
+
+        <Button onClick={send}>확인</Button>
       </Modal>
     </>
   );
 };
+
+const Title = styled.p`
+  color: ${({ theme }) => theme.colors.gray_9};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  position: static;
+  letter-spacing: -0.3px;
+  vertical-align: top;
+  text-align: left;
+`;
+
+const ToggleSwitch = styled.div`
+  color: ${({ theme }) => theme.colors.gray_9};
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  font-weight: ${({ theme }) => theme.fontWeight.Medium};
+  letter-spacing: -0.3px;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  height: 30px;
+  left: 20px;
+  top: 67px;
+  margin: 20px 0px;
+`;
+
+const Button = styled.button`
+  position: static;
+  width: 280px;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  margin: 30px 10px 0px 10px;
+  background-color: ${({ theme }) => theme.colors.main_1};
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+`;
 
 export default PushNoticationPop;
