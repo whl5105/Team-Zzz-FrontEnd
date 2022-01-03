@@ -4,7 +4,7 @@ import theme from "./theme";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Switch, Route, Link } from "react-router-dom";
-import "./App.css";
+// import "./App.css";
 
 //page
 import NotFound from "../pages/NotFound";
@@ -66,7 +66,7 @@ const Wrap = styled.div`
   width: 375px;
   height: 812px;
   border: 1px solid red;
-  background: red;
+  background: #101340;
   position: relative;
   margin: 0 auto;
 `;

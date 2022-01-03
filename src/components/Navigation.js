@@ -4,10 +4,10 @@ import { useHistory } from "react-router-dom";
 import RequireLogin from "../components/RequireLogin";
 
 // 아이콘 이미지 import
-import homeIcon from "../images/navigation/homeIcon.svg";
-import asmrIcon from "../images/navigation/asmrIcon.svg";
-import diaryIcon from "../images/navigation/diaryIcon.svg";
-import myPageIcon from "../images/navigation/myPageIcon.svg";
+import homeIcon from "../static/images/navigation/homeIcon.svg";
+import asmrIcon from "../static/images/navigation/asmrIcon.svg";
+import diaryIcon from "../static/images/navigation/diaryIcon.svg";
+import myPageIcon from "../static/images/navigation/myPageIcon.svg";
 
 const Navigation = (props) => {
   const history = useHistory();
