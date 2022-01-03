@@ -84,13 +84,11 @@ const Signup = (props) => {
   };
 
   return (
-    <React.Fragment>
-      <div>
-        회원가입
-      </div>
+    <>
+      <Title>회원가입</Title>
       {/* -- 아이디 --  */}
       <div>
-        <input placeholder="아이디" onChange={idCheck} />
+        <Input placeholder="아이디" onChange={idCheck} />
         <br />
         {id.length > 0 ? (
           <Span className={`${isId ? "success" : "error"}`}>{idMessage}</Span>
@@ -100,11 +98,11 @@ const Signup = (props) => {
       </div>
       {/* -- 비밀번호 --  */}
       <div>
-        <input
+        <Input
           type="password"
-          placeholder="아이디"
+          placeholder="비밀번호"
           onChange={onChangePassword}
-        ></input>
+        ></Input>
         <br />
         {pwd.length > 0 ? (
           <Span className={`${isPassword ? "success" : "error"}`}>
@@ -116,11 +114,11 @@ const Signup = (props) => {
       </div>
       {/* -- 비밀번호 확인 -- */}
       <div>
-        <input
+        <Input
           type="password"
           placeholder="비밀번호 확인"
           onChange={onChangePasswordCheck}
-        ></input>
+        ></Input>
         <br />
         {pwd_check.length > 0 ? (
           <Span className={`${isPwdCheck ? "success" : "error"}`}>
@@ -131,19 +129,57 @@ const Signup = (props) => {
         )}
       </div>
       {/* -- 회원가입 버튼 --*/}
-      <button onClick={signUpClick}>회원가입</button>
-    </React.Fragment>
+      <Button onClick={signUpClick}>회원가입</Button>
+    </>
   );
 };
+
+const Title = styled.div`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.xxl};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  margin: 20px;
+`;
+
 const Span = styled.span`
-  margin-bottom: 12px;
+  margin: 10px 25px;
   font-size: 14px;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+
   &.success {
     color: #4791ff;
   }
+
   &.error {
     color: #ff473d;
   }
+`;
+
+const Input = styled.input`
+  width: 310px;
+  height: 45px;
+  padding: 7px;
+  border: none;
+  border-radius: 8px;
+  margin: 10px 23px;
+  font-size: ${({ theme }) => theme.fontSizes.small};
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const Button = styled.button`
+  width: 320px;
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  margin: 15px 24px;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  background-color: ${({ theme }) => theme.colors.main_1};
 `;
 
 export default Signup;

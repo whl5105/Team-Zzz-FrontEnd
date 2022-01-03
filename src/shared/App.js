@@ -5,7 +5,7 @@ import theme from "./theme";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Switch, Route, Link } from "react-router-dom";
-import "./App.css";
+// import "./App.css";
 
 //page
 import NotFound from "../pages/NotFound";
@@ -64,21 +64,19 @@ function App() {
     </WrapBox>
   );
 }
+
 const WrapBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 `;
+
 const Wrap = styled.div`
   width: 375px;
   height: 812px;
-  border: 1px solid red;
-<<<<<<< HEAD
-  background: white;
-=======
+  border: 1px solid ${({ theme }) => theme.colors.bg};
   background-color: ${({ theme }) => theme.colors.bg};
->>>>>>> aa1e1b5b3b960dbf6c60284edf8e14482f302ff6
   position: relative;
   margin: 0 auto;
 `;
