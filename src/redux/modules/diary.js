@@ -38,31 +38,37 @@ const initialState = {
   diaryList: [
     {
       day: 1,
-      feelScore: 5,
-      sleepScore: 5,
+      feelScore: 1,
+      sleepScore: 1,
       comment: "오늘은 아구찜 먹음",
     },
     {
       day: 4,
-      feelScore: 4,
-      sleepScore: 4,
+      feelScore: 2,
+      sleepScore:2,
       comment: "오늘은 아구찜 먹음",
     },
     {
       day: 8,
-      feelScore: 5,
-      sleepScore: 5,
+      feelScore:3,
+      sleepScore: 3,
       comment: "오늘은 아구찜 먹음",
     },
     {
       day: 6,
-      feelScore: 2,
-      sleepScore: 2,
+      feelScore: 4,
+      sleepScore: 5,
+      comment: "오늘은 아구찜 먹음",
+    },
+    {
+      day: 7,
+      feelScore: 5,
+      sleepScore: 5,
       comment: "오늘은 아구찜 먹음",
     },
   ],
 
-  sleepAvg: 20,
+  sleepAvg: "오늘은 잠을 못주무셨네요",
 };
 
 // -- middleware actions --
