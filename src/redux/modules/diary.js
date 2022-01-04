@@ -45,12 +45,12 @@ const initialState = {
     {
       day: 4,
       feelScore: 2,
-      sleepScore:2,
+      sleepScore: 2,
       comment: "오늘은 아구찜 먹음",
     },
     {
       day: 8,
-      feelScore:3,
+      feelScore: 3,
       sleepScore: 3,
       comment: "오늘은 아구찜 먹음",
     },
@@ -78,15 +78,16 @@ const getDiaryDB = (year, month) => {
     const yearMonth = `${year}-${month}`;
 
     try {
-      const response = apis.getDiary(userIdx, yearMonth);
-      console.log("getDiaryDB response : ", response);
+      const res = apis.getDiary(userIdx, yearMonth);
+      console.log("getDiaryDB response : ", res);
 
-      dispatch(get_diary(response));
+      dispatch(get_diary(!res.length > 0 ? [] : res));
     } catch (error) {
       console.log("getDiaryDB Error : ", error);
     }
   };
 };
+
 //다이어리 기록 추가
 const addDiaryDB = (year, month, diaryListInfo, pushData) => {
   return function (dispatch, getState, { history }) {

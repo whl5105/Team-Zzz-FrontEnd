@@ -35,6 +35,7 @@ const colors = {
   main_4: "#FDE09B",
   main_5: "#FEECC3",
   bg: "#101340",
+  back: "#272a52",
   white: "#ffffff",
   gray_1: "#f8f8f8",
   gray_2: "#f3f3f3",
