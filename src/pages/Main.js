@@ -79,7 +79,6 @@ const Category = (props) => {
   return (
     <>
       <CategoryStyle
-        // style={{ display: "flex", justifyContent: "space-between" }}
         onClick={() => {
           history.push({
             pathname: `${props.path}`,
