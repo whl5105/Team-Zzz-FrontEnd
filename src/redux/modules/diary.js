@@ -68,7 +68,7 @@ const initialState = {
     },
   ],
 
-  sleepAvg: 20,
+  sleepAvg: "오늘은 잠을 못주무셨네요",
 };
 
 // -- middleware actions --

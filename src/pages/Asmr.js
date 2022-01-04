@@ -35,14 +35,14 @@ const Asmr = (props) => {
 
   React.useEffect(() => {
     // 1) 카테고리별 활성화 유무
-    const arr = ["전체", "자연", "공간", "물체"];
+    const arr = ["전체", "네이쳐", "플레이스", "오브젝트"];
 
     arr.forEach((arrItem) => {
       if (arrItem !== getCategory) {
         // 비활성화
-        document.getElementById(arrItem).style.color = "black";
+        document.getElementById(arrItem).style.border = "none";
       }
-      document.getElementById(getCategory).style.color = "white"; // 활성화
+      document.getElementById(getCategory).style.border = "1px solid red"; // 활성화
     });
 
     // 2) 음원 데이터 유무
@@ -58,23 +58,23 @@ const Asmr = (props) => {
         }
       });
       setSound(all);
-    } else if (getCategory === "자연") {
+    } else if (getCategory === "네이쳐") {
       const nature = asmrInfo.filter((item) => {
-        if (item.categoryName === "자연") {
+        if (item.categoryName === "네이쳐") {
           return item;
         }
       });
       setSound(nature);
-    } else if (getCategory === "공간") {
+    } else if (getCategory === "플레이스") {
       const place = asmrInfo.filter((item) => {
-        if (item.categoryName === "공간") {
+        if (item.categoryName === "플레이스") {
           return item;
         }
       });
       setSound(place);
-    } else if (getCategory === "물체") {
+    } else if (getCategory === "오브젝트") {
       const object = asmrInfo.filter((item) => {
-        if (item.categoryName === "물체") {
+        if (item.categoryName === "오브젝트") {
           return item;
         }
       });
@@ -181,28 +181,28 @@ const Asmr = (props) => {
             전체
           </Category>
           <Category
-            id="자연"
+            id="네이쳐"
             onClick={() => {
-              setCategory("자연");
+              setCategory("네이쳐");
             }}
           >
-            자연
+            네이쳐
           </Category>
           <Category
-            id="공간"
+            id="플레이스"
             onClick={() => {
-              setCategory("공간");
+              setCategory("플레이스");
             }}
           >
-            공간
+            플레이스
           </Category>
           <Category
-            id="물체"
+            id="오브젝트"
             onClick={() => {
-              setCategory("물체");
+              setCategory("오브젝트");
             }}
           >
-            물체
+            오브젝트
           </Category>
         </div>
         <div style={{ margin: "auto", display: "flex", flexWrap: "wrap" }}>
@@ -254,6 +254,9 @@ const Category = styled.div`
   height: 50px;
   line-height: 50px;
   background-color: gray;
+  text-align: center;
+  color: white;
+  border: 1px solid red;
 `;
 
 const Sound = styled.div`
@@ -261,6 +264,7 @@ const Sound = styled.div`
   height: 100px;
   background-color: gray;
   margin: 10px;
+  text-align: center;
 `;
 
 export default Asmr;

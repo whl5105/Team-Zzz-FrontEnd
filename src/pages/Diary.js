@@ -9,6 +9,8 @@ import { useLocation } from "react-router-dom";
 
 import Rectangle from "../elements/Rectangle";
 import NoInfo from "../static/images/diary/NoInfo.png";
+import Left from "../static/images/diary/left 화살표.svg";
+import Right from "../static/images/diary/right 화살표.svg";
 
 const Diary = () => {
   const location = useLocation();
@@ -22,10 +24,19 @@ const Diary = () => {
   const [monthDay, setMonthDay] = React.useState(0);
   const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
   const diaryList = useSelector((state) => state.diary.diaryList);
-  const sleepAvg = diaryList[diaryList.length - 1].sleepAvg;
+  // const sleepAvg = diaryList[diaryList.length - 1].sleepAvg;
+  const sleepAvg = useSelector((state) => state.diary.sleepAvg);
   const [list, setList] = React.useState(arr);
 
   const scoreList = [1, 3, 5, 4, 2];
+  const scoreColor = [
+    "#A1A1A1",
+    "#6CA8FF",
+    "#90D3CC",
+    "#FCD371",
+    "#EE8BA7",
+    "#C793DC",
+  ];
 
   const getDiaryInfo = async (year, month) => {
     await dispatch(diaryActions.getDiaryDB(year, month));
@@ -98,30 +109,30 @@ const Diary = () => {
 
   return (
     <>
-      <div style={{ marginTop: "3%" }}>
-        <div>
-          <button
+      <div>
+        <Wrap>
+          <Button
+            left
             onClick={() => {
               setMoment(getMoment.clone().subtract(1, "month"));
             }}
           >
-            저번달
-          </button>
-          &nbsp;
-          <span>{getMoment.format("YYYY 년 MM 월")}</span>
+            <img src={Left} alt="left"></img>
+          </Button>
+          <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
           {/* YYYY는 년도 MM 은 달입니다. */}
-          &nbsp;
-          <button
+          <Button
+            right
             onClick={() => {
               setMoment(getMoment.clone().add(1, "month"));
             }}
           >
-            다음달
-          </button>
-        </div>
+            <img src={Right} alt="right"></img>
+          </Button>
+        </Wrap>
         <br />
         {list.length > 0 ? (
-          <>
+          <div>
             <Content>
               {list.map((item, index) => {
                 return (
@@ -130,27 +141,31 @@ const Diary = () => {
                       <>
                         <Charater
                           shape="charater"
-                          size="40"
+                          size="55"
                           position="absolute"
                           feelNumber={scoreList.indexOf(item.feelScore) + 1}
                           sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
+                          sleepColor={
+                            scoreColor[scoreList.indexOf(item.sleepScore) + 1]
+                          }
                           _onClick={() => {
                             diaryDetail(index + 1);
                           }}
-                          margin="10px"
+                          margin="5px"
                         />
                       </>
                     ) : (
                       <Charater
                         shape="charater"
-                        size="40"
+                        size="55"
                         position="absolute"
                         feelNumber={0}
                         sleepNumber={0}
+                        sleepColor={scoreColor[0]}
                         _onClick={() => {
                           diaryDetail(index + 1);
                         }}
-                        margin="10px"
+                        margin="5px"
                       />
                     )}
                     <div>{index + 1}</div>
@@ -158,8 +173,8 @@ const Diary = () => {
                 );
               })}
             </Content>
-            <Rectangle text="저번주보다 20% 잠을 더 잘 주무셨네요"></Rectangle>
-          </>
+            <Rectangle text={sleepAvg}></Rectangle>
+          </div>
         ) : (
           <Content2></Content2>
         )}
@@ -168,22 +183,57 @@ const Diary = () => {
   );
 };
 
+const Wrap = styled.div`
+  width: 335px;
+  height: 52px;
+  line-height: 20px;
+  text-align: center;
+  background-color: #272A52;
+  border-radius: 12px;
+  margin : 0px auto;
+  margin-top : 20px;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.lg}
+  line-height: ${({ theme }) => theme.lineHeight.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Medium};
+  display: flex;
+`;
+
+const Button = styled.div`
+  width: 24px;
+  height: 20px;
+  margin: auto;
+  margin-left: ${(props) => (props.right ? "-5px" : "")};
+  margin-right: ${(props) => (props.left ? "-5px" : "")};
+`;
+
+const YearMonth = styled.span`
+  width: 67px;
+  height: 20px;
+  margin: 17px 17px 15px 17px;
+`;
+
 const Content = styled.div`
+  position: relative;
   background-color: ${({ theme }) => theme.colors.bg}};
-  color: ${({theme}) => theme.colors.white};
-  width: 315px;
-  min-height: 550px;
-  max-height: 550px;
-  margin: 0px auto;
+  color: ${({ theme }) => theme.colors.white};
+  width: 330px;
+  height: 520px;
+  margin: 5px auto;
+  margin-bottom: 15px;
   display: flex;
   flex-wrap: wrap;
-  padding: 10px 0px 10px 17px;
   text-align: center;
+  
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Content2 = styled.div`
-  height: 700px;
-  margin-top: 16px;
+  height: 620px;
+  margin-top: 13px;
   background-image: url(${NoInfo});
   background-repeat: no-repeat;
 `;

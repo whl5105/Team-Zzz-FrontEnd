@@ -19,8 +19,9 @@ const Charater = (props) => {
     margin: margin,
     position: position,
     is_click: is_click,
-    bg: bg,
+    bg: props.sleepColor,
   };
+  console.log(props.sleepColor);
 
   if (shape === "circle") {
     return <ImageCircle {...styles}></ImageCircle>;
@@ -74,7 +75,7 @@ const Charater = (props) => {
             onClick={_onClick}
             style={{ zIndex: "2" }}
             name={name}
-            src={require(`../static/images/character/sleep${props.sleepNumber}.png`)}
+            src={require(`../static/images/character/sleep${props.sleepNumber}.svg`)}
           />
         </IconBox>
       </React.Fragment>
@@ -110,7 +111,6 @@ const IconBox = styled.div`
   height: var(--size);
   position: "relative";
   border-radius: var(--size);
-  background-color: aliceblue;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,7 +123,7 @@ const ImgIcon = styled.img`
   position: ${(props) => props.position};
   border-radius: 50%;
   ${(props) => (props.is_click ? `border : 1px solid red;` : ``)}
-  ${(props) => (props.bg ? `background-color : #eee;` : ``)}
+  fill: ${(props) => props.bg};
 `;
 
 export default Charater;
