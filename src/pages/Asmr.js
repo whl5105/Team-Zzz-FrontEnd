@@ -141,7 +141,7 @@ const Asmr = (props) => {
 
       // 선택한 음원 비활성화 style
       const deleteItem = document.getElementById(asmrUrl);
-      deleteItem.style.backgroundColor = "gray";
+      deleteItem.style.backgroundColor = "#3A3E74";
     } else {
       // 활성화
       if (play.length > 2) {
