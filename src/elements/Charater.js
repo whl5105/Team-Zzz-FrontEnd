@@ -51,7 +51,7 @@ const Charater = (props) => {
           data-value={props.sleepNumber}
           // name="sleepScore"
           name={name}
-          src={require(`../static/images/character/sleep${props.sleepNumber}.svg`)}
+          src={require(`../static/images/character/sleep${props.sleepNumber}.png`)}
         ></ImgIcon>
         {children}
       </div>
@@ -74,7 +74,7 @@ const Charater = (props) => {
             onClick={_onClick}
             style={{ zIndex: "2" }}
             name={name}
-            src={require(`../static/images/character/sleep${props.sleepNumber}.svg`)}
+            src={require(`../static/images/character/sleep${props.sleepNumber}.png`)}
           />
         </IconBox>
       </React.Fragment>
@@ -87,7 +87,7 @@ const Charater = (props) => {
 //-- defaultProps --
 Charater.defaultProps = {
   shape: "circle",
-  src: "../static/images/character/sleep0.svg",
+  src: "../static/images/character/sleep0.png",
   size: 24,
   _onClick: () => {},
   children: null,

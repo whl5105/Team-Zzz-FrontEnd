@@ -6,8 +6,7 @@ import { history } from "../redux/configureStore";
 import Charater from "../elements/Charater";
 import { useLocation } from "react-router-dom";
 
-import Navigation from "../components/Navigation";
-import DiaryWrite from "../components/DiaryWrite";
+import Rectangle from "../elements/Rectangle";
 
 const Diary = () => {
   const location = useLocation();
@@ -119,61 +118,73 @@ const Diary = () => {
           </button>
         </div>
         <br />
-        <div
-          style={{
-            backgroundColor: "aliceblue",
-            width: "300px",
-            minHeight: "600px",
-            margin: "auto",
-            display: "flex",
-            flexWrap: "wrap",
-            padding: "10px",
-          }}
-        >
-          {list.map((item, index) => {
-            return (
-              <div key={index + 1 + "days"}>
-                {item.feelScore && item.sleepScore ? (
-                  <>
-                    <Charater
-                      shape="charater"
-                      size="40"
-                      position="absolute"
-                      feelNumber={scoreList.indexOf(item.feelScore) + 1}
-                      sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
-                      _onClick={() => {
-                        diaryDetail(index + 1);
-                      }}
-                      margin="10px"
-                    />
-                  </>
-                ) : (
-                  <Charater
-                    shape="charater"
-                    size="40"
-                    position="absolute"
-                    feelNumber={0}
-                    sleepNumber={0}
-                    _onClick={() => {
-                      diaryDetail(index + 1);
-                    }}
-                    margin="10px"
-                  />
-                )}
-                <div>{index + 1}</div>
-              </div>
-            );
-          })}
-        </div>
+        {list.length > 0 ? (
+          <>
+            <div
+              style={{
+                backgroundColor: "aliceblue",
+                width: "315px",
+                minHeight: "550px",
+                maxHeight: "550px",
+                margin: "0px auto",
+                display: "flex",
+                flexWrap: "wrap",
+                padding: "10px 0px 10px 17px",
+                textAlign: "center",
+              }}
+            >
+              {list.map((item, index) => {
+                return (
+                  <div key={index + 1 + "days"}>
+                    {item.feelScore && item.sleepScore ? (
+                      <>
+                        <Charater
+                          shape="charater"
+                          size="40"
+                          position="absolute"
+                          feelNumber={scoreList.indexOf(item.feelScore) + 1}
+                          sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
+                          _onClick={() => {
+                            diaryDetail(index + 1);
+                          }}
+                          margin="10px"
+                        />
+                      </>
+                    ) : (
+                      <Charater
+                        shape="charater"
+                        size="40"
+                        position="absolute"
+                        feelNumber={0}
+                        sleepNumber={0}
+                        _onClick={() => {
+                          diaryDetail(index + 1);
+                        }}
+                        margin="10px"
+                      />
+                    )}
+                    <div>{index + 1}</div>
+                  </div>
+                );
+              })}
+            </div>
+            <Rectangle text="저번주보다 20% 잠을 더 잘 주무셨네요"></Rectangle>
+          </>
+        ) : (
+          <div
+            style={{
+              back: "aliceblue",
+              minHeight: "550px",
+              maxHeight: "550px",
+              margin: "0px auto",
+              display: "flex",
+              flexWrap: "wrap",
+              padding: "10px 0px 10px 17px",
+              textAlign: "center",
+            }}
+          ></div>
+        )}
       </div>
-      <br />
-      <p>
-        {sleepAvg === "user not data send"
-          ? "수면 기록이 없으세요! 수면 기록을 남겨 주세요"
-          : sleepAvg}
-      </p>
-      <br />
-      {/* <Navigation></Navigation> */}
     </>
   );
 };
