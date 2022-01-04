@@ -206,10 +206,10 @@ else{
         style={{ margin: "5px" }}
       ></input>
       <div>
-        <text style={{margin: "5px"}}>{`${ampm}  ${wakeup_hour}시 ${wakeup_min}분`}</text>
-       <text style={{margin: "5px"}}>{`${ampm2}  ${wakeup_hour2}시 ${wakeup_min2}분`}</text>
-       <text style={{margin: "5px"}}>{`${ampm3}  ${wakeup_hour3}시 ${wakeup_min3}분`}</text>
-       <text style={{margin: "5px"}}>{`${ampm4}  ${wakeup_hour4}시 ${wakeup_min4}분`}</text>
+        <span style={{margin: "5px", color:"white"}}>{`${ampm}  ${wakeup_hour}시 ${wakeup_min}분`}</span>
+       <span style={{margin: "5px", color:"white"}}>{`${ampm2}  ${wakeup_hour2}시 ${wakeup_min2}분`}</span>
+       <span style={{margin: "5px", color:"white"}}>{`${ampm3}  ${wakeup_hour3}시 ${wakeup_min3}분`}</span>
+       <span style={{margin: "5px", color:"white"}}>{`${ampm4}  ${wakeup_hour4}시 ${wakeup_min4}분`}</span>
       </div>
     </React.Fragment>
   );

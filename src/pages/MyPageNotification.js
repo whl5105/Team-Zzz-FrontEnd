@@ -70,21 +70,21 @@ const MyPageNotification = (props) => {
 
   return (
     <>
-    <p
-            style={{
-              position: "absolute",
-              width: "102px",
-              height: "22px",
-              left: "20px",
-              top: "70px",
-              fontSize: "22px",
-              lineHeight: "100%",
-              color: "white",
-              margin: "0px",
-            }}
-          >
-            알림 편집
-          </p>
+      <p
+        style={{
+          position: "absolute",
+          width: "102px",
+          height: "22px",
+          left: "20px",
+          top: "70px",
+          fontSize: "22px",
+          lineHeight: "100%",
+          color: "white",
+          margin: "0px",
+        }}
+      >
+        알림 편집
+      </p>
       <div
         style={{
           //   width:"500px",
@@ -128,7 +128,13 @@ const MyPageNotification = (props) => {
           }}
         >
           <ToggleSwitch>
-            수면 기록 알림 받기
+            <p
+              style={{
+                padding: "5px 0px 0px 0px",
+              }}
+            >
+              수면 기록 알림 받기
+            </p>
             <div
               style={{
                 position: "absolute",
@@ -152,30 +158,42 @@ const MyPageNotification = (props) => {
                   width: "295px",
                   height: "48px",
                   left: "20px",
-                  top: "117px",
+                  top: "100px",
                   zIndex: "1",
                 }}
               >
-                <DropDown
-                  dayActive={dayActive}
-                  setDayActive={setDayActive}
-                  setHourActive={setHourActive}
-                  setMinutesActive={setMinutesActive}
-                  condition={""}
-                  title={day}
-                  dayItems={dayItems}
-                  state={setDay}
-                ></DropDown>
-                <DropDown
-                  hourActive={hourActive}
-                  setDayActive={setDayActive}
-                  setHourActive={setHourActive}
-                  setMinutesActive={setMinutesActive}
-                  condition={"시"}
-                  title={hour}
-                  hourItems={hourItems}
-                  state={setHour}
-                ></DropDown>
+                <div
+                  style={{
+                    marginRight: "8px",
+                  }}
+                >
+                  <DropDown
+                    dayActive={dayActive}
+                    setDayActive={setDayActive}
+                    setHourActive={setHourActive}
+                    setMinutesActive={setMinutesActive}
+                    condition={""}
+                    title={day}
+                    dayItems={dayItems}
+                    state={setDay}
+                  ></DropDown>
+                </div>
+                <div
+                  style={{
+                    marginRight: "8px",
+                  }}
+                >
+                  <DropDown
+                    hourActive={hourActive}
+                    setDayActive={setDayActive}
+                    setHourActive={setHourActive}
+                    setMinutesActive={setMinutesActive}
+                    condition={"시"}
+                    title={hour}
+                    hourItems={hourItems}
+                    state={setHour}
+                  ></DropDown>
+                </div>
                 <DropDown
                   minutesActive={minutesActive}
                   setDayActive={setDayActive}
