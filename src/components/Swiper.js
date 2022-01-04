@@ -25,9 +25,9 @@ const MainSwiper = () => {
           }}
           autoplay={{ delay: 3000 }}
         >
-          <SwiperSlide>swiper</SwiperSlide>
-          <SwiperSlide>swiper</SwiperSlide>
-          <SwiperSlide>swiper</SwiperSlide>
+          <SwiperSlide>나의 수면 다어리 기록하기</SwiperSlide>
+          <SwiperSlide>슬라이더2</SwiperSlide>
+          <SwiperSlide>슬라이더3</SwiperSlide>
         </Swiper>
       </div>
     </main>

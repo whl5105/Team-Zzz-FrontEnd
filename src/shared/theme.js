@@ -12,13 +12,13 @@ const fontSizes = {
 };
 
 const lineHeight = {
-  ssmall: 1.5,
-  small: 1.6,
-  base: 1.7,
-  lg: 1.8,
-  xl: 1.9,
-  xxl: 2.0,
-  xxxl: 2.1,
+  ssmall: "18px",
+  small: "22px",
+  base: "24px",
+  lg: "27px",
+  xl: "30px",
+  xxl: "22px",
+  xxxl: "34px",
   // titleSize: calcRem(50),
 };
 
