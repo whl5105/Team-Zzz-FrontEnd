@@ -3,14 +3,14 @@ import styled from "styled-components";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../redux/modules/diary";
-import { history } from "../redux/configureStore";
 import Charater from "../elements/Charater";
 import { useLocation } from "react-router-dom";
-
 import Rectangle from "../elements/Rectangle";
 import NoInfo from "../static/images/diary/NoInfo.png";
 import Left from "../static/images/diary/left 화살표.svg";
 import Right from "../static/images/diary/right 화살표.svg";
+//-- page --
+import DiaryWrite from "../components/DiaryWrite";
 
 const Diary = () => {
   const location = useLocation();
@@ -96,15 +96,23 @@ const Diary = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getMoment, monthDay]);
 
+  //-- 다이어리 팝업 모달 --
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+  const [modalData, setModalData] = React.useState();
+  //다이어리 일자 선택
   const diaryDetail = (index) => {
+    setModalOpen(true);
     const day = new Date(getMoment);
     console.log(day.getMonth() + 1 + "월", index + "일");
-    history.push({
-      pathname: "/diaryWrite",
+    const data = {
       year: day.getFullYear(),
       month: day.getMonth() + 1,
       day: index,
-    });
+    };
+    setModalData(data);
   };
 
   return (
@@ -179,6 +187,12 @@ const Diary = () => {
           <Content2></Content2>
         )}
       </div>
+      {/* -- 다이어리 팝업 모달 -- */}
+      {modalOpen ? (
+        <DiaryWrite open={modalOpen} close={closeModal} data={modalData} />
+      ) : (
+        ""
+      )}
     </>
   );
 };

@@ -4,13 +4,12 @@ import "./index.css";
 import App from "./shared/App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
-import ReactModal from "react-modal";
+// import ReactModal from "react-modal";
 
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
 
-ReactModal.setAppElement("#root");
-
+// ReactModal.setAppElement("#root");
 ReactDOM.render(
   <Provider store={store}>
     <App />

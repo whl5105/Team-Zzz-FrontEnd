@@ -31,11 +31,7 @@ const Mypage = (props) => {
   if (is_token) {
     return (
       <React.Fragment>
-        <div
-          style={{
-            position: "relative",
-          }}
-        >
+        <div>
           <p
             style={{
               position: "absolute",
@@ -115,10 +111,11 @@ const Mypage = (props) => {
                   color: "white",
                 }}
               >
-                {userNotice.time.sleepChk && userNotice.time.timePA==="AM"?'오전':'오후'} &nbsp;
-                {userNotice.time.sleepChk && userNotice.time.hour}
-                {userNotice.time.sleepChk && `:`}
-                {userNotice.time.sleepChk && userNotice.time.min<10?'0'+ userNotice.time.min: userNotice.time.min}
+                {userNotice.time.sleepChk ===false && "알림 off"}
+                {userNotice.time.sleepChk ? userNotice.time.timePA==="AM"?'오전':'오후': null} &nbsp;
+                {userNotice.time.sleepChk ? userNotice.time.hour: null}
+                {userNotice.time.sleepChk ?`:` : null}
+                {userNotice.time.sleepChk ? userNotice.time.min<10?'0'+ userNotice.time.min: userNotice.time.min :null}
               </span>
             </div>
 
@@ -506,7 +503,8 @@ const Banner = styled.div`
   left: 20px;
   top: 112px;
   background-image: url(${(props) => props.categoryImage});
-  /* margin: 0px; */
+  background-repeat: no-repeat;
+  background-size: cover;
   cursor: pointer;
 `;
 

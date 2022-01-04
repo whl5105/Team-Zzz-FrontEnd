@@ -24,10 +24,11 @@ import Mypage from "../pages/MyPage";
 import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
+import ModalPopUp from "../components/ModalPopUp";
 
 function App() {
   return (
-    <WrapBox>
+    <WrapBox id="app">
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Wrap className="App">
@@ -46,7 +47,7 @@ function App() {
                 component={PushNoticationPop}
               ></Route>
               <Route path="/diary" exact component={Diary}></Route>
-              <Route path="/diaryWrite" exact component={DiaryWrite}></Route>
+              {/* <Route path="/diary" exact component={DiaryWrite}></Route> */}
               <Route path="/asmr" exact component={Asmr}></Route>
               <Route path="/mypage" exact component={Mypage} />
               <Route
@@ -79,6 +80,7 @@ const Wrap = styled.div`
   background-color: ${({ theme }) => theme.colors.bg};
   position: relative;
   margin: 0 auto;
+  overflow: hidden;
 `;
 
 export default App;
