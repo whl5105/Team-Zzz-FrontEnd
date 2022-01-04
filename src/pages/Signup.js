@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Input } from "../elements";
+
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore.js";
@@ -96,68 +98,57 @@ const Signup = (props) => {
   return (
     <Container>
       <Title>회원가입</Title>
-      {/* -- 아이디 --  */}
-      <InputBox>
-        <InputGrop class="btn-group">
-          <Input placeholder="아이디" value={id} onChange={idCheck} />
-          <img
-            src={reset}
-            alt="resetButton"
-            onClick={() => {
-              setId("");
-            }}
-          />
-        </InputGrop>
-        {id.length > 0 ? (
-          <Span className={`${isId ? "success" : "error"}`}>{idMessage}</Span>
-        ) : (
-          <Span>영문 대,소문자, 숫자를 포함(5-10자)</Span>
-        )}
-      </InputBox>
+      <Input
+        resetInput
+        placeholder="아이디"
+        value={id}
+        onChange={idCheck}
+        src={reset}
+        alt="resetButton"
+        onClick={() => {
+          setId("");
+        }}
+      />
+
+      {id.length > 0 ? (
+        <Span className={`${isId ? "success" : "error"}`}>{idMessage}</Span>
+      ) : (
+        <Span>영문 대,소문자, 숫자를 포함(5-10자)</Span>
+      )}
+
       {/* -- 비밀번호 --  */}
-      <InputBox>
-        {/* <Input
-          type="password"
-          placeholder="비밀번호"
-          onChange={onChangePassword}
-        ></Input> */}
-        <InputGrop class="btn-group">
-          <Input
-            placeholder="비밀번호"
-            value={pwd}
-            onChange={onChangePassword}
-          />
-          <img
-            src={reset}
-            alt="resetButton"
-            onClick={() => {
-              setPwd("");
-            }}
-          />
-        </InputGrop>
-        {pwd.length > 0 ? (
-          <Span className={`${isPassword ? "success" : "error"}`}>
-            {pwdMessage}
-          </Span>
-        ) : (
-          <Span>영문 대,소문자, 숫자를 포함(8-20자)</Span>
-        )}
-      </InputBox>
+      <Input
+        resetInput
+        placeholder="비밀번호"
+        value={pwd}
+        onChange={onChangePassword}
+        src={reset}
+        alt="resetButton"
+        onClick={() => {
+          setPwd("");
+        }}
+      />
+      {pwd.length > 0 ? (
+        <Span className={`${isPassword ? "success" : "error"}`}>
+          {pwdMessage}
+        </Span>
+      ) : (
+        <Span>영문 대,소문자, 숫자를 포함(8-20자)</Span>
+      )}
+
       {/* -- 비밀번호 확인 -- */}
-      <InputBox>
-        <Input
-          type="password"
-          placeholder="비밀번호 확인"
-          onChange={onChangePasswordCheck}
-        ></Input>
-        {pwd_check.length > 0 ? (
-          <Span className={`${isPwdCheck ? "success" : "error"}`}>
-            {pwdCheckMessage}
-          </Span>
-        ) : (
-          <Span>영문 대,소문자, 숫자를 포함(8-20자)</Span>
-        )}
-      </InputBox>
+      <Input
+        type="password"
+        placeholder="비밀번호 확인"
+        onChange={onChangePasswordCheck}
+      />
+      {pwd_check.length > 0 ? (
+        <Span className={`${isPwdCheck ? "success" : "error"}`}>
+          {pwdCheckMessage}
+        </Span>
+      ) : (
+        <Span>영문 대,소문자, 숫자를 포함(8-20자)</Span>
+      )}
       {/* -- 회원가입 버튼 --*/}
       <Button onClick={signUpClick}>회원가입</Button>
       <Login
@@ -191,6 +182,7 @@ const Span = styled.span`
   color: ${({ theme }) => theme.colors.gray_3};
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   display: flex;
+  margin-bottom: ${({ theme }) => theme.margins.xxxxl};
   &.success {
     color: #4791ff;
   }
@@ -199,41 +191,6 @@ const Span = styled.span`
   }
 `;
 
-const InputBox = styled.div`
-  margin-bottom: ${({ theme }) => theme.margins.xxxxl};
-  &:nth-child(4) {
-    margin-bottom: 30px;
-  }
-`;
-const InputGrop = styled.div`
-  width: 100%;
-  height: 60px;
-  border: 1px solid ${({ theme }) => theme.colors.main_1};
-  border-radius: 8px;
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  &:nth-child(2) {
-    margin-bottom: 20px;
-  }
-
-  & img {
-    width: 20px;
-    padding-right: 20px;
-  }
-`;
-const Input = styled.input`
-  width: 100%;
-  /* height: 60px; */
-  padding: 0 1.25rem;
-  box-sizing: border-box;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  border: none;
-  &:focus {
-    outline: none;
-  }
-`;
 const Button = styled.button`
   width: 100%;
   height: 50px;

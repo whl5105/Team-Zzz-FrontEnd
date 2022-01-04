@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
+import { Input } from "../elements";
+
 import { history } from "../redux/configureStore.js";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -58,20 +60,31 @@ const Login = () => {
   return (
     <Container>
       <Title>로그인</Title>
-      <InputGrop class="btn-group">
-        <Input placeholder="아이디" name="id" value={id} onChange={onChange} />
-        <img src={reset} alt="resetButton" name="id" onClick={onReset} />
-      </InputGrop>
-      <InputGrop class="btn-group">
+      <InputBox>
         <Input
+          resetInput
+          placeholder="아이디"
+          name="id"
+          value={id}
+          onChange={onChange}
+          src={reset}
+          alt="resetButton"
+          onClick={onReset}
+        />
+      </InputBox>
+      <InputBox>
+        <Input
+          resetInput
           placeholder="비밀번호"
           type="password"
           name="pwd"
           value={pwd}
           onChange={onChange}
-        ></Input>
-        <img src={reset} alt="resetButton" name="pwd" onClick={onReset} />
-      </InputGrop>
+          src={reset}
+          alt="resetButton"
+          onClick={onReset}
+        />
+      </InputBox>
 
       {!isState && (
         <Span className={`${isState ? "success" : "error"}`}>{Message}</Span>
@@ -102,7 +115,11 @@ const Title = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   margin: ${({ theme }) => theme.margins.xxxxl} 0;
 `;
-
+const InputBox = styled.div`
+  &:nth-child(2) {
+    margin-bottom: ${({ theme }) => theme.margins.xxxxl};
+  }
+`;
 const Span = styled.span`
   height: 54px;
   /* margin: 17px 0; */
@@ -111,43 +128,11 @@ const Span = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-
   &.success {
     color: #4791ff;
   }
-
   &.error {
     color: #ff473d;
-  }
-`;
-
-const InputGrop = styled.div`
-  width: 100%;
-  height: 60px;
-  border: 1px solid ${({ theme }) => theme.colors.main_1};
-  border-radius: 8px;
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  &:nth-child(2) {
-    margin-bottom: 20px;
-  }
-
-  & img {
-    width: 20px;
-    padding-right: 20px;
-  }
-`;
-const Input = styled.input`
-  width: 100%;
-  /* height: 60px; */
-  padding: 0 1.25rem;
-  box-sizing: border-box;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  border: none;
-  &:focus {
-    outline: none;
   }
 `;
 
