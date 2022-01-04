@@ -10,7 +10,6 @@ import styled from "styled-components";
 // 아이콘 이미지 import
 import userIcon from "../static/images/mypage/userIcon.svg";
 import noticeIcon from "../static/images/mypage/noticeIcon.svg";
-import bound from "../static/images/mypage/bound.svg";
 import path from "../static/images/mypage/path.svg";
 import alarmBanner from "../static/images/mypage/alarmBanner.svg";
 
@@ -111,7 +110,7 @@ const Mypage = (props) => {
                   color: "white",
                 }}
               >
-                {userNotice.time.sleepChk ===false && "알림 off"}
+                {userNotice.time.sleepChk ===false && "알림 OFF"}
                 {userNotice.time.sleepChk ? userNotice.time.timePA==="AM"?'오전':'오후': null} &nbsp;
                 {userNotice.time.sleepChk ? userNotice.time.hour: null}
                 {userNotice.time.sleepChk ?`:` : null}
@@ -152,7 +151,7 @@ const Mypage = (props) => {
             }}
           ></div>
 
-          <div
+          {/* <div   // 내정보 생기면 넣을것 
             style={{
               display: "flex",
               flexDirection: "row",
@@ -225,7 +224,7 @@ const Mypage = (props) => {
                 }}
               ></Box>
             </div>
-          </div>
+          </div> */}
 
           <div
             style={{
@@ -237,7 +236,7 @@ const Mypage = (props) => {
               width: "335px",
               height: "56px",
               left: "20px",
-              top: "327px",
+              top: "271px",
               boxSizing: "border-box",
             }}
             onClick={() => history.push("/notice")}
@@ -499,7 +498,7 @@ const Icon = styled.div`
 const Banner = styled.div`
   position: absolute;
   width: 335px;
-  height: 103px; // 107px 로 하면 정사이즈가 아니게된다.
+  height: 107px;
   left: 20px;
   top: 112px;
   background-image: url(${(props) => props.categoryImage});
