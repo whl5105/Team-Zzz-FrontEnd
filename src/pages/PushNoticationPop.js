@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
 import DropDown from "../elements/DropDown";
 import Toggle from "../elements/Toggle";
+import ModalPopUp from "../components/ModalPopUp";
 
 const PushNoticationPop = (props) => {
   const [modal, setModal] = React.useState(props.modal ? true : false); // 모달창
@@ -73,31 +74,31 @@ const PushNoticationPop = (props) => {
 
   return (
     <>
-      <Modal
-        isOpen={modal}
-        ariaHideApp={false}
-        style={{
-          overlay: {
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            zIndex: "1",
-          },
-          content: {
-            position: "absolute",
-            width: "300px",
-            height: "260px",
-            margin: "auto",
-            background: "#ffffff",
-            overflow: "auto",
-            WebkitOverflowScrolling: "touch",
-            borderRadius: "12px",
-            outline: "none",
-          },
-        }}
+      <ModalPopUp
+      isOpen={modal}
+      // ariaHideApp={false}
+      // style={{
+      //   overlay: {
+      //     position: "fixed",
+      //     top: 0,
+      //     left: 0,
+      //     right: 0,
+      //     bottom: 0,
+      //     backgroundColor: "rgba(0, 0, 0, 0.7)",
+      //     zIndex: "1",
+      //   },
+      //   content: {
+      //     position: "absolute",
+      //     width: "300px",
+      //     height: "260px",
+      //     margin: "auto",
+      //     background: "#ffffff",
+      //     overflow: "auto",
+      //     WebkitOverflowScrolling: "touch",
+      //     borderRadius: "12px",
+      //     outline: "none",
+      //   },
+      // }}
       >
         <Title>매일 알림 받고 기록하기</Title>
         <ToggleSwitch>
@@ -158,7 +159,7 @@ const PushNoticationPop = (props) => {
         </div>
 
         <Button onClick={send}>확인</Button>
-      </Modal>
+      </ModalPopUp>
     </>
   );
 };

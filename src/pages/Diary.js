@@ -2,11 +2,10 @@ import React from "react";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../redux/modules/diary";
-import { history } from "../redux/configureStore";
 import Charater from "../elements/Charater";
 import { useLocation } from "react-router-dom";
 
-import Navigation from "../components/Navigation";
+//-- page --
 import DiaryWrite from "../components/DiaryWrite";
 
 const Diary = () => {
@@ -84,103 +83,115 @@ const Diary = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getMoment, monthDay]);
 
+  //-- 다이어리 팝업 모달 --
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+  const [modalData, setModalData] = React.useState();
+  //다이어리 일자 선택
   const diaryDetail = (index) => {
+    setModalOpen(true);
     const day = new Date(getMoment);
     console.log(day.getMonth() + 1 + "월", index + "일");
-    history.push({
-      pathname: "/diaryWrite",
+    const data = {
       year: day.getFullYear(),
       month: day.getMonth() + 1,
       day: index,
-    });
+    };
+    setModalData(data);
   };
 
   return (
-    <>
-      <div style={{ marginTop: "3%" }}>
-        <div>
-          <button
-            onClick={() => {
-              setMoment(getMoment.clone().subtract(1, "month"));
-            }}
-          >
-            저번달
-          </button>
-          &nbsp;
-          <span>{getMoment.format("YYYY 년 MM 월")}</span>
-          {/* YYYY는 년도 MM 은 달입니다. */}
-          &nbsp;
-          <button
-            onClick={() => {
-              setMoment(getMoment.clone().add(1, "month"));
-            }}
-          >
-            다음달
-          </button>
-        </div>
-        <br />
+    <React.Fragment>
+      <div>
         <div
           style={{
-            backgroundColor: "aliceblue",
-            width: "300px",
-            minHeight: "600px",
-            margin: "auto",
-            display: "flex",
-            flexWrap: "wrap",
-            padding: "10px",
+            marginTop: "3%",
           }}
         >
-          {list.map((item, index) => {
-            return (
-              <div key={index + 1 + "days"}>
-                {item.feelScore && item.sleepScore ? (
-                  <>
+          <div>
+            <button
+              onClick={() => {
+                setMoment(getMoment.clone().subtract(1, "month"));
+              }}
+            >
+              저번달
+            </button>
+            &nbsp;
+            <span>{getMoment.format("YYYY 년 MM 월")}</span>
+            {/* YYYY는 년도 MM 은 달입니다. */}
+            &nbsp;
+            <button
+              onClick={() => {
+                setMoment(getMoment.clone().add(1, "month"));
+              }}
+            >
+              다음달
+            </button>
+          </div>
+          <br />
+          <div
+            style={{
+              backgroundColor: "aliceblue",
+              width: "300px",
+              minHeight: "600px",
+              margin: "auto",
+              display: "flex",
+              flexWrap: "wrap",
+              padding: "10px",
+            }}
+          >
+            {list.map((item, index) => {
+              return (
+                <div key={index + 1 + "days"}>
+                  {item.feelScore && item.sleepScore ? (
+                    <>
+                      <Charater
+                        shape="charater"
+                        size="40"
+                        position="absolute"
+                        feelNumber={scoreList.indexOf(item.feelScore) + 1}
+                        sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
+                        _onClick={() => {
+                          diaryDetail(index + 1);
+                        }}
+                        margin="10px"
+                      />
+                    </>
+                  ) : (
                     <Charater
                       shape="charater"
                       size="40"
                       position="absolute"
-                      feelNumber={scoreList.indexOf(item.feelScore) + 1}
-                      sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
+                      feelNumber={0}
+                      sleepNumber={0}
                       _onClick={() => {
                         diaryDetail(index + 1);
                       }}
                       margin="10px"
                     />
-                  </>
-                ) : (
-                  <Charater
-                    shape="charater"
-                    size="40"
-                    position="absolute"
-                    feelNumber={0}
-                    sleepNumber={0}
-                    _onClick={() => {
-                      diaryDetail(index + 1);
-                    }}
-                    margin="10px"
-                  />
-                )}
-                <div>{index + 1}</div>
-              </div>
-            );
-          })}
+                  )}
+                  <div>{index + 1}</div>
+                </div>
+              );
+            })}
+          </div>
         </div>
+
+        <p>
+          {sleepAvg === "user not data send"
+            ? "수면 기록이 없으세요! 수면 기록을 남겨 주세요"
+            : sleepAvg}
+        </p>
       </div>
-      <br />
-      <p>
-        {sleepAvg === "user not data send"
-          ? "수면 기록이 없으세요! 수면 기록을 남겨 주세요"
-          : sleepAvg}
-      </p>
-      <br />
-      {/* <DiaryWrite
-        open={modalOpen}
-        close={closeModal}
-        // isOpen={isOpen}
-        // onSubmit={handleModalSubmit}
-        // onCancel={handleModalCancel}
-      /> */}
-    </>
+      {/* -- 다이어리 팝업 모달 -- */}
+      {modalOpen ? (
+        <DiaryWrite open={modalOpen} close={closeModal} data={modalData} />
+      ) : (
+        ""
+      )}
+    </React.Fragment>
   );
 };
 
