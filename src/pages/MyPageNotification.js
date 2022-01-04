@@ -105,7 +105,7 @@ const MyPageNotification = (props) => {
         <div
           style={{
             display: "flex",
-            flexDirection: "clumn",
+            flexDirection: "column",
             alignItems: "flex-start",
             padding: "0px",
 
@@ -153,7 +153,7 @@ const MyPageNotification = (props) => {
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "flex-start",
-                  pading: "0px",
+                  padding: "0px",
                   position: "absolute",
                   width: "295px",
                   height: "48px",
@@ -212,7 +212,7 @@ const MyPageNotification = (props) => {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "flex-start",
-                pading: "0px",
+                padding: "0px",
                 position: "absolute",
                 width: "295px",
                 height: "48px",
