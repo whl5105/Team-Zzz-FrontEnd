@@ -189,7 +189,7 @@ const Diary = () => {
       </div>
       {/* -- 다이어리 팝업 모달 -- */}
       {modalOpen ? (
-        <DiaryWrite open={modalOpen} close={closeModal} data={modalData} />
+        <DiaryWrite close={closeModal} data={modalData} />
       ) : (
         ""
       )}

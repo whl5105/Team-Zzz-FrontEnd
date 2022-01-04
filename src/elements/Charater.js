@@ -122,7 +122,7 @@ const ImgIcon = styled.img`
   width: var(--size);
   position: ${(props) => props.position};
   border-radius: 50%;
-  ${(props) => (props.is_click ? `border : 1px solid red;` : ``)}
+  ${(props) => (props.is_click ? `border : 1px solid red;` : ``)};
   fill: ${(props) => props.bg};
 `;
 

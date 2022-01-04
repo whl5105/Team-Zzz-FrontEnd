@@ -57,7 +57,7 @@ const initialState = {
     {
       day: 6,
       feelScore: 4,
-      sleepScore: 5,
+      sleepScore: 4,
       comment: "오늘은 아구찜 먹음",
     },
     {
