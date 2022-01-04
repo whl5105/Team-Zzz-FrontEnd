@@ -118,7 +118,7 @@ const Mypage = (props) => {
                 {userNotice.time.sleepChk && userNotice.time.timePA} &nbsp;
                 {userNotice.time.sleepChk && userNotice.time.hour}
                 {userNotice.time.sleepChk && `:`}
-                {userNotice.time.sleepChk && userNotice.time.min}
+                {userNotice.time.sleepChk && userNotice.time.min<10?'0'+ userNotice.time.min: userNotice.time.min}
               </span>
             </div>
 
