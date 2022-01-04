@@ -1,19 +1,20 @@
 import styled from "styled-components";
 import React from "react";
 import ModalPopUp from "./ModalPopUp";
+import { useHistory } from "react-router-dom";
 
 const RequireLogin = (props) => {
+  const history = useHistory();
   return (
     <>
       <ModalPopUp close={props.close}>
         <Wrap>
-          <div>
-            <Title>로그인이 필요합니다.</Title>
-            <SubTitle>로그인 화면으로 이동 하시겠습니까?</SubTitle>
-          </div>
-          <div>
+          <Title>로그인이 필요합니다.</Title>
+          <SubTitle>로그인 화면으로 이동 하시겠습니까?</SubTitle>
+          <Buttons>
             <Button
               border="1px solid #DADADA"
+              marginRight="10px"
               color="#696969"
               backgroundColor="#ffffff"
               onClick={props.close}
@@ -24,13 +25,11 @@ const RequireLogin = (props) => {
               border="none"
               color="#ffffff"
               backgroundColor="#FBC037"
-              onClick={() => {
-                props.close("/login");
-              }}
+              onClick={props.move}
             >
               예
             </Button>
-          </div>
+          </Buttons>
         </Wrap>
       </ModalPopUp>
     </>
@@ -38,15 +37,15 @@ const RequireLogin = (props) => {
 };
 
 const Wrap = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 335px;
+  height: 153px;
 `;
 
 const Title = styled.p`
   width: 295px;
   height: 27px;
-  margin: auto;
-  margin-bottom: 12px;
+  margin-top: 20px;
+  margin-left: 20px;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray_9};
   font-size: ${({ theme }) => theme.fontSizes.lg};
@@ -58,6 +57,8 @@ const Title = styled.p`
 const SubTitle = styled.p`
   width: 295px;
   height: 22px;
+  margin-top: 12px;
+  margin-left: 20px;
   text-align: center;
   color: ${({ theme }) => theme.colors.gray_7};
   font-size: ${({ theme }) => theme.fontSizes.small};
@@ -66,8 +67,14 @@ const SubTitle = styled.p`
   letter-spacing: -0.3px;
 `;
 
+const Buttons = styled.div`
+  width: 297px;
+  margin-left: 20px;
+  margin-top: 24px;
+`;
+
 const Button = styled.button`
-  width: 130px;
+  width: 141px;
   height: 48px;
   border-radius: 8px;
   border: ${(props) => props.border};
@@ -77,7 +84,7 @@ const Button = styled.button`
   line-height: ${({ theme }) => theme.lineHeight.xxl}
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   letter-spacing: -0.3px;
-  margin: 10px;
+  margin-right: ${(props) => props.marginRight};
 `;
 
 export default RequireLogin;

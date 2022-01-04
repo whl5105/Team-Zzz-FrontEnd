@@ -148,8 +148,6 @@ const PushNoticationPop = (props) => {
 const Wrap = styled.div`
   width: 335px;
   height: 235px;
-  justify-content: center;
-  align-items: center;
 `;
 
 const Title = styled.p`
@@ -185,7 +183,7 @@ const Button = styled.button`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
-
+  box-sizing: border-box;
   margin-top: 20px;
   margin-left: 20px;
 `;
