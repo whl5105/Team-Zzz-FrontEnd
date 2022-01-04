@@ -21,7 +21,7 @@ const AsmrPopUp = (props) => {
   const [Volume2, setVolume2] = React.useState(song2.volume * 100);
   const [Volume3, setVolume3] = React.useState(song3.volume * 100);
   const [songList, setSongList] = React.useState(props.list);
-console.log(songList)
+  console.log(songList);
   const VolumeChange = (e) => {
     setVolume(e.target.value);
     song1.volume = e.target.value * 0.01;
@@ -78,7 +78,7 @@ console.log(songList)
       }
       props.setList(arr);
       setSongList(arr);
-      console.log(songList)
+      console.log(songList);
     }
   };
   const deleteVolume3 = (e) => {
@@ -109,30 +109,27 @@ console.log(songList)
   return (
     <>
       <FullScreen>
-        <CloseVolume
-          onClick={() => props.closeModal(false)}
-        ></CloseVolume>
+        <CloseVolume onClick={() => props.closeModal(false)}></CloseVolume>
         <VolumePopUp>
-          {songList.length===0 &&<><p style={{
-            color:"white",
-            position: "relative",
-            top:"25%",
-            left:"60px",
-            // fontWeight:"bold",
-            fontSize:"18px"
-          }}>리스트가 없습니다. 선택해주세요</p>
-          <p
-          style={{
-            color:"white",
-            position: "relative",
-            top:"30%",
-            left:"150px",
-            fontWeight:"bold",
-            fontSize:"20px",
-            cursor: "pointer",
-          }}
-          onClick={() => props.closeModal(false)}
-          >창닫기</p></>}
+          {songList.length === 0 && (
+            <>
+              <NoList>리스트가 없습니다. 선택해주세요</NoList>
+              <p
+                style={{
+                  color: "white",
+                  position: "relative",
+                  top: "30%",
+                  left: "150px",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                  cursor: "pointer",
+                }}
+                onClick={() => props.closeModal(false)}
+              >
+                창닫기
+              </p>
+            </>
+          )}
 
           {song1.src !== "" ? (
             <>
@@ -241,7 +238,7 @@ console.log(songList)
             }}
           >
             <Button
-              // onClick={() => props.closeModal(false)} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
+            // onClick={() => props.closeModal(false)} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
             >
               나만의 사운드 듣기
             </Button>
@@ -279,6 +276,14 @@ const CloseVolume = styled.div`
   width: 375px;
 
   /* onClick={() => props.closeModal(false)}  */
+`;
+
+const NoList = styled.p`
+  color: white;
+  position: relative;
+  top: 25%;
+  left: 60px;
+  font-size: 18px;
 `;
 
 const Icon = styled.div`
