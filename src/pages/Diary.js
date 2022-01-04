@@ -173,7 +173,13 @@ const Diary = () => {
           : sleepAvg}
       </p>
       <br />
-      {/* <Navigation></Navigation> */}
+      {/* <DiaryWrite
+        open={modalOpen}
+        close={closeModal}
+        // isOpen={isOpen}
+        // onSubmit={handleModalSubmit}
+        // onCancel={handleModalCancel}
+      /> */}
     </>
   );
 };

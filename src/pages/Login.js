@@ -48,25 +48,24 @@ const Login = () => {
   }
 
   return (
-    <React.Fragment>
+    <Container>
       <Title>로그인</Title>
-      <div>
-        <Input
-          placeholder="아이디"
-          name="id"
-          value={id}
-          onChange={onChange}
-        ></Input>
-      </div>
-      <div>
-        <Input
-          placeholder="비밀번호"
-          type="password"
-          name="pwd"
-          value={pwd}
-          onChange={onChange}
-        ></Input>
-      </div>
+
+      <Input
+        placeholder="아이디"
+        name="id"
+        value={id}
+        onChange={onChange}
+      ></Input>
+
+      <Input
+        placeholder="비밀번호"
+        type="password"
+        name="pwd"
+        value={pwd}
+        onChange={onChange}
+      ></Input>
+
       {!isState && (
         <Span className={`${isState ? "success" : "error"}`}>{Message}</Span>
       )}
@@ -80,25 +79,31 @@ const Login = () => {
             history.push("/signup");
           }}
         >
-          회원가입 하기
+          <p>회원가입하기</p>
         </SignUp>
       </div>
-    </React.Fragment>
+    </Container>
   );
 };
 
+const Container = styled.div`
+  padding: 0 ${({ theme }) => theme.paddings.xxxxl};
+`;
 const Title = styled.div`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.xxl};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  margin: 20px;
+  margin: ${({ theme }) => theme.margins.xxxxl} 0;
 `;
 
 const Span = styled.span`
-  margin: 10px 65px;
-  font-size: 14px;
+  height: 54px;
+  /* margin: 17px 0; */
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &.success {
     color: #4791ff;
@@ -110,40 +115,54 @@ const Span = styled.span`
 `;
 
 const Input = styled.input`
-  width: 310px;
-  height: 45px;
-  padding: 7px;
-  border: none;
+  width: 100%;
+  height: 60px;
+  padding: 0 ${({ theme }) => theme.paddings.xxxxl};
+  box-sizing: border-box;
   border-radius: 8px;
-  margin: 10px 23px;
   font-size: ${({ theme }) => theme.fontSizes.small};
-
+  border: 1px solid ${({ theme }) => theme.colors.main_1};
+  &:nth-child(2) {
+    margin-bottom: 20px;
+  }
   &:focus {
     outline: none;
   }
 `;
 
 const Button = styled.button`
-  width: 320px;
+  width: 100%;
   height: 50px;
   border: none;
   border-radius: 8px;
-  margin: 15px 24px;
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.base};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   background-color: ${({ theme }) => theme.colors.main_1};
 `;
 
-const SignUp = styled.p`
-  width: 110px;
-  margin: 15px auto;
-  padding: 5px;
+const SignUp = styled.div`
+  width: 100%;
+  margin: 20px auto;
   text-align: center;
-  border-bottom: 1px solid white;
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeight.Regular};
+  box-sizing: border-box;
+  & p {
+    display: inline-block;
+    position: relative;
+    ::before {
+      content: "";
+      width: 100%;
+      height: 1px;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      z-index: 100;
+      background-color: ${({ theme }) => theme.colors.white};
+    }
+  }
 `;
 
 export default Login;
