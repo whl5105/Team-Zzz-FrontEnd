@@ -17,7 +17,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Push from "./Push";
 import Diary from "../pages/Diary";
-// import DiaryWrite from "../components/DiaryWrite";
+import DiaryWrite from "../components/DiaryWrite";
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
 import Mypage from "../pages/MyPage";
@@ -46,7 +46,7 @@ function App() {
                 component={PushNoticationPop}
               ></Route>
               <Route path="/diary" exact component={Diary}></Route>
-              {/* <Route path="/diaryWrite" exact component={DiaryWrite}></Route> */}
+              <Route path="/diaryWrite" exact component={DiaryWrite}></Route>
               <Route path="/asmr" exact component={Asmr}></Route>
               <Route path="/mypage" exact component={Mypage} />
               <Route

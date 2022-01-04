@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import { ReactComponent as FeelIcon } from "../static/images/character/feel1.svg";
-
 const Charater = (props) => {
   const {
     shape,
@@ -39,7 +37,6 @@ const Charater = (props) => {
           name={name}
           src={require(`../static/images/character/feel${props.feelNumber}.svg`)}
         ></ImgIcon>
-
         {children}
       </div>
     );
@@ -48,21 +45,14 @@ const Charater = (props) => {
   if (shape === "sleep") {
     return (
       <div>
-        <SleepIcon
-          {...styles}
-          onClick={_onClick}
-          data-value={props.sleepNumber}
-          name={name}
-          // src={require(`../static/images/character/sleep${props.sleepNumber}.png`)}
-        ></SleepIcon>
-        {/* <ImgIcon
+        <ImgIcon
           {...styles}
           onClick={_onClick}
           data-value={props.sleepNumber}
           // name="sleepScore"
           name={name}
-          src={require(`../static/images/character/sleep${props.sleepNumber}.png`)}
-        ></ImgIcon> */}
+          src={require(`../static/images/character/sleep${props.sleepNumber}.svg`)}
+        ></ImgIcon>
         {children}
       </div>
     );
@@ -78,16 +68,14 @@ const Charater = (props) => {
             style={{ zIndex: "3" }}
             name={name}
             src={require(`../static/images/character/feel${props.feelNumber}.svg`)}
-            fill="red"
           />
-          <feelIcon />
-          {/* <ImgIcon
+          <ImgIcon
             {...styles}
             onClick={_onClick}
             style={{ zIndex: "2" }}
             name={name}
-            src={require(`../static/images/character/sleep${props.sleepNumber}.png`)}
-          /> */}
+            src={require(`../static/images/character/sleep${props.sleepNumber}.svg`)}
+          />
         </IconBox>
       </React.Fragment>
     );
@@ -136,15 +124,6 @@ const ImgIcon = styled.img`
   border-radius: 50%;
   ${(props) => (props.is_click ? `border : 1px solid red;` : ``)}
   ${(props) => (props.bg ? `background-color : #eee;` : ``)}
-  fill:red;
-  /* ${(props) => (props.sleepNumber ? `fill : ${props.sleepNumber};` : ``)} */
-`;
-const SleepIcon = styled.div`
-  width: 20px;
-  height: 20px;
-  ${(props) => (props.bg ? `background-color : ${props.bg};` : ``)}
-  border-radius: 50%;
-  ${(props) => (props.is_click ? `border : 1px solid red;` : ``)}
 `;
 
 export default Charater;
