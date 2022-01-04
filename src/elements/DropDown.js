@@ -71,7 +71,7 @@ const Dropdown = (props) => {
         )}
       </DropdownBody>
       {props.dayActive ? (
-        <DropdownMenu id="type2" isActive={props.dayActive}>
+        <DropdownMenu height="70px" id="type2" isActive={props.dayActive}>
           {props.dayItems &&
             props.dayItems.map((item) => (
               <DropdownItemContainer
@@ -87,7 +87,7 @@ const Dropdown = (props) => {
       ) : null}
 
       {props.hourActive ? (
-        <DropdownMenu id="type2" isActive={props.hourActive}>
+        <DropdownMenu height="100px" id="type2" isActive={props.hourActive}>
           {props.hourItems &&
             props.hourItems.map((item) => (
               <DropdownItemContainer
@@ -103,7 +103,7 @@ const Dropdown = (props) => {
       ) : null}
 
       {props.minutesActive ? (
-        <DropdownMenu id="type2" isActive={props.minutesActive}>
+        <DropdownMenu height="100px" id="type2" isActive={props.minutesActive}>
           {props.minutesItems &&
             props.minutesItems.map((item) => (
               <DropdownItemContainer
@@ -124,14 +124,13 @@ const Dropdown = (props) => {
 const DropdownContainer = styled.div`
   width: 93px;
   height: 48px;
-  margin: auto;
+  margin-top: 20px;
   text-align: center;
   border: 1.5px solid gray;
   border-radius: 10px;
   display: absolute;
   box-sizing: border-box;
   background-color: white;
-  
 
   &:hover {
     cursor: pointer;
@@ -142,13 +141,12 @@ const DropdownContainer = styled.div`
 const DisabledDropDownContainer = styled.div`
   width: 93px;
   height: 48px;
-  margin: auto;
+  margin-top: 20px;
   text-align: center;
   border: 1.5px solid gray;
   border-radius: 10px;
   display: absolute;
   box-sizing: border-box;
-  
 `;
 
 const DropdownBody = styled.div`
@@ -160,7 +158,7 @@ const DropdownBody = styled.div`
 const DropdownMenu = styled.ul`
   display: ${(props) => (props.isActive ? `block` : `none`)};
   width: 90px;
-  max-height: 110px;
+  height: ${(props) => props.height};
   overflow: scroll;
   background-color: white;
   position: absolute;

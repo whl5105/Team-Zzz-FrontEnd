@@ -153,7 +153,7 @@ const Diary = () => {
                           position="absolute"
                           feelNumber={scoreList.indexOf(item.feelScore) + 1}
                           sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
-                          sleepColor={
+                          scoreColor={
                             scoreColor[scoreList.indexOf(item.sleepScore) + 1]
                           }
                           _onClick={() => {
@@ -189,7 +189,7 @@ const Diary = () => {
       </div>
       {/* -- 다이어리 팝업 모달 -- */}
       {modalOpen ? (
-        <DiaryWrite open={modalOpen} close={closeModal} data={modalData} />
+        <DiaryWrite close={closeModal} data={modalData} />
       ) : (
         ""
       )}

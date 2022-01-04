@@ -22,6 +22,14 @@ const Navigation = (props) => {
     }
   };
 
+  const closeModal = (path = null) => {
+    if (path) {
+      history.push(path);
+    }
+
+    setDiaryModal(false);
+  };
+
   return (
     <Gnb>
       <Box
@@ -45,12 +53,8 @@ const Navigation = (props) => {
         <Icon categoryImage={diaryIcon} />
         다이어리
       </Box>
-
       {diaryModal && (
-        <RequireLogin
-          modal={diaryModal}
-          setDiaryModal={setDiaryModal}
-        ></RequireLogin>
+        <RequireLogin open={diaryModal} close={closeModal}></RequireLogin>
       )}
       <Box
         onClick={() => {

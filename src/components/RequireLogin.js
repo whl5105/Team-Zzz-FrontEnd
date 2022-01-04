@@ -1,76 +1,46 @@
 import styled from "styled-components";
 import React from "react";
-import Modal from "react-modal";
-import { history } from "../redux/configureStore";
+import ModalPopUp from "./ModalPopUp";
+
 const RequireLogin = (props) => {
-  const [modal, setModal] = React.useState(props.modal ? true : false); // 모달창
-
-  const modalOff = (path = null) => {
-    if (path) {
-      history.push(path);
-    }
-
-    setModal(false);
-    props.setDiaryModal(false);
-  };
-
   return (
     <>
-      <Modal
-        isOpen={modal}
-        ariaHideApp={false}
-        onRequestClose={modalOff}
-        style={{
-          overlay: {
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            zIndex: "1",
-          },
-          content: {
-            position: "absolute",
-            width: "300px",
-            height: "173px",
-            margin: "auto",
-            background: "#ffffff",
-            overflow: "auto",
-            WebkitOverflowScrolling: "touch",
-            borderRadius: "12px",
-            outline: "none",
-          },
-        }}
-      >
-        <div style={{ marginTop: "20px" }}>
-          <Title>로그인이 필요합니다.</Title>
-          <SubTitle>로그인 화면으로 이동 하시겠습니까?</SubTitle>
-        </div>
-        <div>
-          <Button
-            border="1px solid #DADADA"
-            color="#696969"
-            backgroundColor="#ffffff"
-            onClick={modalOff}
-          >
-            아니오
-          </Button>
-          <Button
-            border="none"
-            color="#ffffff"
-            backgroundColor="#FBC037"
-            onClick={() => {
-              modalOff("/login");
-            }}
-          >
-            예
-          </Button>
-        </div>
-      </Modal>
+      <ModalPopUp close={props.close}>
+        <Wrap>
+          <div>
+            <Title>로그인이 필요합니다.</Title>
+            <SubTitle>로그인 화면으로 이동 하시겠습니까?</SubTitle>
+          </div>
+          <div>
+            <Button
+              border="1px solid #DADADA"
+              color="#696969"
+              backgroundColor="#ffffff"
+              onClick={props.close}
+            >
+              아니오
+            </Button>
+            <Button
+              border="none"
+              color="#ffffff"
+              backgroundColor="#FBC037"
+              onClick={() => {
+                props.close("/login");
+              }}
+            >
+              예
+            </Button>
+          </div>
+        </Wrap>
+      </ModalPopUp>
     </>
   );
 };
+
+const Wrap = styled.div`
+  width: 200px;
+  height: 200px;
+`;
 
 const Title = styled.p`
   width: 295px;
