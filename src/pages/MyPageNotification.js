@@ -1,11 +1,12 @@
 // 푸시 알림 팝업 페이지
 import React from "react";
-import Modal from "react-modal";
-import Switch from "@mui/material/Switch";
+import styled from "styled-components";
 
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
+import DropDown from "../elements/DropDown";
+import Toggle from "../elements/Toggle";
 
 const MyPageNotification = (props) => {
   const notices = useSelector((state) => state.notice.time.sleepChk);
@@ -13,12 +14,46 @@ const MyPageNotification = (props) => {
   const hours = useSelector((state) => state.notice.time.hour);
   const minute = useSelector((state) => state.notice.time.min);
 
-  const [modal, setModal] = React.useState(true); // 모달창
+  // const [modal, setModal] = React.useState(true); // 모달창
   const [notice, setNotice] = React.useState(notices); // 알림 유무
   const [day, setDay] = React.useState(days); // 오전("AM"), 오후("PM") 설정
   const [hour, setHour] = React.useState(hours); // 시 설정
   const [minutes, setMinutes] = React.useState(minute); // 분 설정
   const userIdx = props.match.params.userIdx;
+
+  const [dayActive, setDayActive] = React.useState(false);
+  const [hourActive, setHourActive] = React.useState(false);
+  const [minutesActive, setMinutesActive] = React.useState(false);
+
+  const dayItems = ["AM", "PM"];
+  const hourItems = [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+  ];
+  const minutesItems = [
+    "00",
+    "05",
+    "10",
+    "15",
+    "20",
+    "25",
+    "30",
+    "35",
+    "40",
+    "45",
+    "50",
+    "55",
+  ];
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -35,94 +70,225 @@ const MyPageNotification = (props) => {
 
   return (
     <>
+    <p
+            style={{
+              position: "absolute",
+              width: "102px",
+              height: "22px",
+              left: "20px",
+              top: "70px",
+              fontSize: "22px",
+              lineHeight: "100%",
+              color: "white",
+              margin: "0px",
+            }}
+          >
+            알림 편집
+          </p>
       <div
         style={{
           //   width:"500px",
           position: "absolute",
-          top: "60px",
-          left: "35%",
-          width: "30%",
-          height: "80%",
-          border: "1px solid #ccc",
-          background: "#fff",
-          overflow: "auto",
-          WebkitOverflowScrolling: "touch",
-          borderRadius: "4px",
+          width: "335px",
+          height: "253px",
+          left: "20px",
+          top: "122px",
+          margin: "auto",
+          background: "rgba(248,248,248,0.1)",
+          boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+          // overflow: "auto",
+          // WebkitOverflowScrolling: "touch",
+          borderRadius: "12px",
           outline: "none",
-          padding: "20px",
         }}
       >
-        <h1>푸쉬 알림 여부</h1>
-        <p>
-          수면 기록 알림을 받으시겠습니까? &nbsp;
-          <Switch
-            checked={notice}
-            onClick={() => {
-              setNotice(!notice);
-            }}
-          />
-        </p>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "clumn",
+            alignItems: "flex-start",
+            padding: "0px",
+
+            position: "absolute",
+            width: "295px",
+            height: "27px",
+            left: "20px",
+            top: "20px",
+          }}
+        >
+          <Title>매일 알림 받고 기록하기</Title>
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            width: "295px",
+            height: "30px",
+            left: "20px",
+            top: "67px",
+          }}
+        >
+          <ToggleSwitch>
+            수면 기록 알림 받기
+            <div
+              style={{
+                position: "absolute",
+                left: "242px",
+              }}
+            >
+              <Toggle notice={notice} setNotice={setNotice} label=" "></Toggle>
+            </div>
+          </ToggleSwitch>
+        </div>
         <div>
           {notice ? (
             <>
-              <p>시간은 언제가 좋으세요?</p>
-              <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-                <p>매일</p>
-                <select
-                  onChange={(e) => {
-                    setDay(e.target.value);
-                  }}
-                  value={day}
-                >
-                  <option value="AM">오전</option>
-                  <option value="PM">오후</option>
-                </select>
-                <select
-                  onChange={(e) => {
-                    setHour(e.target.value);
-                  }}
-                  value={hour}
-                >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
-                  <option>11</option>
-                  <option>12</option>
-                </select>
-                <select
-                  onChange={(e) => {
-                    setMinutes(e.target.value);
-                  }}
-                  value={minutes}
-                >
-                  <option>00</option>
-                  <option>05</option>
-                  <option>10</option>
-                  <option>15</option>
-                  <option>20</option>
-                  <option>25</option>
-                  <option>30</option>
-                  <option>35</option>
-                  <option>40</option>
-                  <option>45</option>
-                  <option>50</option>
-                  <option>55</option>
-                </select>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  pading: "0px",
+                  position: "absolute",
+                  width: "295px",
+                  height: "48px",
+                  left: "20px",
+                  top: "117px",
+                  zIndex: "1",
+                }}
+              >
+                <DropDown
+                  dayActive={dayActive}
+                  setDayActive={setDayActive}
+                  setHourActive={setHourActive}
+                  setMinutesActive={setMinutesActive}
+                  condition={""}
+                  title={day}
+                  dayItems={dayItems}
+                  state={setDay}
+                ></DropDown>
+                <DropDown
+                  hourActive={hourActive}
+                  setDayActive={setDayActive}
+                  setHourActive={setHourActive}
+                  setMinutesActive={setMinutesActive}
+                  condition={"시"}
+                  title={hour}
+                  hourItems={hourItems}
+                  state={setHour}
+                ></DropDown>
+                <DropDown
+                  minutesActive={minutesActive}
+                  setDayActive={setDayActive}
+                  setHourActive={setHourActive}
+                  setMinutesActive={setMinutesActive}
+                  condition={"분"}
+                  title={minutes}
+                  minutesItems={minutesItems}
+                  state={setMinutes}
+                ></DropDown>
               </div>
             </>
-          ) : null}
-          <button onClick={send}>확인</button>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "flex-start",
+                pading: "0px",
+                position: "absolute",
+                width: "295px",
+                height: "48px",
+                left: "20px",
+                top: "117px",
+              }}
+            >
+              <DropDown state="disabled" condition={""} title={day}></DropDown>
+              <DropDown
+                state="disabled"
+                condition={"시"}
+                title={hour}
+              ></DropDown>
+              <DropDown
+                state="disabled"
+                condition={"분"}
+                title={minutes}
+              ></DropDown>
+            </div>
+          )}
         </div>
+
+        <Button onClick={send}>
+          <p
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: "0px",
+              position: "absolute",
+              width: "26px",
+              height: "20px",
+              left: "calc(50%-26px/2 + 1px)",
+              top: "calc(50% - 20px/2)",
+            }}
+          >
+            확인
+          </p>
+        </Button>
       </div>
     </>
   );
 };
+
+const Title = styled.p`
+  /* position: absolute;
+  left:0px;
+  top:0px; */
+
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  position: static;
+  line-height: 27px;
+  letter-spacing: -0.3px;
+  vertical-align: top;
+  text-align: left;
+`;
+
+const ToggleSwitch = styled.div`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  font-weight: ${({ theme }) => theme.fontWeight.Medium};
+  letter-spacing: -0.3px;
+  display: flex;
+  /* justify-content: space-between; */
+  position: absolute;
+  width: 300px;
+  height: 30px;
+  /* left: 265px; */
+  /* top: 67px; */
+`;
+
+const Button = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  position: absolute;
+  width: 295px;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  left: 20px;
+  top: 185px;
+  background-color: ${({ theme }) => theme.colors.main_1};
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+`;
 
 export default MyPageNotification;
