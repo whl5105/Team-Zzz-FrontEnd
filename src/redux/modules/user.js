@@ -6,10 +6,12 @@ import axios from "axios";
 
 // -- actions --
 const SIGNUP = "SIGNUP";
+const ERR_SIGNUP = "ERR_SIGNUP";
 const SET_USER = "SET_USER";
 
 // -- action creators --
-const signup = createAction(SIGNUP, (errMessage) => ({ errMessage }));
+const signup = createAction(SIGNUP);
+const err_signup = createAction(ERR_SIGNUP);
 const setUser = createAction(SET_USER, (user) => ({ user }));
 
 // -- initialState --
@@ -21,6 +23,7 @@ const initialState = {
   },
   errMessage: "",
   is_login: false,
+  is_Signup: false,
 };
 
 // -- middleware actions --
@@ -31,11 +34,11 @@ export const signupDB =
     try {
       const res = await apis.signup(userId, password);
       console.log(res.retult);
-      window.alert("회원가입이 완료되었습니다. 로그인 해주세요");
-      history.replace("/login");
+      dispatch(signup());
+      history.push("/login");
     } catch (err) {
       console.log(`오류 발생!${err}`);
-      dispatch(signup(err.errMessage));
+      dispatch(err_signup());
     }
   };
 //---- 로그인 DB ----
@@ -83,7 +86,11 @@ export default handleActions(
   {
     [SIGNUP]: (state, action) =>
       produce(state, (draft) => {
-        draft.errMessage = action.payload.errMessage;
+        draft.is_Signup = true;
+      }),
+    [ERR_SIGNUP]: (state, action) =>
+      produce(state, (draft) => {
+        draft.errMessage = "중복된 아이디 입니다 ";
       }),
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {

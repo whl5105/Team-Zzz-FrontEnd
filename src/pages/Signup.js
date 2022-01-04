@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 import { Input } from "../elements";
 
+import reset from "../static/images/icon/reset.svg";
+
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore.js";
 
 //modules
 import { actionCreators as userActions } from "../redux/modules/user";
-
-import reset from "../static/images/icon/reset.svg";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
@@ -31,16 +31,9 @@ const Signup = (props) => {
   const [isPassword, setIsPassword] = React.useState(false);
   const [isPwdCheck, setIsPwdCheck] = React.useState(false);
 
-  // const onReset = (e) => {
-  //   setId({
-  //     ...id,
-  //     [e.target.name]: "",
-  //   });
-  // };
-
   //---- 아이디 유효성 검사  ----
   const idCheck = (e) => {
-    const idRegExp = /^[a-zA-z0-9]{5,10}$/;
+    const idRegExp = /^[a-zA-Z0-9]{5,10}$/;
     const idCurrent = e.target.value;
     setId(idCurrent);
     if (!idRegExp.test(idCurrent)) {
@@ -54,7 +47,8 @@ const Signup = (props) => {
 
   //---- 비밀번호 유효성 검사  ----
   const onChangePassword = (e) => {
-    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
+    const passwordRegex =
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
     const passwordCurrent = e.target.value;
     setPwd(passwordCurrent);
 
@@ -86,14 +80,22 @@ const Signup = (props) => {
       window.alert("아이디, 패스워드, 이메일을 정확하게  입력해주세요");
       return;
     }
+
     dispatch(userActions.signupDB(id, pwd));
 
     //중복 아이디 일 경우
     if (errMessage) {
-      setIdMessage("이미 있는 아이디 입니다.");
+      setIdMessage("중복된 아이디 입니다");
       setIsId(false);
     }
   };
+
+  // React.useEffect(() => {
+  //   //회원가입이 완료될때
+  //   if (is_Signup) {
+  //     setSingupok(true);
+  //   }
+  // }, [is_Signup]);
 
   return (
     <Container>
@@ -101,6 +103,7 @@ const Signup = (props) => {
       <Input
         resetInput
         placeholder="아이디"
+        type="text"
         value={id}
         onChange={idCheck}
         src={reset}
@@ -120,6 +123,7 @@ const Signup = (props) => {
       <Input
         resetInput
         placeholder="비밀번호"
+        type="password"
         value={pwd}
         onChange={onChangePassword}
         src={reset}
@@ -138,8 +142,9 @@ const Signup = (props) => {
 
       {/* -- 비밀번호 확인 -- */}
       <Input
-        type="password"
         placeholder="비밀번호 확인"
+        type="password"
+        value={pwd_check}
         onChange={onChangePasswordCheck}
       />
       {pwd_check.length > 0 ? (

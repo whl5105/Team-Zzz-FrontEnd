@@ -8,10 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 import reset from "../static/images/icon/reset.svg";
+import SingupSuccess from "../components/SingupSuccess";
 
 const Login = () => {
   const dispatch = useDispatch();
   const errMessage = useSelector((store) => store.user.errMessage);
+  const is_Signup = useSelector((store) => store.user.is_Signup);
   const [inputs, setInputs] = useState({
     id: "",
     pwd: "",
@@ -86,8 +88,10 @@ const Login = () => {
         />
       </InputBox>
 
-      {!isState && (
+      {!isState ? (
         <Span className={`${isState ? "success" : "error"}`}>{Message}</Span>
+      ) : (
+        <Span></Span>
       )}
       <div>
         <Button type="submit" onClick={loginClick}>
@@ -102,6 +106,7 @@ const Login = () => {
           <p>회원가입하기</p>
         </SignUp>
       </div>
+      {is_Signup ? <SingupSuccess></SingupSuccess> : ""}
     </Container>
   );
 };

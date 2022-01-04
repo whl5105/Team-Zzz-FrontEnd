@@ -50,7 +50,7 @@ const Input = (props) => {
 
 Input.defaultProps = {
   placeholder: "텍스트를 입력해주세요.",
-  type: "text",
+  type: "",
   name: "",
   value: "",
   onChange: () => {},
