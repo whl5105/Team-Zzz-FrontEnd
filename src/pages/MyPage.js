@@ -31,11 +31,7 @@ const Mypage = (props) => {
   if (is_token) {
     return (
       <React.Fragment>
-        <div
-          style={{
-            position: "relative",
-          }}
-        >
+        <div>
           <p
             style={{
               position: "absolute",
@@ -506,7 +502,8 @@ const Banner = styled.div`
   left: 20px;
   top: 112px;
   background-image: url(${(props) => props.categoryImage});
-  /* margin: 0px; */
+  background-repeat: no-repeat;
+  background-size: cover;
   cursor: pointer;
 `;
 
