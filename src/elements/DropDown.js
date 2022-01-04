@@ -130,6 +130,8 @@ const DropdownContainer = styled.div`
   border-radius: 10px;
   display: absolute;
   box-sizing: border-box;
+  background-color: white;
+  
 
   &:hover {
     cursor: pointer;
@@ -146,6 +148,7 @@ const DisabledDropDownContainer = styled.div`
   border-radius: 10px;
   display: absolute;
   box-sizing: border-box;
+  
 `;
 
 const DropdownBody = styled.div`
