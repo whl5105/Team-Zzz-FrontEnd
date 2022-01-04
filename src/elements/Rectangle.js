@@ -4,20 +4,16 @@ import DiaryAvg from "../static/images/diary/DiaryAvg.png";
 
 const Rectangle = (props) => {
   return (
-    <div style={{ position: "relative", margin: "-75px 20px" }}>
+    <div style={{ position: "relative", margin: "-22% 20px" }}>
       <Text>{props.text}</Text>
-      <Image src={DiaryAvg}></Image>
+      <img src={DiaryAvg}></img>
     </div>
   );
 };
 
-const Image = styled.img`
-  position: relat;
-`;
-
 const Text = styled.p`
   position: absolute;
-  top: 47%;
+  top: 48%;
   margin-left: 5%;
   color: ${({ theme }) => theme.colors.bg};
   font-size: ${({ theme }) => theme.fontSizes.small};

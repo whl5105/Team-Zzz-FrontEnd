@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../redux/modules/diary";
@@ -7,6 +8,7 @@ import Charater from "../elements/Charater";
 import { useLocation } from "react-router-dom";
 
 import Rectangle from "../elements/Rectangle";
+import NoInfo from "../static/images/diary/NoInfo.png";
 
 const Diary = () => {
   const location = useLocation();
@@ -120,19 +122,7 @@ const Diary = () => {
         <br />
         {list.length > 0 ? (
           <>
-            <div
-              style={{
-                backgroundColor: "aliceblue",
-                width: "315px",
-                minHeight: "550px",
-                maxHeight: "550px",
-                margin: "0px auto",
-                display: "flex",
-                flexWrap: "wrap",
-                padding: "10px 0px 10px 17px",
-                textAlign: "center",
-              }}
-            >
+            <Content>
               {list.map((item, index) => {
                 return (
                   <div key={index + 1 + "days"}>
@@ -167,26 +157,35 @@ const Diary = () => {
                   </div>
                 );
               })}
-            </div>
+            </Content>
             <Rectangle text="저번주보다 20% 잠을 더 잘 주무셨네요"></Rectangle>
           </>
         ) : (
-          <div
-            style={{
-              back: "aliceblue",
-              minHeight: "550px",
-              maxHeight: "550px",
-              margin: "0px auto",
-              display: "flex",
-              flexWrap: "wrap",
-              padding: "10px 0px 10px 17px",
-              textAlign: "center",
-            }}
-          ></div>
+          <Content2></Content2>
         )}
       </div>
     </>
   );
 };
+
+const Content = styled.div`
+  background-color: ${({ theme }) => theme.colors.bg}};
+  color: ${({theme}) => theme.colors.white};
+  width: 315px;
+  min-height: 550px;
+  max-height: 550px;
+  margin: 0px auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0px 10px 17px;
+  text-align: center;
+`;
+
+const Content2 = styled.div`
+  height: 700px;
+  margin-top: 16px;
+  background-image: url(${NoInfo});
+  background-repeat: no-repeat;
+`;
 
 export default Diary;
