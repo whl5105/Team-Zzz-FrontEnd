@@ -5,6 +5,8 @@ import { history } from "../redux/configureStore.js";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
+import reset from "../static/images/icon/reset.svg";
+
 const Login = () => {
   const dispatch = useDispatch();
   const errMessage = useSelector((store) => store.user.errMessage);
@@ -24,6 +26,12 @@ const Login = () => {
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
+    });
+  };
+  const onReset = (e) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: "",
     });
   };
 
@@ -50,21 +58,20 @@ const Login = () => {
   return (
     <Container>
       <Title>로그인</Title>
-
-      <Input
-        placeholder="아이디"
-        name="id"
-        value={id}
-        onChange={onChange}
-      ></Input>
-
-      <Input
-        placeholder="비밀번호"
-        type="password"
-        name="pwd"
-        value={pwd}
-        onChange={onChange}
-      ></Input>
+      <InputGrop class="btn-group">
+        <Input placeholder="아이디" name="id" value={id} onChange={onChange} />
+        <img src={reset} alt="resetButton" name="id" onClick={onReset} />
+      </InputGrop>
+      <InputGrop class="btn-group">
+        <Input
+          placeholder="비밀번호"
+          type="password"
+          name="pwd"
+          value={pwd}
+          onChange={onChange}
+        ></Input>
+        <img src={reset} alt="resetButton" name="pwd" onClick={onReset} />
+      </InputGrop>
 
       {!isState && (
         <Span className={`${isState ? "success" : "error"}`}>{Message}</Span>
@@ -114,17 +121,31 @@ const Span = styled.span`
   }
 `;
 
-const Input = styled.input`
+const InputGrop = styled.div`
   width: 100%;
   height: 60px;
-  padding: 0 ${({ theme }) => theme.paddings.xxxxl};
-  box-sizing: border-box;
-  border-radius: 8px;
-  font-size: ${({ theme }) => theme.fontSizes.small};
   border: 1px solid ${({ theme }) => theme.colors.main_1};
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
   &:nth-child(2) {
     margin-bottom: 20px;
   }
+
+  & img {
+    width: 20px;
+    padding-right: 20px;
+  }
+`;
+const Input = styled.input`
+  width: 100%;
+  /* height: 60px; */
+  padding: 0 1.25rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  border: none;
   &:focus {
     outline: none;
   }

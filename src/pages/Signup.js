@@ -8,6 +8,8 @@ import { history } from "../redux/configureStore.js";
 //modules
 import { actionCreators as userActions } from "../redux/modules/user";
 
+import reset from "../static/images/icon/reset.svg";
+
 const Signup = (props) => {
   const dispatch = useDispatch();
   const errMessage = useSelector((store) => store.user.errMessage);
@@ -26,6 +28,13 @@ const Signup = (props) => {
   const [isId, setIsId] = React.useState(false);
   const [isPassword, setIsPassword] = React.useState(false);
   const [isPwdCheck, setIsPwdCheck] = React.useState(false);
+
+  // const onReset = (e) => {
+  //   setId({
+  //     ...id,
+  //     [e.target.name]: "",
+  //   });
+  // };
 
   //---- 아이디 유효성 검사  ----
   const idCheck = (e) => {
@@ -89,7 +98,16 @@ const Signup = (props) => {
       <Title>회원가입</Title>
       {/* -- 아이디 --  */}
       <InputBox>
-        <Input placeholder="아이디" onChange={idCheck} />
+        <InputGrop class="btn-group">
+          <Input placeholder="아이디" value={id} onChange={idCheck} />
+          <img
+            src={reset}
+            alt="resetButton"
+            onClick={() => {
+              setId("");
+            }}
+          />
+        </InputGrop>
         {id.length > 0 ? (
           <Span className={`${isId ? "success" : "error"}`}>{idMessage}</Span>
         ) : (
@@ -98,11 +116,25 @@ const Signup = (props) => {
       </InputBox>
       {/* -- 비밀번호 --  */}
       <InputBox>
-        <Input
+        {/* <Input
           type="password"
           placeholder="비밀번호"
           onChange={onChangePassword}
-        ></Input>
+        ></Input> */}
+        <InputGrop class="btn-group">
+          <Input
+            placeholder="비밀번호"
+            value={pwd}
+            onChange={onChangePassword}
+          />
+          <img
+            src={reset}
+            alt="resetButton"
+            onClick={() => {
+              setPwd("");
+            }}
+          />
+        </InputGrop>
         {pwd.length > 0 ? (
           <Span className={`${isPassword ? "success" : "error"}`}>
             {pwdMessage}
@@ -173,17 +205,31 @@ const InputBox = styled.div`
     margin-bottom: 30px;
   }
 `;
-const Input = styled.input`
+const InputGrop = styled.div`
   width: 100%;
   height: 60px;
-  padding: 0 ${({ theme }) => theme.paddings.xxxxl};
-  box-sizing: border-box;
-  border-radius: 8px;
-  font-size: ${({ theme }) => theme.fontSizes.small};
   border: 1px solid ${({ theme }) => theme.colors.main_1};
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
   &:nth-child(2) {
     margin-bottom: 20px;
   }
+
+  & img {
+    width: 20px;
+    padding-right: 20px;
+  }
+`;
+const Input = styled.input`
+  width: 100%;
+  /* height: 60px; */
+  padding: 0 1.25rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  border: none;
   &:focus {
     outline: none;
   }
