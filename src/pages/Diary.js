@@ -153,7 +153,7 @@ const Diary = () => {
                           position="absolute"
                           feelNumber={scoreList.indexOf(item.feelScore) + 1}
                           sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
-                          sleepColor={
+                          scoreColor={
                             scoreColor[scoreList.indexOf(item.sleepScore) + 1]
                           }
                           _onClick={() => {
