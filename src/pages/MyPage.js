@@ -34,7 +34,7 @@ const Mypage = (props) => {
           <p
             style={{
               position: "absolute",
-              width: "102px",
+              width: "120px",
               height: "22px",
               left: "20px",
               top: "70px",
@@ -49,7 +49,7 @@ const Mypage = (props) => {
           <p
             style={{
               position: "absolute",
-              width: "51px",
+              width: "60px",
               height: "24px",
               left: "303px",
               top: "69px",
@@ -304,17 +304,11 @@ const Mypage = (props) => {
   }
   return (
     <React.Fragment>
-      <div
-        style={{
-          position: "relative",
-          // width: "375px",
-          // height: "812px",
-        }}
-      >
+      <div>
         <p
           style={{
             position: "absolute",
-            width: "102px",
+            width: "150px",
             height: "22px",
             left: "20px",
             top: "70px",

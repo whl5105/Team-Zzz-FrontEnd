@@ -73,7 +73,7 @@ const MyPageNotification = (props) => {
       <p
         style={{
           position: "absolute",
-          width: "102px",
+          width: "120px",
           height: "22px",
           left: "20px",
           top: "70px",
@@ -153,7 +153,6 @@ const MyPageNotification = (props) => {
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "flex-start",
-                  padding: "0px",
                   position: "absolute",
                   width: "295px",
                   height: "48px",
@@ -212,20 +211,33 @@ const MyPageNotification = (props) => {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "flex-start",
-                padding: "0px",
                 position: "absolute",
                 width: "295px",
                 height: "48px",
                 left: "20px",
-                top: "117px",
+                top: "100px",
               }}
             >
-              <DropDown state="disabled" condition={""} title={day}></DropDown>
+              <div
+                  style={{
+                    marginRight: "8px",
+                  }}
+                >
+              <DropDown state="disabled" condition={""} title={day}>
+
+              </DropDown>
+              </div>
+              <div
+                  style={{
+                    marginRight: "8px",
+                  }}
+                >
               <DropDown
                 state="disabled"
                 condition={"시"}
                 title={hour}
               ></DropDown>
+              </div>
               <DropDown
                 state="disabled"
                 condition={"분"}

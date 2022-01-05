@@ -163,8 +163,8 @@ export default handleActions(
   {
     [GET_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        draft.diaryList = action.payload.diaryListInfo.getDiary;
-        draft.sleepAvg = action.payload.diaryListInfo.sleepAvg;
+        draft.diaryList = action.payload.diaryList;
+        draft.sleepAvg = action.payload.diaryScore;
       }),
     [ADD_DIARY]: (state, action) =>
       produce(state, (draft) => {
