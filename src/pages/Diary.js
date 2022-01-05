@@ -135,8 +135,17 @@ const Diary = () => {
             <img src={Right} alt="right"></img>
           </Button>
         </Wrap>
-        <br />
-        {list.length > 0 ? (
+        <br></br>
+        {/* 다음달 */}
+        {moment().format("YYYYMM") <
+        `${day.getFullYear()}${
+          day.getMonth() + 1 < 10
+            ? `0${day.getMonth() + 1}`
+            : day.getMonth() + 1
+        }` ? (
+          <NoRecord></NoRecord>
+        ) : (
+          // 저번달 && 이번달
           <div>
             <Content>
               {list.map((item, index) => {
@@ -181,8 +190,6 @@ const Diary = () => {
             </Content>
             <Rectangle text={sleepAvg}></Rectangle>
           </div>
-        ) : (
-          <Content2></Content2>
         )}
       </div>
       {/* -- 다이어리 팝업 모달 -- */}
@@ -239,7 +246,7 @@ const Content = styled.div`
   }
 `;
 
-const Content2 = styled.div`
+const NoRecord = styled.div`
   height: 620px;
   margin-top: 13px;
   background-image: url(${NoInfo});
