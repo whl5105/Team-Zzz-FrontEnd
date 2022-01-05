@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Input } from "../elements";
+
+import reset from "../static/images/icon/reset.svg";
+
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { history } from "../redux/configureStore.js";
@@ -29,7 +33,7 @@ const Signup = (props) => {
 
   //---- 아이디 유효성 검사  ----
   const idCheck = (e) => {
-    const idRegExp = /^[a-zA-z0-9]{5,10}$/;
+    const idRegExp = /^[a-zA-Z0-9]{5,10}$/;
     const idCurrent = e.target.value;
     setId(idCurrent);
     if (!idRegExp.test(idCurrent)) {
@@ -43,7 +47,8 @@ const Signup = (props) => {
 
   //---- 비밀번호 유효성 검사  ----
   const onChangePassword = (e) => {
-    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
+    const passwordRegex =
+      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
     const passwordCurrent = e.target.value;
     setPwd(passwordCurrent);
 
@@ -75,57 +80,80 @@ const Signup = (props) => {
       window.alert("아이디, 패스워드, 이메일을 정확하게  입력해주세요");
       return;
     }
+
     dispatch(userActions.signupDB(id, pwd));
 
     //중복 아이디 일 경우
     if (errMessage) {
-      setIdMessage("이미 있는 아이디 입니다.");
+      setIdMessage("중복된 아이디 입니다");
       setIsId(false);
     }
   };
 
+  // React.useEffect(() => {
+  //   //회원가입이 완료될때
+  //   if (is_Signup) {
+  //     setSingupok(true);
+  //   }
+  // }, [is_Signup]);
+
   return (
     <Container>
       <Title>회원가입</Title>
-      {/* -- 아이디 --  */}
-      <InputBox>
-        <Input placeholder="아이디" onChange={idCheck} />
-        {id.length > 0 ? (
-          <Span className={`${isId ? "success" : "error"}`}>{idMessage}</Span>
-        ) : (
-          <Span>영문 대,소문자, 숫자를 포함(5-10자)</Span>
-        )}
-      </InputBox>
+      <Input
+        resetInput
+        placeholder="아이디"
+        type="text"
+        value={id}
+        onChange={idCheck}
+        src={reset}
+        alt="resetButton"
+        onClick={() => {
+          setId("");
+        }}
+      />
+
+      {id.length > 0 ? (
+        <Span className={`${isId ? "success" : "error"}`}>{idMessage}</Span>
+      ) : (
+        <Span>영문 대,소문자, 숫자를 포함(5-10자)</Span>
+      )}
+
       {/* -- 비밀번호 --  */}
-      <InputBox>
-        <Input
-          type="password"
-          placeholder="비밀번호"
-          onChange={onChangePassword}
-        ></Input>
-        {pwd.length > 0 ? (
-          <Span className={`${isPassword ? "success" : "error"}`}>
-            {pwdMessage}
-          </Span>
-        ) : (
-          <Span>영문 대,소문자, 숫자를 포함(8-20자)</Span>
-        )}
-      </InputBox>
+      <Input
+        resetInput
+        placeholder="비밀번호"
+        type="password"
+        value={pwd}
+        onChange={onChangePassword}
+        src={reset}
+        alt="resetButton"
+        onClick={() => {
+          setPwd("");
+        }}
+      />
+      {pwd.length > 0 ? (
+        <Span className={`${isPassword ? "success" : "error"}`}>
+          {pwdMessage}
+        </Span>
+      ) : (
+        <Span>영문 대,소문자, 숫자를 포함(8-20자)</Span>
+      )}
+
       {/* -- 비밀번호 확인 -- */}
-      <InputBox>
-        <Input
-          type="password"
-          placeholder="비밀번호 확인"
-          onChange={onChangePasswordCheck}
-        ></Input>
-        {pwd_check.length > 0 ? (
-          <Span className={`${isPwdCheck ? "success" : "error"}`}>
-            {pwdCheckMessage}
-          </Span>
-        ) : (
-          <Span>영문 대,소문자, 숫자를 포함(8-20자)</Span>
-        )}
-      </InputBox>
+      <Input
+        placeholder="비밀번호 확인"
+        type="password"
+        value={pwd_check}
+        onChange={onChangePasswordCheck}
+      />
+      {pwd_check.length > 0 ? (
+        <Span className={`${isPwdCheck ? "success" : "error"}`}>
+          {pwdCheckMessage}
+        </Span>
+      ) : (
+        <Span>영문 대,소문자, 숫자를 포함(8-20자)</Span>
+      )}
       {/* -- 회원가입 버튼 --*/}
       <Button onClick={signUpClick}>회원가입</Button>
       <Login
@@ -159,6 +187,7 @@ const Span = styled.span`
   color: ${({ theme }) => theme.colors.gray_3};
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   display: flex;
+  margin-bottom: ${({ theme }) => theme.margins.xxxxl};
   &.success {
     color: #4791ff;
   }
@@ -167,27 +196,6 @@ const Span = styled.span`
   }
 `;
 
-const InputBox = styled.div`
-  margin-bottom: ${({ theme }) => theme.margins.xxxxl};
-  &:nth-child(4) {
-    margin-bottom: 30px;
-  }
-`;
-const Input = styled.input`
-  width: 100%;
-  height: 60px;
-  padding: 0 ${({ theme }) => theme.paddings.xxxxl};
-  box-sizing: border-box;
-  border-radius: 8px;
-  font-size: ${({ theme }) => theme.fontSizes.small};
-  border: 1px solid ${({ theme }) => theme.colors.main_1};
-  &:nth-child(2) {
-    margin-bottom: 20px;
-  }
-  &:focus {
-    outline: none;
-  }
-`;
 const Button = styled.button`
   width: 100%;
   height: 50px;

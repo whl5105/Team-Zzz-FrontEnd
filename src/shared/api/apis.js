@@ -13,7 +13,7 @@ export const apis = {
   postNotice: (sleepChk, timePA, hour, min) =>
     instance.post("/api/notice", { sleepChk, timePA, hour, min }),
   putNotice: (sleepChk, timePA, hour, min, userIdx) =>
-    instance.put(`/api/notice/${userIdx}`, {sleepChk, timePA, hour, min}),
+    instance.put(`/api/notice/${userIdx}`, { sleepChk, timePA, hour, min }),
 
   //-- main , asmr --
   getAsmr: () => instance.get("/api/asmr"),
@@ -26,9 +26,13 @@ export const apis = {
   //-- diary --
   getDiary: (userIdx, yearMonth) =>
     instance.get(`/api/diary/${userIdx}`, { yearMonth }), //월별 다이어리 데이터
-  addDiary: (diaryListInfo) =>
+  addDiary: (yearMonth, day, feelScore, sleepScore, comment) =>
     instance.post("/api/diary", {
-      diaryListInfo,
+      yearMonth,
+      day,
+      feelScore,
+      sleepScore,
+      comment,
     }),
   editDiaryDB: (userIdx, diaryListInfo) =>
     instance.put(`/api/diary/${userIdx}`, { diaryListInfo }),
