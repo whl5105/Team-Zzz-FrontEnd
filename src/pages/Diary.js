@@ -39,6 +39,7 @@ const Diary = () => {
   ];
 
   const getDiaryInfo = async (year, month) => {
+    console.log(year, month);
     await dispatch(diaryActions.getDiaryDB(year, month));
   };
 
@@ -47,6 +48,7 @@ const Diary = () => {
     const day = new Date(getMoment); // 사용자가 선택한 날짜
 
     if (!diaryList) {
+      console.log("다이어리 없음 겟요청 ");
       getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
     }
 
@@ -153,7 +155,7 @@ const Diary = () => {
                           position="absolute"
                           feelNumber={scoreList.indexOf(item.feelScore) + 1}
                           sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
-                          sleepColor={
+                          scoreColor={
                             scoreColor[scoreList.indexOf(item.sleepScore) + 1]
                           }
                           _onClick={() => {
@@ -188,11 +190,7 @@ const Diary = () => {
         )}
       </div>
       {/* -- 다이어리 팝업 모달 -- */}
-      {modalOpen ? (
-        <DiaryWrite open={modalOpen} close={closeModal} data={modalData} />
-      ) : (
-        ""
-      )}
+      {modalOpen ? <DiaryWrite close={closeModal} data={modalData} /> : ""}
     </>
   );
 };

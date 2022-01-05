@@ -35,21 +35,21 @@ const Main = (props) => {
       <Title>당신의 편안한 밤을 위해</Title>
       <Category
         path="/asmr"
-        category="자연"
+        category="네이쳐"
         title="네이쳐"
         bannerImage={nature}
         subTitle="편안한 자연 속으로"
       ></Category>
       <Category
         path="/asmr"
-        category="공간"
-        title="스페이스"
+        category="플레이스"
+        title="플레이스"
         bannerImage={space}
         subTitle="다른 공간으로 여행"
       ></Category>
       <Category
         path="/asmr"
-        category="물체"
+        category="오브젝트"
         title="오브젝트"
         bannerImage={object}
         subTitle="차분히 바라보는 물건들"

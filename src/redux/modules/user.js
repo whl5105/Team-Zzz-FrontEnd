@@ -23,7 +23,7 @@ const initialState = {
   },
   errMessage: "",
   is_login: false,
-  is_Signup: false,
+  is_Signup: true,
 };
 
 // -- middleware actions --

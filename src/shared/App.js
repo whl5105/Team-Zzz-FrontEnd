@@ -34,31 +34,33 @@ function App() {
         <Wrap className="App">
           <ConnectedRouter history={history}>
             <Header></Header>
-            <Switch>
-              <Route path="/" exact component={Main} />
-              <Route path="/clock" exact component={Clock} />
-              <Route path="/login" exact component={Login} />
-              <Route path="/signup" exact component={Signup} />
-              <Route path="/requireLogin" exact component={RequireLogin} />
-              <Route path="/push" exact component={Push} />
-              <Route
-                path="/pushNotication"
-                exact
-                component={PushNoticationPop}
-              ></Route>
-              <Route path="/diary" exact component={Diary}></Route>
-              {/* <Route path="/diary" exact component={DiaryWrite}></Route> */}
-              <Route path="/asmr" exact component={Asmr}></Route>
-              <Route path="/mypage" exact component={Mypage} />
-              <Route
-                path="/mypageNotice/:userIdx"
-                exact
-                component={MyPageNotification}
-              ></Route>
-              <Route>
-                <NotFound />
-              </Route>
-            </Switch>
+            <Container>
+              <Switch>
+                <Route path="/" exact component={Main} />
+                <Route path="/clock" exact component={Clock} />
+                <Route path="/login" exact component={Login} />
+                <Route path="/signup" exact component={Signup} />
+                <Route path="/requireLogin" exact component={RequireLogin} />
+                <Route path="/push" exact component={Push} />
+                <Route
+                  path="/pushNotication"
+                  exact
+                  component={PushNoticationPop}
+                ></Route>
+                <Route path="/diary" exact component={Diary}></Route>
+                {/* <Route path="/diary" exact component={DiaryWrite}></Route> */}
+                <Route path="/asmr" exact component={Asmr}></Route>
+                <Route path="/mypage" exact component={Mypage} />
+                <Route
+                  path="/mypageNotice/:userIdx"
+                  exact
+                  component={MyPageNotification}
+                ></Route>
+                <Route>
+                  <NotFound />
+                </Route>
+              </Switch>
+            </Container>
             <Navigation></Navigation>
           </ConnectedRouter>
         </Wrap>
@@ -81,6 +83,9 @@ const Wrap = styled.div`
   position: relative;
   margin: 0 auto;
   overflow: hidden;
+`;
+const Container = styled.div`
+  padding-top: 50px;
 `;
 
 export default App;

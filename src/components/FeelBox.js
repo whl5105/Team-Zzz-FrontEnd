@@ -24,6 +24,7 @@ const FeelBox = (props) => {
                   size="40"
                   name={arr.score}
                   feelNumber={idx + 1}
+                  scoreColor="#F3F3F3"
                   _onClick={props._onClick}
                   is_click={previewFeel === idx + 1 ? true : false}
                 >
@@ -43,7 +44,7 @@ const FeelBox = (props) => {
                   size="40"
                   name={arr.score}
                   feelNumber={idx + 1}
-                  bg
+                  sleepColor="#F3F3F3"
                 >
                   {arr.text}
                 </Charater>

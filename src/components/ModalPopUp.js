@@ -22,12 +22,13 @@ const Component = styled.div`
   right: 0;
   bottom: 0;
 `;
+
 const Children = styled.div`
-  /* width: 35%;
-  height: 40%; */
   background-color: #fff;
+  border-radius: 12px;
   z-index: 999;
   position: absolute;
+  margin: 50% 20px;
   top: 0;
   left: 0;
 `;
