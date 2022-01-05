@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { ReactComponent as Reservation } from "../static/images/character/feel1.svg";
 
 const Charater = (props) => {
   const {
@@ -22,9 +23,6 @@ const Charater = (props) => {
     bg: scoreColor,
   };
 
-  if (shape === "circle") {
-    return <ImageCircle {...styles}></ImageCircle>;
-  }
   //-- 표정 --
   if (shape === "feel") {
     return (
@@ -36,6 +34,7 @@ const Charater = (props) => {
           name={name}
           src={require(`../static/images/character/feel${props.feelNumber}.svg`)}
         ></ImgIcon>
+        {/* <Reservation fill="red" /> */}
         {children}
       </div>
     );

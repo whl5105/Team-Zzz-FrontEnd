@@ -17,7 +17,7 @@ const MainSwiper = () => {
       <div className="main-wrap">
         <Swiper
           style={{
-            width: "335px",
+            width: "100%",
             height: "170px",
             backgroundColor: "#FFF5F1",
             borderRadius: "12px",

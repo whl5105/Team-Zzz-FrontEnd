@@ -14,7 +14,7 @@ const ModalPopUp = (props) => {
 const Component = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: #ff00004f;
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 99;
   position: absolute;
   top: 0;

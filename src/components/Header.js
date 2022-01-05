@@ -30,6 +30,8 @@ const HeaderBox = styled.div`
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  z-index: 5;
 `;
 
 export default Header;
