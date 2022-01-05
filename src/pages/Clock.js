@@ -5,7 +5,7 @@ import { history } from "../redux/configureStore";
 
 // 아이콘 이미지 import
 import nextIcon from "../static/images/icon/nextIcon.svg";
-import sleep_background from "../static/images/sleeptime/sleep_background.svg"
+import sleep_background from "../static/images/sleeptime/sleep_background.svg";
 
 const Clock = (props) => {
   const [ampm, setampm] = React.useState("");
@@ -203,215 +203,207 @@ const Clock = (props) => {
   }
   return (
     <>
-    <Background categoryImage={sleep_background}>
-      <ArrowIcon
-        categoryImage={nextIcon}
-        onClick={() => {
-          history.push("/");
-        }}
-      ></ArrowIcon>
-      {toggle ? (
-        <Content>나에게 가장 적절한 수면시간을 찾아볼까요?</Content>
-      ) : (
-        <Content>나에게 적절한 수면 시간은...</Content>
-      )}
-      {toggle ? (
-        <SleepTimeWrap
-          style={{
-            height: "229px",
+      <Background categoryImage={sleep_background}>
+        <ArrowIcon
+          categoryImage={nextIcon}
+          onClick={() => {
+            history.push("/");
           }}
-        >
-          <WrapInside>
-            <div style={{ textAlign: "center", width: "295px" }}>
-              <Title>평소 일어나는 시간을 입력해주세요</Title>
-            </div>
-          </WrapInside>
-          <div
+        ></ArrowIcon>
+        {toggle ? (
+          <Content>나에게 가장 적절한 수면시간을 찾아볼까요?</Content>
+        ) : (
+          <Content>나에게 적절한 수면 시간은...</Content>
+        )}
+        {toggle ? (
+          <SleepTimeWrap
             style={{
-              position: "absolute",
-              width: "295px",
-              height: "30px",
-              left: "20px",
-              top: "67px",
+              height: "229px",
             }}
-          ></div>
-
-          <SelectTimeWrap>
-            <div
-              style={{
-                marginRight: "8px",
-              }}
-            >
-              <DropDown
-                dayActive={dayActive}
-                setDayActive={setDayActive}
-                setHourActive={setHourActive}
-                setMinutesActive={setMinutesActive}
-                condition={""}
-                title={day}
-                dayItems={dayItems}
-                state={setDay}
-              ></DropDown>
-            </div>
-            <div
-              style={{
-                marginRight: "8px",
-              }}
-            >
-              <DropDown
-                hourActive={hourActive}
-                setDayActive={setDayActive}
-                setHourActive={setHourActive}
-                setMinutesActive={setMinutesActive}
-                condition={"시"}
-                title={hour}
-                hourItems={hourItems}
-                state={setHour}
-              ></DropDown>
-            </div>
-            <DropDown
-              minutesActive={minutesActive}
-              setDayActive={setDayActive}
-              setHourActive={setHourActive}
-              setMinutesActive={setMinutesActive}
-              condition={"분"}
-              title={minutes}
-              minutesItems={minutesItems}
-              state={setMinutes}
-            ></DropDown>
-          </SelectTimeWrap>
-
-          <Button onClick={search}>
-            <p
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: "0px",
-                position: "absolute",
-                width: "26px",
-                height: "20px",
-                left: "calc(50%-26px/2 + 1px)",
-                top: "calc(50% - 20px/2)",
-              }}
-            >
-              확인
-            </p>
-          </Button>
-        </SleepTimeWrap>
-      ) : (
-        <>
-          <SleepTimeWrap>
+          >
             <WrapInside>
               <div style={{ textAlign: "center", width: "295px" }}>
-                <Title>아래 시간 중 선택해서 잠드는게 좋아요!</Title>
+                <Title>평소 일어나는 시간을 입력해주세요</Title>
               </div>
             </WrapInside>
             <div
               style={{
-                flexDirection: "row",
-                alignItems: "flex-start",
                 position: "absolute",
                 width: "295px",
-                height: "48px",
+                height: "30px",
                 left: "20px",
-                top: "50px",
-                zIndex: "1",
-                margin: "0px",
+                top: "67px",
               }}
-            >
-              {/* userNotice.time.min<10?'0'+ userNotice.time.min: userNotice.time.min :null */}
-              <div style={{ textAlign: "center", margin: "15px 0px" }}>
-                <BestSleepTime>{`${wakeup_hour}:${
-                  wakeup_min < 10 ? "0" + wakeup_min : wakeup_min
-                } ${ampm}`}</BestSleepTime>
-                <span
-                  style={{
-                    color: "white",
-                    fontSize: "15px",
-                    width: "15px",
-                    height: "15px",
-                    margin: "0px 9px",
-                    letterSpacing: "-0.3px",
-                  }}
-                >{`or`}</span>
-                <BestSleepTime>{`${wakeup_hour2}:${
-                  wakeup_min2 < 10 ? "0" + wakeup_min2 : wakeup_min2
-                } ${ampm2}`}</BestSleepTime>
-              </div>
-              <div style={{ textAlign: "center" }}>
-                <BestSleepTime>{`${wakeup_hour3}:${
-                  wakeup_min3 < 10 ? "0" + wakeup_min3 : wakeup_min3
-                } ${ampm3}`}</BestSleepTime>
-                <span
-                  style={{
-                    color: "white",
-                    fontSize: "15px",
-                    width: "15px",
-                    height: "15px",
-                    margin: "0px 9px",
-                    letterSpacing: "-0.3px",
-                  }}
-                >{`or`}</span>
-                <BestSleepTime>{`${wakeup_hour4}:${
-                  wakeup_min4 < 10 ? "0" + wakeup_min4 : wakeup_min4
-                } ${ampm4}`}</BestSleepTime>
-              </div>
-            </div>
-          </SleepTimeWrap>
+            ></div>
 
-          <div
-            style={{
-              textAlign: "center",
-              width: "100%",
-              position: "absolute",
-              top: "551px",
-            }}
-          >
-            <Title
+            <SelectTimeWrap>
+              <div
+                style={{
+                  marginRight: "8px",
+                }}
+              >
+                <DropDown
+                  dayActive={dayActive}
+                  setDayActive={setDayActive}
+                  setHourActive={setHourActive}
+                  setMinutesActive={setMinutesActive}
+                  condition={""}
+                  title={day}
+                  dayItems={dayItems}
+                  state={setDay}
+                ></DropDown>
+              </div>
+              <div
+                style={{
+                  marginRight: "8px",
+                }}
+              >
+                <DropDown
+                  hourActive={hourActive}
+                  setDayActive={setDayActive}
+                  setHourActive={setHourActive}
+                  setMinutesActive={setMinutesActive}
+                  condition={"시"}
+                  title={hour}
+                  hourItems={hourItems}
+                  state={setHour}
+                ></DropDown>
+              </div>
+              <DropDown
+                minutesActive={minutesActive}
+                setDayActive={setDayActive}
+                setHourActive={setHourActive}
+                setMinutesActive={setMinutesActive}
+                condition={"분"}
+                title={minutes}
+                minutesItems={minutesItems}
+                state={setMinutes}
+              ></DropDown>
+            </SelectTimeWrap>
+
+            <Button onClick={search}>
+              <p
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "0px",
+                  position: "absolute",
+                  width: "60px",
+                  height: "20px",
+                  left: "calc(50%-26px/2 + 1px)",
+                  top: "calc(50% - 20px/2)",
+                }}
+              >
+                입력 완료
+              </p>
+            </Button>
+          </SleepTimeWrap>
+        ) : (
+          <>
+            <SleepTimeWrap>
+              <WrapInside>
+                <div style={{ textAlign: "center", width: "295px" }}>
+                  <Title>아래 시간 중 선택해서 잠드는게 좋아요!</Title>
+                </div>
+              </WrapInside>
+              <div
+                style={{
+                  flexDirection: "row",
+                  alignItems: "flex-start",
+                  position: "absolute",
+                  width: "295px",
+                  height: "48px",
+                  left: "20px",
+                  top: "50px",
+                  zIndex: "1",
+                  margin: "0px",
+                }}
+              >
+                <div style={{ textAlign: "center", margin: "15px 0px" }}>
+                  <BestSleepTime>{`${wakeup_hour}:${
+                    wakeup_min < 10 ? "0" + wakeup_min : wakeup_min
+                  } ${ampm}`}</BestSleepTime>
+                  <span
+                    style={{
+                      color: "white",
+                      fontSize: "15px",
+                      width: "15px",
+                      height: "15px",
+                      margin: "0px 9px",
+                      letterSpacing: "-0.3px",
+                    }}
+                  >{`or`}</span>
+                  <BestSleepTime>{`${wakeup_hour2}:${
+                    wakeup_min2 < 10 ? "0" + wakeup_min2 : wakeup_min2
+                  } ${ampm2}`}</BestSleepTime>
+                </div>
+                <div style={{ textAlign: "center" }}>
+                  <BestSleepTime>{`${wakeup_hour3}:${
+                    wakeup_min3 < 10 ? "0" + wakeup_min3 : wakeup_min3
+                  } ${ampm3}`}</BestSleepTime>
+                  <span
+                    style={{
+                      color: "white",
+                      fontSize: "15px",
+                      width: "15px",
+                      height: "15px",
+                      margin: "0px 9px",
+                      letterSpacing: "-0.3px",
+                    }}
+                  >{`or`}</span>
+                  <BestSleepTime>{`${wakeup_hour4}:${
+                    wakeup_min4 < 10 ? "0" + wakeup_min4 : wakeup_min4
+                  } ${ampm4}`}</BestSleepTime>
+                </div>
+              </div>
+            </SleepTimeWrap>
+
+            <div
               style={{
-                fontWeight: "normal",
-                fontSize: "12px",
-                color: "#C4C4C4",
+                textAlign: "center",
+                width: "100%",
+                position: "absolute",
+                top: "551px",
               }}
             >
-              제시된 시간에 따라 알맞는 수면 시간을 찾아보세요.
-            </Title>
-          </div>
-        </>
-      )}
+              <Title
+                style={{
+                  fontWeight: "normal",
+                  fontSize: "12px",
+                  color: "#C4C4C4",
+                }}
+              >
+                제시된 시간에 따라 알맞는 수면 시간을 찾아보세요.
+              </Title>
+            </div>
+          </>
+        )}
       </Background>
     </>
   );
 };
 
-const Background= styled.div`
+const Background = styled.div`
+  position: relative;
+  top: -50px;
+  left: 0px;
+  width: 375px;
+  height: 812px;
 
-position: relative;
-top:-50px;
-left:0px;
-width:375px;
-height:812px;
-
- background-image: url(${(props) => props.categoryImage});
+  background-image: url(${(props) => props.categoryImage});
   background-repeat: no-repeat;
   background-size: cover;
 `;
 
 const Title = styled.p`
-  /* position: absolute;
-  left:0px;
-  top:0px; */
-
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   position: static;
   line-height: 27px;
   letter-spacing: -0.3px;
-  /* vertical-align: top; */
-  /* text-align: left; */
 `;
 
 const Button = styled.button`
