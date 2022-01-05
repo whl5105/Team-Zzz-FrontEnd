@@ -20,29 +20,27 @@ const initialState = {
       title: "심장",
       asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
       // asmrUrl: "1",
-      iconUrl: "심장.jpg",
-
+      iconUrl:
+        "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(jpg)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.jpg",
     },
     {
       categoryIdx: "2",
       categoryName: "오브젝트",
-
-      title: "라디오",
-      asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-      // asmrUrl: "2",
-      iconUrl: "라디오.jpg",
-
+      title: "심장",
+      asmrUrl: "1",
+      // asmrUrl: "1",
+      iconUrl:
+        "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(jpg)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.jpg",
     },
 
     {
       categoryIdx: "3",
       categoryName: "오브젝트",
-
       title: "스프링",
       asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
       // asmrUrl: "3",
-      iconUrl: "스프링.jpg",
-
+      iconUrl:
+        "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(jpg)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.jpg",
     },
     {
       categoryIdx: "4",
@@ -50,7 +48,8 @@ const initialState = {
       title: "빗소리",
       // asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
       asmrUrl: "4",
-      iconUrl: "스프링.jpg",
+      iconUrl:
+        "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(jpg)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.jpg",
     },
     {
       categoryIdx: "5",
@@ -58,7 +57,8 @@ const initialState = {
       title: "빗소리",
       // asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
       asmrUrl: "5",
-      iconUrl: "스프링.jpg",
+      iconUrl:
+        "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(jpg)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.jpg",
     },
     {
       categoryIdx: "6",
@@ -66,7 +66,8 @@ const initialState = {
       title: "빗소리",
       // asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
       asmrUrl: "6",
-      iconUrl: "스프링.jpg",
+      iconUrl:
+        "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(jpg)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.jpg",
     },
     {
       categoryIdx: "7",
@@ -74,14 +75,16 @@ const initialState = {
       title: "빗소리",
       // asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
       asmrUrl: "7",
-      iconUrl: "스프링.jpg",
+      iconUrl:
+        "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(jpg)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.jpg",
     },
     {
       categoryIdx: "8",
       categoryName: "플레이스",
       title: "빗소리",
       asmrUrl: "8",
-      iconUrl: "스프링.jpg",
+      iconUrl:
+        "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(jpg)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.jpg",
     },
     {
       categoryIdx: "9",

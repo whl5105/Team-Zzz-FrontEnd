@@ -4,7 +4,6 @@ import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../redux/modules/diary";
 import Charater from "../elements/Charater";
-import { useLocation } from "react-router-dom";
 import Rectangle from "../elements/Rectangle";
 import NoInfo from "../static/images/diary/NoInfo.png";
 import Left from "../static/images/diary/left 화살표.svg";
@@ -16,19 +15,14 @@ import Right from "../static/images/diary/right 화살표.svg";
 import DiaryWrite from "../components/DiaryWrite";
 
 const Diary = () => {
-  const location = useLocation();
   const dispatch = useDispatch();
 
-  const [getMoment, setMoment] = React.useState(
-    location.year && location.month
-      ? moment(`${location.year}-${location.month}-01`)
-      : moment()
-  );
-  const diaryList = useSelector((state) => state.diary.diaryList);
-  const [monthDay, setMonthDay] = React.useState(0);
+  const [getMoment, setMoment] = React.useState(moment()); // 오늘 날짜
+  const [monthDay, setMonthDay] = React.useState(0); // 이번달의 일 수
+  const diaryList = useSelector((state) => state.diary.diaryList); // 기록 데이터
+  const sleepAvg = useSelector((state) => state.diary.sleepAvg); // 평균 데이터
   const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
-  // const sleepAvg = diaryList[diaryList.length - 1].sleepAvg;
-  const sleepAvg = useSelector((state) => state.diary.sleepAvg);
+  const day = new Date(getMoment); // 사용자가 선택한 날짜
   const [list, setList] = React.useState(arr);
 
   const scoreList = [1, 3, 5, 4, 2];
@@ -46,15 +40,13 @@ const Diary = () => {
   };
 
   React.useEffect(() => {
-    const day = new Date(getMoment); // 사용자가 선택한 날짜
-
-    console.log("다이어리 기록 불러와요");
+    // const day = new Date(getMoment); // 사용자가 선택한 날짜
     getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
   }, [getMoment]);
 
   React.useEffect(() => {
     const today = new Date(moment()); // 오늘 날짜
-    const day = new Date(getMoment); // 사용자가 선택한 날짜
+    // const day = new Date(getMoment); // 사용자가 선택한 날짜
 
     if (
       today.getFullYear() + "_" + today.getMonth() ===
@@ -81,6 +73,10 @@ const Diary = () => {
       }
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getMoment, monthDay]);
+
+  React.useEffect(() => {
     // index => 0, diaryList => day랑 서로 일치를 해야 함.
     // 1) 해당 월의 일수 길이만큼의 배열에 배열 연산자 forEach를 돌린다.
     // 2) 서버에서 가져온 diaryList 배열의 길이만큼 forEach를 돌린다.
@@ -95,9 +91,7 @@ const Diary = () => {
     });
 
     setList(arr);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getMoment, monthDay]);
+  }, [diaryList]);
 
   //-- 다이어리 팝업 모달 --
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -141,8 +135,17 @@ const Diary = () => {
             <img src={Right} alt="right"></img>
           </Button>
         </Wrap>
-        <br />
-        {list.length > 0 ? (
+        <br></br>
+        {/* 다음달 */}
+        {moment().format("YYYYMM") <
+        `${day.getFullYear()}${
+          day.getMonth() + 1 < 10
+            ? `0${day.getMonth() + 1}`
+            : day.getMonth() + 1
+        }` ? (
+          <NoRecord></NoRecord>
+        ) : (
+          // 저번달 && 이번달
           <div>
             <Content>
               {list.map((item, index) => {
@@ -160,6 +163,7 @@ const Diary = () => {
                             scoreColor[scoreList.indexOf(item.sleepScore) + 1]
                           }
                           _onClick={() => {
+                            console.log("?");
                             diaryDetail(index + 1);
                           }}
                           margin="5px"
@@ -186,8 +190,6 @@ const Diary = () => {
             </Content>
             <Rectangle text={sleepAvg}></Rectangle>
           </div>
-        ) : (
-          <Content2></Content2>
         )}
       </div>
       {/* -- 다이어리 팝업 모달 -- */}
@@ -244,7 +246,7 @@ const Content = styled.div`
   }
 `;
 
-const Content2 = styled.div`
+const NoRecord = styled.div`
   height: 620px;
   margin-top: 13px;
   background-image: url(${NoInfo});
