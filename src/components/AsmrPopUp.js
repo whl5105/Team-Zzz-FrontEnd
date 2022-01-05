@@ -15,9 +15,9 @@ import 심장 from "../static/images/asmr/song/심장.svg";
 const AsmrPopUp = (props) => {
   //   const [modal, setModal] = React.useState(true); // 모달창
 
-  const playIcon = props.playIcon.split(".")[0];
-  const playIcon2 = props.play2Icon.split(".")[0];
-  const playIcon3 = props.play3Icon.split(".")[0];
+  // const playIcon = props.playIcon.split(".")[0];
+  // const playIcon2 = props.play2Icon.split(".")[0];
+  // const playIcon3 = props.play3Icon.split(".")[0];
  
   const [song1, setSong1] = React.useState(props.play);
   const [song2, setSong2] = React.useState(props.play2);
@@ -139,10 +139,10 @@ const AsmrPopUp = (props) => {
                     }}
                   >
                     <Image
-                      src={require(`../static/images/asmr/song/${playIcon}.svg`)}
+                      src={`${props.playIcon}`}
                       alt=""
                     ></Image>
-                    <Text>{playIcon}</Text>
+                    <Text>{props.title}</Text>
                   </div>
                 </Sound>
 
@@ -183,10 +183,10 @@ const AsmrPopUp = (props) => {
                     }}
                   >
                     <Image
-                      src={require(`../static/images/asmr/song/${playIcon2}.svg`)}
+                      src={`${props.play2Icon}`}
                       alt=""
                     ></Image>
-                    <Text>{playIcon2}</Text>
+                    <Text>{props.title2}</Text>
                   </div>
                 </Sound>
 
@@ -226,10 +226,10 @@ const AsmrPopUp = (props) => {
                     }}
                   >
                     <Image
-                      src={require(`../static/images/asmr/song/${playIcon3}.svg`)}
+                      src={`${props.play3Icon}`}
                       alt=""
                     ></Image>
-                    <Text>{playIcon3}</Text>
+                    <Text>{props.title3}</Text>
                   </div>
                 </Sound>
                 <input
