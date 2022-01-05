@@ -73,6 +73,8 @@ const initialState = {
 };
 
 // -- middleware actions --
+
+// 다이어리 기록 가져오기
 const getDiaryDB = (year, month) => {
   return async function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
