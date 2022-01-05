@@ -45,12 +45,12 @@ const initialState = {
     {
       day: 4,
       feelScore: 2,
-      sleepScore:2,
+      sleepScore: 2,
       comment: "오늘은 아구찜 먹음",
     },
     {
       day: 8,
-      feelScore:3,
+      feelScore: 3,
       sleepScore: 3,
       comment: "오늘은 아구찜 먹음",
     },
@@ -73,20 +73,21 @@ const initialState = {
 
 // -- middleware actions --
 const getDiaryDB = (year, month) => {
-  return function (dispatch, getState, { history }) {
+  return async function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
     const yearMonth = `${year}-${month}`;
 
     try {
-      const response = apis.getDiary(userIdx, yearMonth);
-      console.log("getDiaryDB response : ", response);
+      const res = await apis.getDiary(userIdx, yearMonth);
+      console.log("getDiaryDB response : ", res.errorMessage);
 
-      dispatch(get_diary(response));
+      dispatch(get_diary(res.errorMessage === "기록 없는 유저" ? [] : res));
     } catch (error) {
       console.log("getDiaryDB Error : ", error);
     }
   };
 };
+
 //다이어리 기록 추가
 const addDiaryDB = (year, month, diaryListInfo, pushData) => {
   return function (dispatch, getState, { history }) {

@@ -21,9 +21,9 @@ const Diary = () => {
       ? moment(`${location.year}-${location.month}-01`)
       : moment()
   );
+  const diaryList = useSelector((state) => state.diary.diaryList);
   const [monthDay, setMonthDay] = React.useState(0);
   const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
-  const diaryList = useSelector((state) => state.diary.diaryList);
   // const sleepAvg = diaryList[diaryList.length - 1].sleepAvg;
   const sleepAvg = useSelector((state) => state.diary.sleepAvg);
   const [list, setList] = React.useState(arr);
@@ -43,12 +43,15 @@ const Diary = () => {
   };
 
   React.useEffect(() => {
-    const today = new Date(moment()); // 오늘 날짜
     const day = new Date(getMoment); // 사용자가 선택한 날짜
 
-    if (!diaryList) {
-      getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
-    }
+    console.log("다이어리 기록 불러와요");
+    getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
+  }, [getMoment]);
+
+  React.useEffect(() => {
+    const today = new Date(moment()); // 오늘 날짜
+    const day = new Date(getMoment); // 사용자가 선택한 날짜
 
     if (
       today.getFullYear() + "_" + today.getMonth() ===
@@ -75,10 +78,6 @@ const Diary = () => {
       }
     }
 
-    // 년, 월이 바뀔 때마다 서버에 데이터를 새로 요청한다.
-    console.log("년, 월에 맞춰 api 새로 dispatch 하기");
-    // getDiaryInfo(day.getFullYear(), day.getMonth() + 1);
-
     // index => 0, diaryList => day랑 서로 일치를 해야 함.
     // 1) 해당 월의 일수 길이만큼의 배열에 배열 연산자 forEach를 돌린다.
     // 2) 서버에서 가져온 diaryList 배열의 길이만큼 forEach를 돌린다.
@@ -93,6 +92,7 @@ const Diary = () => {
     });
 
     setList(arr);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getMoment, monthDay]);
 
@@ -188,11 +188,7 @@ const Diary = () => {
         )}
       </div>
       {/* -- 다이어리 팝업 모달 -- */}
-      {modalOpen ? (
-        <DiaryWrite close={closeModal} data={modalData} />
-      ) : (
-        ""
-      )}
+      {modalOpen ? <DiaryWrite close={closeModal} data={modalData} /> : ""}
     </>
   );
 };
@@ -202,7 +198,7 @@ const Wrap = styled.div`
   height: 52px;
   line-height: 20px;
   text-align: center;
-  background-color: #272A52;
+  background-color: ${({ theme }) => theme.colors.back};
   border-radius: 12px;
   margin : 0px auto;
   margin-top : 20px;
