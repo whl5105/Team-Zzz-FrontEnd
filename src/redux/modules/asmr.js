@@ -23,20 +23,21 @@ const initialState = {
     },
     {
       categoryIdx: "2",
-      categoryName: "네이쳐",
-      title: "라디오",
-      asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-      // asmrUrl: "2",
-      iconUrl: "도서관.jpg",
-    },
+      categoryName: "오브젝트",
+      title: "심장",
+      asmrUrl: "1",
+      // asmrUrl: "1",
+      iconUrl: "심장.jpg",
 
+    },
     {
       categoryIdx: "3",
-      categoryName: "네이쳐",
+      categoryName: "오브젝트",
+
       title: "스프링",
-      // asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
-      asmrUrl: "3",
-      iconUrl: "도시.jpg",
+      asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
+      // asmrUrl: "3",
+      iconUrl: "스프링.jpg",
     },
     {
       categoryIdx: "4",
@@ -136,14 +137,14 @@ const initialState = {
     },
     {
       categoryIdx: "17",
-      categoryName: "오브젝트",
+      categoryName: "네이쳐",
       title: "빗소리",
       asmrUrl: "17",
       iconUrl: "오르골.jpg",
     },
     {
       categoryIdx: "18",
-      categoryName: "오브젝트",
+      categoryName: "네이쳐",
       title: "빗소리",
       asmrUrl: "18",
       iconUrl: "장작.jpg",

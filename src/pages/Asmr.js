@@ -243,22 +243,20 @@ const Asmr = (props) => {
             );
           })}
         </SoundSelect>
-        {play.length > 0 ? (
-          <Button
-            margin={getCategory !== "전체" ? "235px" : "20px"}
-            onClick={() => {
-              setOpenmodal(true);
-              console.log(
-                "음원 url 가지고 이동!!!",
-                song1Icon,
-                song2Icon,
-                song3Icon
-              );
-            }}
-          >
-            음량 조절 하러 가기
-          </Button>
-        ) : null}
+        <Button
+          margin={getCategory !== "전체" ? "235px" : "20px"}
+          onClick={() => {
+            setOpenmodal(true);
+            console.log(
+              "음원 url 가지고 이동!!!",
+              song1Icon,
+              song2Icon,
+              song3Icon
+            );
+          }}
+        >
+          소리 조절 하기
+        </Button>
         {openModal && (
           <AsmrPopUp
             setList={setPlay}
