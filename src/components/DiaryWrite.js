@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../redux/modules/diary";
 
@@ -6,11 +7,13 @@ import ModalPopUp from "./ModalPopUp";
 import FeelBox from "./FeelBox";
 import SleepBox from "./SleepBox";
 import Charater from "../elements/Charater";
+import Input from "../elements/Input";
+
+import reset from "../static/images/icon/reset.svg";
 
 const DiaryWrite = (props) => {
   const dispatch = useDispatch();
 
-  const scoreList = [1, 3, 5, 4, 2];
   const scoreColor = [
     "#A1A1A1",
     "#6CA8FF",
@@ -20,200 +23,252 @@ const DiaryWrite = (props) => {
     "#C793DC",
   ];
 
+  const newData = `${props.data.year}/${props.data.month}/${props.data.day}`;
   const diaryList = useSelector((state) => state.diary.diaryList); //다이어리 데이터
-
   const diaryDayId = props.data.day; //선택된 일자
   const isDay = diaryDayId ? true : false;
-  let diaryData = isDay ? diaryList.find((p) => p.day === diaryDayId) : null; //다이어리 해당일자 데이터 찾기
-
+  let diaryData = isDay
+    ? diaryList.find((data) => data.day === diaryDayId)
+    : null; //다이어리 해당일자 데이터 찾기
   const [dayData, setDayData] = React.useState(diaryData ? diaryData : null);
-  const [comment, setComment] = React.useState(
-    diaryData ? diaryData.comment : ""
-  );
+
+  // 디이어리 수정
   const [edit, setEdit] = React.useState(false);
 
-  console.log(diaryList);
-  console.log(diaryDayId);
-  console.log(isDay);
-  console.log(diaryData);
-  console.log(dayData);
-  console.log(comment);
-
   //-- 다이어리 데이터 --
-  const [state, setState] = React.useState({
-    feel: 0,
-    sleep: 0,
+  const [data, setData] = React.useState({
+    //다이어리에 데이터가 없으면 기본 0을 가짐
+    comment: "",
+    day: 0,
+    feel: 0, //이미지 번호
     feelScore: 0,
+    sleep: 0, //이미지 번호
     sleepScore: 0,
   });
-
   React.useEffect(() => {
     const scoreList = [1, 3, 5, 4, 2];
     if (dayData) {
-      setState({
-        feel: scoreList.indexOf(dayData.feelScore) + 1,
-        sleep: scoreList.indexOf(dayData.sleepScore) + 1,
-        feelScore: dayData.feelScore,
-        sleepScore: dayData.sleepScore,
+      setData({
+        ...dayData,
+        feel: scoreList.indexOf(dayData.feelScore) + 1, //이미지 번호
+        sleep: scoreList.indexOf(dayData.sleepScore) + 1, //이미지 번호
       });
     }
   }, []);
 
-  //--  추가 클릭 --
-  const addClick = () => {
-    if (feel === 0 || sleep === 0) {
-      window.alert("두개 다 선택 해야합니다.");
-    } else {
-      const diaryListInfo = {
-        day: props.data.day,
-        feelScore: feelScore,
-        sleepScore: sleepScore,
-        comment: comment,
-      };
-      dispatch(
-        diaryActions.addDiaryDB(
-          props.data.year,
-          props.data.month,
-          diaryListInfo
-        )
-      );
-    }
-    props.close();
-  };
-  //-- 수정 클릭 --
-  const editClick = () => {
-    if (feel === 0 || sleep === 0) {
-      window.alert("두개 다 선택 해야합니다.");
-    } else {
-      const diaryListInfo = {
-        // day: props.data.day,
-        feelScore: feelScore,
-        sleepScore: sleepScore,
-        comment: comment,
-        diaryIdx : dayData.diaryIdx
-      };
-      dispatch(
-        diaryActions.editDiaryDB(
-          props.data.year,
-          props.data.month,
-          diaryListInfo
-        )
-      );
-    }
-  };
-  //-- 삭제 클릭 --
-  const deleteClick = () => {
-    dispatch(
-      diaryActions.deleteDiaryDB(props.data.year, props.data.month, diaryDayId)
-    );
-  };
-
-  //-- 다이어리 코멘트 입력 --
-  const inputChange = (e) => {
-    setComment(e.target.value);
-  };
-
-  //-- 다이어리 선택된 아이콘 feel --
+  // -- 선택된 아이콘 feel --
   const feelClick = (e) => {
-    setState({
-      ...state,
-      feel: Number(e.target.dataset.value),
-      feelScore: Number(e.target.name),
+    setData({
+      ...data,
+      feel: Number(e.target.dataset.value), //이미지 번호
+      feelScore: Number(e.target.dataset.score),
     });
-    // setEditPreview(true);
   };
   //-- 다이어리 선택된 아이콘 sleep --
   const sleepClick = (e) => {
     console.log(typeof e.target.dataset.value);
-    setState({
-      ...state,
-      sleep: Number(e.target.dataset.value),
-      sleepScore: Number(e.target.name),
+    setData({
+      ...data,
+      sleep: Number(e.target.dataset.value), //이미지 번호
+      sleepScore: Number(e.target.dataset.score),
     });
-    // setEditPreview(true);
   };
 
-  const { feel, sleep, feelScore, sleepScore } = state;
+  //-- input 코멘트 입력 --
+  const inputChange = (e) => {
+    setData({
+      ...data,
+      comment: e.target.value,
+    });
+  };
+  //--input 코멘트 Reset --
+  const onReset = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: "",
+    });
+  };
+
+  const { feel, sleep, feelScore, sleepScore } = data;
+  const { close } = props;
 
   return (
-    <React.Fragment>
-      <ModalPopUp close={props.close}>
-        {/* 다이어리 데이터가 없을 경우 - 활성 */}
+    <ModalPopUp close={props.close}>
+      <Container>
         {!dayData ? (
-          <div style={{ width: "200px" }}>
-            <Charater
-              shape="charater"
-              size="180"
-              position="absolute"
-              feelNumber={feel}
-              sleepNumber={sleep}
+          <div>
+            <DayCharater
+              newData={newData}
+              feel={feel}
+              scoreColor={scoreColor[sleep]}
+            ></DayCharater>
+            <Input
+              resetInput
+              placeholder="메모를 남겨보세요(최대22자)"
+              name="comment"
+              value={data.comment}
+              onChange={inputChange}
+              src={reset}
+              alt="resetButton"
+              onClick={onReset}
+              height="52px"
+              marginT="20px"
             />
-            <FeelBox edit _onClick={feelClick} previewFeel={feel} />
-            <SleepBox edit _onClick={sleepClick} previewSleep={sleep} />
-            <Input value={comment} onChange={inputChange} />
-
-            <button onClick={addClick}>적용하기</button>
+            <ScoreGrop>
+              <FeelBox edit _onClick={feelClick} previewFeel={feel} />
+              <SleepBox edit _onClick={sleepClick} previewSleep={sleep} />
+            </ScoreGrop>
+            <ButtonBox>
+              <button
+                onClick={() => {
+                  close();
+                }}
+              >
+                취소
+              </button>
+              <button>완료</button>
+            </ButtonBox>
           </div>
         ) : (
-          // 다이어리 데이터가 있을경우
           <div>
-            {/* 수정 중- 활성 상태*/}
+            {/* 수정중  */}
             {edit ? (
-              <>
-                {/* // 변경 전 캐릭터 정보 */}
-                <Charater
-                  shape="charater"
-                  size="180"
-                  position="absolute"
-                  feelNumber={scoreList.indexOf(feelScore) + 1}
-                  // sleepNumber={scoreList.indexOf(sleepScore) + 1}
-                  scoreColor={scoreColor[scoreList.indexOf(sleepScore) + 1]}
-                />
+              <div>
+                <DayCharater
+                  newData={newData}
+                  feel={feel}
+                  scoreColor={scoreColor[sleep]}
+                ></DayCharater>
 
-                <FeelBox edit _onClick={feelClick} previewFeel={feel} />
-                <SleepBox edit _onClick={sleepClick} previewSleep={sleep} />
-                <Input value={comment} onChange={inputChange} />
-                <button onClick={editClick}>수정완료</button>
-              </>
-            ) : (
-              // 수정 전 - 비활성 상태
-              <>
-                <Charater
-                  shape="charater"
-                  size="180"
-                  position="absolute"
-                  feelNumber={scoreList.indexOf(feelScore) + 1}
-                  // sleepNumber={scoreList.indexOf(sleepScore) + 1}
-                  scoreColor={scoreColor[scoreList.indexOf(sleepScore) + 1]}
+                <Input
+                  resetInput
+                  placeholder="메모를 남겨보세요(최대22자)"
+                  name="comment"
+                  value={data.comment}
+                  onChange={inputChange}
+                  src={reset}
+                  alt="resetButton"
+                  onClick={onReset}
+                  height="52px"
+                  marginT="20px"
                 />
-                <FeelBox />
-                <SleepBox />
-                <div>{dayData.comment}</div>
-                <button onClick={deleteClick}>삭제하기</button>
-                <button
-                  onClick={() => {
-                    setEdit(!edit);
-                  }}
-                >
-                  수정하기
-                </button>
-              </>
+                <ScoreGrop>
+                  <FeelBox edit _onClick={feelClick} previewFeel={feel} />
+                  <SleepBox edit _onClick={sleepClick} previewSleep={sleep} />
+                </ScoreGrop>
+                <ButtonBox>
+                  <button
+                    onClick={() => {
+                      close();
+                    }}
+                  >
+                    취소
+                  </button>
+                  <button>완료</button>
+                </ButtonBox>
+              </div>
+            ) : (
+              <div>
+                <DayCharater
+                  newData={newData}
+                  feel={feel}
+                  scoreColor={scoreColor[sleep]}
+                ></DayCharater>
+
+                {data.comment.length > 0 && (
+                  <Input
+                    type="text"
+                    placeholder={data.comment}
+                    height="52px"
+                    disabled
+                  />
+                )}
+                <ScoreGrop>
+                  <FeelBox previewFeel={feel} />
+                  <SleepBox previewSleep={sleep} />
+                </ScoreGrop>
+                <ButtonBox>
+                  <button>기록 삭제</button>
+                  <button
+                    onClick={() => {
+                      setEdit(!edit);
+                    }}
+                  >
+                    수정
+                  </button>
+                </ButtonBox>
+              </div>
             )}
           </div>
         )}
-      </ModalPopUp>
-    </React.Fragment>
+      </Container>
+    </ModalPopUp>
   );
 };
 
-//-- Input --
-const Input = (props) => {
-  const { onChange, value } = props;
+function DayCharater(props) {
+  const { feel, scoreColor, newData } = props;
   return (
-    <>
-      <input type="text" value={value} onChange={onChange} />
-    </>
+    <CharaterBox>
+      <p>{newData}</p>
+      <Charater
+        shape="charater"
+        size="85"
+        feelNumber={feel} //이미지 번호
+        scoreColor={scoreColor} //이미지 색상
+      />
+    </CharaterBox>
   );
-};
+}
+
+const Container = styled.div`
+  width: 331px;
+  padding: ${({ theme }) => theme.paddings.xxxxl};
+  box-sizing: border-box;
+`;
+
+const CharaterBox = styled.div`
+  padding: ${({ theme }) => theme.margins.base};
+  background: ${({ theme }) => theme.colors.gray_1};
+  text-align: center;
+  /* margin-top: ${({ theme }) => theme.margins.xxxxl}; */
+
+  & p {
+    padding-bottom: ${({ theme }) => theme.margins.base};
+    font-family: "Roboto";
+    font-size: ${({ theme }) => theme.fontSizes.lg};
+    line-height: ${({ theme }) => theme.lineHeight.lg};
+    font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  }
+`;
+const ScoreGrop = styled.div`
+  margin-top: ${({ theme }) => theme.margins.xxxxl};
+`;
+const ButtonBox = styled.div`
+  width: 100%;
+  padding-top: ${({ theme }) => theme.paddings.xxxxl};
+  display: flex;
+  justify-content: space-between;
+
+  & button {
+    width: 141px;
+    height: 48px;
+    border-radius: 12px;
+    border: transparent;
+    background: transparent;
+    font-size: ${({ theme }) => theme.fontSizes.small};
+    line-height: ${({ theme }) => theme.lineHeight.small};
+    font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  }
+  & button:first-child {
+    border: 1px solid ${({ theme }) => theme.colors.gray_4};
+    color: ${({ theme }) => theme.colors.gray_7};
+  }
+  & button:last-child {
+    border: 1px solid ${({ theme }) => theme.colors.main_1};
+    background: ${({ theme }) => theme.colors.main_1};
+    color: ${({ theme }) => theme.colors.white};
+  }
+`;
 
 export default DiaryWrite;

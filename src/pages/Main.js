@@ -104,7 +104,8 @@ const Category = (props) => {
 
 const Container = styled.div`
   overflow-y: scroll;
-  height: 88%;
+  /* height: 88%; */
+  height: 720px;
   padding: ${({ theme }) => theme.horizontalityInterval.base};
   &::-webkit-scrollbar {
     display: none;

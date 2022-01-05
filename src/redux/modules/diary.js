@@ -11,15 +11,6 @@ const EDIT_DIARY = "EDIT_DIARY";
 const DELETE_DIARY = "POST_DDELETE_DIARYIARY";
 
 // -- action creators --
-// const setPreviewFeel = createAction(SET_PREVIEW_FEEL, (preview, score) => ({
-//   preview,
-//   score,
-// }));
-// const setPreviewSleep = createAction(SET_PREVIEW_SLEEP, (preview, score) => ({
-//   preview,
-//   score,
-// }));
-// -- action creators --
 const get_diary = createAction(GET_DIARY, (diaryList, diaryScore) => ({
   diaryList,
   diaryScore,
@@ -37,36 +28,36 @@ const delete_diary = createAction(DELETE_DIARY, (day) => ({
 // -- initialState --
 const initialState = {
   diaryList: [
-    // {
-    //   day: 1,
-    //   feelScore: 1,
-    //   sleepScore: 1,
-    //   comment: "오늘은 아구찜 먹음",
-    // },
-    // {
-    //   day: 4,
-    //   feelScore: 2,
-    //   sleepScore: 2,
-    //   comment: "오늘은 아구찜 먹음",
-    // },
-    // {
-    //   day: 8,
-    //   feelScore: 3,
-    //   sleepScore: 3,
-    //   comment: "오늘은 아구찜 먹음",
-    // },
-    // {
-    //   day: 6,
-    //   feelScore: 4,
-    //   sleepScore: 4,
-    //   comment: "오늘은 아구찜 먹음",
-    // },
-    // {
-    //   day: 7,
-    //   feelScore: 5,
-    //   sleepScore: 5,
-    //   comment: "오늘은 아구찜 먹음",
-    // },
+    {
+      day: 1,
+      feelScore: 1,
+      sleepScore: 1,
+      comment: "오늘은 아구찜 먹음",
+    },
+    {
+      day: 4,
+      feelScore: 2,
+      sleepScore: 2,
+      comment: "오늘은 아구찜 먹음",
+    },
+    {
+      day: 8,
+      feelScore: 3,
+      sleepScore: 3,
+      comment: "오늘은 아구찜 먹음",
+    },
+    {
+      day: 6,
+      feelScore: 4,
+      sleepScore: 4,
+      comment: "오늘은 아구찜 먹음",
+    },
+    {
+      day: 7,
+      feelScore: 5,
+      sleepScore: 5,
+      comment: "오늘은 아구찜 먹음",
+    },
   ],
   sleepAvg: "오늘은 잠을 못주무셨네요",
   modal: true,
@@ -163,8 +154,8 @@ export default handleActions(
   {
     [GET_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        draft.diaryList = action.payload.diaryListInfo.getDiary;
-        draft.sleepAvg = action.payload.diaryListInfo.sleepAvg;
+        // draft.diaryList = action.payload.diaryList;
+        // draft.sleepAvg = action.payload.diaryScore;
       }),
     [ADD_DIARY]: (state, action) =>
       produce(state, (draft) => {
@@ -199,8 +190,6 @@ export default handleActions(
 
 // -- action creator export --
 const actionCreators = {
-  // setPreviewFeel,
-  // setPreviewSleep,
   getDiaryDB,
   addDiaryDB,
   editDiaryDB,

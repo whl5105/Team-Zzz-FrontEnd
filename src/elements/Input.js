@@ -12,13 +12,22 @@ const Input = (props) => {
     type,
     src,
     alt,
+    height,
+    disabled,
+    marginT,
   } = props;
+
+  const styles = {
+    height: height,
+    marginT: marginT,
+  };
 
   if (resetInput) {
     return (
       <>
-        <InputGrop>
+        <InputGrop {...styles}>
           <InputBox
+            {...styles}
             placeholder={placeholder}
             type={type}
             name={name}
@@ -31,11 +40,28 @@ const Input = (props) => {
     );
   }
 
+  if (disabled) {
+    return (
+      <InputGropDisabled {...styles}>
+        <InputBox
+          {...styles}
+          placeholder={placeholder}
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChange}
+          disabled
+        ></InputBox>
+      </InputGropDisabled>
+    );
+  }
+
   return (
     <React.Fragment>
       {/* <Grid> */}
-      <InputGrop>
+      <InputGrop {...styles}>
         <InputBox
+          {...styles}
           placeholder={placeholder}
           type={type}
           name={name}
@@ -55,19 +81,18 @@ Input.defaultProps = {
   value: "",
   onChange: () => {},
   onClick: () => {},
+  height: "60px",
 };
 
 const InputGrop = styled.div`
   width: 100%;
-  height: 60px;
+  height: ${(props) => props.height};
   border: 1px solid ${({ theme }) => theme.colors.main_1};
   border-radius: 8px;
   background-color: #fff;
   display: flex;
   justify-content: space-between;
-  /* &:nth-child(2) {
-    margin-bottom: 20px;
-  } */
+  ${(props) => (props.marginT ? `margin-top : ${props.marginT}` : ``)};
 
   & img {
     width: 20px;
@@ -76,14 +101,27 @@ const InputGrop = styled.div`
 `;
 const InputBox = styled.input`
   width: 100%;
-  /* height: 60px; */
-  padding: 0 1.25rem;
+  height: ${(props) => props.height};
+  padding: 0 ${({ theme }) => theme.margins.xxxxl};
   box-sizing: border-box;
   border-radius: 8px;
   font-size: 0.875rem;
   border: none;
+
   &:focus {
     outline: none;
   }
+`;
+const InputGropDisabled = styled.div`
+  width: 100%;
+  height: ${(props) => props.height};
+  border: 1px solid ${({ theme }) => theme.colors.gray_3};
+  background-color: ${({ theme }) => theme.colors.gray_1};
+  color: ${({ theme }) => theme.colors.gray_6};
+  margin-top: ${({ theme }) => theme.margins.xxxxl};
+  border-radius: 8px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
 `;
 export default Input;
