@@ -73,7 +73,7 @@ const MyPageNotification = (props) => {
       <p
         style={{
           position: "absolute",
-          width: "102px",
+          width: "120px",
           height: "22px",
           left: "20px",
           top: "70px",
@@ -96,8 +96,6 @@ const MyPageNotification = (props) => {
           margin: "auto",
           background: "rgba(248,248,248,0.1)",
           boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-          // overflow: "auto",
-          // WebkitOverflowScrolling: "touch",
           borderRadius: "12px",
           outline: "none",
         }}
@@ -153,7 +151,6 @@ const MyPageNotification = (props) => {
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "flex-start",
-                  padding: "0px",
                   position: "absolute",
                   width: "295px",
                   height: "48px",
@@ -212,20 +209,35 @@ const MyPageNotification = (props) => {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "flex-start",
-                padding: "0px",
                 position: "absolute",
                 width: "295px",
                 height: "48px",
                 left: "20px",
-                top: "117px",
+                top: "100px",
               }}
             >
-              <DropDown state="disabled" condition={""} title={day}></DropDown>
-              <DropDown
-                state="disabled"
-                condition={"시"}
-                title={hour}
-              ></DropDown>
+              <div
+                style={{
+                  marginRight: "8px",
+                }}
+              >
+                <DropDown
+                  state="disabled"
+                  condition={""}
+                  title={day}
+                ></DropDown>
+              </div>
+              <div
+                style={{
+                  marginRight: "8px",
+                }}
+              >
+                <DropDown
+                  state="disabled"
+                  condition={"시"}
+                  title={hour}
+                ></DropDown>
+              </div>
               <DropDown
                 state="disabled"
                 condition={"분"}
@@ -244,7 +256,7 @@ const MyPageNotification = (props) => {
               alignItems: "center",
               padding: "0px",
               position: "absolute",
-              width: "26px",
+              width: "40px",
               height: "20px",
               left: "calc(50%-26px/2 + 1px)",
               top: "calc(50% - 20px/2)",
@@ -259,10 +271,6 @@ const MyPageNotification = (props) => {
 };
 
 const Title = styled.p`
-  /* position: absolute;
-  left:0px;
-  top:0px; */
-
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.lg};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
@@ -279,12 +287,9 @@ const ToggleSwitch = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.Medium};
   letter-spacing: -0.3px;
   display: flex;
-  /* justify-content: space-between; */
   position: absolute;
   width: 300px;
   height: 30px;
-  /* left: 265px; */
-  /* top: 67px; */
 `;
 
 const Button = styled.button`
@@ -295,7 +300,6 @@ const Button = styled.button`
   flex: none;
   order: 0;
   flex-grow: 0;
-
   position: absolute;
   width: 295px;
   height: 48px;
