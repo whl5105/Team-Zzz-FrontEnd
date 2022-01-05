@@ -86,10 +86,11 @@ const DiaryWrite = (props) => {
       window.alert("두개 다 선택 해야합니다.");
     } else {
       const diaryListInfo = {
-        day: props.data.day,
+        // day: props.data.day,
         feelScore: feelScore,
         sleepScore: sleepScore,
         comment: comment,
+        diaryIdx : dayData.diaryIdx
       };
       dispatch(
         diaryActions.editDiaryDB(

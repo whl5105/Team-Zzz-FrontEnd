@@ -6,11 +6,14 @@ import axios from "axios";
 
 // -- actions --
 const SIGNUP = "SIGNUP";
+const FIRST_SIGNUP = "FIRST_SIGNUP";
+
 const ERR_SIGNUP = "ERR_SIGNUP";
 const SET_USER = "SET_USER";
 
 // -- action creators --
 const signup = createAction(SIGNUP);
+const firstSignup = createAction(FIRST_SIGNUP);
 const err_signup = createAction(ERR_SIGNUP);
 const setUser = createAction(SET_USER, (user) => ({ user }));
 
@@ -23,7 +26,7 @@ const initialState = {
   },
   errMessage: "",
   is_login: false,
-  is_Signup: true,
+  is_signup: false,
 };
 
 // -- middleware actions --
@@ -86,7 +89,11 @@ export default handleActions(
   {
     [SIGNUP]: (state, action) =>
       produce(state, (draft) => {
-        draft.is_Signup = true;
+        draft.is_signup = true;
+      }),
+    [FIRST_SIGNUP]: (state, action) =>
+      produce(state, (draft) => {
+        draft.is_signup = false;
       }),
     [ERR_SIGNUP]: (state, action) =>
       produce(state, (draft) => {
@@ -103,6 +110,7 @@ export default handleActions(
 
 // -- action creator export --
 const actionCreators = {
+  firstSignup,
   signupDB,
   loginDB,
   logoutDB,

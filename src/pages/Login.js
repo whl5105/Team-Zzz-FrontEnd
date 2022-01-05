@@ -8,16 +8,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 import reset from "../static/images/icon/reset.svg";
+
 import SingupSuccess from "../components/SingupSuccess";
 
 const Login = () => {
+  const first_signup = useSelector((store) => store.user.is_signup);
+
+  React.useEffect(() => {
+    console.log(first_signup);
+    if (first_signup === true) {
+      const timeout = setTimeout(() => {
+        dispatch(userActions.firstSignup());
+      }, 5000);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, []);
+
   const dispatch = useDispatch();
   const errMessage = useSelector((store) => store.user.errMessage);
-  const is_Signup = useSelector((store) => store.user.is_Signup);
+
   const [inputs, setInputs] = useState({
     id: "",
     pwd: "",
   });
+
   const { id, pwd } = inputs;
 
   // //-- 오류메시지 상태저장--
@@ -106,7 +122,7 @@ const Login = () => {
           <p>회원가입하기</p>
         </SignUp>
       </div>
-      {is_Signup ? <SingupSuccess></SingupSuccess> : ""}
+      {first_signup ? <SingupSuccess></SingupSuccess> : ""}
     </Container>
   );
 };

@@ -79,11 +79,11 @@ const getDiaryDB = (year, month) => {
   return async function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
     const yearMonth = `${year}-${month}`;
-
+    console.log(userIdx, yearMonth);
     try {
       // 다이어리 기록 불러오기
       const diaryListRes = await apis.getDiaryList(userIdx, yearMonth);
-      console.log(diaryListRes)
+      console.log(diaryListRes);
       const diaryList = diaryListRes.errorMessage ? [] : diaryListRes;
 
       // 다이어리 점수 불러오기
@@ -110,28 +110,32 @@ const addDiaryDB = (year, month, diaryListInfo) => {
         diaryListInfo.sleepScore,
         diaryListInfo.comment
       );
+      console.log(
+        yearMonth,
+        diaryListInfo.day,
+        diaryListInfo.feelScore,
+        diaryListInfo.sleepScore,
+        diaryListInfo.comment
+      );
       console.log("addDiaryDB response : ", res);
-
-      // dispatch(add_diary(diaryListInfo));
       dispatch(getDiaryDB(year, month));
+      // dispatch(add_diary(diaryListInfo));
     } catch (error) {
       console.log("addDiaryDB Error : ", error);
     }
   };
 };
 //다이어리 편집
-const editDiaryDB = (year, month, diaryListInfo) => {
+const editDiaryDB = (diaryListInfo) => {
   return function (dispatch, getState, { history }) {
-    const userIdx = localStorage.getItem("userIdx");
-    const yearMonth = `${year}-${month}`;
-    //요청보낼 다이어리 리스트
-    const diary_info = {
-      yearMonth: yearMonth,
-      ...diaryListInfo,
-    };
     try {
       console.log(diaryListInfo);
-      const res = apis.editDiaryDB(userIdx, diary_info);
+      const res = apis.editDiaryDB(
+        diaryListInfo.diaryIdx,
+        diaryListInfo.feelScore,
+        diaryListInfo.sleepScore,
+        diaryListInfo.comment
+      );
       console.log("editDiaryDB response : ", res);
       dispatch(edit_diary(diaryListInfo));
     } catch (error) {
@@ -159,8 +163,8 @@ export default handleActions(
   {
     [GET_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        draft.diaryList = action.payload.diaryList;
-        draft.sleepAvg = action.payload.diaryScore;
+        draft.diaryList = action.payload.diaryListInfo.getDiary;
+        draft.sleepAvg = action.payload.diaryListInfo.sleepAvg;
       }),
     [ADD_DIARY]: (state, action) =>
       produce(state, (draft) => {
