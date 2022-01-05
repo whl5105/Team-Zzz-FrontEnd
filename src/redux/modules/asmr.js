@@ -16,27 +16,33 @@ const initialState = {
     {
       categoryIdx: "1",
       categoryName: "오브젝트",
+
       title: "심장",
       asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
       // asmrUrl: "1",
       iconUrl: "심장.jpg",
+
     },
     {
       categoryIdx: "2",
       categoryName: "오브젝트",
+
       title: "라디오",
       asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
       // asmrUrl: "2",
       iconUrl: "라디오.jpg",
+
     },
 
     {
       categoryIdx: "3",
       categoryName: "오브젝트",
+
       title: "스프링",
       // asmrUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
       asmrUrl: "3",
       iconUrl: "스프링.jpg",
+
     },
     {
       categoryIdx: "4",
