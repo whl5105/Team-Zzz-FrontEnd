@@ -9,6 +9,9 @@ import Rectangle from "../elements/Rectangle";
 import NoInfo from "../static/images/diary/NoInfo.png";
 import Left from "../static/images/diary/left 화살표.svg";
 import Right from "../static/images/diary/right 화살표.svg";
+
+// 다이어리 페이지
+
 //-- page --
 import DiaryWrite from "../components/DiaryWrite";
 
@@ -46,7 +49,7 @@ const Diary = () => {
     const day = new Date(getMoment); // 사용자가 선택한 날짜
 
     console.log("다이어리 기록 불러와요");
-    // getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
+    getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
   }, [getMoment]);
 
   React.useEffect(() => {
