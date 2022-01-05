@@ -70,6 +70,7 @@ const DiaryWrite = (props) => {
         )
       );
     }
+    props.close();
   };
   //-- 수정 클릭 --
   const editClick = () => {

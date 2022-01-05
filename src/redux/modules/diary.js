@@ -69,6 +69,7 @@ const initialState = {
   ],
 
   sleepAvg: "오늘은 잠을 못주무셨네요",
+  modal: true,
 };
 
 // -- middleware actions --
@@ -91,15 +92,16 @@ const getDiaryDB = (year, month) => {
 const addDiaryDB = (year, month, diaryListInfo) => {
   return function (dispatch, getState, { history }) {
     const yearMonth = `${year}-${month}`;
-    //요청보낼 다이어리 리스트
-    // const diary_info = {
-    //   ...diaryListInfo,
-    //   yearMonth: yearMonth,
-    // };
-    console.log(diaryListInfo);
-    console.log(typeof diaryListInfo);
+    // console.log(diaryListInfo);
+    // console.log(typeof diaryListInfo);
     try {
-      const res = apis.addDiary(diaryListInfo, yearMonth);
+      const res = apis.addDiary(
+        yearMonth,
+        diaryListInfo.day,
+        diaryListInfo.feelScore,
+        diaryListInfo.sleepScore,
+        diaryListInfo.comment
+      );
       console.log("addDiaryDB response : ", res);
       dispatch(add_diary(diaryListInfo));
     } catch (error) {
@@ -153,6 +155,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.diaryList.push(action.payload.diaryListInfo);
         console.log(action.payload.diaryListInfo);
+        draft.modal = false;
       }),
     [EDIT_DIARY]: (state, action) =>
       produce(state, (draft) => {
