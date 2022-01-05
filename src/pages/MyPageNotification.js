@@ -73,7 +73,7 @@ const MyPageNotification = (props) => {
       <p
         style={{
           position: "absolute",
-          width: "102px",
+          width: "120px",
           height: "22px",
           left: "20px",
           top: "70px",
