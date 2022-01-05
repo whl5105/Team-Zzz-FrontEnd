@@ -137,7 +137,6 @@ export default handleActions(
   {
     [GET_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.diaryList, action.payload.diaryScore);
         draft.diaryList = action.payload.diaryList;
         draft.sleepAvg = action.payload.diaryScore;
       }),

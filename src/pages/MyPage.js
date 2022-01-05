@@ -6,7 +6,6 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
 import styled from "styled-components";
 
-
 // 아이콘 이미지 import
 import userIcon from "../static/images/mypage/userIcon.svg";
 import noticeIcon from "../static/images/mypage/noticeIcon.svg";
@@ -111,11 +110,20 @@ const Mypage = (props) => {
                   color: "white",
                 }}
               >
-                {userNotice.time.sleepChk ===false && "알림 OFF"}
-                {userNotice.time.sleepChk ? userNotice.time.timePA==="AM"?'오전':'오후': null} &nbsp;
-                {userNotice.time.sleepChk ? userNotice.time.hour: null}
-                {userNotice.time.sleepChk ?`:` : null}
-                {userNotice.time.sleepChk ? userNotice.time.min<10?'0'+ userNotice.time.min: userNotice.time.min :null}
+                {userNotice.time.sleepChk === false && "알림 OFF"}
+                {userNotice.time.sleepChk
+                  ? userNotice.time.timePA === "AM"
+                    ? "오전"
+                    : "오후"
+                  : null}{" "}
+                &nbsp;
+                {userNotice.time.sleepChk ? userNotice.time.hour : null}
+                {userNotice.time.sleepChk ? `:` : null}
+                {userNotice.time.sleepChk
+                  ? userNotice.time.min < 10
+                    ? "0" + userNotice.time.min
+                    : userNotice.time.min
+                  : null}
               </span>
             </div>
 
@@ -134,7 +142,7 @@ const Mypage = (props) => {
                 style={{
                   width: "10px",
                   height: "16px",
-                  // margin: "0px",
+
                   backgroundImage: `url(${path})`,
                 }}
               ></Box>
@@ -282,7 +290,6 @@ const Mypage = (props) => {
             </div>
             <div
               style={{
-                // position: "absolute",
                 width: "24px",
                 height: "16px",
                 left: "0px",
@@ -305,17 +312,11 @@ const Mypage = (props) => {
   }
   return (
     <React.Fragment>
-      <div
-        style={{
-          position: "relative",
-          // width: "375px",
-          // height: "812px",
-        }}
-      >
+      <div>
         <p
           style={{
             position: "absolute",
-            width: "130px",
+            width: "150px",
             height: "22px",
             left: "20px",
             top: "70px",
@@ -384,7 +385,6 @@ const Mypage = (props) => {
           </div>
           <div
             style={{
-              // position: "absolute",
               width: "24px",
               height: "16px",
               left: "0px",
@@ -457,7 +457,6 @@ const Mypage = (props) => {
           </div>
           <div
             style={{
-              // position: "absolute",
               width: "24px",
               height: "16px",
               left: "0px",
