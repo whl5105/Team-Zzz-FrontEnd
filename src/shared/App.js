@@ -24,6 +24,7 @@ import Mypage from "../pages/MyPage";
 import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
+import NoticePage from "../pages/NoticePage";
 import ModalPopUp from "../components/ModalPopUp";
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
                   exact
                   component={MyPageNotification}
                 ></Route>
+                <Route path="/notice"exact component={NoticePage}></Route>
                 <Route>
                   <NotFound />
                 </Route>
