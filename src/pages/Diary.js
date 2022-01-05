@@ -188,7 +188,12 @@ const Diary = () => {
                 );
               })}
             </Content>
-            <Rectangle text={sleepAvg}></Rectangle>
+            {list.length > 0 && (
+              <Rectangle
+                top={list.length >= 30 ? "-80px" : "263px"}
+                text={sleepAvg}
+              ></Rectangle>
+            )}
           </div>
         )}
       </div>
@@ -233,7 +238,7 @@ const Content = styled.div`
   background-color: ${({ theme }) => theme.colors.bg}};
   color: ${({ theme }) => theme.colors.white};
   width: 330px;
-  height: 520px;
+  max-height: 515px;
   margin: 5px auto;
   margin-bottom: 15px;
   display: flex;
