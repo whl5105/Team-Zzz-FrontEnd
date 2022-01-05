@@ -1,7 +1,6 @@
 {
-  "short_name": "Zzz PWA",
-  "name": "Zzz",
-  "description": "잠이 드는 시간 Zzz",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
@@ -19,8 +18,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#101340"
+  "background_color": "#ffffff"
 }

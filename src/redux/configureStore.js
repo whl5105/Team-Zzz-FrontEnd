@@ -5,10 +5,6 @@ import { connectRouter } from "connected-react-router";
 
 //-- module (import module 여기에 모아주세요!)--
 import User from "./modules/user";
-import Notice from "./modules/notice";
-import Diary from "./modules/diary";
-import Voice from "./modules/voice";
-import Asmr from "./modules/asmr";
 
 //---- history----
 export const history = createBrowserHistory();
@@ -16,10 +12,7 @@ export const history = createBrowserHistory();
 //---- rootReducer ----
 const rootReducer = combineReducers({
   user: User,
-  notice: Notice,
-  diary: Diary,
-  voice: Voice,
-  asmr: Asmr,
+
   router: connectRouter(history),
 });
 
