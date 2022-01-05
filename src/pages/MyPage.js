@@ -304,13 +304,7 @@ const Mypage = (props) => {
   }
   return (
     <React.Fragment>
-      <div
-        style={{
-          position: "relative",
-          // width: "375px",
-          // height: "812px",
-        }}
-      >
+      <div>
         <p
           style={{
             position: "absolute",
