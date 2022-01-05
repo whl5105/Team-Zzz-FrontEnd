@@ -188,10 +188,12 @@ const Diary = () => {
                 );
               })}
             </Content>
-            <Rectangle
-              top={list.length >= 30 ? "-80px" : "263px"}
-              text={sleepAvg}
-            ></Rectangle>
+            {list.length > 0 && (
+              <Rectangle
+                top={list.length >= 30 ? "-80px" : "263px"}
+                text={sleepAvg}
+              ></Rectangle>
+            )}
           </div>
         )}
       </div>
