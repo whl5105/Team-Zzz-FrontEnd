@@ -21,7 +21,7 @@ const AsmrPopUp = (props) => {
   const [Volume2, setVolume2] = React.useState(song2.volume * 100);
   const [Volume3, setVolume3] = React.useState(song3.volume * 100);
   const [songList, setSongList] = React.useState(props.list);
-  console.log(songList);
+  // console.log(songList);
   const VolumeChange = (e) => {
     setVolume(e.target.value);
     song1.volume = e.target.value * 0.01;
@@ -113,8 +113,8 @@ const AsmrPopUp = (props) => {
         <VolumePopUp>
           {songList.length === 0 && (
             <>
-              <NoList>리스트가 없습니다. 선택해주세요</NoList>
-              <p
+              <NoList>선택된 소리가 없어요!</NoList>
+              {/* <p
                 style={{
                   color: "white",
                   position: "relative",
@@ -127,7 +127,7 @@ const AsmrPopUp = (props) => {
                 onClick={() => props.closeModal(false)}
               >
                 창닫기
-              </p>
+              </p> */}
             </>
           )}
 
@@ -238,9 +238,9 @@ const AsmrPopUp = (props) => {
             }}
           >
             <Button
-            // onClick={() => props.closeModal(false)} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
+              onClick={() => props.closeModal(false)} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
             >
-              나만의 사운드 듣기
+              창닫기
             </Button>
           </div>
         </VolumePopUp>
@@ -277,11 +277,14 @@ const CloseVolume = styled.div`
 `;
 
 const NoList = styled.p`
+  width: 100%;
   color: white;
   position: relative;
-  top: 25%;
-  left: 60px;
   font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 250px; // 세로 가운데 정렬
+  letter-spacing: 0.3px;
 `;
 
 const Icon = styled.div`
