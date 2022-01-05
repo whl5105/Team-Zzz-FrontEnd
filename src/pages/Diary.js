@@ -21,10 +21,7 @@ const Diary = () => {
       ? moment(`${location.year}-${location.month}-01`)
       : moment()
   );
-  const diaryInfo = useSelector((state) => state.diary.diaryList);
-  const [diaryList, setDiaryList] = React.useState(
-    diaryInfo !== undefined && diaryInfo.length !== 0 ? diaryInfo : []
-  );
+  const diaryList = useSelector((state) => state.diary.diaryList);
   const [monthDay, setMonthDay] = React.useState(0);
   const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
   // const sleepAvg = diaryList[diaryList.length - 1].sleepAvg;
@@ -42,18 +39,19 @@ const Diary = () => {
   ];
 
   const getDiaryInfo = async (year, month) => {
-    console.log(year, month);
     await dispatch(diaryActions.getDiaryDB(year, month));
   };
 
   React.useEffect(() => {
-    const today = new Date(moment()); // 오늘 날짜
     const day = new Date(getMoment); // 사용자가 선택한 날짜
 
-    if (diaryList.length === 0) {
-      console.log("다이어리 기록이 없어요");
-      getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
-    }
+    console.log("다이어리 기록 불러와요");
+    getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
+  }, [getMoment]);
+
+  React.useEffect(() => {
+    const today = new Date(moment()); // 오늘 날짜
+    const day = new Date(getMoment); // 사용자가 선택한 날짜
 
     if (
       today.getFullYear() + "_" + today.getMonth() ===
@@ -79,9 +77,6 @@ const Diary = () => {
         setMonthDay(days);
       }
     }
-
-    // 년, 월이 바뀔 때마다 서버에 데이터를 새로 요청한다.
-    getDiaryInfo(day.getFullYear(), day.getMonth() + 1);
 
     // index => 0, diaryList => day랑 서로 일치를 해야 함.
     // 1) 해당 월의 일수 길이만큼의 배열에 배열 연산자 forEach를 돌린다.

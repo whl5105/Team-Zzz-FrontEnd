@@ -21,6 +21,7 @@ const DiaryWrite = (props) => {
   ];
 
   const diaryList = useSelector((state) => state.diary.diaryList); //다이어리 데이터
+
   const diaryDayId = props.data.day; //선택된 일자
   const isDay = diaryDayId ? true : false;
   let diaryData = isDay ? diaryList.find((p) => p.day === diaryDayId) : null; //다이어리 해당일자 데이터 찾기
@@ -30,6 +31,13 @@ const DiaryWrite = (props) => {
     diaryData ? diaryData.comment : ""
   );
   const [edit, setEdit] = React.useState(false);
+
+  console.log(diaryList);
+  console.log(diaryDayId);
+  console.log(isDay);
+  console.log(diaryData);
+  console.log(dayData);
+  console.log(comment);
 
   //-- 다이어리 데이터 --
   const [state, setState] = React.useState({
