@@ -211,11 +211,6 @@ const Clock = (props) => {
           }}
         ></ArrowIcon>
         {toggle ? (
-          <Content>나에게 가장 적절한 수면시간을 찾아볼까요?</Content>
-        ) : (
-          <Content>나에게 적절한 수면 시간은...</Content>
-        )}
-        {toggle ? (
           <SleepTimeWrap
             style={{
               height: "229px",

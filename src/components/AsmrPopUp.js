@@ -14,16 +14,11 @@ import 심장 from "../static/images/asmr/song/심장.svg";
 
 const AsmrPopUp = (props) => {
   //   const [modal, setModal] = React.useState(true); // 모달창
-  console.log(심장);
-  console.log(props.playIcon);
+
   const playIcon = props.playIcon.split(".")[0];
   const playIcon2 = props.play2Icon.split(".")[0];
   const playIcon3 = props.play3Icon.split(".")[0];
-  console.log(playIcon);
-  //  console.log(props.playIcon)
-  //  console.log(심장.url)
-  //  const Icon1 = props.playIcon;
-  //  console.log(Icon1)
+ 
   const [song1, setSong1] = React.useState(props.play);
   const [song2, setSong2] = React.useState(props.play2);
   const [song3, setSong3] = React.useState(props.play3);
@@ -124,20 +119,6 @@ const AsmrPopUp = (props) => {
           {songList.length === 0 && (
             <>
               <NoList>선택된 소리가 없어요!</NoList>
-              {/* <p
-                style={{
-                  color: "white",
-                  position: "relative",
-                  top: "30%",
-                  left: "150px",
-                  fontWeight: "bold",
-                  fontSize: "20px",
-                  cursor: "pointer",
-                }}
-                onClick={() => props.closeModal(false)}
-              >
-                창닫기
-              </p> */}
             </>
           )}
 
@@ -337,8 +318,7 @@ const Icon = styled.div`
   background-repeat: no-repeat;
 `;
 
-const Image =styled.img`
-`;
+const Image = styled.img``;
 const Button = styled.button`
   font-size: 16px;
   font-weight: bold;
