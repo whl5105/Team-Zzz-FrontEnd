@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 import AsmrPopUp from "../components/AsmrPopUp";
 
@@ -17,7 +17,7 @@ import asmrUrl3 from "../audio/asmrUrl3.mp3";
 export const deleteSong = (url) => {
   console.log(url);
   const deleteItem = document.getElementById(url);
-  deleteItem.style.backgroundColor = "gray";
+  deleteItem.style.backgroundColor = "#3A3E74";
 };
 
 const Asmr = (props) => {
@@ -26,6 +26,9 @@ const Asmr = (props) => {
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());
+  const [song1Icon, setSong1Icon] = React.useState();
+  const [song2Icon, setSong2Icon] = React.useState();
+  const [song3Icon, setSong3Icon] = React.useState();
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
   );
@@ -34,7 +37,6 @@ const Asmr = (props) => {
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const [play, setPlay] = React.useState([]);
 
-  const history = useHistory();
   const dispatch = useDispatch();
   const [openModal, setOpenmodal] = React.useState(false);
   // const [test1, setTest1] =React.useState(test.arr);
@@ -51,14 +53,24 @@ const Asmr = (props) => {
     }
   }, [getCategory]);
 
+  // 카테고리 변경 시 모든 음원 비활성화
+  React.useEffect(() => {
+    sound.forEach((item) => {
+      const style = document.getElementById(item.asmrUrl);
+      style.style.backgroundColor = "#3a3e74";
+    });
+  }, [sound]);
+
   React.useEffect(() => {
     // 1) 카테고리별 활성화 유무
     const arr = ["전체", "네이쳐", "플레이스", "오브젝트"];
 
     // 2) 음원 데이터 유무
     if (!asmrInfo) {
+      // 음원 데이터가 없을 때
       dispatch(asmrActions.getAsmrDB());
     } else {
+      // 음원 데이터가 있을 때
       arr.forEach((arrItem) => {
         if (arrItem !== getCategory) {
           // 비활성화
@@ -104,19 +116,9 @@ const Asmr = (props) => {
         setSong3(new Audio());
       });
     }
-
-    // 6) 컴포넌트 사라질 때 음원도 정지 시킴
-    return () => {
-      song1.pause();
-      song2.pause();
-      song3.pause();
-      setSong1(new Audio());
-      setSong2(new Audio());
-      setSong3(new Audio());
-    };
   }, [getCategory]);
 
-  const select = (asmrUrl) => {
+  const select = (asmrUrl, iconUrl) => {
     if (play.includes(asmrUrl)) {
       // 비활성화
       let arr = [...play];
@@ -131,12 +133,15 @@ const Asmr = (props) => {
       if (song1.src.indexOf(asmrUrl) !== -1) {
         song1.pause();
         setSong1(new Audio());
+        setSong1Icon(null);
       } else if (song2.src.indexOf(asmrUrl) !== -1) {
         song2.pause();
         setSong2(new Audio());
+        setSong2Icon(null);
       } else if (song3.src.indexOf(asmrUrl) !== -1) {
         song3.pause();
         setSong3(new Audio());
+        setSong3Icon(null);
       }
 
       // 선택한 음원 비활성화 style
@@ -152,16 +157,19 @@ const Asmr = (props) => {
 
         // 음원 선택 시 활성화 되면서 음원 재생
         if (!song1.src) {
+          setSong1Icon(iconUrl);
           song1.src = asmrUrl;
           song1.volume = 0.5;
           song1.loop = true;
           song1.play();
         } else if (!song2.src) {
+          setSong2Icon(iconUrl);
           song2.src = asmrUrl;
           song2.volume = 0.5;
           song2.loop = true;
           song2.play();
         } else if (!song3.src) {
+          setSong3Icon(iconUrl);
           song3.src = asmrUrl;
           song3.volume = 0.5;
           song3.loop = true;
@@ -213,32 +221,42 @@ const Asmr = (props) => {
             오브젝트
           </Category>
         </CategorySelect>
-        <SoundSelect height={getCategory !== "전체" ? "320px" : "480px"}>
+        <SoundSelect height={getCategory !== "전체" ? "320px" : "535px"}>
           {sound.map((item) => {
             return (
               <Sound
                 id={item.asmrUrl}
+                className={"asmrUrl"}
                 key={item.categoryIdx}
                 onClick={() => {
-                  select(item.asmrUrl);
+                  select(item.asmrUrl, item.iconUrl);
                 }}
               >
-                <Img src={require(`../static/images/asmr/song/${item.iconUrl}`)} alt=""></Img>
-                <p>{item.title}</p>
+                <img
+                  src={require(`../static/images/asmr/song/${
+                    item.iconUrl.split(".")[0]
+                  }.svg`)}
+                  alt=""
+                ></img>
+                <Text>{item.title}</Text>
               </Sound>
             );
           })}
         </SoundSelect>
-        {play.length > 0 ? (
-          <button
-            onClick={() => {
-              setOpenmodal(true);
-              console.log("음원 url 가지고 이동!!!", play);
-            }}
-          >
-            음량 조절 하러 가기
-          </button>
-        ) : null}
+        <Button
+          margin={getCategory !== "전체" ? "235px" : "20px"}
+          onClick={() => {
+            setOpenmodal(true);
+            console.log(
+              "음원 url 가지고 이동!!!",
+              song1Icon,
+              song2Icon,
+              song3Icon
+            );
+          }}
+        >
+          소리 조절 하기
+        </Button>
         {openModal && (
           <AsmrPopUp
             setList={setPlay}
@@ -246,6 +264,9 @@ const Asmr = (props) => {
             play={song1}
             play2={song2}
             play3={song3}
+            playIcon={song1Icon}
+            play2Icon={song2Icon}
+            play3Icon={song3Icon}
             setPlay={setSong1}
             setPlay2={setSong2}
             setPlay3={setSong3}
@@ -311,7 +332,7 @@ const SoundSelect = styled.div`
 const Sound = styled.div`
   width: 70px;
   height: 50px;
-  padding-top: 20px;
+  padding-top: 15px;
   border-radius: 8px;
   background-color: #3a3e74;
   color: ${({ theme }) => theme.colors.white};
@@ -323,8 +344,23 @@ const Sound = styled.div`
   text-align: center;
 `;
 
-const Img = styled.img`
-  background-color: ${({ theme }) => theme.colors.back};
-`
+const Text = styled.p`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+`;
+
+const Button = styled.button`
+  width: 335px;
+  height: 52px;
+  margin: 20px;
+  margin-top: ${(props) => props.margin};
+  border: none;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.main_1};
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+`;
 
 export default Asmr;
