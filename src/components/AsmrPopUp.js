@@ -10,10 +10,20 @@ import fireIcon from "../static/images/asmr/fireIcon.svg";
 import rainIcon from "../static/images/asmr/rainIcon.svg";
 import seaIcon from "../static/images/asmr/seaIcon.svg";
 import closeIcon from "../static/images/asmr/closeIcon.svg";
+import 심장 from "../static/images/asmr/song/심장.svg";
 
 const AsmrPopUp = (props) => {
   //   const [modal, setModal] = React.useState(true); // 모달창
-
+  console.log(심장);
+  console.log(props.playIcon);
+  const playIcon = props.playIcon.split(".")[0];
+  const playIcon2 = props.play2Icon.split(".")[0];
+  const playIcon3 = props.play3Icon.split(".")[0];
+  console.log(playIcon);
+  //  console.log(props.playIcon)
+  //  console.log(심장.url)
+  //  const Icon1 = props.playIcon;
+  //  console.log(Icon1)
   const [song1, setSong1] = React.useState(props.play);
   const [song2, setSong2] = React.useState(props.play2);
   const [song3, setSong3] = React.useState(props.play3);
@@ -140,9 +150,21 @@ const AsmrPopUp = (props) => {
                   padding: "0px 0px 12px 0px",
                 }}
               >
-                <Icon categoryImage={fireIcon} width="70px" height="70px">
-                  {" "}
-                </Icon>
+                <Sound>
+                  <div
+                    style={{
+                      position: "relative",
+                      top: "15px",
+                    }}
+                  >
+                    <Image
+                      src={require(`../static/images/asmr/song/${playIcon}.svg`)}
+                      alt=""
+                    ></Image>
+                    <Text>{playIcon}</Text>
+                  </div>
+                </Sound>
+
                 <input
                   type="range"
                   id="volume"
@@ -172,9 +194,21 @@ const AsmrPopUp = (props) => {
                   padding: "0px 0px 12px 0px",
                 }}
               >
-                <Icon categoryImage={seaIcon} width="70px" height="70px">
-                  {" "}
-                </Icon>
+                <Sound>
+                  <div
+                    style={{
+                      position: "relative",
+                      top: "15px",
+                    }}
+                  >
+                    <Image
+                      src={require(`../static/images/asmr/song/${playIcon2}.svg`)}
+                      alt=""
+                    ></Image>
+                    <Text>{playIcon2}</Text>
+                  </div>
+                </Sound>
+
                 <input
                   type="range"
                   id="volume2"
@@ -203,11 +237,20 @@ const AsmrPopUp = (props) => {
                   padding: "0px 0px 12px 0px",
                 }}
               >
-                <Icon
-                  categoryImage={rainIcon}
-                  width="70px"
-                  height="70px"
-                ></Icon>
+                <Sound>
+                  <div
+                    style={{
+                      position: "relative",
+                      top: "15px",
+                    }}
+                  >
+                    <Image
+                      src={require(`../static/images/asmr/song/${playIcon3}.svg`)}
+                      alt=""
+                    ></Image>
+                    <Text>{playIcon3}</Text>
+                  </div>
+                </Sound>
                 <input
                   type="range"
                   id="volume3"
@@ -294,6 +337,8 @@ const Icon = styled.div`
   background-repeat: no-repeat;
 `;
 
+const Image =styled.img`
+`;
 const Button = styled.button`
   font-size: 16px;
   font-weight: bold;
@@ -306,6 +351,27 @@ const Button = styled.button`
   left: 10px;
   color: #fff;
   background-color: #fbc037;
+`;
+
+const Sound = styled.div`
+  width: 70px;
+  height: 70px;
+  /* padding-top: 15px; */
+  border-radius: 8px;
+  background-color: #3a3e74;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  /* margin-top: 20px; */
+  /* margin-right: 21px; */
+  /* margin-left: 20px; */
+  text-align: center;
+`;
+
+const Text = styled.p`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
 `;
 
 export default AsmrPopUp;
