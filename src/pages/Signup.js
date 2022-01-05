@@ -146,6 +146,7 @@ const Signup = (props) => {
         type="password"
         value={pwd_check}
         onChange={onChangePasswordCheck}
+        height="60px"
       />
       {pwd_check.length > 0 ? (
         <Span className={`${isPwdCheck ? "success" : "error"}`}>

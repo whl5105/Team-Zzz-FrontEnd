@@ -24,13 +24,15 @@ const Component = styled.div`
 `;
 
 const Children = styled.div`
+  width: ${(props) => props.width};
   background-color: #fff;
   border-radius: 12px;
   z-index: 999;
   position: absolute;
-  margin: 50% 20px;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
 `;
 
 export default ModalPopUp;
