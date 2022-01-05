@@ -5,10 +5,10 @@ import { useHistory, useLocation } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 import AsmrPopUp from "../components/AsmrPopUp";
 
-import All from "../static/images/asmr/전체.svg";
-import Nature from "../static/images/asmr/네이쳐.svg";
-import Place from "../static/images/asmr/플레이스.svg";
-import Object from "../static/images/asmr/오브젝트.svg";
+import All from "../static/images/asmr/background/전체.svg";
+import Nature from "../static/images/asmr/background/네이쳐.svg";
+import Place from "../static/images/asmr/background/플레이스.svg";
+import Object from "../static/images/asmr/background/오브젝트.svg";
 
 import asmrUrl1 from "../audio/asmrUrl1.mp3";
 import asmrUrl2 from "../audio/asmrUrl2.mp3";
@@ -223,7 +223,7 @@ const Asmr = (props) => {
                   select(item.asmrUrl);
                 }}
               >
-                <p>{item.asmrUrl}</p>
+                <Img src={require(`../static/images/asmr/song/${item.iconUrl}`)} alt=""></Img>
                 <p>{item.title}</p>
               </Sound>
             );
@@ -322,5 +322,9 @@ const Sound = styled.div`
   margin-left: 20px;
   text-align: center;
 `;
+
+const Img = styled.img`
+  background-color: ${({ theme }) => theme.colors.back};
+`
 
 export default Asmr;

@@ -10,7 +10,7 @@ import asmrIcon from "../static/images/navigation/asmrIcon.svg";
 import diaryIcon from "../static/images/navigation/diaryIcon.svg";
 import myPageIcon from "../static/images/navigation/myPageIcon.svg";
 
-const Navigation = ({ match }) => {
+const Navigation = () => {
   const history = useHistory();
   const [diaryModal, setDiaryModal] = React.useState(false);
 
