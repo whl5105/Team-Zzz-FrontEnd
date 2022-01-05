@@ -39,13 +39,14 @@ const Diary = () => {
     await dispatch(diaryActions.getDiaryDB(year, month));
   };
 
-  // DB에서 데이터 가져오기
-  React.useEffect(() => {
-    getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
-  }, [getMoment]);
-
   // 저번달, 이번달, 다음달 조절하는 부분
   React.useEffect(() => {
+
+    console.log("저번달, 이번달, 다음달 조절하는 부분");
+
+    // DB에서 데이터 가져오기
+    getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
+
     const today = new Date(moment()); // 오늘 날짜
 
     if (
@@ -72,10 +73,13 @@ const Diary = () => {
         setMonthDay(days);
       }
     }
-  }, [getMoment, monthDay]);
+  }, [getMoment]);
 
-  // 해당 월의 일자에 맞춰 배열 생성해주는 부분
+  // 해당 월의 일자에 맞춰 배열 생성 해주는 부분
   React.useEffect(() => {
+
+    console.log("해당 월의 일자에 맞춰 배열 생성 해주는 부분")
+
     arr.forEach((arrItem, arrIndex) => {
       diaryList.forEach((diaryItem, diaryIndex) => {
         if (arrIndex + 1 === parseInt(diaryList[diaryIndex].day)) {
@@ -119,6 +123,7 @@ const Diary = () => {
             <img src={Left} alt="left"></img>
           </Button>
           <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
+          {/* YYYY는 년도 MM 은 달입니다. */}
           <Button
             right
             onClick={() => {

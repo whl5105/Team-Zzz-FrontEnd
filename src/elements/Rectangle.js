@@ -3,7 +3,6 @@ import styled from "styled-components";
 import DiaryAvg from "../static/images/diary/DiaryAvg.png";
 
 const Rectangle = (props) => {
-  console.log(props.top)
   return (
     <div style={{ position: "relative", margin: "0px 20px", top: `${props.top}` }}>
       <Text>{props.text}</Text>
