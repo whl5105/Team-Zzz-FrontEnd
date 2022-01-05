@@ -10,10 +10,15 @@ import fireIcon from "../static/images/asmr/fireIcon.svg";
 import rainIcon from "../static/images/asmr/rainIcon.svg";
 import seaIcon from "../static/images/asmr/seaIcon.svg";
 import closeIcon from "../static/images/asmr/closeIcon.svg";
+import 심장 from "../static/images/asmr/song/심장.svg";
 
 const AsmrPopUp = (props) => {
   //   const [modal, setModal] = React.useState(true); // 모달창
 
+  // const playIcon = props.playIcon.split(".")[0];
+  // const playIcon2 = props.play2Icon.split(".")[0];
+  // const playIcon3 = props.play3Icon.split(".")[0];
+ 
   const [song1, setSong1] = React.useState(props.play);
   const [song2, setSong2] = React.useState(props.play2);
   const [song3, setSong3] = React.useState(props.play3);
@@ -21,7 +26,7 @@ const AsmrPopUp = (props) => {
   const [Volume2, setVolume2] = React.useState(song2.volume * 100);
   const [Volume3, setVolume3] = React.useState(song3.volume * 100);
   const [songList, setSongList] = React.useState(props.list);
-  console.log(songList);
+  // console.log(songList);
   const VolumeChange = (e) => {
     setVolume(e.target.value);
     song1.volume = e.target.value * 0.01;
@@ -113,21 +118,7 @@ const AsmrPopUp = (props) => {
         <VolumePopUp>
           {songList.length === 0 && (
             <>
-              <NoList>리스트가 없습니다. 선택해주세요</NoList>
-              <p
-                style={{
-                  color: "white",
-                  position: "relative",
-                  top: "30%",
-                  left: "150px",
-                  fontWeight: "bold",
-                  fontSize: "20px",
-                  cursor: "pointer",
-                }}
-                onClick={() => props.closeModal(false)}
-              >
-                창닫기
-              </p>
+              <NoList>선택된 소리가 없어요!</NoList>
             </>
           )}
 
@@ -140,9 +131,21 @@ const AsmrPopUp = (props) => {
                   padding: "0px 0px 12px 0px",
                 }}
               >
-                <Icon categoryImage={fireIcon} width="70px" height="70px">
-                  {" "}
-                </Icon>
+                <Sound>
+                  <div
+                    style={{
+                      position: "relative",
+                      top: "15px",
+                    }}
+                  >
+                    <Image
+                      src={`${props.playIcon}`}
+                      alt=""
+                    ></Image>
+                    <Text>{props.title}</Text>
+                  </div>
+                </Sound>
+
                 <input
                   type="range"
                   id="volume"
@@ -172,9 +175,21 @@ const AsmrPopUp = (props) => {
                   padding: "0px 0px 12px 0px",
                 }}
               >
-                <Icon categoryImage={seaIcon} width="70px" height="70px">
-                  {" "}
-                </Icon>
+                <Sound>
+                  <div
+                    style={{
+                      position: "relative",
+                      top: "15px",
+                    }}
+                  >
+                    <Image
+                      src={`${props.play2Icon}`}
+                      alt=""
+                    ></Image>
+                    <Text>{props.title2}</Text>
+                  </div>
+                </Sound>
+
                 <input
                   type="range"
                   id="volume2"
@@ -203,11 +218,20 @@ const AsmrPopUp = (props) => {
                   padding: "0px 0px 12px 0px",
                 }}
               >
-                <Icon
-                  categoryImage={rainIcon}
-                  width="70px"
-                  height="70px"
-                ></Icon>
+                <Sound>
+                  <div
+                    style={{
+                      position: "relative",
+                      top: "15px",
+                    }}
+                  >
+                    <Image
+                      src={`${props.play3Icon}`}
+                      alt=""
+                    ></Image>
+                    <Text>{props.title3}</Text>
+                  </div>
+                </Sound>
                 <input
                   type="range"
                   id="volume3"
@@ -238,9 +262,9 @@ const AsmrPopUp = (props) => {
             }}
           >
             <Button
-            // onClick={() => props.closeModal(false)} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
+              onClick={() => props.closeModal(false)} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
             >
-              나만의 사운드 듣기
+              창닫기
             </Button>
           </div>
         </VolumePopUp>
@@ -274,16 +298,17 @@ const VolumePopUp = styled.div`
 const CloseVolume = styled.div`
   height: 55%;
   width: 375px;
-
-  /* onClick={() => props.closeModal(false)}  */
 `;
 
 const NoList = styled.p`
+  width: 100%;
   color: white;
   position: relative;
-  top: 25%;
-  left: 60px;
   font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 250px; // 세로 가운데 정렬
+  letter-spacing: 0.3px;
 `;
 
 const Icon = styled.div`
@@ -291,11 +316,9 @@ const Icon = styled.div`
   height: ${(props) => props.height};
   background-image: url(${(props) => props.categoryImage});
   background-repeat: no-repeat;
-  /* background-size: cover; */
-  /* margin: 2px 0px; */
-  /* cursor: pointer; */
 `;
 
+const Image = styled.img``;
 const Button = styled.button`
   font-size: 16px;
   font-weight: bold;
@@ -308,6 +331,27 @@ const Button = styled.button`
   left: 10px;
   color: #fff;
   background-color: #fbc037;
+`;
+
+const Sound = styled.div`
+  width: 70px;
+  height: 70px;
+  /* padding-top: 15px; */
+  border-radius: 8px;
+  background-color: #3a3e74;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  /* margin-top: 20px; */
+  /* margin-right: 21px; */
+  /* margin-left: 20px; */
+  text-align: center;
+`;
+
+const Text = styled.p`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
 `;
 
 export default AsmrPopUp;
