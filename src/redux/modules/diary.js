@@ -20,8 +20,9 @@ const DELETE_DIARY = "POST_DDELETE_DIARYIARY";
 //   score,
 // }));
 // -- action creators --
-const get_diary = createAction(GET_DIARY, (diaryListInfo) => ({
-  diaryListInfo,
+const get_diary = createAction(GET_DIARY, (diaryList, diaryScore) => ({
+  diaryList,
+  diaryScore,
 }));
 const add_diary = createAction(ADD_DIARY, (diaryListInfo) => ({
   diaryListInfo,
@@ -67,7 +68,6 @@ const initialState = {
     //   comment: "오늘은 아구찜 먹음",
     // },
   ],
-
   sleepAvg: "오늘은 잠을 못주무셨네요",
   modal: true,
 };
@@ -79,10 +79,18 @@ const getDiaryDB = (year, month) => {
     const yearMonth = `${year}-${month}`;
 
     try {
-      const res = await apis.getDiary(userIdx, yearMonth);
-      console.log("getDiaryDB response : ", res.errorMessage);
+      // 다이어리 기록 불러오기
+      const diaryListRes = await apis.getDiaryList(userIdx, yearMonth);
+      console.log(diaryListRes)
+      const diaryList = diaryListRes.errorMessage ? [] : diaryListRes;
 
-      dispatch(get_diary(res.errorMessage === "기록 없는 유저" ? [] : res));
+      // 다이어리 점수 불러오기
+      const diaryScoreRes = await apis.getDiaryScore(userIdx);
+      const diaryScore = diaryScoreRes.errorMessage
+        ? "아직 기록이 없습니다."
+        : diaryScoreRes.sleepAvg;
+
+      dispatch(get_diary(diaryList, diaryScore));
     } catch (error) {
       console.log("getDiaryDB Error : ", error);
     }
@@ -91,12 +99,10 @@ const getDiaryDB = (year, month) => {
 
 //다이어리 기록 추가
 const addDiaryDB = (year, month, diaryListInfo) => {
-  return function (dispatch, getState, { history }) {
+  return async function (dispatch, getState, { history }) {
     const yearMonth = `${year}-${month}`;
-    // console.log(diaryListInfo);
-    // console.log(typeof diaryListInfo);
     try {
-      const res = apis.addDiary(
+      const res = await apis.addDiary(
         yearMonth,
         diaryListInfo.day,
         diaryListInfo.feelScore,
@@ -104,7 +110,9 @@ const addDiaryDB = (year, month, diaryListInfo) => {
         diaryListInfo.comment
       );
       console.log("addDiaryDB response : ", res);
-      dispatch(add_diary(diaryListInfo));
+
+      // dispatch(add_diary(diaryListInfo));
+      dispatch(getDiaryDB(year, month));
     } catch (error) {
       console.log("addDiaryDB Error : ", error);
     }
@@ -150,7 +158,8 @@ export default handleActions(
   {
     [GET_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        draft.diaryList = action.payload.diaryListInfo;
+        draft.diaryList = action.payload.diaryList;
+        draft.sleepAvg = action.payload.diaryScore;
       }),
     [ADD_DIARY]: (state, action) =>
       produce(state, (draft) => {
