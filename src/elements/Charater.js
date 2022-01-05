@@ -75,11 +75,21 @@ const Charater = (props) => {
               src={require(`../static/images/character/feel${props.feelNumber}.svg`)}
             />
           )}
-          {props.feelNumber === 1 && <Feel1 fill={props.scoreColor}></Feel1>}
-          {props.feelNumber === 2 && <Feel2 fill={props.scoreColor}></Feel2>}
-          {props.feelNumber === 3 && <Feel3 fill={props.scoreColor}></Feel3>}
-          {props.feelNumber === 4 && <Feel4 fill={props.scoreColor}></Feel4>}
-          {props.feelNumber === 5 && <Feel5 fill={props.scoreColor}></Feel5>}
+          {props.feelNumber === 1 && (
+            <Feel1 fill={props.scoreColor} onClick={_onClick}></Feel1>
+          )}
+          {props.feelNumber === 2 && (
+            <Feel2 fill={props.scoreColor} onClick={_onClick}></Feel2>
+          )}
+          {props.feelNumber === 3 && (
+            <Feel3 fill={props.scoreColor} onClick={_onClick}></Feel3>
+          )}
+          {props.feelNumber === 4 && (
+            <Feel4 fill={props.scoreColor} onClick={_onClick}></Feel4>
+          )}
+          {props.feelNumber === 5 && (
+            <Feel5 fill={props.scoreColor} onClick={_onClick}></Feel5>
+          )}
 
           {/* <ImgIcon
             {...styles}

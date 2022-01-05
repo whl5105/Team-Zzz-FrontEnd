@@ -160,6 +160,7 @@ const Diary = () => {
                             scoreColor[scoreList.indexOf(item.sleepScore) + 1]
                           }
                           _onClick={() => {
+                            console.log("?")
                             diaryDetail(index + 1);
                           }}
                           margin="5px"

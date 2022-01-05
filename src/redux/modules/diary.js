@@ -37,36 +37,36 @@ const delete_diary = createAction(DELETE_DIARY, (day) => ({
 // -- initialState --
 const initialState = {
   diaryList: [
-    // {
-    //   day: 1,
-    //   feelScore: 1,
-    //   sleepScore: 1,
-    //   comment: "오늘은 아구찜 먹음",
-    // },
-    // {
-    //   day: 4,
-    //   feelScore: 2,
-    //   sleepScore: 2,
-    //   comment: "오늘은 아구찜 먹음",
-    // },
-    // {
-    //   day: 8,
-    //   feelScore: 3,
-    //   sleepScore: 3,
-    //   comment: "오늘은 아구찜 먹음",
-    // },
-    // {
-    //   day: 6,
-    //   feelScore: 4,
-    //   sleepScore: 4,
-    //   comment: "오늘은 아구찜 먹음",
-    // },
-    // {
-    //   day: 7,
-    //   feelScore: 5,
-    //   sleepScore: 5,
-    //   comment: "오늘은 아구찜 먹음",
-    // },
+    {
+      day: 1,
+      feelScore: 1,
+      sleepScore: 1,
+      comment: "오늘은 아구찜 먹음",
+    },
+    {
+      day: 4,
+      feelScore: 2,
+      sleepScore: 2,
+      comment: "오늘은 아구찜 먹음",
+    },
+    {
+      day: 8,
+      feelScore: 3,
+      sleepScore: 3,
+      comment: "오늘은 아구찜 먹음",
+    },
+    {
+      day: 6,
+      feelScore: 4,
+      sleepScore: 4,
+      comment: "오늘은 아구찜 먹음",
+    },
+    {
+      day: 7,
+      feelScore: 5,
+      sleepScore: 5,
+      comment: "오늘은 아구찜 먹음",
+    },
   ],
   sleepAvg: "오늘은 잠을 못주무셨네요",
   modal: true,
@@ -78,7 +78,7 @@ const initialState = {
 const getDiaryDB = (year, month) => {
   return async function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
-    const yearMonth = `${year}-${month}`;
+    const yearMonth = { yearMonth: `${year}-${month}` };
     console.log(userIdx, yearMonth);
     try {
       // 다이어리 기록 불러오기
@@ -163,8 +163,9 @@ export default handleActions(
   {
     [GET_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        draft.diaryList = action.payload.diaryListInfo.getDiary;
-        draft.sleepAvg = action.payload.diaryListInfo.sleepAvg;
+        console.log(action.payload.diaryList, action.payload.diaryScore);
+        draft.diaryList = action.payload.diaryList;
+        draft.sleepAvg = action.payload.diaryScore;
       }),
     [ADD_DIARY]: (state, action) =>
       produce(state, (draft) => {
