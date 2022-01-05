@@ -73,15 +73,15 @@ const initialState = {
 
 // -- middleware actions --
 const getDiaryDB = (year, month) => {
-  return function (dispatch, getState, { history }) {
+  return async function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
     const yearMonth = `${year}-${month}`;
 
     try {
-      const res = apis.getDiary(userIdx, yearMonth);
-      console.log("getDiaryDB response : ", res);
+      const res = await apis.getDiary(userIdx, yearMonth);
+      console.log("getDiaryDB response : ", res.errorMessage);
 
-      dispatch(get_diary(!res.length > 0 ? [] : res));
+      dispatch(get_diary(res.errorMessage === "기록 없는 유저" ? [] : res));
     } catch (error) {
       console.log("getDiaryDB Error : ", error);
     }
