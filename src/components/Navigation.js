@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import RequireLogin from "../components/RequireLogin";
+import { useDispatch } from "react-redux";
 
 // 아이콘 이미지 import
 import homeIcon from "../static/images/navigation/homeIcon.svg";
@@ -9,7 +10,7 @@ import asmrIcon from "../static/images/navigation/asmrIcon.svg";
 import diaryIcon from "../static/images/navigation/diaryIcon.svg";
 import myPageIcon from "../static/images/navigation/myPageIcon.svg";
 
-const Navigation = (props) => {
+const Navigation = ({ match }) => {
   const history = useHistory();
   const [diaryModal, setDiaryModal] = React.useState(false);
 
@@ -22,49 +23,53 @@ const Navigation = (props) => {
     }
   };
 
-  const closeModal = (path = null) => {
-    if (path) {
-      history.push(path);
-    }
-
+  const closeModal = () => {
     setDiaryModal(false);
   };
 
+  const loginModal = () => {
+    setDiaryModal(false);
+    history.push("/login");
+  };
+
   return (
-    <Gnb>
-      <Box
-        onClick={() => {
-          history.push("/");
-        }}
-      >
-        <Icon categoryImage={homeIcon} />홈
-      </Box>
+    <div>
+      <Gnb>
+        <Box
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          <Icon categoryImage={homeIcon} />홈
+        </Box>
 
-      <Box
-        onClick={() => {
-          history.push("/asmr");
-        }}
-      >
-        <Icon categoryImage={asmrIcon} />
-        ASMR
-      </Box>
+        <Box
+          onClick={() => {
+            history.push({ pathname: "/asmr" });
+          }}
+        >
+          <Icon categoryImage={asmrIcon} />
+          ASMR
+        </Box>
 
-      <Box onClick={diary}>
-        <Icon categoryImage={diaryIcon} />
-        다이어리
-      </Box>
+        <Box onClick={diary}>
+          <Icon categoryImage={diaryIcon} />
+          다이어리
+        </Box>
+
+        <Box
+          onClick={() => {
+            history.push("/mypage");
+          }}
+        >
+          <Icon categoryImage={myPageIcon} />
+          마이
+        </Box>
+      </Gnb>
       {diaryModal && (
-        <RequireLogin open={diaryModal} close={closeModal}></RequireLogin>
+        <RequireLogin close={closeModal} move={loginModal}></RequireLogin>
       )}
-      <Box
-        onClick={() => {
-          history.push("/mypage");
-        }}
-      >
-        <Icon categoryImage={myPageIcon} />
-        마이
-      </Box>
-    </Gnb>
+    </div>
   );
 };
 

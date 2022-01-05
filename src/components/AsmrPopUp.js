@@ -9,7 +9,7 @@ import styled from "styled-components";
 import fireIcon from "../static/images/asmr/fireIcon.svg";
 import rainIcon from "../static/images/asmr/rainIcon.svg";
 import seaIcon from "../static/images/asmr/seaIcon.svg";
-
+import closeIcon from "../static/images/asmr/closeIcon.svg";
 
 const AsmrPopUp = (props) => {
   //   const [modal, setModal] = React.useState(true); // 모달창
@@ -20,7 +20,8 @@ const AsmrPopUp = (props) => {
   const [Volume, setVolume] = React.useState(song1.volume * 100);
   const [Volume2, setVolume2] = React.useState(song2.volume * 100);
   const [Volume3, setVolume3] = React.useState(song3.volume * 100);
- 
+  const [songList, setSongList] = React.useState(props.list);
+  console.log(songList);
   const VolumeChange = (e) => {
     setVolume(e.target.value);
     song1.volume = e.target.value * 0.01;
@@ -53,6 +54,8 @@ const AsmrPopUp = (props) => {
         setSong1(new Audio());
       }
       props.setList(arr);
+      setSongList(arr);
+      console.log(arr);
     }
   };
   const deleteVolume2 = (e) => {
@@ -74,6 +77,8 @@ const AsmrPopUp = (props) => {
         setSong2(new Audio());
       }
       props.setList(arr);
+      setSongList(arr);
+      console.log(songList);
     }
   };
   const deleteVolume3 = (e) => {
@@ -95,6 +100,7 @@ const AsmrPopUp = (props) => {
         setSong3(new Audio());
       }
       props.setList(arr);
+      setSongList(arr);
     }
   };
 
@@ -103,146 +109,125 @@ const AsmrPopUp = (props) => {
   return (
     <>
       <FullScreen>
+        <CloseVolume onClick={() => props.closeModal(false)}></CloseVolume>
         <VolumePopUp>
-          
-            {/* <p
-              style={{
-                fontSize: "13px",
-                fontWeight: "700",
-                textAlign: "center",
-                margin: "40px 0px 0px 0px",
-                color: "white",
-              }}
-            >
-              플레이중인 오디오
-            </p> */}
-            {song1.src !== "" ? (
-              <>
-                {/* <p
-                  style={{
-                    fontSize: "13px",
-                    fontWeight: "500",
-                    textAlign: "center",
-                    margin: "10px 0px 0px 0px",
-                    color: "white",
-                  }}
-                >
-                  볼륨조절
-                  {Volume}%
-                </p> */}
-                
-                <div
-                  style={{ display: "flex", justifyContent: "space-around" }}
-                >
-                  <Icon categoryImage={fireIcon}> </Icon>
-                  <input
-                    type="range"
-                    id="volume"
-                    value={Volume}
-                    min="0"
-                    max="100"
-                    onChange={VolumeChange}
-                  />
-                  {/* <p style={{ color: "white" }}>음원 이름</p> */}
-                  <p
-                    style={{
-                      backgroundColor: "gray",
-                      color: "white",
-                      fontSize: "20px",
-                      borderRadius: "5px",
-                      height: "20px",
-                    }}
-                    onClick={deleteVolume}
-                  >
-                    x
-                  </p>
-                </div>
-              </>
-            ) : null}
+          {songList.length === 0 && (
+            <>
+              <NoList>리스트가 없습니다. 선택해주세요</NoList>
+              <p
+                style={{
+                  color: "white",
+                  position: "relative",
+                  top: "30%",
+                  left: "150px",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                  cursor: "pointer",
+                }}
+                onClick={() => props.closeModal(false)}
+              >
+                창닫기
+              </p>
+            </>
+          )}
 
-            {song2.src !== "" ? (
-              <>
-                {/* <p
-                  style={{
-                    fontSize: "13px",
-                    fontWeight: "500",
-                    textAlign: "center",
-                    margin: "10px 0px 0px 0px",
-                  }}
-                >
-                  볼륨조절
-                  {Volume2}%
-                </p> */}
-                <div
-                  style={{ display: "flex", justifyContent: "space-around" }}
-                >
-                  <Icon categoryImage={seaIcon}> </Icon>
-                  <input
-                    type="range"
-                    id="volume2"
-                    value={Volume2}
-                    min="0"
-                    max="100"
-                    onChange={VolumeChange2}
-                  />
-                  {/* <p>음원 이름</p> */}
-                  <p
-                    style={{
-                      backgroundColor: "gray",
-                      color: "white",
-                      fontSize: "20px",
-                      borderRadius: "5px",
-                      height: "20px",
-                    }}
-                    onClick={deleteVolume2}
-                  >
-                    x
-                  </p>
-                </div>
-              </>
-            ) : null}
-            {song3.src !== "" ? (
-              <>
-                {/* <p
-                  style={{
-                    fontSize: "13px",
-                    fontWeight: "500",
-                    textAlign: "center",
-                    margin: "10px 0px 0px 0px",
-                  }}
-                >
-                  볼륨조절
-                  {Volume3}%
-                </p> */}
-                <div
-                  style={{ display: "flex", justifyContent: "space-around" }}
-                >
-                  <Icon categoryImage={rainIcon}> </Icon>
-                  <input
-                    type="range"
-                    id="volume3"
-                    value={Volume3}
-                    min="0"
-                    max="100"
-                    onChange={VolumeChange3}
-                  />
-                  {/* <p>음원 이름</p> */}
-                  <p
-                    style={{
-                      backgroundColor: "gray",
-                      color: "white",
-                      fontSize: "20px",
-                      borderRadius: "5px",
-                      height: "20px",
-                    }}
-                    onClick={deleteVolume3}
-                  >
-                    x
-                  </p>
-                </div>
-              </>
-            ) : null}
-          
+          {song1.src !== "" ? (
+            <>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  padding: "0px 0px 12px 0px",
+                }}
+              >
+                <Icon categoryImage={fireIcon} width="70px" height="70px">
+                  {" "}
+                </Icon>
+                <input
+                  type="range"
+                  id="volume"
+                  value={Volume}
+                  min="0"
+                  max="100"
+                  style={{ width: "158px" }}
+                  onChange={VolumeChange}
+                />
+                <Icon
+                  categoryImage={closeIcon}
+                  width="24px"
+                  height="24px"
+                  onClick={deleteVolume}
+                  style={{ position: "relative", top: "22px", left: "-10px" }}
+                ></Icon>
+              </div>
+            </>
+          ) : null}
+
+          {song2.src !== "" ? (
+            <>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  padding: "0px 0px 12px 0px",
+                }}
+              >
+                <Icon categoryImage={seaIcon} width="70px" height="70px">
+                  {" "}
+                </Icon>
+                <input
+                  type="range"
+                  id="volume2"
+                  value={Volume2}
+                  min="0"
+                  max="100"
+                  style={{ width: "158px" }}
+                  onChange={VolumeChange2}
+                />
+                <Icon
+                  categoryImage={closeIcon}
+                  width="24px"
+                  height="24px"
+                  onClick={deleteVolume2}
+                  style={{ position: "relative", top: "22px", left: "-10px" }}
+                ></Icon>
+              </div>
+            </>
+          ) : null}
+          {song3.src !== "" ? (
+            <>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  padding: "0px 0px 12px 0px",
+                }}
+              >
+                <Icon
+                  categoryImage={rainIcon}
+                  width="70px"
+                  height="70px"
+                ></Icon>
+                <input
+                  type="range"
+                  id="volume3"
+                  value={Volume3}
+                  min="0"
+                  max="100"
+                  style={{ width: "158px" }}
+                  onChange={VolumeChange3}
+                />
+                <Icon
+                  categoryImage={closeIcon}
+                  width="24px"
+                  height="24px"
+                  onClick={deleteVolume3}
+                  style={{ position: "relative", top: "22px", left: "-10px" }}
+                ></Icon>
+              </div>
+            </>
+          ) : null}
+
           <div
             style={{
               display: "flex",
@@ -252,13 +237,11 @@ const AsmrPopUp = (props) => {
               width: "100%",
             }}
           >
-            <button
-              style={{ width: "100%", height: "50px", border: "none",  }}
-              onClick={() => props.closeModal(false)} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
-
+            <Button
+            // onClick={() => props.closeModal(false)} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
             >
               나만의 사운드 듣기
-            </button>
+            </Button>
           </div>
         </VolumePopUp>
       </FullScreen>
@@ -272,7 +255,7 @@ const FullScreen = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 990;
   position: absolute;
-  bottom: 0;
+  top: 0;
 `;
 
 const VolumePopUp = styled.div`
@@ -281,20 +264,50 @@ const VolumePopUp = styled.div`
   z-index: 999;
   background-color: #101340;
   width: 375px;
-  height: 300px;
+  height: 356px;
   box-sizing: border-box;
   border: 1px solid #272a52;
   border-radius: 16px 16px 0px 0px;
+  padding: 20px 0px 0px 10px;
+`;
+
+const CloseVolume = styled.div`
+  height: 55%;
+  width: 375px;
+
+  /* onClick={() => props.closeModal(false)}  */
+`;
+
+const NoList = styled.p`
+  color: white;
+  position: relative;
+  top: 25%;
+  left: 60px;
+  font-size: 18px;
 `;
 
 const Icon = styled.div`
-  width: 70px;
-  height: 70px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   background-image: url(${(props) => props.categoryImage});
   background-repeat: no-repeat;
   /* background-size: cover; */
   /* margin: 2px 0px; */
   /* cursor: pointer; */
+`;
+
+const Button = styled.button`
+  font-size: 16px;
+  font-weight: bold;
+  width: 335px;
+  height: 52px;
+  border: none;
+  border-radius: 8px;
+  position: relative;
+  top: -30px;
+  left: 10px;
+  color: #fff;
+  background-color: #fbc037;
 `;
 
 export default AsmrPopUp;

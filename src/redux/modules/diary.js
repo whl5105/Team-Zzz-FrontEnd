@@ -36,36 +36,36 @@ const delete_diary = createAction(DELETE_DIARY, (day) => ({
 // -- initialState --
 const initialState = {
   diaryList: [
-    {
-      day: 1,
-      feelScore: 1,
-      sleepScore: 1,
-      comment: "오늘은 아구찜 먹음",
-    },
-    {
-      day: 4,
-      feelScore: 2,
-      sleepScore: 2,
-      comment: "오늘은 아구찜 먹음",
-    },
-    {
-      day: 8,
-      feelScore: 3,
-      sleepScore: 3,
-      comment: "오늘은 아구찜 먹음",
-    },
-    {
-      day: 6,
-      feelScore: 4,
-      sleepScore: 4,
-      comment: "오늘은 아구찜 먹음",
-    },
-    {
-      day: 7,
-      feelScore: 5,
-      sleepScore: 5,
-      comment: "오늘은 아구찜 먹음",
-    },
+    // {
+    //   day: 1,
+    //   feelScore: 1,
+    //   sleepScore: 1,
+    //   comment: "오늘은 아구찜 먹음",
+    // },
+    // {
+    //   day: 4,
+    //   feelScore: 2,
+    //   sleepScore: 2,
+    //   comment: "오늘은 아구찜 먹음",
+    // },
+    // {
+    //   day: 8,
+    //   feelScore: 3,
+    //   sleepScore: 3,
+    //   comment: "오늘은 아구찜 먹음",
+    // },
+    // {
+    //   day: 6,
+    //   feelScore: 4,
+    //   sleepScore: 4,
+    //   comment: "오늘은 아구찜 먹음",
+    // },
+    // {
+    //   day: 7,
+    //   feelScore: 5,
+    //   sleepScore: 5,
+    //   comment: "오늘은 아구찜 먹음",
+    // },
   ],
 
   sleepAvg: "오늘은 잠을 못주무셨네요",
@@ -78,28 +78,28 @@ const getDiaryDB = (year, month) => {
     const yearMonth = `${year}-${month}`;
 
     try {
-      const response = apis.getDiary(userIdx, yearMonth);
-      console.log(response);
+      const res = apis.getDiary(userIdx, yearMonth);
+      console.log("getDiaryDB response : ", res);
 
-      dispatch(get_diary(response));
-    } catch (err) {
-      console.log("getDiaryDB Error : ", err);
+      dispatch(get_diary(!res.length > 0 ? [] : res));
+    } catch (error) {
+      console.log("getDiaryDB Error : ", error);
     }
   };
 };
-//   };
 //다이어리 기록 추가
 const addDiaryDB = (year, month, diaryListInfo) => {
   return function (dispatch, getState, { history }) {
     const yearMonth = `${year}-${month}`;
     //요청보낼 다이어리 리스트
-    const diary_info = {
-      yearMonth: yearMonth,
-      ...diaryListInfo,
-    };
+    // const diary_info = {
+    //   ...diaryListInfo,
+    //   yearMonth: yearMonth,
+    // };
     console.log(diaryListInfo);
+    console.log(typeof diaryListInfo);
     try {
-      const res = apis.addDiary(diary_info);
+      const res = apis.addDiary(diaryListInfo, yearMonth);
       console.log("addDiaryDB response : ", res);
       dispatch(add_diary(diaryListInfo));
     } catch (error) {
