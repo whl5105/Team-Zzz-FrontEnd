@@ -39,14 +39,14 @@ const Diary = () => {
     await dispatch(diaryActions.getDiaryDB(year, month));
   };
 
+  // DB에서 데이터 가져오기
   React.useEffect(() => {
-    // const day = new Date(getMoment); // 사용자가 선택한 날짜
     getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
   }, [getMoment]);
 
+  // 저번달, 이번달, 다음달 조절하는 부분
   React.useEffect(() => {
     const today = new Date(moment()); // 오늘 날짜
-    // const day = new Date(getMoment); // 사용자가 선택한 날짜
 
     if (
       today.getFullYear() + "_" + today.getMonth() ===
@@ -72,16 +72,10 @@ const Diary = () => {
         setMonthDay(days);
       }
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getMoment, monthDay]);
 
+  // 해당 월의 일자에 맞춰 배열 생성해주는 부분
   React.useEffect(() => {
-    // index => 0, diaryList => day랑 서로 일치를 해야 함.
-    // 1) 해당 월의 일수 길이만큼의 배열에 배열 연산자 forEach를 돌린다.
-    // 2) 서버에서 가져온 diaryList 배열의 길이만큼 forEach를 돌린다.
-    // ※ 이중 반복문을 돌리는 것과 같다.
-    // 3) diaryIndex에 있는 객체 데이터를 arr의 index에 넣는다. (이때, index는 0부터 시작하기 때문에 +1을 해줘서 일(day)와 맞춘다.)
     arr.forEach((arrItem, arrIndex) => {
       diaryList.forEach((diaryItem, diaryIndex) => {
         if (arrIndex + 1 === parseInt(diaryList[diaryIndex].day)) {
@@ -125,7 +119,6 @@ const Diary = () => {
             <img src={Left} alt="left"></img>
           </Button>
           <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
-          {/* YYYY는 년도 MM 은 달입니다. */}
           <Button
             right
             onClick={() => {
