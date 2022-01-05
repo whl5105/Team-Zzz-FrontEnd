@@ -19,7 +19,7 @@ const Login = () => {
     if (first_signup === true) {
       const timeout = setTimeout(() => {
         dispatch(userActions.firstSignup());
-      }, 3000);
+      }, 5000);
       return () => {
         clearTimeout(timeout);
       };

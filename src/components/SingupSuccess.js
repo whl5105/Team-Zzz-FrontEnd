@@ -21,15 +21,15 @@ const Success = styled.button`
   top: -100px;
   left: 0;
   z-index: 4;
-  animation: Success 3s linear alternate;
+  animation: Success 5s linear alternate;
   @keyframes Success {
     0% {
       top: -100px;
     }
-    25% {
+    40% {
       top: 40px;
     }
-    50% {
+    60% {
       top: 40px;
     }
     100% {
