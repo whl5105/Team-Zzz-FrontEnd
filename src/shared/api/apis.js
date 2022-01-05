@@ -1,58 +1,37 @@
 import instance from "./instance";
+import instanceRecord from "./instanceRecord";
 
 export const apis = {
   //-- user --
-  signup: (id, password) =>
-    instance.post("/api/auth/register", { id, password }), //회원가입
-  login: (id, password) => instance.post("/api/auth/login", { id, password }), //로그인
-  kakaoLogin: (code) => instance.get("/api/", code), // 카카오로그인 : 백과 이야기 후 api수정 필요함
+  signup: (userId, password) =>
+    instance.post("/api/register", { userId, password }), //회원가입
+  login: (userId, password) =>
+    instance.post("/api/login", { userId, password }), //로그인
+  //kakaoLogin: (code) => instance.get("/api/", code), // 카카오로그인 : 백과 이야기 후 api수정 필요함
 
-  getNotice: () => instance.get("/api/notice"), //수면기록 팝업창 :백과 이야기 후 api수정 필요함
-  postNotice: (isNotice, timePA, hour, min) =>
-    instance.post("/api/notice", { isNotice, timePA, hour, min }),
+  getNotice: (userIdx) => instance.get(`/api/notice/${userIdx}`), //수면기록 팝업창 :백과 이야기 후 api수정 필요함
+  postNotice: (sleepChk, timePA, hour, min) =>
+    instance.post("/api/notice", { sleepChk, timePA, hour, min }),
+  putNotice: (sleepChk, timePA, hour, min, userIdx) =>
+    instance.put(`/api/notice/${userIdx}`, {sleepChk, timePA, hour, min}),
 
   //-- main , asmr --
-  main: () => instance.get("/api/main"),
-
-  //-- myInfo --
-  mypage: () => instance.get("/api/mypage"),
+  getAsmr: () => instance.get("/api/asmr"),
+  getAsmrCategory: (categoryId) => instance.get(`/api/asmr/${categoryId}`),
 
   //-- voice --
   getVoice: () => instance.get("/api/voice"),
-  postVoice: (voiceFile) => instance.post("/api/voice", { voiceFile }),
+  postVoice: (voiceFile) => instanceRecord.post("/api/voice", { voiceFile }),
 
   //-- diary --
-  getDiary: (year, month) => instance.get("/api/diary", { year, month }), //월별 다이어리 데이터
-  postDiary: (
-    year,
-    month,
-    day,
-    feelingScore,
-    enoughSleep,
-    comment //해당일자 다이어리 등록(생성)
-  ) =>
+  getDiary: (userIdx, yearMonth) =>
+    instance.get(`/api/diary/${userIdx}`, { yearMonth }), //월별 다이어리 데이터
+  addDiary: (diaryListInfo) =>
     instance.post("/api/diary", {
-      year,
-      month,
-      day,
-      feelingScore,
-      enoughSleep,
-      comment,
+      diaryListInfo,
     }),
-  putDiary: (
-    year,
-    month,
-    day,
-    feelingScore,
-    enoughSleep,
-    comment //해당일자 다이어리 수정
-  ) =>
-    instance.put("/api/diary", {
-      year,
-      month,
-      day,
-      feelingScore,
-      enoughSleep,
-      comment,
-    }),
+  editDiaryDB: (userIdx, diaryListInfo) =>
+    instance.put(`/api/diary/${userIdx}`, { diaryListInfo }),
+  deleteDiary: (userIdx, yearMonth, day) =>
+    instance.delete(`/api/diary/${userIdx}`, { yearMonth, day }), //해당일자 다이어리 삭제
 };
