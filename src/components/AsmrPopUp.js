@@ -274,8 +274,6 @@ const VolumePopUp = styled.div`
 const CloseVolume = styled.div`
   height: 55%;
   width: 375px;
-
-  /* onClick={() => props.closeModal(false)}  */
 `;
 
 const NoList = styled.p`
@@ -291,9 +289,6 @@ const Icon = styled.div`
   height: ${(props) => props.height};
   background-image: url(${(props) => props.categoryImage});
   background-repeat: no-repeat;
-  /* background-size: cover; */
-  /* margin: 2px 0px; */
-  /* cursor: pointer; */
 `;
 
 const Button = styled.button`
