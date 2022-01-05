@@ -1,13 +1,19 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
+import { Input } from "../elements";
+
 import { history } from "../redux/configureStore.js";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
+import reset from "../static/images/icon/reset.svg";
+import SingupSuccess from "../components/SingupSuccess";
+
 const Login = () => {
   const dispatch = useDispatch();
   const errMessage = useSelector((store) => store.user.errMessage);
+  const is_Signup = useSelector((store) => store.user.is_Signup);
   const [inputs, setInputs] = useState({
     id: "",
     pwd: "",
@@ -24,6 +30,12 @@ const Login = () => {
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
+    });
+  };
+  const onReset = (e) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: "",
     });
   };
 
@@ -50,24 +62,36 @@ const Login = () => {
   return (
     <Container>
       <Title>로그인</Title>
+      <InputBox>
+        <Input
+          resetInput
+          placeholder="아이디"
+          name="id"
+          value={id}
+          onChange={onChange}
+          src={reset}
+          alt="resetButton"
+          onClick={onReset}
+        />
+      </InputBox>
+      <InputBox>
+        <Input
+          resetInput
+          placeholder="비밀번호"
+          type="password"
+          name="pwd"
+          value={pwd}
+          onChange={onChange}
+          src={reset}
+          alt="resetButton"
+          onClick={onReset}
+        />
+      </InputBox>
 
-      <Input
-        placeholder="아이디"
-        name="id"
-        value={id}
-        onChange={onChange}
-      ></Input>
-
-      <Input
-        placeholder="비밀번호"
-        type="password"
-        name="pwd"
-        value={pwd}
-        onChange={onChange}
-      ></Input>
-
-      {!isState && (
+      {!isState ? (
         <Span className={`${isState ? "success" : "error"}`}>{Message}</Span>
+      ) : (
+        <Span></Span>
       )}
       <div>
         <Button type="submit" onClick={loginClick}>
@@ -82,6 +106,7 @@ const Login = () => {
           <p>회원가입하기</p>
         </SignUp>
       </div>
+      {is_Signup ? <SingupSuccess></SingupSuccess> : ""}
     </Container>
   );
 };
@@ -95,7 +120,11 @@ const Title = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   margin: ${({ theme }) => theme.margins.xxxxl} 0;
 `;
-
+const InputBox = styled.div`
+  &:nth-child(2) {
+    margin-bottom: ${({ theme }) => theme.margins.xxxxl};
+  }
+`;
 const Span = styled.span`
   height: 54px;
   /* margin: 17px 0; */
@@ -104,29 +133,11 @@ const Span = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-
   &.success {
     color: #4791ff;
   }
-
   &.error {
     color: #ff473d;
-  }
-`;
-
-const Input = styled.input`
-  width: 100%;
-  height: 60px;
-  padding: 0 ${({ theme }) => theme.paddings.xxxxl};
-  box-sizing: border-box;
-  border-radius: 8px;
-  font-size: ${({ theme }) => theme.fontSizes.small};
-  border: 1px solid ${({ theme }) => theme.colors.main_1};
-  &:nth-child(2) {
-    margin-bottom: 20px;
-  }
-  &:focus {
-    outline: none;
   }
 `;
 

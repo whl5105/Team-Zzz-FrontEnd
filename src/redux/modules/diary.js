@@ -36,81 +36,81 @@ const delete_diary = createAction(DELETE_DIARY, (day) => ({
 // -- initialState --
 const initialState = {
   diaryList: [
-    {
-      day: 1,
-      feelScore: 1,
-      sleepScore: 1,
-      comment: "오늘은 아구찜 먹음",
-    },
-    {
-      day: 4,
-      feelScore: 2,
-      sleepScore: 2,
-      comment: "오늘은 아구찜 먹음",
-    },
-    {
-      day: 8,
-      feelScore: 3,
-      sleepScore: 3,
-      comment: "오늘은 아구찜 먹음",
-    },
-    {
-      day: 6,
-      feelScore: 4,
-      sleepScore: 4,
-      comment: "오늘은 아구찜 먹음",
-    },
-    {
-      day: 7,
-      feelScore: 5,
-      sleepScore: 5,
-      comment: "오늘은 아구찜 먹음",
-    },
+    // {
+    //   day: 1,
+    //   feelScore: 1,
+    //   sleepScore: 1,
+    //   comment: "오늘은 아구찜 먹음",
+    // },
+    // {
+    //   day: 4,
+    //   feelScore: 2,
+    //   sleepScore: 2,
+    //   comment: "오늘은 아구찜 먹음",
+    // },
+    // {
+    //   day: 8,
+    //   feelScore: 3,
+    //   sleepScore: 3,
+    //   comment: "오늘은 아구찜 먹음",
+    // },
+    // {
+    //   day: 6,
+    //   feelScore: 4,
+    //   sleepScore: 4,
+    //   comment: "오늘은 아구찜 먹음",
+    // },
+    // {
+    //   day: 7,
+    //   feelScore: 5,
+    //   sleepScore: 5,
+    //   comment: "오늘은 아구찜 먹음",
+    // },
   ],
 
   sleepAvg: "오늘은 잠을 못주무셨네요",
+  modal: true,
 };
 
 // -- middleware actions --
 const getDiaryDB = (year, month) => {
-  return async function (dispatch, getState, { history }) {
+  return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
     const yearMonth = `${year}-${month}`;
 
     try {
-      const res = await apis.getDiary(userIdx, yearMonth);
-      console.log("getDiaryDB response : ", res.errorMessage);
+      const res = apis.getDiary(userIdx, yearMonth);
+      console.log("getDiaryDB response : ", res);
 
-      dispatch(get_diary(res.errorMessage === "기록 없는 유저" ? [] : res));
+      dispatch(get_diary(!res.length > 0 ? [] : res));
     } catch (error) {
       console.log("getDiaryDB Error : ", error);
     }
   };
 };
-
 //다이어리 기록 추가
-const addDiaryDB = (year, month, diaryListInfo, pushData) => {
+const addDiaryDB = (year, month, diaryListInfo) => {
   return function (dispatch, getState, { history }) {
     const yearMonth = `${year}-${month}`;
-    //요청보낼 다이어리 리스트
-    const diary_info = {
-      yearMonth: yearMonth,
-      ...diaryListInfo,
-    };
-    console.log(diaryListInfo);
+    // console.log(diaryListInfo);
+    // console.log(typeof diaryListInfo);
     try {
-      const res = apis.addDiary(diary_info);
+      const res = apis.addDiary(
+        yearMonth,
+        diaryListInfo.day,
+        diaryListInfo.feelScore,
+        diaryListInfo.sleepScore,
+        diaryListInfo.comment
+      );
       console.log("addDiaryDB response : ", res);
       dispatch(add_diary(diaryListInfo));
-      console.log(pushData);
-      history.replace(pushData);
     } catch (error) {
       console.log("addDiaryDB Error : ", error);
     }
   };
 };
 //다이어리 편집
-const editDiaryDB = (year, month, diaryListInfo, pushData) => {
+const editDiaryDB = (year, month, diaryListInfo) => {
   return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
     const yearMonth = `${year}-${month}`;
@@ -124,23 +124,19 @@ const editDiaryDB = (year, month, diaryListInfo, pushData) => {
       const res = apis.editDiaryDB(userIdx, diary_info);
       console.log("editDiaryDB response : ", res);
       dispatch(edit_diary(diaryListInfo));
-      console.log(pushData);
-      history.replace(pushData);
     } catch (error) {
       console.log("editDiaryDB Error : ", error);
     }
   };
 };
 //다이어리 삭제
-const deleteDiaryDB = (year, month, day, pushData) => {
+const deleteDiaryDB = (year, month, day) => {
   return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
     const yearMonth = `${year}-${month}`;
     try {
       const res = apis.deleteDiary(userIdx, yearMonth, day);
       console.log("postDiaryDB response : ", res);
-      history.replace(pushData);
-      console.log(pushData);
       dispatch(delete_diary(day));
     } catch (error) {
       console.log("deleteDiaryDB Error : ", error);
@@ -159,6 +155,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.diaryList.push(action.payload.diaryListInfo);
         console.log(action.payload.diaryListInfo);
+        draft.modal = false;
       }),
     [EDIT_DIARY]: (state, action) =>
       produce(state, (draft) => {

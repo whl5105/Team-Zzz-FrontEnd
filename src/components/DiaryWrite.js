@@ -11,8 +11,17 @@ const DiaryWrite = (props) => {
   const dispatch = useDispatch();
 
   const scoreList = [1, 3, 5, 4, 2];
+  const scoreColor = [
+    "#A1A1A1",
+    "#6CA8FF",
+    "#90D3CC",
+    "#FCD371",
+    "#EE8BA7",
+    "#C793DC",
+  ];
 
   const diaryList = useSelector((state) => state.diary.diaryList); //다이어리 데이터
+
   const diaryDayId = props.data.day; //선택된 일자
   const isDay = diaryDayId ? true : false;
   let diaryData = isDay ? diaryList.find((p) => p.day === diaryDayId) : null; //다이어리 해당일자 데이터 찾기
@@ -22,6 +31,13 @@ const DiaryWrite = (props) => {
     diaryData ? diaryData.comment : ""
   );
   const [edit, setEdit] = React.useState(false);
+
+  console.log(diaryList);
+  console.log(diaryDayId);
+  console.log(isDay);
+  console.log(diaryData);
+  console.log(dayData);
+  console.log(comment);
 
   //-- 다이어리 데이터 --
   const [state, setState] = React.useState({
@@ -62,6 +78,7 @@ const DiaryWrite = (props) => {
         )
       );
     }
+    props.close();
   };
   //-- 수정 클릭 --
   const editClick = () => {
@@ -148,7 +165,8 @@ const DiaryWrite = (props) => {
                   size="180"
                   position="absolute"
                   feelNumber={scoreList.indexOf(feelScore) + 1}
-                  sleepNumber={scoreList.indexOf(sleepScore) + 1}
+                  // sleepNumber={scoreList.indexOf(sleepScore) + 1}
+                  scoreColor={scoreColor[scoreList.indexOf(sleepScore) + 1]}
                 />
 
                 <FeelBox edit _onClick={feelClick} previewFeel={feel} />
@@ -164,7 +182,8 @@ const DiaryWrite = (props) => {
                   size="180"
                   position="absolute"
                   feelNumber={scoreList.indexOf(feelScore) + 1}
-                  sleepNumber={scoreList.indexOf(sleepScore) + 1}
+                  // sleepNumber={scoreList.indexOf(sleepScore) + 1}
+                  scoreColor={scoreColor[scoreList.indexOf(sleepScore) + 1]}
                 />
                 <FeelBox />
                 <SleepBox />
