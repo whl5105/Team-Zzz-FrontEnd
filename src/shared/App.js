@@ -5,7 +5,7 @@ import theme from "./theme";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Switch, Route, Link } from "react-router-dom";
-// import "./App.css";
+import "./App.css";
 // import "../static/fonts/font.css";
 
 //page
@@ -24,6 +24,7 @@ import Mypage from "../pages/MyPage";
 import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
+import NoticePage from "../pages/NoticePage";
 import ModalPopUp from "../components/ModalPopUp";
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
                   exact
                   component={MyPageNotification}
                 ></Route>
+                <Route path="/notice"exact component={NoticePage}></Route>
                 <Route>
                   <NotFound />
                 </Route>

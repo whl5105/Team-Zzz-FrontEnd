@@ -72,7 +72,7 @@ const Container = styled.div`
 const Sleep = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: azure;
+  /* background-color: azure; */
   align-items: center;
   position: relative;
   height: 74px;

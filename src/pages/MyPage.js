@@ -33,7 +33,7 @@ const Mypage = (props) => {
           <p
             style={{
               position: "absolute",
-              width: "102px",
+              width: "130px",
               height: "22px",
               left: "20px",
               top: "70px",
@@ -48,9 +48,9 @@ const Mypage = (props) => {
           <p
             style={{
               position: "absolute",
-              width: "51px",
+              width: "70px",
               height: "24px",
-              left: "303px",
+              left: "300px",
               top: "69px",
               color: "white",
               fontSize: "14px",
@@ -83,6 +83,7 @@ const Mypage = (props) => {
                   right: "83.23%",
                   top: "19.59%",
                   bottom: "30.93%",
+                  width: "30px",
 
                   fontSize: "14px",
                   lineHeight: "24px",
@@ -141,7 +142,7 @@ const Mypage = (props) => {
                 style={{
                   width: "10px",
                   height: "16px",
-                  // margin: "0px",
+
                   backgroundImage: `url(${path})`,
                 }}
               ></Box>
@@ -289,7 +290,6 @@ const Mypage = (props) => {
             </div>
             <div
               style={{
-                // position: "absolute",
                 width: "24px",
                 height: "16px",
                 left: "0px",
@@ -316,7 +316,7 @@ const Mypage = (props) => {
         <p
           style={{
             position: "absolute",
-            width: "102px",
+            width: "150px",
             height: "22px",
             left: "20px",
             top: "70px",
@@ -385,7 +385,6 @@ const Mypage = (props) => {
           </div>
           <div
             style={{
-              // position: "absolute",
               width: "24px",
               height: "16px",
               left: "0px",
@@ -458,7 +457,6 @@ const Mypage = (props) => {
           </div>
           <div
             style={{
-              // position: "absolute",
               width: "24px",
               height: "16px",
               left: "0px",

@@ -72,7 +72,7 @@ const Container = styled.div`
 `;
 const Feel = styled.div`
   height: 74px;
-  padding-bottom: ${({ theme }) => theme.padding.xxxxl};
+  padding-bottom: ${({ theme }) => theme.paddings.xxxxl};
   display: flex;
   align-items: flex-end;
   text-align: center;

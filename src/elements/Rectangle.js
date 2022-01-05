@@ -4,7 +4,7 @@ import DiaryAvg from "../static/images/diary/DiaryAvg.png";
 
 const Rectangle = (props) => {
   return (
-    <div style={{ position: "relative", margin: "-24% 20px" }}>
+    <div style={{ position: "relative", margin: "0px 20px", top: `${props.top}` }}>
       <Text>{props.text}</Text>
       <img src={DiaryAvg} alt="avg"></img>
     </div>
