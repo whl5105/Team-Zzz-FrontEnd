@@ -26,6 +26,9 @@ const Success = styled.button`
     0% {
       top: -100px;
     }
+    25% {
+      top: 40px;
+    }
     50% {
       top: 40px;
     }
