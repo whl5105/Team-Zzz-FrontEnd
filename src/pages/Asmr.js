@@ -221,7 +221,7 @@ const Asmr = (props) => {
             오브젝트
           </Category>
         </CategorySelect>
-        <SoundSelect height={getCategory !== "전체" ? "320px" : "480px"}>
+        <SoundSelect height={getCategory !== "전체" ? "320px" : "535px"}>
           {sound.map((item) => {
             return (
               <Sound
@@ -244,7 +244,8 @@ const Asmr = (props) => {
           })}
         </SoundSelect>
         {play.length > 0 ? (
-          <button
+          <Button
+            margin={getCategory !== "전체" ? "235px" : "20px"}
             onClick={() => {
               setOpenmodal(true);
               console.log(
@@ -256,7 +257,7 @@ const Asmr = (props) => {
             }}
           >
             음량 조절 하러 가기
-          </button>
+          </Button>
         ) : null}
         {openModal && (
           <AsmrPopUp
@@ -346,6 +347,19 @@ const Sound = styled.div`
 `;
 
 const Text = styled.p`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+`;
+
+const Button = styled.button`
+  width: 335px;
+  height: 52px;
+  margin: 20px;
+  margin-top: ${(props) => props.margin};
+  border: none;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.main_1};
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
