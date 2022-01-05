@@ -26,9 +26,9 @@ const Asmr = (props) => {
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());
-  const [song1Icon, setSong1Icon] = React.useState();
-  const [song2Icon, setSong2Icon] = React.useState();
-  const [song3Icon, setSong3Icon] = React.useState();
+  const [song1Icon, setSong1Icon] = React.useState(``);
+  const [song2Icon, setSong2Icon] = React.useState(``);
+  const [song3Icon, setSong3Icon] = React.useState(``);
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
   );
