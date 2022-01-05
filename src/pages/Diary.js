@@ -9,6 +9,9 @@ import Rectangle from "../elements/Rectangle";
 import NoInfo from "../static/images/diary/NoInfo.png";
 import Left from "../static/images/diary/left 화살표.svg";
 import Right from "../static/images/diary/right 화살표.svg";
+
+// 다이어리 페이지
+
 //-- page --
 import DiaryWrite from "../components/DiaryWrite";
 
