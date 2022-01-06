@@ -5,35 +5,35 @@ import { onMessage } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-mes
 import Firebase from "./Firebase";
 
 const Push = (props) => {
-  const [token, setToken] = useState("");
-  Firebase();
-  const messaging = getMessaging();
-  // getToken({vapidKey: "BOM_5YaNgIPP2_0MxLv5Nlei_uLTHWPOtNbRZY2LNdVz2L8Tou--MJBfyMrRZBlFgzpwGa4qnsSxi_4eAxVoxaY"});
+//   const [token, setToken] = useState("");
+//   Firebase();
+//   const messaging = getMessaging();
+//   // getToken({vapidKey: "BOM_5YaNgIPP2_0MxLv5Nlei_uLTHWPOtNbRZY2LNdVz2L8Tou--MJBfyMrRZBlFgzpwGa4qnsSxi_4eAxVoxaY"});
 
-  //사용자에게 허가를 받아 토큰을 가져옵니다.
-  Notification.requestPermission()
-    .then(function (result) {
-      // console.log(result)
-      return getToken(messaging, {
-        vapidKey:
-          "BOM_5YaNgIPP2_0MxLv5Nlei_uLTHWPOtNbRZY2LNdVz2L8Tou--MJBfyMrRZBlFgzpwGa4qnsSxi_4eAxVoxaY",
-      });
-    })
-    .then(function (token) {
-      console.log(token);
-      setToken(token);
-    })
-    .catch(function (err) {
-      console.log("fcm error : ", err);
-    });
+//   //사용자에게 허가를 받아 토큰을 가져옵니다.
+//   Notification.requestPermission()
+//     .then(function (result) {
+//       // console.log(result)
+//       return getToken(messaging, {
+//         vapidKey:
+//           "BOM_5YaNgIPP2_0MxLv5Nlei_uLTHWPOtNbRZY2LNdVz2L8Tou--MJBfyMrRZBlFgzpwGa4qnsSxi_4eAxVoxaY",
+//       });
+//     })
+//     .then(function (token) {
+//       console.log(token);
+//       setToken(token);
+//     })
+//     .catch(function (err) {
+//       console.log("fcm error : ", err);
+//     });
 
-  onMessage(messaging, (payload) => {
-    // 현재 메세지가 안오는데 이유는 모르겠음, localhost라서? 구버전 신버전 차이?
+//   onMessage(messaging, (payload) => {
+//     // 현재 메세지가 안오는데 이유는 모르겠음, localhost라서? 구버전 신버전 차이?
 
-    console.log("Message received. ", payload);
-    console.log(payload.notification.title);
-    console.log(payload.notification.body);
-  });
+//     console.log("Message received. ", payload);
+//     console.log(payload.notification.title);
+//     console.log(payload.notification.body);
+//   });
 
   ////////////////////////
 
@@ -86,6 +86,7 @@ console.log(isSubscribed);
       .then((subscription) => {
         console.log("User is subscribed.");
         updateSubscription(subscription);
+        console.log(subscription)
         isSubscribed = true; // 구독정보를 반아온 경우 구독을 정상적으로 한 상황이므로 true로 변경
         updateButton();
       })
@@ -105,11 +106,25 @@ console.log(isSubscribed);
     } else {
       pushButton.textContent = "Enable Push Messaging";
     }
-    pushButton.disabled = false;
+    pushButton.disabled = false;  // true로하면 해당 버튼이 안눌리고 비활성화 된다.
   }
 
   // 구독 정보 갱신
-  function updateSubscription(subscription) {}
+  function updateSubscription(subscription) {
+    // TODO: 구독 정보 서버로 전송
+
+  let detailArea = document.getElementById('subscription_detail')
+
+  if (subscription) {
+      console.log(subscription)
+    detailArea.innerText = JSON.stringify(subscription)
+    detailArea.parentElement.classList.remove('hide')
+  } else {
+    detailArea.parentElement.classList.add('hide')
+  }
+
+
+  }
 
   //알림 구독 취소
   function unsubscribe() {}
@@ -134,10 +149,11 @@ console.log(isSubscribed);
   return (
     <>
       <h1>가져온 토큰:</h1>
-      <p>{token}</p>
+      {/* <p>{token}</p> */}
       <button id="subscribe" onClick={() => initPush()}>
         subscribe
       </button>
+      <span id="subscription_detail" style={{color:"white"}}></span>
     </>
   );
 };
