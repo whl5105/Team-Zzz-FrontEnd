@@ -85,67 +85,130 @@ const MyPageNotification = (props) => {
       >
         알림 편집
       </p>
-      <div
-        style={{
-          //   width:"500px",
-          position: "absolute",
-          width: "335px",
-          height: "253px",
-          left: "20px",
-          top: "122px",
-          margin: "auto",
-          background: "rgba(248,248,248,0.1)",
-          boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
-          borderRadius: "12px",
-          outline: "none",
-        }}
-      >
+      <NoticeBox>
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            padding: "0px",
+            //   width:"500px",
+            position: "absolute",
+            width: "335px",
+            height: "253px",
+            left: "20px",
+            top: "122px",
+            margin: "auto",
+            background: "rgba(248,248,248,0.1)",
+            boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+            borderRadius: "12px",
+            outline: "none",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              padding: "0px",
 
-            position: "absolute",
-            width: "295px",
-            height: "27px",
-            left: "20px",
-            top: "20px",
-          }}
-        >
-          <Title>매일 알림 받고 기록하기</Title>
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            width: "295px",
-            height: "30px",
-            left: "20px",
-            top: "67px",
-          }}
-        >
-          <ToggleSwitch>
-            <p
-              style={{
-                padding: "5px 0px 0px 0px",
-              }}
-            >
-              수면 기록 알림 받기
-            </p>
-            <div
-              style={{
-                position: "absolute",
-                left: "242px",
-              }}
-            >
-              <Toggle notice={notice} setNotice={setNotice} label=" "></Toggle>
-            </div>
-          </ToggleSwitch>
-        </div>
-        <div>
-          {notice ? (
-            <>
+              position: "absolute",
+              width: "295px",
+              height: "27px",
+              left: "20px",
+              top: "20px",
+            }}
+          >
+            <Title>매일 알림 받고 기록하기</Title>
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              width: "295px",
+              height: "30px",
+              left: "20px",
+              top: "67px",
+            }}
+          >
+            <ToggleSwitch>
+              <p
+                style={{
+                  padding: "5px 0px 0px 0px",
+                }}
+              >
+                수면 기록 알림 받기
+              </p>
+              <div
+                style={{
+                  position: "absolute",
+                  left: "242px",
+                }}
+              >
+                <Toggle
+                  notice={notice}
+                  setNotice={setNotice}
+                  label=" "
+                ></Toggle>
+              </div>
+            </ToggleSwitch>
+          </div>
+          <div>
+            {notice ? (
+              <>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "flex-start",
+                    position: "absolute",
+                    width: "295px",
+                    height: "48px",
+                    left: "20px",
+                    top: "100px",
+                    zIndex: "1",
+                  }}
+                >
+                  <div
+                    style={{
+                      marginRight: "8px",
+                    }}
+                  >
+                    <DropDown
+                      dayActive={dayActive}
+                      setDayActive={setDayActive}
+                      setHourActive={setHourActive}
+                      setMinutesActive={setMinutesActive}
+                      condition={""}
+                      title={day}
+                      dayItems={dayItems}
+                      state={setDay}
+                    ></DropDown>
+                  </div>
+                  <div
+                    style={{
+                      marginRight: "8px",
+                    }}
+                  >
+                    <DropDown
+                      hourActive={hourActive}
+                      setDayActive={setDayActive}
+                      setHourActive={setHourActive}
+                      setMinutesActive={setMinutesActive}
+                      condition={"시"}
+                      title={hour}
+                      hourItems={hourItems}
+                      state={setHour}
+                    ></DropDown>
+                  </div>
+                  <DropDown
+                    minutesActive={minutesActive}
+                    setDayActive={setDayActive}
+                    setHourActive={setHourActive}
+                    setMinutesActive={setMinutesActive}
+                    condition={"분"}
+                    title={minutes}
+                    minutesItems={minutesItems}
+                    state={setMinutes}
+                  ></DropDown>
+                </div>
+              </>
+            ) : (
               <div
                 style={{
                   display: "flex",
@@ -156,7 +219,6 @@ const MyPageNotification = (props) => {
                   height: "48px",
                   left: "20px",
                   top: "100px",
-                  zIndex: "1",
                 }}
               >
                 <div
@@ -165,14 +227,9 @@ const MyPageNotification = (props) => {
                   }}
                 >
                   <DropDown
-                    dayActive={dayActive}
-                    setDayActive={setDayActive}
-                    setHourActive={setHourActive}
-                    setMinutesActive={setMinutesActive}
+                    state="disabled"
                     condition={""}
                     title={day}
-                    dayItems={dayItems}
-                    state={setDay}
                   ></DropDown>
                 </div>
                 <div
@@ -181,91 +238,40 @@ const MyPageNotification = (props) => {
                   }}
                 >
                   <DropDown
-                    hourActive={hourActive}
-                    setDayActive={setDayActive}
-                    setHourActive={setHourActive}
-                    setMinutesActive={setMinutesActive}
+                    state="disabled"
                     condition={"시"}
                     title={hour}
-                    hourItems={hourItems}
-                    state={setHour}
                   ></DropDown>
                 </div>
                 <DropDown
-                  minutesActive={minutesActive}
-                  setDayActive={setDayActive}
-                  setHourActive={setHourActive}
-                  setMinutesActive={setMinutesActive}
+                  state="disabled"
                   condition={"분"}
                   title={minutes}
-                  minutesItems={minutesItems}
-                  state={setMinutes}
                 ></DropDown>
               </div>
-            </>
-          ) : (
-            <div
+            )}
+          </div>
+
+          <Button onClick={send}>
+            <p
               style={{
                 display: "flex",
                 flexDirection: "row",
-                alignItems: "flex-start",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "0px",
                 position: "absolute",
-                width: "295px",
-                height: "48px",
-                left: "20px",
-                top: "100px",
+                width: "40px",
+                height: "20px",
+                left: "calc(50%-26px/2 + 1px)",
+                top: "calc(50% - 20px/2)",
               }}
             >
-              <div
-                style={{
-                  marginRight: "8px",
-                }}
-              >
-                <DropDown
-                  state="disabled"
-                  condition={""}
-                  title={day}
-                ></DropDown>
-              </div>
-              <div
-                style={{
-                  marginRight: "8px",
-                }}
-              >
-                <DropDown
-                  state="disabled"
-                  condition={"시"}
-                  title={hour}
-                ></DropDown>
-              </div>
-              <DropDown
-                state="disabled"
-                condition={"분"}
-                title={minutes}
-              ></DropDown>
-            </div>
-          )}
+              확인
+            </p>
+          </Button>
         </div>
-
-        <Button onClick={send}>
-          <p
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: "0px",
-              position: "absolute",
-              width: "40px",
-              height: "20px",
-              left: "calc(50%-26px/2 + 1px)",
-              top: "calc(50% - 20px/2)",
-            }}
-          >
-            확인
-          </p>
-        </Button>
-      </div>
+      </NoticeBox>
     </>
   );
 };
@@ -292,6 +298,7 @@ const ToggleSwitch = styled.div`
   height: 30px;
 `;
 
+const NoticeBox = styled.div``;
 const Button = styled.button`
   display: flex;
   flex-direction: column;
