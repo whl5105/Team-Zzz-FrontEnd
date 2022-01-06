@@ -367,7 +367,7 @@ const Asmr = (props) => {
 };
 
 const PageWrap = styled.div`
-  width: 375px;
+  width: 100%;
   height: 812px;
   background-color: ${({ theme }) => theme.colors.bg};
   background-image: url(${(props) => props.imgUrl});

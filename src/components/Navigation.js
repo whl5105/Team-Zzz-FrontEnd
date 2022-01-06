@@ -74,7 +74,7 @@ const Navigation = () => {
 };
 
 const Gnb = styled.div`
-  width: 375px;
+  width: 100%;
   position: absolute;
   bottom: 0;
   display: flex;
