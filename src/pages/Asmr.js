@@ -119,10 +119,7 @@ const Asmr = (props) => {
   }, [getCategory]);
 
   React.useEffect(() => {
-    //  console.log((history.state).length)
-
     if (history.state) {
-      //  console.log(aa.length)
       let selectItem;
       let arr = [];
       setTimeout(
@@ -132,7 +129,6 @@ const Asmr = (props) => {
           setSong1(history.audio),
           (arr = [...arr, history.audio.src]),
           setPlay(arr),
-          console.log(arr)
         ),
         10
       );
@@ -143,7 +139,6 @@ const Asmr = (props) => {
           setSong2(history.audio2),
           (arr = [...arr, history.audio2.src]),
           setPlay(arr),
-          console.log(arr)
         ),
         10
       );
@@ -154,7 +149,6 @@ const Asmr = (props) => {
           setSong1(history.audio3),
           (arr = [...arr, history.audio3.src]),
           setPlay(arr),
-          console.log(arr)
         ),
         10
       );
@@ -241,6 +235,7 @@ const Asmr = (props) => {
 
         // 선택한 음원 활성화 style
         const selectItem = document.getElementById(asmrUrl);
+        // console.log(selectItem)
         selectItem.style.backgroundColor = "#FBC037";
       }
     }
