@@ -5,9 +5,11 @@ import { useLocation } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 import { history } from "../redux/configureStore";
 
+// -- components --
 import AsmrPopUp from "../components/AsmrPopUp";
 import Spinner from "../components/Spinner";
 
+// -- images --
 import All from "../static/images/asmr/background/전체.svg";
 import Nature from "../static/images/asmr/background/네이쳐.svg";
 import Place from "../static/images/asmr/background/플레이스.svg";
@@ -81,7 +83,6 @@ const Asmr = (props) => {
               return item;
             }
           });
-          console.log(nature);
           setSound(nature);
         } else if (getCategory === "플레이스") {
           const place = asmrInfo.filter((item) => {
@@ -268,6 +269,7 @@ const Asmr = (props) => {
     }
   };
 
+  // -- jsx --
   return (
     <>
       {!asmrInfo || asmrInfo.length === 0 ? (
@@ -333,15 +335,6 @@ const Asmr = (props) => {
             margin={getCategory !== "전체" ? "235px" : "20px"}
             onClick={() => {
               setOpenmodal(true);
-              console.log(
-                "음원 url 가지고 이동!!!",
-                song1Icon,
-                song2Icon,
-                song3Icon,
-                song1Title,
-                song2Title,
-                song3Title
-              );
             }}
           >
             소리 조절 하기
@@ -371,6 +364,7 @@ const Asmr = (props) => {
   );
 };
 
+// --- styled-components ---
 const PageWrap = styled.div`
   width: 375px;
   height: 812px;

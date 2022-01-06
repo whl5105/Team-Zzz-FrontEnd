@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+
+// --- images ---
 import NoInfo from "../static/images/diary/오브젝트.png";
 
 const Spinner = (props) => {
-  console.log(props.height);
+  
+  // --- jsx ---
   return (
     <>
       <Outter height={props.height} top={props.top && props.top}></Outter>
@@ -11,6 +14,7 @@ const Spinner = (props) => {
   );
 };
 
+// --- styled-components ---
 const Outter = styled.div`
   height: ${(props) => props.height};
   /* height: 620px; */

@@ -1,23 +1,14 @@
-import { fontWeight, margin, textAlign } from "@mui/system";
-import React, { useEffect } from "react";
-import Modal from "react-modal";
+import React from "react";
 import { history } from "../redux/configureStore";
-import { deleteSong } from "../pages/Asmr";
 import styled from "styled-components";
 
-// 아이콘 이미지 import
-import fireIcon from "../static/images/asmr/fireIcon.svg";
-import rainIcon from "../static/images/asmr/rainIcon.svg";
-import seaIcon from "../static/images/asmr/seaIcon.svg";
+// images
 import closeIcon from "../static/images/asmr/closeIcon.svg";
-import 심장 from "../static/images/asmr/song/심장.svg";
+
+// components
+import { deleteSong } from "../pages/Asmr";
 
 const AsmrPopUp = (props) => {
-  //   const [modal, setModal] = React.useState(true); // 모달창
-
-  // const playIcon = props.playIcon.split(".")[0];
-  // const playIcon2 = props.play2Icon.split(".")[0];
-  // const playIcon3 = props.play3Icon.split(".")[0];
  
   const [song1, setSong1] = React.useState(props.play);
   const [song2, setSong2] = React.useState(props.play2);
@@ -26,7 +17,7 @@ const AsmrPopUp = (props) => {
   const [Volume2, setVolume2] = React.useState(song2.volume * 100);
   const [Volume3, setVolume3] = React.useState(song3.volume * 100);
   const [songList, setSongList] = React.useState(props.list);
-  // console.log(songList);
+
   const VolumeChange = (e) => {
     setVolume(e.target.value);
     song1.volume = e.target.value * 0.01;
@@ -120,8 +111,6 @@ const AsmrPopUp = (props) => {
       setSongList(arr);
     }
   };
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -285,6 +274,7 @@ const AsmrPopUp = (props) => {
   );
 };
 
+// styled-components
 const FullScreen = styled.div`
   width: 100%;
   height: 812px;

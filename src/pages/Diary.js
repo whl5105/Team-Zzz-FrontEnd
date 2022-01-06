@@ -4,35 +4,24 @@ import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../redux/modules/diary";
 
+// -- components --
 import Charater from "../elements/Charater";
 import Rectangle from "../elements/Rectangle";
 import Spinner from "../components/Spinner";
+import DiaryWrite from "../components/DiaryWrite";
+
+// -- images --
 import NoInfo from "../static/images/diary/NoInfo.png";
 import Left from "../static/images/diary/left 화살표.svg";
 import Right from "../static/images/diary/right 화살표.svg";
 
-// 다이어리 페이지
-
-//-- page --
-import DiaryWrite from "../components/DiaryWrite";
-
 const Diary = () => {
   const dispatch = useDispatch();
-
-  const [getMoment, setMoment] = React.useState(moment()); // 오늘 날짜
-  const [monthDay, setMonthDay] = React.useState(0); // 이번달의 일 수
   const diaryList = useSelector((state) => state.diary.diaryList); // 기록 데이터
   const sleepAvg = useSelector((state) => state.diary.sleepAvg); // 평균 데이터
-  const is_loaded = useSelector((state) => state.diary.is_loaded); // 로딩 상태
+
   const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
   const day = new Date(getMoment); // 사용자가 선택한 날짜
-  const [list, setList] = React.useState(arr);
-  const nextMonth =
-    moment().format("YYYYMM") <
-    `${day.getFullYear()}${
-      day.getMonth() + 1 < 10 ? `0${day.getMonth() + 1}` : day.getMonth() + 1
-    }`;
-
   const scoreList = [1, 3, 5, 4, 2];
   const scoreColor = [
     "#A1A1A1",
@@ -42,6 +31,15 @@ const Diary = () => {
     "#EE8BA7",
     "#C793DC",
   ];
+  const nextMonth =
+    moment().format("YYYYMM") <
+    `${day.getFullYear()}${
+      day.getMonth() + 1 < 10 ? `0${day.getMonth() + 1}` : day.getMonth() + 1
+    }`;
+
+  const [getMoment, setMoment] = React.useState(moment()); // 오늘 날짜
+  const [monthDay, setMonthDay] = React.useState(0); // 이번달의 일 수
+  const [list, setList] = React.useState(arr);
 
   // 저번달, 이번달, 다음달 조절하는 부분
   React.useEffect(() => {
@@ -118,6 +116,7 @@ const Diary = () => {
     setModalData(data);
   };
 
+  // --- jsx ---
   return (
     <>
       <div>
@@ -211,6 +210,7 @@ const Diary = () => {
   );
 };
 
+// --- styled-components ---
 const Wrap = styled.div`
   width: 335px;
   height: 52px;

@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Toggle = (props) => {
+
+  // --- jsx ---
   return (
     <>
       {props.label}
@@ -25,6 +27,7 @@ const Toggle = (props) => {
   );
 };
 
+// --- styled-components ---
 const ToggleSwitch = styled.div`
   position: relative;
   width: 50px;

@@ -57,7 +57,7 @@ const getDiaryDB = (year, month) => {
   };
 };
 
-//-- 추가 --
+// -- 추가 --
 const addDiaryDB = (year, month, diaryListInfo) => {
   return async function (dispatch, getState, { history }) {
     console.log(year, month, diaryListInfo);
@@ -84,7 +84,7 @@ const addDiaryDB = (year, month, diaryListInfo) => {
   };
 };
 
-//-- 수정 --
+// -- 수정 --
 const editDiaryDB = (diaryListInfo) => {
   return function (dispatch, getState, { history }) {
     try {
@@ -108,7 +108,7 @@ const editDiaryDB = (diaryListInfo) => {
   };
 };
 
-//-- 삭제 --
+// -- 삭제 --
 const deleteDiaryDB = (diaryIdx) => {
   return function (dispatch, getState, { history }) {
     console.log(diaryIdx);
