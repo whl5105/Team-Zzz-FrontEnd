@@ -119,40 +119,57 @@ const Asmr = (props) => {
   }, [getCategory]);
 
   React.useEffect(() => {
+    //  console.log((history.state).length)
+    let selectItem;
+      let arr=[];
     if (history.state) {
-      let selectItem;
-      let arr = [];
+      //  console.log(aa.length)
+      
       setTimeout(
         () => (
           (selectItem = document.getElementById(history.state)),
           (selectItem.style.backgroundColor = "#FBC037"),
           setSong1(history.audio),
-          (arr = [...arr, history.audio.src]),
+           arr = [...arr, history.audio.src],
           setPlay(arr),
+          console.log(arr),
+          setSong1Icon(history.icon),
+          setSong1Title(history.title)
+          // console.log(play)
         ),
         10
       );
+      
+    } 
+    if(history.state2){
       setTimeout(
         () => (
           (selectItem = document.getElementById(history.state2)),
           (selectItem.style.backgroundColor = "#FBC037"),
           setSong2(history.audio2),
-          (arr = [...arr, history.audio2.src]),
+          arr = [...arr, history.audio2.src],
           setPlay(arr),
-        ),
-        10
-      );
-      setTimeout(
-        () => (
-          (selectItem = document.getElementById(history.state3)),
-          (selectItem.style.backgroundColor = "#FBC037"),
-          setSong1(history.audio3),
-          (arr = [...arr, history.audio3.src]),
-          setPlay(arr),
+          console.log(arr),
+          setSong2Icon(history.icon2),
+        setSong2Title(history.title2)
         ),
         10
       );
     }
+   if(history.state3){
+    setTimeout(
+      () => (
+        (selectItem = document.getElementById(history.state3)),
+        (selectItem.style.backgroundColor = "#FBC037"),
+        setSong3(history.audio3),
+        arr = [...arr, history.audio3.src],
+        setPlay(arr),
+        setSong3Icon(history.icon3),
+        setSong3Title(history.title3)
+      ),
+      10
+    );
+   }
   }, []);
 
   const select = (asmrUrl, iconUrl, title) => {
@@ -174,22 +191,29 @@ const Asmr = (props) => {
         setSong1(new Audio());
         setSong1Icon(null);
         setSong1Title(null);
-        history.state = "";
-        history.audio = "";
+        history.state=null;
+        history.audio=null;
+        history.title=null;
+        history.icon=null;
+        
       } else if (song2.src.indexOf(asmrUrl) !== -1) {
         song2.pause();
         setSong2(new Audio());
         setSong2Icon(null);
         setSong1Title(null);
-        history.state2 = "";
-        history.audio2 = "";
+        history.state2=null;
+        history.audio2=null;
+        history.title2=null;
+        history.icon2=null;
       } else if (song3.src.indexOf(asmrUrl) !== -1) {
         song3.pause();
         setSong3(new Audio());
         setSong3Icon(null);
         setSong1Title(null);
-        history.state3 = "";
-        history.audio3 = "";
+        history.state3=null;
+        history.audio3=null;
+        history.title3=null;
+        history.icon3=null;
       }
 
       // 선택한 음원 비활성화 style
@@ -213,6 +237,12 @@ const Asmr = (props) => {
           song1.play();
           history.state = asmrUrl;
           history.audio = song1;
+          history.icon = iconUrl;
+          history.title = title;
+          // console.log(typeof asmrUrl)
+          // console.log(typeof history.state)
+          // history.state = null;
+          // console.log(history)
         } else if (!song2.src) {
           setSong2Icon(iconUrl);
           setSong2Title(title);
@@ -222,6 +252,8 @@ const Asmr = (props) => {
           song2.play();
           history.state2 = asmrUrl;
           history.audio2 = song2;
+          history.icon2 = iconUrl;
+          history.title2 = title;
         } else if (!song3.src) {
           setSong3Icon(iconUrl);
           setSong3Title(title);
@@ -231,6 +263,8 @@ const Asmr = (props) => {
           song3.play();
           history.state3 = asmrUrl;
           history.audio3 = song3;
+          history.icon3 = iconUrl;
+          history.title3 = title;
         }
 
         // 선택한 음원 활성화 style
@@ -381,6 +415,7 @@ const SoundSelect = styled.div`
   flex-wrap: wrap;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
+
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
