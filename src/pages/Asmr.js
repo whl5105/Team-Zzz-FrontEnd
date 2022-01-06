@@ -135,7 +135,7 @@ const Asmr = (props) => {
           setSong1Title(history.title)
           // console.log(play)
         ),
-        10
+        500
       );
     }
     if (history.state2) {
@@ -150,7 +150,7 @@ const Asmr = (props) => {
           setSong2Icon(history.icon2),
           setSong2Title(history.title2)
         ),
-        10
+        500
       );
     }
     if (history.state3) {
@@ -164,7 +164,7 @@ const Asmr = (props) => {
           setSong3Icon(history.icon3),
           setSong3Title(history.title3)
         ),
-        10
+        500
       );
     }
   }, []);
@@ -235,10 +235,7 @@ const Asmr = (props) => {
           history.audio = song1;
           history.icon = iconUrl;
           history.title = title;
-          // console.log(typeof asmrUrl)
-          // console.log(typeof history.state)
-          // history.state = null;
-          // console.log(history)
+         
         } else if (!song2.src) {
           setSong2Icon(iconUrl);
           setSong2Title(title);
