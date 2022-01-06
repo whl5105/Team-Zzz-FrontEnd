@@ -300,6 +300,7 @@ const Button = styled.button`
   flex: none;
   order: 0;
   flex-grow: 0;
+
   position: absolute;
   width: 295px;
   height: 48px;
