@@ -428,7 +428,7 @@ const SoundSelect = styled.div`
 
 const Sound = styled.div`
   width: 70px;
-  height: 50px;
+  height: 55px;
   padding-top: 15px;
   border-radius: 8px;
   background-color: #3a3e74;
