@@ -150,11 +150,8 @@ export default handleActions(
     //   }),
     [EDIT_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        // draft.diaryList.push(action.payload.diaryListInfo);
-        console.log(typeof action.payload.diaryListInfo.day);
-        console.log(typeof draft.diaryList[0].day);
         let idx = draft.diaryList.findIndex(
-          (d) => d.day === action.payload.diaryListInfo.day
+          (d) => d.diaryIdx === action.payload.diaryListInfo.diaryIdx
         );
         draft.diaryList[idx] = {
           ...draft.diaryList[idx],
