@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
-@font-face {
+/* @font-face {
   font-family: 'Roboto', sans-serif;
   src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap')
     format("woff");
@@ -18,12 +18,15 @@ const GlobalStyle = createGlobalStyle`
   font-weight: normal;
   font-style: normal;
   unicode-range: U+AC00-U+D7A3;
-}
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700&family=Roboto:wght@100;700;900&display=swap');
 
   * {
     margin: 0;
     padding: 0;  
-    font-family: 'Roboto', 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
   }
 
   body {
