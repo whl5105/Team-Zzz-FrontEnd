@@ -3,8 +3,6 @@ import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
 
 // -- actions --
-// const SET_PREVIEW_FEEL = "SET_PREVIEW_FEEL";
-// const SET_PREVIEW_SLEEP = "SET_PREVIEW_SLEEP";
 const GET_DIARY = "GETDIARY";
 const ADD_DIARY = "POST_DIARY";
 const EDIT_DIARY = "EDIT_DIARY";
@@ -15,9 +13,6 @@ const get_diary = createAction(GET_DIARY, (diaryList, diaryScore) => ({
   diaryList,
   diaryScore,
 }));
-// const add_diary = createAction(ADD_DIARY, (diaryListInfo) => ({
-//   diaryListInfo,
-// }));
 const edit_diary = createAction(EDIT_DIARY, (diaryListInfo) => ({
   diaryListInfo,
 }));
@@ -45,7 +40,6 @@ const getDiaryDB = (year, month) => {
       yearMonth = `${year}${month}`;
     }
 
-    console.log(userIdx, yearMonth);
     try {
       // 다이어리 기록 불러오기
       const diaryListRes = await apis.getDiaryList(userIdx, yearMonth);
@@ -63,6 +57,7 @@ const getDiaryDB = (year, month) => {
     }
   };
 };
+
 //다이어리 기록 추가
 const addDiaryDB = (year, month, diaryListInfo) => {
   return async function (dispatch, getState, { history }) {
@@ -97,6 +92,7 @@ const addDiaryDB = (year, month, diaryListInfo) => {
     }
   };
 };
+
 //다이어리 편집
 const editDiaryDB = (diaryListInfo) => {
   return function (dispatch, getState, { history }) {
@@ -120,6 +116,7 @@ const editDiaryDB = (diaryListInfo) => {
     }
   };
 };
+
 //다이어리 삭제
 const deleteDiaryDB = (diaryIdx) => {
   return function (dispatch, getState, { history }) {
@@ -142,12 +139,6 @@ export default handleActions(
         draft.diaryList = action.payload.diaryList;
         draft.sleepAvg = action.payload.diaryScore;
       }),
-    // [ADD_DIARY]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     draft.diaryList.push(action.payload.diaryListInfo);
-    //     console.log(action.payload.diaryListInfo);
-    //     draft.modal = false;
-    //   }),
     [EDIT_DIARY]: (state, action) =>
       produce(state, (draft) => {
         let idx = draft.diaryList.findIndex(
