@@ -15,12 +15,9 @@ import alarmBanner from "../static/images/mypage/alarmBanner.svg";
 const Mypage = (props) => {
   const dispatch = useDispatch();
   const userIdx = localStorage.getItem("userIdx");
-  const userId = useSelector((state) => state.user.user.userId);
   const userNotice = useSelector((state) => state.notice);
-  console.log(userNotice);
   const token = localStorage.getItem("token");
   const [is_token, setLogin] = React.useState(token);
-  console.log(is_token);
   React.useEffect(() => {
     setLogin(token);
     dispatch(noticeActions.getNoticeDB());

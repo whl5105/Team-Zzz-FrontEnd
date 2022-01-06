@@ -40,7 +40,6 @@ const Asmr = (props) => {
   const dispatch = useDispatch();
   const [openModal, setOpenmodal] = React.useState(false);
 
-  console.log(song1);
   React.useEffect(() => {
     if (getCategory === "전체") {
       setImageUrl(All);
@@ -53,20 +52,12 @@ const Asmr = (props) => {
     }
   }, [getCategory]);
 
-  // 카테고리 변경 시 모든 음원 비활성화
-  React.useEffect(() => {
-    sound.forEach((item) => {
-      const style = document.getElementById(item.asmrUrl);
-      style.style.backgroundColor = "#3a3e74";
-    });
-  }, [sound]);
-
   React.useEffect(() => {
     // 1) 카테고리별 활성화 유무
     const arr = ["전체", "네이쳐", "플레이스", "오브젝트"];
 
     // 2) 음원 데이터 유무
-    if (!asmrInfo) {
+    if (!asmrInfo || asmrInfo.length === 0) {
       // 음원 데이터가 없을 때
       dispatch(asmrActions.getAsmrDB());
     } else {
@@ -83,21 +74,23 @@ const Asmr = (props) => {
           setSound(asmrInfo);
         } else if (getCategory === "네이쳐") {
           const nature = asmrInfo.filter((item) => {
-            if (item.categoryName === "네이쳐") {
+            console.log(item.categoryName);
+            if (item.categoryName === "자연") {
               return item;
             }
           });
+          console.log(nature);
           setSound(nature);
         } else if (getCategory === "플레이스") {
           const place = asmrInfo.filter((item) => {
-            if (item.categoryName === "플레이스") {
+            if (item.categoryName === "공간") {
               return item;
             }
           });
           setSound(place);
         } else if (getCategory === "오브젝트") {
           const object = asmrInfo.filter((item) => {
-            if (item.categoryName === "오브젝트") {
+            if (item.categoryName === "물체") {
               return item;
             }
           });
@@ -116,21 +109,26 @@ const Asmr = (props) => {
         setSong3(new Audio());
       });
     }
-  }, [getCategory]);
+  }, [getCategory, asmrInfo]);
+
+  // 카테고리 변경 시 모든 음원 비활성화
+  React.useEffect(() => {
+    sound.forEach((item) => {
+      const style = document.getElementById(item.asmrUrl);
+      style.style.backgroundColor = "#3a3e74";
+    });
+  }, [sound]);
 
   React.useEffect(() => {
-    //  console.log((history.state).length)
     let selectItem;
-      let arr=[];
+    let arr = [];
     if (history.state) {
-      //  console.log(aa.length)
-      
       setTimeout(
         () => (
           (selectItem = document.getElementById(history.state)),
           (selectItem.style.backgroundColor = "#FBC037"),
           setSong1(history.audio),
-           arr = [...arr, history.audio.src],
+          (arr = [...arr, history.audio.src]),
           setPlay(arr),
           console.log(arr),
           setSong1Icon(history.icon),
@@ -139,37 +137,36 @@ const Asmr = (props) => {
         ),
         10
       );
-      
-    } 
-    if(history.state2){
+    }
+    if (history.state2) {
       setTimeout(
         () => (
           (selectItem = document.getElementById(history.state2)),
           (selectItem.style.backgroundColor = "#FBC037"),
           setSong2(history.audio2),
-          arr = [...arr, history.audio2.src],
+          (arr = [...arr, history.audio2.src]),
           setPlay(arr),
           console.log(arr),
           setSong2Icon(history.icon2),
-        setSong2Title(history.title2)
+          setSong2Title(history.title2)
         ),
         10
       );
     }
-   if(history.state3){
-    setTimeout(
-      () => (
-        (selectItem = document.getElementById(history.state3)),
-        (selectItem.style.backgroundColor = "#FBC037"),
-        setSong3(history.audio3),
-        arr = [...arr, history.audio3.src],
-        setPlay(arr),
-        setSong3Icon(history.icon3),
-        setSong3Title(history.title3)
-      ),
-      10
-    );
-   }
+    if (history.state3) {
+      setTimeout(
+        () => (
+          (selectItem = document.getElementById(history.state3)),
+          (selectItem.style.backgroundColor = "#FBC037"),
+          setSong3(history.audio3),
+          (arr = [...arr, history.audio3.src]),
+          setPlay(arr),
+          setSong3Icon(history.icon3),
+          setSong3Title(history.title3)
+        ),
+        10
+      );
+    }
   }, []);
 
   const select = (asmrUrl, iconUrl, title) => {
@@ -191,29 +188,28 @@ const Asmr = (props) => {
         setSong1(new Audio());
         setSong1Icon(null);
         setSong1Title(null);
-        history.state="";
-        history.audio="";
-        history.title="";
-        history.icon="";
-        
+        history.state = "";
+        history.audio = "";
+        history.title = "";
+        history.icon = "";
       } else if (song2.src.indexOf(asmrUrl) !== -1) {
         song2.pause();
         setSong2(new Audio());
         setSong2Icon(null);
         setSong1Title(null);
-        history.state2="";
-        history.audio2="";
-        history.title2="";
-        history.icon2="";
+        history.state2 = "";
+        history.audio2 = "";
+        history.title2 = "";
+        history.icon2 = "";
       } else if (song3.src.indexOf(asmrUrl) !== -1) {
         song3.pause();
         setSong3(new Audio());
         setSong3Icon(null);
         setSong1Title(null);
-        history.state3="";
-        history.audio3="";
-        history.title3="";
-        history.icon3="";
+        history.state3 = "";
+        history.audio3 = "";
+        history.title3 = "";
+        history.icon3 = "";
       }
 
       // 선택한 음원 비활성화 style
@@ -318,8 +314,7 @@ const Asmr = (props) => {
             return (
               <Sound
                 id={item.asmrUrl}
-                className={"asmrUrl"}
-                key={item.categoryIdx}
+                key={item.asmrUrl}
                 onClick={() => {
                   select(item.asmrUrl, item.iconUrl, item.title);
                 }}
@@ -425,7 +420,8 @@ const SoundSelect = styled.div`
 const Sound = styled.div`
   width: 70px;
   height: 50px;
-  padding-top: 15px;
+  padding-top: 10px;
+  padding-bottom: 5px;
   border-radius: 8px;
   background-color: #3a3e74;
   color: ${({ theme }) => theme.colors.white};

@@ -6,7 +6,6 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Switch, Route, Link } from "react-router-dom";
 import "./App.css";
-// import "../static/fonts/font.css";
 
 //page
 import NotFound from "../pages/NotFound";
@@ -17,7 +16,6 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Push from "./Push";
 import Diary from "../pages/Diary";
-import DiaryWrite from "../components/DiaryWrite";
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
 import Mypage from "../pages/MyPage";
@@ -25,7 +23,6 @@ import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import NoticePage from "../pages/NoticePage";
-import ModalPopUp from "../components/ModalPopUp";
 
 function App() {
   return (
@@ -49,7 +46,6 @@ function App() {
                   component={PushNoticationPop}
                 ></Route>
                 <Route path="/diary" exact component={Diary}></Route>
-                {/* <Route path="/diary" exact component={DiaryWrite}></Route> */}
                 <Route path="/asmr" exact component={Asmr}></Route>
                 <Route path="/mypage" exact component={Mypage} />
                 <Route

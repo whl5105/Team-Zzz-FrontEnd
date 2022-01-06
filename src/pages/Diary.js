@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../redux/modules/diary";
 import Charater from "../elements/Charater";
 import Rectangle from "../elements/Rectangle";
+import Spinner from "../components/Spinner";
 import NoInfo from "../static/images/diary/NoInfo.png";
 import Left from "../static/images/diary/left 화살표.svg";
 import Right from "../static/images/diary/right 화살표.svg";
@@ -130,63 +131,67 @@ const Diary = () => {
           </Button>
         </Wrap>
         <br></br>
-        {/* 다음달 */}
-        {moment().format("YYYYMM") <
-        `${day.getFullYear()}${
-          day.getMonth() + 1 < 10
-            ? `0${day.getMonth() + 1}`
-            : day.getMonth() + 1
-        }` ? (
-          <NoRecord></NoRecord>
-        ) : (
-          // 저번달 && 이번달
-          <div>
-            <Content>
-              {list.map((item, index) => {
-                return (
-                  <div key={index + 1 + "days"}>
-                    {item.feelScore && item.sleepScore ? (
-                      <>
+        {list.length > 0 ? (
+          moment().format("YYYYMM") <
+          `${day.getFullYear()}${
+            day.getMonth() + 1 < 10
+              ? `0${day.getMonth() + 1}`
+              : day.getMonth() + 1
+          }` ? (
+            <NoRecord></NoRecord>
+          ) : (
+            <div>
+              <Content>
+                {list.map((item, index) => {
+                  return (
+                    <div key={index + 1 + "days"}>
+                      {item.feelScore && item.sleepScore ? (
+                        <>
+                          <Charater
+                            shape="charater"
+                            size="55"
+                            position="absolute"
+                            feelNumber={scoreList.indexOf(item.feelScore) + 1}
+                            sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
+                            scoreColor={
+                              scoreColor[scoreList.indexOf(item.sleepScore) + 1]
+                            }
+                            _onClick={() => {
+                              diaryDetail(index + 1);
+                            }}
+                            margin="5px"
+                          />
+                        </>
+                      ) : (
                         <Charater
                           shape="charater"
                           size="55"
                           position="absolute"
-                          feelNumber={scoreList.indexOf(item.feelScore) + 1}
-                          sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
-                          scoreColor={
-                            scoreColor[scoreList.indexOf(item.sleepScore) + 1]
-                          }
+                          feelNumber={0}
+                          sleepNumber={0}
+                          sleepColor={scoreColor[0]}
                           _onClick={() => {
                             diaryDetail(index + 1);
                           }}
                           margin="5px"
                         />
-                      </>
-                    ) : (
-                      <Charater
-                        shape="charater"
-                        size="55"
-                        position="absolute"
-                        feelNumber={0}
-                        sleepNumber={0}
-                        sleepColor={scoreColor[0]}
-                        _onClick={() => {
-                          diaryDetail(index + 1);
-                        }}
-                        margin="5px"
-                      />
-                    )}
-                    <div>{index + 1}</div>
-                  </div>
-                );
-              })}
-            </Content>
-            {list.length > 0 && (
-              <Rectangle
-                top={list.length >= 30 ? "-80px" : "263px"}
-                text={sleepAvg}
-              ></Rectangle>
-            )}
+                      )}
+                      <div>{index + 1}</div>
+                    </div>
+                  );
+                })}
+              </Content>
+              {list.length > 0 && (
+                <Rectangle
+                  top={list.length >= 30 ? "-80px" : "263px"}
+                  text={sleepAvg}
+                ></Rectangle>
+              )}
+            </div>
+          )
+        ) : (
+          <div>
+            <Content>이미지가 없어요</Content>
           </div>
         )}
       </div>
