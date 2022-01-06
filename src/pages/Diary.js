@@ -35,17 +35,12 @@ const Diary = () => {
     "#C793DC",
   ];
 
-  const getDiaryInfo = async (year, month) => {
-    await dispatch(diaryActions.getDiaryDB(year, month));
-  };
-
   // 저번달, 이번달, 다음달 조절하는 부분
   React.useEffect(() => {
-
     console.log("저번달, 이번달, 다음달 조절하는 부분");
 
     // DB에서 데이터 가져오기
-    getDiaryInfo(day.getFullYear(), day.getMonth() + 1); // 해당 년, 월 데이터 불러오기
+    dispatch(diaryActions.getDiaryDB(day.getFullYear(), day.getMonth() + 1));
 
     const today = new Date(moment()); // 오늘 날짜
 
@@ -77,8 +72,7 @@ const Diary = () => {
 
   // 해당 월의 일자에 맞춰 배열 생성 해주는 부분
   React.useEffect(() => {
-
-    console.log("해당 월의 일자에 맞춰 배열 생성 해주는 부분")
+    console.log("해당 월의 일자에 맞춰 배열 생성 해주는 부분");
 
     arr.forEach((arrItem, arrIndex) => {
       diaryList.forEach((diaryItem, diaryIndex) => {
@@ -96,7 +90,9 @@ const Diary = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
   const [modalData, setModalData] = React.useState();
+
   //다이어리 일자 선택
   const diaryDetail = (index) => {
     setModalOpen(true);
@@ -161,7 +157,6 @@ const Diary = () => {
                             scoreColor[scoreList.indexOf(item.sleepScore) + 1]
                           }
                           _onClick={() => {
-                            console.log("?");
                             diaryDetail(index + 1);
                           }}
                           margin="5px"
