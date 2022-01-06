@@ -92,6 +92,49 @@ const DiaryWrite = (props) => {
   const { feel, sleep, feelScore, sleepScore } = data;
   const { close } = props;
 
+  //--  추가 클릭 --
+  const addClick = async () => {
+    if (feel === 0 || sleep === 0) {
+      window.alert("두개 다 선택 해야합니다.");
+    } else {
+      const diaryListInfo = {
+        day: props.data.day,
+        feelScore: feelScore,
+        sleepScore: sleepScore,
+        comment: data.comment,
+      };
+      await dispatch(
+        diaryActions.addDiaryDB(
+          props.data.year,
+          props.data.month,
+          diaryListInfo
+        )
+      );
+      close();
+    }
+  };
+  //-- 수정 클릭 --
+  const editClick = async () => {
+    const diaryListInfo = {
+      feelScore: feelScore,
+      sleepScore: sleepScore,
+      comment: data.comment,
+      diaryIdx: dayData.diaryIdx,
+    };
+    console.log("dddddddd");
+    console.log(diaryListInfo);
+    console.log(props.data.year);
+    console.log(props.data.month);
+    await dispatch(diaryActions.editDiaryDB(diaryListInfo));
+    close();
+  };
+  //-- 삭제 클릭 --
+  const deleteClick = async () => {
+    console.log(dayData.diaryIdx);
+    await dispatch(diaryActions.deleteDiaryDB(dayData.diaryIdx));
+    close();
+  };
+
   return (
     <ModalPopUp close={props.close}>
       <Container>
@@ -126,7 +169,7 @@ const DiaryWrite = (props) => {
               >
                 취소
               </button>
-              <button>완료</button>
+              <button onClick={addClick}>완료</button>
             </ButtonBox>
           </div>
         ) : (
@@ -164,7 +207,7 @@ const DiaryWrite = (props) => {
                   >
                     취소
                   </button>
-                  <button>완료</button>
+                  <button onClick={editClick}>완료</button>
                 </ButtonBox>
               </div>
             ) : (
@@ -188,7 +231,7 @@ const DiaryWrite = (props) => {
                   <SleepBox previewSleep={sleep} />
                 </ScoreGrop>
                 <ButtonBox>
-                  <button>기록 삭제</button>
+                  <button onClick={deleteClick}>기록 삭제</button>
                   <button
                     onClick={() => {
                       setEdit(!edit);
