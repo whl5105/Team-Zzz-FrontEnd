@@ -31,7 +31,7 @@ const Outter = styled.div`
 `;
 
 const Loading = styled.div`
-  top: 40vh;
+  top: 380px;
   left: 165px;
   width: 53px;
   height: 18px;
