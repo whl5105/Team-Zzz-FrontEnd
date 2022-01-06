@@ -43,6 +43,10 @@ const AsmrPopUp = (props) => {
   const deleteVolume = (e) => {
     if (song1.src) {
       deleteSong(song1.src);
+      history.state=null;
+      history.audio= null;
+      history.title=null;
+      history.icon= null;
       song1.pause();
       props.setPlay(new Audio());
       var arr = [];
@@ -66,6 +70,10 @@ const AsmrPopUp = (props) => {
   const deleteVolume2 = (e) => {
     if (song2.src) {
       deleteSong(song2.src);
+      history.state2=null;
+      history.audio2= null;
+      history.title2=null;
+      history.icon2= null;
       song2.pause();
       props.setPlay2(new Audio());
       var arr = [];
@@ -89,6 +97,10 @@ const AsmrPopUp = (props) => {
   const deleteVolume3 = (e) => {
     if (song3.src) {
       deleteSong(song3.src);
+      history.state3=null;
+      history.audio3= null;
+      history.title3=null;
+      history.icon3= null;
       song3.pause();
       props.setPlay3(new Audio());
       var arr = [];

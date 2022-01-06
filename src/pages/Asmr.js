@@ -120,11 +120,11 @@ const Asmr = (props) => {
 
   React.useEffect(() => {
     //  console.log((history.state).length)
-    
+    let selectItem;
+      let arr=[];
     if (history.state) {
       //  console.log(aa.length)
-      let selectItem;
-      let arr=[];
+      
       setTimeout(
         () => (
           (selectItem = document.getElementById(history.state)),
@@ -132,11 +132,16 @@ const Asmr = (props) => {
           setSong1(history.audio),
            arr = [...arr, history.audio.src],
           setPlay(arr),
-          console.log(arr)
+          console.log(arr),
+          setSong1Icon(history.icon),
+          setSong1Title(history.title)
           // console.log(play)
         ),
         10
       );
+      
+    } 
+    if(history.state2){
       setTimeout(
         () => (
           (selectItem = document.getElementById(history.state2)),
@@ -144,29 +149,27 @@ const Asmr = (props) => {
           setSong2(history.audio2),
           arr = [...arr, history.audio2.src],
           setPlay(arr),
-          console.log(arr)
-          // console.log(play)
+          console.log(arr),
+          setSong2Icon(history.icon2),
+        setSong2Title(history.title2)
         ),
         10
       );
-      setTimeout(
-        () => (
-          (selectItem = document.getElementById(history.state3)),
-          (selectItem.style.backgroundColor = "#FBC037"),
-          setSong1(history.audio3),
-          arr = [...arr, history.audio3.src],
-          setPlay(arr),
-          console.log(arr)
-          // console.log(play)
-        ),
-        10
-      );
-      //
-      // console.log(selectItem)
-      // selectItem.style.backgroundColor = "#FBC037";
-    } else {
-      console.log("여기");
     }
+   if(history.state3){
+    setTimeout(
+      () => (
+        (selectItem = document.getElementById(history.state3)),
+        (selectItem.style.backgroundColor = "#FBC037"),
+        setSong3(history.audio3),
+        arr = [...arr, history.audio3.src],
+        setPlay(arr),
+        setSong3Icon(history.icon3),
+        setSong3Title(history.title3)
+      ),
+      10
+    );
+   }
   }, []);
 
   const select = (asmrUrl, iconUrl, title) => {
@@ -188,16 +191,29 @@ const Asmr = (props) => {
         setSong1(new Audio());
         setSong1Icon(null);
         setSong1Title(null);
+        history.state=null;
+        history.audio=null;
+        history.title=null;
+        history.icon=null;
+        
       } else if (song2.src.indexOf(asmrUrl) !== -1) {
         song2.pause();
         setSong2(new Audio());
         setSong2Icon(null);
         setSong1Title(null);
+        history.state2=null;
+        history.audio2=null;
+        history.title2=null;
+        history.icon2=null;
       } else if (song3.src.indexOf(asmrUrl) !== -1) {
         song3.pause();
         setSong3(new Audio());
         setSong3Icon(null);
         setSong1Title(null);
+        history.state3=null;
+        history.audio3=null;
+        history.title3=null;
+        history.icon3=null;
       }
 
       // 선택한 음원 비활성화 style
@@ -221,6 +237,8 @@ const Asmr = (props) => {
           song1.play();
           history.state = asmrUrl;
           history.audio = song1;
+          history.icon = iconUrl;
+          history.title = title;
           // console.log(typeof asmrUrl)
           // console.log(typeof history.state)
           // history.state = null;
@@ -234,6 +252,8 @@ const Asmr = (props) => {
           song2.play();
           history.state2 = asmrUrl;
           history.audio2 = song2;
+          history.icon2 = iconUrl;
+          history.title2 = title;
         } else if (!song3.src) {
           setSong3Icon(iconUrl);
           setSong3Title(title);
@@ -243,6 +263,8 @@ const Asmr = (props) => {
           song3.play();
           history.state3 = asmrUrl;
           history.audio3 = song3;
+          history.icon3 = iconUrl;
+          history.title3 = title;
         }
 
         // 선택한 음원 활성화 style
