@@ -1,14 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
+// --- images ---
+import NoInfo from "../static/images/diary/오브젝트.png";
+
 const Spinner = (props) => {
+  
+  // --- jsx ---
   return (
     <>
-      <div>
-          <p>아이콘이에요</p>
-      </div>
+      <Outter height={props.height} top={props.top && props.top}></Outter>
     </>
   );
 };
+
+// --- styled-components ---
+const Outter = styled.div`
+  height: ${(props) => props.height};
+  /* height: 620px; */
+  margin-top: ${(props) => props.top};
+  background-image: url(${NoInfo});
+  background-repeat: no-repeat;
+  z-index: 1000000;
+`;
 
 export default Spinner;

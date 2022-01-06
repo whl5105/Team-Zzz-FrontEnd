@@ -6,14 +6,15 @@ import SwiperCore, { Pagination, Autoplay } from "swiper/core";
 import "swiper/css";
 import "swiper/css/pagination";
 
-//상단 banner 이미지
+// --- images ---
 import all from "../static/images/banner/all_1005px.png";
 
 SwiperCore.use([Pagination, Autoplay]);
 
+// --- jsx ---
 const MainSwiper = () => {
   return (
-    <main className="ExampleComponent">
+    <Main className="ExampleComponent">
       <div className="main-wrap">
         <Swiper
           style={{
@@ -37,7 +38,6 @@ const MainSwiper = () => {
             }}
           >
             <BannerImg bannerImage={all} />
-            나의 수면 다어리 기록하기
           </SwiperSlide>
           <SwiperSlide
             onClick={() => {
@@ -45,7 +45,6 @@ const MainSwiper = () => {
             }}
           >
             <BannerImg bannerImage={all} />
-            최적수면시간
           </SwiperSlide>
           <SwiperSlide
             onClick={() => {
@@ -53,13 +52,18 @@ const MainSwiper = () => {
             }}
           >
             <BannerImg bannerImage={all} />
-            피드백
           </SwiperSlide>
         </Swiper>
       </div>
-    </main>
+    </Main>
   );
 };
+
+// --- styled-components ---
+const Main = styled.div`
+  margin-top: ${({ theme }) => theme.margins.xxxxl};
+`;
+
 const BannerImg = styled.div`
   width: 100%;
   height: 170px;

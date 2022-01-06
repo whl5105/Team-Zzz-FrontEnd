@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
 import PushNoticationPop from "../pages/PushNoticationPop";
-
 import Swiper from "../components/Swiper";
 
 import nextIcon from "../static/images/icon/nextIcon.svg";
@@ -104,11 +103,13 @@ const Category = (props) => {
 
 const Container = styled.div`
   overflow-y: scroll;
-  /* height: 88%; */
   height: 720px;
-  padding: ${({ theme }) => theme.horizontalityInterval.base};
+  padding: 50px ${({ theme }) => theme.paddings.xxxxl};
   &::-webkit-scrollbar {
     display: none;
+  }
+  @media (max-width: 600px) {
+    height: 89vh;
   }
 `;
 const Title = styled.p`
@@ -119,7 +120,6 @@ const Title = styled.p`
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
 `;
 const CategoryStyle = styled.div`
-  /* width: 100%; */
   height: 125px;
   border-radius: 12px;
   margin-bottom: ${({ theme }) => theme.margins.xxxxl};

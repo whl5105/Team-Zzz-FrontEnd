@@ -7,7 +7,6 @@ import { connectRouter } from "connected-react-router";
 import User from "./modules/user";
 import Notice from "./modules/notice";
 import Diary from "./modules/diary";
-import Voice from "./modules/voice";
 import Asmr from "./modules/asmr";
 
 //---- history----
@@ -18,7 +17,6 @@ const rootReducer = combineReducers({
   user: User,
   notice: Notice,
   diary: Diary,
-  voice: Voice,
   asmr: Asmr,
   router: connectRouter(history),
 });

@@ -32,7 +32,7 @@ const Success = styled.button`
   transform: translateX(-50%);
   opacity: 0;
   z-index: 4;
-  animation: Success 2s linear alternate;
+  animation: Success 2s ease-in-out alternate;
   @keyframes Success {
     40% {
       bottom: 93px;
