@@ -6,11 +6,12 @@ import SwiperCore, { Pagination, Autoplay } from "swiper/core";
 import "swiper/css";
 import "swiper/css/pagination";
 
-//상단 banner 이미지
+// --- images ---
 import all from "../static/images/banner/all_1005px.png";
 
 SwiperCore.use([Pagination, Autoplay]);
 
+// --- jsx ---
 const MainSwiper = () => {
   return (
     <Main className="ExampleComponent">
@@ -57,9 +58,12 @@ const MainSwiper = () => {
     </Main>
   );
 };
+
+// --- styled-components ---
 const Main = styled.div`
   margin-top: ${({ theme }) => theme.margins.xxxxl};
 `;
+
 const BannerImg = styled.div`
   width: 100%;
   height: 170px;

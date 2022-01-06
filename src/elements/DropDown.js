@@ -45,6 +45,8 @@ const Dropdown = (props) => {
     }
   };
 
+  // --- jsx ---
+
   // 알림 비활성화일 때
   if (props.state === "disabled") {
     return (
@@ -121,6 +123,7 @@ const Dropdown = (props) => {
   );
 };
 
+// --- styled-components ---
 const DropdownContainer = styled.div`
   width: 93px;
   height: 48px;

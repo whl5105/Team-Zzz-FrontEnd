@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
 import PushNoticationPop from "../pages/PushNoticationPop";
-
 import Swiper from "../components/Swiper";
 
 import nextIcon from "../static/images/icon/nextIcon.svg";

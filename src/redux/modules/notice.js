@@ -3,15 +3,13 @@ import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
 
 // -- actions --
-// const SET_USER = "SET_USER";
 const SET_NOTICE = "SET_NOTICE";
+
 // -- action creators --
-// const setUser = createAction(SET_USER, (username) => ({ username }));
 const setNotice = createAction(SET_NOTICE, (notice) => ({ notice }));
 
 // -- initialState --
 const initialState = {
-  // user: null,
   time: {
     sleepChk: false,
     timePA: "AM",
@@ -60,9 +58,6 @@ const getNoticeDB = () =>{
 // -- reducer --
 export default handleActions(
   {
-    // [SET_USER]: (state, action) =>
-    //   produce(state, (draft) => {
-    //   }),
     [SET_NOTICE]: (state, action) =>
       produce(state, (draft) => {
         draft.time = action.payload.notice;

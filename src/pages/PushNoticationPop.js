@@ -1,9 +1,10 @@
 // 푸시 알림 팝업 페이지
 import React from "react";
 import styled from "styled-components";
-
 import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
+
+// -- components --
 import DropDown from "../elements/DropDown";
 import Toggle from "../elements/Toggle";
 import ModalPopUp from "../components/ModalPopUp";
@@ -70,6 +71,7 @@ const PushNoticationPop = (props) => {
     }
   }, [notice]);
 
+  // -- jsx --
   return (
     <>
       <ModalPopUp>
@@ -145,6 +147,7 @@ const PushNoticationPop = (props) => {
   );
 };
 
+// --- styled-components ---
 const Wrap = styled.div`
   width: 335px;
   height: 235px;

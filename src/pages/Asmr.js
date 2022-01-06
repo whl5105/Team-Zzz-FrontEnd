@@ -3,13 +3,17 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
-import AsmrPopUp from "../components/AsmrPopUp";
+import { history } from "../redux/configureStore";
 
+// -- components --
+import AsmrPopUp from "../components/AsmrPopUp";
+import Spinner from "../components/Spinner";
+
+// -- images --
 import All from "../static/images/asmr/background/전체.svg";
 import Nature from "../static/images/asmr/background/네이쳐.svg";
 import Place from "../static/images/asmr/background/플레이스.svg";
 import Object from "../static/images/asmr/background/오브젝트.svg";
-import { history } from "../redux/configureStore";
 
 export const deleteSong = (url) => {
   console.log(url);
@@ -79,7 +83,6 @@ const Asmr = (props) => {
               return item;
             }
           });
-          console.log(nature);
           setSound(nature);
         } else if (getCategory === "플레이스") {
           const place = asmrInfo.filter((item) => {
@@ -235,10 +238,6 @@ const Asmr = (props) => {
           history.audio = song1;
           history.icon = iconUrl;
           history.title = title;
-          // console.log(typeof asmrUrl)
-          // console.log(typeof history.state)
-          // history.state = null;
-          // console.log(history)
         } else if (!song2.src) {
           setSong2Icon(iconUrl);
           setSong2Title(title);
@@ -265,107 +264,107 @@ const Asmr = (props) => {
 
         // 선택한 음원 활성화 style
         const selectItem = document.getElementById(asmrUrl);
-        // console.log(selectItem)
         selectItem.style.backgroundColor = "#FBC037";
       }
     }
   };
 
+  // -- jsx --
   return (
     <>
-      <PageWrap imgUrl={imageUrl}>
-        {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
-        <CategorySelect>
-          <Category
-            id="전체"
+      {!asmrInfo || asmrInfo.length === 0 ? (
+        <Spinner height="100vh"></Spinner>
+      ) : (
+        <PageWrap imgUrl={imageUrl}>
+          {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
+          <CategorySelect>
+            <Category
+              id="전체"
+              onClick={() => {
+                setCategory("전체");
+              }}
+            >
+              전체
+            </Category>
+            <Category
+              id="네이쳐"
+              onClick={() => {
+                setCategory("네이쳐");
+              }}
+            >
+              네이쳐
+            </Category>
+            <Category
+              id="플레이스"
+              onClick={() => {
+                setCategory("플레이스");
+              }}
+            >
+              플레이스
+            </Category>
+            <Category
+              id="오브젝트"
+              onClick={() => {
+                setCategory("오브젝트");
+              }}
+            >
+              오브젝트
+            </Category>
+          </CategorySelect>
+          <SoundSelect height={getCategory !== "전체" ? "320px" : "535px"}>
+            {sound.map((item) => {
+              return (
+                <Sound
+                  id={item.asmrUrl}
+                  key={item.asmrUrl}
+                  onClick={() => {
+                    select(item.asmrUrl, item.iconUrl, item.title);
+                  }}
+                >
+                  <img
+                    style={{ width: "24px", height: "24px" }}
+                    src={item.iconUrl}
+                    alt=""
+                  ></img>
+                  <Text>{item.title}</Text>
+                </Sound>
+              );
+            })}
+          </SoundSelect>
+          <Button
+            margin={getCategory !== "전체" ? "235px" : "20px"}
             onClick={() => {
-              setCategory("전체");
+              setOpenmodal(true);
             }}
           >
-            전체
-          </Category>
-          <Category
-            id="네이쳐"
-            onClick={() => {
-              setCategory("네이쳐");
-            }}
-          >
-            네이쳐
-          </Category>
-          <Category
-            id="플레이스"
-            onClick={() => {
-              setCategory("플레이스");
-            }}
-          >
-            플레이스
-          </Category>
-          <Category
-            id="오브젝트"
-            onClick={() => {
-              setCategory("오브젝트");
-            }}
-          >
-            오브젝트
-          </Category>
-        </CategorySelect>
-        <SoundSelect height={getCategory !== "전체" ? "320px" : "535px"}>
-          {sound.map((item) => {
-            return (
-              <Sound
-                id={item.asmrUrl}
-                key={item.asmrUrl}
-                onClick={() => {
-                  select(item.asmrUrl, item.iconUrl, item.title);
-                }}
-              >
-                <img src={item.iconUrl} alt=""></img>
-                <Text>{item.title}</Text>
-              </Sound>
-            );
-          })}
-        </SoundSelect>
-        <Button
-          margin={getCategory !== "전체" ? "235px" : "20px"}
-          onClick={() => {
-            setOpenmodal(true);
-            console.log(
-              "음원 url 가지고 이동!!!",
-              song1Icon,
-              song2Icon,
-              song3Icon,
-              song1Title,
-              song2Title,
-              song3Title
-            );
-          }}
-        >
-          소리 조절 하기
-        </Button>
-        {openModal && (
-          <AsmrPopUp
-            setList={setPlay}
-            list={play}
-            play={song1}
-            play2={song2}
-            play3={song3}
-            playIcon={song1Icon}
-            play2Icon={song2Icon}
-            play3Icon={song3Icon}
-            setPlay={setSong1}
-            setPlay2={setSong2}
-            setPlay3={setSong3}
-            title={song1Title}
-            title2={song2Title}
-            title3={song3Title}
-            closeModal={setOpenmodal}
-          />
-        )}
-      </PageWrap>
+            소리 조절 하기
+          </Button>
+          {openModal && (
+            <AsmrPopUp
+              setList={setPlay}
+              list={play}
+              play={song1}
+              play2={song2}
+              play3={song3}
+              playIcon={song1Icon}
+              play2Icon={song2Icon}
+              play3Icon={song3Icon}
+              setPlay={setSong1}
+              setPlay2={setSong2}
+              setPlay3={setSong3}
+              title={song1Title}
+              title2={song2Title}
+              title3={song3Title}
+              closeModal={setOpenmodal}
+            />
+          )}
+        </PageWrap>
+      )}
     </>
   );
 };
 
+// --- styled-components ---
 const PageWrap = styled.div`
   width: 100%;
   height: 812px;
@@ -420,8 +419,7 @@ const SoundSelect = styled.div`
 const Sound = styled.div`
   width: 70px;
   height: 50px;
-  padding-top: 10px;
-  padding-bottom: 5px;
+  padding-top: 15px;
   border-radius: 8px;
   background-color: #3a3e74;
   color: ${({ theme }) => theme.colors.white};
