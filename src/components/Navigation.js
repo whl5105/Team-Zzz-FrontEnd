@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import RequireLogin from "../components/RequireLogin";
-import { useDispatch } from "react-redux";
 
 // 아이콘 이미지 import
 import homeIcon from "../static/images/navigation/homeIcon.svg";

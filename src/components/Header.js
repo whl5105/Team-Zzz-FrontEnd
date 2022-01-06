@@ -9,8 +9,6 @@ import Writing from "../static/images/header/writing.svg";
 
 
 const Header = (props) => {
-  
-
   return (
     <div>
       <HeaderBox>
@@ -27,6 +25,7 @@ const Header = (props) => {
     </div>
   );
 };
+
 const HeaderBox = styled.div`
   width: 100%;
   height: 50px;
