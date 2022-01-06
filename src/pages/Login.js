@@ -81,7 +81,7 @@ const Login = () => {
       <InputBox>
         <Input
           resetInput
-          placeholder="아이디"
+          placeholder="아이디를 입력해주세요"
           name="id"
           value={id}
           onChange={onChange}
@@ -93,7 +93,7 @@ const Login = () => {
       <InputBox>
         <Input
           resetInput
-          placeholder="비밀번호"
+          placeholder="비밀번호를 입력해주세요"
           type="password"
           name="pwd"
           value={pwd}
@@ -176,6 +176,7 @@ const SignUp = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeight.Regular};
   box-sizing: border-box;
+  cursor: pointer;
   & p {
     display: inline-block;
     position: relative;

@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
 const Push = (props) => {
-
-
   ////////////////////////
 
   let appServerPublicKey =
-    "BOTfyn9Co8hUdcfZ2ReUIVNNeR1kCH0PTmmZd3JNYpOW5GXEBBMWQAZPDWU1KuXGE7vIS5-nbzNZl6d5JT3LGJs";
+    "BPxeEDTfZR9m1W2QQcpBvaWbD-NAmdvLHcNyoTwXVavTT15AmkA7ZPUTFwlywjUDCL93wCxajQPEwYVqNHaBtSI";
+
   let isSubscribed = false;
   console.log(isSubscribed);
   let swRegist = null;

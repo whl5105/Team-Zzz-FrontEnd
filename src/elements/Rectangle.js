@@ -4,16 +4,30 @@ import DiaryAvg from "../static/images/diary/DiaryAvg.png";
 
 const Rectangle = (props) => {
   return (
-    <div style={{ position: "relative", margin: "0px 20px", top: `${props.top}` }}>
+    <TextBox>
       <Text>{props.text}</Text>
-      <img src={DiaryAvg} alt="avg"></img>
-    </div>
+      <img
+        src={DiaryAvg}
+        alt="avg"
+        style={{ width: "100%", height: "60px" }}
+      ></img>
+    </TextBox>
   );
 };
 
+const TextBox = styled.div`
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  padding: 0px 20px;
+  bottom: 80px;
+  box-sizing: border-box;
+  top: ${(props) => props.top};
+`;
 const Text = styled.p`
   position: absolute;
-  top: 48%;
+  top: 50%;
+  transform: translateY(-50%);
   margin-left: 5%;
   color: ${({ theme }) => theme.colors.bg};
   font-size: ${({ theme }) => theme.fontSizes.small};

@@ -116,35 +116,39 @@ const Diary = () => {
 
   // --- jsx ---
   return (
-    <>
+    <Container>
       <div>
         {list.length === 0 && !nextMonth ? (
           <Spinner height="100vh"></Spinner>
         ) : (
           <>
-            <Wrap>
-              <Button
-                left
-                onClick={() => {
-                  setMoment(getMoment.clone().subtract(1, "month"));
-                }}
-              >
-                <img src={Left} alt="left"></img>
-              </Button>
-              <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
-              {/* YYYY는 년도 MM 은 달입니다. */}
-              <Button
-                right
-                onClick={() => {
-                  setMoment(getMoment.clone().add(1, "month"));
-                }}
-              >
-                <img src={Right} alt="right"></img>
-              </Button>
-            </Wrap>
+            <WrapBox>
+              <Wrap>
+                <Button
+                  left
+                  onClick={() => {
+                    setMoment(getMoment.clone().subtract(1, "month"));
+                  }}
+                >
+                  <img src={Left} alt="left"></img>
+                </Button>
+                <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
+                {/* YYYY는 년도 MM 은 달입니다. */}
+                <Button
+                  right
+                  onClick={() => {
+                    setMoment(getMoment.clone().add(1, "month"));
+                  }}
+                >
+                  <img src={Right} alt="right"></img>
+                </Button>
+              </Wrap>
+            </WrapBox>
             <br></br>
             {nextMonth ? (
-              <NoRecord></NoRecord>
+              <NoRecordBox>
+                <NoRecord></NoRecord>
+              </NoRecordBox>
             ) : (
               <div>
                 <Content>
@@ -204,13 +208,22 @@ const Diary = () => {
       </div>
       {/* -- 다이어리 팝업 모달 -- */}
       {modalOpen ? <DiaryWrite close={closeModal} data={modalData} /> : ""}
-    </>
+    </Container>
   );
 };
 
 // --- styled-components ---
+const Container = styled.div`
+  /* padding: 50px 0;
+  box-sizing: border-box; */
+`;
+const WrapBox = styled.div`
+  padding-top: 50px;
+  margin: 0 20px;
+  box-sizing: border-box;
+`;
 const Wrap = styled.div`
-  width: 335px;
+  width: 100%;
   height: 52px;
   line-height: 20px;
   text-align: center;
@@ -246,18 +259,21 @@ const Content = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.colors.bg}};
   color: ${({ theme }) => theme.colors.white};
-  width: 330px;
+  width: 100%;
+  min-width:335px;
   max-height: 515px;
   margin: 5px auto;
   margin-bottom: 15px;
   display: flex;
   flex-wrap: wrap;
   text-align: center;
-  
+  padding: 0 ${({ theme }) => theme.paddings.xxxxl};
+  box-sizing: border-box;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
+
 `;
 
 const Text = styled.div`
@@ -268,11 +284,24 @@ const Text = styled.div`
   vertical-align: top;
 `;
 
+const NoRecordBox = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+`;
 const NoRecord = styled.div`
+<<<<<<< HEAD
+  position: relative;
+  height: 800px;
+  margin-top: 13px;
+=======
   height: 620px;
   margin-top: 20px;
+>>>>>>> e073f883f54d4905a9081a29fb45032a3ce80826
   background-image: url(${NoInfo});
   background-repeat: no-repeat;
+  background-size: 100%;
+  bottom: 0;
 `;
 
 export default Diary;

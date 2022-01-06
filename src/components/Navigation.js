@@ -79,7 +79,7 @@ const Gnb = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.colors.bg};
-  padding: 4px 20px 2px 20px;
+  padding: 8px 20px 6px 20px;
   text-align: center;
   box-sizing: border-box;
   color: ${({ theme }) => theme.colors.white};
@@ -100,6 +100,7 @@ const Gnb = styled.div`
 `;
 const Box = styled.div`
   width: 75px;
+  cursor: pointer;
 `;
 const Icon = styled.div`
   width: 24px;

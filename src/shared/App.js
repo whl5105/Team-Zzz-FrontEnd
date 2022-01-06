@@ -4,9 +4,13 @@ import GlobalStyle from "../static/styles/GlobalStyle";
 import theme from "./theme";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
-import { Switch, Route } from "react-router-dom";
-import "../static/styles/media.css";
+import { Switch, Route, Link } from "react-router-dom";
 import "./App.css";
+
+//이미지
+import bg1 from "../static/images/bg/main_bg1.png";
+import bg2 from "../static/images/bg/main_bg1.png";
+import bg3 from "../static/images/bg/main_bg1.png";
 
 //page
 import NotFound from "../pages/NotFound";
@@ -73,16 +77,18 @@ const WrapBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-image: url(${bg1});
 `;
 
 const Wrap = styled.div`
+  min-width: 335px;
   width: 375px;
   height: 812px;
   background-color: ${({ theme }) => theme.colors.bg};
   position: relative;
   margin: 0 auto;
   overflow: hidden;
-  @media (max-width: 600px) {
+  @media (max-width: 375px) {
     /* background-color: lightblue; */
     width: 100%;
     height: 100vh;
