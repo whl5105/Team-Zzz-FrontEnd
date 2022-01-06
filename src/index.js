@@ -25,7 +25,9 @@ serviceWorkerRegistration.register();
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-// navigator.serviceWorker.register('service-worker.js')
+
+
+// navigator.serviceWorker.register('service-worker.js')  //푸시알림 추가할지 안할지 테스트하면서 볼것
 // .then(function(registration) {
 //   return registration.pushManager.getSubscription()
 //   .then(async function(subscription) {
