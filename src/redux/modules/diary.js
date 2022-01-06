@@ -27,39 +27,7 @@ const delete_diary = createAction(DELETE_DIARY, (day) => ({
 
 // -- initialState --
 const initialState = {
-  diaryList: [
-    //     {
-    //       day: 1,
-    //       feelScore: 1,
-    //       sleepScore: 1,
-    //       comment: "오늘은 아구찜 먹음",
-    //     },
-    //     {
-    //       day: 4,
-    //       feelScore: 2,
-    //       sleepScore: 2,
-    //       comment: "오늘은 아구찜 먹음",
-    //     },
-    //     {
-    //       day: 8,
-    //       feelScore: 3,
-    //       sleepScore: 3,
-    //       comment: "오늘은 아구찜 먹음",
-    //     },
-    //     {
-    //       day: 6,
-    //       feelScore: 4,
-    //       sleepScore: 4,
-    //       comment: "오늘은 아구찜 먹음",
-    //     },
-    //     {
-    //       day: 7,
-    //       feelScore: 5,
-    //       sleepScore: 5,
-    //       comment: "오늘은 아구찜 먹음",
-    //     },
-  ],
-
+  diaryList: [],
   sleepAvg: "오늘은 잠을 못주무셨네요",
   modal: true,
 };
@@ -98,6 +66,7 @@ const getDiaryDB = (year, month) => {
 //다이어리 기록 추가
 const addDiaryDB = (year, month, diaryListInfo) => {
   return async function (dispatch, getState, { history }) {
+    console.log(year, month, diaryListInfo);
     const yearMonth = `${year}-${month}`;
     try {
       const res = await apis.addDiary(

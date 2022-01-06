@@ -92,6 +92,28 @@ const DiaryWrite = (props) => {
   const { feel, sleep, feelScore, sleepScore } = data;
   const { close } = props;
 
+  //--  추가 클릭 --
+  const addClick = async () => {
+    if (feel === 0 || sleep === 0) {
+      window.alert("두개 다 선택 해야합니다.");
+    } else {
+      const diaryListInfo = {
+        day: props.data.day,
+        feelScore: feelScore,
+        sleepScore: sleepScore,
+        comment: data.comment,
+      };
+      await dispatch(
+        diaryActions.addDiaryDB(
+          props.data.year,
+          props.data.month,
+          diaryListInfo
+        )
+      );
+      close();
+    }
+  };
+
   return (
     <ModalPopUp close={props.close}>
       <Container>
@@ -126,7 +148,7 @@ const DiaryWrite = (props) => {
               >
                 취소
               </button>
-              <button>완료</button>
+              <button onClick={addClick}>완료</button>
             </ButtonBox>
           </div>
         ) : (
@@ -164,7 +186,7 @@ const DiaryWrite = (props) => {
                   >
                     취소
                   </button>
-                  <button>완료</button>
+                  <button onClick={addClick}>완료</button>
                 </ButtonBox>
               </div>
             ) : (
