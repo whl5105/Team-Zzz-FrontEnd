@@ -440,7 +440,7 @@ const SleepTimeWrap = styled.div`
 
 const WrapInside = styled.div`
   display: flex;
-  flex-direction: clumn;
+  flex-direction: column;
   align-items: flex-start;
   position: absolute;
   width: 295px;
@@ -455,6 +455,7 @@ const BestSleepTime = styled.span`
   width: 106px;
   height: 3px;
   font-weight: bold;
+  font-family: "Roboto", sans-serif;
 `;
 
 const SelectTimeWrap = styled.div`

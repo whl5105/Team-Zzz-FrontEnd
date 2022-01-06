@@ -186,7 +186,7 @@ const Diary = () => {
                             margin="5px"
                           />
                         )}
-                        <div>{index + 1}</div>
+                        <Text>{index + 1}</Text>
                       </div>
                     );
                   })}
@@ -237,6 +237,9 @@ const YearMonth = styled.span`
   width: 67px;
   height: 20px;
   margin: 17px 17px 15px 17px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: ${({ theme }) => theme.fontWeight.Medium};
 `;
 
 const Content = styled.div`
@@ -255,6 +258,14 @@ const Content = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+const Text = styled.div`
+  font-family: "Roboto", sans-serif;
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Regular};
+  line-height: ${({ theme }) => theme.lineHeight.small};
+  vertical-align: top;
 `;
 
 const NoRecord = styled.div`
