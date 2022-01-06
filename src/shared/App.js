@@ -17,7 +17,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Push from "./Push";
 import Diary from "../pages/Diary";
-import DiaryWrite from "../components/DiaryWrite";
+// import DiaryWrite from "../components/DiaryWrite";
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
 import Mypage from "../pages/MyPage";
@@ -25,7 +25,7 @@ import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import NoticePage from "../pages/NoticePage";
-import ModalPopUp from "../components/ModalPopUp";
+// import ModalPopUp from "../components/ModalPopUp";
 
 function App() {
   return (
@@ -57,7 +57,7 @@ function App() {
                   exact
                   component={MyPageNotification}
                 ></Route>
-                <Route path="/notice"exact component={NoticePage}></Route>
+                <Route path="/notice" exact component={NoticePage}></Route>
                 <Route>
                   <NotFound />
                 </Route>
