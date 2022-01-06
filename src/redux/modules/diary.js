@@ -4,7 +4,6 @@ import { apis } from "../../shared/api/apis";
 
 // -- actions --
 const GET_DIARY = "GETDIARY";
-const ADD_DIARY = "POST_DIARY";
 const EDIT_DIARY = "EDIT_DIARY";
 const DELETE_DIARY = "POST_DDELETE_DIARYIARY";
 
@@ -29,7 +28,7 @@ const initialState = {
 
 // -- middleware actions --
 
-// 다이어리 기록 가져오기
+//-- 기록 가져오기 --
 const getDiaryDB = (year, month) => {
   return async function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
@@ -58,7 +57,7 @@ const getDiaryDB = (year, month) => {
   };
 };
 
-//다이어리 기록 추가
+//-- 추가 --
 const addDiaryDB = (year, month, diaryListInfo) => {
   return async function (dispatch, getState, { history }) {
     console.log(year, month, diaryListInfo);
@@ -77,23 +76,15 @@ const addDiaryDB = (year, month, diaryListInfo) => {
         diaryListInfo.sleepScore,
         diaryListInfo.comment
       );
-      console.log(
-        yearMonth,
-        diaryListInfo.day,
-        diaryListInfo.feelScore,
-        diaryListInfo.sleepScore,
-        diaryListInfo.comment
-      );
       console.log("addDiaryDB response : ", res);
       dispatch(getDiaryDB(year, month));
-      // dispatch(add_diary(diaryListInfo));
     } catch (error) {
       console.log("addDiaryDB Error : ", error);
     }
   };
 };
 
-//다이어리 편집
+//-- 수정 --
 const editDiaryDB = (diaryListInfo) => {
   return function (dispatch, getState, { history }) {
     try {
@@ -117,7 +108,7 @@ const editDiaryDB = (diaryListInfo) => {
   };
 };
 
-//다이어리 삭제
+//-- 삭제 --
 const deleteDiaryDB = (diaryIdx) => {
   return function (dispatch, getState, { history }) {
     console.log(diaryIdx);
