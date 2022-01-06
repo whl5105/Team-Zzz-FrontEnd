@@ -19,8 +19,10 @@ const Diary = () => {
   const dispatch = useDispatch();
   const diaryList = useSelector((state) => state.diary.diaryList); // 기록 데이터
   const sleepAvg = useSelector((state) => state.diary.sleepAvg); // 평균 데이터
-
+  const [getMoment, setMoment] = React.useState(moment()); // 오늘 날짜
+  const [monthDay, setMonthDay] = React.useState(0); // 이번달의 일 수
   const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
+  const [list, setList] = React.useState(arr);
   const day = new Date(getMoment); // 사용자가 선택한 날짜
   const scoreList = [1, 3, 5, 4, 2];
   const scoreColor = [
@@ -36,10 +38,6 @@ const Diary = () => {
     `${day.getFullYear()}${
       day.getMonth() + 1 < 10 ? `0${day.getMonth() + 1}` : day.getMonth() + 1
     }`;
-
-  const [getMoment, setMoment] = React.useState(moment()); // 오늘 날짜
-  const [monthDay, setMonthDay] = React.useState(0); // 이번달의 일 수
-  const [list, setList] = React.useState(arr);
 
   // 저번달, 이번달, 다음달 조절하는 부분
   React.useEffect(() => {
