@@ -132,67 +132,64 @@ const Diary = () => {
         </Wrap>
         <br></br>
         {list.length > 0 ? (
-          moment().format("YYYYMM") <
-          `${day.getFullYear()}${
-            day.getMonth() + 1 < 10
-              ? `0${day.getMonth() + 1}`
-              : day.getMonth() + 1
-          }` ? (
-            <NoRecord></NoRecord>
-          ) : (
-            <div>
-              <Content>
-                {list.map((item, index) => {
-                  return (
-                    <div key={index + 1 + "days"}>
-                      {item.feelScore && item.sleepScore ? (
-                        <>
-                          <Charater
-                            shape="charater"
-                            size="55"
-                            position="absolute"
-                            feelNumber={scoreList.indexOf(item.feelScore) + 1}
-                            sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
-                            scoreColor={
-                              scoreColor[scoreList.indexOf(item.sleepScore) + 1]
-                            }
-                            _onClick={() => {
-                              diaryDetail(index + 1);
-                            }}
-                            margin="5px"
-                          />
-                        </>
-                      ) : (
+          <div>
+            <Content>
+              {list.map((item, index) => {
+                return (
+                  <div key={index + 1 + "days"}>
+                    {item.feelScore && item.sleepScore ? (
+                      <>
                         <Charater
                           shape="charater"
                           size="55"
                           position="absolute"
-                          feelNumber={0}
-                          sleepNumber={0}
-                          sleepColor={scoreColor[0]}
+                          feelNumber={scoreList.indexOf(item.feelScore) + 1}
+                          sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
+                          scoreColor={
+                            scoreColor[scoreList.indexOf(item.sleepScore) + 1]
+                          }
                           _onClick={() => {
                             diaryDetail(index + 1);
                           }}
                           margin="5px"
                         />
-                      )}
-                      <div>{index + 1}</div>
-                    </div>
-                  );
-                })}
-              </Content>
-              {list.length > 0 && (
-                <Rectangle
-                  top={list.length >= 30 ? "-80px" : "263px"}
-                  text={sleepAvg}
-                ></Rectangle>
-              )}
-            </div>
-          )
-        ) : (
-          <div>
-            <Content>이미지가 없어요</Content>
+                      </>
+                    ) : (
+                      <Charater
+                        shape="charater"
+                        size="55"
+                        position="absolute"
+                        feelNumber={0}
+                        sleepNumber={0}
+                        sleepColor={scoreColor[0]}
+                        _onClick={() => {
+                          diaryDetail(index + 1);
+                        }}
+                        margin="5px"
+                      />
+                    )}
+                    <div>{index + 1}</div>
+                  </div>
+                );
+              })}
+            </Content>
+            {list.length > 0 && (
+              <Rectangle
+                top={list.length >= 30 ? "-80px" : "263px"}
+                text={sleepAvg}
+              ></Rectangle>
+            )}
           </div>
+        ) : list.length === 0 &&
+          moment().format("YYYYMM") <
+            `${day.getFullYear()}${
+              day.getMonth() + 1 < 10
+                ? `0${day.getMonth() + 1}`
+                : day.getMonth() + 1
+            }` ? (
+          <NoRecord></NoRecord>
+        ) : (
+          <Spinner></Spinner>
         )}
       </div>
       {/* -- 다이어리 팝업 모달 -- */}

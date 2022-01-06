@@ -319,7 +319,7 @@ const Asmr = (props) => {
                   select(item.asmrUrl, item.iconUrl, item.title);
                 }}
               >
-                <img src={item.iconUrl} alt=""></img>
+                <img style={{width: "24px", height: "24px"}} src={item.iconUrl} alt=""></img>
                 <Text>{item.title}</Text>
               </Sound>
             );
@@ -420,8 +420,7 @@ const SoundSelect = styled.div`
 const Sound = styled.div`
   width: 70px;
   height: 50px;
-  padding-top: 10px;
-  padding-bottom: 5px;
+  padding-top: 15px;
   border-radius: 8px;
   background-color: #3a3e74;
   color: ${({ theme }) => theme.colors.white};

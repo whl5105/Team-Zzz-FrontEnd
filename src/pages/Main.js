@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
 import PushNoticationPop from "../pages/PushNoticationPop";
-
 import Swiper from "../components/Swiper";
+import Spinner from "../components/Spinner";
 
 import nextIcon from "../static/images/icon/nextIcon.svg";
 import all from "../static/images/banner/all_1005px.png";
@@ -33,6 +33,7 @@ const Main = (props) => {
       {/* <Asmr> */}
       {/* 카테고리 부분 */}
       <Title>당신의 편안한 밤을 위해</Title>
+      <Spinner></Spinner>
       <Category
         path="/asmr"
         category="네이쳐"
