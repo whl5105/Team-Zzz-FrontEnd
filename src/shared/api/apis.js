@@ -35,8 +35,8 @@ export const apis = {
       sleepScore,
       comment,
     }),
-  editDiaryDB: (userIdx, diaryListInfo) =>
-    instance.put(`/api/diary/${userIdx}`, { diaryListInfo }),
+  editDiaryDB: (userIdx, feelScore, sleepScore, comment) =>
+    instance.put(`/api/diary/${userIdx}`, { feelScore, sleepScore, comment }),
   deleteDiary: (userIdx, yearMonth, day) =>
     instance.delete(`/api/diary/${userIdx}`, { yearMonth, day }), //해당일자 다이어리 삭제
 };
