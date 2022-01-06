@@ -377,6 +377,9 @@ const PageWrap = styled.div`
   background-size: cover;
   padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
   box-sizing: border-box;
+  @media (max-width: 375px) {
+    height: 95vh;
+  }
 `;
 
 const CategorySelect = styled.div`

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import check from "../static/images/icon/check.png";
 
 const SingupSuccess = (props) => {
@@ -11,6 +10,7 @@ const SingupSuccess = (props) => {
     </Success>
   );
 };
+
 const Success = styled.button`
   width: 235px;
   border: none;

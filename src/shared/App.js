@@ -7,6 +7,7 @@ import { history } from "../redux/configureStore";
 import { Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 
+//이미지
 import bg1 from "../static/images/bg/main_bg1.png";
 import bg2 from "../static/images/bg/main_bg1.png";
 import bg3 from "../static/images/bg/main_bg1.png";
