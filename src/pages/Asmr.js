@@ -119,12 +119,9 @@ const Asmr = (props) => {
   }, [getCategory]);
 
   React.useEffect(() => {
-    //  console.log((history.state).length)
     let selectItem;
     let arr = [];
     if (history.state) {
-      //  console.log(aa.length)
-
       setTimeout(
         () => (
           (selectItem = document.getElementById(history.state)),
@@ -413,6 +410,7 @@ const SoundSelect = styled.div`
   flex-wrap: wrap;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
+
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
