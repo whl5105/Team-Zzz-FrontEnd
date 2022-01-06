@@ -16,10 +16,6 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Push from "./Push";
 import Diary from "../pages/Diary";
-<<<<<<< HEAD
-// import DiaryWrite from "../components/DiaryWrite";
-=======
->>>>>>> e7b94fd83aae3710f19d2ec62ee6414f68fb80a5
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
 import Mypage from "../pages/MyPage";
@@ -27,10 +23,6 @@ import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import NoticePage from "../pages/NoticePage";
-<<<<<<< HEAD
-// import ModalPopUp from "../components/ModalPopUp";
-=======
->>>>>>> e7b94fd83aae3710f19d2ec62ee6414f68fb80a5
 
 function App() {
   return (
