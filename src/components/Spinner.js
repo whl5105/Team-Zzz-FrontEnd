@@ -2,14 +2,22 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import NoInfo from "../static/images/diary/오브젝트.png";
+import SpinnerImage from "../static/images/spinner/Spinner.svg";
 
 const Spinner = (props) => {
-  
   // --- jsx ---
   return (
     <>
-      <Outter height={props.height} top={props.top && props.top}></Outter>
+      <Outter height={props.height}>
+        <Loading>
+          <label>Z</label>
+          <label>z</label>
+          <label>z</label>
+          <label>.</label>
+          <label>.</label>
+          <label>.</label>
+        </Loading>
+      </Outter>
     </>
   );
 };
@@ -17,11 +25,54 @@ const Spinner = (props) => {
 // --- styled-components ---
 const Outter = styled.div`
   height: ${(props) => props.height};
-  /* height: 620px; */
-  margin-top: ${(props) => props.top};
-  background-image: url(${NoInfo});
+  background-image: url(${SpinnerImage});
   background-repeat: no-repeat;
   z-index: 1000000;
+`;
+
+const Loading = styled.div`
+  top: 40vh;
+  left: 165px;
+  width: 53px;
+  height: 18px;
+  font-size: ${({ theme }) => theme.fontSizes.xl};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  color: ${({ theme }) => theme.colors.white};
+  position: absolute;
+
+  & > Label:nth-child(1) {
+    animation: jumb 2s infinite;
+    animation-delay: 0.1s;
+  }
+  & > Label:nth-child(2) {
+    animation: jumb 2s infinite;
+    animation-delay: 0.3s;
+  }
+  & > Label:nth-child(3) {
+    animation: jumb 2s infinite;
+    animation-delay: 0.5s;
+  }
+  & > Label:nth-child(4) {
+    animation: jumb 2s infinite;
+    animation-delay: 0.7s;
+  }
+  & > Label:nth-child(5) {
+    animation: jumb 2s infinite;
+    animation-delay: 0.9s;
+  }
+  & > Label:nth-child(6) {
+    animation: jumb 2s infinite;
+    animation-delay: 1.1s;
+  }
+
+  @keyframes jumb {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 `;
 
 export default Spinner;

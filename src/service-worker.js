@@ -70,4 +70,13 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
-self.addEventListener('push', function(e) { /* ... */ });
+self.addEventListener('push', function (event){ 
+  console.log('Push ' + event.data.text());
+
+  const title = 'My PWA!';
+  const options = {
+    body: event.data.text()
+  };
+ 
+  event.waitUntil(self.registration.showNotification(title, options)); // showNotification을 통해 푸시 알림을 생성, Promise가 반환되며 waitUntil을 통해 이벤트를 연장 시켜야함
+});

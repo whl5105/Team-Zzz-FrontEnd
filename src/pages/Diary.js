@@ -270,7 +270,7 @@ const Text = styled.div`
 
 const NoRecord = styled.div`
   height: 620px;
-  margin-top: 13px;
+  margin-top: 20px;
   background-image: url(${NoInfo});
   background-repeat: no-repeat;
 `;
