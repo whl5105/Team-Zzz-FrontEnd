@@ -6,6 +6,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Switch, Route, Link } from "react-router-dom";
 import "./App.css";
+import "../static/styles/media.css";
 
 //page
 import NotFound from "../pages/NotFound";
@@ -81,9 +82,15 @@ const Wrap = styled.div`
   position: relative;
   margin: 0 auto;
   overflow: hidden;
+  @media (max-width: 600px) {
+    /* background-color: lightblue; */
+    width: 100%;
+    height: 100vh;
+  }
 `;
 const Container = styled.div`
-  padding-top: 50px;
+  /* padding-top: 50px; */
+  /* padding: 50px ${({ theme }) => theme.paddings.xxxxl}; */
 `;
 
 export default App;
