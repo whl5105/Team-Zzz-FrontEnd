@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import firebase from "firebase/compat/app";
-import { getMessaging, getToken } from "firebase/messaging";
-import { onMessage } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-messaging.js";
-import Firebase from "./Firebase";
+// import firebase from "firebase/compat/app";
+// import { getMessaging, getToken } from "firebase/messaging";
+// // import { onMessage } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-messaging.js";
+// import Firebase from "./Firebase";
 
 const Push = (props) => {
 //   const [token, setToken] = useState("");
