@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
 import PushNoticationPop from "../pages/PushNoticationPop";
-import Swiper from "../components/Swiper";
+import Swiper from "../components/MainSwiper";
 
 import nextIcon from "../static/images/icon/nextIcon.svg";
 import all from "../static/images/banner/all_1005px.png";
@@ -108,7 +108,7 @@ const Container = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 375px) {
     height: 89vh;
   }
 `;
@@ -130,6 +130,7 @@ const CategoryStyle = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
 `;
 
 const TextBox = styled.div`

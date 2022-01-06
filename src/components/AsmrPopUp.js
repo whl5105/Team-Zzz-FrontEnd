@@ -9,7 +9,6 @@ import closeIcon from "../static/images/asmr/closeIcon.svg";
 import { deleteSong } from "../pages/Asmr";
 
 const AsmrPopUp = (props) => {
- 
   const [song1, setSong1] = React.useState(props.play);
   const [song2, setSong2] = React.useState(props.play2);
   const [song3, setSong3] = React.useState(props.play3);
@@ -34,10 +33,10 @@ const AsmrPopUp = (props) => {
   const deleteVolume = (e) => {
     if (song1.src) {
       deleteSong(song1.src);
-      history.state="";
-      history.audio= "";
-      history.title="";
-      history.icon= "";
+      history.state = "";
+      history.audio = "";
+      history.title = "";
+      history.icon = "";
       song1.pause();
       props.setPlay(new Audio());
       var arr = [];
@@ -61,10 +60,10 @@ const AsmrPopUp = (props) => {
   const deleteVolume2 = (e) => {
     if (song2.src) {
       deleteSong(song2.src);
-      history.state2="";
-      history.audio2= "";
-      history.title2="";
-      history.icon2= "";
+      history.state2 = "";
+      history.audio2 = "";
+      history.title2 = "";
+      history.icon2 = "";
       song2.pause();
       props.setPlay2(new Audio());
       var arr = [];
@@ -88,10 +87,10 @@ const AsmrPopUp = (props) => {
   const deleteVolume3 = (e) => {
     if (song3.src) {
       deleteSong(song3.src);
-      history.state3="";
-      history.audio3= "";
-      history.title3="";
-      history.icon3= "";
+      history.state3 = "";
+      history.audio3 = "";
+      history.title3 = "";
+      history.icon3 = "";
       song3.pause();
       props.setPlay3(new Audio());
       var arr = [];
@@ -137,12 +136,10 @@ const AsmrPopUp = (props) => {
                     style={{
                       position: "relative",
                       top: "15px",
+                      left: "0",
                     }}
                   >
-                    <Image
-                      src={`${props.playIcon}`}
-                      alt=""
-                    ></Image>
+                    <Image src={`${props.playIcon}`} alt=""></Image>
                     <Text>{props.title}</Text>
                   </div>
                 </Sound>
@@ -153,7 +150,7 @@ const AsmrPopUp = (props) => {
                   value={Volume}
                   min="0"
                   max="100"
-                  style={{ width: "158px" }}
+                  style={{ width: "158px", cursor: "pointer" }}
                   onChange={VolumeChange}
                 />
                 <Icon
@@ -183,10 +180,7 @@ const AsmrPopUp = (props) => {
                       top: "15px",
                     }}
                   >
-                    <Image
-                      src={`${props.play2Icon}`}
-                      alt=""
-                    ></Image>
+                    <Image src={`${props.play2Icon}`} alt=""></Image>
                     <Text>{props.title2}</Text>
                   </div>
                 </Sound>
@@ -226,10 +220,7 @@ const AsmrPopUp = (props) => {
                       top: "15px",
                     }}
                   >
-                    <Image
-                      src={`${props.play3Icon}`}
-                      alt=""
-                    ></Image>
+                    <Image src={`${props.play3Icon}`} alt=""></Image>
                     <Text>{props.title3}</Text>
                   </div>
                 </Sound>
@@ -282,6 +273,7 @@ const FullScreen = styled.div`
   z-index: 990;
   position: absolute;
   top: 0;
+  left: 0;
 `;
 
 const VolumePopUp = styled.div`
@@ -318,6 +310,7 @@ const Icon = styled.div`
   height: ${(props) => props.height};
   background-image: url(${(props) => props.categoryImage});
   background-repeat: no-repeat;
+  cursor: pointer;
 `;
 
 const Image = styled.img``;
@@ -348,6 +341,7 @@ const Sound = styled.div`
   /* margin-right: 21px; */
   /* margin-left: 20px; */
   text-align: center;
+  cursor: pointer;
 `;
 
 const Text = styled.p`

@@ -53,7 +53,7 @@ const Signup = (props) => {
     setPwd(passwordCurrent);
 
     if (!passwordRegex.test(passwordCurrent)) {
-      setPwdMessage("숫자+영문자 조합으로 8~20자리로 입력해주세요!");
+      setPwdMessage("비밀번호 영문,숫자,특수문자 조합 (8~20자)");
       setIsPassword(false);
     } else {
       setPwdMessage("안전한 비밀번호에요 : )");
@@ -77,7 +77,7 @@ const Signup = (props) => {
   // ---- 회원가입 버튼 클릭 ----
   const signUpClick = () => {
     if (!isId || !isPassword || !isPwdCheck) {
-      window.alert("아이디, 패스워드, 이메일을 정확하게  입력해주세요");
+      window.alert("아이디, 패스워드를 정확하게  입력해주세요");
       return;
     }
 
@@ -116,7 +116,7 @@ const Signup = (props) => {
       {id.length > 0 ? (
         <Span className={`${isId ? "success" : "error"}`}>{idMessage}</Span>
       ) : (
-        <Span>영문 대,소문자, 숫자를 포함(5-10자)</Span>
+        <Span>영문 대소문자(5-10자)</Span>
       )}
 
       {/* -- 비밀번호 --  */}
@@ -137,7 +137,7 @@ const Signup = (props) => {
           {pwdMessage}
         </Span>
       ) : (
-        <Span>영문 대,소문자, 숫자를 포함(8-20자)</Span>
+        <Span>비밀번호 영문,숫자,특수문자 조합 (8~20자)</Span>
       )}
 
       {/* -- 비밀번호 확인 -- */}
@@ -153,7 +153,7 @@ const Signup = (props) => {
           {pwdCheckMessage}
         </Span>
       ) : (
-        <Span>영문 대,소문자, 숫자를 포함(8-20자)</Span>
+        <Span>비밀번호 확인</Span>
       )}
       {/* -- 회원가입 버튼 --*/}
       <Button onClick={signUpClick}>회원가입</Button>
@@ -215,6 +215,7 @@ const Login = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeight.Regular};
   box-sizing: border-box;
+  cursor: pointer;
   & p {
     display: inline-block;
     position: relative;

@@ -238,7 +238,6 @@ const Asmr = (props) => {
           history.audio = song1;
           history.icon = iconUrl;
           history.title = title;
-
         } else if (!song2.src) {
           setSong2Icon(iconUrl);
           setSong2Title(title);
@@ -272,7 +271,7 @@ const Asmr = (props) => {
 
   // -- jsx --
   return (
-    <>
+    <Container>
       {!asmrInfo || asmrInfo.length === 0 ? (
         <Spinner height="100vh"></Spinner>
       ) : (
@@ -361,21 +360,27 @@ const Asmr = (props) => {
           )}
         </PageWrap>
       )}
-    </>
+    </Container>
   );
 };
 
 // --- styled-components ---
+const Container = styled.div`
+  /* padding: 50px ${({ theme }) => theme.paddings.xxxxl}; */
+`;
 const PageWrap = styled.div`
   width: 100%;
   height: 812px;
   background-color: ${({ theme }) => theme.colors.bg};
   background-image: url(${(props) => props.imgUrl});
   background-repeat: no-repeat;
+  background-size: cover;
+  padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
+  box-sizing: border-box;
 `;
 
 const CategorySelect = styled.div`
-  width: 335px;
+  width: 100%;
   height: 52px;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.colors.back};
@@ -387,10 +392,11 @@ const CategorySelect = styled.div`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  cursor: pointer;
 `;
 
 const Category = styled.div`
-  width: 59px;
+  width: 100%;
   height: 36px;
   border-radius: 8px;
   line-height: 36px;
@@ -402,7 +408,7 @@ const Category = styled.div`
 `;
 
 const SoundSelect = styled.div`
-  width: 335px;
+  width: 100%;
   height: ${(props) => props.height};
   margin: auto;
   margin-top: 20px;
@@ -430,6 +436,7 @@ const Sound = styled.div`
   margin-right: 21px;
   margin-left: 20px;
   text-align: center;
+  cursor: pointer;
 `;
 
 const Text = styled.p`
@@ -439,9 +446,9 @@ const Text = styled.p`
 `;
 
 const Button = styled.button`
-  width: 335px;
+  width: 100%;
   height: 52px;
-  margin: 20px;
+  /* margin: 20px; */
   margin-top: ${(props) => props.margin};
   border: none;
   border-radius: 8px;

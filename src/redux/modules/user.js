@@ -1,8 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
-import axios from "axios";
-// import { deleteCookie, setCookie } from "../../shared/Cookie";
 
 // -- actions --
 const SIGNUP = "SIGNUP";

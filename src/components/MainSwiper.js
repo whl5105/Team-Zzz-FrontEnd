@@ -70,6 +70,7 @@ const BannerImg = styled.div`
   background-image: url(${(props) => props.bannerImage});
   background-repeat: no-repeat;
   background-size: cover;
+  cursor: pointer;
 `;
 
 export default MainSwiper;

@@ -1,5 +1,4 @@
 import instance from "./instance";
-import instanceRecord from "./instanceRecord";
 
 export const apis = {
   //-- user --
@@ -18,10 +17,6 @@ export const apis = {
   //-- main , asmr --
   getAsmr: () => instance.get("/api/asmr"),
   getAsmrCategory: (categoryId) => instance.get(`/api/asmr/${categoryId}`),
-
-  //-- voice --
-  getVoice: () => instance.get("/api/voice"),
-  postVoice: (voiceFile) => instanceRecord.post("/api/voice", { voiceFile }),
 
   //-- diary --
   getDiaryList: (userIdx, yearMonth) =>

@@ -116,35 +116,39 @@ const Diary = () => {
 
   // --- jsx ---
   return (
-    <>
+    <Container>
       <div>
         {list.length === 0 && !nextMonth ? (
           <Spinner height="100vh"></Spinner>
         ) : (
           <>
-            <Wrap>
-              <Button
-                left
-                onClick={() => {
-                  setMoment(getMoment.clone().subtract(1, "month"));
-                }}
-              >
-                <img src={Left} alt="left"></img>
-              </Button>
-              <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
-              {/* YYYY는 년도 MM 은 달입니다. */}
-              <Button
-                right
-                onClick={() => {
-                  setMoment(getMoment.clone().add(1, "month"));
-                }}
-              >
-                <img src={Right} alt="right"></img>
-              </Button>
-            </Wrap>
+            <WrapBox>
+              <Wrap>
+                <Button
+                  left
+                  onClick={() => {
+                    setMoment(getMoment.clone().subtract(1, "month"));
+                  }}
+                >
+                  <img src={Left} alt="left"></img>
+                </Button>
+                <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
+                {/* YYYY는 년도 MM 은 달입니다. */}
+                <Button
+                  right
+                  onClick={() => {
+                    setMoment(getMoment.clone().add(1, "month"));
+                  }}
+                >
+                  <img src={Right} alt="right"></img>
+                </Button>
+              </Wrap>
+            </WrapBox>
             <br></br>
             {nextMonth ? (
-              <NoRecord></NoRecord>
+              <NoRecordBox>
+                <NoRecord></NoRecord>
+              </NoRecordBox>
             ) : (
               <div>
                 <Content>
@@ -186,7 +190,7 @@ const Diary = () => {
                             margin="5px"
                           />
                         )}
-                        <div>{index + 1}</div>
+                        <Text>{index + 1}</Text>
                       </div>
                     );
                   })}
@@ -204,13 +208,22 @@ const Diary = () => {
       </div>
       {/* -- 다이어리 팝업 모달 -- */}
       {modalOpen ? <DiaryWrite close={closeModal} data={modalData} /> : ""}
-    </>
+    </Container>
   );
 };
 
 // --- styled-components ---
+const Container = styled.div`
+  /* padding: 50px 0;
+  box-sizing: border-box; */
+`;
+const WrapBox = styled.div`
+  padding-top: 50px;
+  margin: 0 20px;
+  box-sizing: border-box;
+`;
 const Wrap = styled.div`
-  width: 335px;
+  width: 100%;
   height: 52px;
   line-height: 20px;
   text-align: center;
@@ -237,31 +250,53 @@ const YearMonth = styled.span`
   width: 67px;
   height: 20px;
   margin: 17px 17px 15px 17px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: ${({ theme }) => theme.fontWeight.Medium};
 `;
 
 const Content = styled.div`
   position: relative;
   background-color: ${({ theme }) => theme.colors.bg}};
   color: ${({ theme }) => theme.colors.white};
-  width: 330px;
+  width: 100%;
+  min-width:335px;
   max-height: 515px;
   margin: 5px auto;
   margin-bottom: 15px;
   display: flex;
   flex-wrap: wrap;
   text-align: center;
-  
+  padding: 0 ${({ theme }) => theme.paddings.xxxxl};
+  box-sizing: border-box;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
+
 `;
 
+const Text = styled.div`
+  font-family: "Roboto", sans-serif;
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Regular};
+  line-height: ${({ theme }) => theme.lineHeight.small};
+  vertical-align: top;
+`;
+
+const NoRecordBox = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+`;
 const NoRecord = styled.div`
-  height: 620px;
+  position: relative;
+  height: 800px;
   margin-top: 13px;
   background-image: url(${NoInfo});
   background-repeat: no-repeat;
+  background-size: 100%;
+  bottom: 0;
 `;
 
 export default Diary;
