@@ -191,29 +191,29 @@ const Asmr = (props) => {
         setSong1(new Audio());
         setSong1Icon(null);
         setSong1Title(null);
-        history.state=null;
-        history.audio=null;
-        history.title=null;
-        history.icon=null;
+        history.state="";
+        history.audio="";
+        history.title="";
+        history.icon="";
         
       } else if (song2.src.indexOf(asmrUrl) !== -1) {
         song2.pause();
         setSong2(new Audio());
         setSong2Icon(null);
         setSong1Title(null);
-        history.state2=null;
-        history.audio2=null;
-        history.title2=null;
-        history.icon2=null;
+        history.state2="";
+        history.audio2="";
+        history.title2="";
+        history.icon2="";
       } else if (song3.src.indexOf(asmrUrl) !== -1) {
         song3.pause();
         setSong3(new Audio());
         setSong3Icon(null);
         setSong1Title(null);
-        history.state3=null;
-        history.audio3=null;
-        history.title3=null;
-        history.icon3=null;
+        history.state3="";
+        history.audio3="";
+        history.title3="";
+        history.icon3="";
       }
 
       // 선택한 음원 비활성화 style
