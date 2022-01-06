@@ -9,6 +9,7 @@ import All from "../static/images/asmr/background/전체.svg";
 import Nature from "../static/images/asmr/background/네이쳐.svg";
 import Place from "../static/images/asmr/background/플레이스.svg";
 import Object from "../static/images/asmr/background/오브젝트.svg";
+import { history } from "../redux/configureStore";
 
 export const deleteSong = (url) => {
   console.log(url);
@@ -18,7 +19,7 @@ export const deleteSong = (url) => {
 
 const Asmr = (props) => {
   const location = useLocation();
-
+  console.log(history);
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());
@@ -39,6 +40,7 @@ const Asmr = (props) => {
   const dispatch = useDispatch();
   const [openModal, setOpenmodal] = React.useState(false);
 
+  console.log(song1);
   React.useEffect(() => {
     if (getCategory === "전체") {
       setImageUrl(All);
@@ -116,6 +118,57 @@ const Asmr = (props) => {
     }
   }, [getCategory]);
 
+  React.useEffect(() => {
+    //  console.log((history.state).length)
+    
+    if (history.state) {
+      //  console.log(aa.length)
+      let selectItem;
+      let arr=[];
+      setTimeout(
+        () => (
+          (selectItem = document.getElementById(history.state)),
+          (selectItem.style.backgroundColor = "#FBC037"),
+          setSong1(history.audio),
+           arr = [...arr, history.audio.src],
+          setPlay(arr),
+          console.log(arr)
+          // console.log(play)
+        ),
+        10
+      );
+      setTimeout(
+        () => (
+          (selectItem = document.getElementById(history.state2)),
+          (selectItem.style.backgroundColor = "#FBC037"),
+          setSong2(history.audio2),
+          arr = [...arr, history.audio2.src],
+          setPlay(arr),
+          console.log(arr)
+          // console.log(play)
+        ),
+        10
+      );
+      setTimeout(
+        () => (
+          (selectItem = document.getElementById(history.state3)),
+          (selectItem.style.backgroundColor = "#FBC037"),
+          setSong1(history.audio3),
+          arr = [...arr, history.audio3.src],
+          setPlay(arr),
+          console.log(arr)
+          // console.log(play)
+        ),
+        10
+      );
+      //
+      // console.log(selectItem)
+      // selectItem.style.backgroundColor = "#FBC037";
+    } else {
+      console.log("여기");
+    }
+  }, []);
+
   const select = (asmrUrl, iconUrl, title) => {
     if (play.includes(asmrUrl)) {
       // 비활성화
@@ -126,9 +179,11 @@ const Asmr = (props) => {
         }
       });
       setPlay(arr);
-
+      console.log(song1.src);
       // 비활성화 시 음원도 해당 음원 재생 정지
       if (song1.src.indexOf(asmrUrl) !== -1) {
+        console.log(song1.src);
+        console.log(history.audio);
         song1.pause();
         setSong1(new Audio());
         setSong1Icon(null);
@@ -161,27 +216,38 @@ const Asmr = (props) => {
           setSong1Icon(iconUrl);
           setSong1Title(title);
           song1.src = asmrUrl;
-          song1.volume = 0.5;
+          song1.volume = 0.1;
           song1.loop = true;
           song1.play();
+          history.state = asmrUrl;
+          history.audio = song1;
+          // console.log(typeof asmrUrl)
+          // console.log(typeof history.state)
+          // history.state = null;
+          // console.log(history)
         } else if (!song2.src) {
           setSong2Icon(iconUrl);
           setSong2Title(title);
           song2.src = asmrUrl;
-          song2.volume = 0.5;
+          song2.volume = 0.1;
           song2.loop = true;
           song2.play();
+          history.state2 = asmrUrl;
+          history.audio2 = song2;
         } else if (!song3.src) {
           setSong3Icon(iconUrl);
           setSong3Title(title);
           song3.src = asmrUrl;
-          song3.volume = 0.5;
+          song3.volume = 0.1;
           song3.loop = true;
           song3.play();
+          history.state3 = asmrUrl;
+          history.audio3 = song3;
         }
 
         // 선택한 음원 활성화 style
         const selectItem = document.getElementById(asmrUrl);
+        // console.log(selectItem)
         selectItem.style.backgroundColor = "#FBC037";
       }
     }
