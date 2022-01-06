@@ -113,6 +113,27 @@ const DiaryWrite = (props) => {
       close();
     }
   };
+  //-- 수정 클릭 --
+  const editClick = async () => {
+    const diaryListInfo = {
+      feelScore: feelScore,
+      sleepScore: sleepScore,
+      comment: data.comment,
+      diaryIdx: dayData.diaryIdx,
+    };
+    console.log("dddddddd");
+    console.log(diaryListInfo);
+    console.log(props.data.year);
+    console.log(props.data.month);
+    await dispatch(diaryActions.editDiaryDB(diaryListInfo));
+    close();
+  };
+  //-- 삭제 클릭 --
+  const deleteClick = async () => {
+    console.log(dayData.diaryIdx);
+    await dispatch(diaryActions.deleteDiaryDB(dayData.diaryIdx));
+    close();
+  };
 
   return (
     <ModalPopUp close={props.close}>
@@ -186,7 +207,7 @@ const DiaryWrite = (props) => {
                   >
                     취소
                   </button>
-                  <button onClick={addClick}>완료</button>
+                  <button onClick={editClick}>완료</button>
                 </ButtonBox>
               </div>
             ) : (
@@ -210,7 +231,7 @@ const DiaryWrite = (props) => {
                   <SleepBox previewSleep={sleep} />
                 </ScoreGrop>
                 <ButtonBox>
-                  <button>기록 삭제</button>
+                  <button onClick={deleteClick}>기록 삭제</button>
                   <button
                     onClick={() => {
                       setEdit(!edit);
