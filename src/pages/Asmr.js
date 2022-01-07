@@ -78,7 +78,6 @@ const Asmr = (props) => {
           setSound(asmrInfo);
         } else if (getCategory === "네이쳐") {
           const nature = asmrInfo.filter((item) => {
-            console.log(item.categoryName);
             if (item.categoryName === "자연") {
               return item;
             }

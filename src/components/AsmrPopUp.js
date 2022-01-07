@@ -313,7 +313,11 @@ const Icon = styled.div`
   cursor: pointer;
 `;
 
-const Image = styled.img``;
+const Image = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
 const Button = styled.button`
   font-size: 16px;
   font-weight: bold;
