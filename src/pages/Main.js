@@ -108,7 +108,7 @@ const Container = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  @media (max-width: 375px) {
+  @media (max-width: 500px) {
     height: 89vh;
   }
 `;

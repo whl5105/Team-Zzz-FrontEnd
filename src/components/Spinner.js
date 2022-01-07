@@ -27,6 +27,7 @@ const Outter = styled.div`
   height: ${(props) => props.height};
   background-image: url(${SpinnerImage});
   background-repeat: no-repeat;
+  background-size: 100%;
   z-index: 1000000;
 `;
 
