@@ -13,7 +13,7 @@ const Toggle = (props) => {
     // if ("serviceWorker" in navigator) {
       if (Notification.permission === "granted") {
         navigator.serviceWorker
-          .register("../service-worker.js")
+          .register("../service-worker.js")  // 이 경로의 service-worker가 아닌 이름만 같은 다른 기본 service-worker로 실행
           .then((regist) => {
             swRegist = regist;
             console.log("권한 승인해서 서비스워커 등록!");
