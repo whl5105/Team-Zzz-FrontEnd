@@ -68,6 +68,11 @@ function subscribe() {
 function updateButton() {
   // TODO: 알림 권한 거부 처리
 
+ if (Notification.permission === 'denied') {
+ 
+  updateSubscription(null);
+  return;
+}
   // const pushButton = document.getElementById("subscribe");
   if (isSubscribed) {
     // pushButton.textContent = "Disable Push Messaging";
