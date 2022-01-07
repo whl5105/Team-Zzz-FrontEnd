@@ -27,13 +27,13 @@ const Outter = styled.div`
   height: ${(props) => props.height};
   background-image: url(${SpinnerImage});
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   z-index: 1000000;
 `;
 
 const Loading = styled.div`
   top: 380px;
-  left: 165px;
+  left: 170px;
   width: 53px;
   height: 18px;
   font-size: ${({ theme }) => theme.fontSizes.xl};

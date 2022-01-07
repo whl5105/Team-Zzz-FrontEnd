@@ -4,20 +4,26 @@ import { useHistory } from "react-router-dom";
 import RequireLogin from "../components/RequireLogin";
 
 // 아이콘 이미지 import
-import homeIcon from "../static/images/navigation/homeIcon.svg";
-import asmrIcon from "../static/images/navigation/asmrIcon.svg";
-import diaryIcon from "../static/images/navigation/diaryIcon.svg";
-import myPageIcon from "../static/images/navigation/myPageIcon.svg";
+import { ReactComponent as Main } from "../static/images/navigation/homeIcon.svg";
+import { ReactComponent as Asmr } from "../static/images/navigation/asmrIcon.svg";
+import { ReactComponent as Diary } from "../static/images/navigation/diaryIcon.svg";
+import { ReactComponent as MyPage } from "../static/images/navigation/myPageIcon.svg";
 
 const Navigation = () => {
   const history = useHistory();
   const [diaryModal, setDiaryModal] = React.useState(false);
+  const [select, setSelect] = React.useState(
+    history.location.pathname.split("/")[1] === ""
+      ? "main"
+      : history.location.pathname.split("/")[1]
+  );
 
   const diary = () => {
     const token = localStorage.getItem("token");
     if (!token) {
       setDiaryModal(true);
     } else {
+      setSelect("diary");
       history.push("/diary");
     }
   };
@@ -35,34 +41,57 @@ const Navigation = () => {
     <div>
       <Gnb>
         <Box
+          select={select !== "main" && "null"}
           onClick={() => {
+            setSelect("main");
             history.push("/");
           }}
         >
-          <Icon categoryImage={homeIcon} />홈
+          <Main
+            fill={select === "main" ? "#FBC037" : "#ffffff"}
+            width={24}
+            height={24}
+          ></Main>
+          <P>홈</P>
         </Box>
 
         <Box
+          select={select !== "asmr" && "null"}
           onClick={() => {
+            setSelect("asmr");
             history.push({ pathname: "/asmr" });
           }}
         >
-          <Icon categoryImage={asmrIcon} />
-          ASMR
+          <Asmr
+            fill={select === "asmr" ? "#FBC037" : "#ffffff"}
+            width={24}
+            height={24}
+          ></Asmr>
+          <P>ASMR</P>
         </Box>
 
-        <Box onClick={diary}>
-          <Icon categoryImage={diaryIcon} />
-          다이어리
+        <Box select={select !== "diary" && "null"} onClick={diary}>
+          <Diary
+            fill={select === "diary" ? "#FBC037" : "#ffffff"}
+            width={24}
+            height={24}
+          ></Diary>
+          <P>다이어리</P>
         </Box>
 
         <Box
+          select={select !== "mypage" && "null"}
           onClick={() => {
+            setSelect("mypage");
             history.push("/mypage");
           }}
         >
-          <Icon categoryImage={myPageIcon} />
-          마이
+          <MyPage
+            fill={select === "mypage" ? "#FBC037" : "#ffffff"}
+            width={24}
+            height={24}
+          ></MyPage>
+          <P>마이</P>
         </Box>
       </Gnb>
       {diaryModal && (
@@ -98,16 +127,29 @@ const Gnb = styled.div`
     background-color: #2a2245;
   }
 `;
+
 const Box = styled.div`
   width: 75px;
+  color: ${(props) => (props.select !== "null" ? "#FBC037" : "#ffffff")};
+  & > Div:nth-child(1) {
+    color: ${(props) => (props.select !== "null" ? "#FBC037" : "#ffffff")};
+  }
   cursor: pointer;
 `;
-const Icon = styled.div`
-  width: 24px;
-  height: 24px;
-  background-image: url(${(props) => props.categoryImage});
-  background-repeat: no-repeat;
-  margin: auto;
+
+const P = styled.p`
+  width: 75px;
+  height: 18px;
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Regular};
 `;
+
+// const Icon = styled.div`
+//   width: 24px;
+//   height: 24px;
+//   background-image: url(${(props) => props.categoryImage});
+//   background-repeat: no-repeat;
+//   margin: auto;
+// `;
 
 export default Navigation;

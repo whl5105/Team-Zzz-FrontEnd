@@ -16,11 +16,12 @@ const Push = (props) => {
   });
 
   // Push 초기화
-  function initPush() {
+  const initPush=()=> {
     // const pushButton = document.getElementById("subscribe");
     // pushButton.addEventListener("click", () => {
     console.log(isSubscribed);
     if (isSubscribed) {
+        unsubscribe()
     } else {
       subscribe();
       console.log("dd");
@@ -92,7 +93,25 @@ const Push = (props) => {
   }
 
   //알림 구독 취소
-  function unsubscribe() {}
+  function unsubscribe() {
+    swRegist.pushManager.getSubscription()
+    .then(subscription => {
+      if (subscription) {
+        return subscription.unsubscribe();
+      }
+    })
+    .catch(error => {
+      console.log('Error unsubscribing', error);
+    })
+    .then(() => {
+      updateSubscription(null);
+      console.log('User is unsubscribed.');
+      isSubscribed = false;
+      updateButton();
+    });
+
+
+  }
 
   function urlBase64ToUint8Array(base64String) {
     var padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -115,7 +134,7 @@ const Push = (props) => {
     <>
       <h1>가져온 토큰:</h1>
       {/* <p>{token}</p> */}
-      <button id="subscribe" onClick={() => initPush()}>
+      <button id="subscribe" onClick={initPush}>
         subscribe
       </button>
       <span id="subscription_detail" style={{ color: "white" }}></span>
@@ -124,3 +143,4 @@ const Push = (props) => {
 };
 
 export default Push;
+

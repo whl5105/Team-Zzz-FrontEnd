@@ -79,7 +79,7 @@ const WrapBox = styled.div`
 `;
 
 const Wrap = styled.div`
-  /* min-width: 335px; */
+  /* min-width: 400px; */
   width: 375px;
   height: 812px;
   background-color: ${({ theme }) => theme.colors.bg};

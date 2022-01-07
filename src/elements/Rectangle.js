@@ -24,6 +24,7 @@ const TextBox = styled.div`
   box-sizing: border-box;
   top: ${(props) => props.top};
 `;
+
 const Text = styled.p`
   position: absolute;
   top: 50%;

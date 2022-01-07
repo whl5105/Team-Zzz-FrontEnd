@@ -78,7 +78,6 @@ const Asmr = (props) => {
           setSound(asmrInfo);
         } else if (getCategory === "네이쳐") {
           const nature = asmrInfo.filter((item) => {
-            console.log(item.categoryName);
             if (item.categoryName === "자연") {
               return item;
             }
@@ -430,7 +429,7 @@ const SoundSelect = styled.div`
 
 const Sound = styled.div`
   width: 70px;
-  height: 50px;
+  height: 55px;
   padding-top: 15px;
   border-radius: 8px;
   background-color: #3a3e74;
@@ -452,16 +451,30 @@ const Text = styled.p`
 
 const ButtonBox = styled.div``;
 const Button = styled.button`
-  width: 100%;
-  height: 52px;
+  /* width: 100%;
+  height: 52px; */
   /* margin: 20px; */
-  margin-top: ${(props) => props.margin};
+  /* margin-top: ${(props) => props.margin};
   border: none;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.main_1};
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold}; */
+  width: 100%;
+    height: 52px;
+    /* margin-top: 20px; */
+    border: none;
+    border-radius: 8px;
+    background-color: #FBC037;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    /* position: absolute; */
+    /* bottom: 70px; */
+    /* left: 0; */
+    /* padding: 0 20px; */
+    /* box-sizing: border-box;
 `;
 
 export default Asmr;
