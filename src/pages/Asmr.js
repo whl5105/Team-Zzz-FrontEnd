@@ -331,14 +331,16 @@ const Asmr = (props) => {
               );
             })}
           </SoundSelect>
-          <Button
-            margin={getCategory !== "전체" ? "235px" : "20px"}
-            onClick={() => {
-              setOpenmodal(true);
-            }}
-          >
-            소리 조절 하기
-          </Button>
+          <ButtonBox>
+            <Button
+              margin={getCategory !== "전체" ? "235px" : "20px"}
+              onClick={() => {
+                setOpenmodal(true);
+              }}
+            >
+              소리 조절 하기
+            </Button>
+          </ButtonBox>
           {openModal && (
             <AsmrPopUp
               setList={setPlay}
@@ -377,7 +379,7 @@ const PageWrap = styled.div`
   background-size: cover;
   padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
   box-sizing: border-box;
-  @media (max-width: 375px) {
+  @media (max-width: 500px) {
     height: 95vh;
   }
 `;
@@ -448,6 +450,7 @@ const Text = styled.p`
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
 `;
 
+const ButtonBox = styled.div``;
 const Button = styled.button`
   width: 100%;
   height: 52px;

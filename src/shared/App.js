@@ -7,12 +7,8 @@ import { history } from "../redux/configureStore";
 import { Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 
-//이미지
-import bg1 from "../static/images/bg/main_bg1.png";
-import bg2 from "../static/images/bg/main_bg1.png";
-import bg3 from "../static/images/bg/main_bg1.png";
-
 //page
+import BackGround from "../components/Background";
 import NotFound from "../pages/NotFound";
 import Main from "../pages/Main";
 import PushNoticationPop from "../pages/PushNoticationPop";
@@ -32,6 +28,7 @@ import NoticePage from "../pages/NoticePage";
 function App() {
   return (
     <WrapBox id="app">
+      <BackGround />
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Wrap className="App">
@@ -73,25 +70,31 @@ function App() {
 }
 
 const WrapBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100vw;
   height: 100vh;
-  background-image: url(${bg1});
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* height: 100vh; */
 `;
 
 const Wrap = styled.div`
-  min-width: 335px;
+  /* min-width: 335px; */
   width: 375px;
   height: 812px;
   background-color: ${({ theme }) => theme.colors.bg};
-  position: relative;
-  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  right: 17%;
+  transform: translateY(-50%);
+  /* margin: 0 auto; */
   overflow: hidden;
-  @media (max-width: 375px) {
+  @media (max-width: 500px) {
+    min-width: 335px;
     /* background-color: lightblue; */
     width: 100%;
     height: 100vh;
+    right: 0;
   }
 `;
 const Container = styled.div`
