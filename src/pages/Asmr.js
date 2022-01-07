@@ -123,9 +123,13 @@ const Asmr = (props) => {
 
   React.useEffect(() => {
     let selectItem;
+    let setTime1;
+    let setTime2;
+    let setTime3;
     let arr = [];
+
     if (history.state) {
-      setTimeout(
+      setTime1 = setTimeout(
         () => (
           (selectItem = document.getElementById(history.state)),
           (selectItem.style.backgroundColor = "#FBC037"),
@@ -141,7 +145,7 @@ const Asmr = (props) => {
       );
     }
     if (history.state2) {
-      setTimeout(
+      setTime2 = setTimeout(
         () => (
           (selectItem = document.getElementById(history.state2)),
           (selectItem.style.backgroundColor = "#FBC037"),
@@ -156,7 +160,7 @@ const Asmr = (props) => {
       );
     }
     if (history.state3) {
-      setTimeout(
+      setTime3 = setTimeout(
         () => (
           (selectItem = document.getElementById(history.state3)),
           (selectItem.style.backgroundColor = "#FBC037"),
@@ -169,6 +173,12 @@ const Asmr = (props) => {
         500
       );
     }
+
+    return () => {
+      clearTimeout(setTime1);
+      clearTimeout(setTime2);
+      clearTimeout(setTime3);
+    };
   }, []);
 
   const select = (asmrUrl, iconUrl, title) => {
