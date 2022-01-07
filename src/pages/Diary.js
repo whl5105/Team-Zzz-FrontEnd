@@ -66,9 +66,13 @@ const Diary = () => {
       // 이번년도
       if (day.getMonth() + 1 > today.getMonth() + 1) {
         // 다음달
-        setMonthDay(0);   
+        setMonthDay(0);
       } else {
-        const days = new Date(day.getFullYear(), day.getMonth() + 1, 0).getDate(); // 사용한 선택한 날짜의 일수
+        const days = new Date(
+          day.getFullYear(),
+          day.getMonth() + 1,
+          0
+        ).getDate(); // 사용한 선택한 날짜의 일수
         setMonthDay(days);
       }
     }
@@ -291,8 +295,8 @@ const NoRecordBox = styled.div`
 `;
 const NoRecord = styled.div`
   position: relative;
-  height: 800px;
-  margin-top: 13px;
+  height: 620px;
+  margin-top: 20px;
   background-image: url(${NoInfo});
   background-repeat: no-repeat;
   background-size: 100%;

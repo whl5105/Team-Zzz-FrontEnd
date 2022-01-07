@@ -7,7 +7,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // --- images ---
-import all from "../static/images/banner/all_1005px.png";
+import banner1 from "../static/images/banner/Main_BN_335px_1.png";
+import banner2 from "../static/images/banner/Main_BN_335px_2.png";
+import banner3 from "../static/images/banner/Main_BN_335px_3.png";
 
 SwiperCore.use([Pagination, Autoplay]);
 
@@ -20,10 +22,10 @@ const MainSwiper = () => {
           style={{
             width: "100%",
             height: "170px",
-            backgroundColor: "#FFF5F1",
+            backgroundColor: "rgb(59 63 121);",
             borderRadius: "12px",
           }}
-          spaceBetween={8}
+          spaceBetween={0}
           initialSlide={1}
           centeredSlides={true}
           pagination={{
@@ -32,26 +34,25 @@ const MainSwiper = () => {
           autoplay={{ delay: 3000 }}
         >
           <SwiperSlide
-            bg={all}
             onClick={() => {
               history.push("/diary");
             }}
           >
-            <BannerImg bannerImage={all} />
+            <BannerImg bannerImage={banner1} />
           </SwiperSlide>
           <SwiperSlide
             onClick={() => {
               history.push("/clock");
             }}
           >
-            <BannerImg bannerImage={all} />
+            <BannerImg bannerImage={banner2} />
           </SwiperSlide>
           <SwiperSlide
             onClick={() => {
               window.alert("피드백 중비중 입니다 ! ");
             }}
           >
-            <BannerImg bannerImage={all} />
+            <BannerImg bannerImage={banner3} />
           </SwiperSlide>
         </Swiper>
       </div>
