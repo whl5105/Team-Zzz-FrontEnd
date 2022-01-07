@@ -76,6 +76,7 @@ const Diary = () => {
         setMonthDay(days);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getMoment]);
 
   // 해당 월의 일자에 맞춰 배열 생성 해주는 부분
@@ -95,6 +96,7 @@ const Diary = () => {
 
       setList(arr);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [diaryList]);
 
   //-- 다이어리 팝업 모달 --

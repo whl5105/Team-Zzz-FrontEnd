@@ -4,7 +4,7 @@ import GlobalStyle from "../static/styles/GlobalStyle";
 import theme from "./theme";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
 //page
