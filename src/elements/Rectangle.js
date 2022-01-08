@@ -6,11 +6,7 @@ const Rectangle = (props) => {
   return (
     <TextBox>
       <Text>{props.text}</Text>
-      <img
-        src={DiaryAvg}
-        alt="avg"
-        style={{ width: "100%" }}
-      ></img>
+      <img src={DiaryAvg} alt="avg" style={{ width: "100%" }}></img>
     </TextBox>
   );
 };
@@ -21,8 +17,12 @@ const TextBox = styled.div`
   position: absolute;
   padding: 0px 20px;
   margin: 10px 0px;
-  bottom: 80px;
+  bottom: 60px;
   box-sizing: border-box;
+
+  @media (max-width: 500px) {
+    bottom: 80px;
+  }
 `;
 
 const Text = styled.p`
@@ -31,7 +31,7 @@ const Text = styled.p`
   transform: translateY(-50%);
   margin-left: 5%;
   color: ${({ theme }) => theme.colors.bg};
-  font-size: 90%;
+  font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeight.Regular};
   line-height: ${({ theme }) => theme.lineHeight.xxl};
   letter-spacing: -0.3px;

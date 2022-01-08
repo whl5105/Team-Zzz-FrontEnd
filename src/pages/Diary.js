@@ -163,7 +163,7 @@ const Diary = () => {
                           <>
                             <Charater
                               shape="charater"
-                              size="55"
+                              size="56"
                               feelNumber={scoreList.indexOf(item.feelScore) + 1}
                               sleepNumber={
                                 scoreList.indexOf(item.sleepScore) + 1
@@ -262,18 +262,21 @@ const Content = styled.div`
   background-color: ${({ theme }) => theme.colors.bg}};
   color: ${({ theme }) => theme.colors.white};
   width: 100%;
-  min-width:335px;
-  max-height: 515px;
+  max-height: 520px;
   margin: 5px auto;
   margin-bottom: 15px;
   text-align: center;
   padding: 0 ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;
   overflow-y: scroll;
+  
   &::-webkit-scrollbar {
     display: none;
   }
 
+  @media (max-width: 500px) {
+    max-height: 620px;
+  }
 `;
 
 const Text = styled.div`
