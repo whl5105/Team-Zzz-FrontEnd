@@ -292,6 +292,7 @@ const NoRecordBox = styled.div`
   width: 100%;
   height: 100vh;
 `;
+
 const NoRecord = styled.div`
   position: relative;
   height: 100%;

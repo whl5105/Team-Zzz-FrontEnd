@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import React from "react";
 import ModalPopUp from "./ModalPopUp";
-import { useHistory } from "react-router-dom";
 
 const RequireLogin = (props) => {
-  const history = useHistory();
   return (
     <>
       <ModalPopUp close={props.close}>
