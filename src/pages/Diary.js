@@ -154,7 +154,7 @@ const Diary = () => {
                 <NoRecord></NoRecord>
               </NoRecordBox>
             ) : (
-              <div>
+              <>
                 <Content>
                   {list.map((item, index) => {
                     return (
@@ -164,7 +164,6 @@ const Diary = () => {
                             <Charater
                               shape="charater"
                               size="55"
-                              position="absolute"
                               feelNumber={scoreList.indexOf(item.feelScore) + 1}
                               sleepNumber={
                                 scoreList.indexOf(item.sleepScore) + 1
@@ -177,21 +176,20 @@ const Diary = () => {
                               _onClick={() => {
                                 diaryDetail(index + 1);
                               }}
-                              margin="5px"
+                              margin="10px auto"
                             />
                           </>
                         ) : (
                           <Charater
                             shape="charater"
                             size="55"
-                            position="absolute"
                             feelNumber={0}
                             sleepNumber={0}
                             sleepColor={scoreColor[0]}
                             _onClick={() => {
                               diaryDetail(index + 1);
                             }}
-                            margin="5px"
+                            margin="10px auto"
                           />
                         )}
                         <Text>{index + 1}</Text>
@@ -201,11 +199,10 @@ const Diary = () => {
                 </Content>
                 {list.length > 0 && (
                   <Rectangle
-                    top={list.length >= 30 ? "-80px" : "263px"}
                     text={sleepAvg}
                   ></Rectangle>
                 )}
-              </div>
+              </>
             )}
           </>
         )}
@@ -260,7 +257,8 @@ const YearMonth = styled.span`
 `;
 
 const Content = styled.div`
-  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   background-color: ${({ theme }) => theme.colors.bg}};
   color: ${({ theme }) => theme.colors.white};
   width: 100%;
@@ -268,8 +266,6 @@ const Content = styled.div`
   max-height: 515px;
   margin: 5px auto;
   margin-bottom: 15px;
-  display: flex;
-  flex-wrap: wrap;
   text-align: center;
   padding: 0 ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;

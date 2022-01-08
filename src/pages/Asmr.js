@@ -374,6 +374,7 @@ const Asmr = (props) => {
 const Container = styled.div`
   /* padding: 50px ${({ theme }) => theme.paddings.xxxxl}; */
 `;
+
 const PageWrap = styled.div`
   width: 100%;
   height: 812px;
@@ -390,7 +391,7 @@ const PageWrap = styled.div`
 
 const CategorySelect = styled.div`
   width: 100%;
-  height: 52px;
+  height: 7%;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.colors.back};
   display: flex;
@@ -417,18 +418,17 @@ const Category = styled.div`
 `;
 
 const SoundSelect = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  max-height: 67%;
-  overflow: hidden;
+  max-height: 66.5%;
   margin-top: 20px;
   padding-bottom: 20px;
-  display: flex;
-  flex-wrap: wrap;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  justify-content: left;
 
   overflow-y: scroll;
+  overflow: hidden;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -436,15 +436,17 @@ const SoundSelect = styled.div`
 
 const Sound = styled.div`
   width: 70px;
-  height: 55px;
-  padding-top: 15px;
+  height: 53px;
+  padding-top: 17px;
+  /* width: 62.7%;
+  height: 61.37%; */
+  padding-bottom: 5px;
   border-radius: 8px;
   background-color: #3a3e74;
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  margin: ${({ theme }) => theme.horizontalityInterval.base};
-  margin-right: 21px;
+  margin: auto;
   margin-top: 20px;
   text-align: center;
   cursor: pointer;
@@ -458,9 +460,9 @@ const Text = styled.p`
 
 const Button = styled.button`
   width: 90%;
-  height: 52px;
-  bottom: 9%;
+  height: 6.5%;
   position: absolute;
+  bottom: 74px;
   /* margin: 20px; */
   margin-top: ${(props) => props.margin};
   border: none;
