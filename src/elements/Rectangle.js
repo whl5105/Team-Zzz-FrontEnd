@@ -31,7 +31,7 @@ const Text = styled.p`
   transform: translateY(-50%);
   margin-left: 5%;
   color: ${({ theme }) => theme.colors.bg};
-  font-size: ${({ theme }) => theme.fontSizes.small};
+  font-size: 80%;
   font-weight: ${({ theme }) => theme.fontWeight.Regular};
   line-height: ${({ theme }) => theme.lineHeight.xxl};
   letter-spacing: -0.3px;

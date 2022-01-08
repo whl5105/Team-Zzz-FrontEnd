@@ -295,7 +295,7 @@ const NoRecordBox = styled.div`
 `;
 const NoRecord = styled.div`
   position: relative;
-  height: 620px;
+  height: 100%;
   margin-top: 20px;
   background-image: url(${NoInfo});
   background-repeat: no-repeat;

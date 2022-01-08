@@ -191,11 +191,8 @@ const Asmr = (props) => {
         }
       });
       setPlay(arr);
-      console.log(song1.src);
       // 비활성화 시 음원도 해당 음원 재생 정지
       if (song1.src.indexOf(asmrUrl) !== -1) {
-        console.log(song1.src);
-        console.log(history.audio);
         song1.pause();
         setSong1(new Audio());
         setSong1Icon(null);
@@ -320,7 +317,7 @@ const Asmr = (props) => {
               오브젝트
             </Category>
           </CategorySelect>
-          <SoundSelect height={getCategory !== "전체" ? "320px" : "535px"}>
+          <SoundSelect>
             {sound.map((item) => {
               return (
                 <Sound
@@ -340,16 +337,14 @@ const Asmr = (props) => {
               );
             })}
           </SoundSelect>
-          <ButtonBox>
-            <Button
-              margin={getCategory !== "전체" ? "235px" : "20px"}
-              onClick={() => {
-                setOpenmodal(true);
-              }}
-            >
-              소리 조절 하기
-            </Button>
-          </ButtonBox>
+          <Button
+            margin={getCategory !== "전체" ? "235px" : "20px"}
+            onClick={() => {
+              setOpenmodal(true);
+            }}
+          >
+            소리 조절 하기
+          </Button>
           {openModal && (
             <AsmrPopUp
               setList={setPlay}
@@ -423,13 +418,15 @@ const Category = styled.div`
 
 const SoundSelect = styled.div`
   width: 100%;
-  height: ${(props) => props.height};
-  margin: auto;
+  max-height: 67%;
+  overflow: hidden;
   margin-top: 20px;
+  padding-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
+  justify-content: left;
 
   overflow-y: scroll;
   &::-webkit-scrollbar {
@@ -446,9 +443,9 @@ const Sound = styled.div`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  margin-top: 20px;
+  margin: ${({ theme }) => theme.horizontalityInterval.base};
   margin-right: 21px;
-  margin-left: 20px;
+  margin-top: 20px;
   text-align: center;
   cursor: pointer;
 `;
@@ -459,10 +456,11 @@ const Text = styled.p`
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
 `;
 
-const ButtonBox = styled.div``;
 const Button = styled.button`
-  width: 100%;
+  width: 90%;
   height: 52px;
+  bottom: 9%;
+  position: absolute;
   /* margin: 20px; */
   margin-top: ${(props) => props.margin};
   border: none;
