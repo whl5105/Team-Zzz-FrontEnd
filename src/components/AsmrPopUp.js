@@ -281,7 +281,7 @@ const VolumePopUp = styled.div`
   bottom: 0;
   z-index: 999;
   background-color: #101340;
-  width: 375px;
+  width: 100%;
   height: 356px;
   box-sizing: border-box;
   border: 1px solid #272a52;
@@ -321,7 +321,7 @@ const Image = styled.img`
 const Button = styled.button`
   font-size: 16px;
   font-weight: bold;
-  width: 335px;
+  width: 90%;
   height: 52px;
   border: none;
   border-radius: 8px;

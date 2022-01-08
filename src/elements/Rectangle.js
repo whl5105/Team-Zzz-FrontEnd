@@ -6,11 +6,7 @@ const Rectangle = (props) => {
   return (
     <TextBox>
       <Text>{props.text}</Text>
-      <img
-        src={DiaryAvg}
-        alt="avg"
-        style={{ width: "100%", height: "60px" }}
-      ></img>
+      <img src={DiaryAvg} alt="avg" style={{ width: "100%" }}></img>
     </TextBox>
   );
 };
@@ -20,14 +16,18 @@ const TextBox = styled.div`
   height: 60px;
   position: absolute;
   padding: 0px 20px;
-  bottom: 80px;
+  margin: 10px 0px;
+  bottom: 60px;
   box-sizing: border-box;
-  top: ${(props) => props.top};
+
+  @media (max-width: 500px) {
+    bottom: 80px;
+  }
 `;
 
 const Text = styled.p`
   position: absolute;
-  top: 50%;
+  bottom: 6px;
   transform: translateY(-50%);
   margin-left: 5%;
   color: ${({ theme }) => theme.colors.bg};
