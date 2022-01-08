@@ -43,7 +43,6 @@ const AsmrPopUp = (props) => {
       if (props.list.includes(song1.src)) {
         // 비활성화
         arr = [...props.list];
-        console.log(arr);
         arr = arr.filter((item) => {
           if (song1.src !== item) {
             return item;
@@ -66,7 +65,7 @@ const AsmrPopUp = (props) => {
       history.icon2 = "";
       song2.pause();
       props.setPlay2(new Audio());
-      var arr = [];
+      let arr = [];
       if (props.list.includes(song2.src)) {
         // 비활성화
         arr = [...props.list];
@@ -76,7 +75,6 @@ const AsmrPopUp = (props) => {
             return item;
           }
         });
-        console.log(song2.src);
         setSong2(new Audio());
       }
       props.setList(arr);
