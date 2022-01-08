@@ -432,6 +432,10 @@ const SoundSelect = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media (max-width: 500px) {
+    max-height: 75%;
+  }
 `;
 
 const Sound = styled.div`
