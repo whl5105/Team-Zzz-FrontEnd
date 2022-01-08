@@ -266,7 +266,8 @@ const AsmrPopUp = (props) => {
 // styled-components
 const FullScreen = styled.div`
   width: 100%;
-  height: 812px;
+  /* height: 812px; */
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 990;
   position: absolute;

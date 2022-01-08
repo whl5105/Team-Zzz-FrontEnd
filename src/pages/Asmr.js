@@ -415,6 +415,11 @@ const Category = styled.div`
   color: white;
   margin: auto;
   padding: 1px 3px;
+
+  @media (max-width: 500px) {
+    height: 45px;
+    line-height: 45px;
+  }
 `;
 
 const SoundSelect = styled.div`
@@ -454,6 +459,12 @@ const Sound = styled.div`
   margin-top: 20px;
   text-align: center;
   cursor: pointer;
+
+  @media (max-width: 500px) {
+    width: 80px;
+    height: 55px;
+    padding-top: 20px;
+  }
 `;
 
 const Text = styled.p`
