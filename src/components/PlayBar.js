@@ -27,6 +27,7 @@ const PlayBar = (props) => {
   };
 
   const reset = () => {
+    setPlaybar([]);
     if (history.audio1.src) {
       history.audio1.pause();
       if (history.location.pathname === "/asmr") {
@@ -50,7 +51,7 @@ const PlayBar = (props) => {
       history.arr = [];
       console.log(history);
     }
-    if (history.audio2.src) {
+    if(history.audio2.src) {
       history.audio2.pause();
       if (history.location.pathname === "/asmr") {
         deleteSong(history.state2);
@@ -119,6 +120,7 @@ const PlayBar = (props) => {
       history.arr = [];
       console.log(history);
     }
+    setPlaybar([]);
   };
 
   return (
@@ -144,7 +146,7 @@ const PlayBar = (props) => {
               <Button onClick={() => (pause(), setToggle(!toggle))}>||</Button>
             </>
           )}
-          <Button onClick={() => (reset(), setPlaybar([]))}>{`x`}</Button>
+          <Button onClick={() => (reset())}>{`x`}</Button>
         </Wrap>
       ) : null}
     </React.Fragment>
