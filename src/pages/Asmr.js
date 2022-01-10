@@ -386,11 +386,7 @@ const Asmr = (props) => {
                     select(item.asmrUrl, item.iconUrl, item.title);
                   }}
                 >
-                  <img
-                    style={{ width: "24px", height: "24px" }}
-                    src={item.iconUrl}
-                    alt=""
-                  ></img>
+                  <Icon src={item.iconUrl} alt=""></Icon>
                   <Text>{item.title}</Text>
                 </Sound>
               );
@@ -493,6 +489,11 @@ const Sound = styled.div`
   margin-top: 20px;
   text-align: center;
   cursor: pointer;
+`;
+
+const Icon = styled.img`
+  width: 24px;
+  height: 24px;
 `;
 
 const Text = styled.p`

@@ -19,22 +19,21 @@ const AsmrPopUp = (props) => {
   const [volume4, setVolume4] = React.useState(song4 && song4.volume * 100);
   const [songList, setSongList] = React.useState(location.list);
 
-  React.useEffect(() => {
-    console.log(song1, song2, song3, song4);
-  }, []);
-
   const changeVolume1 = (e) => {
     setVolume(e.target.value);
     song1.volume = e.target.value * 0.01;
   };
+
   const changeVolume2 = (e) => {
     setVolume2(e.target.value);
     song2.volume = e.target.value * 0.01;
   };
+
   const changeVolume3 = (e) => {
     setVolume3(e.target.value);
     song3.volume = e.target.value * 0.01;
   };
+  
   const changeVolume4 = (e) => {
     setVolume4(e.target.value);
     song4.volume = e.target.value * 0.01;
@@ -50,6 +49,7 @@ const AsmrPopUp = (props) => {
       history.icon1 = "";
       song1.pause();
       location.setPlay1(new Audio());
+
       if (songList.includes(song1.src)) {
         // 비활성화
         arr = songList.filter((item) => {
@@ -67,6 +67,7 @@ const AsmrPopUp = (props) => {
       history.icon2 = "";
       song2.pause();
       location.setPlay2(new Audio());
+
       if (songList.includes(song2.src)) {
         // 비활성화
         arr = songList.filter((item) => {
@@ -74,6 +75,7 @@ const AsmrPopUp = (props) => {
             return item;
           }
         });
+
         setSong2(new Audio());
       }
     } else if (song.src === song3.src) {
@@ -83,6 +85,7 @@ const AsmrPopUp = (props) => {
       history.icon3 = "";
       song3.pause();
       location.setPlay3(new Audio());
+
       if (songList.includes(song3.src)) {
         // 비활성화
         arr = songList.filter((item) => {
@@ -90,6 +93,7 @@ const AsmrPopUp = (props) => {
             return item;
           }
         });
+
         setSong3(new Audio());
       }
     } else if (song.src === song4.src) {
@@ -99,6 +103,7 @@ const AsmrPopUp = (props) => {
       history.icon4 = "";
       song4.pause();
       location.setPlay4(new Audio());
+
       if (location.list.includes(song4.src)) {
         // 비활성화
         arr = songList.filter((item) => {
@@ -106,6 +111,7 @@ const AsmrPopUp = (props) => {
             return item;
           }
         });
+
         setSong4(new Audio());
       }
     }
@@ -144,25 +150,18 @@ const AsmrPopUp = (props) => {
                     <>
                       <Record>
                         <Sound>
-                          <div
-                            style={{
-                              position: "relative",
-                              top: "15px",
-                              left: "0",
-                            }}
-                          >
+                          <IconImage>
                             <Image src={`${location.play1Icon}`} alt=""></Image>
                             <Text>{location.title1}</Text>
-                          </div>
+                          </IconImage>
                         </Sound>
 
-                        <input
+                        <Volume
                           type="range"
                           id="volume"
                           value={volume1}
                           min="0"
                           max="100"
-                          style={{ width: "158px", cursor: "pointer" }}
                           onChange={changeVolume1}
                         />
                         <Icon
@@ -172,7 +171,6 @@ const AsmrPopUp = (props) => {
                           onClick={() => {
                             deleteSong(song1);
                           }}
-                          style={{ position: "relative", top: "22px" }}
                         ></Icon>
                       </Record>
                     </>
@@ -182,24 +180,18 @@ const AsmrPopUp = (props) => {
                     <>
                       <Record>
                         <Sound>
-                          <div
-                            style={{
-                              position: "relative",
-                              top: "15px",
-                            }}
-                          >
+                          <IconImage>
                             <Image src={`${location.play2Icon}`} alt=""></Image>
                             <Text>{location.title2}</Text>
-                          </div>
+                          </IconImage>
                         </Sound>
 
-                        <input
+                        <Volume
                           type="range"
                           id="volume2"
                           value={volume2}
                           min="0"
                           max="100"
-                          style={{ width: "158px" }}
                           onChange={changeVolume2}
                         />
                         <Icon
@@ -209,7 +201,6 @@ const AsmrPopUp = (props) => {
                           onClick={() => {
                             deleteSong(song2);
                           }}
-                          style={{ position: "relative", top: "22px" }}
                         ></Icon>
                       </Record>
                     </>
@@ -218,23 +209,17 @@ const AsmrPopUp = (props) => {
                     <>
                       <Record>
                         <Sound>
-                          <div
-                            style={{
-                              position: "relative",
-                              top: "15px",
-                            }}
-                          >
+                          <IconImage>
                             <Image src={`${location.play3Icon}`} alt=""></Image>
                             <Text>{location.title3}</Text>
-                          </div>
+                          </IconImage>
                         </Sound>
-                        <input
+                        <Volume
                           type="range"
                           id="volume3"
                           value={volume3}
                           min="0"
                           max="100"
-                          style={{ width: "158px" }}
                           onChange={changeVolume3}
                         />
                         <Icon
@@ -244,7 +229,6 @@ const AsmrPopUp = (props) => {
                           onClick={() => {
                             deleteSong(song3);
                           }}
-                          style={{ position: "relative", top: "22px" }}
                         ></Icon>
                       </Record>
                     </>
@@ -253,23 +237,17 @@ const AsmrPopUp = (props) => {
                     <>
                       <Record>
                         <Sound>
-                          <div
-                            style={{
-                              position: "relative",
-                              top: "15px",
-                            }}
-                          >
+                          <IconImage>
                             <Image src={`${location.play4Icon}`} alt=""></Image>
                             <Text>{location.title4}</Text>
-                          </div>
+                          </IconImage>
                         </Sound>
-                        <input
+                        <Volume
                           type="range"
                           id="volume4"
                           value={volume4}
                           min="0"
                           max="100"
-                          style={{ width: "158px" }}
                           onChange={changeVolume4}
                         />
                         <Icon
@@ -279,14 +257,13 @@ const AsmrPopUp = (props) => {
                           onClick={() => {
                             deleteSong(song4);
                           }}
-                          style={{ position: "relative", top: "22px" }}
                         ></Icon>
                       </Record>
                     </>
                   ) : null}
                 </SongList>
                 <Button
-                  onClick={close} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
+                  onClick={close} //  나중에 볼륨 조절 한 거 데이터를 dispatch 해서 넣는 걸 하면 될 듯 하다
                 >
                   내 믹스 저장하기
                 </Button>
@@ -356,11 +333,19 @@ const SongList = styled.div`
   box-sizing: border-box;
 `;
 
+const IconImage = styled.div`
+  position: relative;
+  top: 15px;
+  left: 0;
+`;
+
 const Icon = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   background-image: url(${(props) => props.categoryImage});
   background-repeat: no-repeat;
+  position: relative;
+  top: 22px;
   cursor: pointer;
 `;
 
@@ -385,17 +370,17 @@ const Button = styled.button`
 const Sound = styled.div`
   width: 70px;
   height: 70px;
-  /* padding-top: 15px; */
   border-radius: 8px;
   background-color: #3a3e74;
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  /* margin-top: 20px; */
-  /* margin-right: 21px; */
-  /* margin-left: 20px; */
   text-align: center;
   cursor: pointer;
+`;
+
+const Volume = styled.input`
+  width: 158px;
 `;
 
 const Text = styled.p`
