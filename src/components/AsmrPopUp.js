@@ -33,7 +33,7 @@ const AsmrPopUp = (props) => {
     setVolume3(e.target.value);
     song3.volume = e.target.value * 0.01;
   };
-  
+
   const changeVolume4 = (e) => {
     setVolume4(e.target.value);
     song4.volume = e.target.value * 0.01;
@@ -48,23 +48,12 @@ const AsmrPopUp = (props) => {
       history.title1 = "";
       history.icon1 = "";
       song1.pause();
-<<<<<<< HEAD
-      props.setPlay(new Audio());
-      let arr = [];
-      if (props.list.includes(song1.src)) {
-        // 비활성화
-        arr = [...props.list];
-        console.log(arr);
-        // eslint-disable-next-line array-callback-return
 
-        arr = arr.filter((item) => {
-=======
       location.setPlay1(new Audio());
 
       if (songList.includes(song1.src)) {
         // 비활성화
         arr = songList.filter((item) => {
->>>>>>> cfbef3d955ccb805a0ee1e8bdab2f8a82b4abc98
           if (song1.src !== item) {
             return item;
           }
@@ -82,14 +71,8 @@ const AsmrPopUp = (props) => {
 
       if (songList.includes(song2.src)) {
         // 비활성화
-<<<<<<< HEAD
-        arr = [...props.list];
-        console.log(arr);
-        // eslint-disable-next-line array-callback-return
-        arr = arr.filter((item) => {
-=======
+
         arr = songList.filter((item) => {
->>>>>>> cfbef3d955ccb805a0ee1e8bdab2f8a82b4abc98
           if (song2.src !== item) {
             return item;
           }
@@ -107,14 +90,7 @@ const AsmrPopUp = (props) => {
 
       if (songList.includes(song3.src)) {
         // 비활성화
-<<<<<<< HEAD
-        arr = [...props.list];
-        console.log(arr);
-        // eslint-disable-next-line array-callback-return
-        arr = arr.filter((item) => {
-=======
         arr = songList.filter((item) => {
->>>>>>> cfbef3d955ccb805a0ee1e8bdab2f8a82b4abc98
           if (song3.src !== item) {
             return item;
           }
