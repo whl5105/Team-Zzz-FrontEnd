@@ -1,5 +1,6 @@
 self.addEventListener("install", (pEvent) => {
   console.log("서비스워커 설치 함!");
+  self.skipWaiting();
 });
 
 // This allows the web app to trigger skipWaiting via
