@@ -5,7 +5,7 @@ import { deleteSong } from "../pages/Asmr";
 import { push } from "connected-react-router";
 
 const PlayBar = (props) => {
-  const [song1, setSong] = React.useState();
+//   const [song1, setSong] = React.useState();
   const [toggle, setToggle] = React.useState(false);
   const [playbar, setPlaybar] = React.useState([]);
   //   console.log(list)
@@ -28,7 +28,7 @@ const PlayBar = (props) => {
 
   const reset = () => {
     setPlaybar([]);
-    if (history.audio1.src) {
+    if (history.audio1) {
       history.audio1.pause();
       if (history.location.pathname === "/asmr") {
         deleteSong(history.state1);
@@ -36,7 +36,7 @@ const PlayBar = (props) => {
         history.audio1 = "";
         history.title1 = "";
         history.icon1 = "";
-        history.arr = [];
+
         history.setSong1(new Audio());
         history.setPlay([]); // 모든 음원 리스트 리셋
         console.log("여기");
@@ -48,10 +48,10 @@ const PlayBar = (props) => {
       history.title1 = "";
       history.icon1 = "";
       history.setPlay([]); // 모든 음원 리스트 리셋
-      history.arr = [];
+  
       console.log(history);
     }
-    if(history.audio2.src) {
+    if(history.audio2) {
       history.audio2.pause();
       if (history.location.pathname === "/asmr") {
         deleteSong(history.state2);
@@ -59,7 +59,7 @@ const PlayBar = (props) => {
         history.audio2 = "";
         history.title2 = "";
         history.icon2 = "";
-        history.arr = [];
+        
         history.setSong2(new Audio());
         history.setPlay([]); // 모든 음원 리스트 리셋
         console.log("여기");
@@ -71,10 +71,10 @@ const PlayBar = (props) => {
       history.title2 = "";
       history.icon2 = "";
       history.setPlay([]); // 모든 음원 리스트 리셋
-      history.arr = [];
+ 
       console.log(history);
     }
-    if (history.audio3.src) {
+    if (history.audio3) {
       history.audio3.pause();
       if (history.location.pathname === "/asmr") {
         deleteSong(history.state3);
@@ -82,7 +82,7 @@ const PlayBar = (props) => {
         history.audio3 = "";
         history.title3 = "";
         history.icon3 = "";
-        history.arr = [];
+      
         history.setSong3(new Audio());
         history.setPlay([]); // 모든 음원 리스트 리셋
         console.log("여기");
@@ -97,7 +97,7 @@ const PlayBar = (props) => {
       history.arr = [];
       console.log(history);
     }
-    if (history.audio4.src) {
+    if (history.audio4) {
       history.audio4.pause();
       if (history.location.pathname === "/asmr") {
         deleteSong(history.state4);
