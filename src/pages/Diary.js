@@ -224,6 +224,7 @@ const WrapBox = styled.div`
   margin: 0 20px;
   box-sizing: border-box;
 `;
+
 const Wrap = styled.div`
   width: 100%;
   height: 52px;

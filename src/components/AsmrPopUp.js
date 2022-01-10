@@ -1,49 +1,57 @@
 import React from "react";
-import { history } from "../redux/configureStore";
 import styled from "styled-components";
+import { history } from "../redux/configureStore";
+import { useLocation } from "react-router-dom";
 
 // images
 import closeIcon from "../static/images/asmr/closeIcon.svg";
 
-// components
-import { deleteSong } from "../pages/Asmr";
-
 const AsmrPopUp = (props) => {
-  const [song1, setSong1] = React.useState(props.play);
-  const [song2, setSong2] = React.useState(props.play2);
-  const [song3, setSong3] = React.useState(props.play3);
-  const [Volume, setVolume] = React.useState(song1.volume * 100);
-  const [Volume2, setVolume2] = React.useState(song2.volume * 100);
-  const [Volume3, setVolume3] = React.useState(song3.volume * 100);
-  const [songList, setSongList] = React.useState(props.list);
+  const location = useLocation();
+  const [song1, setSong1] = React.useState(location.play1 && location.play1);
+  const [song2, setSong2] = React.useState(location.play2 && location.play2);
+  const [song3, setSong3] = React.useState(location.play3 && location.play3);
+  const [song4, setSong4] = React.useState(location.play4 && location.play4);
+  const [volume1, setVolume] = React.useState(song1 && song1.volume * 100);
+  const [volume2, setVolume2] = React.useState(song2 && song2.volume * 100);
+  const [volume3, setVolume3] = React.useState(song3 && song3.volume * 100);
+  const [volume4, setVolume4] = React.useState(song4 && song4.volume * 100);
+  const [songList, setSongList] = React.useState(location.list);
 
-  const VolumeChange = (e) => {
+  React.useEffect(() => {
+    console.log(song1, song2, song3, song4);
+  }, []);
+
+  const changeVolume1 = (e) => {
     setVolume(e.target.value);
     song1.volume = e.target.value * 0.01;
   };
-  const VolumeChange2 = (e) => {
+  const changeVolume2 = (e) => {
     setVolume2(e.target.value);
     song2.volume = e.target.value * 0.01;
   };
-  const VolumeChange3 = (e) => {
+  const changeVolume3 = (e) => {
     setVolume3(e.target.value);
     song3.volume = e.target.value * 0.01;
   };
+  const changeVolume4 = (e) => {
+    setVolume4(e.target.value);
+    song4.volume = e.target.value * 0.01;
+  };
 
-  const deleteVolume = (e) => {
-    if (song1.src) {
-      deleteSong(song1.src);
-      history.state = "";
-      history.audio = "";
-      history.title = "";
-      history.icon = "";
+  const deleteSong = (song) => {
+    let arr = [];
+
+    if (song.src === song1.src) {
+      history.state1 = "";
+      history.audio1 = "";
+      history.title1 = "";
+      history.icon1 = "";
       song1.pause();
-      props.setPlay(new Audio());
-      var arr = [];
-      if (props.list.includes(song1.src)) {
+      location.setPlay1(new Audio());
+      if (songList.includes(song1.src)) {
         // 비활성화
-        arr = [...props.list];
-        arr = arr.filter((item) => {
+        arr = songList.filter((item) => {
           if (song1.src !== item) {
             return item;
           }
@@ -51,75 +59,79 @@ const AsmrPopUp = (props) => {
 
         setSong1(new Audio());
       }
-      props.setList(arr);
-      setSongList(arr);
-    }
-  };
-  const deleteVolume2 = (e) => {
-    if (song2.src) {
-      deleteSong(song2.src);
+    } else if (song.src === song2.src) {
       history.state2 = "";
       history.audio2 = "";
       history.title2 = "";
       history.icon2 = "";
       song2.pause();
-      props.setPlay2(new Audio());
-      let arr = [];
-      if (props.list.includes(song2.src)) {
+      location.setPlay2(new Audio());
+      if (songList.includes(song2.src)) {
         // 비활성화
-        arr = [...props.list];
-        console.log(arr);
-        arr = arr.filter((item) => {
+        arr = songList.filter((item) => {
           if (song2.src !== item) {
             return item;
           }
         });
         setSong2(new Audio());
       }
-      props.setList(arr);
-      setSongList(arr);
-      console.log(songList);
-    }
-  };
-  const deleteVolume3 = (e) => {
-    if (song3.src) {
-      deleteSong(song3.src);
+    } else if (song.src === song3.src) {
       history.state3 = "";
       history.audio3 = "";
       history.title3 = "";
       history.icon3 = "";
       song3.pause();
-      props.setPlay3(new Audio());
-      var arr = [];
-      if (props.list.includes(song3.src)) {
+      location.setPlay3(new Audio());
+      if (songList.includes(song3.src)) {
         // 비활성화
-        arr = [...props.list];
-        console.log(arr);
-        arr = arr.filter((item) => {
+        arr = songList.filter((item) => {
           if (song3.src !== item) {
             return item;
           }
         });
-        console.log(song3.src);
         setSong3(new Audio());
       }
-      props.setList(arr);
-      setSongList(arr);
+    } else if (song.src === song4.src) {
+      history.state4 = "";
+      history.audio4 = "";
+      history.title4 = "";
+      history.icon4 = "";
+      song4.pause();
+      location.setPlay4(new Audio());
+      if (location.list.includes(song4.src)) {
+        // 비활성화
+        arr = songList.filter((item) => {
+          if (song4.src !== item) {
+            return item;
+          }
+        });
+        setSong4(new Audio());
+      }
     }
+
+    location.setList(arr);
+    setSongList(arr);
+  };
+
+  const close = () => {
+    history.push("/asmr");
   };
 
   return (
     <>
       <FullScreen>
-        <CloseVolume onClick={() => props.closeModal(false)}></CloseVolume>
         <VolumePopUp>
-          {songList.length === 0 && (
+          {songList ? (
             <>
-              <NoList>선택된 소리가 없어요!</NoList>
+              {songList.length === 0 ? (
+                <NoList>선택된 소리가 없어요!</NoList>
+              ) : null}
             </>
+          ) : (
+            history.push("/asmr")
           )}
 
-          {song1.src !== "" ? (
+          {song1 && song1.src !== "" ? (
             <>
               <div
                 style={{
@@ -136,32 +148,34 @@ const AsmrPopUp = (props) => {
                       left: "0",
                     }}
                   >
-                    <Image src={`${props.playIcon}`} alt=""></Image>
-                    <Text>{props.title}</Text>
+                    <Image src={`${location.play1Icon}`} alt=""></Image>
+                    <Text>{location.title1}</Text>
                   </div>
                 </Sound>
 
                 <input
                   type="range"
                   id="volume"
-                  value={Volume}
+                  value={volume1}
                   min="0"
                   max="100"
                   style={{ width: "158px", cursor: "pointer" }}
-                  onChange={VolumeChange}
+                  onChange={changeVolume1}
                 />
                 <Icon
                   categoryImage={closeIcon}
                   width="24px"
                   height="24px"
-                  onClick={deleteVolume}
+                  onClick={() => {
+                    deleteSong(song1);
+                  }}
                   style={{ position: "relative", top: "22px", left: "-10px" }}
                 ></Icon>
               </div>
             </>
           ) : null}
 
-          {song2.src !== "" ? (
+          {song2 && song2.src !== "" ? (
             <>
               <div
                 style={{
@@ -177,31 +191,33 @@ const AsmrPopUp = (props) => {
                       top: "15px",
                     }}
                   >
-                    <Image src={`${props.play2Icon}`} alt=""></Image>
-                    <Text>{props.title2}</Text>
+                    <Image src={`${location.play2Icon}`} alt=""></Image>
+                    <Text>{location.title2}</Text>
                   </div>
                 </Sound>
 
                 <input
                   type="range"
                   id="volume2"
-                  value={Volume2}
+                  value={volume2}
                   min="0"
                   max="100"
                   style={{ width: "158px" }}
-                  onChange={VolumeChange2}
+                  onChange={changeVolume2}
                 />
                 <Icon
                   categoryImage={closeIcon}
                   width="24px"
                   height="24px"
-                  onClick={deleteVolume2}
+                  onClick={() => {
+                    deleteSong(song2);
+                  }}
                   style={{ position: "relative", top: "22px", left: "-10px" }}
                 ></Icon>
               </div>
             </>
           ) : null}
-          {song3.src !== "" ? (
+          {song3 && song3.src !== "" ? (
             <>
               <div
                 style={{
@@ -217,30 +233,72 @@ const AsmrPopUp = (props) => {
                       top: "15px",
                     }}
                   >
-                    <Image src={`${props.play3Icon}`} alt=""></Image>
-                    <Text>{props.title3}</Text>
+                    <Image src={`${location.play3Icon}`} alt=""></Image>
+                    <Text>{location.title3}</Text>
                   </div>
                 </Sound>
                 <input
                   type="range"
                   id="volume3"
-                  value={Volume3}
+                  value={volume3}
                   min="0"
                   max="100"
                   style={{ width: "158px" }}
-                  onChange={VolumeChange3}
+                  onChange={changeVolume3}
                 />
                 <Icon
                   categoryImage={closeIcon}
                   width="24px"
                   height="24px"
-                  onClick={deleteVolume3}
+                  onClick={() => {
+                    deleteSong(song3);
+                  }}
                   style={{ position: "relative", top: "22px", left: "-10px" }}
                 ></Icon>
               </div>
             </>
           ) : null}
-
+          {song4 && song4.src !== "" ? (
+            <>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  padding: "0px 0px 12px 0px",
+                }}
+              >
+                <Sound>
+                  <div
+                    style={{
+                      position: "relative",
+                      top: "15px",
+                    }}
+                  >
+                    <Image src={`${location.play4Icon}`} alt=""></Image>
+                    <Text>{location.title4}</Text>
+                  </div>
+                </Sound>
+                <input
+                  type="range"
+                  id="volume4"
+                  value={volume4}
+                  min="0"
+                  max="100"
+                  style={{ width: "158px" }}
+                  onChange={changeVolume4}
+                />
+                <Icon
+                  categoryImage={closeIcon}
+                  width="24px"
+                  height="24px"
+                  onClick={() => {
+                    deleteSong(song4);
+                  }}
+                  style={{ position: "relative", top: "22px", left: "-10px" }}
+                ></Icon>
+              </div>
+            </>
+          ) : null}
           <div
             style={{
               display: "flex",
@@ -251,7 +309,7 @@ const AsmrPopUp = (props) => {
             }}
           >
             <Button
-              onClick={() => props.closeModal(false)} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
+              onClick={close} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
             >
               창닫기
             </Button>
@@ -265,8 +323,7 @@ const AsmrPopUp = (props) => {
 // styled-components
 const FullScreen = styled.div`
   width: 100%;
-  /* height: 812px; */
-  height: 100%;
+  height: 812px;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 990;
   position: absolute;
@@ -275,22 +332,22 @@ const FullScreen = styled.div`
 `;
 
 const VolumePopUp = styled.div`
-  position: absolute;
+  /* position: absolute;
   bottom: 0;
-  z-index: 999;
+  z-index: 999; */
   background-color: #101340;
   width: 100%;
-  height: 356px;
+  height: 812px;
   box-sizing: border-box;
   border: 1px solid #272a52;
   border-radius: 16px 16px 0px 0px;
   padding: 20px 0px 0px 10px;
 `;
 
-const CloseVolume = styled.div`
-  height: 55%;
-  width: 375px;
-`;
+// const CloseVolume = styled.div`
+//   height: 55%;
+//   width: 375px;
+// `;
 
 const NoList = styled.p`
   width: 100%;
