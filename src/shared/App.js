@@ -25,6 +25,7 @@ import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import NoticePage from "../pages/NoticePage";
+import PlayBar from "../components/PlayBar";
 
 function App() {
   return (
@@ -58,11 +59,13 @@ function App() {
                   component={MyPageNotification}
                 ></Route>
                 <Route path="/notice" exact component={NoticePage}></Route>
+         
                 <Route>
                   <NotFound />
                 </Route>
               </Switch>
             </Container>
+            <PlayBar></PlayBar>
             <Navigation></Navigation>
           </ConnectedRouter>
         </Wrap>
