@@ -44,8 +44,7 @@
     -->
 
     <script>
-      let appServerPublicKey =
-    "BOTfyn9Co8hUdcfZ2ReUIVNNeR1kCH0PTmmZd3JNYpOW5GXEBBMWQAZPDWU1KuXGE7vIS5-nbzNZl6d5JT3LGJs";
+    
       let swRegist = null;
       let isSubscribed = true;
 
@@ -105,7 +104,7 @@
 
     function subscribe() {
       let appServerPublicKey =
-    "BOTfyn9Co8hUdcfZ2ReUIVNNeR1kCH0PTmmZd3JNYpOW5GXEBBMWQAZPDWU1KuXGE7vIS5-nbzNZl6d5JT3LGJs"; // 자신의 public key 넣어줘야함
+    "INSERT PUBLIC KEY"; // 자신의 public key 넣어줘야함
     const applicationServerKey = urlBase64ToUint8Array(appServerPublicKey);
     swRegist.pushManager
       .subscribe({
