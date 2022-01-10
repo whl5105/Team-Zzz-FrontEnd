@@ -469,27 +469,13 @@ const Button = styled.button`
   position: absolute;
   bottom: 74px;
   /* margin: 20px; */
-  /* margin-top: ${(props) => props.margin};
+  margin-top: ${(props) => props.margin};
   border: none;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.main_1};
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold}; */
-  width: 100%;
-    height: 52px;
-    /* margin-top: 20px; */
-    border: none;
-    border-radius: 8px;
-    background-color: #FBC037;
-    color: #ffffff;
-    font-size: 0.75rem;
-    font-weight: 700;
-    /* position: absolute; */
-    /* bottom: 70px; */
-    /* left: 0; */
-    /* padding: 0 20px; */
-    /* box-sizing: border-box;
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
 `;
 
 export default Asmr;
