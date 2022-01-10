@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 
 // images
 import closeIcon from "../static/images/asmr/closeIcon.svg";
+import backIcon from "../static/images/asmr/backIcon.svg";
 
 const AsmrPopUp = (props) => {
   const location = useLocation();
@@ -119,245 +120,240 @@ const AsmrPopUp = (props) => {
 
   return (
     <>
-      <FullScreen>
-        <VolumePopUp>
-          {songList ? (
-            <>
-              {songList.length === 0 ? (
-                <NoList>선택된 소리가 없어요!</NoList>
-              ) : null}
-            </>
-          ) : (
-            history.push("/asmr")
-          )}
+      <Container>
+        <Icon
+          categoryImage={backIcon}
+          width="24px"
+          height="24px"
+          onClick={close}
+          style={{ position: "relative", top: "20px", bottom: "20px" }}
+        ></Icon>
+        {songList ? (
+          <>
+            {songList.length === 0 ? (
+              <NoSoundList>
+                <p id="content">선택된 소리가 없어요!</p>
+                <p id="subContent">
+                  나만의 믹스를 만드려면 <br></br> 소리를 선택해 주세요
+                </p>
+              </NoSoundList>
+            ) : (
+              <>
+                <SongList>
+                  {song1 && song1.src !== "" ? (
+                    <>
+                      <Record>
+                        <Sound>
+                          <div
+                            style={{
+                              position: "relative",
+                              top: "15px",
+                              left: "0",
+                            }}
+                          >
+                            <Image src={`${location.play1Icon}`} alt=""></Image>
+                            <Text>{location.title1}</Text>
+                          </div>
+                        </Sound>
 
-          {song1 && song1.src !== "" ? (
-            <>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  padding: "0px 0px 12px 0px",
-                }}
-              >
-                <Sound>
-                  <div
-                    style={{
-                      position: "relative",
-                      top: "15px",
-                      left: "0",
-                    }}
-                  >
-                    <Image src={`${location.play1Icon}`} alt=""></Image>
-                    <Text>{location.title1}</Text>
-                  </div>
-                </Sound>
+                        <input
+                          type="range"
+                          id="volume"
+                          value={volume1}
+                          min="0"
+                          max="100"
+                          style={{ width: "158px", cursor: "pointer" }}
+                          onChange={changeVolume1}
+                        />
+                        <Icon
+                          categoryImage={closeIcon}
+                          width="24px"
+                          height="24px"
+                          onClick={() => {
+                            deleteSong(song1);
+                          }}
+                          style={{ position: "relative", top: "22px" }}
+                        ></Icon>
+                      </Record>
+                    </>
+                  ) : null}
 
-                <input
-                  type="range"
-                  id="volume"
-                  value={volume1}
-                  min="0"
-                  max="100"
-                  style={{ width: "158px", cursor: "pointer" }}
-                  onChange={changeVolume1}
-                />
-                <Icon
-                  categoryImage={closeIcon}
-                  width="24px"
-                  height="24px"
-                  onClick={() => {
-                    deleteSong(song1);
-                  }}
-                  style={{ position: "relative", top: "22px", left: "-10px" }}
-                ></Icon>
-              </div>
-            </>
-          ) : null}
+                  {song2 && song2.src !== "" ? (
+                    <>
+                      <Record>
+                        <Sound>
+                          <div
+                            style={{
+                              position: "relative",
+                              top: "15px",
+                            }}
+                          >
+                            <Image src={`${location.play2Icon}`} alt=""></Image>
+                            <Text>{location.title2}</Text>
+                          </div>
+                        </Sound>
 
-          {song2 && song2.src !== "" ? (
-            <>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  padding: "0px 0px 12px 0px",
-                }}
-              >
-                <Sound>
-                  <div
-                    style={{
-                      position: "relative",
-                      top: "15px",
-                    }}
-                  >
-                    <Image src={`${location.play2Icon}`} alt=""></Image>
-                    <Text>{location.title2}</Text>
-                  </div>
-                </Sound>
-
-                <input
-                  type="range"
-                  id="volume2"
-                  value={volume2}
-                  min="0"
-                  max="100"
-                  style={{ width: "158px" }}
-                  onChange={changeVolume2}
-                />
-                <Icon
-                  categoryImage={closeIcon}
-                  width="24px"
-                  height="24px"
-                  onClick={() => {
-                    deleteSong(song2);
-                  }}
-                  style={{ position: "relative", top: "22px", left: "-10px" }}
-                ></Icon>
-              </div>
-            </>
-          ) : null}
-          {song3 && song3.src !== "" ? (
-            <>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  padding: "0px 0px 12px 0px",
-                }}
-              >
-                <Sound>
-                  <div
-                    style={{
-                      position: "relative",
-                      top: "15px",
-                    }}
-                  >
-                    <Image src={`${location.play3Icon}`} alt=""></Image>
-                    <Text>{location.title3}</Text>
-                  </div>
-                </Sound>
-                <input
-                  type="range"
-                  id="volume3"
-                  value={volume3}
-                  min="0"
-                  max="100"
-                  style={{ width: "158px" }}
-                  onChange={changeVolume3}
-                />
-                <Icon
-                  categoryImage={closeIcon}
-                  width="24px"
-                  height="24px"
-                  onClick={() => {
-                    deleteSong(song3);
-                  }}
-                  style={{ position: "relative", top: "22px", left: "-10px" }}
-                ></Icon>
-              </div>
-            </>
-          ) : null}
-          {song4 && song4.src !== "" ? (
-            <>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  padding: "0px 0px 12px 0px",
-                }}
-              >
-                <Sound>
-                  <div
-                    style={{
-                      position: "relative",
-                      top: "15px",
-                    }}
-                  >
-                    <Image src={`${location.play4Icon}`} alt=""></Image>
-                    <Text>{location.title4}</Text>
-                  </div>
-                </Sound>
-                <input
-                  type="range"
-                  id="volume4"
-                  value={volume4}
-                  min="0"
-                  max="100"
-                  style={{ width: "158px" }}
-                  onChange={changeVolume4}
-                />
-                <Icon
-                  categoryImage={closeIcon}
-                  width="24px"
-                  height="24px"
-                  onClick={() => {
-                    deleteSong(song4);
-                  }}
-                  style={{ position: "relative", top: "22px", left: "-10px" }}
-                ></Icon>
-              </div>
-            </>
-          ) : null}
-          <div
-            style={{
-              display: "flex",
-              alignContent: "flex-end",
-              position: "absolute",
-              bottom: "0px",
-              width: "100%",
-            }}
-          >
-            <Button
-              onClick={close} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
-            >
-              창닫기
-            </Button>
-          </div>
-        </VolumePopUp>
-      </FullScreen>
+                        <input
+                          type="range"
+                          id="volume2"
+                          value={volume2}
+                          min="0"
+                          max="100"
+                          style={{ width: "158px" }}
+                          onChange={changeVolume2}
+                        />
+                        <Icon
+                          categoryImage={closeIcon}
+                          width="24px"
+                          height="24px"
+                          onClick={() => {
+                            deleteSong(song2);
+                          }}
+                          style={{ position: "relative", top: "22px" }}
+                        ></Icon>
+                      </Record>
+                    </>
+                  ) : null}
+                  {song3 && song3.src !== "" ? (
+                    <>
+                      <Record>
+                        <Sound>
+                          <div
+                            style={{
+                              position: "relative",
+                              top: "15px",
+                            }}
+                          >
+                            <Image src={`${location.play3Icon}`} alt=""></Image>
+                            <Text>{location.title3}</Text>
+                          </div>
+                        </Sound>
+                        <input
+                          type="range"
+                          id="volume3"
+                          value={volume3}
+                          min="0"
+                          max="100"
+                          style={{ width: "158px" }}
+                          onChange={changeVolume3}
+                        />
+                        <Icon
+                          categoryImage={closeIcon}
+                          width="24px"
+                          height="24px"
+                          onClick={() => {
+                            deleteSong(song3);
+                          }}
+                          style={{ position: "relative", top: "22px" }}
+                        ></Icon>
+                      </Record>
+                    </>
+                  ) : null}
+                  {song4 && song4.src !== "" ? (
+                    <>
+                      <Record>
+                        <Sound>
+                          <div
+                            style={{
+                              position: "relative",
+                              top: "15px",
+                            }}
+                          >
+                            <Image src={`${location.play4Icon}`} alt=""></Image>
+                            <Text>{location.title4}</Text>
+                          </div>
+                        </Sound>
+                        <input
+                          type="range"
+                          id="volume4"
+                          value={volume4}
+                          min="0"
+                          max="100"
+                          style={{ width: "158px" }}
+                          onChange={changeVolume4}
+                        />
+                        <Icon
+                          categoryImage={closeIcon}
+                          width="24px"
+                          height="24px"
+                          onClick={() => {
+                            deleteSong(song4);
+                          }}
+                          style={{ position: "relative", top: "22px" }}
+                        ></Icon>
+                      </Record>
+                    </>
+                  ) : null}
+                </SongList>
+                <Button
+                  onClick={close} //  나중에 볼륨조절한거 데이터를 dispatch 해서 넣는걸 하면 될듯하다
+                >
+                  내 믹스 저장하기
+                </Button>
+              </>
+            )}
+          </>
+        ) : (
+          history.push("/asmr")
+        )}
+      </Container>
     </>
   );
 };
 
 // styled-components
-const FullScreen = styled.div`
+const Container = styled.div`
   width: 100%;
-  height: 812px;
-  background-color: rgba(0, 0, 0, 0.6);
-  z-index: 990;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
-
-const VolumePopUp = styled.div`
-  /* position: absolute;
-  bottom: 0;
-  z-index: 999; */
-  background-color: #101340;
-  width: 100%;
-  height: 812px;
+  background-color: ${({ theme }) => theme.colors.bg};
+  background-image: url(${(props) => props.imgUrl});
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
   box-sizing: border-box;
-  border: 1px solid #272a52;
-  border-radius: 16px 16px 0px 0px;
-  padding: 20px 0px 0px 10px;
 `;
 
-// const CloseVolume = styled.div`
-//   height: 55%;
-//   width: 375px;
-// `;
+const Record = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 40px;
+`;
 
-const NoList = styled.p`
+const NoSoundList = styled.div`
   width: 100%;
-  color: white;
-  position: relative;
-  font-size: 18px;
-  font-weight: bold;
+  border-radius: 12px;
+  margin-top: 40px;
+  padding: 0px 20px;
+  padding-top: 20px;
+  box-sizing: border-box;
   text-align: center;
-  line-height: 250px; // 세로 가운데 정렬
-  letter-spacing: 0.3px;
+  margin-top: 258px;
+
+  & #content {
+    color: ${({ theme }) => theme.colors.white};
+    font-size: ${({ theme }) => theme.fontSizes.base};
+    font-weight: ${({ theme }) => theme.fontWeight.Bold};
+    margin-bottom: 12px;
+  }
+
+  & #subContent {
+    color: ${({ theme }) => theme.colors.gray_5};
+    font-size: ${({ theme }) => theme.fontSizes.ssmall};
+    font-weight: ${({ theme }) => theme.fontWeight.Regular};
+  }
+`;
+
+const SongList = styled.div`
+  width: 100%;
+  height: 440px;
+  background-color: ${({ theme }) => theme.colors.back};
+  background-image: url(${(props) => props.imgUrl});
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 12px;
+  margin-top: 40px;
+  padding: 0px 20px;
+  padding-top: 20px;
+  box-sizing: border-box;
 `;
 
 const Icon = styled.div`
@@ -376,13 +372,12 @@ const Image = styled.img`
 const Button = styled.button`
   font-size: 16px;
   font-weight: bold;
-  width: 90%;
+  width: 335px;
   height: 52px;
   border: none;
   border-radius: 8px;
-  position: relative;
-  top: -30px;
-  left: 10px;
+  position: absolute;
+  bottom: 80px;
   color: #fff;
   background-color: #fbc037;
 `;
