@@ -405,9 +405,7 @@ const Asmr = (props) => {
 };
 
 // --- styled-components ---
-const Container = styled.div`
-  /* padding: 50px ${({ theme }) => theme.paddings.xxxxl}; */
-`;
+const Container = styled.div``;
 
 const PageWrap = styled.div`
   width: 100%;
@@ -446,7 +444,6 @@ const Category = styled.div`
   color: white;
   margin: auto;
   padding: 1px 3px;
-
   @media (max-width: 500px) {
     height: 45px;
     line-height: 45px;
@@ -462,12 +459,10 @@ const SoundSelect = styled.div`
   padding-bottom: 20px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
-
   @media (max-width: 500px) {
     max-height: 75%;
   }

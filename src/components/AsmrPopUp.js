@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // images
 import closeIcon from "../static/images/asmr/closeIcon.svg";
@@ -33,7 +34,7 @@ const AsmrPopUp = (props) => {
     setVolume3(e.target.value);
     song3.volume = e.target.value * 0.01;
   };
-  
+
   const changeVolume4 = (e) => {
     setVolume4(e.target.value);
     song4.volume = e.target.value * 0.01;
@@ -270,9 +271,8 @@ const AsmrPopUp = (props) => {
               </>
             )}
           </>
-        ) : (
-          history.push("/asmr")
-        )}
+        ) : // history.push("/asmr")
+        null}
       </Container>
     </>
   );

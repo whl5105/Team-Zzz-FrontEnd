@@ -20,8 +20,6 @@ const Main = (props) => {
 
     if (!noticeSet && token) {
       setNoticationModal(true);
-    } else {
-      console.log("알림 설정 했어요");
     }
   }, []);
 
