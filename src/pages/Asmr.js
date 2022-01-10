@@ -384,9 +384,6 @@ const PageWrap = styled.div`
   background-size: cover;
   padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
   box-sizing: border-box;
-  @media (max-width: 500px) {
-    height: 95vh;
-  }
 `;
 
 const CategorySelect = styled.div`
@@ -433,7 +430,6 @@ const SoundSelect = styled.div`
   border-radius: 12px;
 
   overflow-y: scroll;
-  overflow: hidden;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -459,12 +455,6 @@ const Sound = styled.div`
   margin-top: 20px;
   text-align: center;
   cursor: pointer;
-
-  @media (max-width: 500px) {
-    width: 80px;
-    height: 55px;
-    padding-top: 20px;
-  }
 `;
 
 const Text = styled.p`

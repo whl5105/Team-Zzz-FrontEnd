@@ -19,10 +19,6 @@ const TextBox = styled.div`
   margin: 10px 0px;
   bottom: 60px;
   box-sizing: border-box;
-
-  @media (max-width: 500px) {
-    bottom: 80px;
-  }
 `;
 
 const Text = styled.p`
@@ -35,26 +31,6 @@ const Text = styled.p`
   font-weight: ${({ theme }) => theme.fontWeight.Regular};
   line-height: ${({ theme }) => theme.lineHeight.xxl};
   letter-spacing: -0.3px;
-
-  @media (max-width: 500px) {
-    font-size: ${({ theme }) => theme.fontSizes.lg};
-    bottom: -3px;
-  }
-
-  @media (max-width: 450px) {
-    font-size: ${({ theme }) => theme.fontSizes.small};
-    bottom: 5px;
-  }
-
-  @media (max-width: 400px) {
-    font-size: ${({ theme }) => theme.fontSizes.small};
-    bottom: 8px;
-  }
-
-  @media (max-width: 350px) {
-    font-size: ${({ theme }) => theme.fontSizes.small};
-    bottom: 10px;
-  }
 `;
 
 export default Rectangle;
