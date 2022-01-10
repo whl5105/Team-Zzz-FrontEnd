@@ -19,7 +19,7 @@ const AsmrPopUp = (props) => {
 
   const VolumeChange = (e) => {
     setVolume(e.target.value);
-    song1.volume = e.target.value * 0.01;
+    song1.volume = e.target.value * 0.01; // 볼륨 바의 value 범위를 1~100에서 주었고 audio경우 0~1 이 범위이기때문에 0.01을 곱해줌
   };
   const VolumeChange2 = (e) => {
     setVolume2(e.target.value);
