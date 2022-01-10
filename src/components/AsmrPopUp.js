@@ -43,7 +43,6 @@ const AsmrPopUp = (props) => {
       if (props.list.includes(song1.src)) {
         // 비활성화
         arr = [...props.list];
-        console.log(arr);
         arr = arr.filter((item) => {
           if (song1.src !== item) {
             return item;
@@ -54,7 +53,6 @@ const AsmrPopUp = (props) => {
       }
       props.setList(arr);
       setSongList(arr);
-      console.log(arr);
     }
   };
   const deleteVolume2 = (e) => {
@@ -66,7 +64,7 @@ const AsmrPopUp = (props) => {
       history.icon2 = "";
       song2.pause();
       props.setPlay2(new Audio());
-      var arr = [];
+      let arr = [];
       if (props.list.includes(song2.src)) {
         // 비활성화
         arr = [...props.list];
@@ -76,7 +74,6 @@ const AsmrPopUp = (props) => {
             return item;
           }
         });
-        console.log(song2.src);
         setSong2(new Audio());
       }
       props.setList(arr);
@@ -268,7 +265,8 @@ const AsmrPopUp = (props) => {
 // styled-components
 const FullScreen = styled.div`
   width: 100%;
-  height: 812px;
+  /* height: 812px; */
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 990;
   position: absolute;
@@ -281,7 +279,7 @@ const VolumePopUp = styled.div`
   bottom: 0;
   z-index: 999;
   background-color: #101340;
-  width: 375px;
+  width: 100%;
   height: 356px;
   box-sizing: border-box;
   border: 1px solid #272a52;
@@ -321,7 +319,7 @@ const Image = styled.img`
 const Button = styled.button`
   font-size: 16px;
   font-weight: bold;
-  width: 335px;
+  width: 90%;
   height: 52px;
   border: none;
   border-radius: 8px;

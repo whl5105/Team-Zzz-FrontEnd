@@ -31,19 +31,21 @@ const NoticePage = (props) => {
 
         <Notice>
           <Inside>
-            <Icon src={notes}></Icon>
+            <Icon alt="" src={notes}></Icon>
             <Text onClick={() => setToggle(!toggle)}>저작권 명시</Text>
           </Inside>
 
           {toggle ? (
             <Icon
               src={nextIcon}
+              alt=""
               style={{ transform: `rotate(90deg)` }}
               onClick={() => setToggle(!toggle)}
             ></Icon>
           ) : (
             <Icon
               src={nextIcon}
+              alt=""
               style={{ transform: `rotate(0deg)` }}
               onClick={() => setToggle(!toggle)}
             ></Icon>
@@ -54,6 +56,7 @@ const NoticePage = (props) => {
             <div>
               <Icon
                 src={dot}
+                alt=""
                 style={{
                   position: "absolute",
                   left: "20px",
@@ -79,6 +82,7 @@ const NoticePage = (props) => {
             <div>
               <Icon
                 src={dot}
+                alt=""
                 style={{
                   position: "absolute",
                   left: "20px",
@@ -104,6 +108,7 @@ const NoticePage = (props) => {
             <div>
               <Icon
                 src={dot}
+                alt=""
                 style={{
                   position: "absolute",
                   left: "20px",
@@ -130,6 +135,7 @@ const NoticePage = (props) => {
             <div>
               <Icon
                 src={dot}
+                alt=""
                 style={{
                   position: "absolute",
                   left: "20px",

@@ -123,9 +123,13 @@ const Asmr = (props) => {
 
   React.useEffect(() => {
     let selectItem;
+    let setTime1;
+    let setTime2;
+    let setTime3;
     let arr = [];
+
     if (history.state) {
-      setTimeout(
+      setTime1 = setTimeout(
         () => (
           (selectItem = document.getElementById(history.state)),
           (selectItem.style.backgroundColor = "#FBC037"),
@@ -141,7 +145,7 @@ const Asmr = (props) => {
       );
     }
     if (history.state2) {
-      setTimeout(
+      setTime2 = setTimeout(
         () => (
           (selectItem = document.getElementById(history.state2)),
           (selectItem.style.backgroundColor = "#FBC037"),
@@ -156,7 +160,7 @@ const Asmr = (props) => {
       );
     }
     if (history.state3) {
-      setTimeout(
+      setTime3 = setTimeout(
         () => (
           (selectItem = document.getElementById(history.state3)),
           (selectItem.style.backgroundColor = "#FBC037"),
@@ -169,6 +173,12 @@ const Asmr = (props) => {
         500
       );
     }
+
+    return () => {
+      clearTimeout(setTime1);
+      clearTimeout(setTime2);
+      clearTimeout(setTime3);
+    };
   }, []);
 
   const select = (asmrUrl, iconUrl, title) => {
@@ -181,11 +191,8 @@ const Asmr = (props) => {
         }
       });
       setPlay(arr);
-      console.log(song1.src);
       // 비활성화 시 음원도 해당 음원 재생 정지
       if (song1.src.indexOf(asmrUrl) !== -1) {
-        console.log(song1.src);
-        console.log(history.audio);
         song1.pause();
         setSong1(new Audio());
         setSong1Icon(null);
@@ -310,7 +317,7 @@ const Asmr = (props) => {
               오브젝트
             </Category>
           </CategorySelect>
-          <SoundSelect height={getCategory !== "전체" ? "320px" : "535px"}>
+          <SoundSelect>
             {sound.map((item) => {
               return (
                 <Sound
@@ -330,16 +337,14 @@ const Asmr = (props) => {
               );
             })}
           </SoundSelect>
-          <ButtonBox>
-            <Button
-              margin={getCategory !== "전체" ? "235px" : "20px"}
-              onClick={() => {
-                setOpenmodal(true);
-              }}
-            >
-              소리 조절 하기
-            </Button>
-          </ButtonBox>
+          <Button
+            margin={getCategory !== "전체" ? "235px" : "20px"}
+            onClick={() => {
+              setOpenmodal(true);
+            }}
+          >
+            소리 조절 하기
+          </Button>
           {openModal && (
             <AsmrPopUp
               setList={setPlay}
@@ -369,6 +374,7 @@ const Asmr = (props) => {
 const Container = styled.div`
   /* padding: 50px ${({ theme }) => theme.paddings.xxxxl}; */
 `;
+
 const PageWrap = styled.div`
   width: 100%;
   height: 812px;
@@ -378,14 +384,11 @@ const PageWrap = styled.div`
   background-size: cover;
   padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
   box-sizing: border-box;
-  @media (max-width: 500px) {
-    height: 95vh;
-  }
 `;
 
 const CategorySelect = styled.div`
   width: 100%;
-  height: 52px;
+  height: 7%;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.colors.back};
   display: flex;
@@ -409,15 +412,20 @@ const Category = styled.div`
   color: white;
   margin: auto;
   padding: 1px 3px;
+
+  @media (max-width: 500px) {
+    height: 45px;
+    line-height: 45px;
+  }
 `;
 
 const SoundSelect = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  height: ${(props) => props.height};
-  margin: auto;
+  max-height: 66.5%;
   margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
+  padding-bottom: 20px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
 
@@ -425,20 +433,26 @@ const SoundSelect = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  @media (max-width: 500px) {
+    max-height: 75%;
+  }
 `;
 
 const Sound = styled.div`
   width: 70px;
-  height: 55px;
-  padding-top: 15px;
+  height: 53px;
+  padding-top: 17px;
+  /* width: 62.7%;
+  height: 61.37%; */
+  padding-bottom: 5px;
   border-radius: 8px;
   background-color: #3a3e74;
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  margin: auto;
   margin-top: 20px;
-  margin-right: 21px;
-  margin-left: 20px;
   text-align: center;
   cursor: pointer;
 `;
@@ -449,10 +463,11 @@ const Text = styled.p`
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
 `;
 
-const ButtonBox = styled.div``;
 const Button = styled.button`
-  width: 100%;
-  height: 52px;
+  width: 90%;
+  height: 6.5%;
+  position: absolute;
+  bottom: 74px;
   /* margin: 20px; */
   margin-top: ${(props) => props.margin};
   border: none;
