@@ -23,12 +23,13 @@ const Bg = styled.div`
   & img {
     position: absolute;
     cursor: default;
+    @media (max-width: 500px) {
+    display:none;
   }
 `;
 const Bg1 = styled.img`
   width: 100%;
-  height: 100vh;
-
+  height: 100%;
   top: 0;
 `;
 const Bg2 = styled.img`

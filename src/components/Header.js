@@ -5,7 +5,6 @@ import { history } from "../redux/configureStore.js";
 import Logo from "../static/images/header/logo.svg";
 import Writing from "../static/images/header/writing.svg";
 
-
 const Header = (props) => {
   return (
     <div>
@@ -19,7 +18,6 @@ const Header = (props) => {
         />
         <img src={Writing} alt="writing" />
       </HeaderBox>
-      
     </div>
   );
 };
