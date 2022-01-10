@@ -127,13 +127,7 @@ const AsmrPopUp = (props) => {
   return (
     <>
       <Container>
-        <Icon
-          categoryImage={backIcon}
-          width="24px"
-          height="24px"
-          onClick={close}
-          style={{ position: "relative", top: "20px", bottom: "20px" }}
-        ></Icon>
+        <Icon categoryImage={backIcon} onClick={close}></Icon>
         {songList ? (
           <>
             {songList.length === 0 ? (
@@ -161,13 +155,11 @@ const AsmrPopUp = (props) => {
                           id="volume"
                           value={volume1}
                           min="0"
-                          max="100" 
+                          max="100"
                           onChange={changeVolume1}
                         />
                         <Icon
                           categoryImage={closeIcon}
-                          width="24px"
-                          height="24px"
                           onClick={() => {
                             deleteSong(song1);
                           }}
@@ -196,8 +188,6 @@ const AsmrPopUp = (props) => {
                         />
                         <Icon
                           categoryImage={closeIcon}
-                          width="24px"
-                          height="24px"
                           onClick={() => {
                             deleteSong(song2);
                           }}
@@ -224,8 +214,6 @@ const AsmrPopUp = (props) => {
                         />
                         <Icon
                           categoryImage={closeIcon}
-                          width="24px"
-                          height="24px"
                           onClick={() => {
                             deleteSong(song3);
                           }}
@@ -252,8 +240,6 @@ const AsmrPopUp = (props) => {
                         />
                         <Icon
                           categoryImage={closeIcon}
-                          width="24px"
-                          height="24px"
                           onClick={() => {
                             deleteSong(song4);
                           }}
@@ -340,8 +326,8 @@ const IconImage = styled.div`
 `;
 
 const Icon = styled.div`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
+  width: 24px;
+  height: 24px;
   background-image: url(${(props) => props.categoryImage});
   background-repeat: no-repeat;
   position: relative;

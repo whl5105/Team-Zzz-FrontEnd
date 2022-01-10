@@ -3,11 +3,10 @@ import styled from "styled-components";
 
 let isSubscribed = false;
 let swRegist = null;
-console.log(isSubscribed);
+
 const Toggle = (props) => {
   let appServerPublicKey =
     "BOTfyn9Co8hUdcfZ2ReUIVNNeR1kCH0PTmmZd3JNYpOW5GXEBBMWQAZPDWU1KuXGE7vIS5-nbzNZl6d5JT3LGJs"; //테스트라 일단 내가 가지고있는 값을 넣음 (토큰같은 고유 key)
-  console.log(isSubscribed);
 
   Notification.requestPermission().then(function (permission) {
     // if ("serviceWorker" in navigator) {
