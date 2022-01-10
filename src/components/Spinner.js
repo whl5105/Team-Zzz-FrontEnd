@@ -32,8 +32,8 @@ const Outter = styled.div`
 `;
 
 const Loading = styled.div`
-  top: 380px;
-  left: 170px;
+  top: 47%;
+  left: 45%;
   width: 53px;
   height: 18px;
   font-size: ${({ theme }) => theme.fontSizes.xl};

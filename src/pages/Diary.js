@@ -3,6 +3,7 @@ import styled from "styled-components";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../redux/modules/diary";
+import { history } from "../redux/configureStore";
 
 // -- components --
 import Charater from "../elements/Charater";
@@ -272,10 +273,6 @@ const Content = styled.div`
   
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  @media (max-width: 500px) {
-    max-height: 620px;
   }
 `;
 

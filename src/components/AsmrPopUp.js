@@ -53,7 +53,6 @@ const AsmrPopUp = (props) => {
       }
       props.setList(arr);
       setSongList(arr);
-      console.log(arr);
     }
   };
   const deleteVolume2 = (e) => {
