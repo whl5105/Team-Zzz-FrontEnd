@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import closeIcon from "../static/images/asmr/closeIcon.svg";
 import backIcon from "../static/images/asmr/backIcon.svg";
 
+// AsmrPopUp
 const AsmrPopUp = (props) => {
   const location = useLocation();
   const [song1, setSong1] = React.useState(location.play1 && location.play1);
@@ -127,11 +128,7 @@ const AsmrPopUp = (props) => {
   return (
     <>
       <Container>
-        <Icon
-          categoryImage={backIcon}
-          onClick={close}
-          style={{ position: "relative", top: "20px", bottom: "20px" }}
-        ></Icon>
+        <Icon categoryImage={backIcon} onClick={close}></Icon>
         {songList ? (
           <>
             {songList.length === 0 ? (
@@ -260,8 +257,9 @@ const AsmrPopUp = (props) => {
               </>
             )}
           </>
-        ) : // history.push("/asmr")
-        null}
+        ) : (
+          history.push("/asmr")
+        )}
       </Container>
     </>
   );
