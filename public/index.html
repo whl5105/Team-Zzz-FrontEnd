@@ -18,7 +18,6 @@
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
-
       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
@@ -35,17 +34,13 @@
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
-
       You can add webfonts, meta tags, or analytics to this file.
       The build step will place the bundled scripts into the <body> tag.
-
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 
     <script>
-      let appServerPublicKey =
-        "BLWGR4hQ1GAXksMfhmbOSwspsWET47QI-K5defhvsvMrJhQtbobOQqk7QbC03z3T4BMojv8iQF6lIlspdqBZoFA";
       let swRegist = null;
       let isSubscribed = true;
 
@@ -102,7 +97,7 @@
 
           function subscribe() {
             let appServerPublicKey =
-              "BLWGR4hQ1GAXksMfhmbOSwspsWET47QI-K5defhvsvMrJhQtbobOQqk7QbC03z3T4BMojv8iQF6lIlspdqBZoFA"; // 자신의 public key 넣어줘야함
+              "BGgUm0LltvX8-N5KdbuLTlXyiG0dfIl1zL162Dy9SX5u6zPxvKp9F3z6gcEKIKO9mQL6zgJTH2qP-P4gInSl1a0"; // 자신의 public key 넣어줘야함
             const applicationServerKey =
               urlBase64ToUint8Array(appServerPublicKey);
             swRegist.pushManager
