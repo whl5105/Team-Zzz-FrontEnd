@@ -51,6 +51,171 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+  <script>
+    let swRegist = null;
+    let isSubscribed = true;
+
+    Notification.requestPermission().then(function (permission) {
+      // if ("serviceWorker" in navigator) {
+      if (Notification.permission === "granted") {
+        navigator.serviceWorker
+          .register("./sw.js") // 서비스워커 등록 public에 있는 sw.js 의 경로로 등록해줌
+          .then((regist) => {
+            swRegist = regist;
+            test(swRegist)
+            console.log("권한 승인해서 서비스워커 등록!");
+            console.log(swRegist);
+          }); // 권한 허용이 되었다면 실행
+      }
+      if (Notification.permission === "denied") {
+        // 권한 차단 했을경우 실행
+        console.log("권한 거부했음!");
+        updateSubscription(null);
+        return;
+      }
+      // }
+    });
+
+
+
+
+    const test = (swRegist) => {
+      console.log(swRegist)
+      swRegist = swRegist;
+
+      const initPush = (isSubscribed) => {
+        console.log(swRegist);
+        // const pushButton = document.getElementById("subscribe");
+        // pushButton.addEventListener("click", () => {
+        // console.log(isSubscribed);
+        // if (isSubscribed) {
+        //   unsubscribe();
+        // } else {
+        subscribe();
+        // }
+        // }
+        // );
+        console.log(swRegist);
+        swRegist.pushManager.getSubscription().then(function (subscription) {
+          isSubscribed = !(subscription ===
+          null); // null 이면 true 이니 !true 가 false 로 해서 isSubscribed 가 false 라는뜻
+          updateSubscription(subscription); // updateSubscription 함수로 구독 정보를 전달
+
+          if (isSubscribed) {
+            console.log("User IS subscribed.");
+          } else {
+            console.log("User is NOT subscribed.");
+          }
+
+          updateButton();
+        });
+
+        function subscribe() {
+          let appServerPublicKey =
+            "INSERT PUBLIC KEY"; // 자신의 public key 넣어줘야함
+          const applicationServerKey = urlBase64ToUint8Array(appServerPublicKey);
+          swRegist.pushManager
+            .subscribe({
+              userVisibleOnly: true,
+              applicationServerKey: applicationServerKey,
+            })
+            .then((subscription) => {
+              console.log("User is subscribed.");
+              updateSubscription(subscription);
+              console.log(subscription);
+              isSubscribed = true; // 구독정보를 반아온 경우 구독을 정상적으로 한 상황이므로 true로 변경
+              updateButton();
+            })
+            .catch((err) => {
+              console.log("Failed to subscribe the user: ", err);
+              updateButton();
+            });
+        }
+
+        //구독 버튼 상태 갱신
+        function updateButton() {
+          // TODO: 알림 권한 거부 처리
+          if (Notification.permission === "granted") {
+            // 권한 허용이 되었다면 실행
+
+            // new Notification("푸시허용 테스트 알림!!"); // 알림 내용 그대로 보여줌
+          }
+          if (Notification.permission === "denied") {
+            // 권한 차단 했을경우 실행
+
+            updateSubscription(null);
+            return;
+          }
+
+          // const pushButton = document.getElementById("subscribe");
+          if (isSubscribed) {
+            // pushButton.textContent = "Disable Push Messaging";
+          } else {
+            // pushButton.textContent = "Enable Push Messaging";
+          }
+          // pushButton.disabled = false; // true로하면 해당 버튼이 안눌리고 비활성화 된다.
+        }
+
+        // 구독 정보 갱신
+        function updateSubscription(subscription) {
+          // TODO: 구독 정보 서버로 전송
+
+          // let detailArea = document.getElementById("subscription_detail");
+
+          if (subscription) {
+            console.log(JSON.stringify(subscription));
+            // detailArea.innerText = JSON.stringify(subscription);
+            // detailArea.parentElement.classList.remove("hide");
+          } else {
+            // detailArea.parentElement.classList.add("hide");
+          }
+        }
+
+        //알림 구독 취소
+        function unsubscribe() {
+          swRegist.pushManager
+            .getSubscription()
+            .then((subscription) => {
+              if (subscription) {
+                return subscription.unsubscribe();
+              }
+            })
+            .catch((error) => {
+              console.log("Error unsubscribing", error);
+            })
+            .then(() => {
+              updateSubscription(null);
+              console.log("User is unsubscribed.");
+              isSubscribed = false;
+              updateButton();
+            });
+        }
+
+        function urlBase64ToUint8Array(base64String) {
+          var padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+          var base64 = (base64String + padding)
+            .replace(/\-/g, "+")
+            .replace(/_/g, "/");
+
+          var rawData = window.atob(base64);
+          var outputArray = new Uint8Array(rawData.length);
+
+          for (var i = 0; i < rawData.length; ++i) {
+            outputArray[i] = rawData.charCodeAt(i);
+          }
+          return outputArray;
+        }
+
+
+      };
+
+
+      initPush()
+    }
+  </script>
+
+
 </body>
 
 </html>

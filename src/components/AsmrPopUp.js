@@ -1,23 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
-import { useLocation } from "react-router-dom";
 
 // images
 import closeIcon from "../static/images/asmr/closeIcon.svg";
 import backIcon from "../static/images/asmr/backIcon.svg";
 
 const AsmrPopUp = (props) => {
-  const location = useLocation();
-  const [song1, setSong1] = React.useState(location.play1 && location.play1);
-  const [song2, setSong2] = React.useState(location.play2 && location.play2);
-  const [song3, setSong3] = React.useState(location.play3 && location.play3);
-  const [song4, setSong4] = React.useState(location.play4 && location.play4);
+  const [song1, setSong1] = React.useState(history.audio1 && history.audio1);
+  const [song2, setSong2] = React.useState(history.audio2 && history.audio2);
+  const [song3, setSong3] = React.useState(history.audio3 && history.audio3);
+  const [song4, setSong4] = React.useState(history.audio4 && history.audio4);
   const [volume1, setVolume] = React.useState(song1 && song1.volume * 100);
   const [volume2, setVolume2] = React.useState(song2 && song2.volume * 100);
   const [volume3, setVolume3] = React.useState(song3 && song3.volume * 100);
   const [volume4, setVolume4] = React.useState(song4 && song4.volume * 100);
-  const [songList, setSongList] = React.useState(location.list);
+  const [songList, setSongList] = React.useState(history.play);
 
   const changeVolume1 = (e) => {
     setVolume(e.target.value);
@@ -48,8 +46,7 @@ const AsmrPopUp = (props) => {
       history.title1 = "";
       history.icon1 = "";
       song1.pause();
-
-      location.setPlay1(new Audio());
+      history.setSong1(new Audio());
 
       if (songList.includes(song1.src)) {
         // 비활성화
@@ -67,7 +64,7 @@ const AsmrPopUp = (props) => {
       history.title2 = "";
       history.icon2 = "";
       song2.pause();
-      location.setPlay2(new Audio());
+      history.setSong2(new Audio());
 
       if (songList.includes(song2.src)) {
         // 비활성화
@@ -86,7 +83,7 @@ const AsmrPopUp = (props) => {
       history.title3 = "";
       history.icon3 = "";
       song3.pause();
-      location.setPlay3(new Audio());
+      history.setSong3(new Audio());
 
       if (songList.includes(song3.src)) {
         // 비활성화
@@ -104,9 +101,9 @@ const AsmrPopUp = (props) => {
       history.title4 = "";
       history.icon4 = "";
       song4.pause();
-      location.setPlay4(new Audio());
+      history.setSong4(new Audio());
 
-      if (location.list.includes(song4.src)) {
+      if (history.play.includes(song4.src)) {
         // 비활성화
         arr = songList.filter((item) => {
           if (song4.src !== item) {
@@ -118,7 +115,7 @@ const AsmrPopUp = (props) => {
       }
     }
 
-    location.setList(arr);
+    history.setPlay(arr);
     setSongList(arr);
   };
 
@@ -129,13 +126,7 @@ const AsmrPopUp = (props) => {
   return (
     <>
       <Container>
-        <Icon
-          categoryImage={backIcon}
-          width="24px"
-          height="24px"
-          onClick={close}
-          style={{ position: "relative", top: "20px", bottom: "20px" }}
-        ></Icon>
+        <Icon categoryImage={backIcon} onClick={close}></Icon>
         {songList ? (
           <>
             {songList.length === 0 ? (
@@ -153,8 +144,8 @@ const AsmrPopUp = (props) => {
                       <Record>
                         <Sound>
                           <IconImage>
-                            <Image src={`${location.play1Icon}`} alt=""></Image>
-                            <Text>{location.title1}</Text>
+                            <Image src={`${history.icon1}`} alt=""></Image>
+                            <Text>{history.title1}</Text>
                           </IconImage>
                         </Sound>
 
@@ -168,8 +159,6 @@ const AsmrPopUp = (props) => {
                         />
                         <Icon
                           categoryImage={closeIcon}
-                          width="24px"
-                          height="24px"
                           onClick={() => {
                             deleteSong(song1);
                           }}
@@ -183,8 +172,8 @@ const AsmrPopUp = (props) => {
                       <Record>
                         <Sound>
                           <IconImage>
-                            <Image src={`${location.play2Icon}`} alt=""></Image>
-                            <Text>{location.title2}</Text>
+                            <Image src={`${history.icon2}`} alt=""></Image>
+                            <Text>{history.title2}</Text>
                           </IconImage>
                         </Sound>
 
@@ -198,8 +187,6 @@ const AsmrPopUp = (props) => {
                         />
                         <Icon
                           categoryImage={closeIcon}
-                          width="24px"
-                          height="24px"
                           onClick={() => {
                             deleteSong(song2);
                           }}
@@ -212,8 +199,8 @@ const AsmrPopUp = (props) => {
                       <Record>
                         <Sound>
                           <IconImage>
-                            <Image src={`${location.play3Icon}`} alt=""></Image>
-                            <Text>{location.title3}</Text>
+                            <Image src={`${history.icon3}`} alt=""></Image>
+                            <Text>{history.title3}</Text>
                           </IconImage>
                         </Sound>
                         <Volume
@@ -226,8 +213,6 @@ const AsmrPopUp = (props) => {
                         />
                         <Icon
                           categoryImage={closeIcon}
-                          width="24px"
-                          height="24px"
                           onClick={() => {
                             deleteSong(song3);
                           }}
@@ -240,8 +225,8 @@ const AsmrPopUp = (props) => {
                       <Record>
                         <Sound>
                           <IconImage>
-                            <Image src={`${location.play4Icon}`} alt=""></Image>
-                            <Text>{location.title4}</Text>
+                            <Image src={`${history.icon4}`} alt=""></Image>
+                            <Text>{history.title4}</Text>
                           </IconImage>
                         </Sound>
                         <Volume
@@ -254,8 +239,6 @@ const AsmrPopUp = (props) => {
                         />
                         <Icon
                           categoryImage={closeIcon}
-                          width="24px"
-                          height="24px"
                           onClick={() => {
                             deleteSong(song4);
                           }}
@@ -342,8 +325,8 @@ const IconImage = styled.div`
 `;
 
 const Icon = styled.div`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
+  width: 24px;
+  height: 24px;
   background-image: url(${(props) => props.categoryImage});
   background-repeat: no-repeat;
   position: relative;

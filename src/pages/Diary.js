@@ -266,7 +266,7 @@ const Content = styled.div`
   background-color: ${({ theme }) => theme.colors.bg}};
   color: ${({ theme }) => theme.colors.white};
   width: 100%;
-  max-height: 520px;
+  max-height: 510px;
   margin: 5px auto;
   margin-bottom: 15px;
   text-align: center;

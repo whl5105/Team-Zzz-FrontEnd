@@ -22,7 +22,7 @@ const MainSwiper = () => {
           style={{
             width: "100%",
             height: "170px",
-            // backgroundColor: "rgb(59 63 121);",
+            backgroundColor: "rgb(59 63 121)",
             borderRadius: "12px",
           }}
           spaceBetween={0}
