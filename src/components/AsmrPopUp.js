@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 // images
 import closeIcon from "../static/images/asmr/closeIcon.svg";
@@ -130,8 +129,6 @@ const AsmrPopUp = (props) => {
       <Container>
         <Icon
           categoryImage={backIcon}
-          width="24px"
-          height="24px"
           onClick={close}
           style={{ position: "relative", top: "20px", bottom: "20px" }}
         ></Icon>
@@ -167,8 +164,6 @@ const AsmrPopUp = (props) => {
                         />
                         <Icon
                           categoryImage={closeIcon}
-                          width="24px"
-                          height="24px"
                           onClick={() => {
                             deleteSong(song1);
                           }}
@@ -197,8 +192,6 @@ const AsmrPopUp = (props) => {
                         />
                         <Icon
                           categoryImage={closeIcon}
-                          width="24px"
-                          height="24px"
                           onClick={() => {
                             deleteSong(song2);
                           }}
@@ -225,8 +218,6 @@ const AsmrPopUp = (props) => {
                         />
                         <Icon
                           categoryImage={closeIcon}
-                          width="24px"
-                          height="24px"
                           onClick={() => {
                             deleteSong(song3);
                           }}
@@ -253,8 +244,6 @@ const AsmrPopUp = (props) => {
                         />
                         <Icon
                           categoryImage={closeIcon}
-                          width="24px"
-                          height="24px"
                           onClick={() => {
                             deleteSong(song4);
                           }}
@@ -340,8 +329,8 @@ const IconImage = styled.div`
 `;
 
 const Icon = styled.div`
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
+  width: 24px;
+  height: 24px;
   background-image: url(${(props) => props.categoryImage});
   background-repeat: no-repeat;
   position: relative;
