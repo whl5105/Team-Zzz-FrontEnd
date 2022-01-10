@@ -19,11 +19,13 @@ import Push from "./Push";
 import Diary from "../pages/Diary";
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
+import AsmrPopUp from "../components/AsmrPopUp";
 import Mypage from "../pages/MyPage";
 import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import NoticePage from "../pages/NoticePage";
+import PlayBar from "../components/PlayBar";
 
 function App() {
   return (
@@ -49,6 +51,7 @@ function App() {
                 ></Route>
                 <Route path="/diary" exact component={Diary}></Route>
                 <Route path="/asmr" exact component={Asmr}></Route>
+                <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
                 <Route path="/mypage" exact component={Mypage} />
                 <Route
                   path="/mypageNotice/:userIdx"
@@ -56,11 +59,13 @@ function App() {
                   component={MyPageNotification}
                 ></Route>
                 <Route path="/notice" exact component={NoticePage}></Route>
+         
                 <Route>
                   <NotFound />
                 </Route>
               </Switch>
             </Container>
+            <PlayBar></PlayBar>
             <Navigation></Navigation>
           </ConnectedRouter>
         </Wrap>
