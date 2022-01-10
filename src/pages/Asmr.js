@@ -6,7 +6,6 @@ import { actionCreators as asmrActions } from "../redux/modules/asmr";
 import { history } from "../redux/configureStore";
 
 // -- components --
-import AsmrPopUp from "../components/AsmrPopUp";
 import Spinner from "../components/Spinner";
 
 // -- images --
@@ -16,23 +15,24 @@ import Place from "../static/images/asmr/background/플레이스.svg";
 import Object from "../static/images/asmr/background/오브젝트.svg";
 
 export const deleteSong = (url) => {
-  console.log(url);
   const deleteItem = document.getElementById(url);
   deleteItem.style.backgroundColor = "#3A3E74";
 };
 
 const Asmr = (props) => {
   const location = useLocation();
-  console.log(history);
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());
+  const [song4, setSong4] = React.useState(new Audio());
   const [song1Icon, setSong1Icon] = React.useState();
   const [song2Icon, setSong2Icon] = React.useState();
   const [song3Icon, setSong3Icon] = React.useState();
+  const [song4Icon, setSong4Icon] = React.useState();
   const [song1Title, setSong1Title] = React.useState();
   const [song2Title, setSong2Title] = React.useState();
   const [song3Title, setSong3Title] = React.useState();
+  const [song4Title, setSong4Title] = React.useState();
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
   );
@@ -42,7 +42,6 @@ const Asmr = (props) => {
   const [play, setPlay] = React.useState([]);
 
   const dispatch = useDispatch();
-  const [openModal, setOpenmodal] = React.useState(false);
 
   React.useEffect(() => {
     if (getCategory === "전체") {
@@ -106,9 +105,11 @@ const Asmr = (props) => {
         song1.pause();
         song2.pause();
         song3.pause();
+        song4.pause();
         setSong1(new Audio());
         setSong2(new Audio());
         setSong3(new Audio());
+        setSong4(new Audio());
       });
     }
   }, [getCategory, asmrInfo]);
@@ -126,20 +127,19 @@ const Asmr = (props) => {
     let setTime1;
     let setTime2;
     let setTime3;
+    let setTime4;
     let arr = [];
 
-    if (history.state) {
+    if (history.state1) {
       setTime1 = setTimeout(
         () => (
-          (selectItem = document.getElementById(history.state)),
+          (selectItem = document.getElementById(history.state1)),
           (selectItem.style.backgroundColor = "#FBC037"),
-          setSong1(history.audio),
-          (arr = [...arr, history.audio.src]),
+          setSong1(history.audio1),
+          (arr = [...arr, history.audio1.src]),
           setPlay(arr),
-          console.log(arr),
-          setSong1Icon(history.icon),
-          setSong1Title(history.title)
-          // console.log(play)
+          setSong1Icon(history.icon1),
+          setSong1Title(history.title1)
         ),
         500
       );
@@ -173,11 +173,26 @@ const Asmr = (props) => {
         500
       );
     }
+    if (history.state4) {
+      setTime4 = setTimeout(
+        () => (
+          (selectItem = document.getElementById(history.state4)),
+          (selectItem.style.backgroundColor = "#FBC037"),
+          setSong4(history.audio4),
+          (arr = [...arr, history.audio4.src]),
+          setPlay(arr),
+          setSong4Icon(history.icon4),
+          setSong4Title(history.title4)
+        ),
+        500
+      );
+    }
 
     return () => {
       clearTimeout(setTime1);
       clearTimeout(setTime2);
       clearTimeout(setTime3);
+      clearTimeout(setTime4);
     };
   }, []);
 
@@ -197,15 +212,15 @@ const Asmr = (props) => {
         setSong1(new Audio());
         setSong1Icon(null);
         setSong1Title(null);
-        history.state = "";
-        history.audio = "";
-        history.title = "";
-        history.icon = "";
+        history.state1 = "";
+        history.audio1 = "";
+        history.title1 = "";
+        history.icon1 = "";
       } else if (song2.src.indexOf(asmrUrl) !== -1) {
         song2.pause();
         setSong2(new Audio());
         setSong2Icon(null);
-        setSong1Title(null);
+        setSong2Title(null);
         history.state2 = "";
         history.audio2 = "";
         history.title2 = "";
@@ -214,11 +229,20 @@ const Asmr = (props) => {
         song3.pause();
         setSong3(new Audio());
         setSong3Icon(null);
-        setSong1Title(null);
+        setSong3Title(null);
         history.state3 = "";
         history.audio3 = "";
         history.title3 = "";
         history.icon3 = "";
+      } else if (song4.src.indexOf(asmrUrl) !== -1) {
+        song4.pause();
+        setSong4(new Audio());
+        setSong4Icon(null);
+        setSong4Title(null);
+        history.state4 = "";
+        history.audio4 = "";
+        history.title4 = "";
+        history.icon4 = "";
       }
 
       // 선택한 음원 비활성화 style
@@ -226,8 +250,8 @@ const Asmr = (props) => {
       deleteItem.style.backgroundColor = "#3A3E74";
     } else {
       // 활성화
-      if (play.length > 2) {
-        window.alert("음원은 3개까지만 담으실 수 있습니다.");
+      if (play.length > 3) {
+        window.alert("음원은 최대 4개까지만 담으실 수 있습니다.");
       } else {
         const arr = [...play, asmrUrl];
         setPlay(arr);
@@ -240,10 +264,10 @@ const Asmr = (props) => {
           song1.volume = 0.1;
           song1.loop = true;
           song1.play();
-          history.state = asmrUrl;
-          history.audio = song1;
-          history.icon = iconUrl;
-          history.title = title;
+          history.state1 = asmrUrl;
+          history.audio1 = song1;
+          history.icon1 = iconUrl;
+          history.title1 = title;
         } else if (!song2.src) {
           setSong2Icon(iconUrl);
           setSong2Title(title);
@@ -266,6 +290,17 @@ const Asmr = (props) => {
           history.audio3 = song3;
           history.icon3 = iconUrl;
           history.title3 = title;
+        } else if (!song4.src) {
+          setSong4Icon(iconUrl);
+          setSong4Title(title);
+          song4.src = asmrUrl;
+          song4.volume = 0.1;
+          song4.loop = true;
+          song4.play();
+          history.state4 = asmrUrl;
+          history.audio4 = song4;
+          history.icon4 = iconUrl;
+          history.title4 = title;
         }
 
         // 선택한 음원 활성화 style
@@ -273,6 +308,30 @@ const Asmr = (props) => {
         selectItem.style.backgroundColor = "#FBC037";
       }
     }
+  };
+
+  const asmrPopUp = () => {
+    history.push({
+      pathname: "/asmrPop",
+      setList: setPlay,
+      list: play,
+      play1: song1,
+      play2: song2,
+      play3: song3,
+      play4: song4,
+      setPlay1: setSong1,
+      setPlay2: setSong2,
+      setPlay3: setSong3,
+      setPlay4: setSong4,
+      play1Icon: song1Icon,
+      play2Icon: song2Icon,
+      play3Icon: song3Icon,
+      play4Icon: song4Icon,
+      title1: song1Title,
+      title2: song2Title,
+      title3: song3Title,
+      title4: song4Title,
+    });
   };
 
   // -- jsx --
@@ -327,11 +386,7 @@ const Asmr = (props) => {
                     select(item.asmrUrl, item.iconUrl, item.title);
                   }}
                 >
-                  <img
-                    style={{ width: "24px", height: "24px" }}
-                    src={item.iconUrl}
-                    alt=""
-                  ></img>
+                  <Icon src={item.iconUrl} alt=""></Icon>
                   <Text>{item.title}</Text>
                 </Sound>
               );
@@ -339,31 +394,10 @@ const Asmr = (props) => {
           </SoundSelect>
           <Button
             margin={getCategory !== "전체" ? "235px" : "20px"}
-            onClick={() => {
-              setOpenmodal(true);
-            }}
+            onClick={asmrPopUp}
           >
             소리 조절 하기
           </Button>
-          {openModal && (
-            <AsmrPopUp
-              setList={setPlay}
-              list={play}
-              play={song1}
-              play2={song2}
-              play3={song3}
-              playIcon={song1Icon}
-              play2Icon={song2Icon}
-              play3Icon={song3Icon}
-              setPlay={setSong1}
-              setPlay2={setSong2}
-              setPlay3={setSong3}
-              title={song1Title}
-              title2={song2Title}
-              title3={song3Title}
-              closeModal={setOpenmodal}
-            />
-          )}
         </PageWrap>
       )}
     </Container>
@@ -455,6 +489,11 @@ const Sound = styled.div`
   margin-top: 20px;
   text-align: center;
   cursor: pointer;
+`;
+
+const Icon = styled.img`
+  width: 24px;
+  height: 24px;
 `;
 
 const Text = styled.p`

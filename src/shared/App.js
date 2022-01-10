@@ -19,6 +19,7 @@ import Push from "./Push";
 import Diary from "../pages/Diary";
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
+import AsmrPopUp from "../components/AsmrPopUp";
 import Mypage from "../pages/MyPage";
 import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
@@ -49,6 +50,7 @@ function App() {
                 ></Route>
                 <Route path="/diary" exact component={Diary}></Route>
                 <Route path="/asmr" exact component={Asmr}></Route>
+                <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
                 <Route path="/mypage" exact component={Mypage} />
                 <Route
                   path="/mypageNotice/:userIdx"
