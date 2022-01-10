@@ -133,6 +133,8 @@ const Asmr = (props) => {
     if (history.state1) {
       setTime1 = setTimeout(
         () => (
+         
+
           (selectItem = document.getElementById(history.state1)),
           (selectItem.style.backgroundColor = "#FBC037"),
           setSong1(history.audio1),
@@ -206,6 +208,7 @@ const Asmr = (props) => {
         }
       });
       setPlay(arr);
+      history.setPlaybar(arr) // 버튼 비활성화시 플레이어바 arr 도 바뀌게 해줌 
       // 비활성화 시 음원도 해당 음원 재생 정지
       if (song1.src.indexOf(asmrUrl) !== -1) {
         song1.pause();
@@ -216,6 +219,7 @@ const Asmr = (props) => {
         history.audio1 = "";
         history.title1 = "";
         history.icon1 = "";
+        
       } else if (song2.src.indexOf(asmrUrl) !== -1) {
         song2.pause();
         setSong2(new Audio());
@@ -255,6 +259,9 @@ const Asmr = (props) => {
       } else {
         const arr = [...play, asmrUrl];
         setPlay(arr);
+       
+        history.setPlay=setPlay;
+        history.setPlaybar(arr) // 플레이어바 활성화 비활성화를 위한 array를 담는다.
 
         // 음원 선택 시 활성화 되면서 음원 재생
         if (!song1.src) {
@@ -268,6 +275,8 @@ const Asmr = (props) => {
           history.audio1 = song1;
           history.icon1 = iconUrl;
           history.title1 = title;
+          history.setSong1= setSong1;
+          
         } else if (!song2.src) {
           setSong2Icon(iconUrl);
           setSong2Title(title);
@@ -279,6 +288,7 @@ const Asmr = (props) => {
           history.audio2 = song2;
           history.icon2 = iconUrl;
           history.title2 = title;
+          history.setSong2= setSong2;
         } else if (!song3.src) {
           setSong3Icon(iconUrl);
           setSong3Title(title);
@@ -290,6 +300,7 @@ const Asmr = (props) => {
           history.audio3 = song3;
           history.icon3 = iconUrl;
           history.title3 = title;
+          history.setSong3= setSong3;
         } else if (!song4.src) {
           setSong4Icon(iconUrl);
           setSong4Title(title);
@@ -301,6 +312,7 @@ const Asmr = (props) => {
           history.audio4 = song4;
           history.icon4 = iconUrl;
           history.title4 = title;
+          history.setSong4= setSong4;
         }
 
         // 선택한 음원 활성화 style

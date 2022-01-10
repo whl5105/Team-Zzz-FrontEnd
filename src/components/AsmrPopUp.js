@@ -161,7 +161,7 @@ const AsmrPopUp = (props) => {
                           id="volume"
                           value={volume1}
                           min="0"
-                          max="100"
+                          max="100" 
                           onChange={changeVolume1}
                         />
                         <Icon
