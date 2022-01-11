@@ -2,7 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 const Icon = (props) => {
-  const { top, left, width, height, src, rotate, _onClick, position } = props;
+  const {
+    categoryImage,
+    top,
+    left,
+    width,
+    height,
+    src,
+    rotate,
+    _onClick,
+    position,
+    marginR,
+  } = props;
 
   const styles = {
     top: top,
@@ -12,6 +23,7 @@ const Icon = (props) => {
     src: src,
     rotate: rotate,
     position: position,
+    marginR: marginR,
   };
 
   return (
@@ -37,10 +49,10 @@ const ArrowIcon = styled.img`
   left: ${(props) => props.left};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
- 
   src: ${(props) => props.src};
   transform: ${(props) => `rotate(${props.rotate});`}
   cursor: pointer;
+  ${(props) => (props.marginR ? `margin-right: ${props.marginR};` : "")};
 `;
 
 export default Icon;

@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("./NotoSansKR-Regular.otf");
+}
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("./NotoSansKR-Medium.otf");
+}
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("./NotoSansKR-Bold.otf");
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("./Roboto-Regular.ttf");
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("./Roboto-Medium.ttf");
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("./Roboto-Bold.ttf");
+}

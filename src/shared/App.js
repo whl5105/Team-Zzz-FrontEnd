@@ -59,7 +59,7 @@ function App() {
                   component={MyPageNotification}
                 ></Route>
                 <Route path="/notice" exact component={NoticePage}></Route>
-         
+
                 <Route>
                   <NotFound />
                 </Route>

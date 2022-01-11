@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 
 import FirstNotification from "../pages/FirstNotification";
 import Swiper from "../components/MainSwiper";
+import Category from "../components/main/Category";
 
-import nextIcon from "../static/images/icon/nextIcon.svg";
 import all from "../static/images/banner/all_1005px.png";
 import nature from "../static/images/banner/nature_1005px.png";
 import object from "../static/images/banner/object_1005px.png";
@@ -36,28 +35,28 @@ const Main = (props) => {
         title="네이쳐"
         bannerImage={nature}
         subTitle="편안한 자연 속으로"
-      ></Category>
+      />
       <Category
         path="/asmr"
         category="플레이스"
         title="플레이스"
         bannerImage={space}
         subTitle="다른 공간으로 여행"
-      ></Category>
+      />
       <Category
         path="/asmr"
         category="오브젝트"
         title="오브젝트"
         bannerImage={object}
         subTitle="차분히 바라보는 물건들"
-      ></Category>
+      />
       <Category
         path="/asmr"
         category="전체"
         title="모든 소리"
         bannerImage={all}
         subTitle="모든 소리 들어보기"
-      ></Category>
+      />
       {/* </Asmr> */}
 
       {/* 첫 로그인 시 알림 설정 팝업 부분 */}
@@ -68,34 +67,6 @@ const Main = (props) => {
         ></FirstNotification>
       )}
     </Container>
-  );
-};
-
-const Category = (props) => {
-  const history = useHistory();
-  return (
-    <>
-      <CategoryStyle
-        onClick={() => {
-          history.push({
-            pathname: `${props.path}`,
-            category: `${props.category}`,
-          });
-        }}
-        bannerImage={props.bannerImage}
-      >
-        <TextBox>
-          <div>
-            <h2>{props.title}</h2>
-            <small>{props.subTitle}</small>
-          </div>
-
-          <div>
-            <img src={nextIcon} alt="nextIcon" />
-          </div>
-        </TextBox>
-      </CategoryStyle>
-    </>
   );
 };
 
@@ -116,26 +87,6 @@ const Title = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.xxl};
   line-height: ${({ theme }) => theme.lineHeight.xxl};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
-`;
-const CategoryStyle = styled.div`
-  height: 125px;
-  border-radius: 12px;
-  margin-bottom: ${({ theme }) => theme.margins.xxxxl};
-  padding: ${({ theme }) => theme.paddings.xxxxl};
-  display: flex;
-  box-sizing: border-box;
-  background-image: url(${(props) => props.bannerImage});
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: ${({ theme }) => theme.colors.white};
-  cursor: pointer;
-`;
-
-const TextBox = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
 `;
 
 export default Main;

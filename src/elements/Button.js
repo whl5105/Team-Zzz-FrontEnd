@@ -39,6 +39,7 @@ const BgBtn = styled.button`
   background-color: ${({ theme }) => theme.colors.main_1};
   color: ${({ theme }) => theme.colors.white};
   font-size: ${(props) => (props.size ? ` ${props.size}px;` : "14px")};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
   margin-top: ${(props) => props.marginT && `${props.marginT}px`};
 `;
 
@@ -49,6 +50,7 @@ const BorderBtn = styled.button`
   border: 1px solid ${({ theme }) => theme.colors.gray_4};
   color: ${({ theme }) => theme.colors.gray_7};
   font-size: ${(props) => (props.size ? ` ${props.size}px;` : "14px")};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
   margin-top: ${(props) => props.marginT && `${props.marginT}px`};
 `;
 
