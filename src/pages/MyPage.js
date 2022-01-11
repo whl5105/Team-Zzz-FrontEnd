@@ -29,26 +29,15 @@ const Mypage = (props) => {
           <Title>
             <p
               style={{
-                // position: "absolute",
-                // width: "130px",
-                // height: "22px",
-                // left: "20px",
-                // top: "70px",
                 fontSize: "22px",
                 lineHeight: "100%",
                 color: "white",
-                // margin: "0px",
               }}
             >
               마이페이지
             </p>
             <p
               style={{
-                // position: "absolute",
-                // width: "70px",
-                // height: "24px",
-                // left: "300px",
-                // top: "69px",
                 color: "white",
                 fontSize: "14px",
                 lineHeight: "24px",
@@ -65,15 +54,7 @@ const Mypage = (props) => {
               categoryImage={alarmBanner}
               onClick={() => history.push(`/mypageNotice/${userIdx}`)}
             >
-              <div
-              // style={{
-              //   position: "absolute",
-              //   left: "0%",
-              //   right: "0%",
-              //   top: "0%",
-              //   bottom: "0%",
-              // }}
-              >
+              <div>
                 <span
                   style={{
                     position: "absolute",
@@ -150,90 +131,12 @@ const Mypage = (props) => {
 
           <div
             style={{
-              // position: "absolute",
               width: "100%",
               height: "20px",
-              // left: "0px",
-              // top: "249px",
               backgroundColor: "rgba(7,9,34,0.8)",
               marginTop: "30px",
             }}
           ></div>
-
-          {/* <div   // 내정보 생기면 넣을것 
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              padding: "16px 0px",
-
-              position: "absolute",
-              width: "335px",
-              height: "56px",
-              left: "20px",
-              top: "271px",
-              boxSizing: "border-box",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "flex-start",
-                padding: "0px",
-
-                position: "static",
-                width: "305px",
-                height: "24px",
-                left: "0px",
-                top: "16px",
-
-                flex: "none",
-                order: "0",
-                flexGrow: "1",
-                margin: "0px 6px",
-              }}
-            >
-              <Box>
-                <Icon categoryImage={userIcon}></Icon>
-              </Box>
-              <p
-                style={{
-                  position: "static",
-                  width: "271px",
-                  height: "24px",
-                  left: "34px",
-                  top: `calc(50%-24/2)`,
-
-                  fontSize: "16px",
-                  lineHeight: "24px",
-                  letterSpacing: "-0.3px",
-                  color: "white",
-                  cursor: "pointer",
-                }}
-              >
-                내 정보
-              </p>
-            </div>
-            <div
-              style={{
-                // position: "absolute",
-                width: "24px",
-                height: "16px",
-                left: "0px",
-                top: "0px",
-              }}
-            >
-              <Box
-                style={{
-                  width: "10px",
-                  height: "16px",
-                  margin: "0px",
-                  backgroundImage: `url(${path})`,
-                }}
-              ></Box>
-            </div>
-          </div> */}
 
           <div
             style={{
@@ -241,12 +144,8 @@ const Mypage = (props) => {
               flexDirection: "row",
               alignItems: "center",
               padding: "16px 20px",
-              // position: "absolute",
-              // width: "335px",
               width: "100%",
               height: "56px",
-              // left: "20px",
-              // top: "271px",
               boxSizing: "border-box",
             }}
             onClick={() => history.push("/notice")}
@@ -317,11 +216,6 @@ const Mypage = (props) => {
         <Title>
           <p
             style={{
-              // position: "absolute",
-              // width: "150px",
-              // height: "22px",
-              // left: "20px",
-              // top: "70px",
               fontSize: "22px",
               lineHeight: "100%",
               color: "white",
@@ -334,15 +228,7 @@ const Mypage = (props) => {
         <div
           style={{
             display: "flex",
-            // flexDirection: "row",
-            // alignItems: "center",
             padding: "16px 20px",
-            // position: "absolute",
-            // width: "335px",
-            // height: "56px",
-            // left: "20px",
-            // top: "112px",
-            // margin: "0px",
             boxSizing: "border-box",
           }}
           onClick={() => history.push("/login")}
@@ -363,7 +249,6 @@ const Mypage = (props) => {
               flex: "none",
               order: "0",
               flexGrow: "1",
-              // margin: "0px 6px",
             }}
           >
             <Box>
@@ -407,14 +292,7 @@ const Mypage = (props) => {
         <div
           style={{
             display: "flex",
-            // flexDirection: "row",
-            // alignItems: "center",
             padding: "16px 20px",
-            // position: "absolute",
-            // width: "335px",
-            // height: "56px",
-            // left: "20px",
-            // top: "168px",
             boxSizing: "border-box",
           }}
           onClick={() => history.push("/notice")}
@@ -433,7 +311,6 @@ const Mypage = (props) => {
               flex: "none",
               order: "0",
               flexGrow: "1",
-              // margin: "0px 6px",
             }}
           >
             <Box>
