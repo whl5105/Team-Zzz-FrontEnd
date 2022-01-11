@@ -127,7 +127,7 @@ const Dropdown = (props) => {
 const DropdownContainer = styled.div`
   width: 93px;
   height: 48px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   text-align: center;
   border: 1.5px solid gray;
   border-radius: 10px;
