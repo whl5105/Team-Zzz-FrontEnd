@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-//이미지
+// --- images ---
 import bg1 from "../static/images/bg/main_bg1.png";
 import bg2 from "../static/images/bg/main_bg2.png";
 import bg3 from "../static/images/bg/main_bg3.png";
 
 const Background = () => {
+  // --- jsx ---
   return (
     <Bg>
       <Bg1 src={bg1}></Bg1>
@@ -15,6 +16,8 @@ const Background = () => {
     </Bg>
   );
 };
+
+// --- styled-components ---
 const Bg = styled.div`
   width: 100vw;
   height: 100vh;
@@ -27,19 +30,23 @@ const Bg = styled.div`
     display:none;
   }
 `;
+
 const Bg1 = styled.img`
   width: 100%;
   height: 100%;
   top: 0;
 `;
+
 const Bg2 = styled.img`
   width: 100%;
   /* position: absolute; */
   bottom: -100px;
 `;
+
 const Logo = styled.img`
   width: 300px;
   top: 30%;
   left: 17%;
 `;
+
 export default Background;

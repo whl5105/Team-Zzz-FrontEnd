@@ -16,7 +16,6 @@ const PlayBar = (props) => {
   };
 
   const pause = () => {
-    //    setSong(history.audio1);
     history.audio1 && history.audio1.pause();
     history.audio2 && history.audio2.pause();
     history.audio3 && history.audio3.pause();

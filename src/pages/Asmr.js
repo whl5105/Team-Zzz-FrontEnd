@@ -7,6 +7,9 @@ import { history } from "../redux/configureStore";
 
 // -- components --
 import Spinner from "../components/Spinner";
+import AsmrCategory from "../components/AsmrCategory";
+import AsmrList from "../components/AsmrList";
+import Success from "../components/Success";
 
 // -- images --
 import All from "../static/images/asmr/background/전체.svg";
@@ -21,27 +24,34 @@ export const deleteSong = (url) => {
 
 const Asmr = (props) => {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const [success, setSuccess] = React.useState(
+    useSelector((state) => state.asmr.is_write)
+  );
+
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());
   const [song4, setSong4] = React.useState(new Audio());
-  const [song1Icon, setSong1Icon] = React.useState();
-  const [song2Icon, setSong2Icon] = React.useState();
-  const [song3Icon, setSong3Icon] = React.useState();
-  const [song4Icon, setSong4Icon] = React.useState();
-  const [song1Title, setSong1Title] = React.useState();
-  const [song2Title, setSong2Title] = React.useState();
-  const [song3Title, setSong3Title] = React.useState();
-  const [song4Title, setSong4Title] = React.useState();
   const [getCategory, setCategory] = React.useState(
     location.category ? location.category : "전체"
   );
   const [imageUrl, setImageUrl] = React.useState(All);
-  const [sound, setSound] = React.useState([]);
+  const [soundTrack, setSoundTrack] = React.useState([]);
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const [play, setPlay] = React.useState([]);
 
-  const dispatch = useDispatch();
+  React.useEffect(() => {
+    if (success === true) {
+      dispatch(asmrActions.writeInitial());
+      const timeout = setTimeout(() => {
+        setSuccess(false);
+      }, 2000);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [success]);
 
   React.useEffect(() => {
     if (getCategory === "전체") {
@@ -74,53 +84,32 @@ const Asmr = (props) => {
 
         // 3) 음원을 출력하기 전에 카테고리에 맞게 필터링
         if (getCategory === "전체") {
-          setSound(asmrInfo);
+          setSoundTrack(asmrInfo);
         } else if (getCategory === "네이쳐") {
           const nature = asmrInfo.filter((item) => {
             if (item.categoryName === "자연") {
               return item;
             }
           });
-          setSound(nature);
+          setSoundTrack(nature);
         } else if (getCategory === "플레이스") {
           const place = asmrInfo.filter((item) => {
             if (item.categoryName === "공간") {
               return item;
             }
           });
-          setSound(place);
+          setSoundTrack(place);
         } else if (getCategory === "오브젝트") {
           const object = asmrInfo.filter((item) => {
             if (item.categoryName === "물체") {
               return item;
             }
           });
-          setSound(object);
+          setSoundTrack(object);
         }
-
-        // 4) 카테고리가 바뀌면 활성화된 음원 초기화
-        setPlay([]);
-
-        // 5) 카테고리가 바뀌면 play 중이던 음원 싹다 중지
-        song1.pause();
-        song2.pause();
-        song3.pause();
-        song4.pause();
-        setSong1(new Audio());
-        setSong2(new Audio());
-        setSong3(new Audio());
-        setSong4(new Audio());
       });
     }
   }, [getCategory, asmrInfo]);
-
-  // 카테고리 변경 시 모든 음원 비활성화
-  React.useEffect(() => {
-    sound.forEach((item) => {
-      const style = document.getElementById(item.asmrUrl);
-      style.style.backgroundColor = "#3a3e74";
-    });
-  }, [sound]);
 
   React.useEffect(() => {
     let selectItem;
@@ -137,9 +126,7 @@ const Asmr = (props) => {
           (selectItem.style.backgroundColor = "#FBC037"),
           setSong1(history.audio1),
           (arr = [...arr, history.audio1.src]),
-          setPlay(arr),
-          setSong1Icon(history.icon1),
-          setSong1Title(history.title1)
+          setPlay(arr)
         ),
         500
       );
@@ -151,10 +138,7 @@ const Asmr = (props) => {
           (selectItem.style.backgroundColor = "#FBC037"),
           setSong2(history.audio2),
           (arr = [...arr, history.audio2.src]),
-          setPlay(arr),
-          console.log(arr),
-          setSong2Icon(history.icon2),
-          setSong2Title(history.title2)
+          setPlay(arr)
         ),
         500
       );
@@ -166,9 +150,7 @@ const Asmr = (props) => {
           (selectItem.style.backgroundColor = "#FBC037"),
           setSong3(history.audio3),
           (arr = [...arr, history.audio3.src]),
-          setPlay(arr),
-          setSong3Icon(history.icon3),
-          setSong3Title(history.title3)
+          setPlay(arr)
         ),
         500
       );
@@ -180,9 +162,7 @@ const Asmr = (props) => {
           (selectItem.style.backgroundColor = "#FBC037"),
           setSong4(history.audio4),
           (arr = [...arr, history.audio4.src]),
-          setPlay(arr),
-          setSong4Icon(history.icon4),
-          setSong4Title(history.title4)
+          setPlay(arr)
         ),
         500
       );
@@ -194,7 +174,7 @@ const Asmr = (props) => {
       clearTimeout(setTime3);
       clearTimeout(setTime4);
     };
-  }, []);
+  }, [getCategory]);
 
   const select = (asmrUrl, iconUrl, title) => {
     if (play.includes(asmrUrl)) {
@@ -211,8 +191,6 @@ const Asmr = (props) => {
       if (song1.src.indexOf(asmrUrl) !== -1) {
         song1.pause();
         setSong1(new Audio());
-        setSong1Icon(null);
-        setSong1Title(null);
         history.state1 = "";
         history.audio1 = "";
         history.title1 = "";
@@ -220,8 +198,6 @@ const Asmr = (props) => {
       } else if (song2.src.indexOf(asmrUrl) !== -1) {
         song2.pause();
         setSong2(new Audio());
-        setSong2Icon(null);
-        setSong2Title(null);
         history.state2 = "";
         history.audio2 = "";
         history.title2 = "";
@@ -229,8 +205,6 @@ const Asmr = (props) => {
       } else if (song3.src.indexOf(asmrUrl) !== -1) {
         song3.pause();
         setSong3(new Audio());
-        setSong3Icon(null);
-        setSong3Title(null);
         history.state3 = "";
         history.audio3 = "";
         history.title3 = "";
@@ -238,8 +212,6 @@ const Asmr = (props) => {
       } else if (song4.src.indexOf(asmrUrl) !== -1) {
         song4.pause();
         setSong4(new Audio());
-        setSong4Icon(null);
-        setSong4Title(null);
         history.state4 = "";
         history.audio4 = "";
         history.title4 = "";
@@ -263,8 +235,6 @@ const Asmr = (props) => {
 
         // 음원 선택 시 활성화 되면서 음원 재생
         if (!song1.src) {
-          setSong1Icon(iconUrl);
-          setSong1Title(title);
           song1.src = asmrUrl;
           song1.volume = 0.1;
           song1.loop = true;
@@ -275,8 +245,6 @@ const Asmr = (props) => {
           history.title1 = title;
           history.setSong1 = setSong1;
         } else if (!song2.src) {
-          setSong2Icon(iconUrl);
-          setSong2Title(title);
           song2.src = asmrUrl;
           song2.volume = 0.1;
           song2.loop = true;
@@ -287,8 +255,6 @@ const Asmr = (props) => {
           history.title2 = title;
           history.setSong2 = setSong2;
         } else if (!song3.src) {
-          setSong3Icon(iconUrl);
-          setSong3Title(title);
           song3.src = asmrUrl;
           song3.volume = 0.1;
           song3.loop = true;
@@ -299,8 +265,6 @@ const Asmr = (props) => {
           history.title3 = title;
           history.setSong3 = setSong3;
         } else if (!song4.src) {
-          setSong4Icon(iconUrl);
-          setSong4Title(title);
           song4.src = asmrUrl;
           song4.volume = 0.1;
           song4.loop = true;
@@ -319,77 +283,32 @@ const Asmr = (props) => {
     }
   };
 
-  const asmrPopUp = () => {
-    history.push("/asmrPop");
-  };
-
   // -- jsx --
   return (
-    <Container>
+    <>
       {!asmrInfo || asmrInfo.length === 0 ? (
         <Spinner height="100vh"></Spinner>
       ) : (
         <PageWrap imgUrl={imageUrl}>
           {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
-          <CategorySelect>
-            <Category
-              id="전체"
-              onClick={() => {
-                setCategory("전체");
-              }}
-            >
-              전체
-            </Category>
-            <Category
-              id="네이쳐"
-              onClick={() => {
-                setCategory("네이쳐");
-              }}
-            >
-              네이쳐
-            </Category>
-            <Category
-              id="플레이스"
-              onClick={() => {
-                setCategory("플레이스");
-              }}
-            >
-              플레이스
-            </Category>
-            <Category
-              id="오브젝트"
-              onClick={() => {
-                setCategory("오브젝트");
-              }}
-            >
-              오브젝트
-            </Category>
-          </CategorySelect>
-          <SoundSelect>
-            {sound.map((item) => {
-              return (
-                <Sound
-                  id={item.asmrUrl}
-                  key={item.asmrUrl}
-                  onClick={() => {
-                    select(item.asmrUrl, item.iconUrl, item.title);
-                  }}
-                >
-                  <Icon src={item.iconUrl} alt=""></Icon>
-                  <Text>{item.title}</Text>
-                </Sound>
-              );
-            })}
-          </SoundSelect>
+          <AsmrCategory setCategory={setCategory}></AsmrCategory>
+          <AsmrList soundTrack={soundTrack} select={select}></AsmrList>
+
+          {success ? (
+            <Wrap>
+              <Success
+                alt="플레이리스트 작성 완료"
+                text="저장에 성공했습니다."
+              ></Success>
+            </Wrap>
+          ) : null}
         </PageWrap>
       )}
-    </Container>
+    </>
   );
 };
 
 // --- styled-components ---
-const Container = styled.div``;
-
 const PageWrap = styled.div`
   width: 100%;
   height: 812px;
@@ -401,98 +320,16 @@ const PageWrap = styled.div`
   box-sizing: border-box;
 `;
 
-const CategorySelect = styled.div`
+const Wrap = styled.div`
   width: 100%;
-  height: 7%;
-  border-radius: 12px;
-  background-color: ${({ theme }) => theme.colors.back};
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: auto;
-  margin-top: 20px;
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.small};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  cursor: pointer;
-`;
-
-const Category = styled.div`
-  width: 100%;
-  height: 36px;
-  border-radius: 8px;
-  line-height: 36px;
-  background-color: ${({ theme }) => theme.colors.back};
-  text-align: center;
-  color: white;
-  margin: auto;
-  padding: 1px 3px;
-  @media (max-width: 500px) {
-    height: 45px;
-    line-height: 45px;
-  }
-`;
-
-const SoundSelect = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  width: 100%;
-  max-height: 66.5%;
-  margin-top: 20px;
-  padding-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  @media (max-width: 500px) {
-    max-height: 75%;
-  }
-`;
-
-const Sound = styled.div`
-  width: 70px;
-  height: 53px;
-  padding-top: 17px;
-  /* width: 62.7%;
-  height: 61.37%; */
-  padding-bottom: 5px;
-  border-radius: 8px;
-  background-color: #3a3e74;
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  margin: auto;
-  margin-top: 20px;
-  text-align: center;
-  cursor: pointer;
-`;
-
-const Icon = styled.img`
-  width: 24px;
-  height: 24px;
-`;
-
-const Text = styled.p`
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-`;
-
-const Button = styled.button`
-  width: 90%;
-  height: 6.5%;
+  height: 812px;
   position: absolute;
-  bottom: 74px;
-  /* margin: 20px; */
-  margin-top: ${(props) => props.margin};
-  border: none;
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.main_1};
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
+  box-sizing: border-box;
+  z-index: 100;
 `;
 
 export default Asmr;
