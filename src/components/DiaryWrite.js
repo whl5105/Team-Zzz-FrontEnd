@@ -7,7 +7,7 @@ import ModalPopUp from "./ModalPopUp";
 import FeelBox from "./FeelBox";
 import SleepBox from "./SleepBox";
 import Charater from "../elements/Charater";
-import Input from "../elements/Input";
+import { Input, Button } from "../elements";
 
 import reset from "../static/images/icon/reset.svg";
 
@@ -162,14 +162,14 @@ const DiaryWrite = (props) => {
               <SleepBox edit _onClick={sleepClick} previewSleep={sleep} />
             </ScoreGrop>
             <ButtonBox>
-              <button
-                onClick={() => {
+              <Button
+                type="boderBtn"
+                _onClick={() => {
                   close();
                 }}
-              >
-                취소
-              </button>
-              <button onClick={addClick}>완료</button>
+                text="취소"
+              ></Button>
+              <Button _onClick={addClick} text="완료"></Button>
             </ButtonBox>
           </div>
         ) : (
@@ -200,14 +200,16 @@ const DiaryWrite = (props) => {
                   <SleepBox edit _onClick={sleepClick} previewSleep={sleep} />
                 </ScoreGrop>
                 <ButtonBox>
-                  <button
-                    onClick={() => {
+                  <Button
+                    type="boderBtn"
+                    _onClick={() => {
                       close();
                     }}
+                    text="취소"
                   >
                     취소
-                  </button>
-                  <button onClick={editClick}>완료</button>
+                  </Button>
+                  <Button text="완료" _onClick={editClick}></Button>
                 </ButtonBox>
               </div>
             ) : (
@@ -231,14 +233,19 @@ const DiaryWrite = (props) => {
                   <SleepBox previewSleep={sleep} />
                 </ScoreGrop>
                 <ButtonBox>
-                  <button onClick={deleteClick}>기록 삭제</button>
-                  <button
-                    onClick={() => {
+                  <Button
+                    type="boderBtn"
+                    text="기록 삭제"
+                    _onClick={deleteClick}
+                  ></Button>
+                  <Button
+                    text="수정"
+                    _onClick={() => {
                       setEdit(!edit);
                     }}
                   >
                     수정
-                  </button>
+                  </Button>
                 </ButtonBox>
               </div>
             )}
@@ -292,8 +299,12 @@ const ButtonBox = styled.div`
   padding-top: ${({ theme }) => theme.paddings.xxxxl};
   display: flex;
   justify-content: space-between;
+  
+  & Button{
+    max-width: 141px;
+  }
 
-  & button {
+  /* & button {
     width: 141px;
     height: 48px;
     border-radius: 12px;
@@ -310,7 +321,7 @@ const ButtonBox = styled.div`
   & button:last-child {
     border: 1px solid ${({ theme }) => theme.colors.main_1};
     background: ${({ theme }) => theme.colors.main_1};
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.white}; */
   }
 `;
 
