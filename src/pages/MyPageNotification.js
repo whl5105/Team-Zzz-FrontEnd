@@ -1,8 +1,6 @@
 // 푸시 알림 팝업 페이지
 import React from "react";
 import styled from "styled-components";
-
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
 import DropDown from "../elements/DropDown";
@@ -19,7 +17,6 @@ const MyPageNotification = (props) => {
   const [day, setDay] = React.useState(days); // 오전("AM"), 오후("PM") 설정
   const [hour, setHour] = React.useState(hours); // 시 설정
   const [minutes, setMinutes] = React.useState(minute); // 분 설정
-  const userIdx = props.match.params.userIdx;
 
   const [dayActive, setDayActive] = React.useState(false);
   const [hourActive, setHourActive] = React.useState(false);
@@ -55,10 +52,7 @@ const MyPageNotification = (props) => {
     "55",
   ];
 
-  const history = useHistory();
   const dispatch = useDispatch();
-  const label = { inputProps: { "aria-label": "Switch demo" } };
-  console.log(label);
   const send = () => {
     if (!notice) {
       // 알림 안받는 경우 → 미들웨어에 기본값을 설정 해줘야 합니다.
