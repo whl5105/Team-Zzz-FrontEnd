@@ -28,7 +28,7 @@ const Mypage = (props) => {
         <Container>
           <Title is_token>마이페이지</Title>
           <AlarmBanner
-            onClick={() => history.push(`/mypageNotice/${userIdx}`)}
+            _onClick={() => history.push(`/mypageNotice/${userIdx}`)}
           ></AlarmBanner>
           <div
             style={{

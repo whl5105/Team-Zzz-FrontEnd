@@ -6,7 +6,7 @@ import { history } from "../redux/configureStore";
 import Button from "../elements/Button";
 
 // 아이콘 이미지 import
-import nextIcon from "../static/images/icon/nextIcon.svg";
+import nextIcon from "../static/images/icon/path_white.png";
 import sleep_background from "../static/images/sleeptime/sleep_background.svg";
 import Icon from "../elements/Icon";
 

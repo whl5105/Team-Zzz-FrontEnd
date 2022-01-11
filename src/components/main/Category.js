@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
-import nextIcon from "../../static/images/icon/nextIcon.svg";
+import { Icon } from "../../elements";
+
+import next from "../../static/images/icon/path_white.png";
 
 const Category = (props) => {
   const history = useHistory();
@@ -23,7 +25,7 @@ const Category = (props) => {
         </div>
 
         <div>
-          <img src={nextIcon} alt="nextIcon" />
+          <Icon src={next} alt="nextIcon" />
         </div>
       </TextBox>
     </CategoryStyle>

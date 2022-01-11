@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 import Notifications from "../components/Notification";
+import Title from "../components/Title";
 
 const MyPageNotification = (props) => {
   // 기존 알림 데이터
@@ -24,9 +25,9 @@ const MyPageNotification = (props) => {
 
   // -- jsx --
   return (
-    <>
+    <Container>
       <Title>알림 편집</Title>
-      <Wrap>
+      <Content>
         <Notifications
           notice={notice}
           setNotice={setNotice}
@@ -44,36 +45,23 @@ const MyPageNotification = (props) => {
           setMinutesActive={setMinutesActive}
           state="update"
         ></Notifications>
-      </Wrap>
-    </>
+      </Content>
+    </Container>
   );
 };
 
-const Title = styled.p`
-  position: absolute;
-  width: 120px;
-  height: 22px;
-  left: 20px;
-  top: 70px;
-  font-size: 22px;
-  line-height: 100%;
-  color: white;
-  margin: 0px;
-`;
-
-const Wrap = styled.div`
-  position: absolute;
-  width: 335px;
-  height: 253px;
-  left: 20px;
-  top: 122px;
-  margin: auto;
-  background: ${({ theme }) => theme.colors.back};
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  outline: none;
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
   box-sizing: border-box;
-  padding:20px;
+  padding: 50px 0;
+`;
+const Content = styled.div`
+  background: #272a52;
+  border-radius: 12px;
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 0 20px;
 `;
 
 export default MyPageNotification;
