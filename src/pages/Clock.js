@@ -6,6 +6,7 @@ import { history } from "../redux/configureStore";
 // 아이콘 이미지 import
 import nextIcon from "../static/images/icon/nextIcon.svg";
 import sleep_background from "../static/images/sleeptime/sleep_background.svg";
+import Icon from "../elements/Icon";
 
 const Clock = (props) => {
   const [ampm, setampm] = React.useState("");
@@ -204,12 +205,17 @@ const Clock = (props) => {
   return (
     <>
       <Background categoryImage={sleep_background}>
-        <ArrowIcon
-          categoryImage={nextIcon}
-          onClick={() => {
+        <Icon
+          src={nextIcon}
+          top="104px"
+          left="20px"
+          rotate="-180deg"
+          position="absolute"
+          _onClick={() => {
             history.push("/");
+           
           }}
-        ></ArrowIcon>
+        ></Icon>
         {toggle ? (
           <SleepTimeWrap
             style={{
@@ -487,7 +493,7 @@ const Content = styled.p`
 
 const ArrowIcon = styled.div`
   position: absolute;
-  top: 74px;
+  top: 94px;
   left: 20px;
   width: 30px;
   height: 30px;
