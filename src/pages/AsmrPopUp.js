@@ -4,7 +4,11 @@ import { history } from "../redux/configureStore";
 
 // images
 import backIcon from "../static/images/asmr/backIcon.svg";
+
 import SoundTrack from "../components/SoundTrack";
+import PlayList from "../components/PlayList";
+import Button from "../elements/Button";
+import Icon from "../elements/Icon";
 
 const AsmrPopUp = (props) => {
   const [song1, setSong1] = React.useState(history.audio1 && history.audio1);
@@ -16,6 +20,8 @@ const AsmrPopUp = (props) => {
   const [volume3, setVolume3] = React.useState(song3 && song3.volume * 100);
   const [volume4, setVolume4] = React.useState(song4 && song4.volume * 100);
   const [songList, setSongList] = React.useState(history.play);
+
+  const [mixTitleWriteModal, setMixTitleWriteModal] = React.useState(false);
 
   const deleteSong = (song) => {
     let arr = [];
@@ -103,10 +109,19 @@ const AsmrPopUp = (props) => {
     history.push("/asmr");
   };
 
+  const mixTitleWrite = () => {
+    setMixTitleWriteModal(true);
+  };
+
   return (
     <>
       <Container>
-        <Icon categoryImage={backIcon} onClick={close}></Icon>
+        <Icon
+          src={backIcon}
+          top="22px"
+          position="relative"
+          _onClick={close}
+        ></Icon>
         {songList ? (
           <>
             {songList.length === 0 ? (
@@ -165,10 +180,21 @@ const AsmrPopUp = (props) => {
                   ) : null}
                 </SongList>
                 <Button
-                  onClick={close} //  나중에 볼륨 조절 한 거 데이터를 dispatch 해서 넣는 걸 하면 될 듯 하다
+                  type="bgBtn"
+                  height="52px"
+                  size="16"
+                  marginT="125"
+                  _onClick={mixTitleWrite} //  나중에 볼륨 조절 한 거 데이터를 dispatch 해서 넣는 걸 하면 될 듯 하다
                 >
                   내 믹스 저장하기
                 </Button>
+
+                {mixTitleWriteModal && (
+                  <PlayList
+                    modal={mixTitleWriteModal}
+                    setNoticationModal={setMixTitleWriteModal}
+                  ></PlayList>
+                )}
               </>
             )}
           </>
@@ -190,12 +216,6 @@ const Container = styled.div`
   padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
   box-sizing: border-box;
 `;
-
-// const Record = styled.div`
-//   display: flex;
-//   justify-content: space-around;
-//   padding-bottom: 40px;
-// `;
 
 const NoSoundList = styled.div`
   width: 100%;
@@ -234,61 +254,5 @@ const SongList = styled.div`
   padding-top: 20px;
   box-sizing: border-box;
 `;
-
-// const IconImage = styled.div`
-//   position: relative;
-//   top: 15px;
-//   left: 0;
-// `;
-
-const Icon = styled.div`
-  width: 24px;
-  height: 24px;
-  background-image: url(${(props) => props.categoryImage});
-  background-repeat: no-repeat;
-  position: relative;
-  top: 22px;
-  cursor: pointer;
-`;
-
-// const Image = styled.img`
-//   width: 24px;
-//   height: 24px;
-// `;
-
-const Button = styled.button`
-  font-size: 16px;
-  font-weight: bold;
-  width: 335px;
-  height: 52px;
-  border: none;
-  border-radius: 8px;
-  position: absolute;
-  bottom: 80px;
-  color: #fff;
-  background-color: #fbc037;
-`;
-
-// const Sound = styled.div`
-//   width: 70px;
-//   height: 70px;
-//   border-radius: 8px;
-//   background-color: #3a3e74;
-//   color: ${({ theme }) => theme.colors.white};
-//   font-size: ${({ theme }) => theme.fontSizes.ssmall};
-//   font-weight: ${({ theme }) => theme.fontWeight.Bold};
-//   text-align: center;
-//   cursor: pointer;
-// `;
-
-// const Volume = styled.input`
-//   width: 158px;
-// `;
-
-// const Text = styled.p`
-//   color: ${({ theme }) => theme.colors.white};
-//   font-size: ${({ theme }) => theme.fontSizes.ssmall};
-//   font-weight: ${({ theme }) => theme.fontWeight.Bold};
-// `;
 
 export default AsmrPopUp;

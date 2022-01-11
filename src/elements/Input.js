@@ -99,6 +99,7 @@ const InputGrop = styled.div`
     padding-right: 20px;
   }
 `;
+
 const InputBox = styled.input`
   width: 100%;
   height: ${(props) => props.height};
@@ -112,6 +113,7 @@ const InputBox = styled.input`
     outline: none;
   }
 `;
+
 const InputGropDisabled = styled.div`
   width: 100%;
   height: ${(props) => props.height};
