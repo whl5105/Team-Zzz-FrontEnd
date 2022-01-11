@@ -4,16 +4,18 @@ import styled from "styled-components";
 // --- images ---
 import check from "../static/images/icon/check.png";
 
-const SingupSuccess = (props) => {
+const Success = (props) => {
+  const { text, alt } = props;
+
   return (
-    <Success>
-      <img src={check} alt="회원가입 성공" />
-      <p>회원가입에 성공하였습니다</p>
-    </Success>
+    <SuccessBtn>
+      <img src={check} alt={alt} />
+      <p>{text}</p>
+    </SuccessBtn>
   );
 };
 
-const Success = styled.button`
+const SuccessBtn = styled.button`
   width: 235px;
   border: none;
   border-radius: 8px;
@@ -61,4 +63,4 @@ const Success = styled.button`
   } */
 `;
 
-export default SingupSuccess;
+export default Success;

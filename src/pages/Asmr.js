@@ -9,6 +9,7 @@ import { history } from "../redux/configureStore";
 import Spinner from "../components/Spinner";
 import AsmrCategory from "../components/AsmrCategory";
 import AsmrList from "../components/AsmrList";
+import Success from "../components/Success";
 
 // -- images --
 import All from "../static/images/asmr/background/전체.svg";
@@ -23,6 +24,11 @@ export const deleteSong = (url) => {
 
 const Asmr = (props) => {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const [state, setState] = React.useState(
+    useSelector((state) => state.asmr.is_write)
+  );
+
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());
@@ -35,7 +41,15 @@ const Asmr = (props) => {
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const [play, setPlay] = React.useState([]);
 
-  const dispatch = useDispatch();
+  React.useEffect(() => {
+    if (state === true) {
+      dispatch(asmrActions.writeInitial());
+      const timeout = setTimeout(() => {}, 5000);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, []);
 
   React.useEffect(() => {
     if (getCategory === "전체") {
@@ -277,6 +291,15 @@ const Asmr = (props) => {
           {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
           <AsmrCategory setCategory={setCategory}></AsmrCategory>
           <AsmrList soundTrack={soundTrack} select={select}></AsmrList>
+
+          {state ? (
+            <Success
+              alt="플레이리스트 작성 완료"
+              text="저장에 성공했습니다."
+            ></Success>
+          ) : (
+            ""
+          )}
         </PageWrap>
       )}
     </>
