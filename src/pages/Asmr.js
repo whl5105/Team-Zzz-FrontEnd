@@ -90,30 +90,9 @@ const Asmr = (props) => {
           });
           setSound(object);
         }
-
-        // 4) 카테고리가 바뀌면 활성화된 음원 초기화
-        setPlay([]);
-
-        // 5) 카테고리가 바뀌면 play 중이던 음원 싹다 중지
-        song1.pause();
-        song2.pause();
-        song3.pause();
-        song4.pause();
-        setSong1(new Audio());
-        setSong2(new Audio());
-        setSong3(new Audio());
-        setSong4(new Audio());
       });
     }
   }, [getCategory, asmrInfo]);
-
-  // 카테고리 변경 시 모든 음원 비활성화
-  React.useEffect(() => {
-    sound.forEach((item) => {
-      const style = document.getElementById(item.asmrUrl);
-      style.style.backgroundColor = "#3a3e74";
-    });
-  }, [sound]);
 
   React.useEffect(() => {
     let selectItem;
@@ -142,8 +121,7 @@ const Asmr = (props) => {
           (selectItem.style.backgroundColor = "#FBC037"),
           setSong2(history.audio2),
           (arr = [...arr, history.audio2.src]),
-          setPlay(arr),
-          console.log(arr)
+          setPlay(arr)
         ),
         500
       );
@@ -179,7 +157,7 @@ const Asmr = (props) => {
       clearTimeout(setTime3);
       clearTimeout(setTime4);
     };
-  }, []);
+  }, [getCategory]);
 
   const select = (asmrUrl, iconUrl, title) => {
     if (play.includes(asmrUrl)) {

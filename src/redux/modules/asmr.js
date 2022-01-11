@@ -26,7 +26,6 @@ const getAsmrDB = () => {
   return async function (dispatch, getState, { history }) {
     try {
       const res = await apis.getAsmr();
-      console.log("getAsmrDB response : ", res.data.items);
       dispatch(get_asmr(res.data.items));
     } catch (error) {
       console.log("getAsmrDB Error : ", error);

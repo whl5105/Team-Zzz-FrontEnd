@@ -42,7 +42,7 @@ const Diary = () => {
 
   // 저번달, 이번달, 다음달 조절하는 부분
   React.useEffect(() => {
-    console.log("저번달, 이번달, 다음달 조절하는 부분");
+    // "저번달, 이번달, 다음달 조절하는 부분"
 
     // DB에서 데이터 가져오기
     dispatch(diaryActions.getDiaryDB(day.getFullYear(), day.getMonth() + 1));
@@ -77,12 +77,11 @@ const Diary = () => {
         setMonthDay(days);
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getMoment]);
 
   // 해당 월의 일자에 맞춰 배열 생성 해주는 부분
   React.useEffect(() => {
-    console.log("해당 월의 일자에 맞춰 배열 생성 해주는 부분");
+    // "해당 월의 일자에 맞춰 배열 생성 해주는 부분"
 
     if (!diaryList) {
       dispatch(diaryActions.getDiaryDB(day.getFullYear(), day.getMonth() + 1));
@@ -97,7 +96,6 @@ const Diary = () => {
 
       setList(arr);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [diaryList]);
 
   //-- 다이어리 팝업 모달 --
@@ -112,7 +110,6 @@ const Diary = () => {
   const diaryDetail = (index) => {
     setModalOpen(true);
     const day = new Date(getMoment);
-    console.log(day.getMonth() + 1 + "월", index + "일");
     const data = {
       year: day.getFullYear(),
       month: day.getMonth() + 1,
@@ -200,11 +197,7 @@ const Diary = () => {
                     );
                   })}
                 </Content>
-                {list.length > 0 && (
-                  <Rectangle
-                    text={sleepAvg}
-                  ></Rectangle>
-                )}
+                {list.length > 0 && <Rectangle text={sleepAvg}></Rectangle>}
               </>
             )}
           </>
