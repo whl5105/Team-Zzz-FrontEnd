@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
-import PushNoticationPop from "../pages/PushNoticationPop";
+import FirstNotification from "../pages/FirstNotification";
 import Swiper from "../components/MainSwiper";
 
 import nextIcon from "../static/images/icon/nextIcon.svg";
@@ -12,7 +12,7 @@ import object from "../static/images/banner/object_1005px.png";
 import space from "../static/images/banner/space_1005px.png";
 
 const Main = (props) => {
-  const [noticationModal, setNoticationModal] = React.useState(false);
+  const [noticationModal, setNoticationModal] = React.useState(true);
 
   React.useEffect(() => {
     const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
@@ -62,10 +62,10 @@ const Main = (props) => {
 
       {/* 첫 로그인 시 알림 설정 팝업 부분 */}
       {noticationModal && (
-        <PushNoticationPop
+        <FirstNotification
           modal={noticationModal}
           setNoticationModal={setNoticationModal}
-        ></PushNoticationPop>
+        ></FirstNotification>
       )}
     </Container>
   );

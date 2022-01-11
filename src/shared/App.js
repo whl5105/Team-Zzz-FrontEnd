@@ -11,7 +11,7 @@ import "./App.css";
 import BackGround from "../components/Background";
 import NotFound from "../pages/NotFound";
 import Main from "../pages/Main";
-import PushNoticationPop from "../pages/PushNoticationPop";
+import FirstNotification from "../pages/FirstNotification";
 import Clock from "../pages/Clock";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
@@ -47,7 +47,7 @@ function App() {
                 <Route
                   path="/pushNotication"
                   exact
-                  component={PushNoticationPop}
+                  component={FirstNotification}
                 ></Route>
                 <Route path="/diary" exact component={Diary}></Route>
                 <Route path="/asmr" exact component={Asmr}></Route>
@@ -59,7 +59,7 @@ function App() {
                   component={MyPageNotification}
                 ></Route>
                 <Route path="/notice" exact component={NoticePage}></Route>
-         
+
                 <Route>
                   <NotFound />
                 </Route>
