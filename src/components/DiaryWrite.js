@@ -299,9 +299,29 @@ const ButtonBox = styled.div`
   padding-top: ${({ theme }) => theme.paddings.xxxxl};
   display: flex;
   justify-content: space-between;
-
-  & Button {
+  
+  & Button{
     max-width: 141px;
+  }
+
+  /* & button {
+    width: 141px;
+    height: 48px;
+    border-radius: 12px;
+    border: transparent;
+    background: transparent;
+    font-size: ${({ theme }) => theme.fontSizes.small};
+    line-height: ${({ theme }) => theme.lineHeight.small};
+    font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  }
+  & button:first-child {
+    border: 1px solid ${({ theme }) => theme.colors.gray_4};
+    color: ${({ theme }) => theme.colors.gray_7};
+  }
+  & button:last-child {
+    border: 1px solid ${({ theme }) => theme.colors.main_1};
+    background: ${({ theme }) => theme.colors.main_1};
+    color: ${({ theme }) => theme.colors.white}; */
   }
 `;
 
