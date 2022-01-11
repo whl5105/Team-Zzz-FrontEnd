@@ -146,6 +146,7 @@ const Notifications = (props) => {
 const Wrap = styled.div`
   display: flex;
   justify-content: space-evenly;
+  margin-bottom:"10px";
 `;
 
 const Title = styled.p`
@@ -170,6 +171,7 @@ const ToggleSwitch = styled.div`
   height: 30px;
   margin-top: 20px;
   margin-left: 20px;
+  margin-bottom: 20px;
 `;
 
 const Button = styled.button`
