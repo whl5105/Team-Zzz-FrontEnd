@@ -41,6 +41,7 @@ const Notifications = (props) => {
     "55",
   ];
 
+  // -- jsx --
   const send = () => {
     if (props.state === "set") {
       if (!props.notice) {
