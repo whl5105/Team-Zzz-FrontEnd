@@ -326,9 +326,9 @@ const Asmr = (props) => {
   // -- jsx --
   return (
     <Container>
-      {!asmrInfo || asmrInfo.length === 0 ? (
+      {/* {!asmrInfo || asmrInfo.length === 0 ? (
         <Spinner height="100vh"></Spinner>
-      ) : (
+      ) : ( */}
         <PageWrap imgUrl={imageUrl}>
           {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
           <CategorySelect>
@@ -388,7 +388,7 @@ const Asmr = (props) => {
             소리 조절 하기
           </Button>
         </PageWrap>
-      )}
+      {/* )} */}
     </Container>
   );
 };
