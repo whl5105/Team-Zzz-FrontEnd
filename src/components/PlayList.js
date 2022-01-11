@@ -15,7 +15,7 @@ const PlayList = (props) => {
   const dispatch = useDispatch();
 
   const close = () => {
-    props.setNoticationModal(false);
+    props.setPlayListModal(false);
   };
 
   const titleChange = (e) => {
@@ -27,13 +27,13 @@ const PlayList = (props) => {
   };
 
   const titleSubmit = () => {
+    let mixTitle = title;
     if (!title) {
-      console.log("PlayList 입력 안함");
-      return;
+      mixTitle = "나의 믹스";
     }
 
     const playLists = {
-      mixTitle: title,
+      mixTitle: mixTitle,
     };
 
     if (history.audio1) {
@@ -65,6 +65,9 @@ const PlayList = (props) => {
     }
 
     dispatch(asmrActions.setPlayListDB(playLists));
+    props.setPlayListModal(false);
+
+    history.push("/asmr");
   };
 
   return (

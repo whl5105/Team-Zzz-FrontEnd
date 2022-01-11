@@ -21,7 +21,7 @@ const AsmrPopUp = (props) => {
   const [volume4, setVolume4] = React.useState(song4 && song4.volume * 100);
   const [songList, setSongList] = React.useState(history.play);
 
-  const [mixTitleWriteModal, setMixTitleWriteModal] = React.useState(false);
+  const [playListModal, setPlayListModal] = React.useState(false);
 
   const deleteSong = (song) => {
     let arr = [];
@@ -110,7 +110,7 @@ const AsmrPopUp = (props) => {
   };
 
   const mixTitleWrite = () => {
-    setMixTitleWriteModal(true);
+    setPlayListModal(true);
   };
 
   return (
@@ -189,10 +189,10 @@ const AsmrPopUp = (props) => {
                   내 믹스 저장하기
                 </Button>
 
-                {mixTitleWriteModal && (
+                {setPlayListModal && (
                   <PlayList
-                    modal={mixTitleWriteModal}
-                    setNoticationModal={setMixTitleWriteModal}
+                    modal={playListModal}
+                    setPlayListModal={setPlayListModal}
                   ></PlayList>
                 )}
               </>
