@@ -45,6 +45,7 @@ const AlarmBox = styled.div`
   padding: ${({ theme }) => theme.paddings.xxxxl};
   width: 100%;
   box-sizing: border-box;
+  cursor: pointer;
 `;
 const Alarm = styled.div`
   width: 100%;
