@@ -3,7 +3,6 @@ import styled from "styled-components";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../redux/modules/diary";
-import { history } from "../redux/configureStore";
 
 // -- components --
 import Charater from "../elements/Charater";
@@ -12,7 +11,7 @@ import Spinner from "../components/Spinner";
 import DiaryWrite from "../components/DiaryWrite";
 
 // -- images --
-import NoInfo from "../static/images/diary/NoInfo.png";
+import NoInfo from "../static/images/diary/NoInfo.svg";
 import Left from "../static/images/diary/left 화살표.svg";
 import Right from "../static/images/diary/right 화살표.svg";
 

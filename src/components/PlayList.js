@@ -85,9 +85,11 @@ const PlayList = (props) => {
             name="mixTitle"
             height="52px"
             marginT="20px"
+            type="text"
             onClick={titleReset}
             value={title}
             onChange={titleChange}
+            max="18"
           ></Input>
           <Button marginT="20" _onClick={titleSubmit}>
             내 믹스 저장하기
