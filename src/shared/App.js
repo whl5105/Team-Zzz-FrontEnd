@@ -19,7 +19,7 @@ import Push from "./Push";
 import Diary from "../pages/Diary";
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
-import AsmrPopUp from "../components/AsmrPopUp";
+import AsmrPopUp from "../pages/AsmrPopUp";
 import Mypage from "../pages/MyPage";
 import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
@@ -59,7 +59,7 @@ function App() {
                   component={MyPageNotification}
                 ></Route>
                 <Route path="/notice" exact component={NoticePage}></Route>
-
+         
                 <Route>
                   <NotFound />
                 </Route>

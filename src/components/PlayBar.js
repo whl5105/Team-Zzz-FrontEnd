@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { deleteSong } from "../pages/Asmr";
-import { push } from "connected-react-router";
 
 const PlayBar = (props) => {
-//   const [song1, setSong] = React.useState();
   const [toggle, setToggle] = React.useState(false);
   const [playbar, setPlaybar] = React.useState([]);
-  //   console.log(list)
   history.setPlaybar = setPlaybar;
 
   const play = () => {
@@ -39,7 +36,6 @@ const PlayBar = (props) => {
 
         history.setSong1(new Audio());
         history.setPlay([]); // 모든 음원 리스트 리셋
-        console.log("여기");
       }
 
       //이곳에 플레이바 사라지게 하는 조건 변수 바뀌는거 추가,
@@ -62,7 +58,6 @@ const PlayBar = (props) => {
         
         history.setSong2(new Audio());
         history.setPlay([]); // 모든 음원 리스트 리셋
-        console.log("여기");
       }
 
       //이곳에 플레이바 사라지게 하는 조건 변수 바뀌는거 추가,
@@ -71,8 +66,6 @@ const PlayBar = (props) => {
       history.title2 = "";
       history.icon2 = "";
       history.setPlay([]); // 모든 음원 리스트 리셋
- 
-      console.log(history);
     }
     if (history.audio3) {
       history.audio3.pause();

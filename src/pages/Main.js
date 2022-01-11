@@ -12,7 +12,7 @@ import object from "../static/images/banner/object_1005px.png";
 import space from "../static/images/banner/space_1005px.png";
 
 const Main = (props) => {
-  const [noticationModal, setNoticationModal] = React.useState(true);
+  const [noticationModal, setNoticationModal] = React.useState(false);
 
   React.useEffect(() => {
     const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
