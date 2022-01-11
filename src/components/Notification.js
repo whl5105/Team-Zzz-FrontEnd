@@ -141,7 +141,7 @@ const Notifications = (props) => {
         </Wrap>
       )}
 
-      <Button _onClick={send} marginT="20px">확인</Button>
+      <Button _onClick={send} marginT="20">확인</Button>
     </>
   );
 };
