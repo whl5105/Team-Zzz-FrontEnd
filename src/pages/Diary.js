@@ -6,9 +6,9 @@ import { actionCreators as diaryActions } from "../redux/modules/diary";
 
 // -- components --
 import Charater from "../elements/Charater";
-import Rectangle from "../elements/Rectangle";
 import Spinner from "../components/Spinner";
 import DiaryWrite from "../components/DiaryWrite";
+import Icon from "../elements/Icon";
 
 // -- images --
 import NoInfo from "../static/images/diary/NoInfo.png";
@@ -119,7 +119,7 @@ const Diary = () => {
 
   // --- jsx ---
   return (
-    <Container>
+    <>
       <div>
         {list.length === 0 && !nextMonth ? (
           <Spinner height="100vh"></Spinner>
@@ -127,25 +127,26 @@ const Diary = () => {
           <>
             <WrapBox>
               <Wrap>
-                <Button
-                  left
-                  onClick={() => {
+                <Icon
+                  position="relative"
+                  top="15px"
+                  _onClick={() => {
                     setMoment(getMoment.clone().subtract(1, "month"));
                   }}
-                >
-                  <img src={Left} alt="left"></img>
-                </Button>
+                  src={Left}
+                ></Icon>
                 <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
                 {/* YYYY는 년도 MM 은 달입니다. */}
-                <Button
-                  right
-                  onClick={() => {
+                <Icon
+                  position="relative"
+                  top="15px"
+                  _onClick={() => {
                     setMoment(getMoment.clone().add(1, "month"));
                   }}
-                >
-                  <img src={Right} alt="right"></img>
-                </Button>
+                  src={Right}
+                ></Icon>
               </Wrap>
+              {nextMonth ? null : <SleepAvgText>{sleepAvg}</SleepAvgText>}
             </WrapBox>
             <br></br>
             {nextMonth ? (
@@ -196,7 +197,6 @@ const Diary = () => {
                     );
                   })}
                 </Content>
-                {list.length > 0 && <Rectangle text={sleepAvg}></Rectangle>}
               </>
             )}
           </>
@@ -204,43 +204,31 @@ const Diary = () => {
       </div>
       {/* -- 다이어리 팝업 모달 -- */}
       {modalOpen ? <DiaryWrite close={closeModal} data={modalData} /> : ""}
-    </Container>
+    </>
   );
 };
 
 // --- styled-components ---
-const Container = styled.div`
-  /* padding: 50px 0;
-  box-sizing: border-box; */
-`;
+
 const WrapBox = styled.div`
-  padding-top: 50px;
   margin: 0 20px;
+  margin-top: 70px;
   box-sizing: border-box;
+  border-radius: 12px;
+  background-color: ${({ theme }) => theme.colors.back};
 `;
 
 const Wrap = styled.div`
   width: 100%;
-  height: 52px;
   line-height: 20px;
   text-align: center;
-  background-color: ${({ theme }) => theme.colors.back};
   border-radius: 12px;
-  margin : 0px auto;
-  margin-top : 20px;
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.lg}
   line-height: ${({ theme }) => theme.lineHeight.ssmall};
   font-weight: ${({ theme }) => theme.fontWeight.Medium};
   display: flex;
-`;
-
-const Button = styled.div`
-  width: 24px;
-  height: 20px;
-  margin: auto;
-  margin-left: ${(props) => (props.right ? "-5px" : "")};
-  margin-right: ${(props) => (props.left ? "-5px" : "")};
+  justify-content: center;
 `;
 
 const YearMonth = styled.span`
@@ -252,13 +240,23 @@ const YearMonth = styled.span`
   font-weight: ${({ theme }) => theme.fontWeight.Medium};
 `;
 
+const SleepAvgText = styled.p`
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  line-height: ${({ theme }) => theme.lineHeight.small};
+  vertical-align: top;
+  margin: 0px 32px;
+  padding-bottom: 15px;
+`;
+
 const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   background-color: ${({ theme }) => theme.colors.bg}};
   color: ${({ theme }) => theme.colors.white};
   width: 100%;
-  max-height: 510px;
+  max-height: 470px;
   margin: 5px auto;
   margin-bottom: 15px;
   text-align: center;
