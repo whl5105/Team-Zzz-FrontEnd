@@ -76,12 +76,12 @@ const PlayList = (props) => {
     <>
       <ModalPopUp close={close}>
         <Wrap>
-          <Title>내 믹스명 입력하기</Title>
+          <Title>나만의 ASMR 믹스 만들기</Title>
           <Input
             resetInput
             src={reset}
             alt="resetButton"
-            placeholder="믹스명을 입력 해주세요"
+            placeholder="나의 믹스 (믹스명은 최대 18자 입력 가능)"
             name="mixTitle"
             height="52px"
             marginT="20px"
