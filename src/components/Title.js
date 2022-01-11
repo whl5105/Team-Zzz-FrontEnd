@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
@@ -25,8 +24,6 @@ const TilteBox = styled.div`
   box-sizing: border-box;
   align-items: center;
 }
-
-
   & h3 {
     font-size: 22px;
     font-weight: ${({ theme }) => theme.fontWeight.Bold};
