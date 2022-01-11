@@ -39,7 +39,11 @@ const BgBtn = styled.button`
   background-color: ${({ theme }) => theme.colors.main_1};
   color: ${({ theme }) => theme.colors.white};
   font-size: ${(props) => (props.size ? ` ${props.size}px;` : "14px")};
+<<<<<<< HEAD
   margin-top: ${(props) => props.marginT && `${props.marginT}px`};
+=======
+  margin-top: ${(props) => props.marginT};
+>>>>>>> b93cc6c0ea94da7549a873ef5d9831d8a62d4e59
 `;
 
 const BorderBtn = styled.button`

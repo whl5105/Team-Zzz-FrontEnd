@@ -11,7 +11,7 @@ import Spinner from "../components/Spinner";
 import DiaryWrite from "../components/DiaryWrite";
 
 // -- images --
-import NoInfo from "../static/images/diary/NoInfo.svg";
+import NoInfo from "../static/images/diary/NoInfo.png";
 import Left from "../static/images/diary/left 화살표.svg";
 import Right from "../static/images/diary/right 화살표.svg";
 

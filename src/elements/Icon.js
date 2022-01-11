@@ -2,19 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const Icon = (props) => {
-  const {
-    categoryImage,
-    top,
-    left,
-    width,
-    height,
-    src,
-    rotate,
-    _onClick,
-    position,
-  } = props;
+  const { top, left, width, height, src, rotate, _onClick, position } = props;
+
   const styles = {
-    categoryImage: categoryImage,
     top: top,
     left: left,
     width: width,
@@ -32,7 +22,6 @@ const Icon = (props) => {
 };
 
 Icon.defaultProps = {
-  categoryImage: null,
   top: null,
   left: null,
   width: "24px",
