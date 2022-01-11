@@ -3,6 +3,8 @@ import styled from "styled-components";
 import DropDown from "../elements/DropDown";
 import { history } from "../redux/configureStore";
 
+import Button from "../elements/Button";
+
 // 아이콘 이미지 import
 import nextIcon from "../static/images/icon/nextIcon.svg";
 import sleep_background from "../static/images/sleeptime/sleep_background.svg";
@@ -31,7 +33,6 @@ const Clock = (props) => {
   const [day, setDay] = React.useState("오후"); // 오전(true), 오후(false) 설정
   const [hour, setHour] = React.useState(12); // 시 설정
   const [minutes, setMinutes] = React.useState("00"); // 분 설정
-  // const [hours, setHours] = React.useState(arr);
 
   const dayItems = ["오전", "오후"];
   const hourItems = [
@@ -213,36 +214,18 @@ const Clock = (props) => {
           position="absolute"
           _onClick={() => {
             history.push("/");
-           
           }}
         ></Icon>
         {toggle ? (
-          <SleepTimeWrap
-            style={{
-              height: "229px",
-            }}
-          >
+          <SleepTimeWrap>
             <WrapInside>
-              <div style={{ textAlign: "center", width: "295px" }}>
+              <div style={{ textAlign: "center" }}>
                 <Title>평소 일어나는 시간을 입력해주세요</Title>
               </div>
             </WrapInside>
-            <div
-              style={{
-                position: "absolute",
-                width: "295px",
-                height: "30px",
-                left: "20px",
-                top: "67px",
-              }}
-            ></div>
 
             <SelectTimeWrap>
-              <div
-                style={{
-                  marginRight: "8px",
-                }}
-              >
+              <MarginRight>
                 <DropDown
                   dayActive={dayActive}
                   setDayActive={setDayActive}
@@ -253,12 +236,8 @@ const Clock = (props) => {
                   dayItems={dayItems}
                   state={setDay}
                 ></DropDown>
-              </div>
-              <div
-                style={{
-                  marginRight: "8px",
-                }}
-              >
+              </MarginRight>
+              <MarginRight>
                 <DropDown
                   hourActive={hourActive}
                   setDayActive={setDayActive}
@@ -269,7 +248,7 @@ const Clock = (props) => {
                   hourItems={hourItems}
                   state={setHour}
                 ></DropDown>
-              </div>
+              </MarginRight>
               <DropDown
                 minutesActive={minutesActive}
                 setDayActive={setDayActive}
@@ -282,47 +261,24 @@ const Clock = (props) => {
               ></DropDown>
             </SelectTimeWrap>
 
-            <Button onClick={search}>
-              <p
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: "0px",
-                  position: "absolute",
-                  width: "60px",
-                  height: "20px",
-                  left: "calc(50%-26px/2 + 1px)",
-                  top: "calc(50% - 20px/2)",
-                }}
-              >
-                입력 완료
-              </p>
+            <Button _onClick={search} text="입력 완료" marginT="30px">
+              입력 완료
             </Button>
           </SleepTimeWrap>
         ) : (
           <>
             <SleepTimeWrap>
               <WrapInside>
-                <div style={{ textAlign: "center", width: "295px" }}>
+                <div
+                  style={{
+                    textAlign: "center",
+                  }}
+                >
                   <Title>아래 시간 중 선택해서 잠드는게 좋아요!</Title>
                 </div>
               </WrapInside>
-              <div
-                style={{
-                  flexDirection: "row",
-                  alignItems: "flex-start",
-                  position: "absolute",
-                  width: "295px",
-                  height: "48px",
-                  left: "20px",
-                  top: "50px",
-                  zIndex: "1",
-                  margin: "0px",
-                }}
-              >
-                <div style={{ textAlign: "center", margin: "15px 0px" }}>
+              <div>
+                <div style={{ textAlign: "center", marginBottom: "15px" }}>
                   <BestSleepTime>{`${wakeup_hour}:${
                     wakeup_min < 10 ? "0" + wakeup_min : wakeup_min
                   } ${ampm}`}</BestSleepTime>
@@ -403,56 +359,28 @@ const Title = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   position: static;
-  line-height: 27px;
+  height: 30px;
   letter-spacing: -0.3px;
-`;
-
-const Button = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0px;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-
-  position: absolute;
-  width: 295px;
-  height: 48px;
-  border: none;
-  border-radius: 8px;
-  left: 20px;
-  top: 150px;
-  background-color: ${({ theme }) => theme.colors.main_1};
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.small};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
 `;
 
 const SleepTimeWrap = styled.div`
   flex-direction: row;
-  align-items: flex-start;
 
   position: absolute;
   width: 335px;
-  height: 177px;
-  left: 20px;
+  right: 20px;
   top: 354px;
   background: rgba(248, 248, 248, 0.1);
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   z-index: 1;
+  box-sizing: border-box;
+  padding: 20px 20px 30px 20px;
 `;
 
 const WrapInside = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: absolute;
-  width: 295px;
-  height: 27px;
-  left: 20px;
-  top: 20px;
+  height: 33px;
+  margin-bottom: 20px;
 `;
 
 const BestSleepTime = styled.span`
@@ -467,42 +395,11 @@ const BestSleepTime = styled.span`
 const SelectTimeWrap = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-
-  position: absolute;
-  width: 295px;
-  height: 48px;
-  left: 20px;
-  top: 50px;
   z-index: 1;
 `;
 
-const Content = styled.p`
-  position: absolute;
-  width: 165px;
-  height: 99px;
-  left: 105px;
-  top: 177px;
-  font-size: 22px;
-  line-height: 33px;
-  color: #fff;
-  font-weight: bold;
-  text-align: center;
-  letter-spacing: -0.3px;
-`;
-
-const ArrowIcon = styled.div`
-  position: absolute;
-  top: 94px;
-  left: 20px;
-  width: 30px;
-  height: 30px;
-  background-image: url(${(props) => props.categoryImage});
-  background-repeat: no-repeat;
-  background-size: cover;
-  /* margin: 2px 0px; */
-  transform: rotate(-180deg);
-  cursor: pointer;
+const MarginRight = styled.div`
+  margin-right: 8px;
 `;
 
 export default Clock;

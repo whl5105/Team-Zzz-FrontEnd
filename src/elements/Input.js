@@ -15,6 +15,7 @@ const Input = (props) => {
     height,
     disabled,
     marginT,
+    max,
   } = props;
 
   const styles = {
@@ -30,6 +31,7 @@ const Input = (props) => {
             {...styles}
             placeholder={placeholder}
             type={type}
+            maxLength={max}
             name={name}
             value={value}
             onChange={onChange}
@@ -47,6 +49,7 @@ const Input = (props) => {
           {...styles}
           placeholder={placeholder}
           type={type}
+          maxLength={max}
           name={name}
           value={value}
           onChange={onChange}
@@ -64,6 +67,7 @@ const Input = (props) => {
           {...styles}
           placeholder={placeholder}
           type={type}
+          maxLength={max}
           name={name}
           value={value}
           onChange={onChange}
@@ -79,6 +83,7 @@ Input.defaultProps = {
   type: "",
   name: "",
   value: "",
+  max: null,
   onChange: () => {},
   onClick: () => {},
   height: "60px",
@@ -99,6 +104,7 @@ const InputGrop = styled.div`
     padding-right: 20px;
   }
 `;
+
 const InputBox = styled.input`
   width: 100%;
   height: ${(props) => props.height};
@@ -112,6 +118,7 @@ const InputBox = styled.input`
     outline: none;
   }
 `;
+
 const InputGropDisabled = styled.div`
   width: 100%;
   height: ${(props) => props.height};

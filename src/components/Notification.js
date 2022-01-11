@@ -6,6 +6,7 @@ import { actionCreators as noticeActions } from "../redux/modules/notice";
 
 import DropDown from "../elements/DropDown";
 import Toggle from "../elements/Toggle";
+import Button from "../elements/Button";
 
 const Notifications = (props) => {
   const dispatch = useDispatch();
@@ -88,7 +89,9 @@ const Notifications = (props) => {
         매일 알림 받고 기록하기
       </Title>
       <ToggleSwitch color={props.state === "update" ? "white" : null}>
+        <div style={{margin:"auto 0px"}}>
         수면 기록 알림 받기
+        </div>
         <Toggle
           notice={props.notice}
           setNotice={props.setNotice}
@@ -138,7 +141,7 @@ const Notifications = (props) => {
         </Wrap>
       )}
 
-      <Button onClick={send}>확인</Button>
+      <Button _onClick={send} marginT="20px">확인</Button>
     </>
   );
 };
@@ -146,6 +149,7 @@ const Notifications = (props) => {
 const Wrap = styled.div`
   display: flex;
   justify-content: space-evenly;
+  margin-bottom:"10px";
 `;
 
 const Title = styled.p`
@@ -155,8 +159,7 @@ const Title = styled.p`
   letter-spacing: -0.3px;
   vertical-align: top;
   text-align: left;
-  margin-top: 20px;
-  margin-left: 20px;
+
 `;
 
 const ToggleSwitch = styled.div`
@@ -169,21 +172,9 @@ const ToggleSwitch = styled.div`
   width: 295px;
   height: 30px;
   margin-top: 20px;
-  margin-left: 20px;
+  
+  margin-bottom: 20px;
 `;
 
-const Button = styled.button`
-  width: 295px;
-  height: 48px;
-  border: none;
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.main_1};
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.small};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  box-sizing: border-box;
-  margin-top: 20px;
-  margin-left: 20px;
-`;
 
 export default Notifications;

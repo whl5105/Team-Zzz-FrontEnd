@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import closeIcon from "../static/images/asmr/closeIcon.svg";
-import { history } from "../redux/configureStore";
 
 const SoundTrack = (props) => {
   const changeVolume = (e) => {
@@ -41,7 +40,7 @@ const SoundTrack = (props) => {
 const Record = styled.div`
   display: flex;
   justify-content: space-around;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 `;
 
 const Sound = styled.div`

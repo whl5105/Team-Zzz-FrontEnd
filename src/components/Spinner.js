@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import SpinnerImage from "../static/images/spinner/Spinner.svg";
+import SpinnerImage from "../static/images/spinner/Spinner.png";
 
 const Spinner = (props) => {
   // --- jsx ---
@@ -27,12 +27,12 @@ const Outter = styled.div`
   height: ${(props) => props.height};
   background-image: url(${SpinnerImage});
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: center center;
   z-index: 1000000;
 `;
 
 const Loading = styled.div`
-  top: 47%;
+  top: 43%;
   left: 45%;
   width: 53px;
   height: 18px;

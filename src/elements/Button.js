@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-  const { type, text, _onClick, height, children } = props;
+  const { type, text, _onClick, height, children, size, marginT } = props;
 
-  const styles = {};
+  const styles = { size: size, marginT: marginT };
 
   if (type === "boderBtn") {
     return (
@@ -23,6 +23,7 @@ const Button = (props) => {
 
   return <React.Fragment></React.Fragment>;
 };
+
 Button.defaultProps = {
   type: "bgBtn",
   text: false,
@@ -39,7 +40,9 @@ const BgBtn = styled.button`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${(props) => (props.size ? ` ${props.size}px;` : "14px")};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  margin-top: ${(props) => props.marginT && `${props.marginT}px`};
 `;
+
 const BorderBtn = styled.button`
   width: 100%;
   background: transparent;
@@ -48,5 +51,7 @@ const BorderBtn = styled.button`
   color: ${({ theme }) => theme.colors.gray_7};
   font-size: ${(props) => (props.size ? ` ${props.size}px;` : "14px")};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  margin-top: ${(props) => props.marginT && `${props.marginT}px`};
 `;
+
 export default Button;

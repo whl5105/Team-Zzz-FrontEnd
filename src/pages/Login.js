@@ -9,7 +9,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 import reset from "../static/images/icon/reset.svg";
 
-import SingupSuccess from "../components/SingupSuccess";
+import Success from "../components/Success";
 
 const Login = () => {
   const first_signup = useSelector((store) => store.user.is_signup);
@@ -122,7 +122,14 @@ const Login = () => {
           <p>회원가입하기</p>
         </SignUp>
       </div>
-      {first_signup ? <SingupSuccess></SingupSuccess> : ""}
+      {first_signup ? (
+        <Success
+          alt="회원가입 성공"
+          text="회원가입에 성공하였습니다"
+        ></Success>
+      ) : (
+        ""
+      )}
     </Container>
   );
 };

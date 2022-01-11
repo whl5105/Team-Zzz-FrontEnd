@@ -16,7 +16,6 @@ const Icon = (props) => {
   } = props;
 
   const styles = {
-    categoryImage: categoryImage,
     top: top,
     left: left,
     width: width,
@@ -35,7 +34,6 @@ const Icon = (props) => {
 };
 
 Icon.defaultProps = {
-  categoryImage: null,
   top: null,
   left: null,
   width: "24px",
@@ -51,11 +49,9 @@ const ArrowIcon = styled.img`
   left: ${(props) => props.left};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-
   src: ${(props) => props.src};
   transform: ${(props) => `rotate(${props.rotate});`}
   cursor: pointer;
-
   ${(props) => (props.marginR ? `margin-right: ${props.marginR};` : "")};
 `;
 
