@@ -19,11 +19,11 @@ const initialState = {
 };
 
 // -- middleware actions --
-const noticePopDB = (notice, day = "PM", hour = 0, minutes = 0) => {
+const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0) => {
   return async function (dispatch, getState, { history }) {
     try {
       const response = await apis.postNotice(notice, day, hour, minutes);
-      const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes }
+      const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
       dispatch(setNotice(info));
     } catch (error) {
       console.log("noticeDB Error : ", error);
@@ -31,29 +31,32 @@ const noticePopDB = (notice, day = "PM", hour = 0, minutes = 0) => {
   };
 };
 
-const noticeDB = (notice, day = "AM", hour = 1, minutes = 0) => {
+const updateNoticeDB = (notice, day = "AM", hour = 1, minutes = 0) => {
   return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
-    console.log(userIdx)
     const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
-    apis.putNotice(notice, day, hour, minutes, userIdx)
-    .then((response)=> console.log(response));
+    apis
+      .putNotice(notice, day, hour, minutes, userIdx)
+      .then((response) => console.log(response));
     dispatch(setNotice(info));
     history.push("/mypage");
   };
 };
 
-const getNoticeDB = () =>{
-  return function (dispatch, getState, {history}){
+const getNoticeDB = () => {
+  return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
-    apis.getNotice(userIdx)
-    .then((response)=> {
-      console.log(response);
-      const info = { sleepChk: response[0].sleepChk, timePA: response[0].timePA, hour: response[0].hour, min: response[0].min}
-      dispatch(setNotice(info))
+    apis.getNotice(userIdx).then((response) => {
+      const info = {
+        sleepChk: response[0].sleepChk,
+        timePA: response[0].timePA,
+        hour: response[0].hour,
+        min: response[0].min,
+      };
+      dispatch(setNotice(info));
     });
-  }
-}
+  };
+};
 
 // -- reducer --
 export default handleActions(
@@ -61,7 +64,6 @@ export default handleActions(
     [SET_NOTICE]: (state, action) =>
       produce(state, (draft) => {
         draft.time = action.payload.notice;
-        console.log(action.payload.notice);
       }),
   },
   initialState
@@ -69,9 +71,9 @@ export default handleActions(
 
 // -- action creator export --
 const actionCreators = {
-  noticePopDB,
-  noticeDB,
   getNoticeDB,
+  setNoticeDB,
+  updateNoticeDB,
 };
 
 export { actionCreators };

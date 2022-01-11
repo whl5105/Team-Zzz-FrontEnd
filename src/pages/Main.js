@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import PushNoticationPop from "../pages/PushNoticationPop";
+import FirstNotification from "../pages/FirstNotification";
 import Swiper from "../components/MainSwiper";
 import Category from "../components/main/Category";
 
@@ -61,10 +61,10 @@ const Main = (props) => {
 
       {/* 첫 로그인 시 알림 설정 팝업 부분 */}
       {noticationModal && (
-        <PushNoticationPop
+        <FirstNotification
           modal={noticationModal}
           setNoticationModal={setNoticationModal}
-        ></PushNoticationPop>
+        ></FirstNotification>
       )}
     </Container>
   );

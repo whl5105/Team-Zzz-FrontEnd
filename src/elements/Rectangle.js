@@ -19,6 +19,7 @@ const TextBox = styled.div`
   margin: 10px 0px;
   bottom: 65px;
   box-sizing: border-box;
+  z-index: 20000;
 `;
 
 const Text = styled.p`

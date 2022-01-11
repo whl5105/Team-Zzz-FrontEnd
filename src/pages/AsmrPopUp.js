@@ -3,39 +3,19 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
 // images
-import closeIcon from "../static/images/asmr/closeIcon.svg";
 import backIcon from "../static/images/asmr/backIcon.svg";
+import SoundTrack from "../components/SoundTrack";
 
 const AsmrPopUp = (props) => {
   const [song1, setSong1] = React.useState(history.audio1 && history.audio1);
   const [song2, setSong2] = React.useState(history.audio2 && history.audio2);
   const [song3, setSong3] = React.useState(history.audio3 && history.audio3);
   const [song4, setSong4] = React.useState(history.audio4 && history.audio4);
-  const [volume1, setVolume] = React.useState(song1 && song1.volume * 100);
+  const [volume1, setVolume1] = React.useState(song1 && song1.volume * 100);
   const [volume2, setVolume2] = React.useState(song2 && song2.volume * 100);
   const [volume3, setVolume3] = React.useState(song3 && song3.volume * 100);
   const [volume4, setVolume4] = React.useState(song4 && song4.volume * 100);
   const [songList, setSongList] = React.useState(history.play);
-
-  const changeVolume1 = (e) => {
-    setVolume(e.target.value);
-    song1.volume = e.target.value * 0.01; // 볼륨 바의 value 범위를 1~100에서 주었고 audio경우 0~1 이 범위이기때문에 0.01을 곱해줌
-  };
-
-  const changeVolume2 = (e) => {
-    setVolume2(e.target.value);
-    song2.volume = e.target.value * 0.01;
-  };
-
-  const changeVolume3 = (e) => {
-    setVolume3(e.target.value);
-    song3.volume = e.target.value * 0.01;
-  };
-
-  const changeVolume4 = (e) => {
-    setVolume4(e.target.value);
-    song4.volume = e.target.value * 0.01;
-  };
 
   const deleteSong = (song) => {
     let arr = [];
@@ -140,111 +120,48 @@ const AsmrPopUp = (props) => {
               <>
                 <SongList>
                   {song1 && song1.src !== "" ? (
-                    <>
-                      <Record>
-                        <Sound>
-                          <IconImage>
-                            <Image src={`${history.icon1}`} alt=""></Image>
-                            <Text>{history.title1}</Text>
-                          </IconImage>
-                        </Sound>
-
-                        <Volume
-                          type="range"
-                          id="volume"
-                          value={volume1}
-                          min="0"
-                          max="100"
-                          onChange={changeVolume1}
-                        />
-                        <Icon
-                          categoryImage={closeIcon}
-                          onClick={() => {
-                            deleteSong(song1);
-                          }}
-                        ></Icon>
-                      </Record>
-                    </>
+                    <SoundTrack
+                      setVolume={setVolume1}
+                      song={song1}
+                      icon={history.icon1}
+                      title={history.title1}
+                      id="volume1"
+                      volume={volume1}
+                      deleteSong={deleteSong}
+                    ></SoundTrack>
                   ) : null}
-
                   {song2 && song2.src !== "" ? (
-                    <>
-                      <Record>
-                        <Sound>
-                          <IconImage>
-                            <Image src={`${history.icon2}`} alt=""></Image>
-                            <Text>{history.title2}</Text>
-                          </IconImage>
-                        </Sound>
-
-                        <Volume
-                          type="range"
-                          id="volume2"
-                          value={volume2}
-                          min="0"
-                          max="100"
-                          onChange={changeVolume2}
-                        />
-                        <Icon
-                          categoryImage={closeIcon}
-                          onClick={() => {
-                            deleteSong(song2);
-                          }}
-                        ></Icon>
-                      </Record>
-                    </>
+                    <SoundTrack
+                      setVolume={setVolume2}
+                      song={song2}
+                      icon={history.icon2}
+                      title={history.title2}
+                      id="volume2"
+                      volume={volume2}
+                      deleteSong={deleteSong}
+                    ></SoundTrack>
                   ) : null}
                   {song3 && song3.src !== "" ? (
-                    <>
-                      <Record>
-                        <Sound>
-                          <IconImage>
-                            <Image src={`${history.icon3}`} alt=""></Image>
-                            <Text>{history.title3}</Text>
-                          </IconImage>
-                        </Sound>
-                        <Volume
-                          type="range"
-                          id="volume3"
-                          value={volume3}
-                          min="0"
-                          max="100"
-                          onChange={changeVolume3}
-                        />
-                        <Icon
-                          categoryImage={closeIcon}
-                          onClick={() => {
-                            deleteSong(song3);
-                          }}
-                        ></Icon>
-                      </Record>
-                    </>
+                    <SoundTrack
+                      setVolume={setVolume3}
+                      song={song3}
+                      icon={history.icon3}
+                      title={history.title3}
+                      id="volume3"
+                      volume={volume3}
+                      deleteSong={deleteSong}
+                    ></SoundTrack>
                   ) : null}
                   {song4 && song4.src !== "" ? (
-                    <>
-                      <Record>
-                        <Sound>
-                          <IconImage>
-                            <Image src={`${history.icon4}`} alt=""></Image>
-                            <Text>{history.title4}</Text>
-                          </IconImage>
-                        </Sound>
-                        <Volume
-                          type="range"
-                          id="volume4"
-                          value={volume4}
-                          min="0"
-                          max="100"
-                          onChange={changeVolume4}
-                        />
-                        <Icon
-                          categoryImage={closeIcon}
-                          onClick={() => {
-                            deleteSong(song4);
-                          }}
-                        ></Icon>
-                      </Record>
-                    </>
+                    <SoundTrack
+                      setVolume={setVolume4}
+                      song={song4}
+                      icon={history.icon4}
+                      title={history.title4}
+                      id="volume4"
+                      volume={volume4}
+                      deleteSong={deleteSong}
+                    ></SoundTrack>
                   ) : null}
                 </SongList>
                 <Button
@@ -274,11 +191,11 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 
-const Record = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding-bottom: 40px;
-`;
+// const Record = styled.div`
+//   display: flex;
+//   justify-content: space-around;
+//   padding-bottom: 40px;
+// `;
 
 const NoSoundList = styled.div`
   width: 100%;
@@ -318,11 +235,11 @@ const SongList = styled.div`
   box-sizing: border-box;
 `;
 
-const IconImage = styled.div`
-  position: relative;
-  top: 15px;
-  left: 0;
-`;
+// const IconImage = styled.div`
+//   position: relative;
+//   top: 15px;
+//   left: 0;
+// `;
 
 const Icon = styled.div`
   width: 24px;
@@ -334,10 +251,10 @@ const Icon = styled.div`
   cursor: pointer;
 `;
 
-const Image = styled.img`
-  width: 24px;
-  height: 24px;
-`;
+// const Image = styled.img`
+//   width: 24px;
+//   height: 24px;
+// `;
 
 const Button = styled.button`
   font-size: 16px;
@@ -352,26 +269,26 @@ const Button = styled.button`
   background-color: #fbc037;
 `;
 
-const Sound = styled.div`
-  width: 70px;
-  height: 70px;
-  border-radius: 8px;
-  background-color: #3a3e74;
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  text-align: center;
-  cursor: pointer;
-`;
+// const Sound = styled.div`
+//   width: 70px;
+//   height: 70px;
+//   border-radius: 8px;
+//   background-color: #3a3e74;
+//   color: ${({ theme }) => theme.colors.white};
+//   font-size: ${({ theme }) => theme.fontSizes.ssmall};
+//   font-weight: ${({ theme }) => theme.fontWeight.Bold};
+//   text-align: center;
+//   cursor: pointer;
+// `;
 
-const Volume = styled.input`
-  width: 158px;
-`;
+// const Volume = styled.input`
+//   width: 158px;
+// `;
 
-const Text = styled.p`
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-`;
+// const Text = styled.p`
+//   color: ${({ theme }) => theme.colors.white};
+//   font-size: ${({ theme }) => theme.fontSizes.ssmall};
+//   font-weight: ${({ theme }) => theme.fontWeight.Bold};
+// `;
 
 export default AsmrPopUp;

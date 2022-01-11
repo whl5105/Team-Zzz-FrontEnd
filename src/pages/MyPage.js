@@ -208,7 +208,6 @@ const Mypage = (props) => {
               flex: "none",
               order: "0",
               flexGrow: "1",
-              // margin: "0px 6px",
             }}
           >
             <Box>
@@ -273,7 +272,6 @@ const Mypage = (props) => {
               flex: "none",
               order: "0",
               flexGrow: "1",
-              // margin: "0px 6px",
             }}
           >
             <Box>
