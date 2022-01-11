@@ -2,16 +2,26 @@ import React from "react";
 import styled from "styled-components";
 
 const Icon = (props) => {
-  const { categoryImage, top, left, width, height, src, rotate, _onClick, position} = props;
+  const {
+    categoryImage,
+    top,
+    left,
+    width,
+    height,
+    src,
+    rotate,
+    _onClick,
+    position,
+  } = props;
   const styles = {
     categoryImage: categoryImage,
     top: top,
     left: left,
     width: width,
     height: height,
-    src:src,
-    rotate:rotate,
-    position:position
+    src: src,
+    rotate: rotate,
+    position: position,
   };
 
   return (
@@ -28,8 +38,8 @@ Icon.defaultProps = {
   width: "24px",
   height: "24px",
   rotate: "0deg",
-  _onClick: ()=>{},
-  position: null
+  _onClick: () => {},
+  position: null,
 };
 
 const ArrowIcon = styled.img`
@@ -39,8 +49,8 @@ const ArrowIcon = styled.img`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
  
-  src: ${(props)=> props.src};
-  transform: ${(props)=> `rotate(${props.rotate});` }
+  src: ${(props) => props.src};
+  transform: ${(props) => `rotate(${props.rotate});`}
   cursor: pointer;
 `;
 

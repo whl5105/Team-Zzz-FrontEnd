@@ -8,6 +8,7 @@ const AsmrCategory = (props) => {
     setCategory(e.target.id);
   };
 
+  // -- jsx --
   return (
     <>
       <CategorySelect>
@@ -28,6 +29,7 @@ const AsmrCategory = (props) => {
   );
 };
 
+// --- styled-components ---
 const CategorySelect = styled.div`
   width: 100%;
   border-radius: 12px;

@@ -8,6 +8,7 @@ import { history } from "../redux/configureStore";
 // -- components --
 import Spinner from "../components/Spinner";
 import AsmrCategory from "../components/AsmrCategory";
+import AsmrList from "../components/AsmrList";
 
 // -- images --
 import All from "../static/images/asmr/background/전체.svg";
@@ -30,7 +31,7 @@ const Asmr = (props) => {
     location.category ? location.category : "전체"
   );
   const [imageUrl, setImageUrl] = React.useState(All);
-  const [sound, setSound] = React.useState([]);
+  const [soundTrack, setSoundTrack] = React.useState([]);
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const [play, setPlay] = React.useState([]);
 
@@ -67,28 +68,28 @@ const Asmr = (props) => {
 
         // 3) 음원을 출력하기 전에 카테고리에 맞게 필터링
         if (getCategory === "전체") {
-          setSound(asmrInfo);
+          setSoundTrack(asmrInfo);
         } else if (getCategory === "네이쳐") {
           const nature = asmrInfo.filter((item) => {
             if (item.categoryName === "자연") {
               return item;
             }
           });
-          setSound(nature);
+          setSoundTrack(nature);
         } else if (getCategory === "플레이스") {
           const place = asmrInfo.filter((item) => {
             if (item.categoryName === "공간") {
               return item;
             }
           });
-          setSound(place);
+          setSoundTrack(place);
         } else if (getCategory === "오브젝트") {
           const object = asmrInfo.filter((item) => {
             if (item.categoryName === "물체") {
               return item;
             }
           });
-          setSound(object);
+          setSoundTrack(object);
         }
       });
     }
@@ -268,38 +269,21 @@ const Asmr = (props) => {
 
   // -- jsx --
   return (
-    <Container>
+    <>
       {!asmrInfo || asmrInfo.length === 0 ? (
         <Spinner height="100vh"></Spinner>
       ) : (
         <PageWrap imgUrl={imageUrl}>
           {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
           <AsmrCategory setCategory={setCategory}></AsmrCategory>
-          <SoundSelect>
-            {sound.map((item) => {
-              return (
-                <Sound
-                  id={item.asmrUrl}
-                  key={item.asmrUrl}
-                  onClick={() => {
-                    select(item.asmrUrl, item.iconUrl, item.title);
-                  }}
-                >
-                  <Icon src={item.iconUrl} alt=""></Icon>
-                  <Text>{item.title}</Text>
-                </Sound>
-              );
-            })}
-          </SoundSelect>
+          <AsmrList soundTrack={soundTrack} select={select}></AsmrList>
         </PageWrap>
       )}
-    </Container>
+    </>
   );
 };
 
 // --- styled-components ---
-const Container = styled.div``;
-
 const PageWrap = styled.div`
   width: 100%;
   height: 812px;
@@ -309,68 +293,6 @@ const PageWrap = styled.div`
   background-size: cover;
   padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
   box-sizing: border-box;
-`;
-
-const SoundSelect = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  width: 100%;
-  max-height: 66.5%;
-  margin-top: 20px;
-  padding-bottom: 20px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  @media (max-width: 500px) {
-    max-height: 75%;
-  }
-`;
-
-const Sound = styled.div`
-  width: 70px;
-  height: 53px;
-  padding-top: 17px;
-  /* width: 62.7%;
-  height: 61.37%; */
-  padding-bottom: 5px;
-  border-radius: 8px;
-  background-color: #3a3e74;
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  margin: auto;
-  margin-top: 20px;
-  text-align: center;
-  cursor: pointer;
-`;
-
-const Icon = styled.img`
-  width: 24px;
-  height: 24px;
-`;
-
-const Text = styled.p`
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-`;
-
-const Button = styled.button`
-  width: 90%;
-  height: 6.5%;
-  position: absolute;
-  bottom: 74px;
-  /* margin: 20px; */
-  margin-top: ${(props) => props.margin};
-  border: none;
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.main_1};
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
 `;
 
 export default Asmr;

@@ -4,10 +4,12 @@ import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 
+// --- components ---
 import ModalPopUp from "./ModalPopUp";
 import Input from "../elements/Input";
 import Button from "../elements/Button";
 
+// --- images ---
 import reset from "../static/images/icon/reset.svg";
 
 const PlayList = (props) => {

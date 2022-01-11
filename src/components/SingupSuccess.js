@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+
+// --- images ---
 import check from "../static/images/icon/check.png";
 
 const SingupSuccess = (props) => {
