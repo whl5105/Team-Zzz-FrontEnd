@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { deleteSong } from "../pages/Asmr";
 
+import playIcon from "../static/images/play/play.png";
+import volumeIcon from "../static/images/play/volume.png";
+import closeIcon from "../static/images/play/close.png";
+
 const PlayBar = (props) => {
   const [toggle, setToggle] = React.useState(false);
   const [playbar, setPlaybar] = React.useState([]);
@@ -43,10 +47,10 @@ const PlayBar = (props) => {
       history.title1 = "";
       history.icon1 = "";
       history.setPlay([]); // 모든 음원 리스트 리셋
-  
+
       console.log(history);
     }
-    if(history.audio2) {
+    if (history.audio2) {
       history.audio2.pause();
       if (history.location.pathname === "/asmr") {
         deleteSong(history.state2);
@@ -54,7 +58,7 @@ const PlayBar = (props) => {
         history.audio2 = "";
         history.title2 = "";
         history.icon2 = "";
-        
+
         history.setSong2(new Audio());
         history.setPlay([]); // 모든 음원 리스트 리셋
       }
@@ -74,7 +78,7 @@ const PlayBar = (props) => {
         history.audio3 = "";
         history.title3 = "";
         history.icon3 = "";
-      
+
         history.setSong3(new Audio());
         history.setPlay([]); // 모든 음원 리스트 리셋
         console.log("여기");
@@ -119,52 +123,77 @@ const PlayBar = (props) => {
     <React.Fragment>
       {playbar.length > 0 ? (
         <Wrap>
+          <Text>{toggle ? "pause..." : "편안하게 소리를 감상해보세요"}</Text>
           {toggle ? (
             <>
-              <Text>pause...</Text>
-              <Button
-                onClick={() => history.push("/asmrPop")}
-              >{`setting`}</Button>
-              <Button
+              <Icon src={volumeIcon} onClick={() => history.push("/asmrPop")} />
+              <Icon
+                src={playIcon}
                 onClick={() => (play(), setToggle(!toggle))}
-              >{`>`}</Button>
+              />
             </>
           ) : (
             <>
-              <Text>playing...</Text>
-              <Button
-                onClick={() => history.push("/asmrPop")}
-              >{`setting`}</Button>
-              <Button onClick={() => (pause(), setToggle(!toggle))}>||</Button>
+              <Icon src={volumeIcon} onClick={() => history.push("/asmrPop")} />
+              {/* 임시이미지 적용중 */}
+              <Icon
+                src={playIcon}
+                onClick={() => (pause(), setToggle(!toggle))}
+              />
             </>
           )}
-          <Button onClick={() => (reset())}>{`x`}</Button>
+          <Icon className="lastIcon" src={closeIcon} onClick={() => reset()} />
         </Wrap>
       ) : null}
     </React.Fragment>
   );
 };
+// const Icon = (props) => {
+//   return <Box src={props.src}>{props.children}</Box>;
+// };
 
 const Wrap = styled.div`
+  width: calc(100% - 40px);
+  height: 72px;
   position: absolute;
+  bottom: 80px;
+  left: 0;
   display: flex;
   justify-content: space-evenly;
-  top: 680px;
-  left: 40px;
-  width: 300px;
-  height: 50px;
-  background: rgba(100, 100, 100, 0.6);
+  border-radius: 12px;
+  margin: 0 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  justify-content: space-evenly;
+  padding: 18px 20px;
+  box-sizing: border-box;
+
+  & .lastIcon:last-child {
+    margin: 0;
+  }
 `;
 
 const Text = styled.span`
   display: flex;
   align-items: center;
   color: white;
+  flex-grow: 2;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+`;
+const Icon = styled.div`
+  min-width: 36px;
+  min-height: 36px;
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
+  margin-right: 12px;
 `;
 
-const Button = styled.button`
-  width: 50px;
-  height: 50px;
-`;
+// const Box = styled.div`
+//   width: 50px;
+//   height: 50px;
+//   background-image: url(${(props) => props.src});
+//   background-repeat: no-repeat;
+// `;
 
 export default PlayBar;

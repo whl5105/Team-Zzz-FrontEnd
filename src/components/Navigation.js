@@ -112,9 +112,6 @@ const Gnb = styled.div`
   text-align: center;
   box-sizing: border-box;
   color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  line-height: ${({ theme }) => theme.lineHeight.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Regular};
 
   ::before {
     content: "";
@@ -141,6 +138,7 @@ const P = styled.p`
   width: 75px;
   height: 18px;
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  line-height: ${({ theme }) => theme.lineHeight.ssmall};
   font-weight: ${({ theme }) => theme.fontWeight.Regular};
 `;
 
