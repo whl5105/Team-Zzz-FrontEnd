@@ -326,9 +326,9 @@ const Asmr = (props) => {
   // -- jsx --
   return (
     <Container>
-      {/* {!asmrInfo || asmrInfo.length === 0 ? (
+      {!asmrInfo || asmrInfo.length === 0 ? (
         <Spinner height="100vh"></Spinner>
-      ) : ( */}
+      ) : (
         <PageWrap imgUrl={imageUrl}>
           {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
           <CategorySelect>
@@ -381,14 +381,8 @@ const Asmr = (props) => {
               );
             })}
           </SoundSelect>
-          <Button
-            margin={getCategory !== "전체" ? "235px" : "20px"}
-            onClick={asmrPopUp}
-          >
-            소리 조절 하기
-          </Button>
         </PageWrap>
-      {/* )} */}
+      )}
     </Container>
   );
 };
