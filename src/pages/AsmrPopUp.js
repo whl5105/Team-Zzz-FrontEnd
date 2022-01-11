@@ -109,7 +109,7 @@ const AsmrPopUp = (props) => {
     history.push("/asmr");
   };
 
-  const mixTitleWrite = () => {
+  const titleWrite = () => {
     setPlayListModal(true);
   };
 
@@ -178,18 +178,18 @@ const AsmrPopUp = (props) => {
                       deleteSong={deleteSong}
                     ></SoundTrack>
                   ) : null}
-                </SongList>
-                <Button
-                  type="bgBtn"
-                  height="52px"
-                  size="16"
-                  marginT="125"
-                  _onClick={mixTitleWrite} //  나중에 볼륨 조절 한 거 데이터를 dispatch 해서 넣는 걸 하면 될 듯 하다
-                >
-                  내 믹스 저장하기
-                </Button>
 
-                {setPlayListModal && (
+                  <Button
+                    type="bgBtn"
+                    size="16"
+                    marginT="0"
+                    _onClick={titleWrite} //  나중에 볼륨 조절 한 거 데이터를 dispatch 해서 넣는 걸 하면 될 듯 하다
+                  >
+                    내 믹스 저장하기
+                  </Button>
+                </SongList>
+
+                {playListModal && (
                   <PlayList
                     modal={playListModal}
                     setPlayListModal={setPlayListModal}
@@ -243,15 +243,13 @@ const NoSoundList = styled.div`
 
 const SongList = styled.div`
   width: 100%;
-  height: 440px;
   background-color: ${({ theme }) => theme.colors.back};
   background-image: url(${(props) => props.imgUrl});
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 12px;
   margin-top: 40px;
-  padding: 0px 20px;
-  padding-top: 20px;
+  padding: 20px 20px;
   box-sizing: border-box;
 `;
 
