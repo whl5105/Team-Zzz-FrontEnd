@@ -25,7 +25,7 @@ export const deleteSong = (url) => {
 const Asmr = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const [state, setState] = React.useState(
+  const [success, setSuccess] = React.useState(
     useSelector((state) => state.asmr.is_write)
   );
 
@@ -42,14 +42,16 @@ const Asmr = (props) => {
   const [play, setPlay] = React.useState([]);
 
   React.useEffect(() => {
-    if (state === true) {
+    if (success === true) {
       dispatch(asmrActions.writeInitial());
-      const timeout = setTimeout(() => {}, 5000);
+      const timeout = setTimeout(() => {
+        setSuccess(false);
+      }, 2000);
       return () => {
         clearTimeout(timeout);
       };
     }
-  }, []);
+  }, [success]);
 
   React.useEffect(() => {
     if (getCategory === "전체") {
@@ -292,14 +294,14 @@ const Asmr = (props) => {
           <AsmrCategory setCategory={setCategory}></AsmrCategory>
           <AsmrList soundTrack={soundTrack} select={select}></AsmrList>
 
-          {state ? (
-            <Success
-              alt="플레이리스트 작성 완료"
-              text="저장에 성공했습니다."
-            ></Success>
-          ) : (
-            ""
-          )}
+          {success ? (
+            <Wrap>
+              <Success
+                alt="플레이리스트 작성 완료"
+                text="저장에 성공했습니다."
+              ></Success>
+            </Wrap>
+          ) : null}
         </PageWrap>
       )}
     </>
@@ -316,6 +318,18 @@ const PageWrap = styled.div`
   background-size: cover;
   padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
   box-sizing: border-box;
+`;
+
+const Wrap = styled.div`
+  width: 100%;
+  height: 812px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
+  box-sizing: border-box;
+  z-index: 100;
 `;
 
 export default Asmr;
