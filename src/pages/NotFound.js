@@ -2,18 +2,21 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
+import Button from "../elements/Button";
+
 const NotFound = (props) => {
   const history = useHistory();
   return (
     <Container>
       <P>주소가 올바르지 않아요!</P>
       <Button
-        onClick={() => {
+        size="16"
+        text="ZZZ 메인으로 가기"
+        marginT="150"
+        _onClick={() => {
           history.goBack();
         }}
-      >
-        ZZZ 메인으로 가기
-      </Button>
+      ></Button>
     </Container>
   );
 };
@@ -32,15 +35,16 @@ const P = styled.p`
   margin-top: 226px;
 `;
 
-const Button = styled.button`
-  width: 295px;
-  height: 48px;
-  border-radius: 8px;
-  color: ${({ theme }) => theme.colors.white};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  background-color: ${({ theme }) => theme.colors.main_1};
-  margin: 110px ${({ theme }) => theme.paddings.small};
-  line-height: 35px;
-`;
+// const Button = styled.button`
+//   width: 295px;
+//   height: 48px;
+//   border-radius: 8px;
+//   color: ${({ theme }) => theme.colors.white};
+//   font-weight: ${({ theme }) => theme.fontWeight.Bold};
+//   font-size: ${({ theme }) => theme.fontSizes.base};
+//   background-color: ${({ theme }) => theme.colors.main_1};
+//   margin: 110px ${({ theme }) => theme.paddings.small};
+//   line-height: 35px;
+// `;
+
 export default NotFound;
