@@ -23,6 +23,8 @@ const MixListPopUp = (props) => {
     if (!playListInfo) {
       dispatch(asmrActions.getPlayListDB());
     }
+    history.mixListModal = true
+    history.setMixListModal = props.setMixListModal;
   }, []);
 
   const myPageMixList = () => {

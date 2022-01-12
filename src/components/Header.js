@@ -52,7 +52,12 @@ const Header = withRouter((props) => {
         )}
       </HeaderBox>
 
-      {mixListModal && <MixListPopUp close={closeModal}></MixListPopUp>}
+      {mixListModal && (
+        <MixListPopUp
+          close={closeModal}
+          setMixListModal={setMixListModal}
+        ></MixListPopUp>
+      )}
     </div>
   );
 });
