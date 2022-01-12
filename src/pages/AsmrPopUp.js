@@ -2,11 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
-// images
+// --- images ---
 import backIcon from "../static/images/asmr/backIcon.svg";
 
-import SoundTrack from "../components/SoundTrack";
-import PlayList from "../components/PlayList";
+// --- components ---
+import SoundTrack from "../components/asmr/SoundTrack";
+import PlayList from "../components/asmr/PlayList";
 import Button from "../elements/Button";
 import Icon from "../elements/Icon";
 

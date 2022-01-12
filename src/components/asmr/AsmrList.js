@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // -- components --
-import Icon from "../elements/Icon";
+import Icon from "../../elements/Icon";
 
 const AsmrList = (props) => {
   const { soundTrack, select } = props;

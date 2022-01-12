@@ -3,12 +3,13 @@ import styled from "styled-components";
 import DropDown from "../elements/DropDown";
 import { history } from "../redux/configureStore";
 
+// --- components ---
 import Button from "../elements/Button";
+import Icon from "../elements/Icon";
 
-// 아이콘 이미지 import
+// --- images ---
 import nextIcon from "../static/images/icon/path_white.png";
 import sleep_background from "../static/images/sleeptime/sleep_background.svg";
-import Icon from "../elements/Icon";
 
 const Clock = (props) => {
   const [ampm, setampm] = React.useState("");

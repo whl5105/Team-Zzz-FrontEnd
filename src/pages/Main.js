@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
+// --- components ---
 import FirstNotification from "../pages/FirstNotification";
-import Swiper from "../components/MainSwiper";
+import Swiper from "../components/main/MainSwiper";
 import Category from "../components/main/Category";
 
+// --- images ---
 import all from "../static/images/banner/all_1005px.png";
 import nature from "../static/images/banner/nature_1005px.png";
 import object from "../static/images/banner/object_1005px.png";

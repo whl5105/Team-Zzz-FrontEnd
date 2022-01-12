@@ -1,15 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as diaryActions } from "../redux/modules/diary";
+import { actionCreators as diaryActions } from "../../redux/modules/diary";
 
-import ModalPopUp from "./ModalPopUp";
-import FeelBox from "./FeelBox";
-import SleepBox from "./SleepBox";
-import Charater from "../elements/Charater";
-import { Input, Button } from "../elements";
+// --- components ---
+import ModalPopUp from "../ModalPopUp";
+import FeelBox from "../diary/FeelBox";
+import SleepBox from "../diary/SleepBox";
+import Charater from "../../elements/Charater";
+import { Input, Button } from "../../elements";
 
-import reset from "../static/images/icon/reset.svg";
+// --- images ---
+import reset from "../../static/images/icon/reset.svg";
 
 const DiaryWrite = (props) => {
   const dispatch = useDispatch();

@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import bg1 from "../static/images/bg/main_bg1.png";
-import bg2 from "../static/images/bg/main_bg2.png";
-import bg3 from "../static/images/bg/main_bg3.png";
+import bg1 from "../../static/images/bg/main_bg1.png";
+import bg2 from "../../static/images/bg/main_bg2.png";
+import bg3 from "../../static/images/bg/main_bg3.png";
 
 const Background = () => {
   // --- jsx ---

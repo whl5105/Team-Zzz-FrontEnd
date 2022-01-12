@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { actionCreators as noticeActions } from "../redux/modules/notice";
+import { actionCreators as noticeActions } from "../../redux/modules/notice";
 
-import DropDown from "../elements/DropDown";
-import Toggle from "../elements/Toggle";
-import Button from "../elements/Button";
+import DropDown from "../../elements/DropDown";
+import Toggle from "../../elements/Toggle";
+import Button from "../../elements/Button";
 
 const Notifications = (props) => {
   const dispatch = useDispatch();

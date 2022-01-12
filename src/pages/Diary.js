@@ -1,19 +1,14 @@
 import React from "react";
-import styled from "styled-components";
 import moment from "moment";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../redux/modules/diary";
 
-// -- components --
-import Charater from "../elements/Charater";
+// --- components ---
 import Spinner from "../components/Spinner";
-import DiaryWrite from "../components/DiaryWrite";
-import Icon from "../elements/Icon";
-
-// -- images --
-import NoInfo from "../static/images/diary/NoInfo.png";
-import Left from "../static/images/diary/left 화살표.svg";
-import Right from "../static/images/diary/right 화살표.svg";
+import DiaryWrite from "../components/diary/DiaryWrite";
+import DiaryDate from "../components/diary/DiaryDate";
+import NoRecord from "../components/diary/NoRecord";
+import DiaryRecord from "../components/diary/DiaryRecord";
 
 const Diary = () => {
   const dispatch = useDispatch();
@@ -125,79 +120,22 @@ const Diary = () => {
           <Spinner height="100vh"></Spinner>
         ) : (
           <>
-            <WrapBox>
-              <Wrap>
-                <Icon
-                  position="relative"
-                  top="15px"
-                  _onClick={() => {
-                    setMoment(getMoment.clone().subtract(1, "month"));
-                  }}
-                  src={Left}
-                ></Icon>
-                <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
-                {/* YYYY는 년도 MM 은 달입니다. */}
-                <Icon
-                  position="relative"
-                  top="15px"
-                  _onClick={() => {
-                    setMoment(getMoment.clone().add(1, "month"));
-                  }}
-                  src={Right}
-                ></Icon>
-              </Wrap>
-              {nextMonth ? null : <SleepAvgText>{sleepAvg}</SleepAvgText>}
-            </WrapBox>
+            <DiaryDate
+              setMoment={setMoment}
+              getMoment={getMoment}
+              nextMonth={nextMonth}
+              sleepAvg={sleepAvg}
+            ></DiaryDate>
             <br></br>
             {nextMonth ? (
-              <NoRecordBox>
-                <NoRecord></NoRecord>
-              </NoRecordBox>
+              <NoRecord></NoRecord>
             ) : (
-              <>
-                <Content>
-                  {list.map((item, index) => {
-                    return (
-                      <div key={index + 1 + "days"}>
-                        {item.feelScore && item.sleepScore ? (
-                          <>
-                            <Charater
-                              shape="charater"
-                              size="56"
-                              feelNumber={scoreList.indexOf(item.feelScore) + 1}
-                              sleepNumber={
-                                scoreList.indexOf(item.sleepScore) + 1
-                              }
-                              scoreColor={
-                                scoreColor[
-                                  scoreList.indexOf(item.sleepScore) + 1
-                                ]
-                              }
-                              _onClick={() => {
-                                diaryDetail(index + 1);
-                              }}
-                              margin="10px auto"
-                            />
-                          </>
-                        ) : (
-                          <Charater
-                            shape="charater"
-                            size="55"
-                            feelNumber={0}
-                            sleepNumber={0}
-                            sleepColor={scoreColor[0]}
-                            _onClick={() => {
-                              diaryDetail(index + 1);
-                            }}
-                            margin="10px auto"
-                          />
-                        )}
-                        <Text>{index + 1}</Text>
-                      </div>
-                    );
-                  })}
-                </Content>
-              </>
+              <DiaryRecord
+                list={list}
+                scoreList={scoreList}
+                scoreColor={scoreColor}
+                diaryDetail={diaryDetail}
+              ></DiaryRecord>
             )}
           </>
         )}
@@ -207,90 +145,5 @@ const Diary = () => {
     </>
   );
 };
-
-// --- styled-components ---
-
-const WrapBox = styled.div`
-  margin: 0 20px;
-  margin-top: 70px;
-  box-sizing: border-box;
-  border-radius: 12px;
-  background-color: ${({ theme }) => theme.colors.back};
-`;
-
-const Wrap = styled.div`
-  width: 100%;
-  line-height: 20px;
-  text-align: center;
-  border-radius: 12px;
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.lg}
-  line-height: ${({ theme }) => theme.lineHeight.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Medium};
-  display: flex;
-  justify-content: center;
-`;
-
-const YearMonth = styled.span`
-  width: 67px;
-  height: 20px;
-  margin: 17px 17px 15px 17px;
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: ${({ theme }) => theme.fontWeight.Medium};
-`;
-
-const SleepAvgText = styled.p`
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  line-height: ${({ theme }) => theme.lineHeight.small};
-  vertical-align: top;
-  margin: 0px 32px;
-  padding-bottom: 15px;
-`;
-
-const Content = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  background-color: ${({ theme }) => theme.colors.bg}};
-  color: ${({ theme }) => theme.colors.white};
-  width: 100%;
-  max-height: 470px;
-  margin: 5px auto;
-  margin-bottom: 15px;
-  text-align: center;
-  padding: 0 ${({ theme }) => theme.paddings.xxxxl};
-  box-sizing: border-box;
-  overflow-y: scroll;
-  
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const Text = styled.div`
-  font-family: "Roboto", sans-serif;
-  font-size: ${({ theme }) => theme.fontSizes.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Regular};
-  line-height: ${({ theme }) => theme.lineHeight.small};
-  vertical-align: top;
-`;
-
-const NoRecordBox = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-`;
-
-const NoRecord = styled.div`
-  position: relative;
-  height: 100%;
-  margin-top: 20px;
-  background-image: url(${NoInfo});
-  background-repeat: no-repeat;
-  background-size: 100%;
-  bottom: 0;
-`;
 
 export default Diary;

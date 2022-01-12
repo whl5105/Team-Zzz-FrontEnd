@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 // -- components --
 import ModalPopUp from "../components/ModalPopUp";
-import Notifications from "../components/Notification";
+import Notifications from "../components/notication/Notification";
 
 const PushNoticationPop = (props) => {
 
@@ -26,7 +26,6 @@ const PushNoticationPop = (props) => {
     }
   }, [notice]);
 
-  // -- jsx --
   return (
     <>
       <ModalPopUp>
@@ -55,6 +54,7 @@ const PushNoticationPop = (props) => {
   );
 };
 
+// --- styled-components ---
 const Wrap = styled.div`
   width: 335px;
   padding: 20px 20px;

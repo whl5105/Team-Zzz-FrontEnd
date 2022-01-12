@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import closeIcon from "../static/images/asmr/closeIcon.svg";
+
+// --- images ---
+import closeIcon from "../../static/images/asmr/closeIcon.svg";
 
 const SoundTrack = (props) => {
   const changeVolume = (e) => {

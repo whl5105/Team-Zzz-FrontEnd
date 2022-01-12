@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
-import { Icon } from "../../elements";
+// --- components ---
+import { Icon } from "../../elements/";
 
+// --- images ---
 import next from "../../static/images/icon/path_white.png";
 
 const Category = (props) => {

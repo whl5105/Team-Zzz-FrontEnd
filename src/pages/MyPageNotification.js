@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
-import Notifications from "../components/Notification";
+// --- components ---
+import Notifications from "../components/notication/Notification";
 import Title from "../components/Title";
 
 const MyPageNotification = (props) => {
@@ -50,12 +51,14 @@ const MyPageNotification = (props) => {
   );
 };
 
+// --- styled-components ---
 const Container = styled.div`
   width: 100%;
   height: 100vh;
   box-sizing: border-box;
   padding: 50px 0;
 `;
+
 const Content = styled.div`
   background: #272a52;
   border-radius: 12px;
