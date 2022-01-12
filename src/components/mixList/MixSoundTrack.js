@@ -137,7 +137,7 @@ const MixSoundTrack = (props) => {
   return (
     <>
       <Wrap>
-        <PlayIcon key={key}>
+        <PlayIcon>
           <Icon
             width="30px"
             height="30px"
