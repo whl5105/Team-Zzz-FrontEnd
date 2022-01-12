@@ -52,6 +52,7 @@ const TilteBox = styled.div`
   & p {
     font-size: 14px;
     font-weight: ${({ theme }) => theme.fontWeight.Medium};
+    cursor: pointer;
   }
 `;
 
