@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import RequireLogin from "../components/RequireLogin";
 
 // 아이콘 이미지 import
@@ -9,13 +9,13 @@ import { ReactComponent as Asmr } from "../static/images/navigation/asmrIcon.svg
 import { ReactComponent as Diary } from "../static/images/navigation/diaryIcon.svg";
 import { ReactComponent as MyPage } from "../static/images/navigation/myPageIcon.svg";
 
-const Navigation = () => {
+const Navigation = withRouter((props) => {
+  const pathName = props.location.pathname;
+
   const history = useHistory();
   const [diaryModal, setDiaryModal] = React.useState(false);
   const [select, setSelect] = React.useState(
-    history.location.pathname.split("/")[1] === ""
-      ? "main"
-      : history.location.pathname.split("/")[1]
+    pathName.split("/")[1] === "" ? "main" : pathName.split("/")[1]
   );
 
   const diary = () => {
@@ -23,7 +23,7 @@ const Navigation = () => {
     if (!token) {
       setDiaryModal(true);
     } else {
-      setSelect("diary");
+      // setSelect("diary");
       history.push("/diary");
     }
   };
@@ -37,13 +37,21 @@ const Navigation = () => {
     history.push("/login");
   };
 
+  React.useEffect(() => {
+    if (pathName === "/clock" || pathName === "/") {
+      setSelect("main");
+    } else {
+      setSelect(pathName.split("/")[1]);
+    }
+  }, [pathName]);
+
   return (
     <div>
       <Gnb>
         <Box
           select={select !== "main" && "null"}
           onClick={() => {
-            setSelect("main");
+            // setSelect("main");
             history.push("/");
           }}
         >
@@ -58,7 +66,7 @@ const Navigation = () => {
         <Box
           select={select !== "asmr" && "null"}
           onClick={() => {
-            setSelect("asmr");
+            // setSelect("asmr");
             history.push({ pathname: "/asmr" });
           }}
         >
@@ -82,7 +90,7 @@ const Navigation = () => {
         <Box
           select={select !== "mypage" && "null"}
           onClick={() => {
-            setSelect("mypage");
+            // setSelect("mypage");
             history.push("/mypage");
           }}
         >
@@ -99,7 +107,7 @@ const Navigation = () => {
       )}
     </div>
   );
-};
+});
 
 const Gnb = styled.div`
   width: 100%;
