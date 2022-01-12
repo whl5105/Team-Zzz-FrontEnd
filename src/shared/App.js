@@ -20,7 +20,7 @@ import Diary from "../pages/Diary";
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
 import AsmrPopUp from "../pages/AsmrPopUp";
-import MixListPopUp from "../pages/MixListPopUp";
+import MixListPopUp from "../components/mixList/MixListPopUp";
 import Mypage from "../pages/MyPage";
 import MixList from "../pages/MixList";
 import MyPageNotification from "../pages/MyPageNotification";
