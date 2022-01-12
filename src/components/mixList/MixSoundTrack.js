@@ -38,6 +38,44 @@ const MixSoundTrack = (props) => {
     setPlay(arr);
   }, [history.play]);
 
+  const playInitial = () => {
+    if (history.audio1) {
+      history.audio1.pause();
+      history.audio1 = "";
+      history.icon1 = "";
+      history.setSong1 = "";
+      history.title1 = "";
+      history.state1 = "";
+    }
+
+    if (history.audio2) {
+      history.audio2.pause();
+      history.audio2 = "";
+      history.icon2 = "";
+      history.setSong2 = "";
+      history.title2 = "";
+      history.state2 = "";
+    }
+
+    if (history.audio3) {
+      history.audio3.pause();
+      history.audio3 = "";
+      history.icon3 = "";
+      history.setSong3 = "";
+      history.title3 = "";
+      history.state3 = "";
+    }
+
+    if (history.audio4) {
+      history.audio4.pause();
+      history.audio4 = "";
+      history.icon4 = "";
+      history.setSong4 = "";
+      history.title4 = "";
+      history.state4 = "";
+    }
+  };
+
   const playSoundSetting = () => {
     if (mix1) {
       song1.src = mix1.asmrUrl1; // 음원 url
@@ -85,6 +123,7 @@ const MixSoundTrack = (props) => {
   };
 
   const playSoundTrack = () => {
+    playInitial();
     playSoundSetting();
     history.play = play;
     history.setPlay = setPlay;
