@@ -23,7 +23,7 @@ const MixListPopUp = (props) => {
     if (!playListInfo) {
       dispatch(asmrActions.getPlayListDB());
     }
-    history.mixListModal = true
+    history.mixListModal = true;
     history.setMixListModal = props.setMixListModal;
   }, []);
 
@@ -43,7 +43,7 @@ const MixListPopUp = (props) => {
         {playList.map((item, index) => {
           return (
             <MixSoundTrack
-              key={`mix${index}`}
+              key={item.mixIdx}
               mixTitle={item.mixTitle}
               mix1={item.mix1}
               mix2={item.mix2}

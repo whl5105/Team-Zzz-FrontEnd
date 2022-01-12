@@ -26,6 +26,7 @@ const initialState = {
   asmrList: [],
   playList: [
     {
+      mixIdx: "2",
       mixTitle: "음원 재생한다",
       mix1: {
         asmrUrl1:
