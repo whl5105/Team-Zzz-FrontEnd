@@ -32,7 +32,7 @@ const Header = withRouter((props) => {
       "_blank"
     );
   };
-  
+
   return (
     <div>
       <HeaderBox>
@@ -92,9 +92,10 @@ const HoverImage = styled.img`
 
   & + .playListHover {
     position: relative;
-    width: 72px;
-    right: 30px;
-    height: 21.6px;
+    width: 92px;
+    height: 32px;
+    right: 3px;
+    top: 30px;
     background-image: url(${(props) => props.hoverImage});
     background-repeat: no-repeat;
     background-size: cover;
