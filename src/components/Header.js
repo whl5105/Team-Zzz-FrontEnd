@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 
 // --- components ---
 import Icon from "../elements/Icon.js";
+import MixListPopUp from "../pages/MixListPopUp.js";
 
 // --- images ---
 import Logo from "../static/images/header/logo.svg";
@@ -14,7 +15,21 @@ import Hover from "../static/images/header/hover.png";
 
 const Header = withRouter((props) => {
   const path = props.location.pathname;
+  const [mixListModal, setMixListModal] = React.useState(false);
 
+  const playListPopUp = () => {
+    setMixListModal(true);
+  };
+
+  const closeModal = () => {
+    setMixListModal(false);
+  };
+  const PageLink = () => {
+    window.open(
+      "https://docs.google.com/forms/d/e/1FAIpQLSfdn7OIKJYKQLfzNScDvBSCvv07yH9cuyjORoNyE_GNHfaG_w/viewform?vc=0&c=0&w=1&flr=0",
+      "_blank"
+    );
+  };
   return (
     <div>
       <HeaderBox>
@@ -25,7 +40,7 @@ const Header = withRouter((props) => {
             history.push("/");
           }}
         />
-        {path === "/asmr" ? (
+        {path === "/asmr" || path === "/asmrPop" ? (
           <>
             <HoverImage
               src={PlayList}
@@ -33,13 +48,16 @@ const Header = withRouter((props) => {
               position="absolute"
               right="23px"
               hoverImage={Hover}
+              onClick={playListPopUp}
             />
             <img className="playListHover" alt=""></img>
           </>
         ) : (
-          <Icon src={Writing} alt="writing" />
+          <Icon src={Writing} alt="writing" _onClick={PageLink} />
         )}
       </HeaderBox>
+
+      {mixListModal && <MixListPopUp close={closeModal}></MixListPopUp>}
     </div>
   );
 });
@@ -64,7 +82,7 @@ const HoverImage = styled.img`
   right: ${(props) => props.right};
   cursor: pointer;
 
-  &:hover ~ .playListHover {
+  & + .playListHover {
     position: relative;
     width: 72px;
     right: 30px;

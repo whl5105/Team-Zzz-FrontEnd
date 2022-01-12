@@ -31,10 +31,12 @@ const Title = (props) => {
     </TilteBox>
   );
 };
+
 //-- defaultProps --
 Title.defaultProps = {
   justifySB: false,
 };
+
 const TilteBox = styled.div`
   width: 100%;
   display: flex;

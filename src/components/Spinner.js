@@ -28,7 +28,6 @@ const Outter = styled.div`
   background-image: url(${SpinnerImage});
   background-repeat: no-repeat;
   background-position: center center;
-  z-index: 10000;
 `;
 
 const Loading = styled.div`
