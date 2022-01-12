@@ -43,6 +43,7 @@ const SoundTrack = (props) => {
       // calculate the new cursor position:
       clientX_gap = e.clientX - clientX; // 실질적으로 값이 0 이라고 생각할수있지만 코드 순서상 최신 clientX 값이 1이라고 한다면 눌르고 마우스 이동하면 e.clienX이 2가 되고 2-1이므로 1이라는 gap이 생긴다.
       clientX = e.clientX;
+
       // console.log(clientX_gap)
 
       let leftVal = 0;
