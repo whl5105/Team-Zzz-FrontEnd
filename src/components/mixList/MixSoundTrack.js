@@ -36,7 +36,7 @@ const MixSoundTrack = (props) => {
     }
 
     setPlay(arr);
-  }, []);
+  }, [history.play]);
 
   const playSoundSetting = () => {
     if (mix1) {
@@ -47,6 +47,7 @@ const MixSoundTrack = (props) => {
       history.icon1 = mix1.iconUrl1; // 아이콘 url
       history.state1 = mix1.asmrUrl1; //음원 url
       history.title1 = mix1.title1; // 음원 제목
+      song1.play();
     }
 
     if (mix2) {
@@ -57,6 +58,7 @@ const MixSoundTrack = (props) => {
       history.icon2 = mix2.iconUrl2;
       history.state2 = mix2.asmrUrl2;
       history.title2 = mix2.title2;
+      song2.play();
     }
 
     if (mix3) {
@@ -67,6 +69,7 @@ const MixSoundTrack = (props) => {
       history.icon3 = mix3.iconUrl3;
       history.state3 = mix3.asmrUrl3;
       history.title3 = mix3.title3;
+      song3.play();
     }
 
     if (mix4) {
@@ -77,11 +80,12 @@ const MixSoundTrack = (props) => {
       history.icon4 = mix4.iconUrl4;
       history.state4 = mix4.asmrUrl4;
       history.title4 = mix4.title;
+      song4.play();
     }
   };
 
-  const playSoundTrack = async () => {
-    await playSoundSetting();
+  const playSoundTrack = () => {
+    playSoundSetting();
     history.play = play;
     history.setPlay = setPlay;
     history.setPlaybar(play);

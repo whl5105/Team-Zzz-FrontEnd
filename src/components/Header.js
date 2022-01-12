@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 
 // --- components ---
 import Icon from "../elements/Icon.js";
-import MixListPopUp from "../pages/MixListPopUp.js";
+import MixListPopUp from "../components/mixList/MixListPopUp";
 
 // --- images ---
 import Logo from "../static/images/header/logo.svg";

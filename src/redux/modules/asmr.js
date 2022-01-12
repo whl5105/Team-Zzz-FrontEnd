@@ -33,7 +33,7 @@ const initialState = {
         sound1: "22",
         url: "음원 정보1",
         iconUrl1: "사진",
-        title1: "타이틀"
+        title1: "공원"
       },
       mix2: {
         asmrUrl2:
@@ -41,7 +41,7 @@ const initialState = {
         sound2: "22",
         url: "음원 정보2",
         iconUrl2: "사진",
-        title2: "타이틀"
+        title2: "도서관"
       },
     },
   ],

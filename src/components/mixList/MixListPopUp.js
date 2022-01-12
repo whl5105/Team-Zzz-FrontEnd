@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { history } from "../redux/configureStore";
-import { actionCreators as asmrActions } from "../redux/modules/asmr";
+import { history } from "../../redux/configureStore";
+import { actionCreators as asmrActions } from "../../redux/modules/asmr";
 import { useDispatch, useSelector } from "react-redux";
 
 // --- components ---
-import ModalPopUp from "../components/ModalPopUp";
-import Icon from "../elements/Icon";
-import MixSoundTrack from "../components/mixList/MixSoundTrack";
+import ModalPopUp from "../ModalPopUp";
+import Icon from "../../elements/Icon";
+import MixSoundTrack from "./MixSoundTrack";
 
 // --- images ---
-import MixSetting from "../static/images/mixList/setting.png";
+import MixSetting from "../../static/images/mixList/setting.png";
 
 const MixListPopUp = (props) => {
   const dispatch = useDispatch();
