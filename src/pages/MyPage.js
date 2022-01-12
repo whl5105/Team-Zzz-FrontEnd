@@ -7,6 +7,7 @@ import { actionCreators as noticeActions } from "../redux/modules/notice";
 // 아이콘 이미지 import
 import user from "../static/images/mypage/user_white.png";
 import notice from "../static/images/mypage/notes_white.png";
+import mixList from "../static/images/mypage/mixList_white.png";
 
 import Title from "../components/Title";
 import List from "../components/mypage/List";
@@ -26,7 +27,9 @@ const Mypage = (props) => {
     return (
       <React.Fragment>
         <Container>
-          <Title is_token>마이페이지</Title>
+          <Title is_token justifySB>
+            마이페이지
+          </Title>
           <AlarmBanner
             _onClick={() => history.push(`/mypageNotice/${userIdx}`)}
           ></AlarmBanner>
@@ -41,6 +44,9 @@ const Mypage = (props) => {
 
           <List icon={notice} _onClick={() => history.push("/notice")}>
             공지사항
+          </List>
+          <List icon={mixList} _onClick={() => history.push("/myPage/mixList")}>
+            내믹스
           </List>
         </Container>
       </React.Fragment>

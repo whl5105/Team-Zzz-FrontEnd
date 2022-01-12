@@ -6,6 +6,7 @@ import { deleteSong } from "../pages/Asmr";
 import playIcon from "../static/images/play/play.png";
 import volumeIcon from "../static/images/play/volume.png";
 import closeIcon from "../static/images/play/close.png";
+import pauseIcon from "../static/images/play/pause.png";
 
 const PlayBar = (props) => {
   const [toggle, setToggle] = React.useState(false);
@@ -137,7 +138,7 @@ const PlayBar = (props) => {
               <Icon src={volumeIcon} onClick={() => history.push("/asmrPop")} />
               {/* 임시이미지 적용중 */}
               <Icon
-                src={playIcon}
+                src={pauseIcon}
                 onClick={() => (pause(), setToggle(!toggle))}
               />
             </>
