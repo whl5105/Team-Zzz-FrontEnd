@@ -60,9 +60,8 @@ const MixListPopUp = (props) => {
 const Container = styled.div`
   position: relative;
   width: 375px;
-  height: 651px;
-  bottom: 0px;
-  top: 25px;
+  height: 660px;
+  bottom: -55px;
   padding: ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.bg};
