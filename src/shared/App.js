@@ -85,15 +85,9 @@ function App() {
 const WrapBox = styled.div`
   width: 100vw;
   touch-action: auto;
-  /* height: 100vh; */
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* height: 100vh; */
 `;
 
 const Wrap = styled.div`
-  /* min-width: 400px; */
   width: 375px;
   height: 94%;
   background-color: ${({ theme }) => theme.colors.bg};
@@ -101,19 +95,15 @@ const Wrap = styled.div`
   top: 50%;
   right: 17%;
   transform: translateY(-50%);
-  border: 1px solid #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
   @media (max-width: 500px) {
     min-width: 335px;
-    /* background-color: lightblue; */
     width: 100%;
     height: 100vh;
     right: 0;
   }
 `;
-const Container = styled.div`
-  /* padding-top: 50px; */
-  /* padding: 50px ${({ theme }) => theme.paddings.xxxxl}; */
-`;
+const Container = styled.div``;
 
 export default App;

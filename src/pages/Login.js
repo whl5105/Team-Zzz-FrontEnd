@@ -10,6 +10,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import reset from "../static/images/icon/reset.svg";
 
 import Success from "../components/Success";
+import Kakao from "../components/Kakao";
 
 const Login = () => {
   const first_signup = useSelector((store) => store.user.is_signup);
@@ -109,24 +110,24 @@ const Login = () => {
       ) : (
         <Span></Span>
       )}
-      <div>
-        <Button type="submit" onClick={loginClick}>
-          로그인
-        </Button>
-        <SignUp
-          type="submit"
-          onClick={() => {
-            history.push("/signup");
-          }}
-        >
-          <p>회원가입하기</p>
-        </SignUp>
-      </div>
+
+      <Button type="submit" onClick={loginClick}>
+        로그인
+      </Button>
+      <SignUp
+        type="submit"
+        onClick={() => {
+          history.push("/signup");
+        }}
+      >
+        <p>회원가입하기</p>
+      </SignUp>
+      <Social>or</Social>
+      <Kakao />
+
+      {/* 회원가입 성공 유저 팝업 */}
       {first_signup ? (
-        <Success
-          alt="회원가입 성공"
-          text="회원가입에 성공하였습니다"
-        ></Success>
+        <Success alt="회원가입 성공" text="회원가입에 성공하였습니다"></Success>
       ) : (
         ""
       )}
@@ -150,7 +151,6 @@ const InputBox = styled.div`
 `;
 const Span = styled.span`
   height: 54px;
-  /* margin: 17px 0; */
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   display: flex;
@@ -176,7 +176,6 @@ const Button = styled.button`
 `;
 
 const SignUp = styled.div`
-  width: 100%;
   margin: 20px auto;
   text-align: center;
   color: ${({ theme }) => theme.colors.white};
@@ -186,17 +185,30 @@ const SignUp = styled.div`
   cursor: pointer;
   & p {
     display: inline-block;
-    position: relative;
-    ::before {
-      content: "";
-      width: 100%;
-      height: 1px;
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      z-index: 100;
-      background-color: ${({ theme }) => theme.colors.white};
-    }
+    border-bottom: 1px solid ${({ theme }) => theme.colors.white};
+  }
+`;
+const Social = styled.div`
+  position: relative;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.white};
+  font-family: "Roboto", sans-serif;
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  font-weight: ${({ theme }) => theme.fontWeight.Medium};
+  ::before,
+  ::after {
+    content: "";
+    width: 40%;
+    height: 1px;
+    position: absolute;
+    top: 57%;
+    background-color: ${({ theme }) => theme.colors.gray_7};
+  }
+  ::before {
+    left: 0;
+  }
+  ::after {
+    right: 0;
   }
 `;
 
