@@ -28,18 +28,18 @@ const Outter = styled.div`
   background-image: url(${SpinnerImage});
   background-repeat: no-repeat;
   background-position: center center;
-  z-index: 1000000;
+  z-index: 10000;
 `;
 
 const Loading = styled.div`
-  top: 40%;
+  position: absolute;
+  top: 430px;
   left: 45%;
   width: 53px;
   height: 18px;
   font-size: ${({ theme }) => theme.fontSizes.xl};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   color: ${({ theme }) => theme.colors.white};
-  position: absolute;
 
   & > Label:nth-child(1) {
     animation: jumb 2s infinite;
