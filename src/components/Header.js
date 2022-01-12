@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 
 // --- components ---
 import Icon from "../elements/Icon.js";
+import MixListPopUp from "../pages/MixListPopUp.js";
 
 // --- images ---
 import Logo from "../static/images/header/logo.svg";
@@ -14,6 +15,15 @@ import Hover from "../static/images/header/hover.png";
 
 const Header = withRouter((props) => {
   const path = props.location.pathname;
+  const [mixListModal, setMixListModal] = React.useState(false);
+
+  const playListPopUp = () => {
+    setMixListModal(true);
+  };
+  
+  const closeModal = () => {
+    setMixListModal(false);
+  }
 
   return (
     <div>
@@ -33,6 +43,7 @@ const Header = withRouter((props) => {
               position="absolute"
               right="23px"
               hoverImage={Hover}
+              onClick={playListPopUp}
             />
             <img className="playListHover" alt=""></img>
           </>
@@ -40,6 +51,8 @@ const Header = withRouter((props) => {
           <Icon src={Writing} alt="writing" />
         )}
       </HeaderBox>
+
+      {mixListModal && <MixListPopUp close={closeModal}></MixListPopUp>}
     </div>
   );
 });
