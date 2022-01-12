@@ -23,6 +23,7 @@ const Header = withRouter((props) => {
 
   const closeModal = () => {
     setMixListModal(false);
+    history.push("/");
   };
 
   const PageLink = () => {
