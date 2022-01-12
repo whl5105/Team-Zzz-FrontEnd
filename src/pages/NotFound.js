@@ -35,16 +35,4 @@ const P = styled.p`
   margin-top: 226px;
 `;
 
-// const Button = styled.button`
-//   width: 295px;
-//   height: 48px;
-//   border-radius: 8px;
-//   color: ${({ theme }) => theme.colors.white};
-//   font-weight: ${({ theme }) => theme.fontWeight.Bold};
-//   font-size: ${({ theme }) => theme.fontSizes.base};
-//   background-color: ${({ theme }) => theme.colors.main_1};
-//   margin: 110px ${({ theme }) => theme.paddings.small};
-//   line-height: 35px;
-// `;
-
 export default NotFound;

@@ -52,7 +52,7 @@ function App() {
                   component={FirstNotification}
                 ></Route>
                 <Route path="/diary" exact component={Diary}></Route>
-                <Route path="/asmr" exact component={Asmr}></Route>
+                <Route path="/asmr" component={Asmr}></Route>
                 <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
                 <Route
                   path="/asmr/mixListPopUp"

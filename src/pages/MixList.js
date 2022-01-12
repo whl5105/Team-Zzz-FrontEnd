@@ -6,7 +6,7 @@ import Title from "../components/Title";
 const MixList = (props) => {
   return (
     <Container>
-      <Title backIcon>내 믹스</Title>
+      <Title backIcon>나의 믹스</Title>
     </Container>
   );
 };

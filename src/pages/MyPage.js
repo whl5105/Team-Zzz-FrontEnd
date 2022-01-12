@@ -46,7 +46,7 @@ const Mypage = (props) => {
             공지사항
           </List>
           <List icon={mixList} _onClick={() => history.push("/myPage/mixList")}>
-            내믹스
+            나의 믹스
           </List>
         </Container>
       </React.Fragment>
