@@ -5,7 +5,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 
 import { Icon } from "../elements";
-import back from "../static/images/mypage/path_L_white.png";
+import back from "../static/images/mypage/arrow_L_W.svg";
 
 const Title = (props) => {
   const { is_token, backIcon, justifySB } = props;

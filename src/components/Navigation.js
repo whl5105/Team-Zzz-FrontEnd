@@ -103,12 +103,13 @@ const Navigation = () => {
 
 const Gnb = styled.div`
   width: 100%;
+  height: 56px;
   position: absolute;
   bottom: 0;
   display: flex;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.colors.bg};
-  padding: 8px 20px 6px 20px;
+  padding: 8px 24px 6px 24px;
   text-align: center;
   box-sizing: border-box;
   color: ${({ theme }) => theme.colors.white};
@@ -132,8 +133,12 @@ const Box = styled.div`
     color: ${(props) => (props.select !== "null" ? "#FBC037" : "#ffffff")};
   }
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  & svg {
+    margin: 0 auto;
+  }
 `;
-
 const P = styled.p`
   width: 75px;
   height: 18px;
@@ -141,13 +146,5 @@ const P = styled.p`
   line-height: ${({ theme }) => theme.lineHeight.ssmall};
   font-weight: ${({ theme }) => theme.fontWeight.Regular};
 `;
-
-// const Icon = styled.div`
-//   width: 24px;
-//   height: 24px;
-//   background-image: url(${(props) => props.categoryImage});
-//   background-repeat: no-repeat;
-//   margin: auto;
-// `;
 
 export default Navigation;

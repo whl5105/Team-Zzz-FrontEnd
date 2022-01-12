@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Icon } from "../../elements";
 
 import alarmBanner from "../../static/images/mypage/alarmBanner.png";
-import path from "../../static/images/mypage/path_black.png";
+import path from "../../static/images/mypage/arrow_R_B.svg";
 
 const AlarmBanner = (props) => {
   const { _onClick } = props;

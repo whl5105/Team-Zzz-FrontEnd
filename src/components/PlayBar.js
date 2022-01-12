@@ -149,15 +149,12 @@ const PlayBar = (props) => {
     </React.Fragment>
   );
 };
-// const Icon = (props) => {
-//   return <Box src={props.src}>{props.children}</Box>;
-// };
 
 const Wrap = styled.div`
   width: calc(100% - 40px);
   height: 72px;
   position: absolute;
-  bottom: 80px;
+  bottom: 76px;
   left: 0;
   display: flex;
   justify-content: space-evenly;
@@ -189,12 +186,5 @@ const Icon = styled.div`
   background-repeat: no-repeat;
   margin-right: 12px;
 `;
-
-// const Box = styled.div`
-//   width: 50px;
-//   height: 50px;
-//   background-image: url(${(props) => props.src});
-//   background-repeat: no-repeat;
-// `;
 
 export default PlayBar;
