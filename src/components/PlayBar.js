@@ -120,6 +120,13 @@ const PlayBar = (props) => {
     setPlaybar([]);
   };
 
+  const asmrPopMove = () => {
+    if (history.mixListModal) {
+      history.setMixListModal(false);
+    }
+    history.push("/asmrPop");
+  };
+
   return (
     <React.Fragment>
       {playbar.length > 0 ? (
@@ -127,7 +134,7 @@ const PlayBar = (props) => {
           <Text>{toggle ? "pause..." : "편안하게 소리를 감상해보세요"}</Text>
           {toggle ? (
             <>
-              <Icon src={volumeIcon} onClick={() => history.push("/asmrPop")} />
+              <Icon src={volumeIcon} onClick={asmrPopMove} />
               <Icon
                 src={playIcon}
                 onClick={() => (play(), setToggle(!toggle))}
@@ -135,7 +142,7 @@ const PlayBar = (props) => {
             </>
           ) : (
             <>
-              <Icon src={volumeIcon} onClick={() => history.push("/asmrPop")} />
+              <Icon src={volumeIcon} onClick={asmrPopMove} />
               {/* 임시이미지 적용중 */}
               <Icon
                 src={pauseIcon}
