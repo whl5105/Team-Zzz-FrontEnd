@@ -112,7 +112,6 @@ const Diary = () => {
     setModalData(data);
   };
 
-  // --- jsx ---
   return (
     <>
       <div>

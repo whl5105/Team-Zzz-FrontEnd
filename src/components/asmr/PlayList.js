@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators as asmrActions } from "../../redux/modules/asmr";
 
 // --- components ---
-import ModalPopUp from "../ModalPopUp"
+import ModalPopUp from "../ModalPopUp";
 import Input from "../../elements/Input";
 import Button from "../../elements/Button";
 
@@ -78,10 +78,10 @@ const PlayList = (props) => {
         <Wrap>
           <Title>나만의 ASMR 믹스 만들기</Title>
           <Input
-            resetInput
+            resetInput={title === "" || title === undefined ? false : true}
             src={reset}
             alt="resetButton"
-            placeholder="나의 믹스 (믹스명은 최대 18자 입력 가능)"
+            placeholder="나의 믹스(믹스명은 최대 18자 입력 가능)"
             name="mixTitle"
             height="52px"
             marginT="20px"
