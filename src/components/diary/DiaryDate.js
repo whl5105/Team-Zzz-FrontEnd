@@ -75,8 +75,8 @@ const SleepAvgText = styled.p`
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   line-height: ${({ theme }) => theme.lineHeight.small};
   vertical-align: top;
-  margin: 0px 32px;
   padding-bottom: 15px;
+  text-align: center;
 `;
 
 export default DiaryDate;
