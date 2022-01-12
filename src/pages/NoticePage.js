@@ -14,7 +14,7 @@ const NoticePage = (props) => {
   return (
     <React.Fragment>
       <Container>
-        <Title>공지사항</Title>
+        <Title backIcon >공지사항</Title>
         {!toggle ? (
           <List icon={notes} src={path_B} _onClick={() => setToggle(!toggle)}>
             저작권 명시

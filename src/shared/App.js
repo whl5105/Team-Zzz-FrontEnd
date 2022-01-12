@@ -21,6 +21,7 @@ import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
 import AsmrPopUp from "../pages/AsmrPopUp";
 import Mypage from "../pages/MyPage";
+import MixList from "../pages/MixList";
 import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
@@ -53,6 +54,7 @@ function App() {
                 <Route path="/asmr" exact component={Asmr}></Route>
                 <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
                 <Route path="/mypage" exact component={Mypage} />
+                <Route path="/mypage/mixList" exact component={MixList} />
                 <Route
                   path="/mypageNotice/:userIdx"
                   exact
