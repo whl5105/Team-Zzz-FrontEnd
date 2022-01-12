@@ -167,6 +167,7 @@ const Wrap = styled.div`
   & .lastIcon:last-child {
     margin: 0;
   }
+  z-index: 135;
 `;
 
 const Text = styled.span`
@@ -178,6 +179,7 @@ const Text = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
 `;
+
 const Icon = styled.div`
   min-width: 36px;
   min-height: 36px;

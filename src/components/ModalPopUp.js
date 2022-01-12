@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const ModalPopUp = (props) => {
-  const { children, close, backgroundNull } = props;
-  const styles = { backgroundNull: backgroundNull };
+  const { children, close, backgroundNull, zIndex } = props;
+  const styles = { backgroundNull: backgroundNull, zIndex: zIndex };
 
   return (
     <React.Fragment>
@@ -28,7 +28,7 @@ const Children = styled.div`
   width: ${(props) => props.width};
   background-color: ${(props) => (props.backgroundNull ? null : "#fff")};
   border-radius: 12px;
-  z-index: 999;
+  z-index: ${(props) => (props.zIndex ? props.zIndex : "999")};
   position: absolute;
   top: 50%;
   left: 50%;

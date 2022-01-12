@@ -20,10 +20,10 @@ const Header = withRouter((props) => {
   const playListPopUp = () => {
     setMixListModal(true);
   };
-  
+
   const closeModal = () => {
     setMixListModal(false);
-  }
+  };
 
   return (
     <div>
@@ -35,7 +35,7 @@ const Header = withRouter((props) => {
             history.push("/");
           }}
         />
-        {path === "/asmr" ? (
+        {path === "/asmr" || path === "/asmrPop" ? (
           <>
             <HoverImage
               src={PlayList}
@@ -77,7 +77,7 @@ const HoverImage = styled.img`
   right: ${(props) => props.right};
   cursor: pointer;
 
-  &:hover ~ .playListHover {
+  & + .playListHover {
     position: relative;
     width: 72px;
     right: 30px;
