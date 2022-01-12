@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import { history } from "../../redux/configureStore";
 import { useDispatch } from "react-redux";
 import { actionCreators as asmrActions } from "../../redux/modules/asmr";
@@ -76,7 +77,7 @@ const PlayList = (props) => {
     <>
       <ModalPopUp close={close}>
         <Wrap>
-          <Title>나만의 ASMR 믹스 만들기</Title>
+          <Title>나의 믹스 만들기</Title>
           <Input
             resetInput={title === "" || title === undefined ? false : true}
             src={reset}

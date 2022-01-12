@@ -13,39 +13,42 @@ const SoundTrack = (props) => {
   function dragElement(elmnt) {
     let clientX_gap = 0,
       clientX = 0;
-    if (document.getElementById(elmnt.id)) {
-      // if present, the header is where you move the DIV from:
-      document.getElementById(elmnt.id).onmousedown = dragMouseDown; // onmousedown 은 마우스가 클릭했을떄 event 발생
-    } else {
+
       // otherwise, move the DIV from anywhere inside the DIV:
       elmnt.onmousedown = dragMouseDown;
-    }
-
+      // elmnt.addEventListener('touchstart',dragMouseDown) //mobile
+      elmnt.ontouchstart = dragMouseDown;  // 19번줄이나 20번줄이나 같음
+    
     function dragMouseDown(e) {
       // e = e || window.event; // window.event 는 검색해보면 this feature is no longer recommended 라고 뜬다
       e.preventDefault();
       // get the mouse cursor position at startup:
       clientX = e.clientX;
       document.onmouseup = closeDragElement;
+      document.addEventListener('touchend',closeDragElement); //mobile
       // call a function whenever the cursor moves:
       document.onmousemove = elementDrag; //마우스가 움직일때마다 elementDrag 함수 발생, 근데 클릭하는 이벤트 함수에서 있으므로 누르고 움직일때 발생
+      document.addEventListener('touchmove',elementDrag); //mobile
     }
 
     function elementDrag(e) {
       // e = e || window.event;
       e.preventDefault();
+      
+      if (e.changedTouches) { // mobile
+        e.clientX = e.changedTouches[0].clientX // mobile과 웹 의 clienX 값은 다르긴 하다.
+        // console.log(e.clientX)
+      }
+      // console.log(e.clientX)
       // calculate the new cursor position:
       clientX_gap = e.clientX - clientX; // 실질적으로 값이 0 이라고 생각할수있지만 코드 순서상 최신 clientX 값이 1이라고 한다면 눌르고 마우스 이동하면 e.clienX이 2가 되고 2-1이므로 1이라는 gap이 생긴다.
       clientX = e.clientX;
-      console.log(elmnt.offsetLeft);
+
+      // console.log(clientX_gap)
+
       let leftVal = 0;
       let parentElmnt = elmnt.parentNode; // 선택한 태그의 부모노트값을 가져온다.
-      console.log(
-        elmnt.offsetLeft + clientX_gap,
-        parentElmnt.clientWidth,
-        clientX,
-        parentElmnt.offsetLeft + parentElmnt.clientWidth
-      );
+
       if (
         elmnt.offsetLeft + clientX_gap < 0 ||
         clientX < parentElmnt.offsetLeft
@@ -65,29 +68,28 @@ const SoundTrack = (props) => {
       //offsetLeft는 브라우저의 좌표(e.clientX)가 아닌현재 선택한 태그의 전체를 둘러싼 위치에서 시작해서 그곳에서 떨어진 x값이 된다.
       else {
         leftVal = elmnt.offsetLeft + clientX_gap;
-        console.log(leftVal, elmnt.offsetLeft);
       }
       elmnt.style.left = leftVal + "px"; // 실질적으로 이동시키는 소스, 해당 style에 left 값을 수정, pos1은 -1이므로 +1씩 이동된다고 생각하면 된다.
 
       b = elmnt.style.left.split("px")[0] * 0.01; // 내가 필요한 실질적으로 볼륨 값
       props.song.volume = b;
       props.setVolume(b * 100);
-      console.log(props.volmue, props.song.volmue);
       setB(b);
-      console.log(b);
     }
 
     function closeDragElement() {
       // stop moving when mouse button is released:
       document.onmouseup = null;
+      document.removeEventListener('touchend', closeDragElement);
       document.onmousemove = null; // 마우스를 대면 움직일때 발생했던 함수도 초기화 해서 아무 함수에도 들어가지 않게 해준다.
+      document.removeEventListener('touchmove', elementDrag);
     }
   }
 
-  const changeVolume = (e) => {
-    props.setVolume(e.target.value);
-    props.song.volume = e.target.value * 0.01; // 볼륨 바의 value 범위를 1~100에서 주었고 audio경우 0~1 이 범위이기때문에 0.01을 곱해줌
-  };
+  // const changeVolume = (e) => {
+  //   props.setVolume(e.target.value);
+  //   props.song.volume = e.target.value * 0.01; // 볼륨 바의 value 범위를 1~100에서 주었고 audio경우 0~1 이 범위이기때문에 0.01을 곱해줌
+  // };
 
   return (
     <>
@@ -200,6 +202,7 @@ const Circle = styled.div`
   width: 20px;
   height: 20px;
   transform: translate(-50%, -50%);
+  touch-action: none;
 `;
 
 const Span = styled.span`

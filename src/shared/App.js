@@ -95,7 +95,6 @@ const WrapBox = styled.div`
 const Wrap = styled.div`
   /* min-width: 400px; */
   width: 375px;
-  /* height: 812px; */
   height: 94%;
   background-color: ${({ theme }) => theme.colors.bg};
   position: absolute;
