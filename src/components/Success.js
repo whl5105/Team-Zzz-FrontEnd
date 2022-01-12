@@ -16,7 +16,7 @@ const Success = (props) => {
 };
 
 const SuccessBtn = styled.button`
-  width: 235px;
+  width: 215px;
   border: none;
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.bg};
