@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Charater from "../elements/Charater";
+
+// --- components ---
+import Charater from "../../elements/Charater";
 
 const SleepBox = (props) => {
   const { previewSleep } = props;
@@ -57,6 +59,8 @@ const SleepBox = (props) => {
     </Container>
   );
 };
+
+// --- styled-components ---
 const Container = styled.div`
   text-align: center;
   font-size: ${({ theme }) => theme.fontSizes.small};
@@ -69,6 +73,7 @@ const Container = styled.div`
     padding-bottom: 15px;
   }
 `;
+
 const Sleep = styled.div`
   display: flex;
   justify-content: space-between;
@@ -77,6 +82,7 @@ const Sleep = styled.div`
   position: relative;
   height: 74px;
 `;
+
 const SleepItem = styled.div`
   width: 20%;
 `;

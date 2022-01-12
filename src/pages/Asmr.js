@@ -7,8 +7,8 @@ import { history } from "../redux/configureStore";
 
 // -- components --
 import Spinner from "../components/Spinner";
-import AsmrCategory from "../components/AsmrCategory";
-import AsmrList from "../components/AsmrList";
+import AsmrCategory from "../components/asmr/AsmrCategory";
+import AsmrList from "../components/asmr/AsmrList";
 import Success from "../components/Success";
 
 // -- images --

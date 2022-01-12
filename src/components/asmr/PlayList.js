@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { history } from "../redux/configureStore";
+import { history } from "../../redux/configureStore";
 import { useDispatch } from "react-redux";
-import { actionCreators as asmrActions } from "../redux/modules/asmr";
+import { actionCreators as asmrActions } from "../../redux/modules/asmr";
 
 // --- components ---
-import ModalPopUp from "./ModalPopUp";
-import Input from "../elements/Input";
-import Button from "../elements/Button";
+import ModalPopUp from "../ModalPopUp"
+import Input from "../../elements/Input";
+import Button from "../../elements/Button";
 
 // --- images ---
-import reset from "../static/images/icon/reset.svg";
+import reset from "../../static/images/icon/reset.svg";
 
 const PlayList = (props) => {
   const [title, setTitle] = React.useState();

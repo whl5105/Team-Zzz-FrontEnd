@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { history } from "../redux/configureStore";
+import { history } from "../../redux/configureStore";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Autoplay } from "swiper/core";
 import "swiper/css";
 import "swiper/css/pagination";
 
 // --- images ---
-import banner1 from "../static/images/banner/Main_BN_335px_1.png";
-import banner2 from "../static/images/banner/Main_BN_335px_2.png";
-import banner3 from "../static/images/banner/Main_BN_335px_3.png";
+import banner1 from "../../static/images/banner/Main_BN_335px_1.png";
+import banner2 from "../../static/images/banner/Main_BN_335px_2.png";
+import banner3 from "../../static/images/banner/Main_BN_335px_3.png";
 
 SwiperCore.use([Pagination, Autoplay]);
 

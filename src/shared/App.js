@@ -8,7 +8,7 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
 //page
-import BackGround from "../components/Background";
+import BackGround from "../components/main/Background";
 import NotFound from "../pages/NotFound";
 import Main from "../pages/Main";
 import FirstNotification from "../pages/FirstNotification";

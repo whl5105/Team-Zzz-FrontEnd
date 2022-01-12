@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Charater from "../elements/Charater";
+
+// --- components ---
+import Charater from "../../elements/Charater";
 
 const FeelBox = (props) => {
   const { previewFeel, feelNumber } = props;
@@ -11,6 +13,7 @@ const FeelBox = (props) => {
     { text: "상쾌", score: 4, color: "#EE8BA7" },
     { text: "몽롱", score: 2, color: "#C793DC" },
   ]);
+
   return (
     <Container>
       <h3>자고 일어난후 느낌</h3>
@@ -59,6 +62,8 @@ const FeelBox = (props) => {
     </Container>
   );
 };
+
+// --- styled-components ---
 const Container = styled.div`
   text-align: center;
   font-size: ${({ theme }) => theme.fontSizes.small};
