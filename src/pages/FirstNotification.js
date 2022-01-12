@@ -56,7 +56,7 @@ const PushNoticationPop = (props) => {
 
 // --- styled-components ---
 const Wrap = styled.div`
-  width: 335px;
+  width: 331px;
   padding: 20px 20px;
   box-sizing : border-box;
 `;

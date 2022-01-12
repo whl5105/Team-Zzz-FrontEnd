@@ -329,7 +329,7 @@ const Wrap = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
   padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
   box-sizing: border-box;
-  z-index: 100;
+  z-index: 140;
 `;
 
 export default Asmr;

@@ -20,6 +20,7 @@ import Diary from "../pages/Diary";
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
 import AsmrPopUp from "../pages/AsmrPopUp";
+import MixListPopUp from "../pages/MixListPopUp";
 import Mypage from "../pages/MyPage";
 import MixList from "../pages/MixList";
 import MyPageNotification from "../pages/MyPageNotification";
@@ -53,6 +54,7 @@ function App() {
                 <Route path="/diary" exact component={Diary}></Route>
                 <Route path="/asmr" exact component={Asmr}></Route>
                 <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
+                <Route path="/asmr/mixListPopUp" exact component={MixListPopUp}></Route>
                 <Route path="/mypage" exact component={Mypage} />
                 <Route path="/mypage/mixList" exact component={MixList} />
                 <Route

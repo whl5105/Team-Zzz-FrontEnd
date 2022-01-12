@@ -164,10 +164,10 @@ const Wrap = styled.div`
   justify-content: space-evenly;
   padding: 18px 20px;
   box-sizing: border-box;
-
   & .lastIcon:last-child {
     margin: 0;
   }
+  z-index: 135;
 `;
 
 const Text = styled.span`
@@ -179,6 +179,7 @@ const Text = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
 `;
+
 const Icon = styled.div`
   min-width: 36px;
   min-height: 36px;
