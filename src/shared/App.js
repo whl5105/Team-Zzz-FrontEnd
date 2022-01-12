@@ -28,6 +28,7 @@ import NoticePage from "../pages/NoticePage";
 import PlayBar from "../components/PlayBar";
 
 function App() {
+
   return (
     <WrapBox id="app">
       <BackGround />
