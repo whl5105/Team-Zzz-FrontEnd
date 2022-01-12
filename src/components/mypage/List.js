@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../../redux/configureStore";
 
-import path from "../../static/images/mypage/path_white.png";
+import path from "../../static/images/mypage/arrow_R_W.svg";
 import { Icon } from "../../elements";
 
 const List = (props) => {

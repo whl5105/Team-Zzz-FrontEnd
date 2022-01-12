@@ -35,7 +35,7 @@ const SoundSelect = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100%;
-  max-height: calc(100% - 254px);
+  max-height: calc(100% - 262px);
   margin-top: 20px;
   padding-bottom: 20px;
   background-color: rgba(255, 255, 255, 0.1);
