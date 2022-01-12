@@ -40,6 +40,7 @@ const MixSoundTrack = (props) => {
 
   const playInitial = () => {
     if (history.audio1) {
+      song1.pause();
       history.audio1.pause();
       history.audio1 = "";
       history.icon1 = "";
@@ -49,6 +50,7 @@ const MixSoundTrack = (props) => {
     }
 
     if (history.audio2) {
+      song2.pause();
       history.audio2.pause();
       history.audio2 = "";
       history.icon2 = "";
@@ -58,6 +60,7 @@ const MixSoundTrack = (props) => {
     }
 
     if (history.audio3) {
+      song3.pause();
       history.audio3.pause();
       history.audio3 = "";
       history.icon3 = "";
@@ -67,6 +70,7 @@ const MixSoundTrack = (props) => {
     }
 
     if (history.audio4) {
+      song4.pause();
       history.audio4.pause();
       history.audio4 = "";
       history.icon4 = "";

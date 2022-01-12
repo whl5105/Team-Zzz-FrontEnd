@@ -23,13 +23,16 @@ const Header = withRouter((props) => {
 
   const closeModal = () => {
     setMixListModal(false);
+    history.push("/");
   };
+
   const PageLink = () => {
     window.open(
       "https://docs.google.com/forms/d/e/1FAIpQLSfdn7OIKJYKQLfzNScDvBSCvv07yH9cuyjORoNyE_GNHfaG_w/viewform?vc=0&c=0&w=1&flr=0",
       "_blank"
     );
   };
+  
   return (
     <div>
       <HeaderBox>

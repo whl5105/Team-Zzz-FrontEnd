@@ -14,7 +14,7 @@ const NotFound = (props) => {
         text="ZZZ 메인으로 가기"
         marginT="150"
         _onClick={() => {
-          history.goBack();
+          history.push("/");
         }}
       ></Button>
     </Container>

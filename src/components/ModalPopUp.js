@@ -3,7 +3,10 @@ import styled from "styled-components";
 
 const ModalPopUp = (props) => {
   const { children, close, backgroundNull, zIndex } = props;
-  const styles = { backgroundNull: backgroundNull, zIndex: zIndex };
+  const styles = {
+    backgroundNull: backgroundNull,
+    zIndex: zIndex,
+  };
 
   return (
     <React.Fragment>
