@@ -82,7 +82,6 @@ const MixSoundTrack = (props) => {
 
   const playSoundTrack = async () => {
     await playSoundSetting();
-    console.log(play);
     history.play = play;
     history.setPlay = setPlay;
     history.setPlaybar(play);
@@ -110,6 +109,7 @@ const MixSoundTrack = (props) => {
   );
 };
 
+// --- styled-components ---
 const Wrap = styled.div`
   width: 295px;
   display: flex;
