@@ -34,7 +34,7 @@ const initialState = {
         sound1: "22",
         url: "음원 정보1",
         iconUrl1: "사진",
-        title1: "공원"
+        title1: "공원",
       },
       mix2: {
         asmrUrl2:
@@ -42,7 +42,7 @@ const initialState = {
         sound2: "22",
         url: "음원 정보2",
         iconUrl2: "사진",
-        title2: "도서관"
+        title2: "도서관",
       },
     },
   ],
@@ -74,9 +74,10 @@ const getAsmrDB = () => {
 const setPlayListDB = (playLists) => {
   return async function (dispatch, getState, { history }) {
     try {
-      // const res = await apis.postPlayList(playLists);
+      const res = await apis.postPlayList(playLists);
+      console.log(res);
       dispatch(set_playList());
-      // dispatch(getPlayListDB());
+      dispatch(getPlayListDB());
     } catch (error) {
       console.log("setPlayList Error : ", error);
     }
@@ -88,6 +89,7 @@ const getPlayListDB = () => {
     try {
       const userIdx = localStorage.getItem("userIdx");
       const res = await apis.getPlayList(userIdx);
+      console.log(res);
       dispatch(get_playList(res));
     } catch (error) {
       console.log("setPlayList Error : ", error);
