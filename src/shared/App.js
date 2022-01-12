@@ -21,6 +21,7 @@ import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
 import AsmrPopUp from "../pages/AsmrPopUp";
 import Mypage from "../pages/MyPage";
+import MixList from "../pages/MixList";
 import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
@@ -28,7 +29,6 @@ import NoticePage from "../pages/NoticePage";
 import PlayBar from "../components/PlayBar";
 
 function App() {
-
   return (
     <WrapBox id="app">
       <BackGround />
@@ -54,6 +54,7 @@ function App() {
                 <Route path="/asmr" exact component={Asmr}></Route>
                 <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
                 <Route path="/mypage" exact component={Mypage} />
+                <Route path="/mypage/mixList" exact component={MixList} />
                 <Route
                   path="/mypageNotice/:userIdx"
                   exact
@@ -77,7 +78,7 @@ function App() {
 
 const WrapBox = styled.div`
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
   /* display: flex; */
   /* justify-content: center; */
   /* align-items: center; */
@@ -93,7 +94,7 @@ const Wrap = styled.div`
   top: 50%;
   right: 17%;
   transform: translateY(-50%);
-  /* margin: 0 auto; */
+  border: 1px solid #fff;
   overflow: hidden;
   @media (max-width: 500px) {
     min-width: 335px;

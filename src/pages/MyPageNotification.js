@@ -27,7 +27,7 @@ const MyPageNotification = (props) => {
   // -- jsx --
   return (
     <Container>
-      <Title>알림 편집</Title>
+      <Title backIcon>알림 편집</Title>
       <Content>
         <Notifications
           notice={notice}

@@ -4,9 +4,9 @@ import styled from "styled-components";
 import Title from "../components/Title";
 import List from "../components/mypage/List";
 
-import notes from "../static/images/mypage/notes_white.png";
-import path_B from "../static/images/mypage/path_B_white.png";
-import path_T from "../static/images/mypage/path_T_white.png";
+import notes from "../static/images/mypage/notes_white.svg";
+import path_B from "../static/images/mypage/arrow_B_W.svg";
+import path_T from "../static/images/mypage/arrow_T_W.svg";
 
 const NoticePage = (props) => {
   const [toggle, setToggle] = React.useState(false);
@@ -14,7 +14,7 @@ const NoticePage = (props) => {
   return (
     <React.Fragment>
       <Container>
-        <Title>공지사항</Title>
+        <Title backIcon>공지사항</Title>
         {!toggle ? (
           <List icon={notes} src={path_B} _onClick={() => setToggle(!toggle)}>
             저작권 명시
