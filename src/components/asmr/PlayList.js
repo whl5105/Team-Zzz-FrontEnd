@@ -76,7 +76,7 @@ const PlayList = (props) => {
     <>
       <ModalPopUp close={close}>
         <Wrap>
-          <Title>나만의 ASMR 믹스 만들기</Title>
+          <Title>나의 믹스 만들기</Title>
           <Input
             resetInput={title === "" || title === undefined ? false : true}
             src={reset}
