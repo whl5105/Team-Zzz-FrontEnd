@@ -144,7 +144,7 @@ const P = styled.p`
   height: 18px;
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   line-height: ${({ theme }) => theme.lineHeight.ssmall};
-  font-weight: ${({ theme }) => theme.fontWeight.Regular};
+  font-weight: ${({ theme }) => theme.fontWeight.Medium};
 `;
 
 export default Navigation;

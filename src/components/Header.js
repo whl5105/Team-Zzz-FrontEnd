@@ -24,7 +24,12 @@ const Header = withRouter((props) => {
   const closeModal = () => {
     setMixListModal(false);
   };
-
+  const PageLink = () => {
+    window.open(
+      "https://docs.google.com/forms/d/e/1FAIpQLSfdn7OIKJYKQLfzNScDvBSCvv07yH9cuyjORoNyE_GNHfaG_w/viewform?vc=0&c=0&w=1&flr=0",
+      "_blank"
+    );
+  };
   return (
     <div>
       <HeaderBox>
@@ -48,7 +53,7 @@ const Header = withRouter((props) => {
             <img className="playListHover" alt=""></img>
           </>
         ) : (
-          <Icon src={Writing} alt="writing" />
+          <Icon src={Writing} alt="writing" _onClick={PageLink} />
         )}
       </HeaderBox>
 

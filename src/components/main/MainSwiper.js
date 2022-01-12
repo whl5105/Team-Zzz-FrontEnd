@@ -49,7 +49,10 @@ const MainSwiper = () => {
           </SwiperSlide>
           <SwiperSlide
             onClick={() => {
-              window.alert("피드백 중비중 입니다 ! ");
+              window.open(
+                "https://docs.google.com/forms/d/e/1FAIpQLSfdn7OIKJYKQLfzNScDvBSCvv07yH9cuyjORoNyE_GNHfaG_w/viewform?vc=0&c=0&w=1&flr=0",
+                "_blank"
+              );
             }}
           >
             <BannerImg bannerImage={banner3} />

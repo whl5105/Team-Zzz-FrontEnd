@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { deleteSong } from "../pages/Asmr";
 
-import playIcon from "../static/images/play/play.png";
-import volumeIcon from "../static/images/play/volume.png";
-import closeIcon from "../static/images/play/close.png";
-import pauseIcon from "../static/images/play/pause.png";
+import playIcon from "../static/images/play/play.svg";
+import volumeIcon from "../static/images/play/volume.svg";
+import closeIcon from "../static/images/play/close.svg";
+import pauseIcon from "../static/images/play/pause.svg";
 
 const PlayBar = (props) => {
   const [toggle, setToggle] = React.useState(false);
@@ -161,6 +161,7 @@ const Wrap = styled.div`
   border-radius: 12px;
   margin: 0 20px;
   background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
   justify-content: space-evenly;
   padding: 18px 20px;
   box-sizing: border-box;
