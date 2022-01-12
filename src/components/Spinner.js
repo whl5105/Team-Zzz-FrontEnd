@@ -32,7 +32,7 @@ const Outter = styled.div`
 
 const Loading = styled.div`
   position: absolute;
-  top: 430px;
+  top: 40%;
   left: 45%;
   width: 53px;
   height: 18px;
