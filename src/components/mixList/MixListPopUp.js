@@ -42,14 +42,15 @@ const MixListPopUp = (props) => {
         </Title>
         {playList.map((item, index) => {
           return (
-            <MixSoundTrack
-              key={item.mixIdx}
-              mixTitle={item.mixTitle}
-              mix1={item.mix1}
-              mix2={item.mix2}
-              mix3={item.mix3}
-              mix4={item.mix4}
-            ></MixSoundTrack>
+            <div key={item.mixIdx}>
+              <MixSoundTrack
+                mixTitle={item.mixTitle}
+                mix1={item.mix1}
+                mix2={item.mix2}
+                mix3={item.mix3}
+                mix4={item.mix4}
+              ></MixSoundTrack>
+            </div>
           );
         })}
       </Container>
@@ -60,8 +61,8 @@ const MixListPopUp = (props) => {
 const Container = styled.div`
   position: relative;
   width: 375px;
-  height: 660px;
-  bottom: -55px;
+  height: 75vh;
+  bottom: -2vh;
   padding: ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.bg};
