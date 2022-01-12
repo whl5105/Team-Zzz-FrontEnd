@@ -261,7 +261,7 @@ const Clock = (props) => {
               ></DropDown>
             </SelectTimeWrap>
 
-            <Button _onClick={search} text="입력 완료" marginT="30px">
+            <Button _onClick={search} text="입력 완료" marginT="30">
               입력 완료
             </Button>
           </SleepTimeWrap>
