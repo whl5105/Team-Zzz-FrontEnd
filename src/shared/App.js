@@ -84,6 +84,7 @@ function App() {
 
 const WrapBox = styled.div`
   width: 100vw;
+  touch-action: auto;
   /* height: 100vh; */
   /* display: flex; */
   /* justify-content: center; */
