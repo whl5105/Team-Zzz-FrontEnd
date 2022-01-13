@@ -240,6 +240,7 @@ const Asmr = (props) => {
         if (!song1.src) {
           song1.src = asmrUrl;
           song1.volume = 0.1;
+          // ios 일 떄는 0.4
           song1.loop = true;
           song1.play();
           history.state1 = asmrUrl;
@@ -250,6 +251,7 @@ const Asmr = (props) => {
         } else if (!song2.src) {
           song2.src = asmrUrl;
           song2.volume = 0.1;
+          // ios 일 떄는 0.3
           song2.loop = true;
           song2.play();
           history.state2 = asmrUrl;
@@ -260,6 +262,7 @@ const Asmr = (props) => {
         } else if (!song3.src) {
           song3.src = asmrUrl;
           song3.volume = 0.1;
+          // ios 일 떄는 0.2
           song3.loop = true;
           song3.play();
           history.state3 = asmrUrl;
@@ -270,6 +273,7 @@ const Asmr = (props) => {
         } else if (!song4.src) {
           song4.src = asmrUrl;
           song4.volume = 0.1;
+          // ios 일 떄는 0.1
           song4.loop = true;
           song4.play();
           history.state4 = asmrUrl;
