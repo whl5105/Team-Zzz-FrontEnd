@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
 import { history } from "../../redux/configureStore";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Autoplay } from "swiper/core";
@@ -13,7 +14,7 @@ import banner3 from "../../static/images/banner/Main_BN_335px_3.png";
 
 SwiperCore.use([Pagination, Autoplay]);
 
-const MainSwiper = () => {
+const MainSwiper = withRouter((props) => {
   return (
     <Main className="ExampleComponent">
       <div className="main-wrap">
@@ -60,7 +61,7 @@ const MainSwiper = () => {
       </div>
     </Main>
   );
-};
+});
 
 // --- styled-components ---
 const Main = styled.div`

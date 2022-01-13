@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 // --- images ---
 import closeIcon from "../../static/images/asmr/closeIcon.svg";
+import lineIcon from "../../static/images/asmr/lineIcon.svg";
+import circleIcon from "../../static/images/asmr/circleIcon.svg";
 
 const SoundTrack = (props) => {
   let [b, setB] = React.useState(0);
@@ -13,13 +15,11 @@ const SoundTrack = (props) => {
   function dragElement(elmnt) {
     let clientX_gap = 0,
       clientX = 0;
-    if (document.getElementById(elmnt.id)) {
-      // if present, the header is where you move the DIV from:
-      document.getElementById(elmnt.id).onmousedown = dragMouseDown; // onmousedown 은 마우스가 클릭했을떄 event 발생
-    } else {
-      // otherwise, move the DIV from anywhere inside the DIV:
-      elmnt.onmousedown = dragMouseDown;
-    }
+
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+    // elmnt.addEventListener('touchstart',dragMouseDown) //mobile
+    elmnt.ontouchstart = dragMouseDown; // 19번줄이나 20번줄이나 같음
 
     function dragMouseDown(e) {
       // e = e || window.event; // window.event 는 검색해보면 this feature is no longer recommended 라고 뜬다
@@ -27,25 +27,31 @@ const SoundTrack = (props) => {
       // get the mouse cursor position at startup:
       clientX = e.clientX;
       document.onmouseup = closeDragElement;
+      document.addEventListener("touchend", closeDragElement); //mobile
       // call a function whenever the cursor moves:
       document.onmousemove = elementDrag; //마우스가 움직일때마다 elementDrag 함수 발생, 근데 클릭하는 이벤트 함수에서 있으므로 누르고 움직일때 발생
+      document.addEventListener("touchmove", elementDrag); //mobile
     }
 
     function elementDrag(e) {
       // e = e || window.event;
       e.preventDefault();
+
+      if (e.changedTouches) {
+        // mobile
+        e.clientX = e.changedTouches[0].clientX; // mobile과 웹 의 clienX 값은 다르긴 하다.
+        // console.log(e.clientX)
+      }
+      // console.log(e.clientX)
       // calculate the new cursor position:
       clientX_gap = e.clientX - clientX; // 실질적으로 값이 0 이라고 생각할수있지만 코드 순서상 최신 clientX 값이 1이라고 한다면 눌르고 마우스 이동하면 e.clienX이 2가 되고 2-1이므로 1이라는 gap이 생긴다.
       clientX = e.clientX;
-      console.log(elmnt.offsetLeft);
+
+      // console.log(clientX_gap)
+
       let leftVal = 0;
       let parentElmnt = elmnt.parentNode; // 선택한 태그의 부모노트값을 가져온다.
-      console.log(
-        elmnt.offsetLeft + clientX_gap,
-        parentElmnt.clientWidth,
-        clientX,
-        parentElmnt.offsetLeft + parentElmnt.clientWidth
-      );
+
       if (
         elmnt.offsetLeft + clientX_gap < 0 ||
         clientX < parentElmnt.offsetLeft
@@ -65,29 +71,28 @@ const SoundTrack = (props) => {
       //offsetLeft는 브라우저의 좌표(e.clientX)가 아닌현재 선택한 태그의 전체를 둘러싼 위치에서 시작해서 그곳에서 떨어진 x값이 된다.
       else {
         leftVal = elmnt.offsetLeft + clientX_gap;
-        console.log(leftVal, elmnt.offsetLeft);
       }
       elmnt.style.left = leftVal + "px"; // 실질적으로 이동시키는 소스, 해당 style에 left 값을 수정, pos1은 -1이므로 +1씩 이동된다고 생각하면 된다.
 
       b = elmnt.style.left.split("px")[0] * 0.01; // 내가 필요한 실질적으로 볼륨 값
       props.song.volume = b;
       props.setVolume(b * 100);
-      console.log(props.volmue, props.song.volmue);
       setB(b);
-      console.log(b);
     }
 
     function closeDragElement() {
       // stop moving when mouse button is released:
       document.onmouseup = null;
+      document.removeEventListener("touchend", closeDragElement);
       document.onmousemove = null; // 마우스를 대면 움직일때 발생했던 함수도 초기화 해서 아무 함수에도 들어가지 않게 해준다.
+      document.removeEventListener("touchmove", elementDrag);
     }
   }
 
-  const changeVolume = (e) => {
-    props.setVolume(e.target.value);
-    props.song.volume = e.target.value * 0.01; // 볼륨 바의 value 범위를 1~100에서 주었고 audio경우 0~1 이 범위이기때문에 0.01을 곱해줌
-  };
+  // const changeVolume = (e) => {
+  //   props.setVolume(e.target.value);
+  //   props.song.volume = e.target.value * 0.01; // 볼륨 바의 value 범위를 1~100에서 주었고 audio경우 0~1 이 범위이기때문에 0.01을 곱해줌
+  // };
 
   return (
     <>
@@ -99,9 +104,9 @@ const SoundTrack = (props) => {
           </IconImage>
         </Sound>
         <VolumeWrap>
-          <Volume>
+          <Volume categoryImage={lineIcon}>
             <Circle id={props.id} value={props.volume}>
-              <Span></Span>
+              <Span categoryImage={circleIcon}></Span>
             </Circle>
           </Volume>
         </VolumeWrap>
@@ -125,7 +130,6 @@ const SoundTrack = (props) => {
   );
 };
 
-// --- styled-components ---
 const Record = styled.div`
   display: flex;
   justify-content: space-around;
@@ -162,10 +166,10 @@ const Text = styled.p`
 `;
 
 const VolumeWrap = styled.div`
-  width: 100px;
+  width: 158px;
   height: 30px;
   position: relative;
-  top: 24px;
+  top: 28px;
   box-sizing: border-box;
   padding: 5px;
 `;
@@ -173,10 +177,11 @@ const VolumeWrap = styled.div`
 const Volume = styled.div`
   /* margin: 50px auto; */
   position: relative;
-  width: 100px;
-  height: 10px;
-  background: #222;
-  border-radius: 5px;
+  width: 158px;
+  height: 3px;
+  background-image: url(${(props) => props.categoryImage});
+  /* background: #222;
+  border-radius: 5px; */
 `;
 
 // const Volume = styled.input`
@@ -197,21 +202,23 @@ const Circle = styled.div`
   cursor: grab;
   position: absolute;
   left: ${(props) => `${props.value}px;`};
-  top: 50%;
+  top: 5px;
   width: 20px;
   height: 20px;
   transform: translate(-50%, -50%);
+  touch-action: none;
 `;
 
 const Span = styled.span`
   position: absolute;
   display: block;
-  width: 20px;
-  line-height: 30px;
-  height: 20px;
-  background: #2196f3;
-  border-radius: 100%;
+  width: 14px;
+  line-height: 14px;
+  height: 14px;
+  /* background: #2196f3; */
+  /* border-radius: 100%; */
   text-align: center;
+  background-image: url(${(props) => props.categoryImage});
 `;
 
 export default SoundTrack;

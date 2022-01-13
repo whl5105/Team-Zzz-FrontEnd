@@ -54,7 +54,11 @@ function App() {
                 <Route path="/diary" exact component={Diary}></Route>
                 <Route path="/asmr" exact component={Asmr}></Route>
                 <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
-                <Route path="/asmr/mixListPopUp" exact component={MixListPopUp}></Route>
+                <Route
+                  path="/asmr/mixListPopUp"
+                  exact
+                  component={MixListPopUp}
+                ></Route>
                 <Route path="/mypage" exact component={Mypage} />
                 <Route path="/mypage/mixList" exact component={MixList} />
                 <Route
@@ -80,6 +84,7 @@ function App() {
 
 const WrapBox = styled.div`
   width: 100vw;
+  touch-action: auto;
   /* height: 100vh; */
   /* display: flex; */
   /* justify-content: center; */
