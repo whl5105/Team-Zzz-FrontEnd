@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-  const { type, text, _onClick, height, children, size, marginT } = props;
+  const { type, text, _onClick, height, children, size, marginT, bg, color } =
+    props;
 
-  const styles = { size: size, marginT: marginT };
+  const styles = { size: size, marginT: marginT, bg: bg, color: color };
 
   if (type === "boderBtn") {
     return (
@@ -31,6 +32,7 @@ Button.defaultProps = {
   _onClick: () => {},
 };
 
+// --- styled-components ---
 const BgBtn = styled.button`
   width: 100%;
   height: ${(props) => (props.height ? ` ${props.height}px;` : "48px")};
@@ -45,7 +47,7 @@ const BgBtn = styled.button`
 
 const BorderBtn = styled.button`
   width: 100%;
-  background: ${(props) => (props.bg ? ` ${props.bg}` : "transparent")};
+  background: ${(props) => (props.bg ? `${props.bg}` : "transparent")};
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.gray_4};
   color: ${({ theme }) => theme.colors.gray_7};

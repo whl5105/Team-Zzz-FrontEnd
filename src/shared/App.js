@@ -7,7 +7,7 @@ import { history } from "../redux/configureStore";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
-//page
+// page
 import BackGround from "../components/main/Background";
 import NotFound from "../pages/NotFound";
 import Main from "../pages/Main";
@@ -20,7 +20,6 @@ import Diary from "../pages/Diary";
 import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
 import AsmrPopUp from "../pages/AsmrPopUp";
-import MixListPopUp from "../components/mixList/MixListPopUp";
 import Mypage from "../pages/MyPage";
 import MixList from "../pages/MixList";
 import MyPageNotification from "../pages/MyPageNotification";
@@ -54,11 +53,6 @@ function App() {
                 <Route path="/diary" exact component={Diary}></Route>
                 <Route path="/asmr" component={Asmr}></Route>
                 <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
-                <Route
-                  path="/asmr/mixListPopUp"
-                  exact
-                  component={MixListPopUp}
-                ></Route>
                 <Route path="/mypage" exact component={Mypage} />
                 <Route path="/mypage/mixList" exact component={MixList} />
                 <Route

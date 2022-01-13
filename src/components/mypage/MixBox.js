@@ -54,7 +54,13 @@ const MixBox = (props) => {
         );
       })}
       <ButtonBox>
-        <Button type="boderBtn" text="삭제하기" _onClick={deleteClick} />
+        <Button
+          type="boderBtn"
+          text="삭제하기"
+          _onClick={deleteClick}
+          bg="#ffffff"
+          color="gray7"
+        />
         <Button text="수정 하기" _onClick={editClick} />
       </ButtonBox>
 

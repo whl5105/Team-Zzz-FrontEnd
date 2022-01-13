@@ -3,7 +3,7 @@ import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
 
 // -- actions --
-const GET_ASMR = "GETDIARY";
+const GET_ASMR = "GETASMR";
 const SET_PLAYLIST = "SETPLAYLIST";
 const GET_PLAYLIST = "GETPLAYLIST";
 const SET_WRITE = "SETWRITE";
@@ -34,9 +34,32 @@ const edit_playList = createAction(EDIT_PLAYLIST, (playlistIdx, mixTitle) => ({
 const initialState = {
   asmrList: [],
   playList: [
+    // 초기값은 무조건 null로
     {
-      playlistIdx: 1,
+      mixIdx: "1",
       mixTitle: "음원 이거 내꺼",
+      mixList: [
+        {
+          asmrUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
+          sound: "22",
+          iconUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(png)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.png",
+          title: "공원",
+        },
+        {
+          asmrUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
+          sound: "23",
+          iconUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(png)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%B5.png",
+          title: "공원",
+        },
+      ],
+    },
+    {
+      playlistIdx: 2,
+      mixTitle: "음원 이거 내꺼2",
       mixList: [
         {
           asmrUrl:
@@ -88,7 +111,6 @@ const setPlayListDB = (playLists) => {
       const res = await apis.postPlayList(playLists);
       console.log(res);
       dispatch(set_playList());
-      dispatch(getPlayListDB());
     } catch (error) {
       console.log("setPlayList Error : ", error);
     }
@@ -100,7 +122,6 @@ const getPlayListDB = () => {
     try {
       const userIdx = localStorage.getItem("userIdx");
       const res = await apis.getPlayList(userIdx);
-      console.log(res);
       dispatch(get_playList(res));
     } catch (error) {
       console.log("setPlayList Error : ", error);

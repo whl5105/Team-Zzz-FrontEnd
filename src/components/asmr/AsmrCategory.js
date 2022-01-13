@@ -8,7 +8,6 @@ const AsmrCategory = (props) => {
     setCategory(e.target.id);
   };
 
-  // -- jsx --
   return (
     <>
       <CategorySelect>

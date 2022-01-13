@@ -41,6 +41,8 @@ const Navigation = withRouter((props) => {
       setSelect("main");
     } else if (pathName === "/myPage/mixList") {
       setSelect("mypage");
+    } else if (pathName === "/asmrPop") {
+      setSelect("asmr");
     } else {
       setSelect(pathName.split("/")[1]);
     }
@@ -122,7 +124,6 @@ const Gnb = styled.div`
   text-align: center;
   box-sizing: border-box;
   color: ${({ theme }) => theme.colors.white};
-
   ::before {
     content: "";
     width: 100%;

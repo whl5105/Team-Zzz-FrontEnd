@@ -40,15 +40,12 @@ const MixListPopUp = (props) => {
           <p>나의 믹스</p>
           <Icon src={MixSetting} alt="환경설정" _onClick={myPageMixList}></Icon>
         </Title>
-        {playList.map((item, index) => {
+        {playList.map((item) => {
           return (
-            <div key={item.mixIdx}>
+            <div key={item.playListIdx}>
               <MixSoundTrack
                 mixTitle={item.mixTitle}
-                mix1={item.mix1}
-                mix2={item.mix2}
-                mix3={item.mix3}
-                mix4={item.mix4}
+                mixList={item.mixList && item.mixList}
               ></MixSoundTrack>
             </div>
           );
@@ -58,6 +55,7 @@ const MixListPopUp = (props) => {
   );
 };
 
+// --- styled-components ---
 const Container = styled.div`
   position: relative;
   width: 375px;

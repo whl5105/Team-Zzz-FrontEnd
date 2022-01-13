@@ -12,39 +12,65 @@ import MixBox from "../components/mypage/MixBox";
 
 import mixList from "../static/images/mypage/mixList_W.svg";
 import path_B from "../static/images/mypage/arrow_B_W.svg";
+import path_T from "../static/images/mypage/arrow_T_W.svg";
 
 const MixList = (props) => {
   const dispatch = useDispatch();
   const playListInfo = useSelector((store) => store.asmr.playList);
-  console.log(playListInfo.mixTitle);
 
   const [playList, setPlayList] = React.useState(
-    playListInfo ? playListInfo : []
+    playListInfo ? playListInfo : null
   );
+  const [toggle, setToggle] = React.useState(false);
+  console.log(toggle);
 
-  console.log(playList);
   React.useEffect(() => {
-    if (!playList) {
+    if (!playListInfo) {
       dispatch(asmrActions.getPlayListDB());
     }
   }, []);
+  React.useEffect(() => {
+    setPlayList(playListInfo);
+  }, [playListInfo]);
+
   return (
     <Container>
       <Title backIcon>나의 믹스</Title>
-      {playList.map((item, idx) => {
-        return (
-          <div key={idx}>
-            <List icon={mixList} src={path_B}>
-              {item.mixTitle}
-            </List>
-            <MixBox
-              mixList={item.mixList}
-              playlistIdx={item.playlistIdx}
-              mixTitle={item.mixTitle}
-            ></MixBox>
-          </div>
-        );
-      })}
+      {playList.length > 0 ? (
+        <>
+          {playList.map((item, idx) => {
+            return (
+              <div key={idx}>
+                {/* {toggle ? ( */}
+                <List
+                  icon={mixList}
+                  src={toggle === idx ? path_T : path_B}
+                  _onClick={() => setToggle(!toggle)}
+                >
+                  {item.mixTitle}
+                </List>
+                {/* ) : ( */}
+                {/* <List
+                  icon={mixList}
+                  src={path_T}
+                  _onClick={() => setToggle(idx)}
+                >
+                  {item.mixTitle}
+                </List> */}
+                {/* )} */}
+
+                <MixBox
+                  mixList={item.mixList}
+                  playlistIdx={item.playlistIdx}
+                  mixTitle={item.mixTitle}
+                ></MixBox>
+              </div>
+            );
+          })}
+        </>
+      ) : (
+        <p>믹스 음원 없음</p>
+      )}
     </Container>
   );
 };

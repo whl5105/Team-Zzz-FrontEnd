@@ -125,6 +125,7 @@ const PlayList = (props) => {
   );
 };
 
+// --- styled-componetns ---
 const Wrap = styled.div`
   width: 335px;
   padding: ${({ theme }) => theme.paddings.xxxxl};

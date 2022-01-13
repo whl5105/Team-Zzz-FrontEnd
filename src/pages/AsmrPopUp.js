@@ -10,6 +10,7 @@ import SoundTrack from "../components/asmr/SoundTrack";
 import PlayList from "../components/asmr/PlayList";
 import Button from "../elements/Button";
 import Icon from "../elements/Icon";
+import Guidance from "../components/asmr/Guidance";
 
 const AsmrPopUp = (props) => {
   const [song1, setSong1] = React.useState(history.audio1 && history.audio1);
@@ -26,6 +27,9 @@ const AsmrPopUp = (props) => {
   const closeModal = () => {
     setPlayListModal(false);
   };
+
+  const [guidance, setGuidance] = React.useState(false);
+  const [guidanceTitle, setGuidanceTitle] = React.useState();
 
   const deleteSong = (song) => {
     let arr = [];
@@ -106,6 +110,7 @@ const AsmrPopUp = (props) => {
     }
 
     history.setPlay(arr);
+    history.setPlaybar(arr);
     setSongList(arr);
   };
 
@@ -147,6 +152,10 @@ const AsmrPopUp = (props) => {
                       id="volume1"
                       volume={volume1}
                       deleteSong={deleteSong}
+                      guidance={guidance}
+                      setGuidance={setGuidance}
+                      guidanceTitle={guidanceTitle}
+                      setGuidanceTitle={setGuidanceTitle}
                     ></SoundTrack>
                   ) : null}
                   {song2 && song2.src !== "" ? (
@@ -158,6 +167,10 @@ const AsmrPopUp = (props) => {
                       id="volume2"
                       volume={volume2}
                       deleteSong={deleteSong}
+                      guidance={guidance}
+                      setGuidance={setGuidance}
+                      guidanceTitle={guidanceTitle}
+                      setGuidanceTitle={setGuidanceTitle}
                     ></SoundTrack>
                   ) : null}
                   {song3 && song3.src !== "" ? (
@@ -169,6 +182,10 @@ const AsmrPopUp = (props) => {
                       id="volume3"
                       volume={volume3}
                       deleteSong={deleteSong}
+                      guidance={guidance}
+                      setGuidance={setGuidance}
+                      guidanceTitle={guidanceTitle}
+                      setGuidanceTitle={setGuidanceTitle}
                     ></SoundTrack>
                   ) : null}
                   {song4 && song4.src !== "" ? (
@@ -180,6 +197,10 @@ const AsmrPopUp = (props) => {
                       id="volume4"
                       volume={volume4}
                       deleteSong={deleteSong}
+                      guidance={guidance}
+                      setGuidance={setGuidance}
+                      guidanceTitle={guidanceTitle}
+                      setGuidanceTitle={setGuidanceTitle}
                     ></SoundTrack>
                   ) : null}
 

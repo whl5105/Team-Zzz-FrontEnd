@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { Input } from "../elements";
-
 import { history } from "../redux/configureStore.js";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
-import reset from "../static/images/icon/reset.svg";
-
+// --- components ---
+import { Input } from "../elements";
 import Success from "../components/Success";
 import Kakao from "../components/Kakao";
+
+// --- images ---
+import reset from "../static/images/icon/reset.svg";
 
 const Login = () => {
   const first_signup = useSelector((store) => store.user.is_signup);
@@ -135,20 +136,24 @@ const Login = () => {
   );
 };
 
+// --- styled-components ---
 const Container = styled.div`
   padding: 0 ${({ theme }) => theme.paddings.xxxxl};
 `;
+
 const Title = styled.div`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes.xxl};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   margin: ${({ theme }) => theme.margins.xxxxl} 0;
 `;
+
 const InputBox = styled.div`
   &:nth-child(2) {
     margin-bottom: ${({ theme }) => theme.margins.xxxxl};
   }
 `;
+
 const Span = styled.span`
   height: 54px;
   color: ${({ theme }) => theme.colors.white};

@@ -343,6 +343,7 @@ const Clock = (props) => {
   );
 };
 
+// --- styled-components ---
 const Background = styled.div`
   position: relative;
   top: -50px;

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import React from "react";
+
+// --- components ---
 import ModalPopUp from "./ModalPopUp";
 
 const RequireLogin = (props) => {

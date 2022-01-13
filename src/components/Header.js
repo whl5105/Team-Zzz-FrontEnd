@@ -69,6 +69,7 @@ const Header = withRouter((props) => {
   );
 });
 
+// --- styled-components ---
 const HeaderBox = styled.div`
   width: 100%;
   height: 50px;

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
+// --- components ---
 import Button from "../elements/Button";
 
 const NotFound = (props) => {
@@ -21,6 +22,7 @@ const NotFound = (props) => {
   );
 };
 
+// --- styled-components ---
 const Container = styled.div`
   padding: 50px ${({ theme }) => theme.paddings.xxxxl};
 `;

@@ -43,6 +43,7 @@ Icon.defaultProps = {
   position: null,
 };
 
+// --- styled-components ---
 const ArrowIcon = styled.img`
   position: ${(props) => props.position};
   top: ${(props) => props.top};
