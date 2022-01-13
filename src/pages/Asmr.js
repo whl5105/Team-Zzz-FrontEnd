@@ -47,6 +47,7 @@ const Asmr = (props) => {
       const timeout = setTimeout(() => {
         setSuccess(false);
       }, 2000);
+
       return () => {
         clearTimeout(timeout);
       };
