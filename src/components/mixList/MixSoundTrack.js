@@ -9,7 +9,8 @@ import Icon from "../../elements/Icon";
 import Vector from "../../static/images/mixList/vector.png";
 
 const MixSoundTrack = (props) => {
-  const { key, mixTitle, mix1, mix2, mix3, mix4 } = props;
+  const { mixTitle, mix1, mix2, mix3, mix4 } = props;
+  
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());

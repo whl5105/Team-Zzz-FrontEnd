@@ -77,7 +77,6 @@ const setPlayListDB = (playLists) => {
       const res = await apis.postPlayList(playLists);
       console.log(res);
       dispatch(set_playList());
-      dispatch(getPlayListDB());
     } catch (error) {
       console.log("setPlayList Error : ", error);
     }
