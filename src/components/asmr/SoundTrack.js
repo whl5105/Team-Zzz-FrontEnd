@@ -106,7 +106,7 @@ const SoundTrack = (props) => {
         </Sound>
         <VolumeWrap>
           <Volume categoryImage={lineIcon}>
-            <Circle id={props.id} value={props.volume} onTouchStart={Click}>
+            <Circle id={props.id} value={props.volume} onTouchStart={Click} onClick={Click}>
               <Span categoryImage={circleIcon}></Span>
             </Circle>
           </Volume>
