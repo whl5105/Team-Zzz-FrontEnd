@@ -11,10 +11,14 @@ const SoundTrack = (props) => {
     return (ios = /iPhone|iPad/i.test(navigator.userAgent));
   };
 
-  const Click = () => {
+  const Click = ()=>{
     dragElement(document.getElementById(props.id));
-  };
+  }
 
+  React.useEffect(()=>{
+    // dragElement(document.getElementById(props.id));
+
+  })
   let [b, setB] = React.useState(0);
   let [ios, setMobile] = React.useState(false);
 
@@ -107,8 +111,8 @@ const SoundTrack = (props) => {
         </Sound>
         <VolumeWrap>
           <Volume categoryImage={lineIcon}>
-            <Circle id={props.id} value={props.volume} onTouchStart={Click} onMouseDown={Click}>
-              <Span categoryImage={circleIcon}></Span>
+            <Circle id={props.id} value={props.volume}>
+              <Span categoryImage={circleIcon} onTouchStart={Click} ></Span>
             </Circle>
           </Volume>
         </VolumeWrap>
