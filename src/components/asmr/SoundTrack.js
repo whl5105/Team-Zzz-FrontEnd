@@ -11,14 +11,13 @@ const SoundTrack = (props) => {
     return (ios = /iPhone|iPad/i.test(navigator.userAgent));
   };
 
-  const Click = ()=>{
+  const Click = () => {
     dragElement(document.getElementById(props.id));
-  }
+  };
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     // dragElement(document.getElementById(props.id));
-
-  })
+  });
   let [b, setB] = React.useState(0);
   let [ios, setMobile] = React.useState(false);
 
@@ -33,9 +32,16 @@ const SoundTrack = (props) => {
 
     if (ios === false) {
       elmnt.ontouchstart = dragMouseDown; // 19번줄이나 20번줄이나 같음
-    } else if (ios === true) {
+    } else if (ios === true && !props.guidance) {
       console.log("Ipone");
-      alert("애니메이션 추가해주는부분")
+      props.setGuidance(true);
+      const timeout = setTimeout(() => {
+        props.setGuidance(false);
+      }, 2000);
+
+      return () => {
+        clearTimeout(timeout);
+      };
     }
 
     function dragMouseDown(e) {
@@ -112,7 +118,7 @@ const SoundTrack = (props) => {
         <VolumeWrap>
           <Volume categoryImage={lineIcon}>
             <Circle id={props.id} value={props.volume}>
-              <Span categoryImage={circleIcon} onTouchStart={Click} ></Span>
+              <Span categoryImage={circleIcon} onTouchStart={Click}></Span>
             </Circle>
           </Volume>
         </VolumeWrap>
