@@ -22,8 +22,6 @@ const MixSoundTrack = (props) => {
   const mix3 = mixList[2];
   const mix4 = mixList[3];
 
-  console.log(mix1, mix2, mix3, mix4)
-
   React.useEffect(() => {
     let arr = [];
 
