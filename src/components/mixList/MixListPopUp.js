@@ -58,6 +58,7 @@ const MixListPopUp = (props) => {
   );
 };
 
+// --- styled-components ---
 const Container = styled.div`
   position: relative;
   width: 375px;

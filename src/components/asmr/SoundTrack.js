@@ -5,12 +5,9 @@ import styled from "styled-components";
 import closeIcon from "../../static/images/asmr/closeIcon.svg";
 
 const SoundTrack = (props) => {
-
-  let [b, setB] =React.useState(0);
+  let [b, setB] = React.useState(0);
   React.useEffect(() => {
-
     dragElement(document.getElementById(props.id));
-    
   }, []);
 
   function dragElement(elmnt) {
@@ -40,21 +37,28 @@ const SoundTrack = (props) => {
       // calculate the new cursor position:
       clientX_gap = e.clientX - clientX; // 실질적으로 값이 0 이라고 생각할수있지만 코드 순서상 최신 clientX 값이 1이라고 한다면 눌르고 마우스 이동하면 e.clienX이 2가 되고 2-1이므로 1이라는 gap이 생긴다.
       clientX = e.clientX;
-      console.log(elmnt.offsetLeft)
+      console.log(elmnt.offsetLeft);
       let leftVal = 0;
       let parentElmnt = elmnt.parentNode; // 선택한 태그의 부모노트값을 가져온다.
-      console.log(elmnt.offsetLeft+clientX_gap, parentElmnt.clientWidth, clientX, parentElmnt.offsetLeft + parentElmnt.clientWidth);
+      console.log(
+        elmnt.offsetLeft + clientX_gap,
+        parentElmnt.clientWidth,
+        clientX,
+        parentElmnt.offsetLeft + parentElmnt.clientWidth
+      );
       if (
         elmnt.offsetLeft + clientX_gap < 0 ||
         clientX < parentElmnt.offsetLeft
       ) {
         leftVal = 0;
-      }
-       else if (
-        elmnt.offsetLeft + clientX_gap > parentElmnt.clientWidth 
-      ) {
+      } else if (elmnt.offsetLeft + clientX_gap > parentElmnt.clientWidth) {
         leftVal = parentElmnt.clientWidth;
-        console.log("여기?", leftVal, elmnt.offsetLeft + clientX_gap ,parentElmnt.clientWidth)
+        console.log(
+          "여기?",
+          leftVal,
+          elmnt.offsetLeft + clientX_gap,
+          parentElmnt.clientWidth
+        );
       } // 부모노트의 전체 가로길이보다 이동한 바의 위치가 더 클때
 
       // set the element's new position:
@@ -65,13 +69,12 @@ const SoundTrack = (props) => {
       }
       elmnt.style.left = leftVal + "px"; // 실질적으로 이동시키는 소스, 해당 style에 left 값을 수정, pos1은 -1이므로 +1씩 이동된다고 생각하면 된다.
 
-      b=elmnt.style.left.split('px')[0]*0.01; // 내가 필요한 실질적으로 볼륨 값
-      props.song.volume= b;
-      props.setVolume(b*100);
-      console.log(props.volmue, props.song.volmue)
+      b = elmnt.style.left.split("px")[0] * 0.01; // 내가 필요한 실질적으로 볼륨 값
+      props.song.volume = b;
+      props.setVolume(b * 100);
+      console.log(props.volmue, props.song.volmue);
       setB(b);
-      console.log(b)
-      
+      console.log(b);
     }
 
     function closeDragElement() {
@@ -96,7 +99,7 @@ const SoundTrack = (props) => {
           </IconImage>
         </Sound>
         <VolumeWrap>
-          <Volume >
+          <Volume>
             <Circle id={props.id} value={props.volume}>
               <Span></Span>
             </Circle>
@@ -122,6 +125,7 @@ const SoundTrack = (props) => {
   );
 };
 
+// --- styled-components ---
 const Record = styled.div`
   display: flex;
   justify-content: space-around;
@@ -158,12 +162,12 @@ const Text = styled.p`
 `;
 
 const VolumeWrap = styled.div`
- width:100px;
-  height:30px;
-  position:relative;
-  top:24px;
-   box-sizing:border-box;
-   padding:5px;
+  width: 100px;
+  height: 30px;
+  position: relative;
+  top: 24px;
+  box-sizing: border-box;
+  padding: 5px;
 `;
 
 const Volume = styled.div`

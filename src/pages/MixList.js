@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+// --- components ---
 import Title from "../components/Title";
 
 const MixList = (props) => {
@@ -10,6 +11,8 @@ const MixList = (props) => {
     </Container>
   );
 };
+
+// --- styled-components ---
 const Container = styled.div`
   width: 100%;
   height: 100vh;

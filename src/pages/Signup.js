@@ -1,16 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Input } from "../elements";
-
-import reset from "../static/images/icon/reset.svg";
-
-// redux
 import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore.js";
 
-//modules
-import { actionCreators as userActions } from "../redux/modules/user";
+// --- compoentns ---
+import { Input } from "../elements";
+
+// --- images ---
+import reset from "../static/images/icon/reset.svg";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
@@ -90,13 +89,6 @@ const Signup = (props) => {
     }
   };
 
-  // React.useEffect(() => {
-  //   //회원가입이 완료될때
-  //   if (is_Signup) {
-  //     setSingupok(true);
-  //   }
-  // }, [is_Signup]);
-
   return (
     <Container>
       <Title>회원가입</Title>
@@ -171,6 +163,7 @@ const Signup = (props) => {
   );
 };
 
+// --- styled-components ---
 const Container = styled.div`
   padding: 0 ${({ theme }) => theme.paddings.xxxxl};
 `;
@@ -207,6 +200,7 @@ const Button = styled.button`
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   background-color: ${({ theme }) => theme.colors.main_1};
 `;
+
 const Login = styled.div`
   width: 100%;
   margin: 20px auto;

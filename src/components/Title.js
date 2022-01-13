@@ -4,7 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 
+// --- components ---
 import { Icon } from "../elements";
+
+// --- images ---
 import back from "../static/images/mypage/arrow_L_W.svg";
 
 const Title = (props) => {

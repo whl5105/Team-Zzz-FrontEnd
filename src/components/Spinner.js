@@ -5,7 +5,6 @@ import styled from "styled-components";
 import SpinnerImage from "../static/images/spinner/Spinner.png";
 
 const Spinner = (props) => {
-  // --- jsx ---
   return (
     <>
       <Outter height={props.height}>

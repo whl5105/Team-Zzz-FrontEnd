@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+
+// --- components ---
 import RequireLogin from "../components/RequireLogin";
 
-// 아이콘 이미지 import
+// --- images ---
 import { ReactComponent as Main } from "../static/images/navigation/homeIcon.svg";
 import { ReactComponent as Asmr } from "../static/images/navigation/asmrIcon.svg";
 import { ReactComponent as Diary } from "../static/images/navigation/diaryIcon.svg";
@@ -101,6 +103,7 @@ const Navigation = () => {
   );
 };
 
+// --- styled-components ---
 const Gnb = styled.div`
   width: 100%;
   height: 56px;

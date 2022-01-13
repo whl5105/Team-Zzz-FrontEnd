@@ -34,6 +34,7 @@ const Category = (props) => {
   );
 };
 
+// --- styled-components ---
 const CategoryStyle = styled.div`
   height: 125px;
   border-radius: 12px;

@@ -4,11 +4,12 @@ import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
 
-// 아이콘 이미지 import
+// --- images ---
 import user from "../static/images/mypage/user_white.svg";
 import notice from "../static/images/mypage/notes_white.svg";
 import mixList from "../static/images/mypage/mixList_W.svg";
 
+// --- components ---
 import Title from "../components/Title";
 import List from "../components/mypage/List";
 import AlarmBanner from "../components/mypage/AlarmBanner";
@@ -67,6 +68,7 @@ const Mypage = (props) => {
   );
 };
 
+// --- styled-components ---
 const Container = styled.div`
   width: 100%;
   height: 100vh;

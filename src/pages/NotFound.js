@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
+// --- components ---
 import Button from "../elements/Button";
 
 const NotFound = (props) => {
@@ -21,6 +22,7 @@ const NotFound = (props) => {
   );
 };
 
+// --- styled-components ---
 const Container = styled.div`
   padding: 50px ${({ theme }) => theme.paddings.xxxxl};
 `;
@@ -34,17 +36,5 @@ const P = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.xxxl};
   margin-top: 226px;
 `;
-
-// const Button = styled.button`
-//   width: 295px;
-//   height: 48px;
-//   border-radius: 8px;
-//   color: ${({ theme }) => theme.colors.white};
-//   font-weight: ${({ theme }) => theme.fontWeight.Bold};
-//   font-size: ${({ theme }) => theme.fontSizes.base};
-//   background-color: ${({ theme }) => theme.colors.main_1};
-//   margin: 110px ${({ theme }) => theme.paddings.small};
-//   line-height: 35px;
-// `;
 
 export default NotFound;

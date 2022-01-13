@@ -7,7 +7,6 @@ import bg2 from "../../static/images/bg/main_bg2.png";
 import bg3 from "../../static/images/bg/main_bg3.png";
 
 const Background = () => {
-  // --- jsx ---
   return (
     <Bg>
       <Bg1 src={bg1}></Bg1>

@@ -73,6 +73,7 @@ const Main = (props) => {
   );
 };
 
+// --- styled-components ---
 const Container = styled.div`
   overflow-y: scroll;
   height: 720px;
