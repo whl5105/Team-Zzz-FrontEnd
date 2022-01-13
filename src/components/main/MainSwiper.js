@@ -14,7 +14,6 @@ import banner3 from "../../static/images/banner/Main_BN_335px_3.png";
 
 SwiperCore.use([Pagination, Autoplay]);
 
-// --- jsx ---
 const MainSwiper = withRouter((props) => {
   return (
     <Main className="ExampleComponent">

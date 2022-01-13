@@ -6,8 +6,6 @@ let swRegist = null;
 
 const Toggle = (props) => {
  
-
-  // --- jsx ---
   return (
     <>
       {props.label}

@@ -15,6 +15,8 @@ const ModalPopUp = (props) => {
     </React.Fragment>
   );
 };
+
+// --- styled-components ---
 const Component = styled.div`
   width: 100%;
   height: 100vh;

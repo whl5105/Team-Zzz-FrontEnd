@@ -7,7 +7,6 @@ import Icon from "../../elements/Icon";
 const AsmrList = (props) => {
   const { soundTrack, select } = props;
 
-  // -- jsx --
   return (
     <>
       <SoundSelect>

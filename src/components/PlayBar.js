@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { deleteSong } from "../pages/Asmr";
 
+
+// --- images ---
 import playIcon from "../static/images/play/play.svg";
 import volumeIcon from "../static/images/play/volume.svg";
 import closeIcon from "../static/images/play/close.svg";

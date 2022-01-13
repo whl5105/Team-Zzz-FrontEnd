@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+
+// --- components ---
 import { Icon } from "../../elements";
 
+// --- images ---
 import alarmBanner from "../../static/images/mypage/alarmBanner.png";
 import path from "../../static/images/mypage/arrow_R_B.svg";
 
@@ -38,15 +41,19 @@ const AlarmBanner = (props) => {
     </AlarmBox>
   );
 };
+
+// --- styled-components ---
 AlarmBanner.defaultProps = {
   _onClick: () => {},
 };
+
 const AlarmBox = styled.div`
   padding: ${({ theme }) => theme.paddings.xxxxl};
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
 `;
+
 const Alarm = styled.div`
   width: 100%;
   background-image: url(${alarmBanner});
@@ -63,11 +70,13 @@ const Alarm = styled.div`
     padding-bottom: 5px;
   }
 `;
+
 const TimeList = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
+
 const Time = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   font-size: 26px;

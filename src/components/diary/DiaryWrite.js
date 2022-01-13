@@ -273,6 +273,7 @@ function DayCharater(props) {
   );
 }
 
+// --- styled-components ---
 const Container = styled.div`
   width: 331px;
   padding: ${({ theme }) => theme.paddings.xxxxl};

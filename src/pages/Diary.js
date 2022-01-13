@@ -75,21 +75,15 @@ const Diary = () => {
 
   // 해당 월의 일자에 맞춰 배열 생성 해주는 부분
   React.useEffect(() => {
-    // "해당 월의 일자에 맞춰 배열 생성 해주는 부분"
-
-    if (!diaryList) {
-      dispatch(diaryActions.getDiaryDB(day.getFullYear(), day.getMonth() + 1));
-    } else {
-      arr.forEach((arrItem, arrIndex) => {
-        diaryList.forEach((diaryItem, diaryIndex) => {
-          if (arrIndex + 1 === parseInt(diaryList[diaryIndex].day)) {
-            arr[arrIndex] = diaryList[diaryIndex];
-          }
-        });
+    arr.forEach((arrItem, arrIndex) => {
+      diaryList.forEach((diaryItem, diaryIndex) => {
+        if (arrIndex + 1 === parseInt(diaryList[diaryIndex].day)) {
+          arr[arrIndex] = diaryList[diaryIndex];
+        }
       });
+    });
 
-      setList(arr);
-    }
+    setList(arr);
   }, [diaryList]);
 
   //-- 다이어리 팝업 모달 --

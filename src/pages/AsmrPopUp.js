@@ -10,6 +10,7 @@ import SoundTrack from "../components/asmr/SoundTrack";
 import PlayList from "../components/asmr/PlayList";
 import Button from "../elements/Button";
 import Icon from "../elements/Icon";
+import Guidance from "../components/Guidance";
 
 const AsmrPopUp = (props) => {
   const [song1, setSong1] = React.useState(history.audio1 && history.audio1);
@@ -23,6 +24,20 @@ const AsmrPopUp = (props) => {
   const [songList, setSongList] = React.useState(history.play);
 
   const [playListModal, setPlayListModal] = React.useState(false);
+
+  const [guidance, setGuidance] = React.useState(false);
+
+  React.useEffect(() => {
+    if (guidance === true) {
+      const timeout = setTimeout(() => {
+        setGuidance(false);
+      }, 2000);
+
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, []);
 
   const deleteSong = (song) => {
     let arr = [];
@@ -144,6 +159,8 @@ const AsmrPopUp = (props) => {
                       id="volume1"
                       volume={volume1}
                       deleteSong={deleteSong}
+                      guidace={guidance}
+                      setGuidance={setGuidance}
                     ></SoundTrack>
                   ) : null}
                   {song2 && song2.src !== "" ? (
@@ -155,6 +172,8 @@ const AsmrPopUp = (props) => {
                       id="volume2"
                       volume={volume2}
                       deleteSong={deleteSong}
+                      guidace={guidance}
+                      setGuidance={setGuidance}
                     ></SoundTrack>
                   ) : null}
                   {song3 && song3.src !== "" ? (
@@ -166,6 +185,8 @@ const AsmrPopUp = (props) => {
                       id="volume3"
                       volume={volume3}
                       deleteSong={deleteSong}
+                      guidace={guidance}
+                      setGuidance={setGuidance}
                     ></SoundTrack>
                   ) : null}
                   {song4 && song4.src !== "" ? (
@@ -177,6 +198,8 @@ const AsmrPopUp = (props) => {
                       id="volume4"
                       volume={volume4}
                       deleteSong={deleteSong}
+                      guidace={guidance}
+                      setGuidance={setGuidance}
                     ></SoundTrack>
                   ) : null}
 
@@ -196,6 +219,8 @@ const AsmrPopUp = (props) => {
                     setPlayListModal={setPlayListModal}
                   ></PlayList>
                 )}
+
+                {guidance ? <Guidance></Guidance> : null}
               </>
             )}
           </>

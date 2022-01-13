@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+// --- components ---
 import Title from "../components/Title";
 import List from "../components/mypage/List";
 
+// --- images ---
 import notes from "../static/images/mypage/notes_white.svg";
 import path_B from "../static/images/mypage/arrow_B_W.svg";
 import path_T from "../static/images/mypage/arrow_T_W.svg";
@@ -44,6 +46,8 @@ const NoticePage = (props) => {
     </React.Fragment>
   );
 };
+
+// --- styled-components ---
 const Container = styled.div`
   width: 100%;
   height: 100vh;

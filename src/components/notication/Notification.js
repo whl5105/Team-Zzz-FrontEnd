@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../../redux/modules/notice";
 
+// --- components ---
 import DropDown from "../../elements/DropDown";
 import Toggle from "../../elements/Toggle";
 import Button from "../../elements/Button";
@@ -42,7 +43,6 @@ const Notifications = (props) => {
     "55",
   ];
 
-  // -- jsx --
   const send = () => {
     if (props.state === "set") {
       if (!props.notice) {
@@ -146,6 +146,7 @@ const Notifications = (props) => {
   );
 };
 
+// --- styled-components ---
 const Wrap = styled.div`
   display: flex;
   justify-content: space-evenly;

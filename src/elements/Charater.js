@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+// --- images ---
 import { ReactComponent as Feel1 } from "../static/images/character/feel1.svg";
 import { ReactComponent as Feel2 } from "../static/images/character/feel2.svg";
 import { ReactComponent as Feel3 } from "../static/images/character/feel3.svg";
@@ -175,6 +176,7 @@ Charater.defaultProps = {
   is_click: false,
 };
 
+// --- styled-components ---
 const IconBox = styled.div`
   --size: ${(props) => props.size}px;
   width: var(--size);

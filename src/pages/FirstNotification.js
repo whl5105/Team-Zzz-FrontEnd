@@ -6,7 +6,6 @@ import ModalPopUp from "../components/ModalPopUp";
 import Notifications from "../components/notication/Notification";
 
 const PushNoticationPop = (props) => {
-
   // 설정된 알림 데이터
   const [notice, setNotice] = React.useState(true); // 알림 유무
   const [day, setDay] = React.useState("PM"); // 오전(true), 오후(false) 설정
@@ -58,7 +57,7 @@ const PushNoticationPop = (props) => {
 const Wrap = styled.div`
   width: 331px;
   padding: 20px 20px;
-  box-sizing : border-box;
+  box-sizing: border-box;
 `;
 
 export default PushNoticationPop;

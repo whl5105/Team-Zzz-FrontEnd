@@ -11,7 +11,6 @@ import { ReactComponent as MyPage } from "../static/images/navigation/myPageIcon
 
 const Navigation = withRouter((props) => {
   const pathName = props.location.pathname;
-
   const history = useHistory();
   const [diaryModal, setDiaryModal] = React.useState(false);
   const [select, setSelect] = React.useState(
@@ -40,6 +39,10 @@ const Navigation = withRouter((props) => {
   React.useEffect(() => {
     if (pathName === "/clock" || pathName === "/") {
       setSelect("main");
+    } else if (pathName === "/myPage/mixList") {
+      setSelect("mypage");
+    } else if (pathName === "/asmrPop") {
+      setSelect("asmr");
     } else {
       setSelect(pathName.split("/")[1]);
     }
@@ -121,7 +124,6 @@ const Gnb = styled.div`
   text-align: center;
   box-sizing: border-box;
   color: ${({ theme }) => theme.colors.white};
-
   ::before {
     content: "";
     width: 100%;

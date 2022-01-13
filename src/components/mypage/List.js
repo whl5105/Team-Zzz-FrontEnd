@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { history } from "../../redux/configureStore";
 
-import path from "../../static/images/mypage/arrow_R_W.svg";
+// --- components ---
 import { Icon } from "../../elements";
+
+// --- images ---
+import path from "../../static/images/mypage/arrow_R_W.svg";
 
 const List = (props) => {
   const { _onClick, children, icon, src } = props;
@@ -17,11 +19,13 @@ const List = (props) => {
     </ListBox>
   );
 };
+
 List.defaultProps = {
   children: null,
   _onClick: () => {},
 };
 
+// --- styled-components ---
 const ListBox = styled.div`
   width: 100%;
   height: 56px;
@@ -35,6 +39,7 @@ const ListBox = styled.div`
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
 `;
+
 const ListTitle = styled.div`
   display: flex;
   align-items: center;

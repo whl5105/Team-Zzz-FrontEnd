@@ -19,8 +19,6 @@ const SoundTrack = (props) => {
     // dragElement(document.getElementById(props.id));
 
   })
-    
- 
   let [b, setB] = React.useState(0);
   let [ios, setMobile] = React.useState(false);
 
