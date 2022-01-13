@@ -14,13 +14,17 @@ import object from "../static/images/banner/object_1005px.png";
 import space from "../static/images/banner/space_1005px.png";
 
 const Main = (props) => {
+  function Mobile() {
+    return /iPhone|iPad/i.test(navigator.userAgent);
+  }
+  const [mobile, setMobile] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
   const [noticationModal, setNoticationModal] = React.useState(false);
 
   React.useEffect(() => {
     const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
     const token = localStorage.getItem("token");
 
-    if (!noticeSet && token) {
+    if (!noticeSet && token && !mobile) {
       setNoticationModal(true);
     }
   }, []);

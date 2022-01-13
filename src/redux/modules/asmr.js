@@ -3,7 +3,7 @@ import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
 
 // -- actions --
-const GET_ASMR = "GETDIARY";
+const GET_ASMR = "GETASMR";
 const SET_PLAYLIST = "SETPLAYLIST";
 const GET_PLAYLIST = "GETPLAYLIST";
 const SET_WRITE = "SETWRITE";
