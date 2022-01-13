@@ -18,6 +18,7 @@ const Mypage = (props) => {
   const userIdx = localStorage.getItem("userIdx");
   const token = localStorage.getItem("token");
   const [is_token, setLogin] = React.useState(token);
+
   React.useEffect(() => {
     setLogin(token);
     dispatch(noticeActions.getNoticeDB());

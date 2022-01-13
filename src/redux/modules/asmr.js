@@ -7,6 +7,7 @@ const GET_ASMR = "GETDIARY";
 const SET_PLAYLIST = "SETPLAYLIST";
 const GET_PLAYLIST = "GETPLAYLIST";
 const SET_WRITE = "SETWRITE";
+const DELETE_MIX = "DELETEMIX";
 
 // -- action creators --
 const get_asmr = createAction(GET_ASMR, (asmrListInfo) => ({
@@ -20,29 +21,36 @@ const get_playList = createAction(GET_PLAYLIST, (playList) => ({
 }));
 
 const set_write = createAction(SET_WRITE, () => ({}));
+const delete_mix = createAction(DELETE_MIX, (playlistIdx, userIdx) => ({
+  playlistIdx,
+  userIdx,
+}));
 
 // -- initialState --
 const initialState = {
   asmrList: [],
   playList: [
     {
-      mixTitle: "음원 재생한다",
-      mix1: {
-        asmrUrl1:
-          "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
-        sound1: "22",
-        url: "음원 정보1",
-        iconUrl1: "사진",
-        title1: "공원"
-      },
-      mix2: {
-        asmrUrl2:
-          "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.mp3",
-        sound2: "22",
-        url: "음원 정보2",
-        iconUrl2: "사진",
-        title2: "도서관"
-      },
+      playlistIdx: 1,
+      mixTitle: "음원 이거 내꺼",
+      mixList: [
+        {
+          asmrUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
+          sound: "22",
+          iconUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(png)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.png",
+          title: "공원",
+        },
+        {
+          asmrUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
+          sound: "23",
+          iconUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(png)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%B5.png",
+          title: "공원",
+        },
+      ],
     },
   ],
   is_write: false,
@@ -93,6 +101,15 @@ const getPlayListDB = () => {
     }
   };
 };
+//-- 믹스 리스트 삭제 --
+const DeletePlayListDB = (playlistIdx, userIdx) => {
+  return async function (dispatch, getState, { history }) {
+    try {
+      // await apis.getPlayList(playlistIdx, userIdx);
+      dispatch(get_playList(playlistIdx));
+    } catch (error) {}
+  };
+};
 
 // -- reducer --
 export default handleActions(
@@ -113,6 +130,13 @@ export default handleActions(
       produce(state, (draft) => {
         draft.is_write = false;
       }),
+    [DELETE_MIX]: (state, action) =>
+      produce(state, (draft) => {
+        const new_playList = draft.playList.filter((l, idx) => {
+          return action.playList.playlistIdx !== l.playlistIdx;
+        });
+        draft.diaryList = new_playList;
+      }),
   },
   initialState
 );
@@ -123,6 +147,7 @@ const actionCreators = {
   setPlayListDB,
   getPlayListDB,
   writeInitial,
+  DeletePlayListDB,
 };
 
 export { actionCreators };

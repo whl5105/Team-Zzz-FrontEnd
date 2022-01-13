@@ -11,7 +11,6 @@ import { ReactComponent as MyPage } from "../static/images/navigation/myPageIcon
 
 const Navigation = withRouter((props) => {
   const pathName = props.location.pathname;
-  console.log(pathName);
   const history = useHistory();
   const [diaryModal, setDiaryModal] = React.useState(false);
   const [select, setSelect] = React.useState(
