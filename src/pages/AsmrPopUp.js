@@ -26,7 +26,7 @@ const AsmrPopUp = (props) => {
   const [playListModal, setPlayListModal] = React.useState(false);
 
   const [guidance, setGuidance] = React.useState(false);
-
+  console.log(history)
   React.useEffect(() => {
     if (guidance === true) {
       const timeout = setTimeout(() => {
@@ -118,6 +118,7 @@ const AsmrPopUp = (props) => {
     }
 
     history.setPlay(arr);
+    history.setPlaybar(arr);
     setSongList(arr);
   };
 
