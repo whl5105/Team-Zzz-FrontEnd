@@ -29,20 +29,18 @@ const initialState = {
       mixIdx: "2",
       mixTitle: "음원 재생한다",
       mix1: {
-        asmrUrl1:
+        asmrUrl:
           "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
-        sound1: "22",
-        url: "음원 정보1",
-        iconUrl1: "사진",
-        title1: "공원",
+        sound: "22",
+        iconUrl: "사진",
+        title: "공원",
       },
       mix2: {
-        asmrUrl2:
+        asmrUrl:
           "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.mp3",
-        sound2: "22",
-        url: "음원 정보2",
-        iconUrl2: "사진",
-        title2: "도서관",
+        sound: "22",
+        iconUrl: "사진",
+        title: "도서관",
       },
     },
   ],
