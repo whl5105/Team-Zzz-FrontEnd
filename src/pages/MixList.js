@@ -43,8 +43,9 @@ const MixList = (props) => {
               <div key={idx}>
                 {/* {toggle ? ( */}
                 <List
+                  is_toggle
                   icon={mixList}
-                  src={toggle === idx ? path_T : path_B}
+                  // src={toggle === idx ? path_T : path_B}
                   _onClick={() => setToggle(!toggle)}
                 >
                   {item.mixTitle}
