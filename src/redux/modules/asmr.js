@@ -7,6 +7,8 @@ const GET_ASMR = "GETASMR";
 const SET_PLAYLIST = "SETPLAYLIST";
 const GET_PLAYLIST = "GETPLAYLIST";
 const SET_WRITE = "SETWRITE";
+const DELETE_PLAYLIST = "DELETEPLAYLIST";
+const EDIT_PLAYLIST = "EDITPLAYLIST";
 
 // -- action creators --
 const get_asmr = createAction(GET_ASMR, (asmrListInfo) => ({
@@ -20,6 +22,13 @@ const get_playList = createAction(GET_PLAYLIST, (playList) => ({
 }));
 
 const set_write = createAction(SET_WRITE, () => ({}));
+const delete_playList = createAction(DELETE_PLAYLIST, (playlistIdx) => ({
+  playlistIdx,
+}));
+const edit_playList = createAction(EDIT_PLAYLIST, (playlistIdx, mixTitle) => ({
+  playlistIdx,
+  mixTitle,
+}));
 
 // -- initialState --
 const initialState = {
@@ -90,6 +99,32 @@ const getPlayListDB = () => {
     }
   };
 };
+//-- 믹스 리스트 삭제 --
+const DeletePlayListDB = (playlistIdx) => {
+  return async function (dispatch, getState, { history }) {
+    try {
+      console.log(playlistIdx);
+      const userIdx = localStorage.getItem("userIdx");
+      const res = await apis.deletePlayList(playlistIdx, userIdx);
+      console.log(res);
+      dispatch(delete_playList(playlistIdx));
+    } catch (error) {}
+  };
+};
+//-- 믹스 리스트 제목 수정 --
+const editPlayListDB = (playlistIdx, mixTitle) => {
+  return async function (dispatch, getState, { history }) {
+    try {
+      console.log(playlistIdx, mixTitle);
+      const userIdx = localStorage.getItem("userIdx");
+      const res = await apis.editPlayList(playlistIdx, userIdx, mixTitle);
+      console.log(res);
+      dispatch(edit_playList(playlistIdx, mixTitle));
+    } catch (error) {
+      console.log("setPlayList Error : ", error);
+    }
+  };
+};
 
 // -- reducer --
 export default handleActions(
@@ -110,6 +145,20 @@ export default handleActions(
       produce(state, (draft) => {
         draft.is_write = false;
       }),
+    [DELETE_PLAYLIST]: (state, action) =>
+      produce(state, (draft) => {
+        const new_playList = draft.playList.filter((l, idx) => {
+          return action.playList.playlistIdx !== l.playlistIdx;
+        });
+        draft.diaryList = new_playList;
+      }),
+    [EDIT_PLAYLIST]: (state, action) =>
+      produce(state, (draft) => {
+        let idx = draft.playList.findIndex(
+          (l) => l.playlistIdx === action.payload.playlistIdx
+        );
+        draft.playList[idx].mixTitle = action.payload.mixTitle;
+      }),
   },
   initialState
 );
@@ -120,6 +169,8 @@ const actionCreators = {
   setPlayListDB,
   getPlayListDB,
   writeInitial,
+  DeletePlayListDB,
+  editPlayListDB,
 };
 
 export { actionCreators };
