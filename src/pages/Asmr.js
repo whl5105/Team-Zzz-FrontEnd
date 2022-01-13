@@ -34,7 +34,7 @@ const Asmr = (props) => {
   const [song3, setSong3] = React.useState(new Audio());
   const [song4, setSong4] = React.useState(new Audio());
   const [getCategory, setCategory] = React.useState(
-    location.category ? location.category : "전체"
+    location.category === undefined ? "전체" : location.category
   );
   const [imageUrl, setImageUrl] = React.useState(All);
   const [soundTrack, setSoundTrack] = React.useState([]);
@@ -62,6 +62,8 @@ const Asmr = (props) => {
       setImageUrl(Place);
     } else if (getCategory === "오브젝트") {
       setImageUrl(Object);
+    } else {
+      setImageUrl(All);
     }
   }, [getCategory]);
 
@@ -109,7 +111,7 @@ const Asmr = (props) => {
         }
       });
     }
-  }, [getCategory, asmrInfo]);
+  }, [asmrInfo, getCategory]);
 
   React.useEffect(() => {
     let selectItem;

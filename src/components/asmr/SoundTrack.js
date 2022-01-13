@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 // --- images ---
 import closeIcon from "../../static/images/asmr/closeIcon.svg";
+import lineIcon from "../../static/images/asmr/lineIcon.svg";
+import circleIcon from "../../static/images/asmr/circleIcon.svg";
 
 const SoundTrack = (props) => {
   let [b, setB] = React.useState(0);
@@ -101,9 +103,9 @@ const SoundTrack = (props) => {
           </IconImage>
         </Sound>
         <VolumeWrap>
-          <Volume>
+          <Volume categoryImage={lineIcon}>
             <Circle id={props.id} value={props.volume}>
-              <Span></Span>
+              <Span categoryImage={circleIcon}></Span>
             </Circle>
           </Volume>
         </VolumeWrap>
@@ -163,10 +165,10 @@ const Text = styled.p`
 `;
 
 const VolumeWrap = styled.div`
-  width: 100px;
+  width: 158px;
   height: 30px;
   position: relative;
-  top: 24px;
+  top: 28px;
   box-sizing: border-box;
   padding: 5px;
 `;
@@ -174,10 +176,11 @@ const VolumeWrap = styled.div`
 const Volume = styled.div`
   /* margin: 50px auto; */
   position: relative;
-  width: 100px;
-  height: 10px;
-  background: #222;
-  border-radius: 5px;
+  width: 158px;
+  height: 3px;
+  background-image: url(${(props) => props.categoryImage});
+  /* background: #222;
+  border-radius: 5px; */
 `;
 
 // const Volume = styled.input`
@@ -198,7 +201,7 @@ const Circle = styled.div`
   cursor: grab;
   position: absolute;
   left: ${(props) => `${props.value}px;`};
-  top: 50%;
+  top: 5px;
   width: 20px;
   height: 20px;
   transform: translate(-50%, -50%);
@@ -208,12 +211,13 @@ const Circle = styled.div`
 const Span = styled.span`
   position: absolute;
   display: block;
-  width: 20px;
-  line-height: 30px;
-  height: 20px;
-  background: #2196f3;
-  border-radius: 100%;
+  width: 14px;
+  line-height: 14px;
+  height: 14px;
+  /* background: #2196f3; */
+  /* border-radius: 100%; */
   text-align: center;
+  background-image: url(${(props) => props.categoryImage});
 `;
 
 export default SoundTrack;

@@ -7,7 +7,8 @@ const GET_ASMR = "GETDIARY";
 const SET_PLAYLIST = "SETPLAYLIST";
 const GET_PLAYLIST = "GETPLAYLIST";
 const SET_WRITE = "SETWRITE";
-const DELETE_MIX = "DELETEMIX";
+const DELETE_PLAYLIST = "DELETEPLAYLIST";
+const EDIT_PLAYLIST = "EDITPLAYLIST";
 
 // -- action creators --
 const get_asmr = createAction(GET_ASMR, (asmrListInfo) => ({
@@ -21,9 +22,12 @@ const get_playList = createAction(GET_PLAYLIST, (playList) => ({
 }));
 
 const set_write = createAction(SET_WRITE, () => ({}));
-const delete_mix = createAction(DELETE_MIX, (playlistIdx, userIdx) => ({
+const delete_playList = createAction(DELETE_PLAYLIST, (playlistIdx) => ({
   playlistIdx,
-  userIdx,
+}));
+const edit_playList = createAction(EDIT_PLAYLIST, (playlistIdx, mixTitle) => ({
+  playlistIdx,
+  mixTitle,
 }));
 
 // -- initialState --
@@ -81,9 +85,10 @@ const getAsmrDB = () => {
 const setPlayListDB = (playLists) => {
   return async function (dispatch, getState, { history }) {
     try {
-      // const res = await apis.postPlayList(playLists);
+      const res = await apis.postPlayList(playLists);
+      console.log(res);
       dispatch(set_playList());
-      // dispatch(getPlayListDB());
+      dispatch(getPlayListDB());
     } catch (error) {
       console.log("setPlayList Error : ", error);
     }
@@ -95,6 +100,7 @@ const getPlayListDB = () => {
     try {
       const userIdx = localStorage.getItem("userIdx");
       const res = await apis.getPlayList(userIdx);
+      console.log(res);
       dispatch(get_playList(res));
     } catch (error) {
       console.log("setPlayList Error : ", error);
@@ -102,12 +108,29 @@ const getPlayListDB = () => {
   };
 };
 //-- 믹스 리스트 삭제 --
-const DeletePlayListDB = (playlistIdx, userIdx) => {
+const DeletePlayListDB = (playlistIdx) => {
   return async function (dispatch, getState, { history }) {
     try {
-      // await apis.getPlayList(playlistIdx, userIdx);
-      dispatch(get_playList(playlistIdx));
+      console.log(playlistIdx);
+      const userIdx = localStorage.getItem("userIdx");
+      //onst res = await apis.deletePlayList(playlistIdx, userIdx);
+      // console.log(res);
+      dispatch(delete_playList(playlistIdx));
     } catch (error) {}
+  };
+};
+//-- 믹스 리스트 제목 수정 --
+const editPlayListDB = (playlistIdx, mixTitle) => {
+  return async function (dispatch, getState, { history }) {
+    try {
+      console.log(playlistIdx, mixTitle);
+      const userIdx = localStorage.getItem("userIdx");
+      // const res = await apis.editPlayList(playlistIdx, userIdx, mixTitle);
+      // console.log(res);
+      dispatch(edit_playList(playlistIdx, mixTitle));
+    } catch (error) {
+      console.log("setPlayList Error : ", error);
+    }
   };
 };
 
@@ -130,12 +153,19 @@ export default handleActions(
       produce(state, (draft) => {
         draft.is_write = false;
       }),
-    [DELETE_MIX]: (state, action) =>
+    [DELETE_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
         const new_playList = draft.playList.filter((l, idx) => {
           return action.playList.playlistIdx !== l.playlistIdx;
         });
         draft.diaryList = new_playList;
+      }),
+    [EDIT_PLAYLIST]: (state, action) =>
+      produce(state, (draft) => {
+        let idx = draft.playList.findIndex(
+          (l) => l.playlistIdx === action.payload.playlistIdx
+        );
+        draft.playList[idx].mixTitle = action.payload.mixTitle;
       }),
   },
   initialState
@@ -148,6 +178,7 @@ const actionCreators = {
   getPlayListDB,
   writeInitial,
   DeletePlayListDB,
+  editPlayListDB,
 };
 
 export { actionCreators };

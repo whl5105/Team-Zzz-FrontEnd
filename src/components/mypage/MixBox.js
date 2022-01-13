@@ -6,18 +6,39 @@ import { Button, Icon } from "../../elements";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as asmrActions } from "../../redux/modules/asmr";
 
+import MixDeletePopup from "./MixDeletePopup";
+import PlayList from "../asmr/PlayList";
+
 const MixBox = (props) => {
-  const dispatch = useDispatch();
-  const userIdx = localStorage.getItem("userIdx");
-  const deleteMix = () => {
-    console.log("삭제클릭");
-    dispatch(asmrActions.DeletePlayListDB(props.playlistIdx, userIdx));
-  };
+  console.log(props);
   //-- 다이어리 팝업 모달 --
-  const [modalOpen, setModalOpen] = React.useState(false);
+  const [deletemodal, setDeletemodal] = React.useState(false);
+  const [editmodal, setEditmodal] = React.useState(false);
   const closeModal = () => {
-    setModalOpen(false);
+    setDeletemodal(false);
+    setEditmodal(false);
   };
+
+  const [modalData, setModalData] = React.useState();
+  //삭제 클릭
+  const deleteClick = () => {
+    setDeletemodal(true);
+    const data = {
+      mixList: props.mixList,
+      playlistIdx: props.playlistIdx,
+    };
+    setModalData(data);
+  };
+  //수정클릭
+  const editClick = () => {
+    setEditmodal(true);
+    const data = {
+      mixName: props.mixTitle,
+      playlistIdx: props.playlistIdx,
+    };
+    setModalData(data);
+  };
+
   return (
     <Box>
       {props.mixList.map((item, idx) => {
@@ -33,12 +54,22 @@ const MixBox = (props) => {
         );
       })}
       <ButtonBox>
-        <Button type="boderBtn" text="삭제하기" _onClick={deleteMix} />
-        <Button text="수정 하기" />
+        <Button type="boderBtn" text="삭제하기" _onClick={deleteClick} />
+        <Button text="수정 하기" _onClick={editClick} />
       </ButtonBox>
 
       {/* -- 삭제 팝업 모달 -- */}
-      {/* {modalOpen ? <DiaryWrite close={closeModal} data={modalData} /> : ""} */}
+      {deletemodal ? (
+        <MixDeletePopup close={closeModal} data={modalData} />
+      ) : (
+        ""
+      )}
+      {/* -- 수정 팝업 모달 -- */}
+      {editmodal ? (
+        <PlayList close={closeModal} data={modalData} is_edit />
+      ) : (
+        ""
+      )}
     </Box>
   );
 };

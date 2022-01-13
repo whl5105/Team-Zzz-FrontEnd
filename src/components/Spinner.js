@@ -31,7 +31,7 @@ const Outter = styled.div`
 `;
 
 const Loading = styled.div`
-  position: absolute;
+  position: fixed;
   top: 40%;
   left: 45%;
   width: 53px;

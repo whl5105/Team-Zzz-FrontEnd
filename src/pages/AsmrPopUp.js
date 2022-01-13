@@ -23,6 +23,9 @@ const AsmrPopUp = (props) => {
   const [songList, setSongList] = React.useState(history.play);
 
   const [playListModal, setPlayListModal] = React.useState(false);
+  const closeModal = () => {
+    setPlayListModal(false);
+  };
 
   const deleteSong = (song) => {
     let arr = [];
@@ -192,8 +195,9 @@ const AsmrPopUp = (props) => {
 
                 {playListModal && (
                   <PlayList
-                    modal={playListModal}
-                    setPlayListModal={setPlayListModal}
+                    close={closeModal}
+                    // modal={playListModal}
+                    // setPlayListModal={setPlayListModal}
                   ></PlayList>
                 )}
               </>

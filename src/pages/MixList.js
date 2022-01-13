@@ -21,7 +21,7 @@ const MixList = (props) => {
   const [playList, setPlayList] = React.useState(
     playListInfo ? playListInfo : []
   );
-  // const [mixTitle, ...rest] = playList;
+
   console.log(playList);
   React.useEffect(() => {
     if (!playList) {
@@ -40,6 +40,7 @@ const MixList = (props) => {
             <MixBox
               mixList={item.mixList}
               playlistIdx={item.playlistIdx}
+              mixTitle={item.mixTitle}
             ></MixBox>
           </div>
         );

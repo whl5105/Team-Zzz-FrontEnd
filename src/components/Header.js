@@ -23,13 +23,16 @@ const Header = withRouter((props) => {
 
   const closeModal = () => {
     setMixListModal(false);
+    history.push("/");
   };
+
   const PageLink = () => {
     window.open(
       "https://docs.google.com/forms/d/e/1FAIpQLSfdn7OIKJYKQLfzNScDvBSCvv07yH9cuyjORoNyE_GNHfaG_w/viewform?vc=0&c=0&w=1&flr=0",
       "_blank"
     );
   };
+
   return (
     <div>
       <HeaderBox>
@@ -47,10 +50,9 @@ const Header = withRouter((props) => {
               alt="playList"
               position="absolute"
               right="23px"
-              hoverImage={Hover}
               onClick={playListPopUp}
             />
-            <img className="playListHover" alt=""></img>
+            <Image src={Hover} className="playListHover" alt=""></Image>
           </>
         ) : (
           <Icon src={Writing} alt="writing" _onClick={PageLink} />
@@ -86,16 +88,17 @@ const HoverImage = styled.img`
   position: ${(props) => props.position};
   right: ${(props) => props.right};
   cursor: pointer;
+`;
 
-  & + .playListHover {
-    position: relative;
-    width: 72px;
-    right: 30px;
-    height: 21.6px;
-    background-image: url(${(props) => props.hoverImage});
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+const Image = styled.div`
+  position: relative;
+  width: 92px;
+  height: 32px;
+  right: 3px;
+  top: 30px;
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 export default Header;
