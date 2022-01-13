@@ -23,6 +23,11 @@ export const deleteSong = (url) => {
 };
 
 const Asmr = (props) => {
+  const Mobile = () => {
+    return (ios = /iPhone|iPad/i.test(navigator.userAgent));
+  };
+  let [ios, setMobile] = React.useState(false);
+
   const location = useLocation();
   const dispatch = useDispatch();
   const [success, setSuccess] = React.useState(
@@ -236,11 +241,16 @@ const Asmr = (props) => {
         history.setPlay = setPlay;
         history.setPlaybar(arr); // 플레이어바 활성화 비활성화를 위한 array를 담는다.
 
+        Mobile();
+
         // 음원 선택 시 활성화 되면서 음원 재생
         if (!song1.src) {
           song1.src = asmrUrl;
-          song1.volume = 0.1;
-          // ios 일 떄는 0.4
+          if (ios === false) {
+            song1.volume = 0.1;
+          } else {
+            song1.volume = 0.4;
+          }
           song1.loop = true;
           song1.play();
           history.state1 = asmrUrl;
@@ -250,8 +260,11 @@ const Asmr = (props) => {
           history.setSong1 = setSong1;
         } else if (!song2.src) {
           song2.src = asmrUrl;
-          song2.volume = 0.1;
-          // ios 일 떄는 0.3
+          if (ios === false) {
+            song2.volume = 0.1;
+          } else {
+            song2.volume = 0.3;
+          }
           song2.loop = true;
           song2.play();
           history.state2 = asmrUrl;
@@ -261,8 +274,11 @@ const Asmr = (props) => {
           history.setSong2 = setSong2;
         } else if (!song3.src) {
           song3.src = asmrUrl;
-          song3.volume = 0.1;
-          // ios 일 떄는 0.2
+          if (ios === false) {
+            song3.volume = 0.1;
+          } else {
+            song3.volume = 0.2;
+          }
           song3.loop = true;
           song3.play();
           history.state3 = asmrUrl;
@@ -272,8 +288,11 @@ const Asmr = (props) => {
           history.setSong3 = setSong3;
         } else if (!song4.src) {
           song4.src = asmrUrl;
-          song4.volume = 0.1;
-          // ios 일 떄는 0.1
+          if (ios === false) {
+            song4.volume = 0.1;
+          } else {
+            song4.volume = 0.1;
+          }
           song4.loop = true;
           song4.play();
           history.state4 = asmrUrl;
