@@ -19,7 +19,7 @@ const GuidanceBtn = styled.div`
 
   position: absolute;
   bottom: -10px;
-  left: ${(props) => props.left - 5}px;
+  left: ${(props) => props.left + 2}px;
   transform: translateX(-50%);
   opacity: 0;
   z-index: 200;

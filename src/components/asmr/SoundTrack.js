@@ -20,7 +20,8 @@ const SoundTrack = (props) => {
 
   React.useEffect(() => {
     dragElement(document.getElementById(props.id));
-  },[]);
+  }, []);
+
   let [b, setB] = React.useState(0);
   let [ios, setMobile] = React.useState(false);
 
@@ -122,9 +123,10 @@ const SoundTrack = (props) => {
         </Sound>
         <VolumeWrap>
           <Volume categoryImage={lineIcon}>
-            {props.guidanceTitle === props.title ? <Guidance left={props.volume}></Guidance> : null}
-            <Circle id={props.id} value={props.volume*1.58}>
-
+            {props.guidanceTitle === props.title ? (
+              <Guidance left={props.volume}></Guidance>
+            ) : null}
+            <Circle id={props.id} value={props.volume * 1.58}>
               <Span categoryImage={circleIcon} onTouchStart={Click}></Span>
             </Circle>
           </Volume>
