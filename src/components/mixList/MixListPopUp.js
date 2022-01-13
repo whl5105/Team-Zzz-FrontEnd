@@ -40,16 +40,20 @@ const MixListPopUp = (props) => {
           <p>나의 믹스</p>
           <Icon src={MixSetting} alt="환경설정" _onClick={myPageMixList}></Icon>
         </Title>
-        {playList.map((item) => {
-          return (
-            <div key={item.playListIdx}>
-              <MixSoundTrack
-                mixTitle={item.mixTitle}
-                mixList={item.mixList && item.mixList}
-              ></MixSoundTrack>
-            </div>
-          );
-        })}
+        {playList.length > 0 ? (
+          playList.map((item) => {
+            return (
+              <div key={item.playListIdx}>
+                <MixSoundTrack
+                  mixTitle={item.mixTitle}
+                  mixList={item.mixList && item.mixList}
+                ></MixSoundTrack>
+              </div>
+            );
+          })
+        ) : (
+          <p>아직 기록이 없습니다.</p>
+        )}
       </Container>
     </ModalPopUp>
   );
