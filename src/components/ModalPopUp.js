@@ -16,7 +16,6 @@ const ModalPopUp = (props) => {
   );
 };
 
-// --- styled-components ---
 const Component = styled.div`
   width: 100%;
   height: 100vh;
@@ -31,7 +30,7 @@ const Component = styled.div`
 
 const Children = styled.div`
   width: ${(props) => props.width};
-  background-color: ${(props) => (props.backgroundNull ? null : "#fff")};
+  background-color: ${(props) => (props.backgroundNull ? null : "#FFFFFF")};
   border-radius: 12px;
   z-index: ${(props) => (props.zIndex ? props.zIndex : "999")};
   position: absolute;

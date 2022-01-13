@@ -7,6 +7,8 @@ const GET_ASMR = "GETASMR";
 const SET_PLAYLIST = "SETPLAYLIST";
 const GET_PLAYLIST = "GETPLAYLIST";
 const SET_WRITE = "SETWRITE";
+const DELETE_PLAYLIST = "DELETEPLAYLIST";
+const EDIT_PLAYLIST = "EDITPLAYLIST";
 
 // -- action creators --
 const get_asmr = createAction(GET_ASMR, (asmrListInfo) => ({
@@ -20,6 +22,13 @@ const get_playList = createAction(GET_PLAYLIST, (playList) => ({
 }));
 
 const set_write = createAction(SET_WRITE, () => ({}));
+const delete_playList = createAction(DELETE_PLAYLIST, (playlistIdx) => ({
+  playlistIdx,
+}));
+const edit_playList = createAction(EDIT_PLAYLIST, (playlistIdx, mixTitle) => ({
+  playlistIdx,
+  mixTitle,
+}));
 
 // -- initialState --
 const initialState = {
@@ -34,34 +43,38 @@ const initialState = {
           asmrUrl:
             "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
           sound: "22",
-          iconUrl: "사진",
+          iconUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(png)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.png",
           title: "공원",
         },
         {
           asmrUrl:
-            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.mp3",
-          sound: "22",
-          iconUrl: "사진",
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
+          sound: "23",
+          iconUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(png)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%B5.png",
           title: "공원",
         },
       ],
     },
     {
-      mixIdx: "2",
-      mixTitle: "음원 이거 내꺼",
+      playlistIdx: 2,
+      mixTitle: "음원 이거 내꺼2",
       mixList: [
         {
           asmrUrl:
             "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
           sound: "22",
-          iconUrl: "사진",
+          iconUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(png)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.png",
           title: "공원",
         },
         {
           asmrUrl:
-            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.mp3",
-          sound: "22",
-          iconUrl: "사진",
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
+          sound: "23",
+          iconUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B5%E1%84%86%E1%85%B5%E1%84%8C%E1%85%B5(png)/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%B5.png",
           title: "공원",
         },
       ],
@@ -115,6 +128,32 @@ const getPlayListDB = () => {
     }
   };
 };
+//-- 믹스 리스트 삭제 --
+const DeletePlayListDB = (playlistIdx) => {
+  return async function (dispatch, getState, { history }) {
+    try {
+      console.log(playlistIdx);
+      const userIdx = localStorage.getItem("userIdx");
+      //onst res = await apis.deletePlayList(playlistIdx, userIdx);
+      // console.log(res);
+      dispatch(delete_playList(playlistIdx));
+    } catch (error) {}
+  };
+};
+//-- 믹스 리스트 제목 수정 --
+const editPlayListDB = (playlistIdx, mixTitle) => {
+  return async function (dispatch, getState, { history }) {
+    try {
+      console.log(playlistIdx, mixTitle);
+      const userIdx = localStorage.getItem("userIdx");
+      // const res = await apis.editPlayList(playlistIdx, userIdx, mixTitle);
+      // console.log(res);
+      dispatch(edit_playList(playlistIdx, mixTitle));
+    } catch (error) {
+      console.log("setPlayList Error : ", error);
+    }
+  };
+};
 
 // -- reducer --
 export default handleActions(
@@ -135,6 +174,20 @@ export default handleActions(
       produce(state, (draft) => {
         draft.is_write = false;
       }),
+    [DELETE_PLAYLIST]: (state, action) =>
+      produce(state, (draft) => {
+        const new_playList = draft.playList.filter((l, idx) => {
+          return action.playList.playlistIdx !== l.playlistIdx;
+        });
+        draft.diaryList = new_playList;
+      }),
+    [EDIT_PLAYLIST]: (state, action) =>
+      produce(state, (draft) => {
+        let idx = draft.playList.findIndex(
+          (l) => l.playlistIdx === action.payload.playlistIdx
+        );
+        draft.playList[idx].mixTitle = action.payload.mixTitle;
+      }),
   },
   initialState
 );
@@ -145,6 +198,8 @@ const actionCreators = {
   setPlayListDB,
   getPlayListDB,
   writeInitial,
+  DeletePlayListDB,
+  editPlayListDB,
 };
 
 export { actionCreators };

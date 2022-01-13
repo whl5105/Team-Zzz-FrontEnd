@@ -14,12 +14,13 @@ import Button from "../../elements/Button";
 import reset from "../../static/images/icon/reset.svg";
 
 const PlayList = (props) => {
-  const [title, setTitle] = React.useState();
+  const { data, is_edit, close } = props;
+  const [title, setTitle] = React.useState(is_edit ? data.mixName : "");
   const dispatch = useDispatch();
 
-  const close = () => {
-    props.setPlayListModal(false);
-  };
+  // const close = () => {
+  //   props.setPlayListModal(false);
+  // };
 
   const titleChange = (e) => {
     setTitle(e.target.value);
@@ -68,16 +69,28 @@ const PlayList = (props) => {
     }
 
     dispatch(asmrActions.setPlayListDB(playLists));
-    props.setPlayListModal(false);
+    // props.setPlayListModal(false);
+    close();
 
     history.push("/asmr");
+  };
+  //수정하기 버튼 클릭
+  const editTilteSubmit = () => {
+    let mixTitle = title;
+    if (!title) {
+      mixTitle = "나의 믹스";
+    }
+
+    console.log(data.playlistIdx, mixTitle);
+    dispatch(asmrActions.editPlayListDB(data.playlistIdx, mixTitle));
+    close();
   };
 
   return (
     <>
       <ModalPopUp close={close}>
         <Wrap>
-          <Title>나의 믹스 만들기</Title>
+          <Title>{is_edit ? "믹스명 수정하기" : "나의 믹스 만들기"}</Title>
           <Input
             resetInput={title === "" || title === undefined ? false : true}
             src={reset}
@@ -89,12 +102,23 @@ const PlayList = (props) => {
             type="text"
             onClick={titleReset}
             value={title}
+            // value={contents}
             onChange={titleChange}
             max="18"
           ></Input>
-          <Button marginT="20" _onClick={titleSubmit}>
-            내 믹스 저장하기
-          </Button>
+          {is_edit ? (
+            <Button
+              marginT="20"
+              _onClick={editTilteSubmit}
+              text="저장하기 "
+            ></Button>
+          ) : (
+            <Button
+              marginT="20"
+              _onClick={titleSubmit}
+              text="내 믹스 저장하기"
+            ></Button>
+          )}
         </Wrap>
       </ModalPopUp>
     </>
@@ -112,6 +136,7 @@ const Title = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.lg};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   line-height: ${({ theme }) => theme.lineHeight.lg};
+  color: ${({ theme }) => theme.colors.gray_9};
 `;
 
 export default PlayList;
