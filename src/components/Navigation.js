@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory, withRouter } from "react-router-dom";
 import RequireLogin from "../components/RequireLogin";
 
-// --- images ---
+// 아이콘 이미지 import
 import { ReactComponent as Main } from "../static/images/navigation/homeIcon.svg";
 import { ReactComponent as Asmr } from "../static/images/navigation/asmrIcon.svg";
 import { ReactComponent as Diary } from "../static/images/navigation/diaryIcon.svg";
@@ -11,7 +11,6 @@ import { ReactComponent as MyPage } from "../static/images/navigation/myPageIcon
 
 const Navigation = withRouter((props) => {
   const pathName = props.location.pathname;
-
   const history = useHistory();
   const [diaryModal, setDiaryModal] = React.useState(false);
   const [select, setSelect] = React.useState(
@@ -40,6 +39,10 @@ const Navigation = withRouter((props) => {
   React.useEffect(() => {
     if (pathName === "/clock" || pathName === "/") {
       setSelect("main");
+    } else if (pathName === "/myPage/mixList") {
+      setSelect("mypage");
+    } else if (pathName === "/asmrPop") {
+      setSelect("asmr");
     } else {
       setSelect(pathName.split("/")[1]);
     }
@@ -109,7 +112,6 @@ const Navigation = withRouter((props) => {
   );
 });
 
-// --- styled-components ---
 const Gnb = styled.div`
   width: 100%;
   height: 56px;
@@ -122,7 +124,6 @@ const Gnb = styled.div`
   text-align: center;
   box-sizing: border-box;
   color: ${({ theme }) => theme.colors.white};
-
   ::before {
     content: "";
     width: 100%;

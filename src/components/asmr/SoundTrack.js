@@ -8,6 +8,7 @@ import circleIcon from "../../static/images/asmr/circleIcon.svg";
 
 const SoundTrack = (props) => {
   let [b, setB] = React.useState(0);
+  
   React.useEffect(() => {
     dragElement(document.getElementById(props.id));
   }, []);
