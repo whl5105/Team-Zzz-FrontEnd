@@ -2,34 +2,24 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
+import IOS from "../../static/images/asmr/IOS.svg";
 
 const Guidance = (props) => {
-  return (
-    <GuidanceBtn>
-      IOS에서 볼륨 조절은 미지원 서비스입니다<br></br>웹 브라우저로 접속
-      해주세요
-    </GuidanceBtn>
-  );
+  console.log(props.left);
+  return <GuidanceBtn src={IOS} left={props.left}></GuidanceBtn>;
 };
 
-const GuidanceBtn = styled.button`
-  width: 335px;
-  height: 78px;
-  border: none;
-  border-radius: 8px;
-  color: ${({ theme }) => theme.colors.bg}
-  font-size: ${({ theme }) => theme.fontSizes.small};
-  line-height: ${({ theme }) => theme.lineHeight.lg};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  background-color: ${({ theme }) => theme.colors.gray_2};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  position: absolute;
+const GuidanceBtn = styled.div`
+  width: 110px;
+  height: 30px;
 
-  bottom: 63px;
-  left: 50%;
+  background-image: url(${(props) => props.src});
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  position: absolute;
+  bottom: -10px;
+  left: ${(props) => props.left - 5}px;
   transform: translateX(-50%);
   opacity: 0;
   z-index: 200;
@@ -37,11 +27,11 @@ const GuidanceBtn = styled.button`
 
   @keyframes Guidance {
     40% {
-      bottom: 93px;
+      bottom: 20px;
       opacity: 1;
     }
     60% {
-      bottom: 93px;
+      bottom: 20px;
       opacity: 1;
     }
   }

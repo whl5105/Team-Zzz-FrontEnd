@@ -26,18 +26,7 @@ const AsmrPopUp = (props) => {
   const [playListModal, setPlayListModal] = React.useState(false);
 
   const [guidance, setGuidance] = React.useState(false);
-  console.log(history)
-  React.useEffect(() => {
-    if (guidance === true) {
-      const timeout = setTimeout(() => {
-        setGuidance(false);
-      }, 2000);
-
-      return () => {
-        clearTimeout(timeout);
-      };
-    }
-  }, []);
+  const [guidanceTitle, setGuidanceTitle] = React.useState();
 
   const deleteSong = (song) => {
     let arr = [];
@@ -162,6 +151,8 @@ const AsmrPopUp = (props) => {
                       deleteSong={deleteSong}
                       guidance={guidance}
                       setGuidance={setGuidance}
+                      guidanceTitle={guidanceTitle}
+                      setGuidanceTitle={setGuidanceTitle}
                     ></SoundTrack>
                   ) : null}
                   {song2 && song2.src !== "" ? (
@@ -175,6 +166,8 @@ const AsmrPopUp = (props) => {
                       deleteSong={deleteSong}
                       guidance={guidance}
                       setGuidance={setGuidance}
+                      guidanceTitle={guidanceTitle}
+                      setGuidanceTitle={setGuidanceTitle}
                     ></SoundTrack>
                   ) : null}
                   {song3 && song3.src !== "" ? (
@@ -188,6 +181,8 @@ const AsmrPopUp = (props) => {
                       deleteSong={deleteSong}
                       guidance={guidance}
                       setGuidance={setGuidance}
+                      guidanceTitle={guidanceTitle}
+                      setGuidanceTitle={setGuidanceTitle}
                     ></SoundTrack>
                   ) : null}
                   {song4 && song4.src !== "" ? (
@@ -201,6 +196,8 @@ const AsmrPopUp = (props) => {
                       deleteSong={deleteSong}
                       guidance={guidance}
                       setGuidance={setGuidance}
+                      guidanceTitle={guidanceTitle}
+                      setGuidanceTitle={setGuidanceTitle}
                     ></SoundTrack>
                   ) : null}
 
@@ -220,8 +217,6 @@ const AsmrPopUp = (props) => {
                     setPlayListModal={setPlayListModal}
                   ></PlayList>
                 )}
-
-                {guidance ? <Guidance></Guidance> : null}
               </>
             )}
           </>

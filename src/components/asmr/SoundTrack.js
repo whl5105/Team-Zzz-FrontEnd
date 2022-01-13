@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+// --- components ---
+import Guidance from "../asmr/Guidance";
+
 // --- images ---
 import closeIcon from "../../static/images/asmr/closeIcon.svg";
 import lineIcon from "../../static/images/asmr/lineIcon.svg";
@@ -35,8 +38,10 @@ const SoundTrack = (props) => {
     } else if (ios === true && !props.guidance) {
       console.log("Ipone");
       props.setGuidance(true);
+      props.setGuidanceTitle(props.title);
       const timeout = setTimeout(() => {
         props.setGuidance(false);
+        props.setGuidanceTitle(null);
       }, 2000);
 
       return () => {
@@ -117,6 +122,7 @@ const SoundTrack = (props) => {
         </Sound>
         <VolumeWrap>
           <Volume categoryImage={lineIcon}>
+            {props.guidanceTitle === props.title ? <Guidance left={props.volume}></Guidance> : null}
             <Circle id={props.id} value={props.volume}>
               <Span categoryImage={circleIcon} onTouchStart={Click}></Span>
             </Circle>
