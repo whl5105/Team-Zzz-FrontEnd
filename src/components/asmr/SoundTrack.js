@@ -16,8 +16,8 @@ const SoundTrack = (props) => {
   };
 
   React.useEffect(() => {
-    // dragElement(document.getElementById(props.id));
-  });
+    dragElement(document.getElementById(props.id));
+  },[]);
   let [b, setB] = React.useState(0);
   let [ios, setMobile] = React.useState(false);
 
@@ -34,7 +34,7 @@ const SoundTrack = (props) => {
       elmnt.ontouchstart = dragMouseDown; // 19번줄이나 20번줄이나 같음
     } else if (ios === true && !props.guidance) {
       console.log("Ipone");
-      props.setGuidance(true);
+      props.setGuidance(true); //애니메이션 부분
       const timeout = setTimeout(() => {
         props.setGuidance(false);
       }, 2000);
@@ -117,7 +117,7 @@ const SoundTrack = (props) => {
         </Sound>
         <VolumeWrap>
           <Volume categoryImage={lineIcon}>
-            <Circle id={props.id} value={props.volume}>
+            <Circle id={props.id} value={props.volume*1.58}>
               <Span categoryImage={circleIcon} onTouchStart={Click}></Span>
             </Circle>
           </Volume>
