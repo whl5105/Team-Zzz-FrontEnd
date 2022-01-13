@@ -45,10 +45,7 @@ const MixListPopUp = (props) => {
             <div key={item.mixIdx}>
               <MixSoundTrack
                 mixTitle={item.mixTitle}
-                mix1={item.mix1}
-                mix2={item.mix2}
-                mix3={item.mix3}
-                mix4={item.mix4}
+                mixList={item.mixList && item.mixList}
               ></MixSoundTrack>
             </div>
           );

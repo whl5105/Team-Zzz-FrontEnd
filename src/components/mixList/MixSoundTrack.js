@@ -9,13 +9,20 @@ import Icon from "../../elements/Icon";
 import Vector from "../../static/images/mixList/vector.png";
 
 const MixSoundTrack = (props) => {
-  const { mixTitle, mix1, mix2, mix3, mix4 } = props;
-  
+  const { mixTitle, mixList } = props;
+
   const [song1, setSong1] = React.useState(new Audio());
   const [song2, setSong2] = React.useState(new Audio());
   const [song3, setSong3] = React.useState(new Audio());
   const [song4, setSong4] = React.useState(new Audio());
   const [play, setPlay] = React.useState([]);
+
+  const mix1 = mixList[0];
+  const mix2 = mixList[1];
+  const mix3 = mixList[2];
+  const mix4 = mixList[3];
+
+  console.log(mix1, mix2, mix3, mix4)
 
   React.useEffect(() => {
     let arr = [];

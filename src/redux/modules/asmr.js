@@ -24,42 +24,47 @@ const set_write = createAction(SET_WRITE, () => ({}));
 // -- initialState --
 const initialState = {
   asmrList: [],
-  playList: [ // 초기값 무조건 null로
+  playList: [
+    // 초기값은 무조건 null로
     {
-      mixIdx: "2",
-      mixTitle: "음원 재생한다",
-      mix1: {
-        asmrUrl:
-          "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
-        sound: "22",
-        iconUrl: "사진",
-        title: "공원",
-      },
-      mix2: {
-        asmrUrl:
-          "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.mp3",
-        sound: "22",
-        iconUrl: "사진",
-        title: "도서관",
-      },
+      mixIdx: "1",
+      mixTitle: "음원 이거 내꺼",
+      mixList: [
+        {
+          asmrUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
+          sound: "22",
+          iconUrl: "사진",
+          title: "공원",
+        },
+        {
+          asmrUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.mp3",
+          sound: "22",
+          iconUrl: "사진",
+          title: "공원",
+        },
+      ],
     },
     {
-      mixIdx: "3",
-      mixTitle: "음원 재생한다",
-      mix1: {
-        asmrUrl:
-          "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
-        sound: "22",
-        iconUrl: "사진",
-        title: "공원",
-      },
-      mix2: {
-        asmrUrl:
-          "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.mp3",
-        sound: "22",
-        iconUrl: "사진",
-        title: "도서관",
-      },
+      mixIdx: "2",
+      mixTitle: "음원 이거 내꺼",
+      mixList: [
+        {
+          asmrUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
+          sound: "22",
+          iconUrl: "사진",
+          title: "공원",
+        },
+        {
+          asmrUrl:
+            "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%83%E1%85%A9%E1%84%89%E1%85%A5%E1%84%80%E1%85%AA%E1%86%AB.mp3",
+          sound: "22",
+          iconUrl: "사진",
+          title: "공원",
+        },
+      ],
     },
   ],
   is_write: false,
