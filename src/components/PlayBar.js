@@ -13,6 +13,13 @@ const PlayBar = (props) => {
   const [playbar, setPlaybar] = React.useState([]);
   history.setPlaybar = setPlaybar;
 
+React.useEffect(()=>{
+ play();
+ setToggle(false)
+},[playbar])
+
+
+
   const play = () => {
     history.audio1 && history.audio1.play();
     history.audio2 && history.audio2.play();
