@@ -28,7 +28,7 @@ const AsmrPopUp = (props) => {
     setPlayListModal(false);
   };
 
-  const [guidance, setGuidance] = React.useState(false);
+  const [guidance, setGuidance] = React.useState();
   const [guidanceTitle, setGuidanceTitle] = React.useState();
 
   const deleteSong = (song) => {
