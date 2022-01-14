@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import SpinnerImage from "../static/images/spinner/Spinner.png";
+import SpinnerImage from "../static/images/spinner/SpinnerBack.png";
+import MoonImage from "../static/images/spinner/Moon.png";
 
 const Spinner = (props) => {
   return (
     <>
       <Outter height={props.height}>
+        <Moon src={MoonImage}></Moon>
         <Loading>
           <label>Z</label>
           <label>z</label>
@@ -26,7 +28,16 @@ const Outter = styled.div`
   height: ${(props) => props.height};
   background-image: url(${SpinnerImage});
   background-repeat: no-repeat;
-  background-position: center center;
+  background-size: cover;
+`;
+
+const Moon = styled.img`
+  src: ${(props) => props.src};
+  width: 64px;
+  height: 64px;
+  position: fixed;
+  left: 43%;
+  top: 32%;
 `;
 
 const Loading = styled.div`
