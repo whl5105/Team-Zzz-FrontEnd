@@ -67,6 +67,7 @@ const setPlayListDB = (playLists) => {
         playLists.mixList
       );
       dispatch(set_playList(true));
+      dispatch(getPlayListDB());
 
       history.push("/asmr");
     } catch (error) {
