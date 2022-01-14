@@ -69,6 +69,7 @@ const setPlayListDB = (playLists) => {
         playLists.mixTitle,
         playLists.mixList
       );
+      console.log(res)
       dispatch(set_playList(res, true));
 
       history.push("/asmr");
