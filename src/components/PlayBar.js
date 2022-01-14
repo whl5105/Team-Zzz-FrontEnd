@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { deleteSong } from "../pages/Asmr";
 
-
 // --- images ---
 import playIcon from "../static/images/play/play.svg";
 import volumeIcon from "../static/images/play/volume.svg";
@@ -15,12 +14,10 @@ const PlayBar = (props) => {
   const [playbar, setPlaybar] = React.useState([]);
   history.setPlaybar = setPlaybar;
 
-React.useEffect(()=>{
- play();
- setToggle(false)
-},[playbar])
-
-
+  React.useEffect(() => {
+    play();
+    setToggle(false);
+  }, [playbar]);
 
   const play = () => {
     history.audio1 && history.audio1.play();
