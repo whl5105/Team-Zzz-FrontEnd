@@ -11,6 +11,7 @@ const Kakao = (props) => {
     </Content>
   );
 };
+
 const Content = styled.div`
   text-align: center;
   padding: 20px;
@@ -18,6 +19,7 @@ const Content = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: ${({ theme }) => theme.fontWeight.Medium};
 `;
+
 const Icon = styled.div`
   width: 44px;
   height: 44px;

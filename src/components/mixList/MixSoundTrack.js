@@ -89,7 +89,7 @@ const MixSoundTrack = (props) => {
   const playSoundSetting = () => {
     if (mix1) {
       song1.src = mix1.asmrUrl; // 음원 url
-      song1.volume = mix1.sound / 100; // 볼륨
+      song1.volume = Math.ceil(mix1.sound * 100) / 100; // 볼륨
       history.audio1 = song1; // 음원 audio 객체
       history.setSong1 = setSong1; // 음원 setState
       history.icon1 = mix1.iconUrl; // 아이콘 url
@@ -100,7 +100,7 @@ const MixSoundTrack = (props) => {
 
     if (mix2) {
       song2.src = mix2.asmrUrl;
-      song2.volume = mix2.sound / 100;
+      song2.volume = Math.ceil(mix2.sound * 100) / 100;
       history.audio2 = song2;
       history.setSong2 = setSong2;
       history.icon2 = mix2.iconUrl;
@@ -111,7 +111,7 @@ const MixSoundTrack = (props) => {
 
     if (mix3) {
       song3.src = mix3.asmrUrl;
-      song3.volume = mix3.sound / 100;
+      song3.volume = Math.ceil(mix3.sound * 100) / 100;
       history.audio3 = song3;
       history.setSong3 = setSong3;
       history.icon3 = mix3.iconUrl;
@@ -122,7 +122,7 @@ const MixSoundTrack = (props) => {
 
     if (mix4) {
       song4.src = mix4.asmrUrl;
-      song4.volume = mix4.sound / 100;
+      song4.volume = Math.ceil(mix4.sound * 100) / 100;
       history.audio4 = song4;
       history.setSong4 = setSong4;
       history.icon4 = mix4.iconUrl;
@@ -132,9 +132,9 @@ const MixSoundTrack = (props) => {
     }
   };
 
-  const playSoundTrack = () => {
-    playInitial();
-    playSoundSetting();
+  const playSoundTrack = async () => {
+    await playInitial();
+    await playSoundSetting();
     history.play = play;
     history.setPlay = setPlay;
     history.setPlaybar(play);

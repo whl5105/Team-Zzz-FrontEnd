@@ -28,6 +28,7 @@ const initialState = {
 };
 
 // -- middleware actions --
+
 //---- 회원가입 DB ----
 export const signupDB =
   (userId, password) =>
@@ -42,6 +43,7 @@ export const signupDB =
       dispatch(err_signup());
     }
   };
+
 //---- 로그인 DB ----
 export const loginDB =
   (userId, password) =>
@@ -63,6 +65,41 @@ export const loginDB =
         })
       );
       // window.alert(`${username}님 환영합니다`);
+      history.replace("/");
+    } catch (err) {
+      window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
+      console.log(`오류 발생!${err}`);
+    }
+  };
+
+export const socialLoginDB =
+  (id, token) =>
+  async (dispatch, getState, { history }) => {
+    try {
+      // 소셜 로그인 api 연결 (id, token 보내줘야 함)
+
+      const res = {
+        // 예시
+        userIdx: "1",
+        noticeSet: true,
+        loginCnt: 2,
+        token: "토큰",
+        userId: "아이디",
+      };
+
+      //로컬 스토리지 저장
+      localStorage.setItem("userIdx", res.userIdx);
+      localStorage.setItem("noticeSet", res.noticeSet);
+      localStorage.setItem("token", res.token);
+      dispatch(
+        setUser({
+          userIdx: res.userIdx,
+          userId: res.userId,
+          loginCnt: res.loginCnt,
+          noticeSet: res.noticeSet,
+        })
+      );
+
       history.replace("/");
     } catch (err) {
       window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
@@ -112,6 +149,7 @@ const actionCreators = {
   signupDB,
   loginDB,
   logoutDB,
+  socialLoginDB,
 };
 
 export { actionCreators };

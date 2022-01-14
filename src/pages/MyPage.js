@@ -15,10 +15,18 @@ import List from "../components/mypage/List";
 import AlarmBanner from "../components/mypage/AlarmBanner";
 
 const Mypage = (props) => {
+
+  const Mobile = () => {
+    return (ios = /iPhone|iPad/i.test(navigator.userAgent)), setIos(ios);
+  };
+
+
   const dispatch = useDispatch();
   const userIdx = localStorage.getItem("userIdx");
   const token = localStorage.getItem("token");
   const [is_token, setLogin] = React.useState(token);
+
+  let [ios, setIos] = React.useState(false);
 
   React.useEffect(() => {
     setLogin(token);
@@ -32,17 +40,23 @@ const Mypage = (props) => {
           <Title is_token justifySB>
             마이페이지
           </Title>
-          <AlarmBanner
-            _onClick={() => history.push(`/mypageNotice/${userIdx}`)}
-          ></AlarmBanner>
-          <div
-            style={{
-              width: "100%",
-              height: "20px",
-              backgroundColor: "rgba(7,9,34,0.8)",
-              marginTop: "10px",
-            }}
-          ></div>
+
+          {ios ? null : (
+            <>
+              <AlarmBanner
+                _onClick={() => history.push(`/mypageNotice/${userIdx}`)}
+              ></AlarmBanner>
+              <div
+                style={{
+                  width: "100%",
+                  height: "20px",
+                  backgroundColor: "rgba(7,9,34,0.8)",
+                  marginTop: "10px",
+                }}
+              ></div>
+            </>
+          )}
+
 
           <List icon={notice} _onClick={() => history.push("/notice")}>
             공지사항
