@@ -75,8 +75,6 @@ const PlayList = (props) => {
 
     dispatch(asmrActions.setPlayListDB(playLists));
     close();
-
-    history.push("/asmr");
   };
 
   // 수정하기 버튼 클릭

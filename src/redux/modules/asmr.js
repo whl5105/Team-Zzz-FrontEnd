@@ -15,7 +15,7 @@ const get_asmr = createAction(GET_ASMR, (asmrListInfo) => ({
   asmrListInfo,
 }));
 
-const set_playList = createAction(SET_PLAYLIST, () => ({}));
+const set_playList = createAction(SET_PLAYLIST, (is_write) => ({ is_write }));
 
 const get_playList = createAction(GET_PLAYLIST, (playList) => ({
   playList,
@@ -40,16 +40,16 @@ const initialState = {
   //     mixIdx: "1",
   //     mixTitle: "음원 이거 내꺼",
   //     mixList: null,
-      // [
-      //   {
-      //     asmrUrl:
-      //       "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
-      //     sound: "22",
-      //     iconUrl: "사진",
-      //     title: "공원",
-      //   },
-      // ],
-    // },
+  // [
+  //   {
+  //     asmrUrl:
+  //       "https://zzz-asmr-bucket.s3.ap-northeast-2.amazonaws.com/%E1%84%8B%E1%85%B3%E1%86%B7%E1%84%8B%E1%85%AF%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%80%E1%85%A1%E1%86%AB/%E1%84%80%E1%85%A9%E1%86%BC%E1%84%8B%E1%85%AF%E1%86%AB.mp3",
+  //     sound: "22",
+  //     iconUrl: "사진",
+  //     title: "공원",
+  //   },
+  // ],
+  // },
   // ],
   is_write: false,
 };
@@ -79,9 +79,13 @@ const getAsmrDB = () => {
 const setPlayListDB = (playLists) => {
   return async function (dispatch, getState, { history }) {
     try {
-      const res = await apis.postPlayList(playLists.mixTitle, playLists.mixList);
-      console.log(res);
-      dispatch(set_playList());
+      const res = await apis.postPlayList(
+        playLists.mixTitle,
+        playLists.mixList
+      );
+      dispatch(set_playList(true));
+
+      history.push("/asmr");
     } catch (error) {
       console.log("setPlayList Error : ", error);
     }
@@ -135,7 +139,7 @@ export default handleActions(
       }),
     [SET_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
-        draft.is_write = true;
+        draft.is_write = action.payload.is_write;
       }),
     [GET_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
