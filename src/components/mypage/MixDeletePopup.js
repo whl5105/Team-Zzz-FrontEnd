@@ -12,9 +12,10 @@ const MixDeletePopup = (props) => {
   const dispatch = useDispatch();
   const userIdx = localStorage.getItem("userIdx");
   const { close, data } = props;
-
+  console.log(props);
   const deleteMix = () => {
     console.log("삭제클릭");
+    console.log(data.playlistIdx);
     console.log(data.playlistIdx, userIdx);
     dispatch(asmrActions.DeletePlayListDB(data.playlistIdx));
     close();

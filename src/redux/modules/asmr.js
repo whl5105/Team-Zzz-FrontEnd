@@ -36,7 +36,7 @@ const initialState = {
   playList: [
     // 초기값은 무조건 null로
     {
-      mixIdx: "1",
+      playlistIdx: "1",
       mixTitle: "음원 이거 내꺼",
       mixList: [
         {
@@ -58,7 +58,7 @@ const initialState = {
       ],
     },
     {
-      playlistIdx: 2,
+      playlistIdx: "2",
       mixTitle: "음원 이거 내꺼2",
       mixList: [
         {
@@ -132,10 +132,11 @@ const getPlayListDB = () => {
 const DeletePlayListDB = (playlistIdx) => {
   return async function (dispatch, getState, { history }) {
     try {
-      console.log(playlistIdx);
+      console.log(typeof playlistIdx);
       const userIdx = localStorage.getItem("userIdx");
-      const res = await apis.deletePlayList(playlistIdx, userIdx);
-      console.log(res);
+      // const res = await apis.deletePlayList(playlistIdx, userIdx);
+      // console.log(res);
+      console.log(playlistIdx);
       dispatch(delete_playList(playlistIdx));
     } catch (error) {}
   };
@@ -146,8 +147,8 @@ const editPlayListDB = (playlistIdx, mixTitle) => {
     try {
       console.log(playlistIdx, mixTitle);
       const userIdx = localStorage.getItem("userIdx");
-      const res = await apis.editPlayList(playlistIdx, userIdx, mixTitle);
-      console.log(res);
+      // const res = await apis.editPlayList(playlistIdx, userIdx, mixTitle);
+      // console.log(res);
       dispatch(edit_playList(playlistIdx, mixTitle));
     } catch (error) {
       console.log("setPlayList Error : ", error);
@@ -176,10 +177,16 @@ export default handleActions(
       }),
     [DELETE_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
+        console.log(action.payload.playlistIdx);
+        console.log(typeof action.payload.playlistIdx);
+        // const new_playList = draft.playList.filter((l, idx) => {
+        //   return l.playlistIdx;
+        // });
+        // console.log(new_playList);
         const new_playList = draft.playList.filter((l, idx) => {
-          return action.playList.playlistIdx !== l.playlistIdx;
+          return action.payload.playlistIdx !== l.playlistIdx;
         });
-        draft.diaryList = new_playList;
+        draft.playList = new_playList;
       }),
     [EDIT_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
