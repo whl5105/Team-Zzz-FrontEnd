@@ -18,10 +18,6 @@ const PlayList = (props) => {
   const [title, setTitle] = React.useState(is_edit ? data.mixName : "");
   const dispatch = useDispatch();
 
-  // const close = () => {
-  //   props.setPlayListModal(false);
-  // };
-
   const titleChange = (e) => {
     setTitle(e.target.value);
   };
@@ -78,12 +74,12 @@ const PlayList = (props) => {
     }
 
     dispatch(asmrActions.setPlayListDB(playLists));
-    // props.setPlayListModal(false);
     close();
 
     history.push("/asmr");
   };
-  //수정하기 버튼 클릭
+
+  // 수정하기 버튼 클릭
   const editTilteSubmit = () => {
     let mixTitle = title;
     if (!title) {
