@@ -44,33 +44,35 @@ const MixList = (props) => {
   return (
     <Container>
       <Title backIcon>나의 믹스</Title>
-      {playList !== null ? (
-        <>
-          {playList.map((item, idx) => {
-            return (
-              <div key={idx}>
-                <List
-                  icon={mixList}
-                  src={toggle[idx] ? path_T : path_B}
-                  _onClick={() => toggleComment(idx)}
-                >
-                  {item.mixTitle}
-                </List>
-                {toggle[idx] ? (
-                  <MixBox
-                    mixList={item.mixList}
-                    playlistIdx={item.playlistIdx}
-                    mixTitle={item.mixTitle}
-                    toggle={toggle}
-                  ></MixBox>
-                ) : null}
-              </div>
-            );
-          })}
-        </>
-      ) : (
-        <p>믹스 음원 없음</p>
-      )}
+      <MixContent>
+        {playList !== null ? (
+          <>
+            {playList.map((item, idx) => {
+              return (
+                <div key={idx}>
+                  <List
+                    icon={mixList}
+                    src={toggle[idx] ? path_T : path_B}
+                    _onClick={() => toggleComment(idx)}
+                  >
+                    {item.mixTitle}
+                  </List>
+                  {toggle[idx] ? (
+                    <MixBox
+                      mixList={item.mixList}
+                      playlistIdx={item.playlistIdx}
+                      mixTitle={item.mixTitle}
+                      toggle={toggle}
+                    ></MixBox>
+                  ) : null}
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <p>믹스 음원 없음</p>
+        )}
+      </MixContent>
     </Container>
   );
 };
@@ -80,6 +82,15 @@ const Container = styled.div`
   height: 100vh;
   box-sizing: border-box;
   padding: 50px 0;
+`;
+const MixContent = styled.div`
+  width: 100%;
+  height: calc(100vh - 271px);
+  background: red;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default MixList;
