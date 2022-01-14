@@ -21,8 +21,7 @@ const MixList = (props) => {
   const [playList, setPlayList] = React.useState(
     playListInfo ? playListInfo : null
   );
-  const [toggle, setToggle] = React.useState(false);
-  console.log(toggle);
+  const [toggle, setToggle] = React.useState({});
 
   React.useEffect(() => {
     if (!playListInfo) {
@@ -33,6 +32,14 @@ const MixList = (props) => {
     setPlayList(playListInfo);
   }, [playListInfo]);
 
+  const toggleComment = (idx) => {
+    setToggle((prevToggle) => ({
+      ...prevToggle,
+      [idx]: !prevToggle[idx],
+    }));
+  };
+  console.log(toggle);
+
   return (
     <Container>
       <Title backIcon>나의 믹스</Title>
@@ -41,30 +48,21 @@ const MixList = (props) => {
           {playList.map((item, idx) => {
             return (
               <div key={idx}>
-                {/* {toggle ? ( */}
                 <List
-                  is_toggle
                   icon={mixList}
-                  // src={toggle === idx ? path_T : path_B}
-                  _onClick={() => setToggle(!toggle)}
+                  src={toggle[idx] ? path_T : path_B}
+                  _onClick={() => toggleComment(idx)}
                 >
                   {item.mixTitle}
                 </List>
-                {/* ) : ( */}
-                {/* <List
-                  icon={mixList}
-                  src={path_T}
-                  _onClick={() => setToggle(idx)}
-                >
-                  {item.mixTitle}
-                </List> */}
-                {/* )} */}
-
-                <MixBox
-                  mixList={item.mixList}
-                  playlistIdx={item.playlistIdx}
-                  mixTitle={item.mixTitle}
-                ></MixBox>
+                {toggle[idx] ? (
+                  <MixBox
+                    mixList={item.mixList}
+                    playlistIdx={item.playlistIdx}
+                    mixTitle={item.mixTitle}
+                    toggle={toggle}
+                  ></MixBox>
+                ) : null}
               </div>
             );
           })}
