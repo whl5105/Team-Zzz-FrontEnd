@@ -10,7 +10,7 @@ import SoundTrack from "../components/asmr/SoundTrack";
 import PlayList from "../components/asmr/PlayList";
 import Button from "../elements/Button";
 import Icon from "../elements/Icon";
-import Guidance from "../components/asmr/Guidance";
+import RequireLogin from "../components/RequireLogin";
 
 const AsmrPopUp = (props) => {
   const [song1, setSong1] = React.useState(history.audio1 && history.audio1);
@@ -24,8 +24,19 @@ const AsmrPopUp = (props) => {
   const [songList, setSongList] = React.useState(history.play);
 
   const [playListModal, setPlayListModal] = React.useState(false);
-  const closeModal = () => {
+  const [requireLoginModal, setRequireLoginModal] = React.useState(false);
+
+  const closePlayListModal = () => {
     setPlayListModal(false);
+  };
+
+  const closeRequireModal = () => {
+    setRequireLoginModal(false);
+  };
+
+  const loginModal = () => {
+    setRequireLoginModal(false);
+    history.push("/login");
   };
 
   const [guidance, setGuidance] = React.useState();
@@ -119,7 +130,12 @@ const AsmrPopUp = (props) => {
   };
 
   const titleWrite = () => {
-    setPlayListModal(true);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setRequireLoginModal(true);
+    } else {
+      setPlayListModal(true);
+    }
   };
 
   return (
@@ -214,12 +230,15 @@ const AsmrPopUp = (props) => {
                   </Button>
                 </SongList>
 
-                {playListModal && (
-                  <PlayList
-                    close={closeModal}
-                    // modal={playListModal}
-                    // setPlayListModal={setPlayListModal}
-                  ></PlayList>
+                {requireLoginModal ? (
+                  <RequireLogin
+                    close={closeRequireModal}
+                    move={loginModal}
+                  ></RequireLogin>
+                ) : (
+                  playListModal && (
+                    <PlayList close={closePlayListModal}></PlayList>
+                  )
                 )}
               </>
             )}

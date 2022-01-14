@@ -83,6 +83,7 @@ const Container = styled.div`
   /* height: 720px; */
   height: calc(100% - 106px);
   padding: 50px ${({ theme }) => theme.paddings.xxxxl};
+  border-top: solid;
   &::-webkit-scrollbar {
     display: none;
   }
