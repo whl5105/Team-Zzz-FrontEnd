@@ -42,7 +42,6 @@ const MixList = (props) => {
       ...prevToggle,
       [idx]: !prevToggle[idx],
     }));
-    console.log(toggle);
   };
   console.log(playList);
   console.log(playList !== null);
@@ -57,13 +56,12 @@ const MixList = (props) => {
                 <div key={idx}>
                   <List
                     icon={mixList}
-                    src={toggle[item.playlistIdx] ? path_T : path_B}
-                    // _onClick={() => toggleComment(idx)}
-                    _onClick={() => toggleComment(item.playlistIdx)}
+                    src={toggle[idx] ? path_T : path_B}
+                    _onClick={() => toggleComment(idx)}
                   >
                     {item.mixTitle}
                   </List>
-                  {toggle[item.playlistIdx] ? (
+                  {toggle[idx] ? (
                     <MixBox
                       mixList={item.mixList}
                       playlistIdx={item.playlistIdx}
