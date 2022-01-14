@@ -76,7 +76,6 @@ const Main = (props) => {
     </Container>
   );
 };
-
 // --- styled-components ---
 const Container = styled.div`
   overflow-y: scroll;
