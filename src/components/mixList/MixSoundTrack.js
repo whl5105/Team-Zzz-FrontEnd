@@ -111,7 +111,7 @@ const MixSoundTrack = (props) => {
 
     if (mix3) {
       song3.src = mix3.asmrUrl;
-      song3.volume = mix3.sound * 100;
+      song3.volume = mix3.sound / 100;
       history.audio3 = song3;
       history.setSong3 = setSong3;
       history.icon3 = mix3.iconUrl;
@@ -122,7 +122,7 @@ const MixSoundTrack = (props) => {
 
     if (mix4) {
       song4.src = mix4.asmrUrl;
-      song4.volume = mix4.sound * 100;
+      song4.volume = mix4.sound / 100;
       history.audio4 = song4;
       history.setSong4 = setSong4;
       history.icon4 = mix4.iconUrl;
