@@ -39,7 +39,14 @@ const Asmr = (props) => {
   const [imageUrl, setImageUrl] = React.useState(All);
   const [soundTrack, setSoundTrack] = React.useState([]);
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
+  const playListInfo = useSelector((state) => state.asmr.playList);
   const [play, setPlay] = React.useState([]);
+
+  React.useEffect(() => {
+    if (!playListInfo) {
+      dispatch(asmrActions.getPlayListDB());
+    }
+  }, [])
 
   React.useEffect(() => {
     if (success === true) {

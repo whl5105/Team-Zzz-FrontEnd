@@ -17,10 +17,12 @@ import path_T from "../static/images/mypage/arrow_T_W.svg";
 const MixList = (props) => {
   const dispatch = useDispatch();
   const playListInfo = useSelector((store) => store.asmr.playList);
+  console.log(playListInfo);
 
   const [playList, setPlayList] = React.useState(
     playListInfo ? playListInfo : null
   );
+  console.log(playList);
   const [toggle, setToggle] = React.useState({});
 
   React.useEffect(() => {
@@ -38,12 +40,11 @@ const MixList = (props) => {
       [idx]: !prevToggle[idx],
     }));
   };
-  console.log(toggle);
-
+  console.log(playList !== null);
   return (
     <Container>
       <Title backIcon>나의 믹스</Title>
-      {playList.length > 0 ? (
+      {playList !== null ? (
         <>
           {playList.map((item, idx) => {
             return (
