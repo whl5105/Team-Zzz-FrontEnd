@@ -13,16 +13,12 @@ import MixSoundTrack from "./MixSoundTrack";
 import MixSetting from "../../static/images/mixList/setting.png";
 
 const MixListPopUp = (props) => {
-  const dispatch = useDispatch();
   const playListInfo = useSelector((state) => state.asmr.playList);
   const [playList, setPlayList] = React.useState(
     playListInfo ? playListInfo : []
   );
 
   React.useEffect(() => {
-    if (!playListInfo) {
-      dispatch(asmrActions.getPlayListDB());
-    }
     history.mixListModal = true;
     history.setMixListModal = props.setMixListModal;
   }, []);
