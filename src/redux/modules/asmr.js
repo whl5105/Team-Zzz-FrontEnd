@@ -15,8 +15,7 @@ const get_asmr = createAction(GET_ASMR, (asmrListInfo) => ({
   asmrListInfo,
 }));
 
-const set_playList = createAction(SET_PLAYLIST, (playList, is_write) => ({
-  playList,
+const set_playList = createAction(SET_PLAYLIST, (is_write) => ({
   is_write,
 }));
 
@@ -61,14 +60,15 @@ const getAsmrDB = () => {
     }
   };
 };
+
 //-- 믹스 리스트 추가 --
 const setPlayListDB = (playLists) => {
   return async function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
     try {
       await apis.postPlayList(playLists.mixTitle, playLists.mixList);
-      dispatch(getPlayListDB(userIdx));
-
+      dispatch(set_playList(true)); // 애니메이션
+      dispatch(getPlayListDB(userIdx)); // 찜 목록 불러오기
       history.push("/asmr");
     } catch (error) {
       console.log("setPlayList Error : ", error);
@@ -127,17 +127,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.asmrList = action.payload.asmrListInfo;
       }),
-    // [SET_PLAYLIST]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     if (draft.playList === null) {
-    //       let arr = [];
-    //       arr.push(action.payload.playList);
-    //       draft.playList.push(arr);
-    //     } else {
-    //       draft.playList.push(action.payload.playList);
-    //     }
-    //     draft.is_write = action.payload.is_write;
-    //   }),
+    [SET_PLAYLIST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.is_write = action.payload.is_write;
+      }),
     [GET_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
         draft.playList = action.payload.playList;
