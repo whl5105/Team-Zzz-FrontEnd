@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 // --- components ---
 import Icon from "../elements/Icon.js";
 import MixListPopUp from "../components/mixList/MixListPopUp";
+import RequireLogin from "../components/RequireLogin";
 
 // --- images ---
 import Logo from "../static/images/header/logo.svg";
@@ -16,14 +17,28 @@ import Hover from "../static/images/header/hover.png";
 const Header = withRouter((props) => {
   const path = props.location.pathname;
   const [mixListModal, setMixListModal] = React.useState(false);
+  const [requireLoginModal, setRequireLoginModal] = React.useState(false);
 
   const playListPopUp = () => {
-    setMixListModal(true);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setRequireLoginModal(true);
+    } else {
+      setMixListModal(true);
+    }
   };
 
-  const closeModal = () => {
+  const closeMixListModal = () => {
     setMixListModal(false);
-    history.push("/");
+  };
+
+  const closeRequireModal = () => {
+    setRequireLoginModal(false);
+  };
+
+  const loginModal = () => {
+    setRequireLoginModal(false);
+    history.push("/login");
   };
 
   const PageLink = () => {
@@ -58,12 +73,18 @@ const Header = withRouter((props) => {
           <Icon src={Writing} alt="writing" _onClick={PageLink} />
         )}
       </HeaderBox>
-
-      {mixListModal && (
-        <MixListPopUp
-          close={closeModal}
-          setMixListModal={setMixListModal}
-        ></MixListPopUp>
+      {requireLoginModal ? (
+        <RequireLogin
+          close={closeRequireModal}
+          move={loginModal}
+        ></RequireLogin>
+      ) : (
+        mixListModal && (
+          <MixListPopUp
+            close={closeMixListModal}
+            setMixListModal={setMixListModal}
+          ></MixListPopUp>
+        )
       )}
     </div>
   );
