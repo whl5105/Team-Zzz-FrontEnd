@@ -17,10 +17,12 @@ import path_T from "../static/images/mypage/arrow_T_W.svg";
 const MixList = (props) => {
   const dispatch = useDispatch();
   const playListInfo = useSelector((store) => store.asmr.playList);
+  console.log(playListInfo);
 
   const [playList, setPlayList] = React.useState(
     playListInfo ? playListInfo : null
   );
+  console.log(playList);
   const [toggle, setToggle] = React.useState({});
 
   React.useEffect(() => {
@@ -38,38 +40,39 @@ const MixList = (props) => {
       [idx]: !prevToggle[idx],
     }));
   };
-  console.log(toggle);
-
+  console.log(playList !== null);
   return (
     <Container>
       <Title backIcon>나의 믹스</Title>
-      {playList.length > 0 ? (
-        <>
-          {playList.map((item, idx) => {
-            return (
-              <div key={idx}>
-                <List
-                  icon={mixList}
-                  src={toggle[idx] ? path_T : path_B}
-                  _onClick={() => toggleComment(idx)}
-                >
-                  {item.mixTitle}
-                </List>
-                {toggle[idx] ? (
-                  <MixBox
-                    mixList={item.mixList}
-                    playlistIdx={item.playlistIdx}
-                    mixTitle={item.mixTitle}
-                    toggle={toggle}
-                  ></MixBox>
-                ) : null}
-              </div>
-            );
-          })}
-        </>
-      ) : (
-        <p>믹스 음원 없음</p>
-      )}
+      <MixContent>
+        {playList !== null ? (
+          <>
+            {playList.map((item, idx) => {
+              return (
+                <div key={idx}>
+                  <List
+                    icon={mixList}
+                    src={toggle[idx] ? path_T : path_B}
+                    _onClick={() => toggleComment(idx)}
+                  >
+                    {item.mixTitle}
+                  </List>
+                  {toggle[idx] ? (
+                    <MixBox
+                      mixList={item.mixList}
+                      playlistIdx={item.playlistIdx}
+                      mixTitle={item.mixTitle}
+                      toggle={toggle}
+                    ></MixBox>
+                  ) : null}
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <p>믹스 음원 없음</p>
+        )}
+      </MixContent>
     </Container>
   );
 };
@@ -79,6 +82,14 @@ const Container = styled.div`
   height: 100vh;
   box-sizing: border-box;
   padding: 50px 0;
+`;
+const MixContent = styled.div`
+  width: 100%;
+  height: calc(100vh - 291px);
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default MixList;

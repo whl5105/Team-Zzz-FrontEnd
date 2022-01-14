@@ -96,8 +96,11 @@ const Wrap = styled.div`
     width: 100%;
     height: 100vh;
     right: 0;
+    border: none;
   }
 `;
-const Container = styled.div``;
+const Container = styled.div`
+  height: 100%;
+`;
 
 export default App;

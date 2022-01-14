@@ -34,12 +34,13 @@ const Bg = styled.div`
 const Bg1 = styled.img`
   width: 100%;
   height: 100%;
+  left: 0;
   top: 0;
 `;
 
 const Bg2 = styled.img`
   width: 100%;
-  /* position: absolute; */
+  left: 0;
   bottom: -100px;
 `;
 

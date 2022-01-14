@@ -47,7 +47,7 @@ const MixBox = (props) => {
             <Item key={idx}>
               <IconBox>
                 <Icon src={item.iconUrl}></Icon>
-                {item.title}
+                <p>{item.title}</p>
                 {/* <Icon src={item.iconUrl}></Icon> */}
               </IconBox>
               <Sound>{item.sound}%</Sound>
@@ -101,11 +101,17 @@ const Item = styled.div`
 `;
 const IconBox = styled.div`
   width: 70px;
-
+  height: 70px;
   background: #3a3e74;
-  padding: 13px 23px;
   border-radius: 8px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  & p {
+    padding-top: 2px;
+  }
 `;
 const Sound = styled.div`
   padding-top: 10px;

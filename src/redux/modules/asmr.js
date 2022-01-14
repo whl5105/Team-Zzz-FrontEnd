@@ -96,8 +96,7 @@ const DeletePlayListDB = (playlistIdx) => {
     try {
       console.log(typeof playlistIdx);
       const userIdx = localStorage.getItem("userIdx");
-      // const res = await apis.deletePlayList(playlistIdx, userIdx);
-      // console.log(res);
+      await apis.deletePlayList(playlistIdx, userIdx);
       console.log(playlistIdx);
       dispatch(delete_playList(playlistIdx));
     } catch (error) {}
@@ -109,8 +108,9 @@ const editPlayListDB = (playlistIdx, mixTitle) => {
   return async function (dispatch, getState, { history }) {
     try {
       console.log(playlistIdx, mixTitle);
+      console.log(playlistIdx);
       const userIdx = localStorage.getItem("userIdx");
-      // const res = await apis.editPlayList(playlistIdx, userIdx, mixTitle);
+      await apis.editPlayList(userIdx, playlistIdx, mixTitle);
       // console.log(res);
       dispatch(edit_playList(playlistIdx, mixTitle));
     } catch (error) {
