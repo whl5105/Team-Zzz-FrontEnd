@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { history } from "../../redux/configureStore";
-import { actionCreators as asmrActions } from "../../redux/modules/asmr";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // --- components ---
 import ModalPopUp from "../ModalPopUp";
 import Icon from "../../elements/Icon";
 import MixSoundTrack from "./MixSoundTrack";
+import NoMixList from "./NoMixList";
 
 // --- images ---
 import MixSetting from "../../static/images/mixList/setting.png";
@@ -49,7 +49,7 @@ const MixListPopUp = (props) => {
               );
             })
           ) : (
-            <p>아직 기록이 없습니다.</p>
+            <NoMixList marginT="60"></NoMixList>
           )}
         </MixList>
       </Container>
