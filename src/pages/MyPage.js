@@ -15,20 +15,22 @@ import List from "../components/mypage/List";
 import AlarmBanner from "../components/mypage/AlarmBanner";
 
 const Mypage = (props) => {
+
   const Mobile = () => {
     return (ios = /iPhone|iPad/i.test(navigator.userAgent)), setIos(ios);
   };
+
 
   const dispatch = useDispatch();
   const userIdx = localStorage.getItem("userIdx");
   const token = localStorage.getItem("token");
   const [is_token, setLogin] = React.useState(token);
+
   let [ios, setIos] = React.useState(false);
-  console.log(ios);
+
   React.useEffect(() => {
     setLogin(token);
     dispatch(noticeActions.getNoticeDB());
-    Mobile();
   }, []);
 
   if (is_token) {
@@ -38,6 +40,7 @@ const Mypage = (props) => {
           <Title is_token justifySB>
             마이페이지
           </Title>
+
           {ios ? null : (
             <>
               <AlarmBanner
@@ -53,6 +56,7 @@ const Mypage = (props) => {
               ></div>
             </>
           )}
+
 
           <List icon={notice} _onClick={() => history.push("/notice")}>
             공지사항
