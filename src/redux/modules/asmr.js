@@ -61,16 +61,13 @@ const getAsmrDB = () => {
     }
   };
 };
-
+//-- 믹스 리스트 추가 --
 const setPlayListDB = (playLists) => {
   return async function (dispatch, getState, { history }) {
+    const userIdx = localStorage.getItem("userIdx");
     try {
-      const res = await apis.postPlayList(
-        playLists.mixTitle,
-        playLists.mixList
-      );
-      console.log(res)
-      dispatch(set_playList(res, true));
+      await apis.postPlayList(playLists.mixTitle, playLists.mixList);
+      dispatch(getPlayListDB(userIdx));
 
       history.push("/asmr");
     } catch (error) {
@@ -78,7 +75,7 @@ const setPlayListDB = (playLists) => {
     }
   };
 };
-
+//-- 믹스 리스트 GET 요청 --
 const getPlayListDB = () => {
   return async function (dispatch, getState, { history }) {
     try {
@@ -86,7 +83,7 @@ const getPlayListDB = () => {
       const res = await apis.getPlayList(userIdx);
       dispatch(get_playList(res));
     } catch (error) {
-      console.log("setPlayList Error : ", error);
+      console.log("getPlayList Error : ", error);
     }
   };
 };
@@ -101,7 +98,9 @@ const DeletePlayListDB = (playlistIdx) => {
       await apis.deletePlayList(playlistIdx, userIdx);
       console.log(playlistIdx);
       dispatch(delete_playList(playlistIdx));
-    } catch (error) {}
+    } catch (error) {
+      console.log("deletePlayList Error : ", error);
+    }
   };
 };
 
@@ -128,17 +127,17 @@ export default handleActions(
       produce(state, (draft) => {
         draft.asmrList = action.payload.asmrListInfo;
       }),
-    [SET_PLAYLIST]: (state, action) =>
-      produce(state, (draft) => {
-        if (draft.playList === null) {
-          let arr = [];
-          arr.push(action.payload.playList);
-          draft.playList.push(arr);
-        } else {
-          draft.playList.push(action.payload.playList);
-        }
-        draft.is_write = action.payload.is_write;
-      }),
+    // [SET_PLAYLIST]: (state, action) =>
+    //   produce(state, (draft) => {
+    //     if (draft.playList === null) {
+    //       let arr = [];
+    //       arr.push(action.payload.playList);
+    //       draft.playList.push(arr);
+    //     } else {
+    //       draft.playList.push(action.payload.playList);
+    //     }
+    //     draft.is_write = action.payload.is_write;
+    //   }),
     [GET_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
         draft.playList = action.payload.playList;
@@ -151,14 +150,14 @@ export default handleActions(
       produce(state, (draft) => {
         console.log(action.payload.playlistIdx);
         console.log(typeof action.payload.playlistIdx);
-        // const new_playList = draft.playList.filter((l, idx) => {
-        //   return l.playlistIdx;
-        // });
-        // console.log(new_playList);
+        console.log(draft.playList.playlistIdx);
+        console.log(typeof draft.playList.playlistIdx);
         const new_playList = draft.playList.filter((l, idx) => {
           return action.payload.playlistIdx !== l.playlistIdx;
         });
         draft.playList = new_playList;
+        console.log(new_playList);
+        console.log(draft.playList);
       }),
     [EDIT_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {

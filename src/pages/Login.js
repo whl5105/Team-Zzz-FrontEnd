@@ -5,19 +5,20 @@ import { history } from "../redux/configureStore.js";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
+import KakaoLogin from "react-kakao-login";
+
 // --- components ---
 import { Input } from "../elements";
 import Success from "../components/Success";
-import Kakao from "../components/Kakao";
 
 // --- images ---
 import reset from "../static/images/icon/reset.svg";
+import kakao from "../static/images/login/kakao.png";
 
 const Login = () => {
   const first_signup = useSelector((store) => store.user.is_signup);
 
   React.useEffect(() => {
-    console.log(first_signup);
     if (first_signup === true) {
       const timeout = setTimeout(() => {
         dispatch(userActions.firstSignup());
@@ -63,19 +64,45 @@ const Login = () => {
 
     if (!idRegExp.test(id) || !pwdRegex.test(pwd)) {
       setMessage("아이디 또는 비밀번호를 다시 확인해주세요.");
-      console.log("아이디 비번 틀림 ");
       setIsState(false);
     } else {
       setIsState(true);
-      console.log("아이디 비번 확인완료 ");
       dispatch(userActions.loginDB(id, pwd));
     }
   };
+
   // 서버에서 받아온 요청이 다를 경우
   if (errMessage) {
     setMessage("아이디 또는 비밀번호를 다시 확인해주세요.");
     setIsState(false);
   }
+
+  // 소셜 로그인 성공
+  const socialLoginSuccess = (res) => {
+    console.log("소셜 로그인 성공");
+    console.log(res);
+    dispatch(
+      userActions.socialLoginDB(res.profile.id, res.response.access_token)
+    );
+  };
+
+  const socialLoginStyle = {
+    textAlign: "center",
+    padding: "20px",
+    color: "#ffffff",
+    fontSize: "14px",
+    fontWeight: "500",
+    backgroundColor: "#101340",
+    border: "none",
+    borderSizing: "border-box",
+    marginLeft: "31%",
+  };
+
+  // 소셜 로그인 실패
+  const socialLoginFail = (res) => {
+    console.log("소셜 로그인 실패");
+    console.log(res);
+  };
 
   return (
     <Container>
@@ -124,7 +151,18 @@ const Login = () => {
         <p>회원가입하기</p>
       </SignUp>
       <Social>or</Social>
-      <Kakao />
+      <KakaoLogin
+        // rest api 키가 아닌 js 키를 사용해야 합니다.
+        jskey={"c51fcbffb9ee44d3b90e755eff2bf5b6"}
+        onSuccess={(res) => socialLoginSuccess(res)}
+        onFailure={(res) => socialLoginFail(res)}
+        // getPofile 속성을 주지 않으면 유저 정보를 받을 수 없습니다.
+        getProfile={true}
+        style={socialLoginStyle}
+      >
+        <Icon></Icon>
+        카카오 로그인
+      </KakaoLogin>
 
       {/* 회원가입 성공 유저 팝업 */}
       {first_signup ? (
@@ -193,6 +231,7 @@ const SignUp = styled.div`
     border-bottom: 1px solid ${({ theme }) => theme.colors.white};
   }
 `;
+
 const Social = styled.div`
   position: relative;
   text-align: center;
@@ -215,6 +254,16 @@ const Social = styled.div`
   ::after {
     right: 0;
   }
+`;
+
+const Icon = styled.div`
+  width: 44px;
+  height: 44px;
+  background-image: url(${kakao});
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto 10px auto;
+  cursor: pointer;
 `;
 
 export default Login;

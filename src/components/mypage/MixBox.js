@@ -88,8 +88,7 @@ const Box = styled.div`
   padding: 20px;
   color: #aaa;
   flex-direction: column;
-
-  & div:last-child {
+  & div:nth-child(4) {
     margin-right: 0;
   }
 `;

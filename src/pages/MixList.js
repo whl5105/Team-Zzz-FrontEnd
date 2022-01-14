@@ -9,6 +9,7 @@ import { actionCreators as asmrActions } from "../redux/modules/asmr";
 import Title from "../components/Title";
 import List from "../components/mypage/List";
 import MixBox from "../components/mypage/MixBox";
+import NoMixList from "../components/mixList/NoMixList";
 
 import mixList from "../static/images/mypage/mixList_W.svg";
 import path_B from "../static/images/mypage/arrow_B_W.svg";
@@ -18,20 +19,22 @@ const MixList = (props) => {
   const dispatch = useDispatch();
   const playListInfo = useSelector((store) => store.asmr.playList);
   console.log(playListInfo);
+  console.log("111");
 
   const [playList, setPlayList] = React.useState(
     playListInfo ? playListInfo : null
   );
-  console.log(playList);
   const [toggle, setToggle] = React.useState({});
 
   React.useEffect(() => {
-    if (!playListInfo) {
-      dispatch(asmrActions.getPlayListDB());
+    if (playList) {
+      return;
     }
+    dispatch(asmrActions.getPlayListDB());
+    // setPlayList(playListInfo ? playListInfo : null);
   }, []);
   React.useEffect(() => {
-    setPlayList(playListInfo);
+    setPlayList(playListInfo ? playListInfo : null);
   }, [playListInfo]);
 
   const toggleComment = (idx) => {
@@ -39,7 +42,9 @@ const MixList = (props) => {
       ...prevToggle,
       [idx]: !prevToggle[idx],
     }));
+    console.log(toggle);
   };
+  console.log(playList);
   console.log(playList !== null);
   return (
     <Container>
@@ -52,12 +57,13 @@ const MixList = (props) => {
                 <div key={idx}>
                   <List
                     icon={mixList}
-                    src={toggle[idx] ? path_T : path_B}
-                    _onClick={() => toggleComment(idx)}
+                    src={toggle[item.playlistIdx] ? path_T : path_B}
+                    // _onClick={() => toggleComment(idx)}
+                    _onClick={() => toggleComment(item.playlistIdx)}
                   >
                     {item.mixTitle}
                   </List>
-                  {toggle[idx] ? (
+                  {toggle[item.playlistIdx] ? (
                     <MixBox
                       mixList={item.mixList}
                       playlistIdx={item.playlistIdx}
@@ -70,7 +76,7 @@ const MixList = (props) => {
             })}
           </>
         ) : (
-          <p>믹스 음원 없음</p>
+          <NoMixList></NoMixList>
         )}
       </MixContent>
     </Container>
