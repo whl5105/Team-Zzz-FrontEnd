@@ -96,6 +96,7 @@ const Wrap = styled.div`
     width: 100%;
     height: 100vh;
     right: 0;
+    border: none;
   }
 `;
 const Container = styled.div``;
