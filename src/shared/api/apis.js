@@ -45,10 +45,10 @@ export const apis = {
   getPlayList: (userIdx) => instance.get(`/api/playlists/users/${userIdx}`),
   postPlayList: (mixTitle, mixList) =>
     instance.post(`/api/playlists`, { mixTitle, mixList }),
-  editPlayList: (userIdx, playListIdx, mixTitle) =>
+  editPlayList: (playListIdx, userIdx, mixTitle) =>
     instance.put(`/api/playlists/${playListIdx}/users/${userIdx}`, {
       mixTitle,
     }),
-  deletePlayList: (userIdx, playListIdx) =>
+  deletePlayList: (playListIdx, userIdx) =>
     instance.delete(`/api/playlists/${playListIdx}/users/${userIdx}`),
 };

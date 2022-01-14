@@ -7,6 +7,8 @@ import SwiperCore, { Pagination, Autoplay } from "swiper/core";
 import "swiper/css";
 import "swiper/css/pagination";
 
+import RequireLogin from "../RequireLogin";
+
 // --- images ---
 import banner1 from "../../static/images/banner/Main_BN_335px_1.png";
 import banner2 from "../../static/images/banner/Main_BN_335px_2.png";
@@ -15,6 +17,24 @@ import banner3 from "../../static/images/banner/Main_BN_335px_3.png";
 SwiperCore.use([Pagination, Autoplay]);
 
 const MainSwiper = withRouter((props) => {
+  const token = localStorage.getItem("token");
+  const [diaryModal, setDiaryModal] = React.useState(false);
+  const diaryClick = () => {
+    if (!token) {
+      setDiaryModal(true);
+    } else {
+      history.push("/diary");
+    }
+  };
+
+  const closeModal = () => {
+    setDiaryModal(false);
+  };
+
+  const loginModal = () => {
+    setDiaryModal(false);
+    history.push("/login");
+  };
   return (
     <Main className="ExampleComponent">
       <div className="main-wrap">
@@ -33,11 +53,7 @@ const MainSwiper = withRouter((props) => {
           }}
           autoplay={{ delay: 3000 }}
         >
-          <SwiperSlide
-            onClick={() => {
-              history.push("/diary");
-            }}
-          >
+          <SwiperSlide onClick={diaryClick}>
             <BannerImg bannerImage={banner1} />
           </SwiperSlide>
           <SwiperSlide
@@ -59,6 +75,9 @@ const MainSwiper = withRouter((props) => {
           </SwiperSlide>
         </Swiper>
       </div>
+      {diaryModal && (
+        <RequireLogin close={closeModal} move={loginModal}></RequireLogin>
+      )}
     </Main>
   );
 });
