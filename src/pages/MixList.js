@@ -85,8 +85,7 @@ const Container = styled.div`
 `;
 const MixContent = styled.div`
   width: 100%;
-  height: calc(100vh - 271px);
-  background: red;
+  height: calc(100vh - 291px);
   overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;

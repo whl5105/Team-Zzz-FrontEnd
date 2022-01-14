@@ -81,6 +81,7 @@ const Main = (props) => {
 const Container = styled.div`
   overflow-y: scroll;
   /* height: 720px; */
+  height: calc(100% - 106px);
   padding: 50px ${({ theme }) => theme.paddings.xxxxl};
   &::-webkit-scrollbar {
     display: none;
