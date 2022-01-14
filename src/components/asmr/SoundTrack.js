@@ -13,6 +13,7 @@ const SoundTrack = (props) => {
   const Mobile = () => {
     return (ios = /iPhone|iPad/i.test(navigator.userAgent));
   };
+  const [effect, setEffect] = React.useState(false);
 
   const Click = () => {
     dragElement(document.getElementById(props.id));
@@ -20,7 +21,9 @@ const SoundTrack = (props) => {
 
   React.useEffect(() => {
     dragElement(document.getElementById(props.id));
-  },[]);
+    setEffect(true);
+  }, []);
+
   let [b, setB] = React.useState(0);
   let [ios, setMobile] = React.useState(false);
 
@@ -35,7 +38,7 @@ const SoundTrack = (props) => {
 
     if (ios === false) {
       elmnt.ontouchstart = dragMouseDown; // 19번줄이나 20번줄이나 같음
-    } else if (ios === true && !props.guidance) {
+    } else if (ios === true && !props.guidance && effect) {
       console.log("Ipone");
       props.setGuidance(true);
       props.setGuidanceTitle(props.title);
@@ -122,9 +125,10 @@ const SoundTrack = (props) => {
         </Sound>
         <VolumeWrap>
           <Volume categoryImage={lineIcon}>
-            {props.guidanceTitle === props.title ? <Guidance left={props.volume}></Guidance> : null}
-            <Circle id={props.id} value={props.volume*1.58}>
-
+            {props.guidanceTitle === props.title ? (
+              <Guidance left={props.volume}></Guidance>
+            ) : null}
+            <Circle id={props.id} value={props.volume * 1.58}>
               <Span categoryImage={circleIcon} onTouchStart={Click}></Span>
             </Circle>
           </Volume>

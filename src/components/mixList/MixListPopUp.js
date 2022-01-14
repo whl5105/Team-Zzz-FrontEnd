@@ -40,16 +40,22 @@ const MixListPopUp = (props) => {
           <p>나의 믹스</p>
           <Icon src={MixSetting} alt="환경설정" _onClick={myPageMixList}></Icon>
         </Title>
-        {playList.map((item) => {
-          return (
-            <div key={item.playListIdx}>
-              <MixSoundTrack
-                mixTitle={item.mixTitle}
-                mixList={item.mixList && item.mixList}
-              ></MixSoundTrack>
-            </div>
-          );
-        })}
+        <MixList>
+          {playList.length > 0 ? (
+            playList.map((item) => {
+              return (
+                <div key={item.playlistIdx}>
+                  <MixSoundTrack
+                    mixTitle={item.mixTitle}
+                    mixList={item.mixList}
+                  ></MixSoundTrack>
+                </div>
+              );
+            })
+          ) : (
+            <p>아직 기록이 없습니다.</p>
+          )}
+        </MixList>
       </Container>
     </ModalPopUp>
   );
@@ -67,6 +73,14 @@ const Container = styled.div`
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   z-index: 120;
+`;
+
+const MixList = styled.div`
+  max-height: 65%;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Bar = styled.div`

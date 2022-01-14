@@ -38,34 +38,43 @@ const PlayList = (props) => {
 
     const playLists = {
       mixTitle: mixTitle,
+      mixList: [],
     };
 
     if (history.audio1) {
-      playLists.mix1 = {
-        asmr1: history.audio1.src,
-        sound1: history.audio1.volume,
-      };
+      playLists.mixList.push({
+        asmrUrl: history.audio1.src,
+        sound: String(history.audio1.volume),
+        iconUrl: history.icon1,
+        title: history.title1,
+      });
     }
 
     if (history.audio2) {
-      playLists.mix2 = {
-        asmr2: history.audio2.src,
-        sound2: history.audio2.volume,
-      };
+      playLists.mixList.push({
+        asmrUrl: history.audio2.src,
+        sound: String(history.audio2.volume),
+        iconUrl: history.icon2,
+        title: history.title2,
+      });
     }
 
     if (history.audio3) {
-      playLists.mix3 = {
-        asmr3: history.audio3.src,
-        sound3: history.audio3.volume,
-      };
+      playLists.mixList.push({
+        asmrUrl: history.audio3.src,
+        sound: String(history.audio3.volume),
+        iconUrl: history.icon3,
+        title: history.title3,
+      });
     }
 
     if (history.audio4) {
-      playLists.mix4 = {
-        asmr4: history.audio4.src,
-        sound4: history.audio4.volume,
-      };
+      playLists.mixList.push({
+        asmrUrl: history.audio4.src,
+        sound: String(history.audio4.volume),
+        iconUrl: history.icon4,
+        title: history.title4,
+      });
     }
 
     dispatch(asmrActions.setPlayListDB(playLists));

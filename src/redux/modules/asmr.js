@@ -80,6 +80,7 @@ const initialState = {
       ],
     },
   ],
+
   is_write: false,
 };
 
@@ -108,7 +109,7 @@ const getAsmrDB = () => {
 const setPlayListDB = (playLists) => {
   return async function (dispatch, getState, { history }) {
     try {
-      const res = await apis.postPlayList(playLists);
+      const res = await apis.postPlayList(playLists.mixTitle, playLists.mixList);
       console.log(res);
       dispatch(set_playList());
     } catch (error) {
