@@ -72,31 +72,24 @@ export const loginDB =
     }
   };
 
+//---- 소셜 로그인 DB ----
 export const socialLoginDB =
   (id, token) =>
   async (dispatch, getState, { history }) => {
     try {
-      // 소셜 로그인 api 연결 (id, token 보내줘야 함)
-
-      const res = {
-        // 예시
-        userIdx: "1",
-        noticeSet: true,
-        loginCnt: 2,
-        token: "토큰",
-        userId: "아이디",
-      };
+      const res = await apis.kakaoLogin(id, token);
+      console.log(res);
 
       //로컬 스토리지 저장
-      localStorage.setItem("userIdx", res.userIdx);
-      localStorage.setItem("noticeSet", res.noticeSet);
-      localStorage.setItem("token", res.token);
+      localStorage.setItem("userIdx", res.userInfo.userIdx);
+      localStorage.setItem("noticeSet", res.userInfo.noticeSet);
+      localStorage.setItem("token", res.userInfo.token);
       dispatch(
         setUser({
-          userIdx: res.userIdx,
-          userId: res.userId,
-          loginCnt: res.loginCnt,
-          noticeSet: res.noticeSet,
+          userIdx: res.userInfo.userIdx,
+          userId: res.userInfo.userId,
+          loginCnt: res.userInfo.loginCnt,
+          noticeSet: res.userInfo.noticeSet,
         })
       );
 
