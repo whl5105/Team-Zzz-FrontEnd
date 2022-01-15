@@ -27,7 +27,7 @@ import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import NoticePage from "../pages/NoticePage";
 import PlayBar from "../components/PlayBar";
-
+import Test from "../pages/Test";
 // firebase
 // import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
 // import "firebase/compat/messaging";
@@ -98,7 +98,7 @@ function App() {
                   component={MyPageNotification}
                 ></Route>
                 <Route path="/notice" exact component={NoticePage}></Route>
-
+                <Route path="/test" exact component={Test}></Route>
                 <Route>
                   <NotFound />
                 </Route>
