@@ -74,10 +74,10 @@ export const loginDB =
 
 //---- 소셜 로그인 DB ----
 export const socialLoginDB =
-  (id, token) =>
+  (id) =>
   async (dispatch, getState, { history }) => {
     try {
-      const res = await apis.kakaoLogin(id, token);
+      const res = await apis.kakaoLogin(id);
       console.log(res);
 
       //로컬 스토리지 저장
@@ -102,13 +102,15 @@ export const socialLoginDB =
 
 const logoutDB = () => {
   return function (dispatch, getState, { history }) {
-    // dispatch(logOut());
     localStorage.removeItem("userIdx");
     localStorage.removeItem("token");
     localStorage.removeItem("noticeSet");
+    if (localStorage.getItem("kakao_065a0e826bf13ae48eda84268edde2d6")) {
+      localStorage.removeItem("kakao_065a0e826bf13ae48eda84268edde2d6");
+    }
     alert("로그아웃 되었습니다.");
     history.push("/");
-    window.location.reload();
+    // window.location.reload();
   };
 };
 

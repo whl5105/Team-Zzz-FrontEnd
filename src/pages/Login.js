@@ -82,7 +82,7 @@ const Login = () => {
     console.log("소셜 로그인 성공");
     console.log(res);
     dispatch(
-      userActions.socialLoginDB(res.profile.id, res.response.access_token)
+      userActions.socialLoginDB(res.profile.id)
     );
   };
 

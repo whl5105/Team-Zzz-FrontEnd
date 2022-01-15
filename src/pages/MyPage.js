@@ -15,11 +15,9 @@ import List from "../components/mypage/List";
 import AlarmBanner from "../components/mypage/AlarmBanner";
 
 const Mypage = (props) => {
-
   const Mobile = () => {
     return (ios = /iPhone|iPad/i.test(navigator.userAgent)), setIos(ios);
   };
-
 
   const dispatch = useDispatch();
   const userIdx = localStorage.getItem("userIdx");
@@ -30,7 +28,11 @@ const Mypage = (props) => {
 
   React.useEffect(() => {
     setLogin(token);
-    dispatch(noticeActions.getNoticeDB());
+    if (token && !ios) {
+      dispatch(noticeActions.getNoticeDB());
+    } else {
+      console.log("토큰이 없거나 IOS이거나");
+    }
   }, []);
 
   if (is_token) {
@@ -56,7 +58,6 @@ const Mypage = (props) => {
               ></div>
             </>
           )}
-
 
           <List icon={notice} _onClick={() => history.push("/notice")}>
             공지사항
