@@ -58,7 +58,7 @@ const MixList = (props) => {
                   >
                     {item.mixTitle}
                   </List>
-                  {toggle[item.playlistIdx] ? (
+                  {toggle[idx] ? (
                     <MixBox
                       mixList={item.mixList}
                       playlistIdx={item.playlistIdx}
