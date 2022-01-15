@@ -1,6 +1,28 @@
-// importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js');
-// importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
-// const config =  { 
+importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js");
+
+const config = {
+  apiKey: "AIzaSyD7vx1YcQDmd7Gom-mOGzB_j_oYD4qjR9M",
+  authDomain: "pushnotificationtest-9e21c.firebaseapp.com",
+  projectId: "pushnotificationtest-9e21c",
+  storageBucket: "pushnotificationtest-9e21c.appspot.com",
+  messagingSenderId: "1019872102596",
+  appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
+  measurementId: "G-TFEDXNHVGY",
+};
+
+firebase.initializeApp(config);
+
+const messaging = firebase.messaging();
+messaging.setBackgroundMessageHandler(function (payload) {
+  const title = "hello world";
+  const options = {
+    body: payload.data.status,
+  };
+  return self.registration.showNotification(title, options);
+});
+
+// const config =  {
 //   apiKey: "AIzaSyBHpknHwT99Y6l4OPhZhShtMql4OVzL968",
 //   authDomain: "push-e53ad.firebaseapp.com",
 //   projectId: "push-e53ad",
@@ -8,9 +30,8 @@
 //   messagingSenderId: "496302701496",
 //   appId: "1:496302701496:web:5c79f13992451572c4ad4d",
 //   measurementId: "G-PCQK3HYY0G",
-// }; 
+// };
 // firebase.initializeApp(config);
-
 
 // self.addEventListener("install", (pEvent) => {
 //   console.log("서비스워커 설치 함!");

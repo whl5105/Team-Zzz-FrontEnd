@@ -15,8 +15,6 @@ const Firebase =(props) =>{
     return(<></>)
 }
 
-
-
 export default Firebase; 
 
 // import firebase from "firebase";
