@@ -95,7 +95,7 @@ const Notifications = (props) => {
                   {
                     "notification": {
                       "body": "새로운글",
-                      "title": "ㅇㅇ",
+                      "title": "ㅇㅇdddddd",
                     },
                     "to": currentToken,
                   },
