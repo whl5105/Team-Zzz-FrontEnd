@@ -20,7 +20,12 @@
       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`. -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+    Kakao.init("c51fcbffb9ee44d3b90e755eff2bf5b6");
+  </script>
   <title>React App</title>
 </head>
 
@@ -37,11 +42,11 @@
     -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-
-
-
-  <!-- <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js">
+    </script>
+    =======
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+>>>>>>> 8e90bf36f683007ccaf52138359d495c539a1613
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 <script>
   // Your web app's Firebase configuration
@@ -250,23 +255,29 @@
         })
       } -->
 
-  <!-- // axios
-      //           .post(
-      //             "https://www.zzzback.shop/api/login",
-      //             { userId:"youngble", password:"Youngble1!" },
-      //             {
-      //               headers: {
-      //                 "Content-Type": "application/json",
-      //                 "Authorization": `Bearer ${localStorage.getItem("token")}`
-      //               },
-      //             }
-      //           )
-      //           .then((res) => { console.log("Dd")}); -->
+  <!-- // axios=======<!-- // axios>>>>>>> 8e90bf36f683007ccaf52138359d495c539a1613
+      // .post(
+      // "https://www.zzzback.shop/api/login",
+      // { userId:"youngble", password:"Youngble1!" },
+      // {
+      // headers: {
+      // "Content-Type": "application/json",
+      // "Authorization": `Bearer ${localStorage.getItem("token")}`
+      // },
+      // }
+      // )
+      // .then((res) => { console.log("Dd")}); -->
   <!-- </script> -->
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
     Kakao.init("c51fcbffb9ee44d3b90e755eff2bf5b6");
   </script>
+  <script type="module" src="./firebase-messaging-sw.js"></script>
+</body>
+
+</html>
+
+<!-- </script> -->
 </body>
 
 </html>

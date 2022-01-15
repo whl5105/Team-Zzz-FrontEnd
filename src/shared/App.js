@@ -28,6 +28,43 @@ import Header from "../components/Header";
 import NoticePage from "../pages/NoticePage";
 import PlayBar from "../components/PlayBar";
 
+// // firebase
+// import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
+// import "firebase/compat/messaging";
+// import { getMessaging, getToken } from "firebase/messaging";
+
+// const config = {
+//   apiKey: "AIzaSyACNv3mnjYQGw6A0Q08ENgY1K_NTexyvOI",
+//   authDomain: "zzz-pwa.firebaseapp.com",
+//   projectId: "zzz-pwa",
+//   storageBucket: "zzz-pwa.appspot.com",
+//   messagingSenderId: "167031359028",
+//   appId: "1:167031359028:web:c63f06088b6c5aec6eac61",
+//   measurementId: "G-Y1RRKXLCN7",
+// };
+// firebase.initializeApp(config);
+// const messaging = firebase.messaging();
+
+// Notification.requestPermission().then((permission) => {
+//   if (permission === "granted") {
+//     console.log("Notification permission granted.");
+//     messaging
+//       .getToken()
+//       .then(function (token) {
+//         console.log(token);
+//         dispatch(noticeActions.setNoticeDB(props.notice));
+//       })
+//       .catch(function (error) {
+//         console.log("Error : ", error);
+//       });
+//   } else {
+//     console.log("Unable to get permission to notify.");
+//   }
+// });
+// messaging.onMessage(function (payload) {
+//   console.log(payload.notification.title);
+//   console.log(payload.notification.body);
+// });
 function App() {
   return (
     <WrapBox id="app">
