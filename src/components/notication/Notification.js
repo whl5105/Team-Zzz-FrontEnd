@@ -12,7 +12,7 @@ import Button from "../../elements/Button";
 
 // firebas
 import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
-import "firebase/compat/messaging";
+import { getMessaging, getToken } from "firebase/messaging";
 
 const config = {
   apiKey: "AIzaSyD7vx1YcQDmd7Gom-mOGzB_j_oYD4qjR9M",
@@ -25,7 +25,7 @@ const config = {
 };
 firebase.initializeApp(config);
 
-const messaging = firebase.messaging();
+const messaging = getMessaging();
 
 const Notifications = (props) => {
   const dispatch = useDispatch();
@@ -79,36 +79,46 @@ const Notifications = (props) => {
           )
         );
 
-        messaging
-          .getToken()
-          .then(function (token) {
-            console.log("알림 O");
-            console.log(token);
+        getToken(messaging, {
+          vapidKey:
+            "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
+        })
+          .then((currentToken) => {
+            if (currentToken) {
+              console.log("알림 O");
+              console.log(currentToken);
 
-            axios
-              .post(
-                "https://fcm.googleapis.com/fcm/send",
-                {
-                  notification: {
-                    body: "새로운글",
-                    title: "ㅇㅇ",
+              axios
+                .post(
+                  "https://fcm.googleapis.com/fcm/send",
+                  {
+                    notification: {
+                      body: "새로운글",
+                      title: "ㅇㅇ",
+                      icon: "favicon.ico",
+                      click_action: "http://localhost:3000/",
+                    },
+                    to: currentToken,
                   },
-                  to: token,
-                },
-                {
-                  headers: {
-                    "Content-type": "application/json",
-                    Authorization:
-                      "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
-                  },
-                }
-              )
-              .then((res) => {
-                console.log(res.data, res.config.data);
-              });
+                  {
+                    headers: {
+                      "Content-type": "application/json",
+                      Authorization:
+                        "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
+                    },
+                  }
+                )
+                .then((res) => {
+                  console.log(res.data, res.config.data);
+                });
+            } else {
+              console.log(
+                "No registration token available. Request permission to generate one."
+              );
+            }
           })
-          .catch(function (error) {
-            console.log("Error : ", error);
+          .catch((err) => {
+            console.log("An error occurred while retrieving token. ", err);
           });
       }
 
