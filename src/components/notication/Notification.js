@@ -79,45 +79,53 @@ const Notifications = (props) => {
           )
         );
 
-        getToken(messaging, {
-          vapidKey:
-            "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
+        // 토큰 받아오기
+        Notification.requestPermission().then((permission) => {
+          if(permission === "granted"){
+            console.log("알림 허용");
+            getToken(messaging, {
+              vapidKey:
+                "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
+            })
+              .then((currentToken) => {
+                if (currentToken) {
+                  console.log("알림 O");
+                  console.log(currentToken);
+                 history.test = currentToken;
+                 console.log(history)
+                  axios
+                    .post(
+                      "https://fcm.googleapis.com/fcm/send",
+                      {
+                        "notification": {
+                          "body": "새로운글",
+                          "title": "ㅇㅇ",
+                        },
+                        "to": currentToken,
+                      },
+                      {
+                        headers: {
+                          "Content-type": "application/json",
+                          "Authorization": "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
+                        },
+                      }
+                    )
+                    .then((res) => {
+                      console.log(res.data, res.config.data);
+                    });
+                } else {
+                  console.log(
+                    "No registration token available. Request permission to generate one."
+                  );
+                }
+              })
+              .catch((err) => {
+                console.log("An error occurred while retrieving token. ", err);
+              });
+          }else{
+            console.log("알림 비허용")
+          }
         })
-          .then((currentToken) => {
-            if (currentToken) {
-              console.log("알림 O");
-              console.log(currentToken);
-             history.test = currentToken;
-             console.log(history)
-              axios
-                .post(
-                  "https://fcm.googleapis.com/fcm/send",
-                  {
-                    "notification": {
-                      "body": "새로운글",
-                      "title": "ㅇㅇ",
-                    },
-                    "to": currentToken,
-                  },
-                  {
-                    headers: {
-                      "Content-type": "application/json",
-                      "Authorization": "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
-                    },
-                  }
-                )
-                .then((res) => {
-                  console.log(res.data, res.config.data);
-                });
-            } else {
-              console.log(
-                "No registration token available. Request permission to generate one."
-              );
-            }
-          })
-          .catch((err) => {
-            console.log("An error occurred while retrieving token. ", err);
-          });
       }
 
       localStorage.setItem("noticeSet", true);

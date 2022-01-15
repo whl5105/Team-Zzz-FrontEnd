@@ -1,5 +1,5 @@
-importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js");
-importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js");
+importScripts('https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/8.8.0/firebase-messaging.js');
 
 const config = {
   apiKey: "AIzaSyD7vx1YcQDmd7Gom-mOGzB_j_oYD4qjR9M",
@@ -10,17 +10,19 @@ const config = {
   appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
   measurementId: "G-TFEDXNHVGY",
 };
-
 firebase.initializeApp(config);
-
 const messaging = firebase.messaging();
-messaging.setBackgroundMessageHandler(function (payload) {
-  const title = "hello world";
-  const options = {
-    body: payload.data.status,
-  };
-  return self.registration.showNotification(title, options);
-});
+
+// 이 아래 부분을 설정하는 곳이 종종 보이는데 이걸 하면 같은 알림이 2개 온다.
+messaging.onBackgroundMessage(function (payload) {
+    console.log('[firebase-messaging-sw.js] onBackgroundMessage ', payload)
+    const title = payload.notification.title
+    const options = {
+        body: payload.notification.body,
+        icon: payload.notification.image
+    }
+    return self.registration.showNotification(title, options)
+})
 
 // const config =  {
 //   apiKey: "AIzaSyBHpknHwT99Y6l4OPhZhShtMql4OVzL968",
