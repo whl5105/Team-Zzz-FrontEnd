@@ -6,11 +6,16 @@ export const apis = {
     instance.post("/api/register", { userId, password }), //회원가입
   login: (userId, password) =>
     instance.post("/api/login", { userId, password }), //로그인
-  kakaoLogin: (id) => instance.post("/api/kakaologin", {id}), // 카카오로그인 : 백과 이야기 후 api수정 필요함
+  kakaoLogin: (id) => instance.post("/api/kakaologin", { id }), // 카카오로그인 : 백과 이야기 후 api수정 필요함
 
   getNotice: (userIdx) => instance.get(`/api/notice/users/${userIdx}`), //수면기록 팝업창 :백과 이야기 후 api수정 필요함
   postNotice: (sleepChk, timePA, hour, min) =>
-    instance.post("/api/notice", { sleepChk, timePA, hour, min }),
+    instance.post("/api/notice", {
+      sleepChk,
+      timePA,
+      hour,
+      min,
+    }),
   putNotice: (sleepChk, timePA, hour, min, userIdx) =>
     instance.put(`/api/notice/users/${userIdx}`, {
       sleepChk,

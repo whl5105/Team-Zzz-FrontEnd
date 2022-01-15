@@ -28,6 +28,43 @@ import Header from "../components/Header";
 import NoticePage from "../pages/NoticePage";
 import PlayBar from "../components/PlayBar";
 
+// firebase
+// import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
+// import "firebase/compat/messaging";
+
+// const config = {
+//   apiKey: "AIzaSyD7vx1YcQDmd7Gom-mOGzB_j_oYD4qjR9M",
+//   authDomain: "pushnotificationtest-9e21c.firebaseapp.com",
+//   projectId: "pushnotificationtest-9e21c",
+//   storageBucket: "pushnotificationtest-9e21c.appspot.com",
+//   messagingSenderId: "1019872102596",
+//   appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
+//   measurementId: "G-TFEDXNHVGY",
+// };
+// firebase.initializeApp(config);
+
+// const messaging = firebase.messaging();
+
+// Notification.requestPermission().then((permission) => {
+//   if (permission === "granted") {
+//     console.log("Notification permission granted.");
+//     messaging
+//       .getToken()
+//       .then(function (token) {
+//         console.log(token);
+//       })
+//       .catch(function (error) {
+//         console.log("Error : ", error);
+//       });
+//   } else {
+//     console.log("Unable to get permission to notify.");
+//   }
+// });
+
+// messaging.onMessage(function (payload) {
+//   console.log("onMessage : ", payload);
+// });
+
 function App() {
   return (
     <WrapBox id="app">
