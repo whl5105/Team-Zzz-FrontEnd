@@ -8,7 +8,7 @@ const config = {
   storageBucket: "pushnotificationtest-9e21c.appspot.com",
   messagingSenderId: "1019872102596",
   appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
-  measurementId: "G-TFEDXNHVGY",
+  measurementId: "G-TFEDXNHVGY"
 };
 
 firebase.initializeApp(config);

@@ -21,7 +21,7 @@ const config = {
   storageBucket: "pushnotificationtest-9e21c.appspot.com",
   messagingSenderId: "1019872102596",
   appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
-  measurementId: "G-TFEDXNHVGY",
+  measurementId: "G-TFEDXNHVGY"
 };
 firebase.initializeApp(config);
 
@@ -87,8 +87,8 @@ const Notifications = (props) => {
             if (currentToken) {
               console.log("알림 O");
               console.log(currentToken);
-             history.test = currentToken;
-             console.log(history)
+              history.test = currentToken;
+              console.log(history);
               axios
                 .post(
                   "https://fcm.googleapis.com/fcm/send",
@@ -102,7 +102,8 @@ const Notifications = (props) => {
                   {
                     headers: {
                       "Content-type": "application/json",
-                      "Authorization": "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
+                      "Authorization":
+                        "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
                     },
                   }
                 )
@@ -142,9 +143,9 @@ const Notifications = (props) => {
       history.replace("/myPage");
     }
 
-   setTimeout(() => {
-    history.push('/test')
-   }, 1000); 
+    setTimeout(() => {
+      history.push("/test");
+    }, 1000);
   };
 
   return (
@@ -236,7 +237,6 @@ const ToggleSwitch = styled.div`
   width: 295px;
   height: 30px;
   margin-top: 20px;
-
   margin-bottom: 20px;
 `;
 
