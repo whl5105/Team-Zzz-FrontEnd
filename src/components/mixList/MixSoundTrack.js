@@ -189,7 +189,8 @@ const Text = styled.p`
 
 const Hr = styled.hr`
   width: 295px;
-  border: 1px solid #ffffff;
+  border: 0.5px solid #ffffff;
+  box-sizing: border-box;
   margin: auto;
   opacity: 0.1;
 `;
