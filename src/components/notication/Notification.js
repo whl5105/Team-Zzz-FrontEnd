@@ -87,16 +87,15 @@ const Notifications = (props) => {
             if (currentToken) {
               console.log("알림 O");
               console.log(currentToken);
-
+              history.test = currentToken;
+              console.log(history);
               axios
                 .post(
                   "https://fcm.googleapis.com/fcm/send",
                   {
                     notification: {
                       body: "새로운글",
-                      title: "ㅇㅇ",
-                      icon: "favicon.ico",
-                      click_action: "http://localhost:3000/",
+                      title: "ㅇㅇdddddd",
                     },
                     to: currentToken,
                   },
@@ -143,6 +142,10 @@ const Notifications = (props) => {
       localStorage.setItem("noticeSet", true);
       history.replace("/myPage");
     }
+
+    setTimeout(() => {
+      history.push("/test");
+    }, 1000);
   };
 
   return (
