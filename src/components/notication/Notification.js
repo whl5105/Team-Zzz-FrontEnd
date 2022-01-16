@@ -21,7 +21,7 @@ const config = {
   storageBucket: "pushnotificationtest-9e21c.appspot.com",
   messagingSenderId: "1019872102596",
   appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
-  measurementId: "G-TFEDXNHVGY",
+  measurementId: "G-TFEDXNHVGY"
 };
 firebase.initializeApp(config);
 
@@ -79,53 +79,46 @@ const Notifications = (props) => {
           )
         );
 
-        // 토큰 받아오기
-        Notification.requestPermission().then((permission) => {
-          if(permission === "granted"){
-            console.log("알림 허용");
-            getToken(messaging, {
-              vapidKey:
-                "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
-            })
-              .then((currentToken) => {
-                if (currentToken) {
-                  console.log("알림 O");
-                  console.log(currentToken);
-                 history.test = currentToken;
-                 console.log(history)
-                  axios
-                    .post(
-                      "https://fcm.googleapis.com/fcm/send",
-                      {
-                        "notification": {
-                          "body": "새로운글",
-                          "title": "ㅇㅇ",
-                        },
-                        "to": currentToken,
-                      },
-                      {
-                        headers: {
-                          "Content-type": "application/json",
-                          "Authorization": "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
-                        },
-                      }
-                    )
-                    .then((res) => {
-                      console.log(res.data, res.config.data);
-                    });
-                } else {
-                  console.log(
-                    "No registration token available. Request permission to generate one."
-                  );
-                }
-              })
-              .catch((err) => {
-                console.log("An error occurred while retrieving token. ", err);
-              });
-          }else{
-            console.log("알림 비허용")
-          }
+        getToken(messaging, {
+          vapidKey:
+            "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
         })
+          .then((currentToken) => {
+            if (currentToken) {
+              console.log("알림 O");
+              console.log(currentToken);
+              history.test = currentToken;
+              console.log(history);
+              axios
+                .post(
+                  "https://fcm.googleapis.com/fcm/send",
+                  {
+                    "notification": {
+                      "body": "새로운글",
+                      "title": "ㅇㅇdddddd",
+                    },
+                    "to": currentToken,
+                  },
+                  {
+                    headers: {
+                      "Content-type": "application/json",
+                      "Authorization":
+                        "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
+                    },
+                  }
+                )
+                .then((res) => {
+                  console.log(res.data, res.config.data);
+                });
+            } else {
+              console.log(
+                "No registration token available. Request permission to generate one."
+              );
+            }
+          })
+          .catch((err) => {
+            console.log("An error occurred while retrieving token. ", err);
+          });
       }
 
       localStorage.setItem("noticeSet", true);
@@ -150,9 +143,9 @@ const Notifications = (props) => {
       history.replace("/myPage");
     }
 
-   setTimeout(() => {
-    history.push('/test')
-   }, 1000); 
+    setTimeout(() => {
+      history.push("/test");
+    }, 1000);
   };
 
   return (
@@ -244,7 +237,6 @@ const ToggleSwitch = styled.div`
   width: 295px;
   height: 30px;
   margin-top: 20px;
-
   margin-bottom: 20px;
 `;
 
