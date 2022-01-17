@@ -81,8 +81,6 @@ const Dropdown = (props) => {
           height="67px"
           id="type2"
           isActive={props.dayActive}
-          // ref={ClickBtn}
-          // onClick={onClickToggle}
         >
           {props.dayItems &&
             props.dayItems.map((item) => (
