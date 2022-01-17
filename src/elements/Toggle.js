@@ -1,11 +1,153 @@
 import React from "react";
 import styled from "styled-components";
 
+import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
+import { getMessaging, getToken } from "firebase/messaging";
+
 let isSubscribed = false;
 let swRegist = null;
-
+console.log(isSubscribed);
 const Toggle = (props) => {
- 
+  navigator.serviceWorker.ready.then((res) => {
+    console.log(res);
+    swRegist = res;
+  });
+  const messaging = getMessaging();
+  // Push 초기화
+  const initPush = (isSubscribed) => {
+    // const pushButton = document.getElementById("subscribe");
+    // pushButton.addEventListener("click", () => {
+    console.log(isSubscribed);
+    if (isSubscribed) {
+      unsubscribe();
+    } else {
+      subscribe();
+      console.log("dd");
+    }
+    // }
+    // );
+
+    swRegist.pushManager.getSubscription().then(function (subscription) {
+      isSubscribed = !(subscription === null); // null 이면 true 이니 !true 가 false 로 해서 isSubscribed 가 false 라는뜻
+      updateSubscription(subscription); // updateSubscription 함수로 구독 정보를 전달
+
+      if (isSubscribed) {
+        console.log("User IS subscribed.");
+      } else {
+        console.log("User is NOT subscribed.");
+      }
+
+      updateButton();
+    });
+  };
+
+  // 알림 구독
+  function subscribe() {
+    // const applicationServerKey = "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko";
+    swRegist.pushManager
+      .subscribe({
+        userVisibleOnly: true,
+        applicationServerKey:
+          "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
+      })
+      .then((subscription) => {
+        console.log("User is subscribed.");
+        updateSubscription(subscription);
+        console.log(subscription);
+        isSubscribed = true; // 구독정보를 반아온 경우 구독을 정상적으로 한 상황이므로 true로 변경
+        updateButton();
+      })
+      .catch((err) => {
+        console.log("Failed to subscribe the user: ", err);
+        updateButton();
+      });
+  }
+
+  //구독 버튼 상태 갱신
+  function updateButton() {
+    // TODO: 알림 권한 거부 처리
+
+    // const pushButton = document.getElementById("subscribe");
+    if (isSubscribed) {
+      // pushButton.textContent = "Disable Push Messaging";
+    } else {
+      // pushButton.textContent = "Enable Push Messaging";
+    }
+    // pushButton.disabled = false; // true로하면 해당 버튼이 안눌리고 비활성화 된다.
+  }
+
+  // 구독 정보 갱신
+  function updateSubscription(subscription) {
+    // TODO: 구독 정보 서버로 전송
+
+    // let detailArea = document.getElementById("subscription_detail");
+
+    if (subscription) {
+      console.log(JSON.stringify(subscription));
+      // detailArea.innerText = JSON.stringify(subscription);
+      // detailArea.parentElement.classList.remove("hide");
+    } else {
+      // detailArea.parentElement.classList.add("hide");
+    }
+  }
+
+  //알림 구독 취소
+  function unsubscribe() {
+    swRegist.pushManager
+      .getSubscription()
+      .then((subscription) => {
+        console.log(subscription);
+        if (subscription) {
+          messaging
+            .unsubscribeFromTopic(
+              "ca6raRoo9-R4EJbNsHVWu9:APA91bHNRJvkCw781Nfd_SZPVWLq9pWPaLKtJwD6aiB9sFMxWnkVStu_-QkA60jNl73xWCnv8xjVOzqjj0-ySwZkslgYkM-OzEEdbNnbdbjbtpzgpqArLizs4BCi3ghaLPpMjG_3vbX1",
+              "1"
+            )
+            .then((response) => {
+              // See the MessagingTopicManagementResponse reference documentation
+              // for the contents of response.
+              console.log("Successfully unsubscribed from topic:", response);
+            })
+            .catch((error) => {
+              console.log("Error unsubscribing from topic:", error);
+            });
+          return subscription
+            .unsubscribe()
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      })
+      .catch((error) => {
+        console.log("Error unsubscribing", error);
+      })
+      .then(() => {
+        updateSubscription(null);
+        console.log("User is unsubscribed.");
+        isSubscribed = false;
+        updateButton();
+      });
+  }
+
+  function urlBase64ToUint8Array(base64String) {
+    var padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+    var base64 = (base64String + padding)
+      .replace(/\-/g, "+")
+      .replace(/_/g, "/");
+
+    var rawData = window.atob(base64);
+    var outputArray = new Uint8Array(rawData.length);
+
+    for (var i = 0; i < rawData.length; ++i) {
+      outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+  }
+
+  // --- jsx ---
   return (
     <>
       {props.label}
@@ -18,7 +160,7 @@ const Toggle = (props) => {
           checked={props.notice}
           onChange={() => {
             props.setNotice(!props.notice);
-            // initPush(props.notice);
+            initPush(props.notice);
           }}
         />
         <Label className="label" htmlFor={props.label}>

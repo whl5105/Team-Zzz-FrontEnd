@@ -1,23 +1,26 @@
-// importScripts("/__/firebase/9.6.1/firebase-app-compat.js");
-// importScripts("/__/firebase/9.6.1/firebase-messaging-compat.js");
-// importScripts("/__/firebase/init.js");
+importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js");
 
-// const messaging = firebase.messaging();
+const config = {
+  apiKey: "AIzaSyD7vx1YcQDmd7Gom-mOGzB_j_oYD4qjR9M",
+  authDomain: "pushnotificationtest-9e21c.firebaseapp.com",
+  projectId: "pushnotificationtest-9e21c",
+  storageBucket: "pushnotificationtest-9e21c.appspot.com",
+  messagingSenderId: "1019872102596",
+  appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
+  measurementId: "G-TFEDXNHVGY"
+};
 
-// messaging.onBackgroundMessage(function (payload) {
-//   console.log(
-//     "[firebase-messaging-sw.js] Received background message ",
-//     payload
-//   );
-//   // Customize notification here
-//   const notificationTitle = "Background Message Title";
-//   const notificationOptions = {
-//     body: "Background Message body.",
-//     icon: "/firebase-logo.png",
-//   };
+firebase.initializeApp(config);
 
-//   self.registration.showNotification(notificationTitle, notificationOptions);
-// });
+const messaging = firebase.messaging();
+messaging.setBackgroundMessageHandler(function (payload) {
+  const title = "hello world";
+  const options = {
+    body: payload.data.status,
+  };
+  return self.registration.showNotification(title, options);
+});
 
 // importScripts("https://www.gstatic.com/firebasejs/4.6.1/firebase-app.js");
 // importScripts("https://www.gstatic.com/firebasejs/4.6.1/firebase-messaging.js");
