@@ -1,26 +1,26 @@
-importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js");
-importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js");
+// importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js");
+// importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js");
 
-const config = {
-  apiKey: "AIzaSyD7vx1YcQDmd7Gom-mOGzB_j_oYD4qjR9M",
-  authDomain: "pushnotificationtest-9e21c.firebaseapp.com",
-  projectId: "pushnotificationtest-9e21c",
-  storageBucket: "pushnotificationtest-9e21c.appspot.com",
-  messagingSenderId: "1019872102596",
-  appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
-  measurementId: "G-TFEDXNHVGY"
-};
+// const config = {
+//   apiKey: "AIzaSyD7vx1YcQDmd7Gom-mOGzB_j_oYD4qjR9M",
+//   authDomain: "pushnotificationtest-9e21c.firebaseapp.com",
+//   projectId: "pushnotificationtest-9e21c",
+//   storageBucket: "pushnotificationtest-9e21c.appspot.com",
+//   messagingSenderId: "1019872102596",
+//   appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
+//   measurementId: "G-TFEDXNHVGY"
+// };
 
-firebase.initializeApp(config);
+// firebase.initializeApp(config);
 
-const messaging = firebase.messaging();
-messaging.setBackgroundMessageHandler(function (payload) {
-  const title = "hello world";
-  const options = {
-    body: payload.data.status,
-  };
-  return self.registration.showNotification(title, options);
-});
+// const messaging = firebase.messaging();
+// messaging.setBackgroundMessageHandler(function (payload) {
+//   const title = "hello world";
+//   const options = {
+//     body: payload.data.status,
+//   };
+//   return self.registration.showNotification(title, options);
+// });
 
 // importScripts("https://www.gstatic.com/firebasejs/4.6.1/firebase-app.js");
 // importScripts("https://www.gstatic.com/firebasejs/4.6.1/firebase-messaging.js");
