@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { history } from "../redux/configureStore";
+// import { history } from "../redux/configureStore";
 
 // --- components ---
 import FirstNotification from "../pages/FirstNotification";
@@ -14,19 +14,18 @@ import object from "../static/images/banner/object_1005px.png";
 import space from "../static/images/banner/space_1005px.png";
 
 const Main = (props) => {
-  function Mobile() {
-    return /iPhone|iPad/i.test(navigator.userAgent);
-  }
-  const [mobile, setMobile] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
+  // function Mobile() {
+  //   return /iPhone|iPad/i.test(navigator.userAgent);
+  // }
+  // const [mobile, setMobile] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
   const [noticationModal, setNoticationModal] = React.useState(false);
 
   React.useEffect(() => {
-    const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
-    const token = localStorage.getItem("token");
-
-    if (!noticeSet && token && !mobile) {
-      setNoticationModal(true);
-    }
+    // const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
+    // const token = localStorage.getItem("token");
+    // if (!noticeSet && token && !mobile) {
+    //   setNoticationModal(true);
+    // }
   }, []);
 
   return (
@@ -80,13 +79,13 @@ const Main = (props) => {
 const Container = styled.div`
   overflow-y: scroll;
   /* height: 720px; */
-  height: calc(100% - 106px);
-  padding: 50px ${({ theme }) => theme.paddings.xxxxl};
+  /* height: calc(100% - 106px); */
+  /* padding: 50px ${({ theme }) => theme.paddings.xxxxl}; */
   border-top: solid;
   &::-webkit-scrollbar {
     display: none;
   }
-  @media (max-width: 500px) {
+  @media (max-width: 640px) {
     height: 89vh;
   }
 `;

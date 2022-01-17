@@ -31,7 +31,7 @@ const MixList = (props) => {
       return;
     }
     dispatch(asmrActions.getPlayListDB());
-  }, []);
+  }, [dispatch, playList]);
   React.useEffect(() => {
     setPlayList(playListInfo ? playListInfo : null);
   }, [playListInfo]);
@@ -58,7 +58,7 @@ const MixList = (props) => {
                   >
                     {item.mixTitle}
                   </List>
-                  {toggle[idx] ? (
+                  {toggle[item.playlistIdx] ? (
                     <MixBox
                       mixList={item.mixList}
                       playlistIdx={item.playlistIdx}

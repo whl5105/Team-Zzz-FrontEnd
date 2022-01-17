@@ -69,37 +69,10 @@ const margins = {
   xxxxl: calcRem(20),
 };
 
-// const interval = {
-//   base: calcRem(50),
-//   lg: calcRem(100),
-//   xl: calcRem(150),
-//   xxl: calcRem(200),
-// };
-
-// const verticalInterval = {
-//   base: `${calcRem(10)} 0 ${calcRem(10)} 0`,
-// };
-
 const horizontalityInterval = {
   small: `0 ${calcRem(16)}`,
   base: `0 ${calcRem(20)}`,
 };
-
-// const deviceSizes = {
-//   mobileS: "320px",
-//   mobileM: "375px",
-//   mobileL: "450px",
-//   tablet: "768px",
-//   tabletL: "1024px",
-// };
-
-// const device = {
-//   mobileS: `only screen and (max-width: ${deviceSizes.mobileS})`,
-//   mobileM: `only screen and (max-width: ${deviceSizes.mobileM})`,
-//   mobileL: `only screen and (max-width: ${deviceSizes.mobileL})`,
-//   tablet: `only screen and (max-width: ${deviceSizes.tablet})`,
-//   tabletL: `only screen and (max-width: ${deviceSizes.tabletL})`,
-// };
 
 const theme = {
   fontSizes,
@@ -109,11 +82,6 @@ const theme = {
   paddings,
   margins,
   horizontalityInterval,
-  // deviceSizes,
-  // device,
-  // interval,
-  // verticalInterval,
-  // gradient,
 };
 
 export default theme;

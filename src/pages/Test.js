@@ -9,19 +9,19 @@ const Test = (props) => {
     console.log(history.test);
   }, []);
   return (
-    <>
+    <div>
       <span
         style={{
           position: "absolute",
           top: "100px",
           left: "10px",
           color: "white",
-          width: "100px",
+          Width: "100px",
         }}
       >
         {test}
       </span>
-    </>
+    </div>
   );
 };
 

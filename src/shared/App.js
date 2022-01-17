@@ -8,7 +8,7 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
 // page
-import BackGround from "../components/main/Background";
+// import BackGround from "../components/main/Background";
 import NotFound from "../pages/NotFound";
 import Main from "../pages/Main";
 import FirstNotification from "../pages/FirstNotification";
@@ -66,10 +66,16 @@ import Test from "../pages/Test";
 //   console.log("onMessage : ", payload);
 // });
 
+// if (isIPhone) {
+//   console.log("current device is mobile");
+// } else {
+//   console.log("current device is not mobile");
+// }
+
 function App() {
   return (
     <WrapBox id="app">
-      <BackGround />
+      {/* <BackGround /> */}
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Wrap className="App">
@@ -120,25 +126,28 @@ const WrapBox = styled.div`
 `;
 
 const Wrap = styled.div`
-  width: 375px;
-  height: 94%;
+  /* width: 375px; */
+  max-width: 640px;
+  /* height: 94%; */
+  height: 100vh;
   background-color: ${({ theme }) => theme.colors.bg};
-  position: absolute;
+  /* padding: 50px 0 56px 0; */
+
+  margin: 0 auto;
+  /* position: absolute;
   top: 50%;
   right: 17%;
-  transform: translateY(-50%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%); */
+  /* border: 1px solid rgba(255, 255, 255, 0.2); */
   overflow: hidden;
-  @media (max-width: 500px) {
-    min-width: 335px;
+  @media (max-width: 640px) {
+    /* min-width: 335px;
     width: 100%;
     height: 100vh;
     right: 0;
-    border: none;
+    border: none; */
   }
 `;
-const Container = styled.div`
-  height: 100%;
-`;
+const Container = styled.div``;
 
 export default App;
