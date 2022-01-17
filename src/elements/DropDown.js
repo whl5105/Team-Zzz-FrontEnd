@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+// --- images ---
+import dropDown from "../static/images/icon/dropDown.png";
+
 const Dropdown = (props) => {
   const [item, setItem] = React.useState(null);
 
@@ -50,7 +53,8 @@ const Dropdown = (props) => {
     return (
       <DisabledDropDownContainer>
         <DropdownBody color="gray">
-          <Content>{`${props.title}${props.condition}`}</Content>
+          <p>{`${props.title}${props.condition}`}</p>
+          <img src={dropDown} alt=""></img>
         </DropdownBody>
       </DisabledDropDownContainer>
     );
@@ -59,14 +63,16 @@ const Dropdown = (props) => {
   // 알림 활성화일 때
   return (
     <DropdownContainer className="dropdown">
-      <DropdownBody onClick={onActiveToggle}>
+      <DropdownBody>
         {item ? (
           <>
-            <Content>{`${item}${props.condition}`}</Content>
+            <p>{`${item}${props.condition}`}</p>
+            <img onClick={onActiveToggle} src={dropDown} alt=""></img>
           </>
         ) : (
           <>
-            <Content>{`${props.title}${props.condition}`}</Content>
+            <p>{`${props.title}${props.condition}`}</p>
+            <img onClick={onActiveToggle} src={dropDown} alt=""></img>
           </>
         )}
       </DropdownBody>
@@ -75,8 +81,6 @@ const Dropdown = (props) => {
           height="67px"
           id="type2"
           isActive={props.dayActive}
-          // ref={ClickBtn}
-          // onClick={onClickToggle}
         >
           {props.dayItems &&
             props.dayItems.map((item) => (
@@ -129,8 +133,8 @@ const Dropdown = (props) => {
 
 // --- styled-components ---
 const DropdownContainer = styled.div`
-  /* width: 93px; */
   width: 100%;
+  /* width: 93px; */
   max-height: 48px;
   /* margin-top: 20px; */
   text-align: center;
@@ -157,13 +161,34 @@ const DisabledDropDownContainer = styled.div`
   border-radius: 10px;
   display: absolute;
   box-sizing: border-box;
+  position: relative;
+
+  & > img {
+    position: absolute;
+    top: 25%;
+    right: 6px;
+    width: 24px;
+    height: 24px;
+    padding: 0px 14px;
+  }
 `;
+
 // 닫힌 부분
 const DropdownBody = styled.div`
   align-items: center;
   /* margin-top: "-5px"; */
   line-height: 48px;
   color: ${(props) => props.color && props.color};
+  position: relative;
+
+  & > img {
+    position: absolute;
+    top: 25%;
+    right: 6px;
+    width: 24px;
+    height: 24px;
+    padding: 0px 14px;
+  }
 `;
 
 //열린부분 목록
@@ -207,10 +232,6 @@ const DropdownItemContainer = styled.li`
   /* &:last-child {
     border-bottom: none;
   } */
-`;
-
-const Content = styled.p`
-  /* margin-top: 12px; */
 `;
 
 export default Dropdown;
