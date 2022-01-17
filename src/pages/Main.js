@@ -31,7 +31,7 @@ const config = {
 firebase.initializeApp(config);
 
 const messaging = getMessaging();
-
+// console.log( messaging.swRegistration.pushManager.getSubscription, messaging.swRegistration.pushManager.subscribe)
 const Main = (props) => {
   //  console.log({...Notification.requestPermission})
 
@@ -55,28 +55,8 @@ const Main = (props) => {
               setNoticationModal(true);
             }
 
-            history.test = currentToken;
+            history.pushtoken = currentToken;
             console.log(history);
-            // axios
-            //   .post(
-            //     "https://fcm.googleapis.com/fcm/send",
-            //     {
-            //       "notification": {
-            //         "body": "새로운글",
-            //         "title": "ㅇㅇdddddd",
-            //       },
-            //       "to": currentToken,
-            //     },
-            //     {
-            //       headers: {
-            //         "Content-type": "application/json",
-            //         "Authorization": "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
-            //       },
-            //     }
-            //   )
-            //   .then((res) => {
-            //     console.log(res.data, res.config.data);
-            //   });
           } else {
             console.log(
               "No registration token available. Request permission to generate one."
@@ -95,7 +75,7 @@ const Main = (props) => {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
   const [ios, setIos] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
-  const [noticationModal, setNoticationModal] = React.useState(false);
+  const [noticationModal, setNoticationModal] = React.useState(true);
   const location = useLocation();
   let [permission, setPermission] = React.useState(false);
   const token = localStorage.getItem("token");
