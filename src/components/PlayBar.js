@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { withRouter } from "react-router-dom";
+
+// --- components ---
 import { deleteSong } from "../pages/Asmr";
 
 // --- images ---
@@ -9,17 +12,20 @@ import volumeIcon from "../static/images/play/volume.svg";
 import closeIcon from "../static/images/play/close.svg";
 import pauseIcon from "../static/images/play/pause.svg";
 
-const PlayBar = (props) => {
+const PlayBar = withRouter((props) => {
   const [toggle, setToggle] = React.useState(false);
   const [playbar, setPlaybar] = React.useState([]);
   history.setPlaybar = setPlaybar;
+  history.setToggle = setToggle;
 
   React.useEffect(() => {
     play();
     setToggle(false);
-  }, [playbar]);
+  }, []);
 
   const play = () => {
+    setToggle(!toggle);
+
     history.audio1 && history.audio1.play();
     history.audio2 && history.audio2.play();
     history.audio3 && history.audio3.play();
@@ -27,6 +33,8 @@ const PlayBar = (props) => {
   };
 
   const pause = () => {
+    setToggle(!toggle);
+
     history.audio1 && history.audio1.pause();
     history.audio2 && history.audio2.pause();
     history.audio3 && history.audio3.pause();
@@ -34,7 +42,6 @@ const PlayBar = (props) => {
   };
 
   const reset = () => {
-    setPlaybar([]);
     if (history.audio1) {
       history.audio1.pause();
       if (history.location.pathname === "/asmr") {
@@ -54,8 +61,6 @@ const PlayBar = (props) => {
       history.title1 = "";
       history.icon1 = "";
       history.setPlay([]); // 모든 음원 리스트 리셋
-
-      console.log(history);
     }
     if (history.audio2) {
       history.audio2.pause();
@@ -88,7 +93,6 @@ const PlayBar = (props) => {
 
         history.setSong3(new Audio());
         history.setPlay([]); // 모든 음원 리스트 리셋
-        console.log("여기");
       }
 
       //이곳에 플레이바 사라지게 하는 조건 변수 바뀌는거 추가,
@@ -98,7 +102,6 @@ const PlayBar = (props) => {
       history.icon3 = "";
       history.setPlay([]); // 모든 음원 리스트 리셋
       history.arr = [];
-      console.log(history);
     }
     if (history.audio4) {
       history.audio4.pause();
@@ -111,7 +114,6 @@ const PlayBar = (props) => {
         history.arr = [];
         history.setSong4(new Audio());
         history.setPlay([]); // 모든 음원 리스트 리셋
-        console.log("여기");
       }
 
       //이곳에 플레이바 사라지게 하는 조건 변수 바뀌는거 추가,
@@ -121,9 +123,17 @@ const PlayBar = (props) => {
       history.icon4 = "";
       history.setPlay([]); // 모든 음원 리스트 리셋
       history.arr = [];
-      console.log(history);
     }
     setPlaybar([]);
+    history.play = [];
+
+    asmrMove();
+  };
+
+  const asmrMove = () => {
+    if (props.location.pathname === "/asmrPop") {
+      history.push("/asmr");
+    }
   };
 
   const asmrPopMove = () => {
@@ -141,28 +151,23 @@ const PlayBar = (props) => {
           {toggle ? (
             <>
               <Icon src={volumeIcon} onClick={asmrPopMove} />
-              <Icon
-                src={playIcon}
-                onClick={() => (play(), setToggle(!toggle))}
-              />
+              <Icon src={playIcon} onClick={play} />
             </>
           ) : (
             <>
               <Icon src={volumeIcon} onClick={asmrPopMove} />
               {/* 임시이미지 적용중 */}
-              <Icon
-                src={pauseIcon}
-                onClick={() => (pause(), setToggle(!toggle))}
-              />
+              <Icon src={pauseIcon} onClick={pause} />
             </>
           )}
-          <Icon className="lastIcon" src={closeIcon} onClick={() => reset()} />
+          <Icon className="lastIcon" src={closeIcon} onClick={reset} />
         </Wrap>
       ) : null}
     </React.Fragment>
   );
-};
+});
 
+// --- styled-components ---
 const Wrap = styled.div`
   width: calc(100% - 40px);
   height: 72px;

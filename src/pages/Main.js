@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 import { history } from "../redux/configureStore";
 
 // --- components ---
@@ -18,7 +19,8 @@ const Main = (props) => {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
   const [ios, setIos] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
-  const [noticationModal, setNoticationModal] = React.useState(true);
+  const [noticationModal, setNoticationModal] = React.useState(false);
+  const location = useLocation();
 
   React.useEffect(() => {
     const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
@@ -26,6 +28,10 @@ const Main = (props) => {
 
     if (!noticeSet && token && !ios) {
       setNoticationModal(true);
+    }
+
+    if (location.route) {
+      history.push(location.route);
     }
   }, []);
 
@@ -76,6 +82,7 @@ const Main = (props) => {
     </Container>
   );
 };
+
 // --- styled-components ---
 const Container = styled.div`
   overflow-y: scroll;
@@ -90,6 +97,7 @@ const Container = styled.div`
     height: 89vh;
   }
 `;
+
 const Title = styled.p`
   padding: 30px 0 20px 0;
   color: ${({ theme }) => theme.colors.white};

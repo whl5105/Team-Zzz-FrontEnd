@@ -1,11 +1,53 @@
 import React from "react";
 import styled from "styled-components";
+import { history } from "../../redux/configureStore";
 
 // -- components --
 import Icon from "../../elements/Icon";
 
 const AsmrList = (props) => {
-  const { soundTrack, select } = props;
+  const {
+    soundTrack,
+    select,
+    setSong1,
+    setSong2,
+    setSong3,
+    setSong4,
+    setPlay,
+  } = props;
+
+  React.useEffect(() => {
+    let playArr = [];
+
+    console.log(history)
+    if (history.play && soundTrack) {
+      soundTrack.forEach((item) => {
+        if (history.play.includes(item.asmrUrl)) {
+          const activation = document.getElementById(item.asmrUrl);
+          activation.style.backgroundColor = "#FBC037";
+        }
+      });
+
+      if (history.audio1) {
+        setSong1(history.audio1);
+        playArr = [...playArr, history.audio1.src];
+      }
+      if (history.audio2) {
+        setSong2(history.audio2);
+        playArr = [...playArr, history.audio2.src];
+      }
+      if (history.audio3) {
+        setSong3(history.audio3);
+        playArr = [...playArr, history.audio3.src];
+      }
+      if (history.audio4) {
+        setSong4(history.audio4);
+        playArr = [...playArr, history.audio4.src];
+      }
+
+      setPlay(playArr);
+    }
+  }, [soundTrack]);
 
   return (
     <>
