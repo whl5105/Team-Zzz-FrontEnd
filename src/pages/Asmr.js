@@ -231,7 +231,7 @@ const Asmr = (props) => {
   return (
     <>
       {!asmrInfo || asmrInfo.length === 0 ? (
-        <Spinner height="100vh"></Spinner>
+        <Spinner></Spinner>
       ) : (
         <PageWrap imgUrl={imageUrl}>
           {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}

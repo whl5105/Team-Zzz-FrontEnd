@@ -13,6 +13,7 @@ const Icon = (props) => {
     _onClick,
     position,
     marginR,
+    padding,
   } = props;
 
   const styles = {
@@ -24,6 +25,7 @@ const Icon = (props) => {
     rotate: rotate,
     position: position,
     marginR: marginR,
+    padding: padding,
   };
 
   return (
@@ -54,6 +56,8 @@ const ArrowIcon = styled.img`
   transform: ${(props) => `rotate(${props.rotate});`}
   cursor: pointer;
   ${(props) => (props.marginR ? `margin-right: ${props.marginR};` : "")};
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
+  box-sizing: border-box;
 `;
 
 export default Icon;

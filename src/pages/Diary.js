@@ -110,7 +110,7 @@ const Diary = () => {
     <>
       <div>
         {list.length === 0 && !nextMonth ? (
-          <Spinner height="100vh"></Spinner>
+          <Spinner></Spinner>
         ) : (
           <>
             <DiaryDate

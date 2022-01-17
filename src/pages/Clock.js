@@ -11,6 +11,7 @@ import Icon from "../elements/Icon";
 import nextIcon from "../static/images/icon/path_white.png";
 import sleep_T from "../static/images/sleeptime/sleep_T.png";
 import sleep_B from "../static/images/sleeptime/sleep_B.png";
+import reset from "../static/images/sleeptime/sleep_reset.png";
 
 const Clock = (props) => {
   const [ampm, setampm] = React.useState("");
@@ -25,7 +26,7 @@ const Clock = (props) => {
   const [ampm4, setampm4] = React.useState("");
   const [wakeup_hour4, setwakeup_hour4] = React.useState(0);
   const [wakeup_min4, setwakeup_min4] = React.useState(0);
-  const arr = new Array(12).fill("");
+  // const arr = new Array(12).fill("");
   const [toggle, setToggle] = React.useState(true);
 
   const [dayActive, setDayActive] = React.useState(false);
@@ -149,7 +150,7 @@ const Clock = (props) => {
         setwakeup_hour4(restime4);
       }
     } else {
-      var setTime = new Date(2021, 11, 27, hour, minute);
+      let setTime = new Date(2021, 11, 27, hour, minute);
 
       let res4 = new Date(setTime.getTime() - 270 * 60000);
       let res3 = new Date(res4.getTime() - 90 * 60000);
@@ -205,6 +206,10 @@ const Clock = (props) => {
       }
     }
   }
+
+  const resultReset = () => {
+    setToggle(true);
+  };
   return (
     <>
       <Background>
@@ -221,9 +226,7 @@ const Clock = (props) => {
         {toggle ? (
           <SleepTimeWrap>
             <WrapInside>
-              <div style={{ textAlign: "center" }}>
-                <Title>평소 일어나는 시간을 입력해주세요</Title>
-              </div>
+              <Title>평소 일어나는 시간을 입력해주세요</Title>
             </WrapInside>
 
             <SelectTimeWrap>
@@ -271,72 +274,44 @@ const Clock = (props) => {
           <>
             <SleepTimeWrap>
               <WrapInside>
-                <div
-                  style={{
-                    textAlign: "center",
-                  }}
-                >
-                  <Title>아래 시간 중 선택해서 잠드는게 좋아요!</Title>
-                </div>
+                <Title>아래 시간 중 선택해서 잠드는게 좋아요!</Title>
               </WrapInside>
               <div>
-                <div style={{ textAlign: "center", marginBottom: "15px" }}>
+                <Time marginB="10px">
                   <BestSleepTime>{`${wakeup_hour}:${
                     wakeup_min < 10 ? "0" + wakeup_min : wakeup_min
                   } ${ampm}`}</BestSleepTime>
-                  <span
-                    style={{
-                      color: "white",
-                      fontSize: "15px",
-                      width: "15px",
-                      height: "15px",
-                      margin: "0px 9px",
-                      letterSpacing: "-0.3px",
-                    }}
-                  >{`or`}</span>
+                  <Or>{`or`}</Or>
                   <BestSleepTime>{`${wakeup_hour2}:${
                     wakeup_min2 < 10 ? "0" + wakeup_min2 : wakeup_min2
                   } ${ampm2}`}</BestSleepTime>
-                </div>
-                <div style={{ textAlign: "center" }}>
+                </Time>
+                <Time>
                   <BestSleepTime>{`${wakeup_hour3}:${
                     wakeup_min3 < 10 ? "0" + wakeup_min3 : wakeup_min3
                   } ${ampm3}`}</BestSleepTime>
-                  <span
-                    style={{
-                      color: "white",
-                      fontSize: "15px",
-                      width: "15px",
-                      height: "15px",
-                      margin: "0px 9px",
-                      letterSpacing: "-0.3px",
-                    }}
-                  >{`or`}</span>
+                  <Or>{`or`}</Or>
                   <BestSleepTime>{`${wakeup_hour4}:${
                     wakeup_min4 < 10 ? "0" + wakeup_min4 : wakeup_min4
                   } ${ampm4}`}</BestSleepTime>
-                </div>
+                </Time>
               </div>
+
+              <Reset>
+                <Icon
+                  _onClick={resultReset}
+                  src={reset}
+                  width="24px"
+                  height="24px"
+                  alt=""
+                  padding="3px 4px"
+                ></Icon>
+              </Reset>
             </SleepTimeWrap>
 
-            <div
-              style={{
-                textAlign: "center",
-                width: "100%",
-                position: "absolute",
-                top: "551px",
-              }}
-            >
-              <Title
-                style={{
-                  fontWeight: "normal",
-                  fontSize: "12px",
-                  color: "#C4C4C4",
-                }}
-              >
-                제시된 시간에 따라 알맞는 수면 시간을 찾아보세요.
-              </Title>
-            </div>
+            <Explanation>
+              제시된 시간에 따라 알맞는 수면 시간을 찾아보세요.
+            </Explanation>
           </>
         )}
       </Background>
@@ -348,11 +323,6 @@ const Clock = (props) => {
 const Background = styled.div`
   width: 100%;
   height: inherit;
-  /* position: relative;
-  top: -50px;
-  left: 0px;
-  width: 375px;
-  height: 812px; */
 
   background: url(${sleep_T}), url(${sleep_B});
   background-size: 120%, 282px;
@@ -367,6 +337,21 @@ const Title = styled.p`
   position: static;
   height: 30px;
   letter-spacing: -0.3px;
+  text-align: center;
+`;
+
+const Explanation = styled.p`
+  width: 100%;
+  height: 30px;
+  letter-spacing: -0.3px;
+  text-align: center;
+
+  position: absolute;
+  top: 572px;
+
+  font-weight: ${({ theme }) => theme.fontWeight.Regular};
+  font-size: ${({ theme }) => theme.fontSizes.ssmall};
+  color: ${({ theme }) => theme.colors.gray_5};
 `;
 
 const SleepTimeWrap = styled.div`
@@ -381,7 +366,7 @@ const SleepTimeWrap = styled.div`
   border-radius: 12px;
   z-index: 1;
   box-sizing: border-box;
-  padding: 20px 20px 30px 20px;
+  padding: 20px 20px 20px 20px;
 `;
 
 const WrapInside = styled.div`
@@ -390,11 +375,12 @@ const WrapInside = styled.div`
 `;
 
 const BestSleepTime = styled.span`
-  color: #feecc3;
-  font-size: 24px;
   width: 106px;
   height: 3px;
-  font-weight: bold;
+
+  color: ${({ theme }) => theme.colors.main_5};
+  font-size: ${({ theme }) => theme.fontSizes.xxxl};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
   font-family: "Roboto", sans-serif;
 `;
 
@@ -406,6 +392,26 @@ const SelectTimeWrap = styled.div`
 
 const MarginRight = styled.div`
   margin-right: 8px;
+`;
+
+const Time = styled.div`
+  text-align: center;
+  margin-bottom: ${(props) => props.marinB && props.marginB};
+`;
+
+const Or = styled.span`
+  width: 15px;
+  height: 15px;
+  margin: 0px 9px;
+  letter-spacing: -0.3px;
+
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fontSizes.small};
+`;
+
+const Reset = styled.div`
+  text-align: center;
+  margin-top: 24px;
 `;
 
 export default Clock;
