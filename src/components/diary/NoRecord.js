@@ -24,7 +24,7 @@ const Image = styled.div`
   height: inherit;
   background: url(${Top}), url(${Bottom});
   background-size: 550px, 640px;
-  background-position: 50% -10%, 54% 100%;
+  background-position: 50% -10%, 54% 90%;
   background-repeat: no-repeat;
 `;
 
