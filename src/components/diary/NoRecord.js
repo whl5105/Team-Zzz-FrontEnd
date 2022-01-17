@@ -21,8 +21,8 @@ const Image = styled.div`
   width: 100%;
   height: inherit;
   background: url(${NoInfo});
-  background-size: cover;
-  background-position: center;
+  background-size: 100%;
+  background-position: 100%;
   background-repeat: no-repeat;
 `;
 
