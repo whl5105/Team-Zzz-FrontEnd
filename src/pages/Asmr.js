@@ -250,16 +250,16 @@ const Asmr = (props) => {
             setPlay={setPlay}
           ></AsmrList>
 
-        {success ? (
-          <Wrap>
-            <Success
-              alt="플레이리스트 작성 완료"
-              text="저장에 성공하였습니다."
-            ></Success>
-          </Wrap>
-        ) : null}
-      </PageWrap>
-      {/* )} */}
+          {success ? (
+            <Wrap>
+              <Success
+                alt="플레이리스트 작성 완료"
+                text="저장에 성공하였습니다."
+              ></Success>
+            </Wrap>
+          ) : null}
+        </PageWrap>
+      )}
     </>
   );
 };
