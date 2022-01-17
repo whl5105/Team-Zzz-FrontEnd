@@ -98,20 +98,14 @@ const Toggle = (props) => {
       .then((subscription) => {
         console.log(subscription);
         if (subscription) {
-          messaging
-            .unsubscribeFromTopic(
-              "ca6raRoo9-R4EJbNsHVWu9:APA91bHNRJvkCw781Nfd_SZPVWLq9pWPaLKtJwD6aiB9sFMxWnkVStu_-QkA60jNl73xWCnv8xjVOzqjj0-ySwZkslgYkM-OzEEdbNnbdbjbtpzgpqArLizs4BCi3ghaLPpMjG_3vbX1",
-              "1"
-            )
-            .then((response) => {
-              // See the MessagingTopicManagementResponse reference documentation
-              // for the contents of response.
-              console.log("Successfully unsubscribed from topic:", response);
-            })
-            .catch((error) => {
-              console.log("Error unsubscribing from topic:", error);
-            });
-          return subscription
+          //       swRegist.pushManager     //토글시 메세지 안날라오게 첫번째 방법
+          // .subscribe({
+          //   userVisibleOnly: true,
+          //   applicationServerKey:
+          //     "",
+          // })
+
+          return swRegist.pushManager // 토글시 메세지 안날라오게 두번째 방법
             .unsubscribe()
             .then((res) => {
               console.log(res);

@@ -78,16 +78,6 @@ const Notifications = (props) => {
             props.minutes
           )
         );
-        // getToken(messaging, {
-        //   vapidKey:
-        //     "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
-        // })
-        //   .then((currentToken) => {
-        //     if (currentToken) {
-        //       console.log("알림 O");
-        //       console.log(currentToken);
-        //      history.test = currentToken;
-        //      console.log(history)
         axios
           .post(
             "https://fcm.googleapis.com/fcm/send",
@@ -96,7 +86,7 @@ const Notifications = (props) => {
                 body: "새로운글",
                 title: "ㅇㅇdddddd",
               },
-              to: history.test,
+              to: history.pushtoken,
             },
             {
               headers: {
@@ -109,15 +99,6 @@ const Notifications = (props) => {
           .then((res) => {
             console.log(res.data, res.config.data);
           });
-        //     } else {
-        //       console.log(
-        //         "No registration token available. Request permission to generate one."
-        //       );
-        //     }
-        //   })
-        //   .catch((err) => {
-        //     console.log("An error occurred while retrieving token. ", err);
-        //   });
       }
 
       localStorage.setItem("noticeSet", true);
@@ -141,9 +122,6 @@ const Notifications = (props) => {
       localStorage.setItem("noticeSet", true);
       history.replace("/myPage");
     }
-    //  setTimeout(() => {
-    //   history.push('/test')
-    //  }, 1000);
   };
 
   return (
