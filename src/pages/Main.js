@@ -95,7 +95,8 @@ const Main = (props) => {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
   const [ios, setIos] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
-  const [noticationModal, setNoticationModal] = React.useState(true);
+  const [noticationModal, setNoticationModal] = React.useState(false);
+  const location = useLocation();
   let [permission, setPermission] = React.useState(false);
   const token = localStorage.getItem("token");
   const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
