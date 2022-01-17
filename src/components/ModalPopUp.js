@@ -9,13 +9,22 @@ const ModalPopUp = (props) => {
   };
 
   return (
-    <React.Fragment>
-      <Component onClick={close}></Component>
+    <PopUpBox onClick={close}>
+      <Component></Component>
       <Children {...styles}>{children}</Children>
-    </React.Fragment>
+    </PopUpBox>
   );
 };
 
+const PopUpBox = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
 const Component = styled.div`
   width: 100%;
   height: 100vh;
@@ -33,7 +42,7 @@ const Children = styled.div`
   background-color: ${(props) => (props.backgroundNull ? null : "#FFFFFF")};
   border-radius: 12px;
   z-index: ${(props) => (props.zIndex ? props.zIndex : "999")};
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

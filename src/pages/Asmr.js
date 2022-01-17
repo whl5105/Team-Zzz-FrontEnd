@@ -12,10 +12,14 @@ import AsmrList from "../components/asmr/AsmrList";
 import Success from "../components/Success";
 
 // -- images --
-import All from "../static/images/asmr/background/전체.svg";
-import Nature from "../static/images/asmr/background/네이쳐.svg";
-import Place from "../static/images/asmr/background/플레이스.svg";
-import Object from "../static/images/asmr/background/오브젝트.svg";
+// import All from "../static/images/asmr/background/전체.svg";
+// import Nature from "../static/images/asmr/background/네이쳐.svg";
+// import Place from "../static/images/asmr/background/플레이스.svg";
+// import Object from "../static/images/asmr/background/오브젝트.svg";
+import All from "../static/images/asmr/background/asmr_category_all.png";
+import Nature from "../static/images/asmr/background/asmr_category_nature.png";
+import Place from "../static/images/asmr/background/asmr_category_space.png";
+import Object from "../static/images/asmr/background/asmr_category_object.png";
 
 export const deleteSong = (url) => {
   const deleteItem = document.getElementById(url);
@@ -246,16 +250,16 @@ const Asmr = (props) => {
             setPlay={setPlay}
           ></AsmrList>
 
-          {success ? (
-            <Wrap>
-              <Success
-                alt="플레이리스트 작성 완료"
-                text="저장에 성공하였습니다."
-              ></Success>
-            </Wrap>
-          ) : null}
-        </PageWrap>
-      )}
+        {success ? (
+          <Wrap>
+            <Success
+              alt="플레이리스트 작성 완료"
+              text="저장에 성공하였습니다."
+            ></Success>
+          </Wrap>
+        ) : null}
+      </PageWrap>
+      {/* )} */}
     </>
   );
 };
@@ -263,13 +267,16 @@ const Asmr = (props) => {
 // --- styled-components ---
 const PageWrap = styled.div`
   width: 100%;
-  height: 812px;
+  height: inherit;
   background-color: ${({ theme }) => theme.colors.bg};
-  background-image: url(${(props) => props.imgUrl});
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: url(${(props) => props.imgUrl}) no-repeat;
+  background-position: 50% 100%;
+  background-size: 100%;
+  /* padding: 50px 1.25rem 0; */
+  /* box-sizing: border-box; */
   padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
   box-sizing: border-box;
+  position: relative;
 `;
 
 const Wrap = styled.div`
