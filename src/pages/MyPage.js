@@ -15,16 +15,20 @@ import List from "../components/mypage/List";
 import AlarmBanner from "../components/mypage/AlarmBanner";
 
 const Mypage = (props) => {
-  const Mobile = () => {
-    return (ios = /iPhone|iPad/i.test(navigator.userAgent)), setIos(ios);
-  };
+  // const Mobile = () => {
+  //   return (ios = /iPhone|iPad/i.test(navigator.userAgent)), setIos(ios);
+  // };
+  function Mobile() {
+    return /iPhone|iPad/i.test(navigator.userAgent);
+  }
+  const [ios, setIos] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
 
   const dispatch = useDispatch();
   const userIdx = localStorage.getItem("userIdx");
   const token = localStorage.getItem("token");
   const [is_token, setLogin] = React.useState(token);
 
-  let [ios, setIos] = React.useState(false);
+  // let [ios, setIos] = React.useState(false);
 
   React.useEffect(() => {
     setLogin(token);

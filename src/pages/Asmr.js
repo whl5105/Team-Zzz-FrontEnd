@@ -46,7 +46,7 @@ const Asmr = (props) => {
     if (!playListInfo) {
       dispatch(asmrActions.getPlayListDB());
     }
-  }, [])
+  }, []);
 
   React.useEffect(() => {
     if (success === true) {
@@ -120,71 +120,6 @@ const Asmr = (props) => {
       });
     }
   }, [asmrInfo, getCategory]);
-
-  React.useEffect(() => {
-    let selectItem;
-    let setTime1;
-    let setTime2;
-    let setTime3;
-    let setTime4;
-    let arr = [];
-
-    if (history.state1) {
-      setTime1 = setTimeout(
-        () => (
-          (selectItem = document.getElementById(history.state1)),
-          (selectItem.style.backgroundColor = "#FBC037"),
-          setSong1(history.audio1),
-          (arr = [...arr, history.audio1.src]),
-          setPlay(arr)
-        ),
-        500
-      );
-    }
-    if (history.state2) {
-      setTime2 = setTimeout(
-        () => (
-          (selectItem = document.getElementById(history.state2)),
-          (selectItem.style.backgroundColor = "#FBC037"),
-          setSong2(history.audio2),
-          (arr = [...arr, history.audio2.src]),
-          setPlay(arr)
-        ),
-        500
-      );
-    }
-    if (history.state3) {
-      setTime3 = setTimeout(
-        () => (
-          (selectItem = document.getElementById(history.state3)),
-          (selectItem.style.backgroundColor = "#FBC037"),
-          setSong3(history.audio3),
-          (arr = [...arr, history.audio3.src]),
-          setPlay(arr)
-        ),
-        500
-      );
-    }
-    if (history.state4) {
-      setTime4 = setTimeout(
-        () => (
-          (selectItem = document.getElementById(history.state4)),
-          (selectItem.style.backgroundColor = "#FBC037"),
-          setSong4(history.audio4),
-          (arr = [...arr, history.audio4.src]),
-          setPlay(arr)
-        ),
-        500
-      );
-    }
-
-    return () => {
-      clearTimeout(setTime1);
-      clearTimeout(setTime2);
-      clearTimeout(setTime3);
-      clearTimeout(setTime4);
-    };
-  }, [getCategory]);
 
   const select = (asmrUrl, iconUrl, title) => {
     if (play.includes(asmrUrl)) {
@@ -293,7 +228,6 @@ const Asmr = (props) => {
     }
   };
 
-  // -- jsx --
   return (
     <>
       {!asmrInfo || asmrInfo.length === 0 ? (
@@ -302,13 +236,21 @@ const Asmr = (props) => {
         <PageWrap imgUrl={imageUrl}>
           {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
           <AsmrCategory setCategory={setCategory}></AsmrCategory>
-          <AsmrList soundTrack={soundTrack} select={select}></AsmrList>
+          <AsmrList
+            soundTrack={soundTrack}
+            select={select}
+            setSong1={setSong1}
+            setSong2={setSong2}
+            setSong3={setSong3}
+            setSong4={setSong4}
+            setPlay={setPlay}
+          ></AsmrList>
 
           {success ? (
             <Wrap>
               <Success
                 alt="플레이리스트 작성 완료"
-                text="저장에 성공했습니다."
+                text="저장에 성공하였습니다."
               ></Success>
             </Wrap>
           ) : null}
@@ -332,7 +274,7 @@ const PageWrap = styled.div`
 
 const Wrap = styled.div`
   width: 100%;
-  height: 812px;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;

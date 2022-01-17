@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 import { history } from "../redux/configureStore";
 import axios from "axios";
 
@@ -48,9 +49,9 @@ const Main = (props) => {
             console.log("알림 O");
             console.log(currentToken);
             permission = true;
-            console.log(noticeSet, token, mobile, permission);
+            console.log(noticeSet, token, ios, permission);
 
-            if (!noticeSet && token && !mobile && permission) {
+            if (!noticeSet && token && !ios && permission) {
               setNoticationModal(true);
             }
 
@@ -93,17 +94,21 @@ const Main = (props) => {
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
-  const [mobile, setMobile] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
+  const [ios, setIos] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
   const [noticationModal, setNoticationModal] = React.useState(true);
   let [permission, setPermission] = React.useState(false);
   const token = localStorage.getItem("token");
   const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
 
   React.useEffect(() => {
-    console.log(token, mobile, permission);
+    console.log(token, ios, permission);
 
-    if (!noticeSet && token && !mobile && permission) {
+    if (!noticeSet && token && !ios && permission) {
       setNoticationModal(true);
+    }
+
+    if (location.route) {
+      history.push(location.route);
     }
   }, []);
 
@@ -154,6 +159,7 @@ const Main = (props) => {
     </Container>
   );
 };
+
 // --- styled-components ---
 const Container = styled.div`
   overflow-y: scroll;
@@ -168,6 +174,7 @@ const Container = styled.div`
     height: 89vh;
   }
 `;
+
 const Title = styled.p`
   padding: 30px 0 20px 0;
   color: ${({ theme }) => theme.colors.white};

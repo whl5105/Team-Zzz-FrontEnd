@@ -81,9 +81,7 @@ const Login = () => {
   const socialLoginSuccess = (res) => {
     console.log("소셜 로그인 성공");
     console.log(res);
-    dispatch(
-      userActions.socialLoginDB(res.profile.id)
-    );
+    dispatch(userActions.socialLoginDB(res.profile.id));
   };
 
   const socialLoginStyle = {
@@ -166,7 +164,7 @@ const Login = () => {
 
       {/* 회원가입 성공 유저 팝업 */}
       {first_signup ? (
-        <Success alt="회원가입 성공" text="회원가입에 성공하였습니다"></Success>
+        <Success alt="회원가입 성공" text="회원가입에 성공했습니다"></Success>
       ) : (
         ""
       )}

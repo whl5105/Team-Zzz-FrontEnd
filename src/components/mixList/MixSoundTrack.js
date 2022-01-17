@@ -84,6 +84,9 @@ const MixSoundTrack = (props) => {
       history.title4 = "";
       history.state4 = "";
     }
+
+    history.setPlaybar([]);
+    history.setToggle(false);
   };
 
   const playSoundSetting = () => {
@@ -132,9 +135,9 @@ const MixSoundTrack = (props) => {
     }
   };
 
-  const playSoundTrack = async () => {
-    await playInitial();
-    await playSoundSetting();
+  const playSoundTrack = () => {
+    playInitial();
+    playSoundSetting();
     history.play = play;
     history.setPlay = setPlay;
     history.setPlaybar(play);
@@ -189,7 +192,8 @@ const Text = styled.p`
 
 const Hr = styled.hr`
   width: 295px;
-  border: 1px solid #ffffff;
+  border: 0.5px solid #ffffff;
+  box-sizing: border-box;
   margin: auto;
   opacity: 0.1;
 `;

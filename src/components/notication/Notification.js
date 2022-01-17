@@ -237,7 +237,6 @@ const ToggleSwitch = styled.div`
   width: 295px;
   height: 30px;
   margin-top: 20px;
-
   margin-bottom: 20px;
 `;
 
