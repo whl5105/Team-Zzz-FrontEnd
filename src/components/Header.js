@@ -30,6 +30,7 @@ const Header = withRouter((props) => {
 
   const closeMixListModal = () => {
     setMixListModal(false);
+    history.push({ pathname: "/", route: "/asmr" });
   };
 
   const closeRequireModal = () => {
