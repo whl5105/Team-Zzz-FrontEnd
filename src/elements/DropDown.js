@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Dropdown = (props) => {
@@ -165,13 +165,14 @@ const DropdownBody = styled.div`
   line-height: 48px;
   color: ${(props) => props.color && props.color};
 `;
+
 //열린부분 목록
 const DropdownMenu = styled.ul`
   display: ${(props) => (props.isActive ? `block` : `none`)};
   height: ${(props) => props.height};
   overflow-y: scroll;
   background-color: white;
-  /* position: absolute; */
+  position: relative;
   /* margin-top: 12px;
   margin-left: -3px; */
   border: 2px solid #fbc037;
