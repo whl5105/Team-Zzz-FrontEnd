@@ -29,7 +29,7 @@ const MixListPopUp = (props) => {
   };
 
   return (
-    <ModalPopUp close={props.close} backgroundNull zIndex="120">
+    <ModalPopUp close={props.close} backgroundNull zIndex="120" width="100%">
       <Container>
         <Bar></Bar>
         <Title justifySB>
@@ -49,7 +49,7 @@ const MixListPopUp = (props) => {
               );
             })
           ) : (
-            <NoMixList marginT="60"></NoMixList>
+            <NoMixList></NoMixList>
           )}
         </MixList>
       </Container>
@@ -60,14 +60,13 @@ const MixListPopUp = (props) => {
 // --- styled-components ---
 const Container = styled.div`
   position: relative;
-  width: 375px;
+  width: 100%;
   height: 75vh;
-  bottom: -55px;
+  bottom: -56px;
   padding: ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.bg};
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-radius: 12px 12px 0 0;
   z-index: 120;
 `;
 
@@ -84,7 +83,7 @@ const Bar = styled.div`
   height: 4px;
   border-radius: 12px;
   margin: auto;
-  position: relative;
+  /* position: relative; */
   top: 20px;
   background: rgba(255, 255, 255, 1);
   opacity: 0.5;

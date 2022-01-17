@@ -276,6 +276,7 @@ const PageWrap = styled.div`
   /* box-sizing: border-box; */
   padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
   box-sizing: border-box;
+  position: relative;
 `;
 
 const Wrap = styled.div`
