@@ -36,9 +36,6 @@ const Main = (props) => {
   //  console.log({...Notification.requestPermission})
 
   Notification.requestPermission().then(function (result) {
-    console.log(result);
-    console.log(Notification.permission);
-
     if (result === "granted") {
       getToken(messaging, {
         vapidKey:
@@ -50,13 +47,11 @@ const Main = (props) => {
             console.log(currentToken);
             permission = true;
             console.log(noticeSet, token, ios, permission);
-
             if (!noticeSet && token && !ios && permission) {
               setNoticationModal(true);
             }
 
             history.pushtoken = currentToken;
-            console.log(history);
           } else {
             console.log(
               "No registration token available. Request permission to generate one."
@@ -68,6 +63,7 @@ const Main = (props) => {
         });
     } else if (result === "denied") {
       console.log("권한 차단");
+      alert("푸쉬알림을 위해 알림권한을 허용하셔야합니다.");
     }
   });
 
@@ -75,7 +71,7 @@ const Main = (props) => {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
   const [ios, setIos] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
-  const [noticationModal, setNoticationModal] = React.useState(true);
+  const [noticationModal, setNoticationModal] = React.useState(false);
   const location = useLocation();
   let [permission, setPermission] = React.useState(false);
   const token = localStorage.getItem("token");
