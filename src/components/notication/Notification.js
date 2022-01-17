@@ -11,21 +11,21 @@ import Toggle from "../../elements/Toggle";
 import Button from "../../elements/Button";
 
 // firebas
-import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
-import { getMessaging, getToken } from "firebase/messaging";
+// import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
+// import { getMessaging, getToken } from "firebase/messaging";
 
-const config = {
-  apiKey: "AIzaSyD7vx1YcQDmd7Gom-mOGzB_j_oYD4qjR9M",
-  authDomain: "pushnotificationtest-9e21c.firebaseapp.com",
-  projectId: "pushnotificationtest-9e21c",
-  storageBucket: "pushnotificationtest-9e21c.appspot.com",
-  messagingSenderId: "1019872102596",
-  appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
-  measurementId: "G-TFEDXNHVGY"
-};
-firebase.initializeApp(config);
+// const config = {
+//   apiKey: "AIzaSyD7vx1YcQDmd7Gom-mOGzB_j_oYD4qjR9M",
+//   authDomain: "pushnotificationtest-9e21c.firebaseapp.com",
+//   projectId: "pushnotificationtest-9e21c",
+//   storageBucket: "pushnotificationtest-9e21c.appspot.com",
+//   messagingSenderId: "1019872102596",
+//   appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
+//   measurementId: "G-TFEDXNHVGY",
+// };
+// firebase.initializeApp(config);
 
-const messaging = getMessaging();
+// const messaging = getMessaging();
 
 const Notifications = (props) => {
   const dispatch = useDispatch();
@@ -79,46 +79,46 @@ const Notifications = (props) => {
           )
         );
 
-        getToken(messaging, {
-          vapidKey:
-            "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
-        })
-          .then((currentToken) => {
-            if (currentToken) {
-              console.log("알림 O");
-              console.log(currentToken);
-              history.test = currentToken;
-              console.log(history);
-              axios
-                .post(
-                  "https://fcm.googleapis.com/fcm/send",
-                  {
-                    "notification": {
-                      "body": "새로운글",
-                      "title": "ㅇㅇdddddd",
-                    },
-                    "to": currentToken,
-                  },
-                  {
-                    headers: {
-                      "Content-type": "application/json",
-                      "Authorization":
-                        "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
-                    },
-                  }
-                )
-                .then((res) => {
-                  console.log(res.data, res.config.data);
-                });
-            } else {
-              console.log(
-                "No registration token available. Request permission to generate one."
-              );
+        // getToken(messaging, {
+        //   vapidKey:
+        //     "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
+        // })
+        //   .then((currentToken) => {
+        //     if (currentToken) {
+        //       console.log("알림 O");
+        //       console.log(currentToken);
+        //      history.test = currentToken;
+        //      console.log(history)
+        axios
+          .post(
+            "https://fcm.googleapis.com/fcm/send",
+            {
+              notification: {
+                body: "새로운글",
+                title: "ㅇㅇdddddd",
+              },
+              to: history.test,
+            },
+            {
+              headers: {
+                "Content-type": "application/json",
+                Authorization:
+                  "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
+              },
             }
-          })
-          .catch((err) => {
-            console.log("An error occurred while retrieving token. ", err);
+          )
+          .then((res) => {
+            console.log(res.data, res.config.data);
           });
+        //     } else {
+        //       console.log(
+        //         "No registration token available. Request permission to generate one."
+        //       );
+        //     }
+        //   })
+        //   .catch((err) => {
+        //     console.log("An error occurred while retrieving token. ", err);
+        //   });
       }
 
       localStorage.setItem("noticeSet", true);
@@ -143,9 +143,9 @@ const Notifications = (props) => {
       history.replace("/myPage");
     }
 
-    setTimeout(() => {
-      history.push("/test");
-    }, 1000);
+    //  setTimeout(() => {
+    //   history.push('/test')
+    //  }, 1000);
   };
 
   return (
