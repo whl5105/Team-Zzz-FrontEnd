@@ -109,9 +109,9 @@ const Diary = () => {
   return (
     <>
       <div>
-        {list.length === 0 && !nextMonth ? (
-          <Spinner></Spinner>
-        ) : (
+        {/* {list.length === 0 && !nextMonth ? ( */}
+          {/* <Spinner></Spinner> */}
+        {/* ) : ( */}
           <>
             <DiaryDate
               setMoment={setMoment}
@@ -131,7 +131,7 @@ const Diary = () => {
               ></DiaryRecord>
             )}
           </>
-        )}
+        {/* )} */}
       </div>
       {/* -- 다이어리 팝업 모달 -- */}
       {modalOpen ? <DiaryWrite close={closeModal} data={modalData} /> : ""}
