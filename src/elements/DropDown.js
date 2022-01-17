@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 const Dropdown = (props) => {
@@ -71,7 +71,13 @@ const Dropdown = (props) => {
         )}
       </DropdownBody>
       {props.dayActive ? (
-        <DropdownMenu height="70px" id="type2" isActive={props.dayActive}>
+        <DropdownMenu
+          height="67px"
+          id="type2"
+          isActive={props.dayActive}
+          // ref={ClickBtn}
+          // onClick={onClickToggle}
+        >
           {props.dayItems &&
             props.dayItems.map((item) => (
               <DropdownItemContainer
@@ -123,11 +129,14 @@ const Dropdown = (props) => {
 
 // --- styled-components ---
 const DropdownContainer = styled.div`
-  width: 93px;
-  height: 48px;
+  /* width: 93px; */
+  width: 100%;
+  max-height: 48px;
   /* margin-top: 20px; */
   text-align: center;
-  border: 1.5px solid gray;
+  border: 2px solid gray;
+  /* border: ${(props) =>
+    props.isActive ? `2px solid #fbc037;` : `2px solid #fbc037;`}; */
   border-radius: 10px;
   display: absolute;
   box-sizing: border-box;
@@ -140,44 +149,45 @@ const DropdownContainer = styled.div`
 `;
 
 const DisabledDropDownContainer = styled.div`
-  width: 93px;
+  /* width: 93px; */
+  width: 100%;
   height: 48px;
   text-align: center;
-  border: 1.5px solid gray;
+  border: 2px solid gray;
   border-radius: 10px;
   display: absolute;
   box-sizing: border-box;
 `;
-
+// 닫힌 부분
 const DropdownBody = styled.div`
   align-items: center;
-  margin-top: "-5px";
+  /* margin-top: "-5px"; */
+  line-height: 48px;
   color: ${(props) => props.color && props.color};
 `;
-
+//열린부분 목록
 const DropdownMenu = styled.ul`
   display: ${(props) => (props.isActive ? `block` : `none`)};
-  width: 90px;
   height: ${(props) => props.height};
-  overflow: scroll;
+  overflow-y: scroll;
   background-color: white;
-  position: absolute;
-  margin-top: 12px;
-  margin-left: -3px;
+  /* position: absolute; */
+  /* margin-top: 12px;
+  margin-left: -3px; */
   border: 2px solid #fbc037;
+  /* border: ${(props) =>
+    props.isActive ? `2px solid #fbc037;` : `2px solid #fbc037;`}; */
   border-radius: 10px;
-  overflow-x: hidden; // 가로 축 스크롤 감추기
-  display: absolute;
+  margin-top: -2px;
+  /* overflow-x: hidden; // 가로 축 스크롤 감추기 */
 
   &::-webkit-scrollbar {
     /*  스크롤바 막대 너비 설정 */
     width: 3px;
   }
-
   &::-webkit-scrollbar-track {
     background-color: none;
   }
-
   &::-webkit-scrollbar-thumb {
     /* 스크롤바 막대 높이 설정 : 현재가 제일 작은 값 */
     height: 10px;
@@ -185,20 +195,21 @@ const DropdownMenu = styled.ul`
     box-shadow: inset 0 0 10px gray;
   }
 `;
-
+//열린부분 각 요소
 const DropdownItemContainer = styled.li`
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   margin-left: 31px;
-  margin-top: 10px;
+  margin-top: 10px; */
+  padding: 5px 0;
 
-  &:last-child {
+  /* &:last-child {
     border-bottom: none;
-  }
+  } */
 `;
 
 const Content = styled.p`
-  margin-top: 12px;
+  /* margin-top: 12px; */
 `;
 
 export default Dropdown;

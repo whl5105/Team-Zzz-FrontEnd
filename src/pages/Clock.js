@@ -9,8 +9,11 @@ import Icon from "../elements/Icon";
 
 // --- images ---
 import nextIcon from "../static/images/icon/path_white.png";
-import sleep_T from "../static/images/sleeptime/sleep_T.png";
+// import sleep_T from "../static/images/sleeptime/sleep_T.png";
 import sleep_B from "../static/images/sleeptime/sleep_B.png";
+import sleep_T_L from "../static/images/sleeptime/sleep_T_L.png";
+import sleep_T_R from "../static/images/sleeptime/sleep_T_R.png";
+import sleep_T_C from "../static/images/sleeptime/sleep_T_C.png";
 
 const Clock = (props) => {
   const [ampm, setampm] = React.useState("");
@@ -218,127 +221,127 @@ const Clock = (props) => {
             history.push("/");
           }}
         ></Icon>
-        {toggle ? (
-          <SleepTimeWrap>
-            <WrapInside>
-              <div style={{ textAlign: "center" }}>
-                <Title>평소 일어나는 시간을 입력해주세요</Title>
-              </div>
-            </WrapInside>
-
-            <SelectTimeWrap>
-              <MarginRight>
-                <DropDown
-                  dayActive={dayActive}
-                  setDayActive={setDayActive}
-                  setHourActive={setHourActive}
-                  setMinutesActive={setMinutesActive}
-                  condition={""}
-                  title={day}
-                  dayItems={dayItems}
-                  state={setDay}
-                ></DropDown>
-              </MarginRight>
-              <MarginRight>
-                <DropDown
-                  hourActive={hourActive}
-                  setDayActive={setDayActive}
-                  setHourActive={setHourActive}
-                  setMinutesActive={setMinutesActive}
-                  condition={"시"}
-                  title={hour}
-                  hourItems={hourItems}
-                  state={setHour}
-                ></DropDown>
-              </MarginRight>
-              <DropDown
-                minutesActive={minutesActive}
-                setDayActive={setDayActive}
-                setHourActive={setHourActive}
-                setMinutesActive={setMinutesActive}
-                condition={"분"}
-                title={minutes}
-                minutesItems={minutesItems}
-                state={setMinutes}
-              ></DropDown>
-            </SelectTimeWrap>
-
-            <Button _onClick={search} text="입력 완료" marginT="30">
-              입력 완료
-            </Button>
-          </SleepTimeWrap>
-        ) : (
-          <>
+        <Content>
+          {toggle ? (
             <SleepTimeWrap>
               <WrapInside>
-                <div
-                  style={{
-                    textAlign: "center",
-                  }}
-                >
-                  <Title>아래 시간 중 선택해서 잠드는게 좋아요!</Title>
+                <div style={{ textAlign: "center" }}>
+                  <Title>평소 일어나는 시간을 입력해주세요</Title>
                 </div>
               </WrapInside>
-              <div>
-                <div style={{ textAlign: "center", marginBottom: "15px" }}>
-                  <BestSleepTime>{`${wakeup_hour}:${
-                    wakeup_min < 10 ? "0" + wakeup_min : wakeup_min
-                  } ${ampm}`}</BestSleepTime>
-                  <span
-                    style={{
-                      color: "white",
-                      fontSize: "15px",
-                      width: "15px",
-                      height: "15px",
-                      margin: "0px 9px",
-                      letterSpacing: "-0.3px",
-                    }}
-                  >{`or`}</span>
-                  <BestSleepTime>{`${wakeup_hour2}:${
-                    wakeup_min2 < 10 ? "0" + wakeup_min2 : wakeup_min2
-                  } ${ampm2}`}</BestSleepTime>
-                </div>
-                <div style={{ textAlign: "center" }}>
-                  <BestSleepTime>{`${wakeup_hour3}:${
-                    wakeup_min3 < 10 ? "0" + wakeup_min3 : wakeup_min3
-                  } ${ampm3}`}</BestSleepTime>
-                  <span
-                    style={{
-                      color: "white",
-                      fontSize: "15px",
-                      width: "15px",
-                      height: "15px",
-                      margin: "0px 9px",
-                      letterSpacing: "-0.3px",
-                    }}
-                  >{`or`}</span>
-                  <BestSleepTime>{`${wakeup_hour4}:${
-                    wakeup_min4 < 10 ? "0" + wakeup_min4 : wakeup_min4
-                  } ${ampm4}`}</BestSleepTime>
-                </div>
-              </div>
-            </SleepTimeWrap>
 
-            <div
-              style={{
-                textAlign: "center",
-                width: "100%",
-                position: "absolute",
-                top: "551px",
-              }}
-            >
-              <Title
+              <SelectTimeWrap>
+                <MarginRight>
+                  <DropDown
+                    dayActive={dayActive}
+                    setDayActive={setDayActive}
+                    setHourActive={setHourActive}
+                    setMinutesActive={setMinutesActive}
+                    condition={""}
+                    title={day}
+                    dayItems={dayItems}
+                    state={setDay}
+                  ></DropDown>
+                </MarginRight>
+                <MarginRight>
+                  <DropDown
+                    hourActive={hourActive}
+                    setDayActive={setDayActive}
+                    setHourActive={setHourActive}
+                    setMinutesActive={setMinutesActive}
+                    condition={"시"}
+                    title={hour}
+                    hourItems={hourItems}
+                    state={setHour}
+                  ></DropDown>
+                </MarginRight>
+                <DropDown
+                  minutesActive={minutesActive}
+                  setDayActive={setDayActive}
+                  setHourActive={setHourActive}
+                  setMinutesActive={setMinutesActive}
+                  condition={"분"}
+                  title={minutes}
+                  minutesItems={minutesItems}
+                  state={setMinutes}
+                ></DropDown>
+              </SelectTimeWrap>
+
+              <Button _onClick={search} text="입력 완료" marginT="30">
+                입력 완료
+              </Button>
+            </SleepTimeWrap>
+          ) : (
+            <div>
+              <SleepTimeWrap>
+                <WrapInside>
+                  <div
+                    style={{
+                      textAlign: "center",
+                    }}
+                  >
+                    <Title>아래 시간 중 선택해서 잠드는게 좋아요!</Title>
+                  </div>
+                </WrapInside>
+                <div>
+                  <div style={{ textAlign: "center", marginBottom: "15px" }}>
+                    <BestSleepTime>{`${wakeup_hour}:${
+                      wakeup_min < 10 ? "0" + wakeup_min : wakeup_min
+                    } ${ampm}`}</BestSleepTime>
+                    <span
+                      style={{
+                        color: "white",
+                        fontSize: "15px",
+                        width: "15px",
+                        height: "15px",
+                        margin: "0px 9px",
+                        letterSpacing: "-0.3px",
+                      }}
+                    >{`or`}</span>
+                    <BestSleepTime>{`${wakeup_hour2}:${
+                      wakeup_min2 < 10 ? "0" + wakeup_min2 : wakeup_min2
+                    } ${ampm2}`}</BestSleepTime>
+                  </div>
+                  <div style={{ textAlign: "center" }}>
+                    <BestSleepTime>{`${wakeup_hour3}:${
+                      wakeup_min3 < 10 ? "0" + wakeup_min3 : wakeup_min3
+                    } ${ampm3}`}</BestSleepTime>
+                    <span
+                      style={{
+                        color: "white",
+                        fontSize: "15px",
+                        width: "15px",
+                        height: "15px",
+                        margin: "0px 9px",
+                        letterSpacing: "-0.3px",
+                      }}
+                    >{`or`}</span>
+                    <BestSleepTime>{`${wakeup_hour4}:${
+                      wakeup_min4 < 10 ? "0" + wakeup_min4 : wakeup_min4
+                    } ${ampm4}`}</BestSleepTime>
+                  </div>
+                </div>
+              </SleepTimeWrap>
+
+              <div
                 style={{
-                  fontWeight: "normal",
-                  fontSize: "12px",
-                  color: "#C4C4C4",
+                  textAlign: "center",
+                  width: "100%",
                 }}
               >
-                제시된 시간에 따라 알맞는 수면 시간을 찾아보세요.
-              </Title>
+                <Title
+                  style={{
+                    fontWeight: "normal",
+                    fontSize: "12px",
+                    color: "#C4C4C4",
+                  }}
+                >
+                  제시된 시간에 따라 알맞는 수면 시간을 찾아보세요.
+                </Title>
+              </div>
             </div>
-          </>
-        )}
+          )}
+        </Content>
       </Background>
     </>
   );
@@ -354,9 +357,10 @@ const Background = styled.div`
   width: 375px;
   height: 812px; */
 
-  background: url(${sleep_T}), url(${sleep_B});
-  background-size: 120%, 282px;
-  background-position: -70px 100px, 50% 110%;
+  background: url(${sleep_T_L}), url(${sleep_T_C}), url(${sleep_T_R}),
+    url(${sleep_B});
+  background-size: 420px, 310px, 420px, 282px;
+  background-position: 0% 0%, 50% 3%, 100% 0%, 50% 108%;
   background-repeat: no-repeat;
 `;
 
@@ -370,18 +374,23 @@ const Title = styled.p`
 `;
 
 const SleepTimeWrap = styled.div`
-  flex-direction: row;
+  /* flex-direction: row; */
 
-  position: absolute;
-  width: 335px;
+  /* position: absolute; */
+  /* width: 335px;
   right: 20px;
-  top: 354px;
+  top: 354px; */
+  width: 100%;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+
   background: rgba(248, 248, 248, 0.1);
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  z-index: 1;
-  box-sizing: border-box;
+  /* z-index: 1; */
   padding: 20px 20px 30px 20px;
+  box-sizing: border-box;
 `;
 
 const WrapInside = styled.div`
@@ -402,10 +411,21 @@ const SelectTimeWrap = styled.div`
   display: flex;
   flex-direction: row;
   z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 `;
 
 const MarginRight = styled.div`
   margin-right: 8px;
+`;
+const Content = styled.div`
+  padding: 0 20px;
+  width: 100%;
+  position: absolute;
+  top: 56%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
 `;
 
 export default Clock;

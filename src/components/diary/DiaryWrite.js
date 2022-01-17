@@ -288,7 +288,7 @@ const CharaterBox = styled.div`
 
   & p {
     padding-bottom: ${({ theme }) => theme.margins.base};
-    font-family: "Roboto";
+    font-family: "Roboto", sans-serif;
     font-size: ${({ theme }) => theme.fontSizes.lg};
     line-height: ${({ theme }) => theme.lineHeight.lg};
     font-weight: ${({ theme }) => theme.fontWeight.Bold};
