@@ -81,36 +81,35 @@ function App() {
         <Wrap className="App">
           <ConnectedRouter history={history}>
             <Header></Header>
-            <Container>
-              <Switch>
-                <Route path="/" exact component={Main} />
-                <Route path="/clock" exact component={Clock} />
-                <Route path="/login" exact component={Login} />
-                <Route path="/signup" exact component={Signup} />
-                <Route path="/requireLogin" exact component={RequireLogin} />
-                <Route path="/push" exact component={Push} />
-                <Route
-                  path="/pushNotication"
-                  exact
-                  component={FirstNotification}
-                ></Route>
-                <Route path="/diary" exact component={Diary}></Route>
-                <Route path="/asmr" component={Asmr}></Route>
-                <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
-                <Route path="/mypage" exact component={Mypage} />
-                <Route path="/mypage/mixList" exact component={MixList} />
-                <Route
-                  path="/mypageNotice/:userIdx"
-                  exact
-                  component={MyPageNotification}
-                ></Route>
-                <Route path="/notice" exact component={NoticePage}></Route>
-                <Route path="/test" exact component={Test}></Route>
-                <Route>
-                  <NotFound />
-                </Route>
-              </Switch>
-            </Container>
+
+            <Switch>
+              <Route path="/" exact component={Main} />
+              <Route path="/clock" exact component={Clock} />
+              <Route path="/login" exact component={Login} />
+              <Route path="/signup" exact component={Signup} />
+              <Route path="/requireLogin" exact component={RequireLogin} />
+              <Route path="/push" exact component={Push} />
+              <Route
+                path="/pushNotication"
+                exact
+                component={FirstNotification}
+              ></Route>
+              <Route path="/diary" exact component={Diary}></Route>
+              <Route path="/asmr" component={Asmr}></Route>
+              <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
+              <Route path="/mypage" exact component={Mypage} />
+              <Route path="/mypage/mixList" exact component={MixList} />
+              <Route
+                path="/mypageNotice/:userIdx"
+                exact
+                component={MyPageNotification}
+              ></Route>
+              <Route path="/notice" exact component={NoticePage}></Route>
+              <Route path="/test" exact component={Test}></Route>
+              <Route>
+                <NotFound />
+              </Route>
+            </Switch>
             <PlayBar></PlayBar>
             <Navigation></Navigation>
           </ConnectedRouter>
@@ -121,33 +120,14 @@ function App() {
 }
 
 const WrapBox = styled.div`
-  width: 100vw;
-  touch-action: auto;
+  width: 100%;
+  height: inherit;
+  /* width: 100vw;
+  touch-action: auto; */
 `;
 
 const Wrap = styled.div`
-  /* width: 375px; */
-  max-width: 640px;
-  /* height: 94%; */
-  height: 100vh;
-  background-color: ${({ theme }) => theme.colors.bg};
-  /* padding: 50px 0 56px 0; */
-
-  margin: 0 auto;
-  /* position: absolute;
-  top: 50%;
-  right: 17%;
-  transform: translateY(-50%); */
-  /* border: 1px solid rgba(255, 255, 255, 0.2); */
-  overflow: hidden;
-  @media (max-width: 640px) {
-    /* min-width: 335px;
-    width: 100%;
-    height: 100vh;
-    right: 0;
-    border: none; */
-  }
+  height: inherit;
 `;
-const Container = styled.div``;
 
 export default App;

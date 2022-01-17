@@ -9,7 +9,8 @@ import Icon from "../elements/Icon";
 
 // --- images ---
 import nextIcon from "../static/images/icon/path_white.png";
-import sleep_background from "../static/images/sleeptime/sleep_background.svg";
+import sleep_T from "../static/images/sleeptime/sleep_T.png";
+import sleep_B from "../static/images/sleeptime/sleep_B.png";
 
 const Clock = (props) => {
   const [ampm, setampm] = React.useState("");
@@ -206,7 +207,7 @@ const Clock = (props) => {
   }
   return (
     <>
-      <Background categoryImage={sleep_background}>
+      <Background>
         <Icon
           src={nextIcon}
           top="104px"
@@ -345,15 +346,18 @@ const Clock = (props) => {
 
 // --- styled-components ---
 const Background = styled.div`
-  position: relative;
+  width: 100%;
+  height: inherit;
+  /* position: relative;
   top: -50px;
   left: 0px;
   width: 375px;
-  height: 812px;
+  height: 812px; */
 
-  background-image: url(${(props) => props.categoryImage});
+  background: url(${sleep_T}), url(${sleep_B});
+  background-size: 120%, 282px;
+  background-position: -70px 100px, 50% 110%;
   background-repeat: no-repeat;
-  background-size: cover;
 `;
 
 const Title = styled.p`
