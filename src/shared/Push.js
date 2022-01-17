@@ -8,7 +8,6 @@
 
 // const Push = (props) => {
 
-    
 //     const [token, setToken] = useState("");
 //     Firebase();
 //     const messaging = getMessaging();
@@ -39,7 +38,6 @@
 //         //   'Authorization' : 'key='+'AIzaSyBHpknHwT99Y6l4OPhZhShtMql4OVzL968'
 //         // }}).then(res => {console.log(res.text())})
 
-
 //       })
 //       .catch(function (err) {
 //         console.log("fcm error : ", err);
@@ -68,12 +66,11 @@
 //     //     body: 'Background Message body.',
 //     //     icon: '/firebase-logo.png'
 //     //   };
-    
+
 //     //   window.self.registration.showNotification(notificationTitle,
 //     //     notificationOptions);
 //     // })
 
- 
 //   ///////////////////
 
 //   return (

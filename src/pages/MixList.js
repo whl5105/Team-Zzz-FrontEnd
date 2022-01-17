@@ -31,8 +31,7 @@ const MixList = (props) => {
       return;
     }
     dispatch(asmrActions.getPlayListDB());
-    // setPlayList(playListInfo ? playListInfo : null);
-  }, []);
+  }, [dispatch, playList]);
   React.useEffect(() => {
     setPlayList(playListInfo ? playListInfo : null);
   }, [playListInfo]);
@@ -43,8 +42,6 @@ const MixList = (props) => {
       [idx]: !prevToggle[idx],
     }));
   };
-  console.log(playList);
-  console.log(playList !== null);
   return (
     <Container>
       <Title backIcon>나의 믹스</Title>
@@ -56,12 +53,12 @@ const MixList = (props) => {
                 <div key={idx}>
                   <List
                     icon={mixList}
-                    src={toggle[idx] ? path_T : path_B}
-                    _onClick={() => toggleComment(idx)}
+                    src={toggle[item.playlistIdx] ? path_T : path_B}
+                    _onClick={() => toggleComment(item.playlistIdx)}
                   >
                     {item.mixTitle}
                   </List>
-                  {toggle[idx] ? (
+                  {toggle[item.playlistIdx] ? (
                     <MixBox
                       mixList={item.mixList}
                       playlistIdx={item.playlistIdx}

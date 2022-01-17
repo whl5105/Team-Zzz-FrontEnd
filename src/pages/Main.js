@@ -163,17 +163,18 @@ const Main = (props) => {
 
 // --- styled-components ---
 const Container = styled.div`
+  height: inherit;
+  padding: 50px 20px 56px 20px;
   overflow-y: scroll;
+  box-sizing: border-box;
   /* height: 720px; */
-  height: calc(100% - 106px);
-  padding: 50px ${({ theme }) => theme.paddings.xxxxl};
-  border-top: solid;
+  /* height: calc(100% - 106px); */
   &::-webkit-scrollbar {
     display: none;
   }
-  @media (max-width: 500px) {
+  /* @media (max-width: 640px) {
     height: 89vh;
-  }
+  } */
 `;
 
 const Title = styled.p`

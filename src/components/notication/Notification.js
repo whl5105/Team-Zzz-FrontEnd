@@ -78,7 +78,6 @@ const Notifications = (props) => {
             props.minutes
           )
         );
-
         // getToken(messaging, {
         //   vapidKey:
         //     "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
@@ -142,7 +141,6 @@ const Notifications = (props) => {
       localStorage.setItem("noticeSet", true);
       history.replace("/myPage");
     }
-
     //  setTimeout(() => {
     //   history.push('/test')
     //  }, 1000);

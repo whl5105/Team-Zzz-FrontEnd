@@ -1,45 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="apple-touch-icon" sizes="192x192" href="logo192.png" />
-    <link rel="apple-touch-icon" sizes="512x512" href="logo512.png" />
-    <!-- Notice the use of %PUBLIC_URL% in the tags above.
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="apple-touch-icon" sizes="192x192" href="logo192.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="logo512.png" />
+  <!-- Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`. -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <script
-      type="text/javascript"
-      src="https://developers.kakao.com/sdk/js/kakao.js"
-    ></script>
-    <script>
-      Kakao.init("c51fcbffb9ee44d3b90e755eff2bf5b6");
-    </script>
-    <title>React App</title>
-  </head>
 
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+    Kakao.init("c51fcbffb9ee44d3b90e755eff2bf5b6");
+  </script>
+  <title>React App</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
       You can add webfonts, meta tags, or analytics to this file.
@@ -47,10 +40,13 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+  <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js">
+    </script>
+    =======
     <!-- <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+>>>>>>> 8e90bf36f683007ccaf52138359d495c539a1613
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 <script>
   // Your web app's Firebase configuration
@@ -69,7 +65,7 @@
   // firebase.analytics();
 </script> -->
 
-    <!-- <script>
+  <!-- <script>
       let swRegist = null;
       let isSubscribed = true;
       Notification.requestPermission().then(function (permission) {
@@ -259,18 +255,29 @@
         })
       } -->
 
-    <!-- // axios
-      //           .post(
-      //             "https://www.zzzback.shop/api/login",
-      //             { userId:"youngble", password:"Youngble1!" },
-      //             {
-      //               headers: {
-      //                 "Content-Type": "application/json",
-      //                 "Authorization": `Bearer ${localStorage.getItem("token")}`
-      //               },
-      //             }
-      //           )
-      //           .then((res) => { console.log("Dd")}); -->
-    <!-- </script> -->
-  </body>
+  <!-- // axios=======<!-- // axios>>>>>>> 8e90bf36f683007ccaf52138359d495c539a1613
+      // .post(
+      // "https://www.zzzback.shop/api/login",
+      // { userId:"youngble", password:"Youngble1!" },
+      // {
+      // headers: {
+      // "Content-Type": "application/json",
+      // "Authorization": `Bearer ${localStorage.getItem("token")}`
+      // },
+      // }
+      // )
+      // .then((res) => { console.log("Dd")}); -->
+  <!-- </script> -->
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+    Kakao.init("c51fcbffb9ee44d3b90e755eff2bf5b6");
+  </script>
+  <script type="module" src="firebase-messaging-sw.js"></script>
+</body>
+
+</html>
+
+<!-- </script> -->
+</body>
+
 </html>

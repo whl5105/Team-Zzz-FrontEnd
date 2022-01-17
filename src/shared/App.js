@@ -8,7 +8,7 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
 // page
-import BackGround from "../components/main/Background";
+// import BackGround from "../components/main/Background";
 import NotFound from "../pages/NotFound";
 import Main from "../pages/Main";
 import FirstNotification from "../pages/FirstNotification";
@@ -28,6 +28,7 @@ import Header from "../components/Header";
 import NoticePage from "../pages/NoticePage";
 import PlayBar from "../components/PlayBar";
 import Test from "../pages/Test";
+
 // firebase
 // import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
 // import "firebase/compat/messaging";
@@ -65,45 +66,50 @@ import Test from "../pages/Test";
 //   console.log("onMessage : ", payload);
 // });
 
+// if (isIPhone) {
+//   console.log("current device is mobile");
+// } else {
+//   console.log("current device is not mobile");
+// }
+
 function App() {
   return (
     <WrapBox id="app">
-      <BackGround />
+      {/* <BackGround /> */}
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Wrap className="App">
           <ConnectedRouter history={history}>
             <Header></Header>
-            <Container>
-              <Switch>
-                <Route path="/" exact component={Main} />
-                <Route path="/clock" exact component={Clock} />
-                <Route path="/login" exact component={Login} />
-                <Route path="/signup" exact component={Signup} />
-                <Route path="/requireLogin" exact component={RequireLogin} />
-                <Route path="/push" exact component={Push} />
-                <Route
-                  path="/pushNotication"
-                  exact
-                  component={FirstNotification}
-                ></Route>
-                <Route path="/diary" exact component={Diary}></Route>
-                <Route path="/asmr" component={Asmr}></Route>
-                <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
-                <Route path="/mypage" exact component={Mypage} />
-                <Route path="/mypage/mixList" exact component={MixList} />
-                <Route
-                  path="/mypageNotice/:userIdx"
-                  exact
-                  component={MyPageNotification}
-                ></Route>
-                <Route path="/notice" exact component={NoticePage}></Route>
-                <Route path="/test" exact component={Test}></Route>
-                <Route>
-                  <NotFound />
-                </Route>
-              </Switch>
-            </Container>
+
+            <Switch>
+              <Route path="/" exact component={Main} />
+              <Route path="/clock" exact component={Clock} />
+              <Route path="/login" exact component={Login} />
+              <Route path="/signup" exact component={Signup} />
+              <Route path="/requireLogin" exact component={RequireLogin} />
+              <Route path="/push" exact component={Push} />
+              <Route
+                path="/pushNotication"
+                exact
+                component={FirstNotification}
+              ></Route>
+              <Route path="/diary" exact component={Diary}></Route>
+              <Route path="/asmr" component={Asmr}></Route>
+              <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
+              <Route path="/mypage" exact component={Mypage} />
+              <Route path="/mypage/mixList" exact component={MixList} />
+              <Route
+                path="/mypageNotice/:userIdx"
+                exact
+                component={MyPageNotification}
+              ></Route>
+              <Route path="/notice" exact component={NoticePage}></Route>
+              <Route path="/test" exact component={Test}></Route>
+              <Route>
+                <NotFound />
+              </Route>
+            </Switch>
             <PlayBar></PlayBar>
             <Navigation></Navigation>
           </ConnectedRouter>
@@ -114,30 +120,14 @@ function App() {
 }
 
 const WrapBox = styled.div`
-  width: 100vw;
-  touch-action: auto;
+  width: 100%;
+  height: inherit;
+  /* width: 100vw;
+  touch-action: auto; */
 `;
 
 const Wrap = styled.div`
-  width: 375px;
-  height: 94%;
-  background-color: ${({ theme }) => theme.colors.bg};
-  position: absolute;
-  top: 50%;
-  right: 17%;
-  transform: translateY(-50%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  overflow: hidden;
-  @media (max-width: 500px) {
-    min-width: 335px;
-    width: 100%;
-    height: 100vh;
-    right: 0;
-    border: none;
-  }
-`;
-const Container = styled.div`
-  height: 100%;
+  height: inherit;
 `;
 
 export default App;

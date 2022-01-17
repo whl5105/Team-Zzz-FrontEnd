@@ -56,4 +56,7 @@ export const apis = {
     }),
   deletePlayList: (playListIdx, userIdx) =>
     instance.delete(`/api/playlists/${playListIdx}/users/${userIdx}`),
+
+  location: (registrationToken) =>
+    instance.get("/api/location", { registrationToken }),
 };

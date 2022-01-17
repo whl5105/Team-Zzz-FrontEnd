@@ -22,21 +22,11 @@ messaging.setBackgroundMessageHandler(function (payload) {
   return self.registration.showNotification(title, options);
 });
 
-// const config =  {
-//   apiKey: "AIzaSyBHpknHwT99Y6l4OPhZhShtMql4OVzL968",
-//   authDomain: "push-e53ad.firebaseapp.com",
-//   projectId: "push-e53ad",
-//   storageBucket: "push-e53ad.appspot.com",
-//   messagingSenderId: "496302701496",
-//   appId: "1:496302701496:web:5c79f13992451572c4ad4d",
-//   measurementId: "G-PCQK3HYY0G",
-// };
-// firebase.initializeApp(config);
+// importScripts("https://www.gstatic.com/firebasejs/4.6.1/firebase-app.js");
+// importScripts("https://www.gstatic.com/firebasejs/4.6.1/firebase-messaging.js");
 
-// self.addEventListener("install", (pEvent) => {
-//   console.log("서비스워커 설치 함!");
-//   self.skipWaiting();
-// });
+// import { initializeApp } from "firebase/app";
+// import { getMessaging } from "firebase/messaging/sw";
 
 // // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
