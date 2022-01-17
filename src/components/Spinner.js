@@ -48,6 +48,7 @@ const Inner = styled.div`
     src: ${(props) => props.src};
     width: 64px;
     height: 64px;
+    margin-bottom: 10px;
   }
 
   & > div {
