@@ -62,7 +62,7 @@ const Container = styled.div`
   position: relative;
   width: 375px;
   height: 75vh;
-  bottom: -4vh;
+  bottom: -55px;
   padding: ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.bg};
