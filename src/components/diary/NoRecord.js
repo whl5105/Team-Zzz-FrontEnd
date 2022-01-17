@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 // --- images ---
 import NoInfo from "../../static/images/diary/NoInfo.png";
+import Top from "../../static/images/diary/Top.png";
+import Bottom from "../../static/images/diary/Bottom.png";
 
 const NoRecord = (props) => {
   return (
@@ -20,9 +22,9 @@ const Wrap = styled.div`
 const Image = styled.div`
   width: 100%;
   height: inherit;
-  background: url(${NoInfo});
-  background-size: cover;
-  background-position: center;
+  background: url(${Top}), url(${Bottom});
+  background-size: 550px, 640px;
+  background-position: 50% -10%, 54% 100%;
   background-repeat: no-repeat;
 `;
 
