@@ -9,9 +9,7 @@ const Device = ({ children }) => {
   const handleClick = () => {};
   return (
     // <WebBackgroundWrapper>
-    //   <button className="install-btn" type="button" onClick={handleClick}>
-    //     다운받기 : 앱으로 이용 하실 수 있어요 ❤️
-    //   </button>
+
     //   <ClayPhone>
     //     <WebViewLayout>{children}</WebViewLayout>
     //   </ClayPhone>
