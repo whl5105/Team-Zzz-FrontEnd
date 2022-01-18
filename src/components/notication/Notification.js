@@ -26,6 +26,9 @@ import { DropDown, Toggle, Button } from "../../elements/index";
 // const messaging = getMessaging();
 
 const Notifications = (props) => {
+
+  const userToken= localStorage.getItem("token")
+  
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -76,28 +79,38 @@ const Notifications = (props) => {
             props.minutes
           )
         );
-        axios
-          .post(
-            "https://fcm.googleapis.com/fcm/send",
+        // axios
+        //   .post(
+        //     "https://fcm.googleapis.com/fcm/send",
+        //     {
+        //       notification: {
+        //         body: "새로운글",
+        //         title: "ㅇㅇdddddd",
+        //       },
+        //       to: history.pushtoken,
+        //       // to: "ca6raRoo9-R4EJbNsHVWu9:APA91bGHhA4MgGyufmsOT5f8g8v2E9xshYaEH657lMg9f8gFQlWrMqI9DDkq-IPL1fWiDBnuQ409tAG8nf9jDtXsRmjxrKwocJQ_U7obsuub9mmDNsUWQBXCbHNtUKxGoqfYTw0dJujw",
+        //     },
+        //     {
+        //       headers: {
+        //         "Content-type": "application/json",
+        //         Authorization:
+        //           "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
+        //       },
+        //     }
+        //   )
+        //   .then((res) => {
+        //     console.log(res.data, res.config.data);
+        //   });
+            console.log(history.pushtoken)
+            axios.get(`https://www.zzzback.shop/api/location/${history.pushtoken}`,
             {
-              notification: {
-                body: "새로운글",
-                title: "ㅇㅇdddddd",
-              },
-              to: history.pushtoken,
-              // to: "ca6raRoo9-R4EJbNsHVWu9:APA91bGHhA4MgGyufmsOT5f8g8v2E9xshYaEH657lMg9f8gFQlWrMqI9DDkq-IPL1fWiDBnuQ409tAG8nf9jDtXsRmjxrKwocJQ_U7obsuub9mmDNsUWQBXCbHNtUKxGoqfYTw0dJujw",
-            },
-            {
-              headers: {
-                "Content-type": "application/json",
-                Authorization:
-                  "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
-              },
-            }
-          )
-          .then((res) => {
-            console.log(res.data, res.config.data);
-          });
+              headers:{authorization: `Bearer ${userToken}`
+          }      }).then((res)=>{
+            console.log(res);
+
+            })
+
+
       }
 
       localStorage.setItem("noticeSet", true);
