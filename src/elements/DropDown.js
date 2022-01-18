@@ -5,14 +5,43 @@ import styled from "styled-components";
 import dropDown from "../static/images/icon/dropDown.png";
 
 const Dropdown = (props) => {
-  const [item, setItem] = React.useState(null);
+  const [select, setSelect] = React.useState(null);
 
   const onActiveToggle = () => {
-    if (props.condition === "") {
+    const am_pm = document.getElementById("AM/PM");
+    const day = document.getElementById("시");
+    const hour = document.getElementById("분");
+    const currentStatus = props.condition;
+
+    if (currentStatus === "") {
+      if (am_pm.style.borderColor === "rgb(251, 192, 55)") {
+        am_pm.style.borderColor = "gray";
+      } else {
+        am_pm.style.borderColor = "#fbc037";
+      }
+      day.style.borderColor = "gray";
+      hour.style.borderColor = "gray";
+
       dayChange();
-    } else if (props.condition === "시") {
+    } else if (currentStatus === "시") {
+      am_pm.style.borderColor = "gray";
+      if (day.style.borderColor === "rgb(251, 192, 55)") {
+        day.style.borderColor = "gray";
+      } else {
+        day.style.borderColor = "#fbc037";
+      }
+      hour.style.borderColor = "gray";
+
       hourChange();
-    } else if (props.condition === "분") {
+    } else if (currentStatus === "분") {
+      am_pm.style.borderColor = "gray";
+      day.style.borderColor = "gray";
+      if (hour.style.borderColor === "rgb(251, 192, 55)") {
+        hour.style.borderColor = "gray";
+      } else {
+        hour.style.borderColor = "#fbc037";
+      }
+
       minutesChange();
     }
   };
@@ -36,7 +65,7 @@ const Dropdown = (props) => {
   };
 
   const onSelectItem = (name) => {
-    setItem(name);
+    setSelect(name);
     props.state(name);
 
     if (props.dayActive) {
@@ -62,11 +91,13 @@ const Dropdown = (props) => {
 
   // 알림 활성화일 때
   return (
-    <DropdownContainer className="dropdown">
+    <DropdownContainer
+      id={`${props.condition === "" ? "AM/PM" : props.condition}`}
+    >
       <DropdownBody>
-        {item ? (
+        {select ? (
           <>
-            <p>{`${item}${props.condition}`}</p>
+            <p>{`${select}${props.condition}`}</p>
             <img onClick={onActiveToggle} src={dropDown} alt="" />
           </>
         ) : (
@@ -132,15 +163,12 @@ const DropdownContainer = styled.div`
   width: 100%;
   max-height: 48px;
   text-align: center;
-  border: 2px solid gray;
+  border: 2px solid
+    ${(props) => (props.borderColor ? props.borderColor : "gray")};
   border-radius: 10px;
   box-sizing: border-box;
   background-color: white;
   margin-right: 8px;
-  &:hover {
-    cursor: pointer;
-    border: 2px solid #fbc037;
-  }
 `;
 
 const DisabledDropDownContainer = styled.div`
@@ -150,13 +178,8 @@ const DisabledDropDownContainer = styled.div`
   border: 2px solid gray;
   border-radius: 10px;
   box-sizing: border-box;
-<<<<<<< HEAD
-  position: relative;
-  margin: 0px 2px;
-
-=======
   margin-right: 8px;
->>>>>>> 62fe15b848907859712a3f039833ca682c31efc3
+
   & > img {
     position: absolute;
     top: 30%;
@@ -170,9 +193,8 @@ const DisabledDropDownContainer = styled.div`
 const DropdownBody = styled.div`
   align-items: center;
   line-height: 48px;
-  color: ${(props) => props.color && props.color};
   position: relative;
-  /* display: flex; */
+
   & > p {
     width: 100%;
     line-height: 44px;
