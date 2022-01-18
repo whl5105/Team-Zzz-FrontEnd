@@ -34,15 +34,7 @@ const edit_playList = createAction(EDIT_PLAYLIST, (playlistIdx, mixTitle) => ({
 
 // -- initialState --
 const initialState = {
-  asmrList: [
-    {
-      categoryIdx: "1",
-      categoryName: "잠이 오는 음악",
-      title: "빗소리",
-      asmrUrl: "asmrUrl",
-      iconUrl: "iconUrl",
-    },
-  ],
+  asmrList: [],
   playList: null,
   is_write: false,
 };
