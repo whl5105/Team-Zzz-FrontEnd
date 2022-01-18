@@ -134,7 +134,6 @@ const DropdownContainer = styled.div`
   text-align: center;
   border: 2px solid gray;
   border-radius: 10px;
-  display: absolute;
   box-sizing: border-box;
   background-color: white;
   margin-right: 8px;
@@ -151,10 +150,8 @@ const DisabledDropDownContainer = styled.div`
   text-align: center;
   border: 2px solid gray;
   border-radius: 10px;
-  display: absolute;
   box-sizing: border-box;
-  position: relative;
-
+  margin-right: 8px;
   & > img {
     position: absolute;
     top: 25%;
@@ -172,14 +169,19 @@ const DropdownBody = styled.div`
   line-height: 48px;
   color: ${(props) => props.color && props.color};
   position: relative;
-
+  /* display: flex; */
+  & > p {
+    width: 100%;
+    line-height: 44px;
+    text-align: center;
+  }
   & > img {
     position: absolute;
-    top: 25%;
-    right: 6px;
+    top: 10px;
+    right: 0px;
     width: 24px;
     height: 24px;
-    padding: 0px 14px;
+    padding: 0px 6px;
   }
 `;
 
