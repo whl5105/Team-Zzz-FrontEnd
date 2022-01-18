@@ -42,7 +42,7 @@ const Diary = () => {
   // 저번달, 이번달, 다음달 조절하는 부분
   React.useEffect(() => {
     // DB에서 데이터 가져오기
-    // dispatch(diaryActions.getDiaryDB(day.getFullYear(), day.getMonth() + 1));
+    dispatch(diaryActions.getDiaryDB(day.getFullYear(), day.getMonth() + 1));
 
     const today = new Date(moment()); // 오늘 날짜
 

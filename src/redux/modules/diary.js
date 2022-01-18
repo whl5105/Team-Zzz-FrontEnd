@@ -21,29 +21,7 @@ const delete_diary = createAction(DELETE_DIARY, (diaryIdx) => ({
 
 // -- initialState --
 const initialState = {
-  diaryList: [
-    {
-      diaryIdx: 10,
-      day: 3,
-      feelScore: 5,
-      sleepScore: 5,
-      comment: "",
-    },
-    {
-      diaryIdx: 13,
-      day: 4,
-      feelScore: 4,
-      sleepScore: 4,
-      comment: "",
-    },
-    {
-      diaryIdx: 14,
-      day: 5,
-      feelScore: 3,
-      sleepScore: 3,
-      comment: "헤헷",
-    },
-  ],
+  diaryList: [],
   sleepAvg: "오늘은 잠을 못주무셨네요",
   modal: true,
 };
