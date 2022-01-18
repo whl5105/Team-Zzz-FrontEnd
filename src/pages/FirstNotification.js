@@ -52,8 +52,12 @@ const PushNoticationPop = (props) => {
 };
 
 const Wrap = styled.div`
+<<<<<<< HEAD
   /* width: 100%; */
   /* position: absolute; */
+=======
+  width: 100%;
+>>>>>>> 06009dbd93ed00df73d5a6ddcde4be8c4a524740
   padding: 20px 20px;
   /* box-sizing: border-box; */
 `;

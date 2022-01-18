@@ -2,15 +2,17 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import SpinnerImage from "../static/images/spinner/SpinnerBack.png";
-import MoonImage from "../static/images/spinner/Moon.png";
+// import Spinner_Back from "../static/images/spinner/Loading_Back.png";
+import Spinner_R from "../static/images/spinner/Loading_R.png";
+import Spinner_B from "../static/images/spinner/Loading_B.png";
+import Spinner_T from "../static/images/spinner/Loading_T.png";
 
 const Spinner = (props) => {
   return (
     <>
       <Outter height={props.height}>
         <Inner>
-          <img src={MoonImage} alt=""></img>
+          <img src={Spinner_R} alt=""></img>
           <div>
             <label>Z</label>
             <label>z</label>
@@ -27,18 +29,21 @@ const Spinner = (props) => {
 
 // --- styled-components ---
 const Outter = styled.div`
-  background-image: url(${SpinnerImage});
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  position: relative;
   width: 100%;
-  height: 100vh;
+  height: inherit;
+  background-image: url(${Spinner_B}), url(${Spinner_T});
+  background-size: 110vh, 35vh;
+  background-position: 50% 140%, 50% 15%;
+  background-repeat: no-repeat;
+
+  @media (max-width: 500px) {
+    background-size: 70vh, 30vh;
+    background-position: 50% 90%, 50% 15%;
+  }
 `;
 
 const Inner = styled.div`
   width: 64px;
-
   position: absolute;
   top: 45%;
   left: 50%;
