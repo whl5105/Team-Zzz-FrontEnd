@@ -9,7 +9,7 @@ import MixSoundTrack from "./MixSoundTrack";
 import NoMixList from "./NoMixList";
 import { Icon } from "../../elements/index";
 
-// --- images ---
+// --- images ----
 import MixSetting from "../../static/images/mixList/setting.png";
 
 const MixListPopUp = (props) => {
