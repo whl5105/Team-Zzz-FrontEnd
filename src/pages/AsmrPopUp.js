@@ -7,10 +7,9 @@ import backIcon from "../static/images/asmr/backIcon.svg";
 
 // --- components ---
 import SoundTrack from "../components/asmr/SoundTrack";
-import PlayList from "../components/asmr/PlayList";
-import Button from "../elements/Button";
-import Icon from "../elements/Icon";
 import RequireLogin from "../components/RequireLogin";
+import PlayList from "../components/asmr/PlayList";
+import { Button, Icon } from "../elements/index";
 
 const AsmrPopUp = (props) => {
   const [song1, setSong1] = React.useState(history.audio1 && history.audio1);
@@ -141,25 +140,20 @@ const AsmrPopUp = (props) => {
   return (
     <>
       <Container>
-        <Icon
-          src={backIcon}
-          top="22px"
-          position="relative"
-          _onClick={close}
-        ></Icon>
+        <Icon src={backIcon} top="22px" position="relative" _onClick={close} />
         {songList ? (
           <>
             {songList.length === 0 ? (
               <NoSoundList>
                 <p id="content">선택된 소리가 없어요!</p>
                 <p id="subContent">
-                  나만의 믹스를 만드려면 <br></br> 소리를 선택해 주세요
+                  나만의 믹스를 만드려면 <br /> 소리를 선택해 주세요
                 </p>
               </NoSoundList>
             ) : (
               <>
                 <SongList>
-                  {song1 && song1.src !== "" ? (
+                  {song1 && song1.src !== "" && (
                     <SoundTrack
                       setVolume={setVolume1}
                       song={song1}
@@ -172,9 +166,9 @@ const AsmrPopUp = (props) => {
                       setGuidance={setGuidance}
                       guidanceTitle={guidanceTitle}
                       setGuidanceTitle={setGuidanceTitle}
-                    ></SoundTrack>
-                  ) : null}
-                  {song2 && song2.src !== "" ? (
+                    />
+                  )}
+                  {song2 && song2.src !== "" && (
                     <SoundTrack
                       setVolume={setVolume2}
                       song={song2}
@@ -187,9 +181,9 @@ const AsmrPopUp = (props) => {
                       setGuidance={setGuidance}
                       guidanceTitle={guidanceTitle}
                       setGuidanceTitle={setGuidanceTitle}
-                    ></SoundTrack>
-                  ) : null}
-                  {song3 && song3.src !== "" ? (
+                    />
+                  )}
+                  {song3 && song3.src !== "" && (
                     <SoundTrack
                       setVolume={setVolume3}
                       song={song3}
@@ -202,9 +196,9 @@ const AsmrPopUp = (props) => {
                       setGuidance={setGuidance}
                       guidanceTitle={guidanceTitle}
                       setGuidanceTitle={setGuidanceTitle}
-                    ></SoundTrack>
-                  ) : null}
-                  {song4 && song4.src !== "" ? (
+                    />
+                  )}
+                  {song4 && song4.src !== "" && (
                     <SoundTrack
                       setVolume={setVolume4}
                       song={song4}
@@ -217,8 +211,8 @@ const AsmrPopUp = (props) => {
                       setGuidance={setGuidance}
                       guidanceTitle={guidanceTitle}
                       setGuidanceTitle={setGuidanceTitle}
-                    ></SoundTrack>
-                  ) : null}
+                    />
+                  )}
 
                   <Button
                     type="bgBtn"
@@ -231,14 +225,9 @@ const AsmrPopUp = (props) => {
                 </SongList>
 
                 {requireLoginModal ? (
-                  <RequireLogin
-                    close={closeRequireModal}
-                    move={loginModal}
-                  ></RequireLogin>
+                  <RequireLogin close={closeRequireModal} move={loginModal} />
                 ) : (
-                  playListModal && (
-                    <PlayList close={closePlayListModal}></PlayList>
-                  )
+                  playListModal && <PlayList close={closePlayListModal} />
                 )}
               </>
             )}

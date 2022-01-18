@@ -34,6 +34,7 @@ const Kakao = (props) => {
     console.log(res);
   };
   return (
+
     <KakaoLogin
       // rest api 키가 아닌 js 키를 사용해야 합니다.
       jskey={"c51fcbffb9ee44d3b90e755eff2bf5b6"}

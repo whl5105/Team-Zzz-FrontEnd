@@ -28,6 +28,7 @@ const Mobile = styled.div`
   overflow: hidden;
   background-color: ${({ theme }) => theme.colors.bg};
 `;
+
 const WebBackgroundWrapper = styled.div`
   width: 100vw;
   height: 100vh;

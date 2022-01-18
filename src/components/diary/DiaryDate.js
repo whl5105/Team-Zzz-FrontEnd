@@ -20,7 +20,7 @@ const DiaryDate = (props) => {
               setMoment(getMoment.clone().subtract(1, "month"));
             }}
             src={Left}
-          ></Icon>
+          />
           <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
           {/* YYYY는 년도 MM 은 달입니다. */}
           <Icon
@@ -30,9 +30,9 @@ const DiaryDate = (props) => {
               setMoment(getMoment.clone().add(1, "month"));
             }}
             src={Right}
-          ></Icon>
+          />
         </Wrap>
-        {nextMonth ? null : <SleepAvgText>{sleepAvg}</SleepAvgText>}
+        {!nextMonth && <SleepAvgText>{sleepAvg}</SleepAvgText>}
       </WrapBox>
     </>
   );
@@ -48,14 +48,12 @@ const WrapBox = styled.div`
 `;
 
 const Wrap = styled.div`
-  width: 100%;
-  line-height: 20px;
   text-align: center;
   border-radius: 12px;
   color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.lg}
   line-height: ${({ theme }) => theme.lineHeight.ssmall};
   font-weight: ${({ theme }) => theme.fontWeight.Medium};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   display: flex;
   justify-content: center;
 `;

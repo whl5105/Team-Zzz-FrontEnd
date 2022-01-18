@@ -108,7 +108,7 @@ const Login = () => {
       {!isState ? (
         <Span className={`${isState ? "success" : "error"}`}>{Message}</Span>
       ) : (
-        <Span></Span>
+        <Span />
       )}
 
       <Button type="submit" onClick={loginClick}>
@@ -120,17 +120,13 @@ const Login = () => {
           history.push("/signup");
         }}
       >
-        <p>회원가입하기</p>
+        <p>회원가입 하기</p>
       </SignUp>
       <Social>or</Social>
-
       <Kakao />
-
       {/* 회원가입 성공 유저 팝업 */}
-      {first_signup ? (
-        <Success alt="회원가입 성공" text="회원가입에 성공했습니다"></Success>
-      ) : (
-        ""
+      {first_signup && (
+        <Success alt="회원가입 성공" text="회원가입에 성공했습니다" />
       )}
     </Container>
   );

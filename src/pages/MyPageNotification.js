@@ -45,7 +45,7 @@ const MyPageNotification = (props) => {
           minutesActive={minutesActive}
           setMinutesActive={setMinutesActive}
           state="update"
-        ></Notifications>
+        />
       </Content>
     </Container>
   );
@@ -53,18 +53,17 @@ const MyPageNotification = (props) => {
 
 // --- styled-components ---
 const Container = styled.div`
-  width: 100%;
-  height: 100vh;
+  height: inherit;
   box-sizing: border-box;
   padding: 50px 0;
 `;
 
 const Content = styled.div`
-  background: #272a52;
+  background: ${({ theme }) => theme.colors.back};
   border-radius: 12px;
   box-sizing: border-box;
-  padding: 20px;
-  margin: 0 20px;
+  padding: ${({ theme }) => theme.paddings.xxxxl};
+  margin: ${({ theme }) => theme.horizontalityInterval.base};
 `;
 
 export default MyPageNotification;

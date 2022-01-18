@@ -12,6 +12,7 @@ import path from "../../static/images/mypage/arrow_R_B.svg";
 const AlarmBanner = (props) => {
   const { _onClick } = props;
   const userNotice = useSelector((state) => state.notice);
+
   return (
     <AlarmBox>
       <Alarm onClick={_onClick}>
@@ -23,7 +24,7 @@ const AlarmBanner = (props) => {
               ? userNotice.time.timePA === "AM"
                 ? "오전"
                 : "오후"
-              : null}{" "}
+              : null}
             &nbsp;
             <span>
               {userNotice.time.sleepChk ? userNotice.time.hour : null}
@@ -35,7 +36,7 @@ const AlarmBanner = (props) => {
                 : null}
             </span>
           </Time>
-          <Icon src={path}></Icon>
+          <Icon src={path} />
         </TimeList>
       </Alarm>
     </AlarmBox>
@@ -55,7 +56,6 @@ const AlarmBox = styled.div`
 `;
 
 const Alarm = styled.div`
-  width: 100%;
   background-image: url(${alarmBanner});
   background-repeat: no-repeat;
   background-size: 100%;

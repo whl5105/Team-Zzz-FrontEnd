@@ -30,7 +30,7 @@ const Icon = (props) => {
 
   return (
     <>
-      <ArrowIcon {...styles} onClick={_onClick}></ArrowIcon>
+      <ArrowIcon {...styles} onClick={_onClick} />
     </>
   );
 };

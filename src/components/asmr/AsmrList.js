@@ -60,7 +60,7 @@ const AsmrList = (props) => {
                 select(item.asmrUrl, item.iconUrl, item.title);
               }}
             >
-              <Icon src={item.iconUrl}></Icon>
+              <Icon src={item.iconUrl} />
               <Text>{item.title}</Text>
             </Sound>
           );
@@ -74,13 +74,13 @@ const AsmrList = (props) => {
 const SoundSelect = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  width: 100%;
   max-height: calc(100% - 262px);
   margin-top: 20px;
   padding-bottom: 20px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   overflow-y: scroll;
+  
   &::-webkit-scrollbar {
     display: none;
   }

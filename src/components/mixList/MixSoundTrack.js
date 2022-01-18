@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { history } from "../../redux/configureStore";
 
 // --- components ---
-import Icon from "../../elements/Icon";
+import { Icon } from "../../elements/index";
 
 // --- images ---
 import Vector from "../../static/images/mixList/vector.png";
@@ -156,11 +156,11 @@ const MixSoundTrack = (props) => {
             src={Vector}
             alt="playIcon"
             _onClick={playSoundTrack}
-          ></Icon>
+          />
         </PlayIcon>
         <Text>{mixTitle}</Text>
       </Wrap>
-      <Hr></Hr>
+      <Hr />
     </>
   );
 };

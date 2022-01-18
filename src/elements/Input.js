@@ -54,14 +54,13 @@ const Input = (props) => {
           value={value}
           onChange={onChange}
           disabled
-        ></InputBox>
+        />
       </InputGropDisabled>
     );
   }
 
   return (
     <React.Fragment>
-      {/* <Grid> */}
       <InputGrop {...styles}>
         <InputBox
           {...styles}
@@ -71,9 +70,8 @@ const Input = (props) => {
           name={name}
           value={value}
           onChange={onChange}
-        ></InputBox>
+        />
       </InputGrop>
-      {/* </Grid> */}
     </React.Fragment>
   );
 };

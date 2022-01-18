@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
 // --- components ---
-import { Icon } from "../../elements/";
+import { Icon } from "../../elements/index";
 
 // --- images ---
 import next from "../../static/images/icon/path_white.png";

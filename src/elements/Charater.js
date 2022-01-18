@@ -39,7 +39,7 @@ const Charater = (props) => {
             onClick={_onClick}
             data-score={props.score}
             data-value={props.feelNumber}
-          ></ClickBox>
+          />
           <Feel {...styles}>
             {props.feelNumber === 0 && (
               <ImgIcon
@@ -53,35 +53,35 @@ const Charater = (props) => {
                 fill={props.scoreColor}
                 width={props.size}
                 height={props.size}
-              ></Feel1>
+              />
             )}
             {props.feelNumber === 2 && (
               <Feel2
                 fill={props.scoreColor}
                 width={props.size}
                 height={props.size}
-              ></Feel2>
+              />
             )}
             {props.feelNumber === 3 && (
               <Feel3
                 fill={props.scoreColor}
                 width={props.size}
                 height={props.size}
-              ></Feel3>
+              />
             )}
             {props.feelNumber === 4 && (
               <Feel4
                 fill={props.scoreColor}
                 width={props.size}
                 height={props.size}
-              ></Feel4>
+              />
             )}
             {props.feelNumber === 5 && (
               <Feel5
                 fill={props.scoreColor}
                 width={props.size}
                 height={props.size}
-              ></Feel5>
+              />
             )}
           </Feel>
         </FeelBox>
@@ -106,7 +106,7 @@ const Charater = (props) => {
   // -- 캐릭터 혼합 --
   if (shape === "charater") {
     return (
-      <React.Fragment>
+      <>
         <IconBox {...styles}>
           {props.feelNumber === 0 && (
             <ImgIcon
@@ -123,7 +123,7 @@ const Charater = (props) => {
               onClick={_onClick}
               width={props.size}
               height={props.size}
-            ></Feel1>
+            />
           )}
           {props.feelNumber === 2 && (
             <Feel2
@@ -131,7 +131,7 @@ const Charater = (props) => {
               onClick={_onClick}
               width={props.size}
               height={props.size}
-            ></Feel2>
+            />
           )}
           {props.feelNumber === 3 && (
             <Feel3
@@ -139,7 +139,7 @@ const Charater = (props) => {
               onClick={_onClick}
               width={props.size}
               height={props.size}
-            ></Feel3>
+            />
           )}
           {props.feelNumber === 4 && (
             <Feel4
@@ -147,7 +147,7 @@ const Charater = (props) => {
               onClick={_onClick}
               width={props.size}
               height={props.size}
-            ></Feel4>
+            />
           )}
           {props.feelNumber === 5 && (
             <Feel5
@@ -155,10 +155,10 @@ const Charater = (props) => {
               onClick={_onClick}
               width={props.size}
               height={props.size}
-            ></Feel5>
+            />
           )}
         </IconBox>
-      </React.Fragment>
+      </>
     );
   }
 

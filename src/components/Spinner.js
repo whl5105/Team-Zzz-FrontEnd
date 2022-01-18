@@ -12,7 +12,7 @@ const Spinner = (props) => {
     <>
       <Outter height={props.height}>
         <Inner>
-          <img src={Spinner_R} alt=""></img>
+          <img src={Spinner_R} alt="" />
           <div>
             <label>Z</label>
             <label>z</label>

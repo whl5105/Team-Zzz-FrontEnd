@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 
 // --- components ---
-
 import Title from "../components/Title";
 import List from "../components/mypage/List";
 import MixBox from "../components/mypage/MixBox";
 import NoMixList from "../components/mixList/NoMixList";
 
+// --- images ---
 import mixList from "../static/images/mypage/mixList_W.svg";
 import path_B from "../static/images/mypage/arrow_B_W.svg";
 import path_T from "../static/images/mypage/arrow_T_W.svg";
@@ -18,8 +18,6 @@ import path_T from "../static/images/mypage/arrow_T_W.svg";
 const MixList = (props) => {
   const dispatch = useDispatch();
   const playListInfo = useSelector((store) => store.asmr.playList);
-  console.log(playListInfo);
-  console.log("111");
 
   const [playList, setPlayList] = React.useState(
     playListInfo ? playListInfo : null
@@ -32,6 +30,7 @@ const MixList = (props) => {
     }
     dispatch(asmrActions.getPlayListDB());
   }, [dispatch, playList]);
+
   React.useEffect(() => {
     setPlayList(playListInfo ? playListInfo : null);
   }, [playListInfo]);
@@ -42,6 +41,7 @@ const MixList = (props) => {
       [idx]: !prevToggle[idx],
     }));
   };
+
   return (
     <Container>
       <Title backIcon>나의 믹스</Title>
@@ -58,20 +58,20 @@ const MixList = (props) => {
                   >
                     {item.mixTitle}
                   </List>
-                  {toggle[item.playlistIdx] ? (
+                  {toggle[item.playlistIdx] && (
                     <MixBox
                       mixList={item.mixList}
                       playlistIdx={item.playlistIdx}
                       mixTitle={item.mixTitle}
                       toggle={toggle}
-                    ></MixBox>
-                  ) : null}
+                    />
+                  )}
                 </div>
               );
             })}
           </>
         ) : (
-          <NoMixList></NoMixList>
+          <NoMixList />
         )}
       </MixContent>
     </Container>
@@ -88,6 +88,7 @@ const MixContent = styled.div`
   width: 100%;
   height: calc(100vh - 291px);
   overflow-y: scroll;
+
   ::-webkit-scrollbar {
     display: none;
   }

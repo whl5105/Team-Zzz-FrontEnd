@@ -30,7 +30,6 @@ const SuccessBtn = styled.button`
   box-sizing: border-box;
   position: absolute;
 
-  /* top: -100px; */
   bottom: 63px;
   left: 50%;
   transform: translateX(-50%);
@@ -47,20 +46,6 @@ const SuccessBtn = styled.button`
       opacity: 1;
     }
   }
-  /* @keyframes Success {
-    40% {
-      bottom: 93px;
-      opacity: 1;
-    }
-    60% {
-      bottom: 93px;
-      opacity: 1;
-    }
-    100% {
-      bottom: 93px;
-      opacity: 0;
-    }
-  } */
 `;
 
 export default Success;

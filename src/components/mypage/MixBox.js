@@ -10,17 +10,10 @@ import MixDeletePopup from "./MixDeletePopup";
 import PlayList from "../asmr/PlayList";
 
 const MixBox = (props) => {
-  //-- 다이어리 팝업 모달 --
   const [deletemodal, setDeletemodal] = React.useState(false);
   const [editmodal, setEditmodal] = React.useState(false);
-
-  const closeModal = () => {
-    setDeletemodal(false);
-    setEditmodal(false);
-  };
-
   const [modalData, setModalData] = React.useState();
-  //삭제 클릭
+
   const deleteClick = () => {
     setDeletemodal(true);
     const data = {
@@ -29,7 +22,7 @@ const MixBox = (props) => {
     };
     setModalData(data);
   };
-  //수정클릭
+
   const editClick = () => {
     setEditmodal(true);
     const data = {
@@ -39,6 +32,11 @@ const MixBox = (props) => {
     setModalData(data);
   };
 
+  const closeModal = () => {
+    setDeletemodal(false);
+    setEditmodal(false);
+  };
+
   return (
     <>
       <Box>
@@ -46,9 +44,8 @@ const MixBox = (props) => {
           return (
             <Item key={idx}>
               <IconBox>
-                <Icon src={item.iconUrl}></Icon>
+                <Icon src={item.iconUrl} />
                 <p>{item.title}</p>
-                {/* <Icon src={item.iconUrl}></Icon> */}
               </IconBox>
               <Sound>{item.sound}%</Sound>
             </Item>
@@ -65,18 +62,8 @@ const MixBox = (props) => {
           <Button text="수정 하기" _onClick={editClick} />
         </ButtonBox>
 
-        {/* -- 삭제 팝업 모달 -- */}
-        {deletemodal ? (
-          <MixDeletePopup close={closeModal} data={modalData} />
-        ) : (
-          ""
-        )}
-        {/* -- 수정 팝업 모달 -- */}
-        {editmodal ? (
-          <PlayList close={closeModal} data={modalData} is_edit />
-        ) : (
-          ""
-        )}
+        {deletemodal && <MixDeletePopup close={closeModal} data={modalData} />}
+        {editmodal && <PlayList close={closeModal} data={modalData} is_edit />}
       </Box>
     </>
   );
@@ -92,12 +79,14 @@ const Box = styled.div`
     margin-right: 0;
   }
 `;
+
 const Item = styled.div`
   width: 70px;
   margin-right: 18px;
   text-align: center;
   display: inline-block;
 `;
+
 const IconBox = styled.div`
   width: 70px;
   height: 70px;
@@ -112,9 +101,11 @@ const IconBox = styled.div`
     padding-top: 2px;
   }
 `;
+
 const Sound = styled.div`
   padding-top: 10px;
 `;
+
 const ButtonBox = styled.div`
   display: flex;
   margin-top: 20px;
@@ -125,4 +116,5 @@ const ButtonBox = styled.div`
     margin-right: 0;
   }
 `;
+
 export default MixBox;

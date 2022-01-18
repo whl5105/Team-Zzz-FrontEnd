@@ -45,7 +45,7 @@ const PushNoticationPop = (props) => {
           setMinutesActive={setMinutesActive}
           setNoticationModal={props.setNoticationModal}
           state="set"
-        ></Notifications>
+        />
       </Wrap>
     </ModalPopUp>
   );

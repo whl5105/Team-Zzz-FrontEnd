@@ -22,7 +22,7 @@ const Button = (props) => {
     );
   }
 
-  return <React.Fragment></React.Fragment>;
+  return <></>;
 };
 
 Button.defaultProps = {
