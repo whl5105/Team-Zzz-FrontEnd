@@ -35,15 +35,19 @@ const MainSwiper = withRouter((props) => {
     setDiaryModal(false);
     history.push("/login");
   };
+
+  const swiperStyle = {
+    height: "170px",
+    backgroundColor: "rgb(59 63 121)",
+    borderRadius: "12px",
+  };
+
   return (
     <Main className="ExampleComponent">
       <div className="main-wrap">
         <Swiper
           style={{
-            width: "100%",
-            height: "170px",
-            backgroundColor: "rgb(59 63 121)",
-            borderRadius: "12px",
+            ...swiperStyle,
           }}
           spaceBetween={0}
           initialSlide={1}
@@ -75,9 +79,7 @@ const MainSwiper = withRouter((props) => {
           </SwiperSlide>
         </Swiper>
       </div>
-      {diaryModal && (
-        <RequireLogin close={closeModal} move={loginModal}></RequireLogin>
-      )}
+      {diaryModal && <RequireLogin close={closeModal} move={loginModal} />}
     </Main>
   );
 });

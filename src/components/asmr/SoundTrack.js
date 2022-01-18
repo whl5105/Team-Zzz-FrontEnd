@@ -119,17 +119,17 @@ const SoundTrack = (props) => {
       <Record>
         <Sound>
           <IconImage>
-            <Image src={props.icon} alt=""></Image>
+            <Image src={props.icon} alt="" />
             <Text>{props.title}</Text>
           </IconImage>
         </Sound>
         <VolumeWrap>
           <Volume categoryImage={lineIcon}>
-            {props.guidanceTitle === props.title ? (
-              <Guidance left={props.volume}></Guidance>
-            ) : null}
+            {props.guidanceTitle === props.title && (
+              <Guidance left={props.volume} />
+            )}
             <Circle id={props.id} value={props.volume * 1.58}>
-              <Span categoryImage={circleIcon} onTouchStart={Click}></Span>
+              <Span categoryImage={circleIcon} onTouchStart={Click} />
             </Circle>
           </Volume>
         </VolumeWrap>
@@ -138,7 +138,7 @@ const SoundTrack = (props) => {
           onClick={() => {
             props.deleteSong(props.song);
           }}
-        ></Icon>
+        />
       </Record>
     </>
   );
@@ -189,18 +189,11 @@ const VolumeWrap = styled.div`
 `;
 
 const Volume = styled.div`
-  /* margin: 50px auto; */
   position: relative;
   width: 158px;
   height: 3px;
   background-image: url(${(props) => props.categoryImage});
-  /* background: #222;
-  border-radius: 5px; */
 `;
-
-// const Volume = styled.input`
-//   width: 158px;
-// `;
 
 const Icon = styled.div`
   width: 24px;
@@ -229,8 +222,6 @@ const Span = styled.span`
   width: 14px;
   line-height: 14px;
   height: 14px;
-  /* background: #2196f3; */
-  /* border-radius: 100%; */
   text-align: center;
   background-image: url(${(props) => props.categoryImage});
 `;

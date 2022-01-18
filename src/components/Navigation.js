@@ -22,7 +22,6 @@ const Navigation = withRouter((props) => {
     if (!token) {
       setDiaryModal(true);
     } else {
-      // setSelect("diary");
       history.push("/diary");
     }
   };
@@ -54,7 +53,6 @@ const Navigation = withRouter((props) => {
         <Box
           select={select !== "main" && "null"}
           onClick={() => {
-            // setSelect("main");
             history.push("/");
           }}
         >
@@ -62,14 +60,13 @@ const Navigation = withRouter((props) => {
             fill={select === "main" ? "#FBC037" : "#ffffff"}
             width={24}
             height={24}
-          ></Main>
+          />
           <P>홈</P>
         </Box>
 
         <Box
           select={select !== "asmr" && "null"}
           onClick={() => {
-            // setSelect("asmr");
             history.push({ pathname: "/asmr" });
           }}
         >
@@ -77,7 +74,7 @@ const Navigation = withRouter((props) => {
             fill={select === "asmr" ? "#FBC037" : "#ffffff"}
             width={24}
             height={24}
-          ></Asmr>
+          />
           <P>ASMR</P>
         </Box>
 
@@ -86,7 +83,7 @@ const Navigation = withRouter((props) => {
             fill={select === "diary" ? "#FBC037" : "#ffffff"}
             width={24}
             height={24}
-          ></Diary>
+          />
           <P>다이어리</P>
         </Box>
 
@@ -101,13 +98,11 @@ const Navigation = withRouter((props) => {
             fill={select === "mypage" ? "#FBC037" : "#ffffff"}
             width={24}
             height={24}
-          ></MyPage>
+          />
           <P>마이</P>
         </Box>
       </Gnb>
-      {diaryModal && (
-        <RequireLogin close={closeModal} move={loginModal}></RequireLogin>
-      )}
+      {diaryModal && <RequireLogin close={closeModal} move={loginModal} />}
     </div>
   );
 });
@@ -150,6 +145,7 @@ const Box = styled.div`
     margin: 0 auto;
   }
 `;
+
 const P = styled.p`
   width: 75px;
   height: 18px;

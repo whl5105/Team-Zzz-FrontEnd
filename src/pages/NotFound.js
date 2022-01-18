@@ -17,7 +17,7 @@ const NotFound = (props) => {
         _onClick={() => {
           history.push("/");
         }}
-      ></Button>
+      />
     </Container>
   );
 };
@@ -28,7 +28,6 @@ const Container = styled.div`
 `;
 
 const P = styled.p`
-  width: 100%;
   height: 18px;
   text-align: center;
   color: ${({ theme }) => theme.colors.white};

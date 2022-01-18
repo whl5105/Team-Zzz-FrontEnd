@@ -7,8 +7,7 @@ import { actionCreators as diaryActions } from "../../redux/modules/diary";
 import ModalPopUp from "../ModalPopUp";
 import FeelBox from "../diary/FeelBox";
 import SleepBox from "../diary/SleepBox";
-import Charater from "../../elements/Charater";
-import { Input, Button } from "../../elements";
+import { Input, Button, Charater } from "../../elements/index";
 
 // --- images ---
 import reset from "../../static/images/icon/reset.svg";
@@ -47,6 +46,7 @@ const DiaryWrite = (props) => {
     sleep: 0, //이미지 번호
     sleepScore: 0,
   });
+
   React.useEffect(() => {
     const scoreList = [1, 3, 5, 4, 2];
     if (dayData) {
@@ -66,6 +66,7 @@ const DiaryWrite = (props) => {
       feelScore: Number(e.target.dataset.score),
     });
   };
+
   //-- 다이어리 선택된 아이콘 sleep --
   const sleepClick = (e) => {
     console.log(typeof e.target.dataset.value);
@@ -83,6 +84,7 @@ const DiaryWrite = (props) => {
       comment: e.target.value,
     });
   };
+
   //--input 코멘트 Reset --
   const onReset = (e) => {
     setData({
@@ -97,7 +99,7 @@ const DiaryWrite = (props) => {
   //--  추가 클릭 --
   const addClick = async () => {
     if (feel === 0 || sleep === 0) {
-      window.alert("두개 다 선택 해야합니다.");
+      window.alert("두개 다 선택 해야 합니다.");
     } else {
       const diaryListInfo = {
         day: props.data.day,
@@ -115,6 +117,7 @@ const DiaryWrite = (props) => {
       close();
     }
   };
+
   //-- 수정 클릭 --
   const editClick = async () => {
     const diaryListInfo = {
@@ -123,16 +126,12 @@ const DiaryWrite = (props) => {
       comment: data.comment,
       diaryIdx: dayData.diaryIdx,
     };
-    console.log("dddddddd");
-    console.log(diaryListInfo);
-    console.log(props.data.year);
-    console.log(props.data.month);
     await dispatch(diaryActions.editDiaryDB(diaryListInfo));
     close();
   };
+
   //-- 삭제 클릭 --
   const deleteClick = async () => {
-    console.log(dayData.diaryIdx);
     await dispatch(diaryActions.deleteDiaryDB(dayData.diaryIdx));
     close();
   };
@@ -141,12 +140,12 @@ const DiaryWrite = (props) => {
     <ModalPopUp close={props.close}>
       <Container>
         {!dayData ? (
-          <div>
+          <>
             <DayCharater
               newData={newData}
               feel={feel}
               scoreColor={scoreColor[sleep]}
-            ></DayCharater>
+            />
             <Input
               resetInput
               placeholder="메모를 남겨보세요(최대22자)"
@@ -170,20 +169,20 @@ const DiaryWrite = (props) => {
                   close();
                 }}
                 text="취소"
-              ></Button>
-              <Button _onClick={addClick} text="완료"></Button>
+              />
+              <Button _onClick={addClick} text="완료" />
             </ButtonBox>
-          </div>
+          </>
         ) : (
-          <div>
+          <>
             {/* 수정중  */}
             {edit ? (
-              <div>
+              <>
                 <DayCharater
                   newData={newData}
                   feel={feel}
                   scoreColor={scoreColor[sleep]}
-                ></DayCharater>
+                />
 
                 <Input
                   resetInput
@@ -211,16 +210,16 @@ const DiaryWrite = (props) => {
                   >
                     취소
                   </Button>
-                  <Button text="완료" _onClick={editClick}></Button>
+                  <Button text="완료" _onClick={editClick} />
                 </ButtonBox>
-              </div>
+              </>
             ) : (
-              <div>
+              <>
                 <DayCharater
                   newData={newData}
                   feel={feel}
                   scoreColor={scoreColor[sleep]}
-                ></DayCharater>
+                />
 
                 {data.comment.length > 0 && (
                   <Input
@@ -249,9 +248,9 @@ const DiaryWrite = (props) => {
                     수정
                   </Button>
                 </ButtonBox>
-              </div>
+              </>
             )}
-          </div>
+          </>
         )}
       </Container>
     </ModalPopUp>
@@ -284,7 +283,6 @@ const CharaterBox = styled.div`
   padding: ${({ theme }) => theme.margins.base};
   background: ${({ theme }) => theme.colors.gray_1};
   text-align: center;
-  /* margin-top: ${({ theme }) => theme.margins.xxxxl}; */
 
   & p {
     padding-bottom: ${({ theme }) => theme.margins.base};
@@ -294,14 +292,18 @@ const CharaterBox = styled.div`
     font-weight: ${({ theme }) => theme.fontWeight.Bold};
   }
 `;
+
 const ScoreGrop = styled.div`
   margin-top: ${({ theme }) => theme.margins.xxxxl};
 `;
+
 const ButtonBox = styled.div`
   width: 100%;
   padding-top: ${({ theme }) => theme.paddings.xxxxl};
   display: flex;
   justify-content: space-between;
+<<<<<<< HEAD
+=======
   
   & Button{
     margin-right: 9px;
@@ -309,25 +311,10 @@ const ButtonBox = styled.div`
   & Button:last-child{
     margin-right: 0;
   }
+>>>>>>> 62fe15b848907859712a3f039833ca682c31efc3
 
-  /* & button {
-    width: 141px;
-    height: 48px;
-    border-radius: 12px;
-    border: transparent;
-    background: transparent;
-    font-size: ${({ theme }) => theme.fontSizes.small};
-    line-height: ${({ theme }) => theme.lineHeight.small};
-    font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  }
-  & button:first-child {
-    border: 1px solid ${({ theme }) => theme.colors.gray_4};
-    color: ${({ theme }) => theme.colors.gray_7};
-  }
-  & button:last-child {
-    border: 1px solid ${({ theme }) => theme.colors.main_1};
-    background: ${({ theme }) => theme.colors.main_1};
-    color: ${({ theme }) => theme.colors.white}; */
+  & Button {
+    max-width: 141px;
   }
 `;
 

@@ -15,9 +15,6 @@ import List from "../components/mypage/List";
 import AlarmBanner from "../components/mypage/AlarmBanner";
 
 const Mypage = (props) => {
-  // const Mobile = () => {
-  //   return (ios = /iPhone|iPad/i.test(navigator.userAgent)), setIos(ios);
-  // };
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
@@ -28,63 +25,48 @@ const Mypage = (props) => {
   const token = localStorage.getItem("token");
   const [is_token, setLogin] = React.useState(token);
 
-  // let [ios, setIos] = React.useState(false);
-
   React.useEffect(() => {
     setLogin(token);
     if (token && !ios) {
       dispatch(noticeActions.getNoticeDB());
-    } else {
-      console.log("토큰이 없거나 IOS이거나");
     }
   }, []);
 
   if (is_token) {
     return (
-      <React.Fragment>
-        <Container>
-          <Title is_token justifySB>
-            마이페이지
-          </Title>
-
-          {ios ? null : (
-            <>
-              <AlarmBanner
-                _onClick={() => history.push(`/mypageNotice/${userIdx}`)}
-              ></AlarmBanner>
-              <div
-                style={{
-                  width: "100%",
-                  height: "20px",
-                  backgroundColor: "rgba(7,9,34,0.8)",
-                  marginTop: "10px",
-                }}
-              ></div>
-            </>
-          )}
-
-          <List icon={notice} _onClick={() => history.push("/notice")}>
-            공지사항
-          </List>
-          <List icon={mixList} _onClick={() => history.push("/myPage/mixList")}>
-            나의 믹스
-          </List>
-        </Container>
-      </React.Fragment>
-    );
-  }
-  return (
-    <React.Fragment>
       <Container>
-        <Title>마이페이지</Title>
-        <List _onClick={() => history.push("/login")} icon={user}>
-          로그인 하기
-        </List>
+        <Title is_token justifySB>
+          마이페이지
+        </Title>
+
+        {ios ? null : (
+          <>
+            <AlarmBanner
+              _onClick={() => history.push(`/mypageNotice/${userIdx}`)}
+            ></AlarmBanner>
+            <Space></Space>
+          </>
+        )}
+
         <List icon={notice} _onClick={() => history.push("/notice")}>
           공지사항
         </List>
+        <List icon={mixList} _onClick={() => history.push("/myPage/mixList")}>
+          나의 믹스
+        </List>
       </Container>
-    </React.Fragment>
+    );
+  }
+  return (
+    <Container>
+      <Title>마이페이지</Title>
+      <List _onClick={() => history.push("/login")} icon={user}>
+        로그인 하기
+      </List>
+      <List icon={notice} _onClick={() => history.push("/notice")}>
+        공지사항
+      </List>
+    </Container>
   );
 };
 
@@ -94,6 +76,13 @@ const Container = styled.div`
   height: 100vh;
   box-sizing: border-box;
   padding: 50px 0;
+`;
+
+const Space = styled.div`
+  width: 100%;
+  height: 20px;
+  background-color: rgba(7, 9, 34, 0.8);
+  margin-top: 10px;
 `;
 
 export default Mypage;

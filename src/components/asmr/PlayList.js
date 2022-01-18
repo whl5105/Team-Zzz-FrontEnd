@@ -7,8 +7,7 @@ import { actionCreators as asmrActions } from "../../redux/modules/asmr";
 
 // --- components ---
 import ModalPopUp from "../ModalPopUp";
-import Input from "../../elements/Input";
-import Button from "../../elements/Button";
+import { Input, Button } from "../../elements/index";
 
 // --- images ---
 import reset from "../../static/images/icon/reset.svg";
@@ -84,7 +83,6 @@ const PlayList = (props) => {
       mixTitle = "나의 믹스";
     }
 
-    console.log(data.playlistIdx, mixTitle);
     dispatch(asmrActions.editPlayListDB(data.playlistIdx, mixTitle));
     close();
   };
@@ -105,22 +103,17 @@ const PlayList = (props) => {
             type="text"
             onClick={titleReset}
             value={title}
-            // value={contents}
             onChange={titleChange}
             max="18"
-          ></Input>
+          />
           {is_edit ? (
-            <Button
-              marginT="20"
-              _onClick={editTilteSubmit}
-              text="저장하기 "
-            ></Button>
+            <Button marginT="20" _onClick={editTilteSubmit} text="저장하기 " />
           ) : (
             <Button
               marginT="20"
               _onClick={titleSubmit}
               text="내 믹스 저장하기"
-            ></Button>
+            />
           )}
         </Wrap>
       </ModalPopUp>

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { history } from "../redux/configureStore";
-import axios from "axios";
 
 // --- components ---
 import FirstNotification from "../pages/FirstNotification";
@@ -31,10 +30,8 @@ const config = {
 firebase.initializeApp(config);
 
 const messaging = getMessaging();
-// console.log( messaging.swRegistration.pushManager.getSubscription, messaging.swRegistration.pushManager.subscribe)
-const Main = (props) => {
-  //  console.log({...Notification.requestPermission})
 
+const Main = (props) => {
   Notification.requestPermission().then(function (result) {
     if (result === "granted") {
       getToken(messaging, {
@@ -90,49 +87,45 @@ const Main = (props) => {
   }, []);
 
   return (
-    <>
-      <Container>
-        {/* swiper 부분 */}
-        <Swiper />
-        {/* 카테고리 부분 */}
-        <Title>당신의 편안한 밤을 위해</Title>
-        <Category
-          path="/asmr"
-          category="네이쳐"
-          title="네이쳐"
-          bannerImage={nature}
-          subTitle="편안한 자연 속으로"
-        />
-        <Category
-          path="/asmr"
-          category="플레이스"
-          title="플레이스"
-          bannerImage={space}
-          subTitle="다른 공간으로 여행"
-        />
-        <Category
-          path="/asmr"
-          category="오브젝트"
-          title="오브젝트"
-          bannerImage={object}
-          subTitle="차분히 바라보는 물건들"
-        />
-        <Category
-          path="/asmr"
-          category="전체"
-          title="모든 소리"
-          bannerImage={all}
-          subTitle="모든 소리 들어보기"
-        />
-      </Container>
-      {/* 첫 로그인 시 알림 설정 팝업 부분 */}
+    <Container>
+      <Swiper />
+      <Title>당신의 편안한 밤을 위해</Title>
+      <Category
+        path="/asmr"
+        category="네이쳐"
+        title="네이쳐"
+        bannerImage={nature}
+        subTitle="편안한 자연 속으로"
+      />
+      <Category
+        path="/asmr"
+        category="플레이스"
+        title="플레이스"
+        bannerImage={space}
+        subTitle="다른 공간으로 여행"
+      />
+      <Category
+        path="/asmr"
+        category="오브젝트"
+        title="오브젝트"
+        bannerImage={object}
+        subTitle="차분히 바라보는 물건들"
+      />
+      <Category
+        path="/asmr"
+        category="전체"
+        title="모든 소리"
+        bannerImage={all}
+        subTitle="모든 소리 들어보기"
+      />
+
       {noticationModal && (
         <FirstNotification
           modal={noticationModal}
           setNoticationModal={setNoticationModal}
-        ></FirstNotification>
+        />
       )}
-    </>
+    </Container>
   );
 };
 

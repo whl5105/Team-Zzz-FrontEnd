@@ -144,7 +144,7 @@ const PlayBar = withRouter((props) => {
   };
 
   return (
-    <React.Fragment>
+    <>
       {playbar.length > 0 ? (
         <Wrap>
           <Text>{toggle ? "pause..." : "편안하게 소리를 감상해보세요"}</Text>
@@ -163,7 +163,7 @@ const PlayBar = withRouter((props) => {
           <Icon className="lastIcon" src={closeIcon} onClick={reset} />
         </Wrap>
       ) : null}
-    </React.Fragment>
+    </>
   );
 });
 
