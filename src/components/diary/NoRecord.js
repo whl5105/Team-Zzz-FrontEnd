@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import NoRecord_B from "../../static/images/diary/NoRecord_B.png";
-import NoRecord_R from "../../static/images/diary/NoRecord_R.png";
+import NoInfo from "../../static/images/diary/NoInfo.png";
 
 const NoRecord = (props) => {
   return (
@@ -21,6 +20,7 @@ const Wrap = styled.div`
 const Image = styled.div`
   width: 100%;
   height: inherit;
+<<<<<<< HEAD
   background: url(${NoRecord_R}), url(${NoRecord_B});
   /* background-size: 685px, 600px; */
   background-position: 50% 100%;
@@ -28,6 +28,11 @@ const Image = styled.div`
 
   /* background-position: 50% 100%, 49% 50%; */
   /* background-position: 0% 0%, 0%; */
+=======
+  background: url(${NoInfo});
+  background-size: 100%;
+  background-position: 100%;
+>>>>>>> f5f8b15848efacdca86cc598e6b81fd98cbf2d38
   background-repeat: no-repeat;
 `;
 
