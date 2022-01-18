@@ -76,11 +76,7 @@ const Dropdown = (props) => {
           </>
         )}
       </DropdownBody>
-<<<<<<< HEAD
       {props.dayActive && (
-=======
-      {props.dayActive ? (
->>>>>>> 62fe15b848907859712a3f039833ca682c31efc3
         <DropdownMenu height="67px" id="type2" isActive={props.dayActive}>
           {props.dayItems &&
             props.dayItems.map((item) => (

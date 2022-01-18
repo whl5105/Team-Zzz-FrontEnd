@@ -129,17 +129,8 @@ const Notifications = (props) => {
         매일 알림 받고 기록하기
       </Title>
       <ToggleSwitch color={props.state === "update" ? "white" : null}>
-<<<<<<< HEAD
         <div style={{ margin: "auto 0px" }}>수면 기록 알림 받기</div>
         <Toggle notice={props.notice} setNotice={props.setNotice} label=" " />
-=======
-        <div>수면 기록 알림 받기</div>
-        <Toggle
-          notice={props.notice}
-          setNotice={props.setNotice}
-          label=" "
-        ></Toggle>
->>>>>>> 62fe15b848907859712a3f039833ca682c31efc3
       </ToggleSwitch>
       {props.notice ? (
         <>

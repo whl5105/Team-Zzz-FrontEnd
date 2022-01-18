@@ -26,32 +26,6 @@ const PushNoticationPop = (props) => {
   }, [notice]);
 
   return (
-<<<<<<< HEAD
-    <>
-      <ModalPopUp>
-        <Wrap>
-          <Notifications
-            notice={notice}
-            setNotice={setNotice}
-            day={day}
-            setDay={setDay}
-            hour={hour}
-            setHour={setHour}
-            minutes={minutes}
-            setMinutes={setMinutes}
-            dayActive={dayActive}
-            setDayActive={setDayActive}
-            hourActive={hourActive}
-            setHourActive={setHourActive}
-            minutesActive={minutesActive}
-            setMinutesActive={setMinutesActive}
-            setNoticationModal={props.setNoticationModal}
-            state="set"
-          />
-        </Wrap>
-      </ModalPopUp>
-    </>
-=======
     <ModalPopUp>
       <Wrap>
         <Notifications
@@ -71,10 +45,9 @@ const PushNoticationPop = (props) => {
           setMinutesActive={setMinutesActive}
           setNoticationModal={props.setNoticationModal}
           state="set"
-        ></Notifications>
+        />
       </Wrap>
     </ModalPopUp>
->>>>>>> 62fe15b848907859712a3f039833ca682c31efc3
   );
 };
 

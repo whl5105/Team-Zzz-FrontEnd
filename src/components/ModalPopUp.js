@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const ModalPopUp = (props) => {
-<<<<<<< HEAD
   const { children, close, backgroundNull, zIndex, marginNull } = props;
   const styles = {
     backgroundNull: backgroundNull,
@@ -13,18 +12,6 @@ const ModalPopUp = (props) => {
   return (
     <PopUpBox onClick={close}>
       <Component />
-=======
-  const { children, close, backgroundNull, zIndex, width } = props;
-  const styles = {
-    backgroundNull: backgroundNull,
-    zIndex: zIndex,
-    width: width,
-  };
-
-  return (
-    <PopUpBox>
-      <Component onClick={close}></Component>
->>>>>>> 62fe15b848907859712a3f039833ca682c31efc3
       <Children {...styles}>{children}</Children>
     </PopUpBox>
   );
