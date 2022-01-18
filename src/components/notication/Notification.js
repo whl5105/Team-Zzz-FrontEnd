@@ -210,7 +210,7 @@ const ToggleSwitch = styled.div`
   letter-spacing: -0.3px;
   display: flex;
   justify-content: space-between;
-  width: 295px;
+  width: 100%;
   height: 30px;
   margin-top: 20px;
   margin-bottom: 20px;

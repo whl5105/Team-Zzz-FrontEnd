@@ -145,6 +145,7 @@ const DropdownContainer = styled.div`
   display: absolute;
   box-sizing: border-box;
   background-color: white;
+  margin: 0px 2px;
 
   &:hover {
     cursor: pointer;
@@ -165,11 +166,10 @@ const DisabledDropDownContainer = styled.div`
 
   & > img {
     position: absolute;
-    top: 25%;
+    top: 30%;
     right: 6px;
-    width: 24px;
-    height: 24px;
-    padding: 0px 14px;
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -183,11 +183,10 @@ const DropdownBody = styled.div`
 
   & > img {
     position: absolute;
-    top: 25%;
-    right: 6px;
-    width: 24px;
-    height: 24px;
-    padding: 0px 14px;
+    top: 30%;
+    right: 5px;
+    width: 20px;
+    height: 20px;
   }
 `;
 
