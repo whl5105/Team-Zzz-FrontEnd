@@ -26,9 +26,8 @@ import { DropDown, Toggle, Button } from "../../elements/index";
 // const messaging = getMessaging();
 
 const Notifications = (props) => {
+  const userToken = localStorage.getItem("token");
 
-  const userToken= localStorage.getItem("token")
-  
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -101,16 +100,14 @@ const Notifications = (props) => {
         //   .then((res) => {
         //     console.log(res.data, res.config.data);
         //   });
-            console.log(history.pushtoken)
-            axios.get(`https://www.zzzback.shop/api/location/${history.pushtoken}`,
-            {
-              headers:{authorization: `Bearer ${userToken}`
-          }      }).then((res)=>{
+        console.log(history.pushtoken);
+        axios
+          .get(`https://www.zzzback.shop/api/location/${history.pushtoken}`, {
+            headers: { authorization: `Bearer ${userToken}` },
+          })
+          .then((res) => {
             console.log(res);
-
-            })
-
-
+          });
       }
 
       localStorage.setItem("noticeSet", true);
