@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore.js";
 
+import { IdCheck, PwdCheck } from "../shared/common";
+
 // --- compoentns ---
 import { Input } from "../elements";
 
@@ -48,6 +50,7 @@ const Signup = (props) => {
   const onChangePassword = (e) => {
     const passwordRegex =
       /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+
     const passwordCurrent = e.target.value;
     setPwd(passwordCurrent);
 
