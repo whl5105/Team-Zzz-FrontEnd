@@ -45,7 +45,7 @@ const Login = () => {
   const [Message, setMessage] = React.useState("");
 
   //-- 유효성 검사 --
-  const [isState, setIsState] = React.useState(false);
+  const [isState, setIsState] = React.useState(true);
 
   const onChange = (e) => {
     setInputs({
@@ -63,7 +63,7 @@ const Login = () => {
   //-- 로그인 클릭시 --
   const loginClick = () => {
     if (!IdCheck(id) || !PwdCheck(pwd)) {
-      setMessage("아이디 또는 비밀번호를 다시 확인해주세요.");
+      setMessage("입력한 내용을 다시 확인해주세요");
       setIsState(false);
       console.log(errMessage);
     } else {
@@ -71,10 +71,10 @@ const Login = () => {
       dispatch(userActions.loginDB(id, pwd));
     }
   };
+  //
   React.useEffect(() => {
-    console.log(errMessage);
+    setIsState(false);
     setMessage(errMessage);
-    console.log(errMessage);
   }, [errMessage]);
 
   // 서버에서 받아온 요청이 다를 경우
@@ -112,11 +112,12 @@ const Login = () => {
         />
       </InputBox>
 
-      {!isState ? (
-        <Span className={`${isState ? "success" : "error"}`}>{Message}</Span>
+      {!isState ? <Span>{Message}</Span> : <Span />}
+      {/* {!isState ? (
+        <Span className={`${!isState && "error"}`}>{Message}</Span>
       ) : (
         <Span />
-      )}
+      )} */}
 
       <Button type="submit" onClick={loginClick}>
         로그인
@@ -164,21 +165,8 @@ const Span = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  -webkit-transition: opacity 2s ease-in;
-  @keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  &.success {
-    color: #4791ff;
-  }
-  &.error {
-    color: #ff473d;
-  }
+  color: #ff473d;
+  transition: opacity 2s ease 5s;
 `;
 
 const Button = styled.button`

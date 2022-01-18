@@ -39,8 +39,7 @@ export const signupDB =
       dispatch(signup());
       history.push("/login");
     } catch (err) {
-      console.log(`오류 발생!${err}`);
-      dispatch(err_signup());
+      dispatch(err_signup(err.response.data.errorMessage));
     }
   };
 
@@ -68,9 +67,10 @@ export const loginDB =
       history.replace("/");
     } catch (err) {
       // window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
-      console.log(err.response.data.errorMessage);
+      window.alert(err.response.data.errorMessage);
+      // console.log(err.response.data.errorMessage);
       dispatch(err_signup(err.response.data.errorMessage));
-      console.log(err.response.data.errorMessage);
+      // console.log(err.response.data.errorMessage);
     }
   };
 
