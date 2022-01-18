@@ -33,7 +33,7 @@ const Outter = styled.div`
 
   position: relative;
   width: 100%;
-  height: ${(props) => props.height};
+  height: 100vh;
 `;
 
 const Inner = styled.div`

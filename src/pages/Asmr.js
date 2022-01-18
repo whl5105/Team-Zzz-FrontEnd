@@ -234,32 +234,32 @@ const Asmr = (props) => {
 
   return (
     <>
-      {/* {!asmrInfo || asmrInfo.length === 0 ? (
-        <Spinner height="100vh"></Spinner>
-      ) : ( */}
-      <PageWrap imgUrl={imageUrl}>
-        {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
-        <AsmrCategory setCategory={setCategory}></AsmrCategory>
-        <AsmrList
-          soundTrack={soundTrack}
-          select={select}
-          setSong1={setSong1}
-          setSong2={setSong2}
-          setSong3={setSong3}
-          setSong4={setSong4}
-          setPlay={setPlay}
-        ></AsmrList>
+      {!asmrInfo || asmrInfo.length === 0 ? (
+        <Spinner></Spinner>
+      ) : (
+        <PageWrap imgUrl={imageUrl}>
+          {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
+          <AsmrCategory setCategory={setCategory}></AsmrCategory>
+          <AsmrList
+            soundTrack={soundTrack}
+            select={select}
+            setSong1={setSong1}
+            setSong2={setSong2}
+            setSong3={setSong3}
+            setSong4={setSong4}
+            setPlay={setPlay}
+          ></AsmrList>
 
-        {success ? (
-          <Wrap>
-            <Success
-              alt="플레이리스트 작성 완료"
-              text="저장에 성공하였습니다."
-            ></Success>
-          </Wrap>
-        ) : null}
-      </PageWrap>
-      {/* )} */}
+          {success ? (
+            <Wrap>
+              <Success
+                alt="플레이리스트 작성 완료"
+                text="저장에 성공하였습니다."
+              ></Success>
+            </Wrap>
+          ) : null}
+        </PageWrap>
+      )}
     </>
   );
 };

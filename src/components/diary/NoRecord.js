@@ -2,33 +2,33 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import NoInfo from "../../static/images/diary/NoInfo.png";
+import NoRecord_B from "../../static/images/diary/NoRecord_B.png";
+import NoRecord_R from "../../static/images/diary/NoRecord_R.png";
 
 const NoRecord = (props) => {
   return (
-    <>
-      <Wrap>
-        <Image></Image>
-      </Wrap>
-    </>
+    <Wrap>
+      <Image></Image>
+    </Wrap>
   );
 };
 
 // --- styled-components ---
 const Wrap = styled.div`
-  position: absolute;
-  width: 100%;
   height: 100vh;
 `;
 
 const Image = styled.div`
-  position: relative;
-  height: 100%;
-  margin-top: 20px;
-  background-image: url(${NoInfo});
-  background-repeat: no-repeat;
+  width: 100%;
+  height: inherit;
+  background: url(${NoRecord_R}), url(${NoRecord_B});
+  /* background-size: 685px, 600px; */
+  background-position: 50% 100%;
   background-size: 100%;
-  bottom: 0;
+
+  /* background-position: 50% 100%, 49% 50%; */
+  /* background-position: 0% 0%, 0%; */
+  background-repeat: no-repeat;
 `;
 
 export default NoRecord;
