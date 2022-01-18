@@ -49,8 +49,7 @@ const NoticePage = (props) => {
 
 // --- styled-components ---
 const Container = styled.div`
-  width: 100%;
-  height: 100vh;
+  height: inherit;
   box-sizing: border-box;
   padding: 50px 0;
 `;

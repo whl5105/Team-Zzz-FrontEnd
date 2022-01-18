@@ -9,9 +9,9 @@ import bg3 from "../../static/images/bg/main_bg3.png";
 const Background = () => {
   return (
     <Bg>
-      <Bg1 src={bg1}></Bg1>
-      <Bg2 src={bg2}></Bg2>
-      <Logo src={bg3}></Logo>
+      <Bg1 src={bg1} />
+      <Bg2 src={bg2} />
+      <Logo src={bg3} />
     </Bg>
   );
 };

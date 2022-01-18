@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { history } from "../redux/configureStore";
-import axios from "axios";
 
 // --- components ---
 import FirstNotification from "../pages/FirstNotification";
@@ -31,10 +30,8 @@ const config = {
 firebase.initializeApp(config);
 
 const messaging = getMessaging();
-// console.log( messaging.swRegistration.pushManager.getSubscription, messaging.swRegistration.pushManager.subscribe)
-const Main = (props) => {
-  //  console.log({...Notification.requestPermission})
 
+const Main = (props) => {
   Notification.requestPermission().then(function (result) {
     if (result === "granted") {
       getToken(messaging, {
@@ -91,10 +88,7 @@ const Main = (props) => {
 
   return (
     <Container>
-      {/* swiper 부분 */}
       <Swiper />
-      {/* <Asmr> */}
-      {/* 카테고리 부분 */}
       <Title>당신의 편안한 밤을 위해</Title>
       <Category
         path="/asmr"
@@ -124,14 +118,12 @@ const Main = (props) => {
         bannerImage={all}
         subTitle="모든 소리 들어보기"
       />
-      {/* </Asmr> */}
 
-      {/* 첫 로그인 시 알림 설정 팝업 부분 */}
       {noticationModal && (
         <FirstNotification
           modal={noticationModal}
           setNoticationModal={setNoticationModal}
-        ></FirstNotification>
+        />
       )}
     </Container>
   );
@@ -143,14 +135,10 @@ const Container = styled.div`
   padding: 50px 20px 56px 20px;
   overflow-y: scroll;
   box-sizing: border-box;
-  /* height: 720px; */
-  /* height: calc(100% - 106px); */
+
   &::-webkit-scrollbar {
     display: none;
   }
-  /* @media (max-width: 640px) {
-    height: 89vh;
-  } */
 `;
 
 const Title = styled.p`

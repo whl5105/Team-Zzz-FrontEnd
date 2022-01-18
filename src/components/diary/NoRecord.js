@@ -7,7 +7,7 @@ import NoInfo from "../../static/images/diary/NoInfo.png";
 const NoRecord = (props) => {
   return (
     <Wrap>
-      <Image></Image>
+      <Image/>
     </Wrap>
   );
 };

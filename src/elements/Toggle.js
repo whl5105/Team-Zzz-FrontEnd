@@ -13,10 +13,9 @@ const Toggle = (props) => {
     swRegist = res;
   });
   const messaging = getMessaging();
+
   // Push 초기화
   const initPush = (isSubscribed) => {
-    // const pushButton = document.getElementById("subscribe");
-    // pushButton.addEventListener("click", () => {
     console.log(isSubscribed);
     if (isSubscribed) {
       unsubscribe();
@@ -24,8 +23,6 @@ const Toggle = (props) => {
       subscribe();
       console.log("dd");
     }
-    // }
-    // );
 
     swRegist.pushManager.getSubscription().then(function (subscription) {
       isSubscribed = !(subscription === null); // null 이면 true 이니 !true 가 false 로 해서 isSubscribed 가 false 라는뜻
@@ -127,15 +124,15 @@ const Toggle = (props) => {
   }
 
   function urlBase64ToUint8Array(base64String) {
-    var padding = "=".repeat((4 - (base64String.length % 4)) % 4);
-    var base64 = (base64String + padding)
+    let padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+    let base64 = (base64String + padding)
       .replace(/\-/g, "+")
       .replace(/_/g, "/");
 
-    var rawData = window.atob(base64);
-    var outputArray = new Uint8Array(rawData.length);
+    let rawData = window.atob(base64);
+    let outputArray = new Uint8Array(rawData.length);
 
-    for (var i = 0; i < rawData.length; ++i) {
+    for (let i = 0; i < rawData.length; ++i) {
       outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;
@@ -237,7 +234,6 @@ const Switch = styled.span`
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 20px;
   border: 0 solid #bbb;
   border-radius: 20px;
   transition: all 0.3s ease-in 0s;

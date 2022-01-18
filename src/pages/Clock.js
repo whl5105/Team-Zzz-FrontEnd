@@ -1,15 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import DropDown from "../elements/DropDown";
 import { history } from "../redux/configureStore";
 
 // --- components ---
-import Button from "../elements/Button";
-import Icon from "../elements/Icon";
+import { Button, Icon, DropDown } from "../elements/index";
 
 // --- images ---
 import nextIcon from "../static/images/icon/path_white.png";
-// import sleep_T from "../static/images/sleeptime/sleep_T.png";
 import sleep_B from "../static/images/sleeptime/sleep_B.png";
 import sleep_T_L from "../static/images/sleeptime/sleep_T_L.png";
 import sleep_T_R from "../static/images/sleeptime/sleep_T_R.png";

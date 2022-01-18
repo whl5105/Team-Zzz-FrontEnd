@@ -16,6 +16,7 @@ const Title = (props) => {
   const styles = {
     justifySB: justifySB,
   };
+
   return (
     <TilteBox {...styles}>
       {backIcon && (
@@ -25,7 +26,7 @@ const Title = (props) => {
           _onClick={() => {
             history.goBack();
           }}
-        ></Icon>
+        />
       )}
       <h3>{props.children}</h3>
       {is_token && (
@@ -49,7 +50,7 @@ const TilteBox = styled.div`
   padding: ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;
   align-items: center;
-}
+
   & h3 {
     font-size: 22px;
     font-weight: ${({ theme }) => theme.fontWeight.Bold};

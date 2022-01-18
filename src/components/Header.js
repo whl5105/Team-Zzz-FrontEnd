@@ -4,7 +4,7 @@ import { history } from "../redux/configureStore.js";
 import { withRouter } from "react-router-dom";
 
 // --- components ---
-import Icon from "../elements/Icon.js";
+import { Icon } from "../elements/index";
 import MixListPopUp from "../components/mixList/MixListPopUp";
 import RequireLogin from "../components/RequireLogin";
 
@@ -68,23 +68,20 @@ const Header = withRouter((props) => {
               right="23px"
               onClick={playListPopUp}
             />
-            <Image src={Hover} className="playListHover" alt=""></Image>
+            <Image src={Hover} className="playListHover" alt="" />
           </>
         ) : (
           <Icon src={Writing} alt="writing" _onClick={PageLink} />
         )}
       </HeaderBox>
       {requireLoginModal ? (
-        <RequireLogin
-          close={closeRequireModal}
-          move={loginModal}
-        ></RequireLogin>
+        <RequireLogin close={closeRequireModal} move={loginModal} />
       ) : (
         mixListModal && (
           <MixListPopUp
             close={closeMixListModal}
             setMixListModal={setMixListModal}
-          ></MixListPopUp>
+          />
         )
       )}
     </div>

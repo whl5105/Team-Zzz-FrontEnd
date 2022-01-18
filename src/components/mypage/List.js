@@ -13,10 +13,10 @@ const List = (props) => {
   return (
     <ListBox onClick={_onClick}>
       <ListTitle>
-        <Icon src={icon} marginR="10px"></Icon>
+        <Icon src={icon} marginR="10px" />
         {children}
       </ListTitle>
-      <Icon src={src ? src : path}></Icon>
+      <Icon src={src ? src : path} />
     </ListBox>
   );
 };

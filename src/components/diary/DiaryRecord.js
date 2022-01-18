@@ -6,7 +6,7 @@ import Charater from "../../elements/Charater";
 
 const DiaryRecord = (props) => {
   const { list, scoreList, scoreColor, diaryDetail } = props;
-  
+
   return (
     <>
       <Content>
@@ -14,21 +14,19 @@ const DiaryRecord = (props) => {
           return (
             <div key={index + 1 + "days"}>
               {item.feelScore && item.sleepScore ? (
-                <>
-                  <Charater
-                    shape="charater"
-                    size="56"
-                    feelNumber={scoreList.indexOf(item.feelScore) + 1}
-                    sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
-                    scoreColor={
-                      scoreColor[scoreList.indexOf(item.sleepScore) + 1]
-                    }
-                    _onClick={() => {
-                      diaryDetail(index + 1);
-                    }}
-                    margin="10px auto"
-                  />
-                </>
+                <Charater
+                  shape="charater"
+                  size="56"
+                  feelNumber={scoreList.indexOf(item.feelScore) + 1}
+                  sleepNumber={scoreList.indexOf(item.sleepScore) + 1}
+                  scoreColor={
+                    scoreColor[scoreList.indexOf(item.sleepScore) + 1]
+                  }
+                  _onClick={() => {
+                    diaryDetail(index + 1);
+                  }}
+                  margin="10px auto"
+                />
               ) : (
                 <Charater
                   shape="charater"
@@ -58,7 +56,6 @@ const Content = styled.div`
   grid-template-columns: repeat(5, 1fr);
   background-color: ${({ theme }) => theme.colors.bg}};
   color: ${({ theme }) => theme.colors.white};
-  width: 100%;
   max-height: 470px;
   margin: 5px auto;
   margin-bottom: 15px;

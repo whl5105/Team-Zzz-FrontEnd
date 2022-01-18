@@ -54,7 +54,7 @@ const Dropdown = (props) => {
       <DisabledDropDownContainer>
         <DropdownBody color="gray">
           <p>{`${props.title}${props.condition}`}</p>
-          <img src={dropDown} alt=""></img>
+          <img src={dropDown} alt="" />
         </DropdownBody>
       </DisabledDropDownContainer>
     );
@@ -67,21 +67,17 @@ const Dropdown = (props) => {
         {item ? (
           <>
             <p>{`${item}${props.condition}`}</p>
-            <img onClick={onActiveToggle} src={dropDown} alt=""></img>
+            <img onClick={onActiveToggle} src={dropDown} alt="" />
           </>
         ) : (
           <>
             <p>{`${props.title}${props.condition}`}</p>
-            <img onClick={onActiveToggle} src={dropDown} alt=""></img>
+            <img onClick={onActiveToggle} src={dropDown} alt="" />
           </>
         )}
       </DropdownBody>
-      {props.dayActive ? (
-        <DropdownMenu
-          height="67px"
-          id="type2"
-          isActive={props.dayActive}
-        >
+      {props.dayActive && (
+        <DropdownMenu height="67px" id="type2" isActive={props.dayActive}>
           {props.dayItems &&
             props.dayItems.map((item) => (
               <DropdownItemContainer
@@ -94,9 +90,9 @@ const Dropdown = (props) => {
               </DropdownItemContainer>
             ))}
         </DropdownMenu>
-      ) : null}
+      )}
 
-      {props.hourActive ? (
+      {props.hourActive && (
         <DropdownMenu height="100px" id="type2" isActive={props.hourActive}>
           {props.hourItems &&
             props.hourItems.map((item) => (
@@ -110,9 +106,9 @@ const Dropdown = (props) => {
               </DropdownItemContainer>
             ))}
         </DropdownMenu>
-      ) : null}
+      )}
 
-      {props.minutesActive ? (
+      {props.minutesActive && (
         <DropdownMenu height="100px" id="type2" isActive={props.minutesActive}>
           {props.minutesItems &&
             props.minutesItems.map((item) => (
@@ -126,7 +122,7 @@ const Dropdown = (props) => {
               </DropdownItemContainer>
             ))}
         </DropdownMenu>
-      ) : null}
+      )}
     </DropdownContainer>
   );
 };
@@ -134,13 +130,9 @@ const Dropdown = (props) => {
 // --- styled-components ---
 const DropdownContainer = styled.div`
   width: 100%;
-  /* width: 93px; */
   max-height: 48px;
-  /* margin-top: 20px; */
   text-align: center;
   border: 2px solid gray;
-  /* border: ${(props) =>
-    props.isActive ? `2px solid #fbc037;` : `2px solid #fbc037;`}; */
   border-radius: 10px;
   display: absolute;
   box-sizing: border-box;
@@ -154,7 +146,6 @@ const DropdownContainer = styled.div`
 `;
 
 const DisabledDropDownContainer = styled.div`
-  /* width: 93px; */
   width: 100%;
   height: 48px;
   text-align: center;
@@ -163,6 +154,7 @@ const DisabledDropDownContainer = styled.div`
   display: absolute;
   box-sizing: border-box;
   position: relative;
+  margin: 0px 2px;
 
   & > img {
     position: absolute;
@@ -176,7 +168,6 @@ const DisabledDropDownContainer = styled.div`
 // 닫힌 부분
 const DropdownBody = styled.div`
   align-items: center;
-  /* margin-top: "-5px"; */
   line-height: 48px;
   color: ${(props) => props.color && props.color};
   position: relative;
@@ -197,40 +188,26 @@ const DropdownMenu = styled.ul`
   overflow-y: scroll;
   background-color: white;
   position: relative;
-  /* margin-top: 12px;
-  margin-left: -3px; */
   border: 2px solid #fbc037;
-  /* border: ${(props) =>
-    props.isActive ? `2px solid #fbc037;` : `2px solid #fbc037;`}; */
   border-radius: 10px;
   margin-top: -2px;
-  /* overflow-x: hidden; // 가로 축 스크롤 감추기 */
 
   &::-webkit-scrollbar {
-    /*  스크롤바 막대 너비 설정 */
     width: 3px;
   }
   &::-webkit-scrollbar-track {
     background-color: none;
   }
   &::-webkit-scrollbar-thumb {
-    /* 스크롤바 막대 높이 설정 : 현재가 제일 작은 값 */
     height: 10px;
     border-radius: 100px;
     box-shadow: inset 0 0 10px gray;
   }
 `;
+
 //열린부분 각 요소
 const DropdownItemContainer = styled.li`
-  /* display: flex;
-  justify-content: space-between;
-  margin-left: 31px;
-  margin-top: 10px; */
   padding: 5px 0;
-
-  /* &:last-child {
-    border-bottom: none;
-  } */
 `;
 
 export default Dropdown;

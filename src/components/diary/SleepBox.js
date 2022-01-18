@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // --- components ---
-import Charater from "../../elements/Charater";
+import { Charater } from "../../elements/index";
 
 const SleepBox = (props) => {
   const { previewSleep } = props;
@@ -32,7 +32,7 @@ const SleepBox = (props) => {
                   _onClick={props._onClick}
                   is_click={previewSleep === idx + 1 ? true : false}
                   text={arr.text}
-                ></Charater>
+                />
               </SleepItem>
             );
           })}
@@ -50,7 +50,7 @@ const SleepBox = (props) => {
                   sleepNumber={idx + 1}
                   is_click={previewSleep === idx + 1 ? true : false}
                   text={arr.text}
-                ></Charater>
+                />
               </SleepItem>
             );
           })}
@@ -77,7 +77,6 @@ const Container = styled.div`
 const Sleep = styled.div`
   display: flex;
   justify-content: space-between;
-  /* background-color: azure; */
   align-items: center;
   position: relative;
   height: 74px;

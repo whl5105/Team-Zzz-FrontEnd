@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 
 // --- components ---
 import ModalPopUp from "../ModalPopUp";
-import Icon from "../../elements/Icon";
 import MixSoundTrack from "./MixSoundTrack";
 import NoMixList from "./NoMixList";
+import { Icon } from "../../elements/index";
 
 // --- images ---
 import MixSetting from "../../static/images/mixList/setting.png";
@@ -29,12 +29,12 @@ const MixListPopUp = (props) => {
   };
 
   return (
-    <ModalPopUp close={props.close} backgroundNull zIndex="120" width="100%">
+    <ModalPopUp close={props.close} backgroundNull zIndex="120" marginNull>
       <Container>
-        <Bar></Bar>
+        <Bar />
         <Title justifySB>
           <p>나의 믹스</p>
-          <Icon src={MixSetting} alt="환경설정" _onClick={myPageMixList}></Icon>
+          <Icon src={MixSetting} alt="환경설정" _onClick={myPageMixList} />
         </Title>
         <MixList>
           {playList.length > 0 ? (
@@ -44,12 +44,12 @@ const MixListPopUp = (props) => {
                   <MixSoundTrack
                     mixTitle={item.mixTitle}
                     mixList={item.mixList}
-                  ></MixSoundTrack>
+                  />
                 </div>
               );
             })
           ) : (
-            <NoMixList></NoMixList>
+            <NoMixList />
           )}
         </MixList>
       </Container>
@@ -59,10 +59,10 @@ const MixListPopUp = (props) => {
 
 // --- styled-components ---
 const Container = styled.div`
-  position: relative;
+  position: absolute;
   width: 100%;
+  bottom: -44vh;
   height: 75vh;
-  bottom: -56px;
   padding: ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.bg};
@@ -83,7 +83,6 @@ const Bar = styled.div`
   height: 4px;
   border-radius: 12px;
   margin: auto;
-  /* position: relative; */
   top: 20px;
   background: rgba(255, 255, 255, 1);
   opacity: 0.5;

@@ -6,9 +6,7 @@ import { actionCreators as noticeActions } from "../../redux/modules/notice";
 import axios from "axios";
 
 // --- components ---
-import DropDown from "../../elements/DropDown";
-import Toggle from "../../elements/Toggle";
-import Button from "../../elements/Button";
+import { DropDown, Toggle, Button } from "../../elements/index";
 
 // firebas
 // import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
@@ -87,6 +85,7 @@ const Notifications = (props) => {
                 title: "ㅇㅇdddddd",
               },
               to: history.pushtoken,
+              // to: "ca6raRoo9-R4EJbNsHVWu9:APA91bGHhA4MgGyufmsOT5f8g8v2E9xshYaEH657lMg9f8gFQlWrMqI9DDkq-IPL1fWiDBnuQ409tAG8nf9jDtXsRmjxrKwocJQ_U7obsuub9mmDNsUWQBXCbHNtUKxGoqfYTw0dJujw",
             },
             {
               headers: {
@@ -131,11 +130,7 @@ const Notifications = (props) => {
       </Title>
       <ToggleSwitch color={props.state === "update" ? "white" : null}>
         <div style={{ margin: "auto 0px" }}>수면 기록 알림 받기</div>
-        <Toggle
-          notice={props.notice}
-          setNotice={props.setNotice}
-          label=" "
-        ></Toggle>
+        <Toggle notice={props.notice} setNotice={props.setNotice} label=" " />
       </ToggleSwitch>
       {props.notice ? (
         <>
@@ -149,7 +144,7 @@ const Notifications = (props) => {
               title={props.day}
               dayItems={dayItems}
               state={props.setDay}
-            ></DropDown>
+            />
             <DropDown
               hourActive={props.hourActive}
               setDayActive={props.setDayActive}
@@ -159,7 +154,7 @@ const Notifications = (props) => {
               title={props.hour}
               hourItems={hourItems}
               state={props.setHour}
-            ></DropDown>
+            />
             <DropDown
               minutesActive={props.minutesActive}
               setDayActive={props.setDayActive}
@@ -169,14 +164,14 @@ const Notifications = (props) => {
               title={props.minutes === 0 ? "00" : props.minutes}
               minutesItems={minutesItems}
               state={props.setMinutes}
-            ></DropDown>
+            />
           </Wrap>
         </>
       ) : (
         <Wrap>
-          <DropDown state="disabled" condition={""} title={"PM"}></DropDown>
-          <DropDown state="disabled" condition={"시"} title={"12"}></DropDown>
-          <DropDown state="disabled" condition={"분"} title={"00"}></DropDown>
+          <DropDown state="disabled" condition={""} title={"PM"} />
+          <DropDown state="disabled" condition={"시"} title={"12"} />
+          <DropDown state="disabled" condition={"분"} title={"00"} />
         </Wrap>
       )}
 

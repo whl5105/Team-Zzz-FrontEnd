@@ -12,13 +12,17 @@ import DiaryRecord from "../components/diary/DiaryRecord";
 
 const Diary = () => {
   const dispatch = useDispatch();
-  const diaryList = useSelector((state) => state.diary.diaryList); // 기록 데이터
-  const sleepAvg = useSelector((state) => state.diary.sleepAvg); // 평균 데이터
-  const [getMoment, setMoment] = React.useState(moment()); // 오늘 날짜
-  const [monthDay, setMonthDay] = React.useState(0); // 이번달의 일 수
-  const arr = new Array(monthDay).fill(1); // 한꺼번에 배열 채우기
+  const diaryList = useSelector((state) => state.diary.diaryList);
+  const sleepAvg = useSelector((state) => state.diary.sleepAvg);
+  const [getMoment, setMoment] = React.useState(moment());
+  const [monthDay, setMonthDay] = React.useState(0);
+  const arr = new Array(monthDay).fill(1);
   const [list, setList] = React.useState(arr);
-  const day = new Date(getMoment); // 사용자가 선택한 날짜
+  const day = new Date(getMoment);
+
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalData, setModalData] = React.useState();
+
   const scoreList = [1, 3, 5, 4, 2];
   const scoreColor = [
     "#A1A1A1",
@@ -28,6 +32,7 @@ const Diary = () => {
     "#EE8BA7",
     "#C793DC",
   ];
+
   const nextMonth =
     moment().format("YYYYMM") <
     `${day.getFullYear()}${
@@ -36,10 +41,8 @@ const Diary = () => {
 
   // 저번달, 이번달, 다음달 조절하는 부분
   React.useEffect(() => {
-    // "저번달, 이번달, 다음달 조절하는 부분"
-
     // DB에서 데이터 가져오기
-    dispatch(diaryActions.getDiaryDB(day.getFullYear(), day.getMonth() + 1));
+    // dispatch(diaryActions.getDiaryDB(day.getFullYear(), day.getMonth() + 1));
 
     const today = new Date(moment()); // 오늘 날짜
 
@@ -67,7 +70,7 @@ const Diary = () => {
           day.getFullYear(),
           day.getMonth() + 1,
           0
-        ).getDate(); // 사용한 선택한 날짜의 일수
+        ).getDate();
         setMonthDay(days);
       }
     }
@@ -86,15 +89,10 @@ const Diary = () => {
     setList(arr);
   }, [diaryList]);
 
-  //-- 다이어리 팝업 모달 --
-  const [modalOpen, setModalOpen] = React.useState(false);
   const closeModal = () => {
     setModalOpen(false);
   };
 
-  const [modalData, setModalData] = React.useState();
-
-  //다이어리 일자 선택
   const diaryDetail = (index) => {
     setModalOpen(true);
     const day = new Date(getMoment);
@@ -108,33 +106,30 @@ const Diary = () => {
 
   return (
     <>
-      <div>
-        {/* {list.length === 0 && !nextMonth ? ( */}
-          {/* <Spinner></Spinner> */}
-        {/* ) : ( */}
-          <>
-            <DiaryDate
-              setMoment={setMoment}
-              getMoment={getMoment}
-              nextMonth={nextMonth}
-              sleepAvg={sleepAvg}
-            ></DiaryDate>
-            <br></br>
-            {nextMonth ? (
-              <NoRecord></NoRecord>
-            ) : (
-              <DiaryRecord
-                list={list}
-                scoreList={scoreList}
-                scoreColor={scoreColor}
-                diaryDetail={diaryDetail}
-              ></DiaryRecord>
-            )}
-          </>
-        {/* )} */}
-      </div>
-      {/* -- 다이어리 팝업 모달 -- */}
-      {modalOpen ? <DiaryWrite close={closeModal} data={modalData} /> : ""}
+      {list.length === 0 && !nextMonth ? (
+        <Spinner></Spinner>
+      ) : (
+        <>
+          <DiaryDate
+            setMoment={setMoment}
+            getMoment={getMoment}
+            nextMonth={nextMonth}
+            sleepAvg={sleepAvg}
+          />
+          <br />
+          {nextMonth ? (
+            <NoRecord />
+          ) : (
+            <DiaryRecord
+              list={list}
+              scoreList={scoreList}
+              scoreColor={scoreColor}
+              diaryDetail={diaryDetail}
+            />
+          )}
+        </>
+      )}
+      {modalOpen && <DiaryWrite close={closeModal} data={modalData} />}
     </>
   );
 };

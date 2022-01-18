@@ -32,9 +32,7 @@ const FeelBox = (props) => {
                   _onClick={props._onClick}
                   is_click={previewFeel === idx + 1 ? true : false}
                   text={arr.text}
-                >
-                  {/* <p>{arr.text}</p> */}
-                </Charater>
+                />
               </FleepItem>
             );
           })}
@@ -53,7 +51,7 @@ const FeelBox = (props) => {
                   scoreColor="#c4c4c4"
                   is_click={previewFeel === idx + 1 ? true : false}
                   text={arr.text}
-                ></Charater>
+                />
               </FleepItem>
             );
           })}
@@ -75,6 +73,7 @@ const Container = styled.div`
     padding-bottom: 15px;
   }
 `;
+
 const Feel = styled.div`
   height: 74px;
   padding-bottom: ${({ theme }) => theme.paddings.xxxxl};
@@ -84,6 +83,7 @@ const Feel = styled.div`
   position: relative;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray_3};
 `;
+
 const FleepItem = styled.div`
   width: 20%;
 `;

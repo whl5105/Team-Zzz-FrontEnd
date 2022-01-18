@@ -6,7 +6,7 @@ import kakao from "../static/images/login/kakao.png";
 const Kakao = (props) => {
   return (
     <Content>
-      <Icon></Icon>
+      <Icon />
       카카오 로그인
     </Content>
   );

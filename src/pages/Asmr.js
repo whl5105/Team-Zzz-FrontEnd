@@ -12,10 +12,6 @@ import AsmrList from "../components/asmr/AsmrList";
 import Success from "../components/Success";
 
 // -- images --
-// import All from "../static/images/asmr/background/전체.svg";
-// import Nature from "../static/images/asmr/background/네이쳐.svg";
-// import Place from "../static/images/asmr/background/플레이스.svg";
-// import Object from "../static/images/asmr/background/오브젝트.svg";
 import All from "../static/images/asmr/background/asmr_category_all.png";
 import Nature from "../static/images/asmr/background/asmr_category_nature.png";
 import Place from "../static/images/asmr/background/asmr_category_space.png";
@@ -235,11 +231,11 @@ const Asmr = (props) => {
   return (
     <>
       {!asmrInfo || asmrInfo.length === 0 ? (
-        <Spinner></Spinner>
+        <Spinner />
       ) : (
         <PageWrap imgUrl={imageUrl}>
           {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
-          <AsmrCategory setCategory={setCategory}></AsmrCategory>
+          <AsmrCategory setCategory={setCategory} />
           <AsmrList
             soundTrack={soundTrack}
             select={select}
@@ -248,16 +244,16 @@ const Asmr = (props) => {
             setSong3={setSong3}
             setSong4={setSong4}
             setPlay={setPlay}
-          ></AsmrList>
+          />
 
-          {success ? (
+          {success && (
             <Wrap>
               <Success
                 alt="플레이리스트 작성 완료"
                 text="저장에 성공하였습니다."
-              ></Success>
+              />
             </Wrap>
-          ) : null}
+          )}
         </PageWrap>
       )}
     </>
@@ -268,12 +264,9 @@ const Asmr = (props) => {
 const PageWrap = styled.div`
   width: 100%;
   height: inherit;
-  background-color: ${({ theme }) => theme.colors.bg};
   background: url(${(props) => props.imgUrl}) no-repeat;
   background-position: 50% 100%;
   background-size: 100%;
-  /* padding: 50px 1.25rem 0; */
-  /* box-sizing: border-box; */
   padding: 50px ${({ theme }) => theme.paddings.xxxxl} 0;
   box-sizing: border-box;
   position: relative;

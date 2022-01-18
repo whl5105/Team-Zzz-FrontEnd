@@ -5,7 +5,7 @@ import styled from "styled-components";
 import IOS from "../../static/images/asmr/IOS.svg";
 
 const Guidance = (props) => {
-  return <GuidanceBtn src={IOS} left={props.left}></GuidanceBtn>;
+  return <GuidanceBtn src={IOS} left={props.left}/>;
 };
 
 const GuidanceBtn = styled.div`

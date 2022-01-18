@@ -8,7 +8,6 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 
 // page
-// import BackGround from "../components/main/Background";
 import NotFound from "../pages/NotFound";
 import Main from "../pages/Main";
 import FirstNotification from "../pages/FirstNotification";
@@ -75,12 +74,11 @@ import Test from "../pages/Test";
 function App() {
   return (
     <WrapBox id="app">
-      {/* <BackGround /> */}
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Wrap className="App">
           <ConnectedRouter history={history}>
-            <Header></Header>
+            <Header />
 
             <Switch>
               <Route path="/" exact component={Main} />
@@ -93,25 +91,25 @@ function App() {
                 path="/pushNotication"
                 exact
                 component={FirstNotification}
-              ></Route>
-              <Route path="/diary" exact component={Diary}></Route>
-              <Route path="/asmr" component={Asmr}></Route>
-              <Route path="/asmrPop" exact component={AsmrPopUp}></Route>
+              />
+              <Route path="/diary" exact component={Diary} />
+              <Route path="/asmr" component={Asmr} />
+              <Route path="/asmrPop" exact component={AsmrPopUp} />
               <Route path="/mypage" exact component={Mypage} />
               <Route path="/mypage/mixList" exact component={MixList} />
               <Route
                 path="/mypageNotice/:userIdx"
                 exact
                 component={MyPageNotification}
-              ></Route>
-              <Route path="/notice" exact component={NoticePage}></Route>
-              <Route path="/test" exact component={Test}></Route>
+              />
+              <Route path="/notice" exact component={NoticePage} />
+              <Route path="/test" exact component={Test} />
               <Route>
                 <NotFound />
               </Route>
             </Switch>
-            <PlayBar></PlayBar>
-            <Navigation></Navigation>
+            <PlayBar />
+            <Navigation />
           </ConnectedRouter>
         </Wrap>
       </ThemeProvider>
@@ -122,8 +120,6 @@ function App() {
 const WrapBox = styled.div`
   width: 100%;
   height: inherit;
-  /* width: 100vw;
-  touch-action: auto; */
 `;
 
 const Wrap = styled.div`
