@@ -29,7 +29,14 @@ const MixListPopUp = (props) => {
   };
 
   return (
-    <ModalPopUp close={props.close} backgroundNull zIndex="120" marginNull>
+    <ModalPopUp
+      close={props.close}
+      backgroundNull
+      zIndex="120"
+      width="100%"
+      marginNull
+      top="56%"
+    >
       <Container>
         <Bar />
         <Title justifySB>
@@ -59,9 +66,7 @@ const MixListPopUp = (props) => {
 
 // --- styled-components ---
 const Container = styled.div`
-  position: absolute;
-  width: 100%;
-  bottom: -44vh;
+  width: inherit;
   height: 75vh;
   padding: ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;
