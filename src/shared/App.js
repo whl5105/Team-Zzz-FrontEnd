@@ -1,7 +1,6 @@
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import GlobalStyle from "../static/styles/GlobalStyle";
-import theme from "./theme";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Switch, Route } from "react-router-dom";
@@ -74,45 +73,39 @@ import Test from "../pages/Test";
 function App() {
   return (
     <WrapBox id="app">
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Wrap className="App">
-          <ConnectedRouter history={history}>
-            <Header />
+      <GlobalStyle />
+      <Wrap className="App">
+        <ConnectedRouter history={history}>
+          <Header />
 
-            <Switch>
-              <Route path="/" exact component={Main} />
-              <Route path="/clock" exact component={Clock} />
-              <Route path="/login" exact component={Login} />
-              <Route path="/signup" exact component={Signup} />
-              <Route path="/requireLogin" exact component={RequireLogin} />
-              <Route path="/push" exact component={Push} />
-              <Route
-                path="/pushNotication"
-                exact
-                component={FirstNotification}
-              />
-              <Route path="/diary" exact component={Diary} />
-              <Route path="/asmr" component={Asmr} />
-              <Route path="/asmrPop" exact component={AsmrPopUp} />
-              <Route path="/mypage" exact component={Mypage} />
-              <Route path="/mypage/mixList" exact component={MixList} />
-              <Route
-                path="/mypageNotice/:userIdx"
-                exact
-                component={MyPageNotification}
-              />
-              <Route path="/notice" exact component={NoticePage} />
-              <Route path="/test" exact component={Test} />
-              <Route>
-                <NotFound />
-              </Route>
-            </Switch>
-            <PlayBar />
-            <Navigation />
-          </ConnectedRouter>
-        </Wrap>
-      </ThemeProvider>
+          <Switch>
+            <Route path="/" exact component={Main} />
+            <Route path="/clock" exact component={Clock} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/signup" exact component={Signup} />
+            <Route path="/requireLogin" exact component={RequireLogin} />
+            <Route path="/push" exact component={Push} />
+            <Route path="/pushNotication" exact component={FirstNotification} />
+            <Route path="/diary" exact component={Diary} />
+            <Route path="/asmr" component={Asmr} />
+            <Route path="/asmrPop" exact component={AsmrPopUp} />
+            <Route path="/mypage" exact component={Mypage} />
+            <Route path="/mypage/mixList" exact component={MixList} />
+            <Route
+              path="/mypageNotice/:userIdx"
+              exact
+              component={MyPageNotification}
+            />
+            <Route path="/notice" exact component={NoticePage} />
+            <Route path="/test" exact component={Test} />
+            <Route>
+              <NotFound />
+            </Route>
+          </Switch>
+          <PlayBar />
+          <Navigation />
+        </ConnectedRouter>
+      </Wrap>
     </WrapBox>
   );
 }

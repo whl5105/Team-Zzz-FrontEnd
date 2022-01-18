@@ -129,8 +129,17 @@ const Notifications = (props) => {
         매일 알림 받고 기록하기
       </Title>
       <ToggleSwitch color={props.state === "update" ? "white" : null}>
+<<<<<<< HEAD
         <div style={{ margin: "auto 0px" }}>수면 기록 알림 받기</div>
         <Toggle notice={props.notice} setNotice={props.setNotice} label=" " />
+=======
+        <div>수면 기록 알림 받기</div>
+        <Toggle
+          notice={props.notice}
+          setNotice={props.setNotice}
+          label=" "
+        ></Toggle>
+>>>>>>> 62fe15b848907859712a3f039833ca682c31efc3
       </ToggleSwitch>
       {props.notice ? (
         <>
@@ -206,6 +215,13 @@ const ToggleSwitch = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+<<<<<<< HEAD
+<<<<<<< HEAD
+  /* width: 295px; */
+=======
+>>>>>>> 06009dbd93ed00df73d5a6ddcde4be8c4a524740
+=======
+>>>>>>> 6ae9ff100c1339239e62d60795f9b1f10634cf5a
   height: 30px;
   margin-top: 20px;
   margin-bottom: 20px;

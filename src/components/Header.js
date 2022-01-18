@@ -61,6 +61,7 @@ const Header = withRouter((props) => {
         />
         {path === "/asmr" || path === "/asmrPop" ? (
           <>
+            {/* asmr  */}
             <HoverImage
               src={PlayList}
               alt="playList"
@@ -71,6 +72,7 @@ const Header = withRouter((props) => {
             <Image src={Hover} className="playListHover" alt="" />
           </>
         ) : (
+          // 피드백
           <Icon src={Writing} alt="writing" _onClick={PageLink} />
         )}
       </HeaderBox>

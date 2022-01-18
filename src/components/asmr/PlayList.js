@@ -123,7 +123,7 @@ const PlayList = (props) => {
 
 // --- styled-componetns ---
 const Wrap = styled.div`
-  width: 335px;
+  width: 100%;
   padding: ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;
 `;

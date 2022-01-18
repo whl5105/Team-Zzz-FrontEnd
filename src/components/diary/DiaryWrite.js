@@ -274,7 +274,7 @@ function DayCharater(props) {
 
 // --- styled-components ---
 const Container = styled.div`
-  width: 331px;
+  width: 100%;
   padding: ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;
 `;
@@ -302,6 +302,16 @@ const ButtonBox = styled.div`
   padding-top: ${({ theme }) => theme.paddings.xxxxl};
   display: flex;
   justify-content: space-between;
+<<<<<<< HEAD
+=======
+  
+  & Button{
+    margin-right: 9px;
+  }
+  & Button:last-child{
+    margin-right: 0;
+  }
+>>>>>>> 62fe15b848907859712a3f039833ca682c31efc3
 
   & Button {
     max-width: 141px;
