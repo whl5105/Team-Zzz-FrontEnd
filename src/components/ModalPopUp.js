@@ -47,8 +47,10 @@ const Children = styled.div`
   z-index: ${(props) => (props.zIndex ? props.zIndex : "999")};
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  /* left: 50%; */
+  transform: translateY(-50%);
+  /* transform: translate(-50%, -50%); */
+  margin: 0px 20px;
 `;
 
 export default ModalPopUp;

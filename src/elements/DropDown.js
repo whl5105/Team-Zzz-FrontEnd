@@ -154,11 +154,10 @@ const DisabledDropDownContainer = styled.div`
   margin-right: 8px;
   & > img {
     position: absolute;
-    top: 25%;
+    top: 30%;
     right: 6px;
-    width: 24px;
-    height: 24px;
-    padding: 0px 14px;
+    width: 20px;
+    height: 20px;
   }
 `;
 
