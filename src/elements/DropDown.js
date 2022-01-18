@@ -136,12 +136,7 @@ const DropdownContainer = styled.div`
   border-radius: 10px;
   box-sizing: border-box;
   background-color: white;
-<<<<<<< HEAD
   margin-right: 8px;
-=======
-  margin: 0px 2px;
-
->>>>>>> 06009dbd93ed00df73d5a6ddcde4be8c4a524740
   &:hover {
     cursor: pointer;
     border: 2px solid #fbc037;
@@ -181,18 +176,11 @@ const DropdownBody = styled.div`
   }
   & > img {
     position: absolute;
-<<<<<<< HEAD
     top: 10px;
     right: 0px;
     width: 24px;
     height: 24px;
     padding: 0px 6px;
-=======
-    top: 30%;
-    right: 5px;
-    width: 20px;
-    height: 20px;
->>>>>>> 06009dbd93ed00df73d5a6ddcde4be8c4a524740
   }
 `;
 
