@@ -5,8 +5,6 @@ import { history } from "../redux/configureStore.js";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
-import KakaoLogin from "react-kakao-login";
-
 // --- components ---
 import { Input } from "../elements";
 import Success from "../components/Success";
@@ -14,6 +12,7 @@ import Success from "../components/Success";
 // --- images ---
 import reset from "../static/images/icon/reset.svg";
 import kakao from "../static/images/login/kakao.png";
+import Kakao from "../components/Kakao.js";
 
 const Login = () => {
   const first_signup = useSelector((store) => store.user.is_signup);
@@ -77,31 +76,6 @@ const Login = () => {
     setIsState(false);
   }
 
-  // 소셜 로그인 성공
-  const socialLoginSuccess = (res) => {
-    console.log("소셜 로그인 성공");
-    console.log(res);
-    dispatch(userActions.socialLoginDB(res.profile.id));
-  };
-
-  const socialLoginStyle = {
-    textAlign: "center",
-    padding: "20px",
-    color: "#ffffff",
-    fontSize: "14px",
-    fontWeight: "500",
-    backgroundColor: "#101340",
-    border: "none",
-    borderSizing: "border-box",
-    marginLeft: "31%",
-  };
-
-  // 소셜 로그인 실패
-  const socialLoginFail = (res) => {
-    console.log("소셜 로그인 실패");
-    console.log(res);
-  };
-
   return (
     <Container>
       <Title>로그인</Title>
@@ -149,17 +123,7 @@ const Login = () => {
         <p>회원가입 하기</p>
       </SignUp>
       <Social>or</Social>
-      <KakaoLogin
-        jskey={"c51fcbffb9ee44d3b90e755eff2bf5b6"}
-        onSuccess={(res) => socialLoginSuccess(res)}
-        onFailure={(res) => socialLoginFail(res)}
-        getProfile={true}
-        style={socialLoginStyle}
-      >
-        <Icon />
-        카카오 로그인
-      </KakaoLogin>
-
+      <Kakao />
       {/* 회원가입 성공 유저 팝업 */}
       {first_signup && (
         <Success alt="회원가입 성공" text="회원가입에 성공했습니다" />
