@@ -2,14 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const ModalPopUp = (props) => {
-  const { children, close, backgroundNull, zIndex, marginNull, width, top } =
-    props;
+  const { children, close, backgroundNull, zIndex, marginNull, width } = props;
   const styles = {
     backgroundNull: backgroundNull,
     zIndex: zIndex,
     marginNull: marginNull,
     width: width,
-    top: top,
   };
 
   return (
@@ -48,9 +46,10 @@ const Children = styled.div`
   border-radius: 12px;
   z-index: ${(props) => (props.zIndex ? props.zIndex : "999")};
   position: absolute;
-  top: ${(props) => (props.top ? props.top : "50%")};
+  top: 50%;
+  bottom: ${(props) => (props.backgroundNull ? "-100px" : "")};
   transform: translateY(-50%);
-  margin: ${(props) => (props.marginNull ? "0px auto" : "0px 20px")};
+  margin: ${(props) => (props.marginNull ? "" : "0px 20px")};
 `;
 
 export default ModalPopUp;

@@ -35,7 +35,6 @@ const MixListPopUp = (props) => {
       zIndex="120"
       width="100%"
       marginNull
-      top="56%"
     >
       <Container>
         <Bar />
