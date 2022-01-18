@@ -90,42 +90,41 @@ const Main = (props) => {
   }, []);
 
   return (
-    <Container>
-      {/* swiper 부분 */}
-      <Swiper />
-      {/* <Asmr> */}
-      {/* 카테고리 부분 */}
-      <Title>당신의 편안한 밤을 위해</Title>
-      <Category
-        path="/asmr"
-        category="네이쳐"
-        title="네이쳐"
-        bannerImage={nature}
-        subTitle="편안한 자연 속으로"
-      />
-      <Category
-        path="/asmr"
-        category="플레이스"
-        title="플레이스"
-        bannerImage={space}
-        subTitle="다른 공간으로 여행"
-      />
-      <Category
-        path="/asmr"
-        category="오브젝트"
-        title="오브젝트"
-        bannerImage={object}
-        subTitle="차분히 바라보는 물건들"
-      />
-      <Category
-        path="/asmr"
-        category="전체"
-        title="모든 소리"
-        bannerImage={all}
-        subTitle="모든 소리 들어보기"
-      />
-      {/* </Asmr> */}
-
+    <>
+      <Container>
+        {/* swiper 부분 */}
+        <Swiper />
+        {/* 카테고리 부분 */}
+        <Title>당신의 편안한 밤을 위해</Title>
+        <Category
+          path="/asmr"
+          category="네이쳐"
+          title="네이쳐"
+          bannerImage={nature}
+          subTitle="편안한 자연 속으로"
+        />
+        <Category
+          path="/asmr"
+          category="플레이스"
+          title="플레이스"
+          bannerImage={space}
+          subTitle="다른 공간으로 여행"
+        />
+        <Category
+          path="/asmr"
+          category="오브젝트"
+          title="오브젝트"
+          bannerImage={object}
+          subTitle="차분히 바라보는 물건들"
+        />
+        <Category
+          path="/asmr"
+          category="전체"
+          title="모든 소리"
+          bannerImage={all}
+          subTitle="모든 소리 들어보기"
+        />
+      </Container>
       {/* 첫 로그인 시 알림 설정 팝업 부분 */}
       {noticationModal && (
         <FirstNotification
@@ -133,24 +132,23 @@ const Main = (props) => {
           setNoticationModal={setNoticationModal}
         ></FirstNotification>
       )}
-    </Container>
+    </>
   );
 };
 
 // --- styled-components ---
 const Container = styled.div`
+  width: 100%;
   height: inherit;
   padding: 50px 20px 56px 20px;
   overflow-y: scroll;
   box-sizing: border-box;
-  /* height: 720px; */
-  /* height: calc(100% - 106px); */
+  position: relative;
+  top: 0;
+  left: 0;
   &::-webkit-scrollbar {
     display: none;
   }
-  /* @media (max-width: 640px) {
-    height: 89vh;
-  } */
 `;
 
 const Title = styled.p`

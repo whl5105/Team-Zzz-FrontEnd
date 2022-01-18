@@ -5,15 +5,19 @@ import App from "./shared/App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 
+import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
 import Device from "./components/Device";
+import theme from "./shared/theme";
 
 ReactDOM.render(
   <Provider store={store}>
-    <Device>
-      <App />
-    </Device>
+    <ThemeProvider theme={theme}>
+      <Device>
+        <App />
+      </Device>
+    </ThemeProvider>
   </Provider>,
   document.getElementById("root")
 );

@@ -191,7 +191,7 @@ const Text = styled.p`
 `;
 
 const Hr = styled.hr`
-  width: 295px;
+  width: 100%;
   border: 0.5px solid #ffffff;
   box-sizing: border-box;
   margin: auto;

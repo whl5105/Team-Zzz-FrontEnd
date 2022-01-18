@@ -9,7 +9,6 @@ const Device = ({ children }) => {
   const handleClick = () => {};
   return (
     // <WebBackgroundWrapper>
-
     //   <ClayPhone>
     //     <WebViewLayout>{children}</WebViewLayout>
     //   </ClayPhone>
@@ -27,27 +26,17 @@ const Mobile = styled.div`
   min-width: 280px;
   height: 100vh;
   overflow: hidden;
-  background: red;
+  background-color: ${({ theme }) => theme.colors.bg};
 `;
 const WebBackgroundWrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  /* background-size: cover;s */
-
   background: url(${main3}), url(${main1});
   background-size: 300px 144px, cover;
   background-position: 190px 230px, 0% 100%;
   background-repeat: no-repeat;
-  /* @media screen and (min-width: 1120px) {
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  } */
 `;
 const ClayPhone = styled.div`
-  /* width: 387px;
-  height: 739px; */
   width: 431px;
   height: 864px;
   position: fixed;
@@ -58,20 +47,18 @@ const ClayPhone = styled.div`
   @media screen and (min-width: 1120px) {
     right: 10%;
     top: 50%;
-    transform: translateX(0%);
-    transform: translateY(-50%);
+    transform: translate(0%, -50%);
   }
 `;
 const WebViewLayout = styled.div`
-  max-width: 373px;
+  max-width: 375px;
   height: 810px;
-  border: 1px solid red;
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 40px;
-
+  background-color: ${({ theme }) => theme.colors.bg};
   overflow: hidden;
 `;
 

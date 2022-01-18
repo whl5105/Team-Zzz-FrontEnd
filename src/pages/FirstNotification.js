@@ -26,38 +26,34 @@ const PushNoticationPop = (props) => {
   }, [notice]);
 
   return (
-    <>
-      <ModalPopUp>
-        <Wrap>
-          <Notifications
-            notice={notice}
-            setNotice={setNotice}
-            day={day}
-            setDay={setDay}
-            hour={hour}
-            setHour={setHour}
-            minutes={minutes}
-            setMinutes={setMinutes}
-            dayActive={dayActive}
-            setDayActive={setDayActive}
-            hourActive={hourActive}
-            setHourActive={setHourActive}
-            minutesActive={minutesActive}
-            setMinutesActive={setMinutesActive}
-            setNoticationModal={props.setNoticationModal}
-            state="set"
-          ></Notifications>
-        </Wrap>
-      </ModalPopUp>
-    </>
+    <ModalPopUp>
+      <Wrap>
+        <Notifications
+          notice={notice}
+          setNotice={setNotice}
+          day={day}
+          setDay={setDay}
+          hour={hour}
+          setHour={setHour}
+          minutes={minutes}
+          setMinutes={setMinutes}
+          dayActive={dayActive}
+          setDayActive={setDayActive}
+          hourActive={hourActive}
+          setHourActive={setHourActive}
+          minutesActive={minutesActive}
+          setMinutesActive={setMinutesActive}
+          setNoticationModal={props.setNoticationModal}
+          state="set"
+        ></Notifications>
+      </Wrap>
+    </ModalPopUp>
   );
 };
 
-// --- styled-components ---
 const Wrap = styled.div`
-  width: 100%;
   padding: 20px 20px;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 `;
 
 export default PushNoticationPop;

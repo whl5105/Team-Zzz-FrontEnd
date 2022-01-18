@@ -77,11 +77,7 @@ const Dropdown = (props) => {
         )}
       </DropdownBody>
       {props.dayActive ? (
-        <DropdownMenu
-          height="67px"
-          id="type2"
-          isActive={props.dayActive}
-        >
+        <DropdownMenu height="67px" id="type2" isActive={props.dayActive}>
           {props.dayItems &&
             props.dayItems.map((item) => (
               <DropdownItemContainer
@@ -134,19 +130,13 @@ const Dropdown = (props) => {
 // --- styled-components ---
 const DropdownContainer = styled.div`
   width: 100%;
-  /* width: 93px; */
   max-height: 48px;
-  /* margin-top: 20px; */
   text-align: center;
   border: 2px solid gray;
-  /* border: ${(props) =>
-    props.isActive ? `2px solid #fbc037;` : `2px solid #fbc037;`}; */
   border-radius: 10px;
-  display: absolute;
   box-sizing: border-box;
   background-color: white;
-  margin: 0px 2px;
-
+  margin-right: 8px;
   &:hover {
     cursor: pointer;
     border: 2px solid #fbc037;
@@ -160,10 +150,8 @@ const DisabledDropDownContainer = styled.div`
   text-align: center;
   border: 2px solid gray;
   border-radius: 10px;
-  display: absolute;
   box-sizing: border-box;
-  position: relative;
-
+  margin-right: 8px;
   & > img {
     position: absolute;
     top: 30%;
@@ -180,13 +168,19 @@ const DropdownBody = styled.div`
   line-height: 48px;
   color: ${(props) => props.color && props.color};
   position: relative;
-
+  /* display: flex; */
+  & > p {
+    width: 100%;
+    line-height: 44px;
+    text-align: center;
+  }
   & > img {
     position: absolute;
-    top: 30%;
-    right: 5px;
-    width: 20px;
-    height: 20px;
+    top: 10px;
+    right: 0px;
+    width: 24px;
+    height: 24px;
+    padding: 0px 6px;
   }
 `;
 
