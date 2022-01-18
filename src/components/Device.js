@@ -26,7 +26,7 @@ const Mobile = styled.div`
   min-width: 280px;
   height: 100vh;
   overflow: hidden;
-  background: red;
+  background-color: ${({ theme }) => theme.colors.bg};
 `;
 const WebBackgroundWrapper = styled.div`
   width: 100vw;
@@ -51,9 +51,8 @@ const ClayPhone = styled.div`
   }
 `;
 const WebViewLayout = styled.div`
-  max-width: 373px;
+  max-width: 375px;
   height: 810px;
-  border: 1px solid red;
   position: relative;
   top: 50%;
   left: 50%;

@@ -130,7 +130,7 @@ const Notifications = (props) => {
         매일 알림 받고 기록하기
       </Title>
       <ToggleSwitch color={props.state === "update" ? "white" : null}>
-        <div style={{ margin: "auto 0px" }}>수면 기록 알림 받기</div>
+        <div>수면 기록 알림 받기</div>
         <Toggle
           notice={props.notice}
           setNotice={props.setNotice}
@@ -210,7 +210,8 @@ const ToggleSwitch = styled.div`
   letter-spacing: -0.3px;
   display: flex;
   justify-content: space-between;
-  width: 295px;
+  width: 100%;
+  /* width: 295px; */
   height: 30px;
   margin-top: 20px;
   margin-bottom: 20px;

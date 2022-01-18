@@ -77,11 +77,7 @@ const Dropdown = (props) => {
         )}
       </DropdownBody>
       {props.dayActive ? (
-        <DropdownMenu
-          height="67px"
-          id="type2"
-          isActive={props.dayActive}
-        >
+        <DropdownMenu height="67px" id="type2" isActive={props.dayActive}>
           {props.dayItems &&
             props.dayItems.map((item) => (
               <DropdownItemContainer
@@ -134,18 +130,14 @@ const Dropdown = (props) => {
 // --- styled-components ---
 const DropdownContainer = styled.div`
   width: 100%;
-  /* width: 93px; */
   max-height: 48px;
-  /* margin-top: 20px; */
   text-align: center;
   border: 2px solid gray;
-  /* border: ${(props) =>
-    props.isActive ? `2px solid #fbc037;` : `2px solid #fbc037;`}; */
   border-radius: 10px;
   display: absolute;
   box-sizing: border-box;
   background-color: white;
-
+  margin-right: 8px;
   &:hover {
     cursor: pointer;
     border: 2px solid #fbc037;

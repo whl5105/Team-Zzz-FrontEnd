@@ -79,8 +79,7 @@ function App() {
       <GlobalStyle />
       <Wrap className="App">
         <ConnectedRouter history={history}>
-          <Header></Header>
-
+          <Header />
           <Switch>
             <Route path="/" exact component={Main} />
             <Route path="/clock" exact component={Clock} />
@@ -103,13 +102,13 @@ function App() {
               exact
               component={MyPageNotification}
             ></Route>
-            <Route path="/notice" exact component={NoticePage}></Route>
-            <Route path="/test" exact component={Test}></Route>
+            <Route path="/notice" exact component={NoticePage} />
+            <Route path="/test" exact component={Test} />
             <Route>
               <NotFound />
             </Route>
           </Switch>
-          <PlayBar></PlayBar>
+          <PlayBar />
           <Navigation></Navigation>
         </ConnectedRouter>
       </Wrap>
@@ -120,8 +119,6 @@ function App() {
 const WrapBox = styled.div`
   width: 100%;
   height: inherit;
-  /* width: 100vw;
-  touch-action: auto; */
 `;
 
 const Wrap = styled.div`

@@ -38,11 +38,12 @@ const Component = styled.div`
 `;
 
 const Children = styled.div`
-  width: ${(props) => props.width};
+  /* width: ${(props) => props.width}; */
+  width: calc(100% - 40px);
   background-color: ${(props) => (props.backgroundNull ? null : "#FFFFFF")};
   border-radius: 12px;
   z-index: ${(props) => (props.zIndex ? props.zIndex : "999")};
-  position: relative;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
