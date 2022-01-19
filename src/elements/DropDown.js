@@ -175,6 +175,7 @@ const DisabledDropDownContainer = styled.div`
   width: 100%;
   height: 48px;
   text-align: center;
+  color: gray;
   border: 2px solid gray;
   border-radius: 10px;
   box-sizing: border-box;
