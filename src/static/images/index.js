@@ -61,7 +61,7 @@ import arrow_R_B from "./icons/arrow/arrow_R_B.svg";
 import arrow_R_W from "./icons/arrow/arrow_R_W.svg";
 import arrow_T_W from "./icons/arrow/arrow_T_W.svg";
 
-//etc
+// -- etc --
 import close from "./icons/close.svg";
 import feedback from "./icons/feedback.svg";
 import logo from "./icons/logo.svg";

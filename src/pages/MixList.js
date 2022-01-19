@@ -12,9 +12,6 @@ import NoMixList from "../components/mixList/NoMixList";
 
 // --- images ---
 import { mixList, arrow_B_W, arrow_T_W } from "../static/images";
-// import mixList from "../static/images/mypage/mixList_W.svg";
-// import path_B from "../static/images/mypage/arrow_B_W.svg";
-// import path_T from "../static/images/mypage/arrow_T_W.svg";
 
 const MixList = (props) => {
   const dispatch = useDispatch();
