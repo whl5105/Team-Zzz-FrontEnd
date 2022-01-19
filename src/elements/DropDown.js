@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import dropDown from "../static/images/icon/dropDown.png";
+import { arrow_B_W } from "../static/images";
 
 const Dropdown = (props) => {
   const [item, setItem] = React.useState(null);
@@ -54,7 +54,7 @@ const Dropdown = (props) => {
       <DisabledDropDownContainer>
         <DropdownBody color="gray">
           <p>{`${props.title}${props.condition}`}</p>
-          <img src={dropDown} alt="" />
+          <img src={arrow_B_W} alt="" />
         </DropdownBody>
       </DisabledDropDownContainer>
     );
@@ -67,12 +67,12 @@ const Dropdown = (props) => {
         {item ? (
           <>
             <p>{`${item}${props.condition}`}</p>
-            <img onClick={onActiveToggle} src={dropDown} alt="" />
+            <img onClick={onActiveToggle} src={arrow_B_W} alt="" />
           </>
         ) : (
           <>
             <p>{`${props.title}${props.condition}`}</p>
-            <img onClick={onActiveToggle} src={dropDown} alt="" />
+            <img onClick={onActiveToggle} src={arrow_B_W} alt="" />
           </>
         )}
       </DropdownBody>

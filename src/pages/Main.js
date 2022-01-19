@@ -9,10 +9,16 @@ import Swiper from "../components/main/MainSwiper";
 import Category from "../components/main/Category";
 
 // --- images ---
-import all from "../static/images/banner/all_1005px.png";
-import nature from "../static/images/banner/nature_1005px.png";
-import object from "../static/images/banner/object_1005px.png";
-import space from "../static/images/banner/space_1005px.png";
+import {
+  main_all,
+  main_nature,
+  main_object,
+  main_space,
+} from "../static/images";
+// import all from "../static/images/banner/all_1005px.png";
+// import nature from "../static/images/banner/nature_1005px.png";
+// import object from "../static/images/banner/object_1005px.png";
+// import space from "../static/images/banner/space_1005px.png";
 
 // firebas
 import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
@@ -94,28 +100,28 @@ const Main = (props) => {
         path="/asmr"
         category="네이쳐"
         title="네이쳐"
-        bannerImage={nature}
+        bannerImage={main_nature}
         subTitle="편안한 자연 속으로"
       />
       <Category
         path="/asmr"
         category="플레이스"
         title="플레이스"
-        bannerImage={space}
+        bannerImage={main_space}
         subTitle="다른 공간으로 여행"
       />
       <Category
         path="/asmr"
         category="오브젝트"
         title="오브젝트"
-        bannerImage={object}
+        bannerImage={main_object}
         subTitle="차분히 바라보는 물건들"
       />
       <Category
         path="/asmr"
         category="전체"
         title="모든 소리"
-        bannerImage={all}
+        bannerImage={main_all}
         subTitle="모든 소리 들어보기"
       />
 

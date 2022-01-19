@@ -11,7 +11,7 @@ import { IdCheck, PwdCheck } from "../shared/common";
 import { Input } from "../elements";
 
 // --- images ---
-import reset from "../static/images/icon/reset.svg";
+import { reset } from "../static/images";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const Signup = (props) => {
       setIdMessage("5글자 이상 10글자 미만으로 입력해주세요.");
       setIsId(false);
     } else {
-      setIdMessage("조건 충족");
+      setIdMessage("안전한 아이디 입니다.");
       setIsId(true);
     }
   };

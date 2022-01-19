@@ -39,7 +39,7 @@ const SoundTrack = (props) => {
     if (ios === false) {
       elmnt.ontouchstart = dragMouseDown; // 19번줄이나 20번줄이나 같음
     } else if (ios === true && !props.guidance && effect) {
-      console.log("Ipone");
+      // console.log("Ipone");
       props.setGuidance(true);
       props.setGuidanceTitle(props.title);
       const timeout = setTimeout(() => {

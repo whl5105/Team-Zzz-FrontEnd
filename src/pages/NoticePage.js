@@ -6,9 +6,10 @@ import Title from "../components/Title";
 import List from "../components/mypage/List";
 
 // --- images ---
-import notes from "../static/images/mypage/notes_white.svg";
-import path_B from "../static/images/mypage/arrow_B_W.svg";
-import path_T from "../static/images/mypage/arrow_T_W.svg";
+import { notice, arrow_B_W, arrow_T_W } from "../static/images";
+// import notes from "../static/images/mypage/notes_white.svg";
+// import path_B from "../static/images/mypage/arrow_B_W.svg";
+// import path_T from "../static/images/mypage/arrow_T_W.svg";
 
 const NoticePage = (props) => {
   const [toggle, setToggle] = React.useState(false);
@@ -18,12 +19,20 @@ const NoticePage = (props) => {
       <Container>
         <Title backIcon>공지사항</Title>
         {!toggle ? (
-          <List icon={notes} src={path_B} _onClick={() => setToggle(!toggle)}>
+          <List
+            icon={notice}
+            src={arrow_B_W}
+            _onClick={() => setToggle(!toggle)}
+          >
             저작권 명시
           </List>
         ) : (
           <>
-            <List icon={notes} src={path_T} _onClick={() => setToggle(!toggle)}>
+            <List
+              icon={notice}
+              src={arrow_T_W}
+              _onClick={() => setToggle(!toggle)}
+            >
               저작권 명시
             </List>
             <TextBox>

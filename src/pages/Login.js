@@ -16,8 +16,9 @@ import { Input } from "../elements";
 import { IdCheck, PwdCheck } from "../shared/common";
 
 // --- images ---
-import reset from "../static/images/icon/reset.svg";
-import kakao from "../static/images/login/kakao.png";
+import { reset, kakao } from "../static/images";
+// import reset from "../static/images/icon/reset.svg";
+// import kakao from "../static/images/login/kakao.png";
 
 const Login = () => {
   const dispatch = useDispatch();
