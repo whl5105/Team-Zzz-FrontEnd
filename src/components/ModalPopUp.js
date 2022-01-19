@@ -21,7 +21,7 @@ const ModalPopUp = (props) => {
 
 const PopUpBox = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -31,7 +31,7 @@ const PopUpBox = styled.div`
 
 const Component = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 99;
   position: absolute;

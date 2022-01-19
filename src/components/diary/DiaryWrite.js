@@ -136,7 +136,7 @@ const DiaryWrite = (props) => {
   };
 
   return (
-    <ModalPopUp close={props.close}>
+    <ModalPopUp close={props.close} height="100%">
       <Container>
         {!dayData ? (
           <>
@@ -307,7 +307,7 @@ const ButtonBox = styled.div`
   & Button:last-child {
     margin-right: 0;
   }
-  >>>>>>>62fe15b848907859712a3f039833ca682c31efc3 & Button {
+  & Button {
     max-width: 141px;
   }
 `;
