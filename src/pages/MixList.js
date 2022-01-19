@@ -11,16 +11,16 @@ import MixBox from "../components/mypage/MixBox";
 import NoMixList from "../components/mixList/NoMixList";
 
 // --- images ---
-import mixList from "../static/images/mypage/mixList_W.svg";
-import path_B from "../static/images/mypage/arrow_B_W.svg";
-import path_T from "../static/images/mypage/arrow_T_W.svg";
+import { mixList, arrow_B_W, arrow_T_W } from "../static/images";
+// import mixList from "../static/images/mypage/mixList_W.svg";
+// import path_B from "../static/images/mypage/arrow_B_W.svg";
+// import path_T from "../static/images/mypage/arrow_T_W.svg";
 
 const MixList = (props) => {
   const dispatch = useDispatch();
-  const playListInfo = useSelector((store) => store.asmr.playList);
-
+  const playListInfo = useSelector((state) => state.asmr.playList);
   const [playList, setPlayList] = React.useState(
-    playListInfo ? playListInfo : null
+    playListInfo ? playListInfo : []
   );
   const [toggle, setToggle] = React.useState({});
 
@@ -29,10 +29,10 @@ const MixList = (props) => {
       return;
     }
     dispatch(asmrActions.getPlayListDB());
-  }, [dispatch, playList]);
+  }, []);
 
   React.useEffect(() => {
-    setPlayList(playListInfo ? playListInfo : null);
+    setPlayList(playListInfo ? playListInfo : []);
   }, [playListInfo]);
 
   const toggleComment = (idx) => {
@@ -46,14 +46,14 @@ const MixList = (props) => {
     <Container>
       <Title backIcon>나의 믹스</Title>
       <MixContent>
-        {playList !== null ? (
+        {playList.length > 0 ? (
           <>
             {playList.map((item, idx) => {
               return (
                 <div key={idx}>
                   <List
                     icon={mixList}
-                    src={toggle[item.playlistIdx] ? path_T : path_B}
+                    src={toggle[item.playlistIdx] ? arrow_T_W : arrow_B_W}
                     _onClick={() => toggleComment(item.playlistIdx)}
                   >
                     {item.mixTitle}

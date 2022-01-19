@@ -5,15 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore.js";
 
+import { IdCheck, PwdCheck } from "../shared/common";
+
 // --- compoentns ---
 import { Input } from "../elements";
 
 // --- images ---
-import reset from "../static/images/icon/reset.svg";
+import { reset } from "../static/images";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
   const errMessage = useSelector((store) => store.user.errMessage);
+  console.log(errMessage);
 
   //-- 아아디, 비밀번호, 비밀번호확인 , 이메일  --
   const [id, setId] = React.useState("");
@@ -39,7 +42,7 @@ const Signup = (props) => {
       setIdMessage("5글자 이상 10글자 미만으로 입력해주세요.");
       setIsId(false);
     } else {
-      setIdMessage("사용 가능한 아이디입니다.");
+      setIdMessage("안전한 아이디 입니다.");
       setIsId(true);
     }
   };
@@ -48,6 +51,7 @@ const Signup = (props) => {
   const onChangePassword = (e) => {
     const passwordRegex =
       /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+
     const passwordCurrent = e.target.value;
     setPwd(passwordCurrent);
 
@@ -79,15 +83,18 @@ const Signup = (props) => {
       window.alert("아이디, 패스워드를 정확하게  입력해주세요");
       return;
     }
-
     dispatch(userActions.signupDB(id, pwd));
 
-    //중복 아이디 일 경우
-    if (errMessage) {
-      setIdMessage("중복된 아이디 입니다");
-      setIsId(false);
-    }
+    // //중복 아이디 일 경우
+    // if (errMessage) {
+    //   setIdMessage("중복된 아이디 입니다");
+    //   setIsId(false);
+    // }
   };
+  React.useEffect(() => {
+    setIsId(false);
+    setIdMessage(errMessage);
+  }, [errMessage]);
 
   return (
     <Container>

@@ -69,7 +69,6 @@ const DiaryWrite = (props) => {
 
   //-- 다이어리 선택된 아이콘 sleep --
   const sleepClick = (e) => {
-    console.log(typeof e.target.dataset.value);
     setData({
       ...data,
       sleep: Number(e.target.dataset.value), //이미지 번호
@@ -302,18 +301,13 @@ const ButtonBox = styled.div`
   padding-top: ${({ theme }) => theme.paddings.xxxxl};
   display: flex;
   justify-content: space-between;
-<<<<<<< HEAD
-=======
-  
-  & Button{
+  <<<<<<< HEAD ======= & Button {
     margin-right: 9px;
   }
-  & Button:last-child{
+  & Button:last-child {
     margin-right: 0;
   }
->>>>>>> 62fe15b848907859712a3f039833ca682c31efc3
-
-  & Button {
+  >>>>>>>62fe15b848907859712a3f039833ca682c31efc3 & Button {
     max-width: 141px;
   }
 `;
