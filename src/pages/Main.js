@@ -15,10 +15,6 @@ import {
   main_object,
   main_space,
 } from "../static/images";
-// import all from "../static/images/banner/all_1005px.png";
-// import nature from "../static/images/banner/nature_1005px.png";
-// import object from "../static/images/banner/object_1005px.png";
-// import space from "../static/images/banner/space_1005px.png";
 
 // firebas
 import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
@@ -46,26 +42,18 @@ const Main = (props) => {
       })
         .then((currentToken) => {
           if (currentToken) {
-            console.log("알림 O");
-            console.log(currentToken);
             permission = true;
-            console.log(noticeSet, token, ios, permission);
             if (!noticeSet && token && !ios && permission) {
               setNoticationModal(true);
             }
 
             history.pushtoken = currentToken;
-          } else {
-            console.log(
-              "No registration token available. Request permission to generate one."
-            );
           }
         })
         .catch((err) => {
           console.log("An error occurred while retrieving token. ", err);
         });
     } else if (result === "denied") {
-      console.log("권한 차단");
       alert("푸쉬알림을 위해 알림권한을 허용하셔야합니다.");
     }
   });

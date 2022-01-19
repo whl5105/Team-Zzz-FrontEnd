@@ -6,9 +6,6 @@ import { actionCreators as noticeActions } from "../redux/modules/notice";
 
 // --- images ---
 import { user, notice, mixList } from "../static/images";
-// import user from "../static/images/mypage/user_white.svg";
-// import notice from "../static/images/mypage/notes_white.svg";
-// import mixList from "../static/images/mypage/mixList_W.svg";
 
 // --- components ---
 import Title from "../components/Title";
