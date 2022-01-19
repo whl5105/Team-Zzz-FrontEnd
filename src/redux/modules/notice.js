@@ -1,7 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
-
+import { history } from "../configureStore";
 // -- actions --
 const SET_NOTICE = "SET_NOTICE";
 
@@ -31,9 +31,11 @@ const initialState = {
 //   };
 // };
 const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
+  const pushToken = history.pushtoken
+  console.log(pushToken);
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await apis.postNotice(notice, day, hour, minutes);
+      const response = await apis.postNotice(notice, day, hour, minutes, pushToken);
 
       if (token) {
         // console.log(token);
@@ -49,11 +51,12 @@ const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
 };
 
 const updateNoticeDB = (notice, day = "AM", hour = 1, minutes = 0) => {
+  const pushToken = history.pushtoken
   return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
     const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
     apis
-      .putNotice(notice, day, hour, minutes, userIdx)
+      .putNotice(notice, day, hour, minutes, userIdx, pushToken)
       .then((response) => console.log(response));
     dispatch(setNotice(info));
     history.push("/mypage");
