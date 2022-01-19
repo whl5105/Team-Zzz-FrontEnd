@@ -9,6 +9,7 @@ function detectMobileDevice(agent) {
   ];
   return mobileRegex.some((mobile) => agent.match(mobile));
 }
+
 function detectIphoneDevice(agent) {
   const mobileRegex = [/iPhone/i, /iPad/i, /iPod/i];
   return mobileRegex.some((mobile) => agent.match(mobile));

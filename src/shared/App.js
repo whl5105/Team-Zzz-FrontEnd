@@ -5,6 +5,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
+import ReactGA from "react-ga";
 
 // page
 import NotFound from "../pages/NotFound";
@@ -26,12 +27,12 @@ import Header from "../components/Header";
 import NoticePage from "../pages/NoticePage";
 import PlayBar from "../components/PlayBar";
 import Test from "../pages/Test";
-import ReactGA from "react-ga";
 
 ReactGA.event({
   category: "User",
   action: "Created an Account",
 });
+
 ReactGA.exception({
   description: "An error ocurred",
   fatal: true,
@@ -46,6 +47,7 @@ function App() {
     });
     // ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
+  
   return (
     <WrapBox id="app">
       <GlobalStyle />
