@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import {
-  feel1 as Feel1,
-  feel2 as Feel2,
-  feel3 as Feel3,
-  feel4 as Feel4,
-  feel5 as Feel5,
-} from "../static/images";
+// import {  feel1,feel2,feel3,feel4,feel5, } from "../static/images";
+import { ReactComponent as Feel1 } from "../static/images/character/feel1.svg";
+import { ReactComponent as Feel2 } from "../static/images/character/feel2.svg";
+import { ReactComponent as Feel3 } from "../static/images/character/feel3.svg";
+import { ReactComponent as Feel4 } from "../static/images/character/feel4.svg";
+import { ReactComponent as Feel5 } from "../static/images/character/feel5.svg";
 
 const Charater = (props) => {
   const {
@@ -47,7 +46,7 @@ const Charater = (props) => {
               <ImgIcon
                 {...styles}
                 style={{ zIndex: "3" }}
-                src={require(`../static/images/feel${props.feelNumber}`)}
+                src={require(`../static/images/character/feel${props.feelNumber}.svg`)}
               />
             )}
             {props.feelNumber === 1 && (
@@ -116,7 +115,7 @@ const Charater = (props) => {
               onClick={_onClick}
               style={{ zIndex: "3" }}
               data-value={props.feelNumber}
-              src={require(`../static/images/feel${props.feelNumber}`)}
+              src={require(`../static/images/character/feel${props.feelNumber}.svg`)}
             />
           )}
           {props.feelNumber === 1 && (
@@ -170,7 +169,7 @@ const Charater = (props) => {
 //-- defaultProps --
 Charater.defaultProps = {
   shape: "circle",
-  src: "../static/images/feel0",
+  src: "../static/images/character/feel0.svg",
   size: 24,
   _onClick: () => {},
   children: null,

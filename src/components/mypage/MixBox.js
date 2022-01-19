@@ -1,11 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+// --- components ---
 import { Button, Icon } from "../../elements";
-
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as asmrActions } from "../../redux/modules/asmr";
-
 import MixDeletePopup from "./MixDeletePopup";
 import PlayList from "../asmr/PlayList";
 

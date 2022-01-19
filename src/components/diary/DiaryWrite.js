@@ -10,7 +10,7 @@ import SleepBox from "../diary/SleepBox";
 import { Input, Button, Charater } from "../../elements/index";
 
 // --- images ---
-import reset from "../../static/images/icon/reset.svg";
+import { reset } from "../../static/images/index";
 
 const DiaryWrite = (props) => {
   const dispatch = useDispatch();

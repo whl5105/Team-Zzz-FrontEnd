@@ -2,16 +2,17 @@ import React from "react";
 import styled from "styled-components";
 
 const ModalPopUp = (props) => {
-  const { children, close, backgroundNull, zIndex, marginNull } = props;
+  const { children, close, backgroundNull, zIndex, marginNull, width } = props;
   const styles = {
     backgroundNull: backgroundNull,
     zIndex: zIndex,
     marginNull: marginNull,
+    width: width,
   };
 
   return (
-    <PopUpBox onClick={close}>
-      <Component />
+    <PopUpBox>
+      <Component onClick={close} />
       <Children {...styles}>{children}</Children>
     </PopUpBox>
   );
@@ -40,16 +41,15 @@ const Component = styled.div`
 `;
 
 const Children = styled.div`
-  /* width: ${(props) => props.width} */
-
   width: ${(props) => (props.width ? props.width : "calc(100% - 40px)")};
   background-color: ${(props) => (props.backgroundNull ? null : "#FFFFFF")};
   border-radius: 12px;
   z-index: ${(props) => (props.zIndex ? props.zIndex : "999")};
   position: absolute;
   top: 50%;
+  bottom: ${(props) => (props.backgroundNull ? "-100px" : "")};
   transform: translateY(-50%);
-  margin: ${(props) => (props.marginNull ? "0px 0px" : "0px 20px")};
+  margin: ${(props) => (props.marginNull ? "" : "0px 20px")};
 `;
 
 export default ModalPopUp;

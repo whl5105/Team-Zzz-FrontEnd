@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Icon } from "../../elements";
 
 // --- images ---
-import path from "../../static/images/mypage/arrow_R_W.svg";
+import { arrow_R_W } from "../../static/images/index";
 
 const List = (props) => {
   const { _onClick, children, icon, src } = props;
@@ -16,7 +16,7 @@ const List = (props) => {
         <Icon src={icon} marginR="10px" />
         {children}
       </ListTitle>
-      <Icon src={src ? src : path} />
+      <Icon src={src ? src : arrow_R_W} />
     </ListBox>
   );
 };

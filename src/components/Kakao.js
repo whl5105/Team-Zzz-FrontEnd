@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 import KakaoLogin from "react-kakao-login";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
-import kakao from "../static/images/login/kakao.png";
+// --- images ---
+import { kakao } from "../static/images/index";
 
 const Kakao = (props) => {
   const dispatch = useDispatch();

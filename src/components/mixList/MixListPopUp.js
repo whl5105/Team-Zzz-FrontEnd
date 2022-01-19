@@ -10,7 +10,7 @@ import NoMixList from "./NoMixList";
 import { Icon } from "../../elements/index";
 
 // --- images ----
-import MixSetting from "../../static/images/mixList/setting.png";
+import { mix_setting } from "../../static/images/index";
 
 const MixListPopUp = (props) => {
   const playListInfo = useSelector((state) => state.asmr.playList);
@@ -29,12 +29,18 @@ const MixListPopUp = (props) => {
   };
 
   return (
-    <ModalPopUp close={props.close} backgroundNull zIndex="120" marginNull>
+    <ModalPopUp
+      close={props.close}
+      backgroundNull
+      zIndex="120"
+      width="100%"
+      marginNull
+    >
       <Container>
         <Bar />
         <Title justifySB>
           <p>나의 믹스</p>
-          <Icon src={MixSetting} alt="환경설정" _onClick={myPageMixList} />
+          <Icon src={mix_setting} alt="환경설정" _onClick={myPageMixList} />
         </Title>
         <MixList>
           {playList.length > 0 ? (
@@ -59,9 +65,7 @@ const MixListPopUp = (props) => {
 
 // --- styled-components ---
 const Container = styled.div`
-  position: absolute;
-  width: 100%;
-  bottom: -44vh;
+  width: inherit;
   height: 75vh;
   padding: ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;

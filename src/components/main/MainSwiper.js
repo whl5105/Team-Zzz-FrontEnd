@@ -10,9 +10,11 @@ import "swiper/css/pagination";
 import RequireLogin from "../RequireLogin";
 
 // --- images ---
-import banner1 from "../../static/images/banner/Main_BN_335px_1.png";
-import banner2 from "../../static/images/banner/Main_BN_335px_2.png";
-import banner3 from "../../static/images/banner/Main_BN_335px_3.png";
+import {
+  main_diary,
+  main_sleepTime,
+  main_feedback,
+} from "../../static/images/index";
 
 SwiperCore.use([Pagination, Autoplay]);
 
@@ -58,14 +60,14 @@ const MainSwiper = withRouter((props) => {
           autoplay={{ delay: 3000 }}
         >
           <SwiperSlide onClick={diaryClick}>
-            <BannerImg bannerImage={banner1} />
+            <BannerImg bannerImage={main_diary} />
           </SwiperSlide>
           <SwiperSlide
             onClick={() => {
               history.push("/clock");
             }}
           >
-            <BannerImg bannerImage={banner2} />
+            <BannerImg bannerImage={main_sleepTime} />
           </SwiperSlide>
           <SwiperSlide
             onClick={() => {
@@ -75,7 +77,7 @@ const MainSwiper = withRouter((props) => {
               );
             }}
           >
-            <BannerImg bannerImage={banner3} />
+            <BannerImg bannerImage={main_feedback} />
           </SwiperSlide>
         </Swiper>
       </div>

@@ -4,10 +4,16 @@ import { useHistory, withRouter } from "react-router-dom";
 import RequireLogin from "../components/RequireLogin";
 
 // 아이콘 이미지 import
-import { ReactComponent as Main } from "../static/images/navigation/homeIcon.svg";
-import { ReactComponent as Asmr } from "../static/images/navigation/asmrIcon.svg";
-import { ReactComponent as Diary } from "../static/images/navigation/diaryIcon.svg";
-import { ReactComponent as MyPage } from "../static/images/navigation/myPageIcon.svg";
+// import {
+//   home as Main,
+//   asmr as Asmr,
+//   diary as Diary,
+//   myPage as MyPage,
+// } from "../static/images/index";
+import { ReactComponent as Main } from "../static/images/icons/navigation/home.svg";
+import { ReactComponent as Asmr } from "../static/images/icons/navigation/asmr.svg";
+import { ReactComponent as Diary } from "../static/images/icons/navigation/diary.svg";
+import { ReactComponent as MyPage } from "../static/images/icons/navigation/myPage.svg";
 
 const Navigation = withRouter((props) => {
   const pathName = props.location.pathname;
@@ -90,7 +96,6 @@ const Navigation = withRouter((props) => {
         <Box
           select={select !== "mypage" && "null"}
           onClick={() => {
-            // setSelect("mypage");
             history.push("/mypage");
           }}
         >
