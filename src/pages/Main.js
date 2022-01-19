@@ -33,26 +33,31 @@ firebase.initializeApp(config);
 
 const messaging = getMessaging();
 
-const Main = () => {
-  getToken(messaging, {
-    vapidKey:
-      "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
-  })
-    .then((currentToken) => {
-      console.log(currentToken);
-      if (currentToken) {
-        permission = true;
-        if (!noticeSet && token && !ios && permission) {
-          setNoticationModal(true);
-        }
 
-        history.pushtoken = currentToken;
-      }
-    })
-    .catch((err) => {
-      console.log("An error occurred while retrieving token. ", err);
-      alert("푸쉬알림을 위해 알림권한을 허용하셔야합니다.");
-    });
+const Main = (props) => {
+
+      getToken(messaging, {
+        vapidKey:
+          "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
+      })
+        .then((currentToken) => {
+          console.log(currentToken);
+          if (currentToken) {
+            
+            permission = true;
+            if (!noticeSet && token && !ios && permission) {
+              setNoticationModal(true);
+            }
+
+            history.pushtoken = currentToken;
+          }
+        })
+        .catch((err) => {
+          if(!ios){
+          console.log("An error occurred while retrieving token. ", err);
+          alert("푸쉬알림을 위해 알림권한을 허용하셔야합니다.");
+        }
+        });
 
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
