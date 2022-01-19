@@ -7,7 +7,7 @@ import { Button, Icon, DropDown } from "../elements/index";
 
 // --- images ---
 import {
-  arrow_L_W,
+  arrow_R_W,
   sleepTime_B,
   sleepTime_T_C,
   sleepTime_T_L,
@@ -215,7 +215,7 @@ const Clock = (props) => {
     <>
       <Background>
         <Icon
-          src={arrow_L_W}
+          src={arrow_R_W}
           top="104px"
           left="20px"
           rotate="-180deg"

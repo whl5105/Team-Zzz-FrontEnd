@@ -17,6 +17,7 @@ const Device = ({ children }) => {
     </WebBackgroundWrapper>
   );
 };
+
 const Mobile = styled.div`
   display: flex;
   position: relative;
