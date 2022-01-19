@@ -8,6 +8,23 @@ import axios from "axios";
 // --- components ---
 import { DropDown, Toggle, Button } from "../../elements/index";
 
+// firebas
+// import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
+// import { getMessaging, getToken } from "firebase/messaging";
+
+// const config = {
+//   apiKey: "AIzaSyD7vx1YcQDmd7Gom-mOGzB_j_oYD4qjR9M",
+//   authDomain: "pushnotificationtest-9e21c.firebaseapp.com",
+//   projectId: "pushnotificationtest-9e21c",
+//   storageBucket: "pushnotificationtest-9e21c.appspot.com",
+//   messagingSenderId: "1019872102596",
+//   appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
+//   measurementId: "G-TFEDXNHVGY",
+// };
+// firebase.initializeApp(config);
+
+// const messaging = getMessaging();
+
 const Notifications = (props) => {
   const userToken = localStorage.getItem("token");
 
@@ -47,8 +64,12 @@ const Notifications = (props) => {
   const send = () => {
     if (props.state === "set") {
       if (!props.notice) {
+        // 알림 안받는 경우 → 미들웨어에 기본값을 설정 해줘야 합니다.
+
+        console.log("알림 X");
         dispatch(noticeActions.setNoticeDB(props.notice));
       } else {
+        // 알림 받는 경우
         dispatch(
           noticeActions.setNoticeDB(
             props.notice,
@@ -57,6 +78,29 @@ const Notifications = (props) => {
             props.minutes
           )
         );
+        // axios
+        //   .post(
+        //     "https://fcm.googleapis.com/fcm/send",
+        //     {
+        //       notification: {
+        //         body: "새로운글",
+        //         title: "ㅇㅇdddddd",
+        //       },
+        //       to: history.pushtoken,
+        //       // to: "ca6raRoo9-R4EJbNsHVWu9:APA91bGHhA4MgGyufmsOT5f8g8v2E9xshYaEH657lMg9f8gFQlWrMqI9DDkq-IPL1fWiDBnuQ409tAG8nf9jDtXsRmjxrKwocJQ_U7obsuub9mmDNsUWQBXCbHNtUKxGoqfYTw0dJujw",
+        //     },
+        //     {
+        //       headers: {
+        //         "Content-type": "application/json",
+        //         Authorization:
+        //           "key=AAAA7XUdSMQ:APA91bHiG3ONselw3DtnFO6-7Z2hPZq_qh9zQihBUnkrpebWvTNvSv1J8d5jQI4RgH3b7wXXlwQoQSTytd_lvwnFBeVkyV3-ShUa0HL_mpmcuBckF5bLlxhDertxC8YsONjZVntYrCk2",
+        //       },
+        //     }
+        //   )
+        //   .then((res) => {
+        //     console.log(res.data, res.config.data);
+        //   });
+        console.log(history.pushtoken);
         axios
           .get(`https://www.zzzback.shop/api/location/${history.pushtoken}`, {
             headers: { authorization: `Bearer ${userToken}` },
@@ -70,8 +114,10 @@ const Notifications = (props) => {
       props.setNoticationModal(false);
     } else {
       if (!props.notice) {
+        // 알림 안받는 경우 → 미들웨어에 기본값을 설정 해줘야 합니다.
         dispatch(noticeActions.updateNoticeDB(props.notice));
       } else {
+        // 알림 받는 경우
         dispatch(
           noticeActions.updateNoticeDB(
             props.notice,
