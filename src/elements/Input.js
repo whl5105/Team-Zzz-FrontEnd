@@ -100,6 +100,8 @@ const InputGrop = styled.div`
 
   & img {
     width: 20px;
+    height: 20px;
+    margin: auto;
     padding-right: 20px;
   }
 `;
