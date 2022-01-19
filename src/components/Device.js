@@ -2,13 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 import { isMobile } from "./DeviceDetector";
+import Div100vh from "react-div-100vh";
 
 // --- images ---
 import { web_phone, web_back, web_logo } from "../static/images/index";
 
 const Device = ({ children }) => {
   return isMobile ? (
-    <Mobile>{children}</Mobile>
+    <Div100vh>
+      <Mobile>{children}</Mobile>
+    </Div100vh>
   ) : (
     <WebBackgroundWrapper>
       <ClayPhone>
@@ -25,7 +28,7 @@ const Mobile = styled.div`
   width: 100%;
   max-width: 640px;
   min-width: 280px;
-  height: 100vh;
+  /* height: 100vh; */
   overflow: hidden;
   background-color: ${({ theme }) => theme.colors.bg};
 `;

@@ -29,7 +29,7 @@ instance.interceptors.response.use(
     return res;
   },
   (error) => {
-    console.log(error);
+    // console.log(error);
     console.log(error.response.data.errorMessage);
     console.log(error.response.data);
     console.log(error.response.status);

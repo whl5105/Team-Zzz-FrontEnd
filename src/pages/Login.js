@@ -16,8 +16,7 @@ import { Input } from "../elements";
 import { IdCheck, PwdCheck } from "../shared/common";
 
 // --- images ---
-import { reset, kakao } from "../static/images";
-
+import { reset } from "../static/images";
 const Login = () => {
   const dispatch = useDispatch();
   const errMessage = useSelector((store) => store.user.errMessage); //에러 메세지
@@ -74,12 +73,6 @@ const Login = () => {
     setIsState(false);
     setMessage(errMessage);
   }, [errMessage]);
-
-  // 서버에서 받아온 요청이 다를 경우
-  // if (errMessage) {
-  //   // setMessage("아이디 또는 비밀번호를 다시 확인해주세요.");
-  //   // setIsState(false);
-  // }
 
   return (
     <Container>
@@ -216,14 +209,14 @@ const Social = styled.div`
   }
 `;
 
-const Icon = styled.div`
-  width: 44px;
-  height: 44px;
-  background-image: url(${kakao});
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 0 auto 10px auto;
-  cursor: pointer;
-`;
+// const Icon = styled.div`
+//   width: 44px;
+//   height: 44px;
+//   background-image: url(${kakao});
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   margin: 0 auto 10px auto;
+//   cursor: pointer;
+// `;
 
 export default Login;

@@ -33,6 +33,7 @@ firebase.initializeApp(config);
 
 const messaging = getMessaging();
 
+
 const Main = (props) => {
 
       getToken(messaging, {
@@ -57,7 +58,6 @@ const Main = (props) => {
           alert("푸쉬알림을 위해 알림권한을 허용하셔야합니다.");
         }
         });
-    
 
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
@@ -65,6 +65,7 @@ const Main = (props) => {
   const [ios, setIos] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
   const [noticationModal, setNoticationModal] = React.useState(true);
   const location = useLocation();
+  // eslint-disable-next-line no-unused-vars
   let [permission, setPermission] = React.useState(false);
   const token = localStorage.getItem("token");
   const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));

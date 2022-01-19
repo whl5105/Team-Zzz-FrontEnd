@@ -77,7 +77,7 @@ const Clock = (props) => {
     if (date === "오후") {
       let setTime = new Date(2021, 11, 27, hours + 12, minute);
       // setTime.setMinutes(0);
-      console.log(setTime);
+      // console.log(setTime);
       let res4 = new Date(setTime.getTime() - 270 * 60000);
       let res3 = new Date(res4.getTime() - 90 * 60000);
       let res2 = new Date(res3.getTime() - 90 * 60000);
