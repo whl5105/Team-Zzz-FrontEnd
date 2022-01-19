@@ -60,7 +60,7 @@ const getDiaryDB = (year, month) => {
 // -- 추가 --
 const addDiaryDB = (year, month, diaryListInfo) => {
   return async function (dispatch, getState, { history }) {
-    console.log(year, month, diaryListInfo);
+    // console.log(year, month, diaryListInfo);
     let yearMonth = "";
     if (month < 10) {
       yearMonth = `${year}0${month}`;
@@ -88,12 +88,12 @@ const addDiaryDB = (year, month, diaryListInfo) => {
 const editDiaryDB = (diaryListInfo) => {
   return function (dispatch, getState, { history }) {
     try {
-      console.log(
-        diaryListInfo.diaryIdx,
-        diaryListInfo.feelScore,
-        diaryListInfo.sleepScore,
-        diaryListInfo.comment
-      );
+      // console.log(
+      //   diaryListInfo.diaryIdx,
+      //   diaryListInfo.feelScore,
+      //   diaryListInfo.sleepScore,
+      //   diaryListInfo.comment
+      // );
       const res = apis.editDiaryDB(
         diaryListInfo.diaryIdx,
         diaryListInfo.feelScore,
@@ -111,7 +111,7 @@ const editDiaryDB = (diaryListInfo) => {
 // -- 삭제 --
 const deleteDiaryDB = (diaryIdx) => {
   return function (dispatch, getState, { history }) {
-    console.log(diaryIdx);
+    // console.log(diaryIdx);
     try {
       const res = apis.deleteDiary(diaryIdx);
       console.log("deleteDiaryDB response : ", res);
@@ -142,7 +142,7 @@ export default handleActions(
       }),
     [DELETE_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        console.log(typeof action.payload.day);
+        // console.log(typeof action.payload.day);
         const new_diaryList = draft.diaryList.filter((d, idx) => {
           return action.payload.diaryIdx !== d.diaryIdx;
         });

@@ -15,10 +15,6 @@ import {
   main_object,
   main_space,
 } from "../static/images";
-// import all from "../static/images/banner/all_1005px.png";
-// import nature from "../static/images/banner/nature_1005px.png";
-// import object from "../static/images/banner/object_1005px.png";
-// import space from "../static/images/banner/space_1005px.png";
 
 // firebas
 import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
@@ -37,38 +33,26 @@ firebase.initializeApp(config);
 
 const messaging = getMessaging();
 
-const Main = (props) => {
-  Notification.requestPermission().then(function (result) {
-    if (result === "granted") {
-      getToken(messaging, {
-        vapidKey:
-          "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
-      })
-        .then((currentToken) => {
-          if (currentToken) {
-            console.log("알림 O");
-            console.log(currentToken);
-            permission = true;
-            console.log(noticeSet, token, ios, permission);
-            if (!noticeSet && token && !ios && permission) {
-              setNoticationModal(true);
-            }
+const Main = () => {
+  getToken(messaging, {
+    vapidKey:
+      "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
+  })
+    .then((currentToken) => {
+      console.log(currentToken);
+      if (currentToken) {
+        permission = true;
+        if (!noticeSet && token && !ios && permission) {
+          setNoticationModal(true);
+        }
 
-            history.pushtoken = currentToken;
-          } else {
-            console.log(
-              "No registration token available. Request permission to generate one."
-            );
-          }
-        })
-        .catch((err) => {
-          console.log("An error occurred while retrieving token. ", err);
-        });
-    } else if (result === "denied") {
-      console.log("권한 차단");
+        history.pushtoken = currentToken;
+      }
+    })
+    .catch((err) => {
+      console.log("An error occurred while retrieving token. ", err);
       alert("푸쉬알림을 위해 알림권한을 허용하셔야합니다.");
-    }
-  });
+    });
 
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
@@ -76,6 +60,7 @@ const Main = (props) => {
   const [ios, setIos] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
   const [noticationModal, setNoticationModal] = React.useState(true);
   const location = useLocation();
+  // eslint-disable-next-line no-unused-vars
   let [permission, setPermission] = React.useState(false);
   const token = localStorage.getItem("token");
   const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));

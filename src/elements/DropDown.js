@@ -169,6 +169,9 @@ const DropdownContainer = styled.div`
   box-sizing: border-box;
   background-color: white;
   margin-right: 8px;
+  &:last-child {
+    margin-right: 0px;
+  }
 `;
 
 const DisabledDropDownContainer = styled.div`
@@ -202,11 +205,11 @@ const DropdownBody = styled.div`
   }
   & > img {
     position: absolute;
-    top: 10px;
+    top: 15px;
     right: 0px;
-    width: 24px;
-    height: 24px;
-    padding: 0px 6px;
+    width: 20px;
+    height: 20px;
+    padding: 0px 4px;
   }
 `;
 

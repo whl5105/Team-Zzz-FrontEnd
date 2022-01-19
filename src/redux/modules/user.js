@@ -35,7 +35,7 @@ export const signupDB =
   async (dispatch, getState, { history }) => {
     try {
       const res = await apis.signup(userId, password);
-      console.log(res.retult);
+      // console.log(res.retult);
       dispatch(signup());
       history.push("/login");
     } catch (err) {
@@ -49,7 +49,7 @@ export const loginDB =
   async (dispatch, getState, { history }) => {
     try {
       const res = await apis.login(userId, password);
-      console.log(res);
+      // console.log(res);
       // let username = res.data[0].userId;
       //로컬 스토리지 저장
       localStorage.setItem("userIdx", res.userIdx);
@@ -80,7 +80,7 @@ export const socialLoginDB =
   async (dispatch, getState, { history }) => {
     try {
       const res = await apis.kakaoLogin(id);
-      console.log(res);
+      // console.log(res);
 
       //로컬 스토리지 저장
       localStorage.setItem("userIdx", res.userInfo.userIdx);
@@ -132,7 +132,7 @@ export default handleActions(
       produce(state, (draft) => {
         // draft.errMessage = "중복된 아이디 입니다 ";
         draft.errMessage = action.payload.err;
-        console.log(draft.errMessage);
+        // console.log(draft.errMessage);
       }),
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {

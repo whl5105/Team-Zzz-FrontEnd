@@ -16,7 +16,6 @@ import { reset } from "../static/images";
 const Signup = (props) => {
   const dispatch = useDispatch();
   const errMessage = useSelector((store) => store.user.errMessage);
-  console.log(errMessage);
 
   //-- 아아디, 비밀번호, 비밀번호확인 , 이메일  --
   const [id, setId] = React.useState("");

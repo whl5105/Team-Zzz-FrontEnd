@@ -36,9 +36,9 @@ const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
       const response = await apis.postNotice(notice, day, hour, minutes);
 
       if (token) {
-        console.log(token);
+        // console.log(token);
         const res = await apis.location(token);
-        console.log(res);
+        // console.log(res);
       }
       const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
       dispatch(setNotice(info));

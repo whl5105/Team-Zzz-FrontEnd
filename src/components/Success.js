@@ -9,7 +9,7 @@ const Success = (props) => {
 
   return (
     <SuccessBtn>
-      <img src={check} alt={alt} />
+      <img src={check} alt={alt} width="24px" height="24px" />
       <p>{text}</p>
     </SuccessBtn>
   );
@@ -36,6 +36,7 @@ const SuccessBtn = styled.button`
   opacity: 0;
   z-index: 200;
   animation: Success 2s ease-in-out alternate;
+
   @keyframes Success {
     40% {
       bottom: 93px;
