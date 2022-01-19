@@ -2,16 +2,22 @@ import React from "react";
 import styled from "styled-components";
 
 import { isMobile } from "./DeviceDetector";
-import Div100vh from "react-div-100vh";
+import { use100vh } from "react-div-100vh";
 
 // --- images ---
 import { web_phone, web_back, web_logo } from "../static/images/index";
+import Navigation from "./Navigation";
 
 const Device = ({ children }) => {
+  const height = use100vh();
   return isMobile ? (
-    <Div100vh>
-      <Mobile>{children}</Mobile>
-    </Div100vh>
+    <>
+      <>
+        <Mobile style={{ height: height }}>{children}</Mobile>
+      </>
+
+      {/* <Navigation /> */}
+    </>
   ) : (
     <WebBackgroundWrapper>
       <ClayPhone>
