@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import check from "../static/images/icon/check.png";
+import { check } from "../static/images/index";
 
 const Success = (props) => {
   const { text, alt } = props;

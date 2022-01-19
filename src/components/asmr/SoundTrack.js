@@ -5,9 +5,7 @@ import styled from "styled-components";
 import Guidance from "../asmr/Guidance";
 
 // --- images ---
-import closeIcon from "../../static/images/asmr/closeIcon.svg";
-import lineIcon from "../../static/images/asmr/lineIcon.svg";
-import circleIcon from "../../static/images/asmr/circleIcon.svg";
+import { volumeCircle,volumeLine, close } from "../../static/images/index";
 
 const SoundTrack = (props) => {
   const Mobile = () => {
@@ -124,17 +122,17 @@ const SoundTrack = (props) => {
           </IconImage>
         </Sound>
         <VolumeWrap>
-          <Volume categoryImage={lineIcon}>
+          <Volume categoryImage={volumeLine}>
             {props.guidanceTitle === props.title && (
               <Guidance left={props.volume} />
             )}
             <Circle id={props.id} value={props.volume * 1.58}>
-              <Span categoryImage={circleIcon} onTouchStart={Click} />
+              <Span categoryImage={volumeCircle} onTouchStart={Click} />
             </Circle>
           </Volume>
         </VolumeWrap>
         <Icon
-          categoryImage={closeIcon}
+          categoryImage={close}
           onClick={() => {
             props.deleteSong(props.song);
           }}

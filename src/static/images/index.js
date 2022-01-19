@@ -40,7 +40,7 @@ import kakao from "./social/kakao.png";
 import myMix from "./tooltip/myMix.png";
 import notSupported from "./tooltip/notSupported.png";
 
-//-- Icons --
+//-- icons --
 import asmr from "./icons/navigation/asmr.svg";
 import diary from "./icons/navigation/diary.svg";
 import home from "./icons/navigation/home.svg";

@@ -6,7 +6,7 @@ import { history } from "../../redux/configureStore";
 import { Icon } from "../../elements/index";
 
 // --- images ---
-import Vector from "../../static/images/mixList/vector.png";
+import { mix_play } from "../../static/images/index";
 
 const MixSoundTrack = (props) => {
   const { mixTitle, mixList } = props;
@@ -153,7 +153,7 @@ const MixSoundTrack = (props) => {
             position="relative"
             top="10px"
             left="10px"
-            src={Vector}
+            src={mix_play}
             alt="playIcon"
             _onClick={playSoundTrack}
           />

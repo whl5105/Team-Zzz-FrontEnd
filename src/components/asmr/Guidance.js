@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import IOS from "../../static/images/asmr/IOS.svg";
+import { notSupported } from "../../static/images/index";
 
 const Guidance = (props) => {
-  return <GuidanceBtn src={IOS} left={props.left}/>;
+  return <GuidanceBtn src={notSupported} left={props.left} />;
 };
 
 const GuidanceBtn = styled.div`

@@ -10,7 +10,7 @@ import NoMixList from "./NoMixList";
 import { Icon } from "../../elements/index";
 
 // --- images ----
-import MixSetting from "../../static/images/mixList/setting.png";
+import { mix_setting } from "../../static/images/index";
 
 const MixListPopUp = (props) => {
   const playListInfo = useSelector((state) => state.asmr.playList);
@@ -40,7 +40,7 @@ const MixListPopUp = (props) => {
         <Bar />
         <Title justifySB>
           <p>나의 믹스</p>
-          <Icon src={MixSetting} alt="환경설정" _onClick={myPageMixList} />
+          <Icon src={mix_setting} alt="환경설정" _onClick={myPageMixList} />
         </Title>
         <MixList>
           {playList.length > 0 ? (

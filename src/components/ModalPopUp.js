@@ -11,8 +11,8 @@ const ModalPopUp = (props) => {
   };
 
   return (
-    <PopUpBox onClick={close}>
-      <Component />
+    <PopUpBox>
+      <Component onClick={close} />
       <Children {...styles}>{children}</Children>
     </PopUpBox>
   );
