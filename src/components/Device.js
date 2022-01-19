@@ -1,18 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
+import { isMobile } from "./DeviceDetector";
+
 // --- images ---
 import { web_phone, web_back, web_logo } from "../static/images/index";
 
 const Device = ({ children }) => {
-  return (
-    // <WebBackgroundWrapper>
-    //   <ClayPhone>
-    //     <WebViewLayout>{children}</WebViewLayout>
-    //   </ClayPhone>
-    // </WebBackgroundWrapper>
-
+  return isMobile ? (
     <Mobile>{children}</Mobile>
+  ) : (
+    <WebBackgroundWrapper>
+      <ClayPhone>
+        <WebViewLayout>{children}</WebViewLayout>
+      </ClayPhone>
+    </WebBackgroundWrapper>
   );
 };
 const Mobile = styled.div`

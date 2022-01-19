@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory, withRouter } from "react-router-dom";
-
-// --- components ---
 import RequireLogin from "../components/RequireLogin";
 
-// --- images ---
+// 아이콘 이미지 import
+// import {
+//   home as Main,
+//   asmr as Asmr,
+//   diary as Diary,
+//   myPage as MyPage,
+// } from "../static/images/index";
 import { ReactComponent as Main } from "../static/images/icons/navigation/home.svg";
 import { ReactComponent as Asmr } from "../static/images/icons/navigation/asmr.svg";
 import { ReactComponent as Diary } from "../static/images/icons/navigation/diary.svg";
