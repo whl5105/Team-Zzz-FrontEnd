@@ -93,45 +93,46 @@ const Main = (props) => {
   }, []);
 
   return (
-    <Container>
-      <Swiper />
-      <Title>당신의 편안한 밤을 위해</Title>
-      <Category
-        path="/asmr"
-        category="네이쳐"
-        title="네이쳐"
-        bannerImage={main_nature}
-        subTitle="편안한 자연 속으로"
-      />
-      <Category
-        path="/asmr"
-        category="플레이스"
-        title="플레이스"
-        bannerImage={main_space}
-        subTitle="다른 공간으로 여행"
-      />
-      <Category
-        path="/asmr"
-        category="오브젝트"
-        title="오브젝트"
-        bannerImage={main_object}
-        subTitle="차분히 바라보는 물건들"
-      />
-      <Category
-        path="/asmr"
-        category="전체"
-        title="모든 소리"
-        bannerImage={main_all}
-        subTitle="모든 소리 들어보기"
-      />
-
+    <>
+      <Container>
+        <Swiper />
+        <Title>당신의 편안한 밤을 위해</Title>
+        <Category
+          path="/asmr"
+          category="네이쳐"
+          title="네이쳐"
+          bannerImage={main_nature}
+          subTitle="편안한 자연 속으로"
+        />
+        <Category
+          path="/asmr"
+          category="플레이스"
+          title="플레이스"
+          bannerImage={main_space}
+          subTitle="다른 공간으로 여행"
+        />
+        <Category
+          path="/asmr"
+          category="오브젝트"
+          title="오브젝트"
+          bannerImage={main_object}
+          subTitle="차분히 바라보는 물건들"
+        />
+        <Category
+          path="/asmr"
+          category="전체"
+          title="모든 소리"
+          bannerImage={main_all}
+          subTitle="모든 소리 들어보기"
+        />
+      </Container>
       {noticationModal && (
         <FirstNotification
           modal={noticationModal}
           setNoticationModal={setNoticationModal}
         />
       )}
-    </Container>
+    </>
   );
 };
 
