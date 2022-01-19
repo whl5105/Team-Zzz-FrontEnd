@@ -301,7 +301,7 @@ const ButtonBox = styled.div`
   padding-top: ${({ theme }) => theme.paddings.xxxxl};
   display: flex;
   justify-content: space-between;
-  <<<<<<< HEAD ======= & Button {
+  Button {
     margin-right: 9px;
   }
   & Button:last-child {
