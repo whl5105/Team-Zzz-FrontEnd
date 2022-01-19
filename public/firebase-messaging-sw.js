@@ -40,10 +40,13 @@ self.addEventListener("message", (event) => {
 self.addEventListener("push", function (event) {
   // push 이벤트나 service-worker.js 와 접점이 없는거 같다
   console.log("Push " + event.data.text());
+  console.log(event.data.json().notification)
 
-  const title = "My PWA!";
+  const title = event.data.json().notification.title;
   const options = {
-    body: event.data.text(),
+    body: event.data.json().notification.body,
+    icon: "favicon.ico"
+    // title: event.data.json().notification.title
   };
 
   event.waitUntil(self.registration.showNotification(title, options)); // showNotification을 통해 푸시 알림을 생성, Promise가 반환되며 waitUntil을 통해 이벤트를 연장 시켜야함
