@@ -22,7 +22,7 @@ import main_feedback from "./banner/main_feedback.png";
 import main_nature from "./banner/main_nature.png";
 import main_object from "./banner/main_object.png";
 import main_sleepTime from "./banner/main_sleepTime.png";
-import main_space from "./banner/main_space.png.png";
+import main_space from "./banner/main_space.png";
 import mypage_alarm from "./banner/mypage_alarm.png";
 
 //-- character--
@@ -61,7 +61,7 @@ import arrow_R_B from "./icons/arrow/arrow_R_B.svg";
 import arrow_R_W from "./icons/arrow/arrow_R_W.svg";
 import arrow_T_W from "./icons/arrow/arrow_T_W.svg";
 
-//etc
+// -- etc --
 import close from "./icons/close.svg";
 import feedback from "./icons/feedback.svg";
 import logo from "./icons/logo.svg";
@@ -71,8 +71,9 @@ import mixList from "./icons/mixList.svg";
 import notice from "./icons/notice.svg";
 import reset from "./icons/reset.png";
 import user from "./icons/user.svg";
-import volumeCircle from "./icons/VolumeCircle.svg";
-import volumeLine from "./icons/VolumeLine.svg";
+import volumeCircle from "./icons/volumeCircle.svg";
+import volumeLine from "./icons/volumeLine.svg";
+import fallBack from "./icons/fallBack.png";
 
 export {
   asmr_category_all,
@@ -132,4 +133,5 @@ export {
   user,
   volumeCircle,
   volumeLine,
+  fallBack,
 };

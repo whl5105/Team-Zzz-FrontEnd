@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+// ---
 const ModalPopUp = (props) => {
   const { children, close, backgroundNull, zIndex, marginNull, width } = props;
   const styles = {
@@ -11,8 +12,8 @@ const ModalPopUp = (props) => {
   };
 
   return (
-    <PopUpBox onClick={close}>
-      <Component />
+    <PopUpBox>
+      <Component onClick={close} />
       <Children {...styles}>{children}</Children>
     </PopUpBox>
   );

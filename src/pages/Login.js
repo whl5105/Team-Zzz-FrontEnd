@@ -6,16 +6,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 // --- components ---
-import { Input } from "../elements";
 import Success from "../components/Success";
+import Kakao from "../components/Kakao";
+
+// --- elements ---
+import { Input } from "../elements";
+
+//--- shared ---
+import { IdCheck, PwdCheck } from "../shared/common";
 
 // --- images ---
-import reset from "../static/images/icon/reset.svg";
-import kakao from "../static/images/login/kakao.png";
-import Kakao from "../components/Kakao.js";
+import { reset, kakao } from "../static/images";
+// import reset from "../static/images/icon/reset.svg";
+// import kakao from "../static/images/login/kakao.png";
 
 const Login = () => {
-  const first_signup = useSelector((store) => store.user.is_signup);
+  const dispatch = useDispatch();
+  const errMessage = useSelector((store) => store.user.errMessage); //에러 메세지
+  const first_signup = useSelector((store) => store.user.is_signup); // 회원가입 완료
+
+  const [inputs, setInputs] = useState({
+    id: "",
+    pwd: "",
+  });
+  const { id, pwd } = inputs;
 
   React.useEffect(() => {
     if (first_signup === true) {
@@ -28,21 +42,11 @@ const Login = () => {
     }
   }, []);
 
-  const dispatch = useDispatch();
-  const errMessage = useSelector((store) => store.user.errMessage);
-
-  const [inputs, setInputs] = useState({
-    id: "",
-    pwd: "",
-  });
-
-  const { id, pwd } = inputs;
-
-  // //-- 오류메시지 상태저장--
+  //-- 오류메시지 상태저장--
   const [Message, setMessage] = React.useState("");
 
   //-- 유효성 검사 --
-  const [isState, setIsState] = React.useState(false);
+  const [isState, setIsState] = React.useState(true);
 
   const onChange = (e) => {
     setInputs({
@@ -50,31 +54,35 @@ const Login = () => {
       [e.target.name]: e.target.value,
     });
   };
+  //-- input 초기화 --
   const onReset = (e) => {
     setInputs({
       ...inputs,
       [e.target.name]: "",
     });
   };
-
+  //-- 로그인 클릭시 --
   const loginClick = () => {
-    const idRegExp = /^[a-zA-z0-9]{5,10}$/;
-    const pwdRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,20}$/;
-
-    if (!idRegExp.test(id) || !pwdRegex.test(pwd)) {
-      setMessage("아이디 또는 비밀번호를 다시 확인해주세요.");
+    if (!IdCheck(id) || !PwdCheck(pwd)) {
+      setMessage("입력한 내용을 다시 확인해주세요");
       setIsState(false);
+      console.log(errMessage);
     } else {
       setIsState(true);
       dispatch(userActions.loginDB(id, pwd));
     }
   };
+  //
+  React.useEffect(() => {
+    setIsState(false);
+    setMessage(errMessage);
+  }, [errMessage]);
 
   // 서버에서 받아온 요청이 다를 경우
-  if (errMessage) {
-    setMessage("아이디 또는 비밀번호를 다시 확인해주세요.");
-    setIsState(false);
-  }
+  // if (errMessage) {
+  //   // setMessage("아이디 또는 비밀번호를 다시 확인해주세요.");
+  //   // setIsState(false);
+  // }
 
   return (
     <Container>
@@ -105,11 +113,12 @@ const Login = () => {
         />
       </InputBox>
 
-      {!isState ? (
-        <Span className={`${isState ? "success" : "error"}`}>{Message}</Span>
+      {!isState ? <Span>{Message}</Span> : <Span />}
+      {/* {!isState ? (
+        <Span className={`${!isState && "error"}`}>{Message}</Span>
       ) : (
         <Span />
-      )}
+      )} */}
 
       <Button type="submit" onClick={loginClick}>
         로그인
@@ -134,7 +143,7 @@ const Login = () => {
 
 // --- styled-components ---
 const Container = styled.div`
-  padding: 0 ${({ theme }) => theme.paddings.xxxxl};
+  padding: 50px ${({ theme }) => theme.paddings.xxxxl};
 `;
 
 const Title = styled.div`
@@ -157,12 +166,8 @@ const Span = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  &.success {
-    color: #4791ff;
-  }
-  &.error {
-    color: #ff473d;
-  }
+  color: #ff473d;
+  transition: opacity 2s ease 5s;
 `;
 
 const Button = styled.button`

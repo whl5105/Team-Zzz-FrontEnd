@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
 // --- images ---
-import backIcon from "../static/images/asmr/backIcon.svg";
+import { arrow_L_W } from "../static/images";
 
 // --- components ---
 import SoundTrack from "../components/asmr/SoundTrack";
@@ -140,7 +140,7 @@ const AsmrPopUp = (props) => {
   return (
     <>
       <Container>
-        <Icon src={backIcon} top="22px" position="relative" _onClick={close} />
+        <Icon src={arrow_L_W} top="22px" position="relative" _onClick={close} />
         {songList ? (
           <>
             {songList.length === 0 ? (

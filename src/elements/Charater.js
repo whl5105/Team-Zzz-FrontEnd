@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
+// import {  feel1,feel2,feel3,feel4,feel5, } from "../static/images";
 import { ReactComponent as Feel1 } from "../static/images/character/feel1.svg";
 import { ReactComponent as Feel2 } from "../static/images/character/feel2.svg";
 import { ReactComponent as Feel3 } from "../static/images/character/feel3.svg";

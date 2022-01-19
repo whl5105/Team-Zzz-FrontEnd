@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   timeout: 3000,
-  baseURL: "http://www.zzzback.shop",
+  baseURL: "https://www.zzzback.shop",
 });
 
 instance.interceptors.request.use(
@@ -24,10 +24,16 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     const res = response.data;
+    console.log(res);
+
     return res;
   },
   (error) => {
     console.log(error);
+    console.log(error.response.data.errorMessage);
+    console.log(error.response.data);
+    console.log(error.response.status);
+    console.log(error.response.headers);
     return Promise.reject(error);
   }
 );

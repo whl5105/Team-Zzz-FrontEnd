@@ -6,12 +6,14 @@ import { history } from "../redux/configureStore";
 import { Button, Icon, DropDown } from "../elements/index";
 
 // --- images ---
-import nextIcon from "../static/images/icon/path_white.png";
-import sleep_B from "../static/images/sleeptime/sleep_B.png";
-import sleep_T_L from "../static/images/sleeptime/sleep_T_L.png";
-import sleep_T_R from "../static/images/sleeptime/sleep_T_R.png";
-import sleep_T_C from "../static/images/sleeptime/sleep_T_C.png";
-import reset from "../static/images/sleeptime/sleep_reset.png";
+import {
+  arrow_L_W,
+  sleepTime_B,
+  sleepTime_T_C,
+  sleepTime_T_L,
+  sleepTime_T_R,
+  fallBack,
+} from "../static/images";
 
 const Clock = (props) => {
   const [ampm, setampm] = React.useState("");
@@ -213,7 +215,7 @@ const Clock = (props) => {
     <>
       <Background>
         <Icon
-          src={nextIcon}
+          src={arrow_L_W}
           top="104px"
           left="20px"
           rotate="-180deg"
@@ -299,7 +301,7 @@ const Clock = (props) => {
                 <Reset>
                   <Icon
                     _onClick={resultReset}
-                    src={reset}
+                    src={fallBack}
                     width="24px"
                     height="24px"
                     alt=""
@@ -324,8 +326,8 @@ const Background = styled.div`
   width: 100%;
   height: inherit;
 
-  background: url(${sleep_T_L}), url(${sleep_T_C}), url(${sleep_T_R}),
-    url(${sleep_B});
+  background: url(${sleepTime_T_L}), url(${sleepTime_T_C}),
+    url(${sleepTime_T_R}), url(${sleepTime_B});
   background-size: 420px, 310px, 420px, 282px;
   background-position: 0% 0%, 50% 3%, 100% 0%, 50% 108%;
   background-repeat: no-repeat;

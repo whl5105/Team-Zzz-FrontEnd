@@ -12,10 +12,16 @@ import AsmrList from "../components/asmr/AsmrList";
 import Success from "../components/Success";
 
 // -- images --
-import All from "../static/images/asmr/background/asmr_category_all.png";
-import Nature from "../static/images/asmr/background/asmr_category_nature.png";
-import Place from "../static/images/asmr/background/asmr_category_space.png";
-import Object from "../static/images/asmr/background/asmr_category_object.png";
+import {
+  asmr_category_all,
+  asmr_category_nature,
+  asmr_category_object,
+  asmr_category_space,
+} from "../static/images";
+// import All from "../static/images/asmr/background/asmr_category_all.png";
+// import Nature from "../static/images/asmr/background/asmr_category_nature.png";
+// import Place from "../static/images/asmr/background/asmr_category_space.png";
+// import Object from "../static/images/asmr/background/asmr_category_object.png";
 
 export const deleteSong = (url) => {
   const deleteItem = document.getElementById(url);
@@ -36,7 +42,7 @@ const Asmr = (props) => {
   const [getCategory, setCategory] = React.useState(
     location.category === undefined ? "전체" : location.category
   );
-  const [imageUrl, setImageUrl] = React.useState(All);
+  const [imageUrl, setImageUrl] = React.useState(asmr_category_all);
   const [soundTrack, setSoundTrack] = React.useState([]);
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const playListInfo = useSelector((state) => state.asmr.playList);
@@ -63,15 +69,15 @@ const Asmr = (props) => {
 
   React.useEffect(() => {
     if (getCategory === "전체") {
-      setImageUrl(All);
+      setImageUrl(asmr_category_all);
     } else if (getCategory === "네이쳐") {
-      setImageUrl(Nature);
+      setImageUrl(asmr_category_nature);
     } else if (getCategory === "플레이스") {
-      setImageUrl(Place);
+      setImageUrl(asmr_category_space);
     } else if (getCategory === "오브젝트") {
-      setImageUrl(Object);
+      setImageUrl(asmr_category_object);
     } else {
-      setImageUrl(All);
+      setImageUrl(asmr_category_all);
     }
   }, [getCategory]);
 

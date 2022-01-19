@@ -12,7 +12,7 @@ const SET_USER = "SET_USER";
 // -- action creators --
 const signup = createAction(SIGNUP);
 const firstSignup = createAction(FIRST_SIGNUP);
-const err_signup = createAction(ERR_SIGNUP);
+const err_signup = createAction(ERR_SIGNUP, (err) => ({ err }));
 const setUser = createAction(SET_USER, (user) => ({ user }));
 
 // -- initialState --
@@ -39,8 +39,7 @@ export const signupDB =
       dispatch(signup());
       history.push("/login");
     } catch (err) {
-      console.log(`오류 발생!${err}`);
-      dispatch(err_signup());
+      dispatch(err_signup(err.response.data.errorMessage));
     }
   };
 
@@ -67,8 +66,11 @@ export const loginDB =
       // window.alert(`${username}님 환영합니다`);
       history.replace("/");
     } catch (err) {
-      window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
-      console.log(`오류 발생!${err}`);
+      // window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
+      window.alert(err.response.data.errorMessage);
+      // console.log(err.response.data.errorMessage);
+      dispatch(err_signup(err.response.data.errorMessage));
+      // console.log(err.response.data.errorMessage);
     }
   };
 
@@ -100,6 +102,7 @@ export const socialLoginDB =
     }
   };
 
+//---- 로그아욱 DB ----
 const logoutDB = () => {
   return function (dispatch, getState, { history }) {
     localStorage.removeItem("userIdx");
@@ -127,7 +130,9 @@ export default handleActions(
       }),
     [ERR_SIGNUP]: (state, action) =>
       produce(state, (draft) => {
-        draft.errMessage = "중복된 아이디 입니다 ";
+        // draft.errMessage = "중복된 아이디 입니다 ";
+        draft.errMessage = action.payload.err;
+        console.log(draft.errMessage);
       }),
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
