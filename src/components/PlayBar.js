@@ -7,10 +7,12 @@ import { withRouter } from "react-router-dom";
 import { deleteSong } from "../pages/Asmr";
 
 // --- images ---
-import playIcon from "../static/images/play/play.svg";
-import volumeIcon from "../static/images/play/volume.svg";
-import closeIcon from "../static/images/play/close.svg";
-import pauseIcon from "../static/images/play/pause.svg";
+import {
+  playBar_close,
+  playBar_pause,
+  playBar_volume,
+  playBar_play,
+} from "../static/images/index";
 
 const PlayBar = withRouter((props) => {
   const [toggle, setToggle] = React.useState(false);
@@ -150,17 +152,17 @@ const PlayBar = withRouter((props) => {
           <Text>{toggle ? "pause..." : "편안하게 소리를 감상해보세요"}</Text>
           {toggle ? (
             <>
-              <Icon src={volumeIcon} onClick={asmrPopMove} />
-              <Icon src={playIcon} onClick={play} />
+              <Icon src={playBar_volume} onClick={asmrPopMove} />
+              <Icon src={playBar_play} onClick={play} />
             </>
           ) : (
             <>
-              <Icon src={volumeIcon} onClick={asmrPopMove} />
+              <Icon src={playBar_volume} onClick={asmrPopMove} />
               {/* 임시이미지 적용중 */}
-              <Icon src={pauseIcon} onClick={pause} />
+              <Icon src={playBar_pause} onClick={pause} />
             </>
           )}
-          <Icon className="lastIcon" src={closeIcon} onClick={reset} />
+          <Icon className="lastIcon" src={playBar_close} onClick={reset} />
         </Wrap>
       ) : null}
     </>

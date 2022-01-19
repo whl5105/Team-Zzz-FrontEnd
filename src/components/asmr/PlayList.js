@@ -10,7 +10,7 @@ import ModalPopUp from "../ModalPopUp";
 import { Input, Button } from "../../elements/index";
 
 // --- images ---
-import reset from "../../static/images/icon/reset.svg";
+import { reset } from "../../static/images/index";
 
 const PlayList = (props) => {
   const { data, is_edit, close } = props;

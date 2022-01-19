@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- images ---
+// --- components ---
 import Icon from "../../elements/Icon";
-import Left from "../../static/images/diary/left 화살표.svg";
-import Right from "../../static/images/diary/right 화살표.svg";
+
+// --- images ---
+import { arrow_R_W, arrow_L_W } from "../../static/images/index";
 
 const DiaryDate = (props) => {
   const { setMoment, getMoment, nextMonth, sleepAvg } = props;
@@ -19,7 +20,7 @@ const DiaryDate = (props) => {
             _onClick={() => {
               setMoment(getMoment.clone().subtract(1, "month"));
             }}
-            src={Left}
+            src={arrow_L_W}
           />
           <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
           {/* YYYY는 년도 MM 은 달입니다. */}
@@ -29,7 +30,7 @@ const DiaryDate = (props) => {
             _onClick={() => {
               setMoment(getMoment.clone().add(1, "month"));
             }}
-            src={Right}
+            src={arrow_R_W}
           />
         </Wrap>
         {!nextMonth && <SleepAvgText>{sleepAvg}</SleepAvgText>}

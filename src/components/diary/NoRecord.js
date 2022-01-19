@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import NoInfo from "../../static/images/diary/NoInfo.png";
+import {diary_NoRecord} from "../../static/images/index";
 
 const NoRecord = (props) => {
   return (
@@ -20,7 +20,7 @@ const Wrap = styled.div`
 const Image = styled.div`
   width: 100%;
   height: inherit;
-  background: url(${NoInfo});
+  background: url(${diary_NoRecord});
   background-size: 100%;
   background-position: 100%;
   background-repeat: no-repeat;

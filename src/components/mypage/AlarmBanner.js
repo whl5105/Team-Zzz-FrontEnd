@@ -6,8 +6,7 @@ import { useSelector } from "react-redux";
 import { Icon } from "../../elements";
 
 // --- images ---
-import alarmBanner from "../../static/images/mypage/alarmBanner.png";
-import path from "../../static/images/mypage/arrow_R_B.svg";
+import { arrow_R_B, mypage_alarm } from "../../static/images/index";
 
 const AlarmBanner = (props) => {
   const { _onClick } = props;
@@ -36,7 +35,7 @@ const AlarmBanner = (props) => {
                 : null}
             </span>
           </Time>
-          <Icon src={path} />
+          <Icon src={arrow_R_B} />
         </TimeList>
       </Alarm>
     </AlarmBox>
@@ -56,7 +55,7 @@ const AlarmBox = styled.div`
 `;
 
 const Alarm = styled.div`
-  background-image: url(${alarmBanner});
+  background-image: url(${mypage_alarm});
   background-repeat: no-repeat;
   background-size: 100%;
   padding: 20px 30px;

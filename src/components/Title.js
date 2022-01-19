@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 
@@ -8,7 +8,7 @@ import { history } from "../redux/configureStore";
 import { Icon } from "../elements";
 
 // --- images ---
-import back from "../static/images/mypage/arrow_L_W.svg";
+import { arrow_L_W } from "../static/images/index";
 
 const Title = (props) => {
   const { is_token, backIcon, justifySB } = props;
@@ -21,7 +21,7 @@ const Title = (props) => {
     <TilteBox {...styles}>
       {backIcon && (
         <Icon
-          src={back}
+          src={arrow_L_W}
           marginR="15px"
           _onClick={() => {
             history.goBack();

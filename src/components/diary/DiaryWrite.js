@@ -10,7 +10,7 @@ import SleepBox from "../diary/SleepBox";
 import { Input, Button, Charater } from "../../elements/index";
 
 // --- images ---
-import reset from "../../static/images/icon/reset.svg";
+import { reset } from "../../static/images/index";
 
 const DiaryWrite = (props) => {
   const dispatch = useDispatch();
@@ -302,18 +302,13 @@ const ButtonBox = styled.div`
   padding-top: ${({ theme }) => theme.paddings.xxxxl};
   display: flex;
   justify-content: space-between;
-<<<<<<< HEAD
-=======
-  
-  & Button{
+  <<<<<<< HEAD ======= & Button {
     margin-right: 9px;
   }
-  & Button:last-child{
+  & Button:last-child {
     margin-right: 0;
   }
->>>>>>> 62fe15b848907859712a3f039833ca682c31efc3
-
-  & Button {
+  >>>>>>>62fe15b848907859712a3f039833ca682c31efc3 & Button {
     max-width: 141px;
   }
 `;

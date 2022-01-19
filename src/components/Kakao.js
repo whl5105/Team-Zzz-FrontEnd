@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 import KakaoLogin from "react-kakao-login";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
-import kakao from "../static/images/login/kakao.png";
+// --- images ---
+import { kakao } from "../static/images/index";
 
 const Kakao = (props) => {
   const dispatch = useDispatch();
@@ -34,7 +35,6 @@ const Kakao = (props) => {
     console.log(res);
   };
   return (
-
     <KakaoLogin
       // rest api 키가 아닌 js 키를 사용해야 합니다.
       jskey={"c51fcbffb9ee44d3b90e755eff2bf5b6"}

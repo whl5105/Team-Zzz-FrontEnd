@@ -9,10 +9,7 @@ import MixListPopUp from "../components/mixList/MixListPopUp";
 import RequireLogin from "../components/RequireLogin";
 
 // --- images ---
-import Logo from "../static/images/header/logo.svg";
-import Writing from "../static/images/header/writing.png";
-import PlayList from "../static/images/header/playList.png";
-import Hover from "../static/images/header/hover.png";
+import { logo, feedback, mixList, myMix } from "../static/images/index";
 
 const Header = withRouter((props) => {
   const path = props.location.pathname;
@@ -53,7 +50,7 @@ const Header = withRouter((props) => {
     <div>
       <HeaderBox>
         <img
-          src={Logo}
+          src={logo}
           alt="logo"
           onClick={() => {
             history.push("/");
@@ -63,17 +60,17 @@ const Header = withRouter((props) => {
           <>
             {/* asmr  */}
             <HoverImage
-              src={PlayList}
+              src={mixList}
               alt="playList"
               position="absolute"
               right="23px"
               onClick={playListPopUp}
             />
-            <Image src={Hover} className="playListHover" alt="" />
+            <Image src={myMix} className="playListHover" alt="" />
           </>
         ) : (
           // 피드백
-          <Icon src={Writing} alt="writing" _onClick={PageLink} />
+          <Icon src={feedback} alt="writing" _onClick={PageLink} />
         )}
       </HeaderBox>
       {requireLoginModal ? (

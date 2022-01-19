@@ -2,16 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-import bg1 from "../../static/images/bg/main_bg1.png";
-import bg2 from "../../static/images/bg/main_bg2.png";
-import bg3 from "../../static/images/bg/main_bg3.png";
+import { web_back, web_logo, web_phone } from "../../static/images/index";
 
 const Background = () => {
   return (
     <Bg>
-      <Bg1 src={bg1} />
-      <Bg2 src={bg2} />
-      <Logo src={bg3} />
+      <Bg1 src={web_back} />
+      <Bg2 src={web_phone} />
+      <Logo src={web_logo} />
     </Bg>
   );
 };

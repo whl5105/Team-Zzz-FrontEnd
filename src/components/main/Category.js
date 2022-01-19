@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { Icon } from "../../elements/index";
 
 // --- images ---
-import next from "../../static/images/icon/path_white.png";
+import { arrow_R_W } from "../../static/images/index";
 
 const Category = (props) => {
   const history = useHistory();
@@ -27,7 +27,7 @@ const Category = (props) => {
         </div>
 
         <div>
-          <Icon src={next} alt="nextIcon" />
+          <Icon src={arrow_R_W} alt="nextIcon" />
         </div>
       </TextBox>
     </CategoryStyle>

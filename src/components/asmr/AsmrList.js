@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { history } from "../../redux/configureStore";
 
 // -- components --
-import Icon from "../../elements/Icon";
+import { Icon } from "../../elements/index";
 
 const AsmrList = (props) => {
   const {
@@ -80,7 +80,7 @@ const SoundSelect = styled.div`
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   overflow-y: scroll;
-  
+
   &::-webkit-scrollbar {
     display: none;
   }

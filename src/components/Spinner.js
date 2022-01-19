@@ -2,17 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 // --- images ---
-// import Spinner_Back from "../static/images/spinner/Loading_Back.png";
-import Spinner_R from "../static/images/spinner/Loading_R.png";
-import Spinner_B from "../static/images/spinner/Loading_B.png";
-import Spinner_T from "../static/images/spinner/Loading_T.png";
+import { Loading_B, Loading_C, Loading_T } from "../static/images/index";
 
 const Spinner = (props) => {
   return (
     <>
       <Outter height={props.height}>
         <Inner>
-          <img src={Spinner_R} alt="" />
+          <img src={Loading_C} alt="spinner" />
           <div>
             <label>Z</label>
             <label>z</label>
@@ -31,7 +28,7 @@ const Spinner = (props) => {
 const Outter = styled.div`
   width: 100%;
   height: inherit;
-  background-image: url(${Spinner_B}), url(${Spinner_T});
+  background-image: url(${Loading_B}), url(${Loading_T});
   background-size: 110vh, 35vh;
   background-position: 50% 140%, 50% 15%;
   background-repeat: no-repeat;
