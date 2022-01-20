@@ -48,7 +48,9 @@ const Device = ({ children }) => {
         <>
           {!isInstalled() && webView ? (
             <MobileInstallBtn>
-              <Button _onClick={handleClick}>앱으로 다운받기</Button>
+              <Button marginB="20" _onClick={handleClick}>
+                앱으로 다운받기
+              </Button>
               <Button
                 _onClick={() => {
                   setWebView(false);
@@ -90,9 +92,6 @@ const Content = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.bg};
-  & Button {
-    margin-bottom: 20px;
-  }
 `;
 const MobileInstallBtn = styled.div`
   padding: 20px;
