@@ -6,19 +6,16 @@ import Notifications from "../components/notication/Notification";
 import Title from "../components/Title";
 
 const MyPageNotification = (props) => {
-  // 기존 알림 데이터
   const notices = useSelector((state) => state.notice.time.sleepChk);
   const days = useSelector((state) => state.notice.time.timePA);
   const hours = useSelector((state) => state.notice.time.hour);
   const minute = useSelector((state) => state.notice.time.min);
 
-  // 설정된 알림 데이터
   const [notice, setNotice] = useState(notices);
   const [day, setDay] = useState(days);
   const [hour, setHour] = useState(hours);
   const [minutes, setMinutes] = useState(minute);
 
-  // DropDown 활성화 유무
   const [dayActive, setDayActive] = useState(false);
   const [hourActive, setHourActive] = useState(false);
   const [minutesActive, setMinutesActive] = useState(false);

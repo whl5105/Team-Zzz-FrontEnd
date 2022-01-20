@@ -136,9 +136,11 @@ const Box = styled.div`
   & > Div:nth-child(1) {
     color: ${(props) => (props.select !== "null" ? "#FBC037" : "#ffffff")};
   }
+
   cursor: pointer;
   display: flex;
   flex-direction: column;
+
   & svg {
     margin: 0 auto;
   }

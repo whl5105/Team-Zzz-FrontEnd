@@ -1,11 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-// --- components ---
 import { Charater } from "../../elements/index";
 
 const SleepBox = (props) => {
-  const { previewSleep } = props;
+  const { previewSleep, edit, _onClick } = props;
   const [arr, setArr] = useState([
     { text: "결핍", score: 1, color: "#6CA8FF" },
     { text: "부족", score: 3, color: "#90D3CC" },
@@ -17,8 +16,7 @@ const SleepBox = (props) => {
   return (
     <Container>
       <h3>수면 시간</h3>
-      {/* 편집 onClick on:off */}
-      {props.edit ? (
+      {edit ? (
         <Sleep>
           {arr.map((arr, idx) => {
             return (
@@ -29,7 +27,7 @@ const SleepBox = (props) => {
                   score={arr.score}
                   bgcolor={arr.color}
                   sleepNumber={idx + 1}
-                  _onClick={props._onClick}
+                  _onClick={_onClick}
                   is_click={previewSleep === idx + 1 ? true : false}
                   text={arr.text}
                 />
@@ -60,7 +58,6 @@ const SleepBox = (props) => {
   );
 };
 
-// --- styled-components ---
 const Container = styled.div`
   text-align: center;
   font-size: ${({ theme }) => theme.fontSizes.small};

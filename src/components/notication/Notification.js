@@ -5,12 +5,30 @@ import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../../redux/modules/notice";
 import axios from "axios";
 
-// --- components ---
 import { DropDown, Toggle, Button } from "../../elements/index";
 
 const Notifications = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const {
+    day,
+    dayActive,
+    hour,
+    hourActive,
+    minutes,
+    minutesActive,
+    notice,
+    setDay,
+    setDayActive,
+    setHour,
+    setHourActive,
+    setMinutes,
+    setMinutesActive,
+    setNotice,
+    state,
+    setNoticationModal,
+  } = props;
+  console.log(props);
 
   const dayItems = ["AM", "PM"];
   const hourItems = [
@@ -43,18 +61,11 @@ const Notifications = (props) => {
   ];
 
   const send = () => {
-    if (props.state === "set") {
-      if (!props.notice) {
-        dispatch(noticeActions.setNoticeDB(props.notice));
+    if (state === "set") {
+      if (!notice) {
+        dispatch(noticeActions.setNoticeDB(notice));
       } else {
-        dispatch(
-          noticeActions.setNoticeDB(
-            props.notice,
-            props.day,
-            props.hour,
-            props.minutes
-          )
-        );
+        dispatch(noticeActions.setNoticeDB(notice, day, hour, minutes));
         // axios
         //   .get(`https://www.zzzback.shop/api/location/${history.pushtoken}`, {
         //     headers: { authorization: `Bearer ${userToken}` },
@@ -65,19 +76,12 @@ const Notifications = (props) => {
       }
 
       localStorage.setItem("noticeSet", true);
-      props.setNoticationModal(false);
+      setNoticationModal(false);
     } else {
-      if (!props.notice) {
-        dispatch(noticeActions.updateNoticeDB(props.notice));
+      if (!notice) {
+        dispatch(noticeActions.updateNoticeDB(notice));
       } else {
-        dispatch(
-          noticeActions.updateNoticeDB(
-            props.notice,
-            props.day,
-            props.hour,
-            props.minutes
-          )
-        );
+        dispatch(noticeActions.updateNoticeDB(notice, day, hour, minutes));
       }
 
       localStorage.setItem("noticeSet", true);
@@ -87,45 +91,45 @@ const Notifications = (props) => {
 
   return (
     <>
-      <Title color={props.state === "update" ? "white" : null}>
+      <Title color={state === "update" ? "white" : null}>
         매일 알림 받고 기록하기
       </Title>
-      <ToggleSwitch color={props.state === "update" ? "white" : null}>
+      <ToggleSwitch color={state === "update" ? "white" : null}>
         <div style={{ margin: "auto 0px" }}>수면 기록 알림 받기</div>
-        <Toggle notice={props.notice} setNotice={props.setNotice} label=" " />
+        <Toggle notice={notice} setNotice={setNotice} label=" " />
       </ToggleSwitch>
-      {props.notice ? (
+      {notice ? (
         <>
           <Wrap>
             <DropDown
-              dayActive={props.dayActive}
-              setDayActive={props.setDayActive}
-              setHourActive={props.setHourActive}
-              setMinutesActive={props.setMinutesActive}
+              dayActive={dayActive}
+              setDayActive={setDayActive}
+              setHourActive={setHourActive}
+              setMinutesActive={setMinutesActive}
               condition={""}
-              title={props.day}
+              title={day}
               dayItems={dayItems}
-              state={props.setDay}
+              state={setDay}
             />
             <DropDown
-              hourActive={props.hourActive}
-              setDayActive={props.setDayActive}
-              setHourActive={props.setHourActive}
-              setMinutesActive={props.setMinutesActive}
+              hourActive={hourActive}
+              setDayActive={setDayActive}
+              setHourActive={setHourActive}
+              setMinutesActive={setMinutesActive}
               condition={"시"}
-              title={props.hour}
+              title={hour}
               hourItems={hourItems}
-              state={props.setHour}
+              state={setHour}
             />
             <DropDown
-              minutesActive={props.minutesActive}
-              setDayActive={props.setDayActive}
-              setHourActive={props.setHourActive}
-              setMinutesActive={props.setMinutesActive}
+              minutesActive={minutesActive}
+              setDayActive={setDayActive}
+              setHourActive={setHourActive}
+              setMinutesActive={setMinutesActive}
               condition={"분"}
-              title={props.minutes === 0 ? "00" : props.minutes}
+              title={minutes === 0 ? "00" : minutes}
               minutesItems={minutesItems}
-              state={props.setMinutes}
+              state={setMinutes}
             />
           </Wrap>
         </>

@@ -3,12 +3,10 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore.js";
 import { withRouter } from "react-router-dom";
 
-// --- components ---
 import { Icon } from "../elements/index";
 import MixListPopUp from "../components/mixList/MixListPopUp";
 import RequireLogin from "../components/RequireLogin";
 
-// --- images ---
 import { logo, feedback, mixList, myMix } from "../static/images/index";
 
 const Header = withRouter((props) => {
@@ -58,7 +56,6 @@ const Header = withRouter((props) => {
         />
         {path === "/asmr" || path === "/asmr/asmrVolumeControl" ? (
           <>
-            {/* asmr  */}
             <HoverImage
               src={mixList}
               alt="playList"
@@ -87,7 +84,6 @@ const Header = withRouter((props) => {
   );
 });
 
-// --- styled-components ---
 const HeaderBox = styled.div`
   width: 100%;
   height: 50px;
@@ -107,6 +103,7 @@ const Logo = styled.img`
   width: 67px;
   height: 26px;
 `;
+
 const HoverImage = styled.img`
   width: 24px;
   height: 24px;

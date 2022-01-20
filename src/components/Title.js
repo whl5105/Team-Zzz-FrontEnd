@@ -4,10 +4,8 @@ import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 
-// --- components ---
 import { Icon } from "../elements";
 
-// --- images ---
 import { arrow_L_W } from "../static/images/index";
 
 const Title = (props) => {
@@ -36,7 +34,6 @@ const Title = (props) => {
   );
 };
 
-//-- defaultProps --
 Title.defaultProps = {
   justifySB: false,
 };

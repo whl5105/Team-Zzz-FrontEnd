@@ -49,9 +49,9 @@ const Asmr = (props) => {
     }
   }, []);
 
-  useCallback(() => {
+  useEffect(() => {
     if (success === true) {
-      dispatch(asmrActions.writeInitial());
+      dispatch(asmrActions.set_write());
       const timeout = setTimeout(() => {
         setSuccess(false);
       }, 2000);
@@ -262,7 +262,6 @@ const Asmr = (props) => {
   );
 };
 
-// --- styled-components ---
 const PageWrap = styled.div`
   width: 100%;
   height: inherit;

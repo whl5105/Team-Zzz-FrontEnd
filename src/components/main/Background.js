@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- images ---
 import { web_back, web_logo, web_phone } from "../../static/images/index";
 
 const Background = () => {
@@ -14,7 +13,6 @@ const Background = () => {
   );
 };
 
-// --- styled-components ---
 const Bg = styled.div`
   width: 100vw;
   height: 100vh;

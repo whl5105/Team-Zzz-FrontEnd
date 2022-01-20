@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- images ---
 import { Loading_B, Loading_C, Loading_T } from "../static/images/index";
 
 const Spinner = (props) => {
+  const { height } = props;
+
   return (
     <>
-      <Outter height={props.height}>
+      <Outter height={height}>
         <Inner>
           <img src={Loading_C} alt="spinner" />
           <div>
@@ -24,7 +25,6 @@ const Spinner = (props) => {
   );
 };
 
-// --- styled-components ---
 const Outter = styled.div`
   width: 100%;
   height: inherit;

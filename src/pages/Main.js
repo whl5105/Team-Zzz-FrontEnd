@@ -16,6 +16,8 @@ import {
 
 import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
 import { getMessaging, getToken } from "firebase/messaging";
+// window.open("intent://www.naver.com#Intent;scheme=http;package=com.android.chrome;end");
+
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -32,6 +34,16 @@ const messaging = getMessaging();
 console.log(process.env);
 
 const Main = (props) => {
+
+if(/android/i.test(navigator.userAgent)){
+  window.open('intent://www.zzzapp.co.kr#Intent;scheme=http;package=com.android.chrome;end');
+// window.open("googlechrome:////www.zzzapp.co.kr");
+} else if(/iPhone|iPad/i.test(navigator.userAgent)){
+  // window.open("googlechrome:////www.zzzapp.co.kr");
+  alert("크롬또는 사파리에서 실행시켜주세요")
+  // window.location.href = 'kakaotalk://inappbrowser/close';
+}
+  
   getToken(messaging, {
     vapidKey: process.env.REACT_APP_VAPID_KEY,
   })
@@ -56,7 +68,7 @@ const Main = (props) => {
   }
   const [ios, setIos] = useState(Mobile()); // IOS이면 true, 나머지는 false
   const [noticationModal, setNoticationModal] = useState(false);
-  const location = useLocation();
+  const location1 = useLocation();
   // eslint-disable-next-line no-unused-vars
   let [permission, setPermission] = useState(false);
   const token = localStorage.getItem("token");
@@ -69,8 +81,8 @@ const Main = (props) => {
     //   setNoticationModal(true);
     // }
 
-    if (location.route) {
-      history.push(location.route);
+    if (location1.route) {
+      history.push(location1.route);
     }
   }, []);
 

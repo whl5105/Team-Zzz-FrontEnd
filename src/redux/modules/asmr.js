@@ -40,16 +40,6 @@ const initialState = {
 };
 
 // -- middleware actions --
-//-- writeInitial --
-const writeInitial = () => {
-  return async function (dispatch, getState, { history }) {
-    try {
-      await dispatch(set_write());
-    } catch (error) {
-      console.log("writeInitial Error : ", error);
-    }
-  };
-};
 //-- 음원 요청 DB --
 const getAsmrDB = () => {
   return async function (dispatch, getState, { history }) {
@@ -156,7 +146,7 @@ const actionCreators = {
   getAsmrDB,
   setPlayListDB,
   getPlayListDB,
-  writeInitial,
+  set_write,
   DeletePlayListDB,
   editPlayListDB,
 };

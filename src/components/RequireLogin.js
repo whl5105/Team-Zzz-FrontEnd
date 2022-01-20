@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import React from "react";
 
-// --- components ---
 import ModalPopUp from "./ModalPopUp";
 
 const RequireLogin = (props) => {
+  const { close, move } = props;
+
   return (
     <>
-      <ModalPopUp close={props.close}>
+      <ModalPopUp close={close}>
         <Wrap>
           <Title>로그인이 필요합니다.</Title>
           <SubTitle>로그인 화면으로 이동 하시겠습니까?</SubTitle>
@@ -17,7 +18,7 @@ const RequireLogin = (props) => {
               marginRight="10px"
               color="#696969"
               backgroundColor="#ffffff"
-              onClick={props.close}
+              onClick={close}
             >
               아니오
             </Button>
@@ -25,7 +26,7 @@ const RequireLogin = (props) => {
               border="none"
               color="#ffffff"
               backgroundColor="#FBC037"
-              onClick={props.move}
+              onClick={move}
             >
               예
             </Button>
