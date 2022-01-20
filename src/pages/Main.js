@@ -6,7 +6,7 @@ import { history } from "../redux/configureStore";
 import FirstNotification from "../pages/FirstNotification";
 import Swiper from "../components/main/MainSwiper";
 import Category from "../components/main/Category";
-import { isIPhone } from "../shared/DeviceDetector";
+import { isIPhone, isMobile } from "../shared/DeviceDetector";
 
 import {
   main_all,
@@ -45,12 +45,14 @@ const Main = (props) => {
   //   // window.location.href = 'kakaotalk://inappbrowser/close';
   // }
 
-  if (isIPhone) {
-    alert("크롬 또는 사파리에서 실행 시켜 주세요");
-  } else {
-    window.open(
-      "intent://www.zzzapp.co.kr#Intent;scheme=http;package=com.android.chrome;end"
-    );
+  if (isMobile) {
+    if (isIPhone) {
+      alert("크롬 또는 사파리에서 실행 시켜 주세요");
+    } else {
+      window.open(
+        "intent://www.zzzapp.co.kr#Intent;scheme=http;package=com.android.chrome;end"
+      );
+    }
   }
 
   getToken(messaging, {
@@ -58,7 +60,6 @@ const Main = (props) => {
   })
     .then((currentToken) => {
       history.pushtoken = currentToken;
-      console.log(currentToken);
       if (currentToken) {
         permission = true;
         if (!noticeSet && token && !ios && permission) {
@@ -77,7 +78,7 @@ const Main = (props) => {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
   const [ios, setIos] = useState(Mobile()); // IOS이면 true, 나머지는 false
-  const [noticationModal, setNoticationModal] = useState(true);
+  const [noticationModal, setNoticationModal] = useState(false);
   const location1 = useLocation();
   // eslint-disable-next-line no-unused-vars
   let [permission, setPermission] = useState(false);
