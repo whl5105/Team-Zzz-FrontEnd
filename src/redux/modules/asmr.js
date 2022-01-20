@@ -40,16 +40,6 @@ const initialState = {
 };
 
 // -- middleware actions --
-const writeInitial = () => {
-  return async function (dispatch, getState, { history }) {
-    try {
-      await dispatch(set_write());
-    } catch (error) {
-      console.log("writeInitial Error : ", error);
-    }
-  };
-};
-
 const getAsmrDB = () => {
   return async function (dispatch, getState, { history }) {
     try {
@@ -157,7 +147,7 @@ const actionCreators = {
   getAsmrDB,
   setPlayListDB,
   getPlayListDB,
-  writeInitial,
+  set_write,
   DeletePlayListDB,
   editPlayListDB,
 };
