@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { history } from "../../redux/configureStore";
@@ -20,7 +20,7 @@ SwiperCore.use([Pagination, Autoplay]);
 
 const MainSwiper = withRouter((props) => {
   const token = localStorage.getItem("token");
-  const [diaryModal, setDiaryModal] = React.useState(false);
+  const [diaryModal, setDiaryModal] = useState(false);
   const diaryClick = () => {
     if (!token) {
       setDiaryModal(true);

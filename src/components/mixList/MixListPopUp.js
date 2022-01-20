@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { history } from "../../redux/configureStore";
 import { useSelector } from "react-redux";
@@ -14,11 +14,9 @@ import { mix_setting } from "../../static/images/index";
 
 const MixListPopUp = (props) => {
   const playListInfo = useSelector((state) => state.asmr.playList);
-  const [playList, setPlayList] = React.useState(
-    playListInfo ? playListInfo : []
-  );
+  const [playList, setPlayList] = useState(playListInfo ? playListInfo : []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     history.mixListModal = true;
     history.setMixListModal = props.setMixListModal;
   }, []);

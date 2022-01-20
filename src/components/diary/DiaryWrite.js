@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../../redux/modules/diary";
@@ -47,7 +47,7 @@ const DiaryWrite = (props) => {
     sleepScore: 0,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     const scoreList = [1, 3, 5, 4, 2];
     if (dayData) {
       setData({

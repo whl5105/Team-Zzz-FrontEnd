@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- images ---
-// import {  feel1,feel2,feel3,feel4,feel5, } from "../static/images";
 import { ReactComponent as Feel1 } from "../static/images/character/feel1.svg";
 import { ReactComponent as Feel2 } from "../static/images/character/feel2.svg";
 import { ReactComponent as Feel3 } from "../static/images/character/feel3.svg";
@@ -31,7 +29,8 @@ const Charater = (props) => {
     bgcolor: bgcolor,
     selectColor: selectColor,
   };
-  // //-- 표정 --
+
+  // 표정
   if (shape === "feel") {
     return (
       <>
@@ -90,7 +89,8 @@ const Charater = (props) => {
       </>
     );
   }
-  //-- 느낌 --
+
+  // 느낌
   if (shape === "sleep") {
     return (
       <div>
@@ -104,7 +104,8 @@ const Charater = (props) => {
       </div>
     );
   }
-  // -- 캐릭터 혼합 --
+
+  // 혼합
   if (shape === "charater") {
     return (
       <>
@@ -163,10 +164,9 @@ const Charater = (props) => {
     );
   }
 
-  return <React.Fragment></React.Fragment>;
+  return <></>;
 };
 
-//-- defaultProps --
 Charater.defaultProps = {
   shape: "circle",
   src: "../static/images/character/feel0.svg",
@@ -177,7 +177,6 @@ Charater.defaultProps = {
   is_click: false,
 };
 
-// --- styled-components ---
 const IconBox = styled.div`
   --size: ${(props) => props.size}px;
   width: var(--size);
@@ -227,6 +226,7 @@ const FeelBox = styled.div`
     display: black;
   }
 `;
+
 const Feel = styled.div`
   --size: ${(props) => props.size}px;
   width: var(--size);
@@ -241,6 +241,7 @@ const Feel = styled.div`
   margin: 0 auto 10px auto;
   top: 0;
 `;
+
 const ClickBox = styled.div`
   width: 44px;
   height: 44px;

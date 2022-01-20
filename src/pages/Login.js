@@ -1,25 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { history } from "../redux/configureStore.js";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
-// --- components ---
 import Success from "../components/Success";
 import Kakao from "../components/Kakao";
 
-// --- elements ---
 import { Input } from "../elements";
 
-//--- shared ---
 import { IdCheck, PwdCheck } from "../shared/common";
 
-// --- images ---
 import { reset } from "../static/images";
 const Login = () => {
   const dispatch = useDispatch();
-  const errMessage = useSelector((store) => store.user.errMessage); //에러 메세지
+  const errMessage = useSelector((store) => store.user.errMessage); // 에러 메세지
   const first_signup = useSelector((store) => store.user.is_signup); // 회원가입 완료
 
   const [inputs, setInputs] = useState({
@@ -28,7 +24,7 @@ const Login = () => {
   });
   const { id, pwd } = inputs;
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (first_signup === true) {
       const timeout = setTimeout(() => {
         dispatch(userActions.firstSignup());
@@ -51,6 +47,7 @@ const Login = () => {
       [e.target.name]: e.target.value,
     });
   };
+
   //-- input 초기화 --
   const onReset = (e) => {
     setInputs({
@@ -58,6 +55,7 @@ const Login = () => {
       [e.target.name]: "",
     });
   };
+
   //-- 로그인 클릭시 --
   const loginClick = () => {
     if (!IdCheck(id) || !PwdCheck(pwd)) {
@@ -68,8 +66,8 @@ const Login = () => {
       dispatch(userActions.loginDB(id, pwd));
     }
   };
-  //
-  React.useEffect(() => {
+
+  useEffect(() => {
     setIsState(false);
     setMessage(errMessage);
   }, [errMessage]);
@@ -104,15 +102,11 @@ const Login = () => {
       </InputBox>
 
       {!isState ? <Span>{Message}</Span> : <Span />}
-      {/* {!isState ? (
-        <Span className={`${!isState && "error"}`}>{Message}</Span>
-      ) : (
-        <Span />
-      )} */}
 
       <Button type="submit" onClick={loginClick}>
         로그인
       </Button>
+
       <SignUp
         type="submit"
         onClick={() => {
@@ -123,7 +117,7 @@ const Login = () => {
       </SignUp>
       <Social>or</Social>
       <Kakao />
-      {/* 회원가입 성공 유저 팝업 */}
+
       {first_signup && (
         <Success alt="회원가입 성공" text="회원가입에 성공했습니다" />
       )}
@@ -131,7 +125,6 @@ const Login = () => {
   );
 };
 
-// --- styled-components ---
 const Container = styled.div`
   padding: 50px ${({ theme }) => theme.paddings.xxxxl};
 `;
@@ -208,15 +201,5 @@ const Social = styled.div`
     right: 0;
   }
 `;
-
-// const Icon = styled.div`
-//   width: 44px;
-//   height: 44px;
-//   background-image: url(${kakao});
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   margin: 0 auto 10px auto;
-//   cursor: pointer;
-// `;
 
 export default Login;

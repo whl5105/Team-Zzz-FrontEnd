@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
 import { history } from "../redux/configureStore";
 
-// --- components ---
 import FirstNotification from "../pages/FirstNotification";
 import Swiper from "../components/main/MainSwiper";
 import Category from "../components/main/Category";
 
-// --- images ---
 import {
   main_all,
   main_nature,
@@ -16,7 +14,6 @@ import {
   main_space,
 } from "../static/images";
 
-// firebas
 import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
 import { getMessaging, getToken } from "firebase/messaging";
 
@@ -32,50 +29,45 @@ const config = {
 firebase.initializeApp(config);
 
 const messaging = getMessaging();
-console.log(process.env)
+console.log(process.env);
 
 const Main = (props) => {
-
-      getToken(messaging, {
-        vapidKey:
-          process.env.REACT_APP_VAPID_KEY,
-      })
-        .then((currentToken) => {
-          // console.log(currentToken);
-          if (currentToken) {
-            
-            permission = true;
-            if (!noticeSet && token && !ios && permission) {
-              setNoticationModal(true);
-            }
-
-            history.pushtoken = currentToken;
-          }
-        })
-        .catch((err) => {
-          if(!ios){
-          console.log("An error occurred while retrieving token. ", err);
-          alert("푸쉬알림을 위해 알림권한을 허용하셔야합니다.");
+  getToken(messaging, {
+    vapidKey: process.env.REACT_APP_VAPID_KEY,
+  })
+    .then((currentToken) => {
+      history.pushtoken = currentToken;
+      if (currentToken) {
+        permission = true;
+        if (!noticeSet && token && !ios && permission) {
+          setNoticationModal(true);
         }
-        });
+      }
+    })
+    .catch((err) => {
+      if (!ios) {
+        console.log("An error occurred while retrieving token. ", err);
+        alert("푸쉬알림을 위해 알림권한을 허용하셔야합니다.");
+      }
+    });
 
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
-  const [ios, setIos] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
-  const [noticationModal, setNoticationModal] = React.useState(false);
+  const [ios, setIos] = useState(Mobile()); // IOS이면 true, 나머지는 false
+  const [noticationModal, setNoticationModal] = useState(false);
   const location = useLocation();
   // eslint-disable-next-line no-unused-vars
-  let [permission, setPermission] = React.useState(false);
+  let [permission, setPermission] = useState(false);
   const token = localStorage.getItem("token");
   const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
 
-  React.useEffect(() => {
+  useEffect(() => {
     console.log(token, ios, permission);
 
-    if (!noticeSet && token && !ios && permission) {
-      setNoticationModal(true);
-    }
+    // if (!noticeSet && token && !ios && permission) {
+    //   setNoticationModal(true);
+    // }
 
     if (location.route) {
       history.push(location.route);
@@ -126,7 +118,6 @@ const Main = (props) => {
   );
 };
 
-// --- styled-components ---
 const Container = styled.div`
   width: 100%;
   height: inherit;

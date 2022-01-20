@@ -67,14 +67,15 @@ const setPlayListDB = (playLists) => {
     const userIdx = localStorage.getItem("userIdx");
     try {
       await apis.postPlayList(playLists.mixTitle, playLists.mixList);
-      dispatch(set_playList(true)); // 애니메이션
-      dispatch(getPlayListDB(userIdx)); // 찜 목록 불러오기
+      dispatch(set_playList(true));
+      dispatch(getPlayListDB(userIdx));
       history.push("/asmr");
     } catch (error) {
       console.log("setPlayList Error : ", error);
     }
   };
 };
+
 //-- 믹스 리스트 GET 요청 --
 const getPlayListDB = () => {
   return async function (dispatch, getState, { history }) {
@@ -92,11 +93,8 @@ const getPlayListDB = () => {
 const DeletePlayListDB = (playlistIdx) => {
   return async function (dispatch, getState, { history }) {
     try {
-      // console.log(typeof playlistIdx);
       const userIdx = localStorage.getItem("userIdx");
-      // console.log(userIdx);
       await apis.deletePlayList(playlistIdx, userIdx);
-      // console.log(playlistIdx);
       dispatch(delete_playList(playlistIdx));
     } catch (error) {
       console.log("deletePlayList Error : ", error);
@@ -108,11 +106,8 @@ const DeletePlayListDB = (playlistIdx) => {
 const editPlayListDB = (playlistIdx, mixTitle) => {
   return async function (dispatch, getState, { history }) {
     try {
-      // console.log(playlistIdx, mixTitle);
-      // console.log(playlistIdx);
       const userIdx = localStorage.getItem("userIdx");
       await apis.editPlayList(playlistIdx, userIdx, mixTitle);
-      // console.log(res);
       dispatch(edit_playList(playlistIdx, mixTitle));
     } catch (error) {
       console.log("setPlayList Error : ", error);
@@ -141,16 +136,10 @@ export default handleActions(
       }),
     [DELETE_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
-        // console.log(action.payload.playlistIdx);
-        // console.log(typeof action.payload.playlistIdx);
-        // console.log(draft.playList.playlistIdx);
-        // console.log(typeof draft.playList.playlistIdx);
         const new_playList = draft.playList.filter((l, idx) => {
           return action.payload.playlistIdx !== l.playlistIdx;
         });
         draft.playList = new_playList;
-        // console.log(new_playList);
-        // console.log(draft.playList);
       }),
     [EDIT_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
