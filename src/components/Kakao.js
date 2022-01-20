@@ -5,7 +5,6 @@ import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
-// --- images ---
 import { kakao } from "../static/images/index";
 
 const Kakao = (props) => {
@@ -33,11 +32,9 @@ const Kakao = (props) => {
 
   return (
     <KakaoLogin
-      // rest api 키가 아닌 js 키를 사용해야 합니다.
       jskey={process.env.REACT_APP_JS_KEY}
       onSuccess={(res) => socialLoginSuccess(res)}
       onFailure={(res) => socialLoginFail(res)}
-      // getPofile 속성을 주지 않으면 유저 정보를 받을 수 없습니다.
       getProfile={true}
       style={socialLoginStyle}
     >

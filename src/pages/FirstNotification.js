@@ -14,6 +14,8 @@ const PushNoticationPop = (props) => {
   const [hourActive, setHourActive] = React.useState(false);
   const [minutesActive, setMinutesActive] = React.useState(false);
 
+  const { setNoticationModal } = props;
+
   React.useEffect(() => {
     if (!notice) {
       setDayActive(false);
@@ -40,7 +42,7 @@ const PushNoticationPop = (props) => {
           setHourActive={setHourActive}
           minutesActive={minutesActive}
           setMinutesActive={setMinutesActive}
-          setNoticationModal={props.setNoticationModal}
+          setNoticationModal={setNoticationModal}
           state="set"
         />
       </Wrap>

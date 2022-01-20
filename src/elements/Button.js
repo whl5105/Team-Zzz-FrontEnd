@@ -38,7 +38,6 @@ Button.defaultProps = {
   _onClick: () => {},
 };
 
-// --- styled-components ---
 const BgBtn = styled.button`
   width: 100%;
   height: ${(props) => (props.height ? ` ${props.height}px;` : "48px")};

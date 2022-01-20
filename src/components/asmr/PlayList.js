@@ -5,11 +5,9 @@ import { history } from "../../redux/configureStore";
 import { useDispatch } from "react-redux";
 import { actionCreators as asmrActions } from "../../redux/modules/asmr";
 
-// --- components ---
 import ModalPopUp from "../ModalPopUp";
 import { Input, Button } from "../../elements/index";
 
-// --- images ---
 import { reset } from "../../static/images/index";
 
 const PlayList = (props) => {
@@ -76,7 +74,6 @@ const PlayList = (props) => {
     close();
   };
 
-  // 수정하기 버튼 클릭
   const editTilteSubmit = () => {
     let mixTitle = title;
     if (!title) {
@@ -121,7 +118,6 @@ const PlayList = (props) => {
   );
 };
 
-// --- styled-componetns ---
 const Wrap = styled.div`
   width: 100%;
   padding: ${({ theme }) => theme.paddings.xxxxl};

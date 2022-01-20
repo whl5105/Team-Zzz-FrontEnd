@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- images ---
 import { notSupported } from "../../static/images/index";
 
 const Guidance = (props) => {
-  return <GuidanceBtn src={notSupported} left={props.left} />;
+  const { left } = props;
+
+  return <GuidanceBtn src={notSupported} left={left} />;
 };
 
 const GuidanceBtn = styled.div`

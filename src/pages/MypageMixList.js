@@ -11,7 +11,7 @@ import NoMixList from "../components/mixList/NoMixList";
 
 import { mixList, arrow_B_W, arrow_T_W } from "../static/images";
 
-const MixList = (props) => {
+const MypageMixList = (props) => {
   const dispatch = useDispatch();
   const playListInfo = useSelector((state) => state.asmr.playList);
   const [playList, setPlayList] = useState(playListInfo ? playListInfo : []);
@@ -87,4 +87,4 @@ const MixContent = styled.div`
   }
 `;
 
-export default MixList;
+export default MypageMixList;

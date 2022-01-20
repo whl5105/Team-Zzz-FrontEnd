@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../../redux/configureStore";
 
-// -- components --
 import { Icon } from "../../elements/index";
 
 const AsmrList = (props) => {
@@ -69,7 +68,6 @@ const AsmrList = (props) => {
   );
 };
 
-// --- styled-components ---
 const SoundSelect = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

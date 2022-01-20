@@ -49,7 +49,7 @@ const Asmr = (props) => {
     }
   }, []);
 
-  useCallback(() => {
+  useEffect(() => {
     if (success === true) {
       dispatch(asmrActions.writeInitial());
       const timeout = setTimeout(() => {
