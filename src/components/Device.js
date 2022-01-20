@@ -118,13 +118,17 @@ const WebBackgroundWrapper = styled.div`
 `;
 
 const Phone = styled.div`
-  width: 431px;
-  height: 864px;
+  /* width: 431px; */
+  width: 426px;
+  //height: 864px;
+  height: 92%;
+  min-height: 750px;
   position: fixed;
   right: 50%;
   top: 50%;
   transform: translate(50%, -50%);
-  background: url(${web_phone}) no-repeat center/cover;
+  background: url(${web_phone}) no-repeat;
+  background-size: 100% 100%;
 
   @media screen and (min-width: 1120px) {
     right: 10%;
@@ -135,7 +139,8 @@ const Phone = styled.div`
 
 const WebViewLayout = styled.div`
   max-width: 375px;
-  height: 810px;
+  /* height: 810px; */
+  height: calc(100% - 43px);
   position: relative;
   top: 50%;
   left: 50%;
