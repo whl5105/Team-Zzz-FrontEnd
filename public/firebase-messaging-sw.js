@@ -1,35 +1,3 @@
-// importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js");
-// importScripts("https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js");
-
-// const config = {
-//   apiKey: "AIzaSyD7vx1YcQDmd7Gom-mOGzB_j_oYD4qjR9M",
-//   authDomain: "pushnotificationtest-9e21c.firebaseapp.com",
-//   projectId: "pushnotificationtest-9e21c",
-//   storageBucket: "pushnotificationtest-9e21c.appspot.com",
-//   messagingSenderId: "1019872102596",
-//   appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
-//   measurementId: "G-TFEDXNHVGY"
-// };
-
-// firebase.initializeApp(config);
-
-// const messaging = firebase.messaging();
-// messaging.setBackgroundMessageHandler(function (payload) {
-//   const title = "hello world";
-//   const options = {
-//     body: payload.data.status,
-//   };
-//   return self.registration.showNotification(title, options);
-// });
-
-// importScripts("https://www.gstatic.com/firebasejs/4.6.1/firebase-app.js");
-// importScripts("https://www.gstatic.com/firebasejs/4.6.1/firebase-messaging.js");
-
-// import { initializeApp } from "firebase/app";
-// import { getMessaging } from "firebase/messaging/sw";
-
-// // This allows the web app to trigger skipWaiting via
-// registration.waiting.postMessage({type: 'SKIP_WAITING'})
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
@@ -38,23 +6,19 @@ self.addEventListener("message", (event) => {
 
 // Any other custom service worker logic can go here.
 self.addEventListener("push", function (event) {
-  // push 이벤트나 service-worker.js 와 접점이 없는거 같다
   console.log("Push " + event.data.text());
-  console.log(event.data.json().notification)
+  console.log(event.data.json().notification);
 
   const title = event.data.json().notification.title;
   const options = {
     body: event.data.json().notification.body,
-    icon: "favicon.ico"
-    // title: event.data.json().notification.title
+    icon: "favicon.ico",
   };
 
   event.waitUntil(self.registration.showNotification(title, options)); // showNotification을 통해 푸시 알림을 생성, Promise가 반환되며 waitUntil을 통해 이벤트를 연장 시켜야함
 });
 
 self.addEventListener("notificationclick", function (event) {
-  console.log("Push clicked");
-
   event.notification.close();
 
   event.waitUntil(

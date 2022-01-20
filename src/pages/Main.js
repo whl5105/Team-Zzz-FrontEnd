@@ -46,7 +46,7 @@ const Main = (props) => {
     vapidKey: process.env.REACT_APP_VAPID_KEY,
   })
     .then((currentToken) => {
-      history.pushtoken = currentToken;
+      localStorage.setItem("pushtoken", currentToken);
       if (currentToken) {
         permission = true;
         if (!noticeSet && token && !ios && permission) {
