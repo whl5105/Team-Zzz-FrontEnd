@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-// --- components ---
 import Title from "../components/Title";
 import List from "../components/mypage/List";
 
-// --- images ---
 import { notice, arrow_B_W, arrow_T_W } from "../static/images";
 
 const NoticePage = (props) => {
-  const [toggle, setToggle] = React.useState(false);
+  const [toggle, setToggle] = useState(false);
 
   return (
-    <React.Fragment>
+    <>
       <Container>
         <Title backIcon>공지사항</Title>
         {!toggle ? (
@@ -49,11 +47,10 @@ const NoticePage = (props) => {
           </>
         )}
       </Container>
-    </React.Fragment>
+    </>
   );
 };
 
-// --- styled-components ---
 const Container = styled.div`
   height: inherit;
   box-sizing: border-box;

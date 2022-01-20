@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 // --- components ---
@@ -7,9 +7,9 @@ import MixDeletePopup from "./MixDeletePopup";
 import PlayList from "../asmr/PlayList";
 
 const MixBox = (props) => {
-  const [deletemodal, setDeletemodal] = React.useState(false);
-  const [editmodal, setEditmodal] = React.useState(false);
-  const [modalData, setModalData] = React.useState();
+  const [deletemodal, setDeletemodal] = useState(false);
+  const [editmodal, setEditmodal] = useState(false);
+  const [modalData, setModalData] = useState();
 
   const deleteClick = () => {
     setDeletemodal(true);

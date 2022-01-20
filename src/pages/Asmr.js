@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 import { history } from "../redux/configureStore";
 
-// -- components --
 import Spinner from "../components/Spinner";
 import AsmrCategory from "../components/asmr/AsmrCategory";
 import AsmrList from "../components/asmr/AsmrList";
 import Success from "../components/Success";
 
-// -- images --
 import {
   asmr_category_all,
   asmr_category_nature,
@@ -27,30 +25,31 @@ export const deleteSong = (url) => {
 const Asmr = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const [success, setSuccess] = React.useState(
+  const [success, setSuccess] = useState(
     useSelector((state) => state.asmr.is_write)
   );
 
-  const [song1, setSong1] = React.useState(new Audio());
-  const [song2, setSong2] = React.useState(new Audio());
-  const [song3, setSong3] = React.useState(new Audio());
-  const [song4, setSong4] = React.useState(new Audio());
-  const [getCategory, setCategory] = React.useState(
+  const [song1, setSong1] = useState(new Audio());
+  const [song2, setSong2] = useState(new Audio());
+  const [song3, setSong3] = useState(new Audio());
+  const [song4, setSong4] = useState(new Audio());
+  const [getCategory, setCategory] = useState(
     location.category === undefined ? "전체" : location.category
   );
-  const [imageUrl, setImageUrl] = React.useState(asmr_category_all);
-  const [soundTrack, setSoundTrack] = React.useState([]);
+
+  const [imageUrl, setImageUrl] = useState(asmr_category_all);
+  const [soundTrack, setSoundTrack] = useState([]);
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const playListInfo = useSelector((state) => state.asmr.playList);
-  const [play, setPlay] = React.useState([]);
+  const [play, setPlay] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!playListInfo) {
       dispatch(asmrActions.getPlayListDB());
     }
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (success === true) {
       dispatch(asmrActions.writeInitial());
       const timeout = setTimeout(() => {
@@ -63,7 +62,7 @@ const Asmr = (props) => {
     }
   }, [success]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (getCategory === "전체") {
       setImageUrl(asmr_category_all);
     } else if (getCategory === "네이쳐") {
@@ -77,7 +76,7 @@ const Asmr = (props) => {
     }
   }, [getCategory]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const arr = ["전체", "네이쳐", "플레이스", "오브젝트"];
 
     if (!asmrInfo || asmrInfo.length === 0) {

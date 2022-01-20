@@ -77,7 +77,6 @@ const Dropdown = (props) => {
     }
   };
 
-  // 알림 비활성화일 때
   if (props.state === "disabled") {
     return (
       <DisabledDropDownContainer>
@@ -207,6 +206,7 @@ const DropdownBody = styled.div`
     line-height: 44px;
     text-align: center;
   }
+
   & > img {
     position: absolute;
     top: 15px;
@@ -230,9 +230,11 @@ const DropdownMenu = styled.ul`
   &::-webkit-scrollbar {
     width: 3px;
   }
+
   &::-webkit-scrollbar-track {
     background-color: none;
   }
+
   &::-webkit-scrollbar-thumb {
     height: 10px;
     border-radius: 100px;

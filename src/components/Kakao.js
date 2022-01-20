@@ -11,10 +11,8 @@ import { kakao } from "../static/images/index";
 const Kakao = (props) => {
   const dispatch = useDispatch();
 
-  // 소셜 로그인 성공
   const socialLoginSuccess = (res) => {
     console.log("소셜 로그인 성공");
-    // console.log(res);
     dispatch(userActions.socialLoginDB(res.profile.id));
   };
 
@@ -29,11 +27,10 @@ const Kakao = (props) => {
     width: "100%",
   };
 
-  // 소셜 로그인 실패
   const socialLoginFail = (res) => {
     console.log("소셜 로그인 실패");
-    // console.log(res);
   };
+
   return (
     <KakaoLogin
       // rest api 키가 아닌 js 키를 사용해야 합니다.

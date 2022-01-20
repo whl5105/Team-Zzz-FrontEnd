@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { withRouter } from "react-router-dom";
@@ -15,12 +15,12 @@ import {
 } from "../static/images/index";
 
 const PlayBar = withRouter((props) => {
-  const [toggle, setToggle] = React.useState(false);
-  const [playbar, setPlaybar] = React.useState([]);
+  const [toggle, setToggle] = useState(false);
+  const [playbar, setPlaybar] = useState([]);
   history.setPlaybar = setPlaybar;
   history.setToggle = setToggle;
 
-  React.useEffect(() => {
+  useEffect(() => {
     play();
     setToggle(false);
   }, []);

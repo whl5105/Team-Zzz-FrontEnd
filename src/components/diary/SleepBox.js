@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 
 // --- components ---
@@ -6,7 +6,7 @@ import { Charater } from "../../elements/index";
 
 const SleepBox = (props) => {
   const { previewSleep } = props;
-  const [arr, setArr] = React.useState([
+  const [arr, setArr] = useState([
     { text: "결핍", score: 1, color: "#6CA8FF" },
     { text: "부족", score: 3, color: "#90D3CC" },
     { text: "적당", score: 5, color: "#FCD371" },

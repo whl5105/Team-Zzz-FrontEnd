@@ -2,10 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
-// --- images ---
 import { arrow_L_W } from "../static/images";
 
-// --- components ---
 import SoundTrack from "../components/asmr/SoundTrack";
 import RequireLogin from "../components/RequireLogin";
 import PlayList from "../components/asmr/PlayList";
@@ -240,7 +238,6 @@ const AsmrPopUp = (props) => {
   );
 };
 
-// styled-components
 const Container = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.bg};

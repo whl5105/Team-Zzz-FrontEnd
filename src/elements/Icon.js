@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const Icon = (props) => {
   const {
-    categoryImage,
     top,
     left,
     width,
@@ -45,7 +44,6 @@ Icon.defaultProps = {
   position: null,
 };
 
-// --- styled-components ---
 const ArrowIcon = styled.img`
   position: ${(props) => props.position};
   top: ${(props) => props.top};
