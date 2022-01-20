@@ -20,7 +20,7 @@ const initialState = {
 
 // -- API --
 const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
-  const pushToken = history.pushtoken;
+  const pushToken = localStorage.getItem("pushtoken");
   hour = hour / 1;
   minutes = minutes / 1;
   console.log(hour, minutes);
@@ -36,7 +36,7 @@ const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
 };
 
 const updateNoticeDB = (notice, day = "AM", hour = 1, minutes = 0) => {
-  const pushToken = history.pushtoken;
+  const pushToken = localStorage.getItem("pushtoken");
   hour = hour / 1;
   minutes = minutes / 1;
   return function (dispatch, getState, { history }) {
