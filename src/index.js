@@ -14,6 +14,7 @@ import ReactPWAInstallProvider from "react-pwa-install";
 import GlobalStyle from "./static/styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import theme from "./shared/theme";
+import "./index.css";
 
 //-- components --
 import Device from "./shared/Device";
