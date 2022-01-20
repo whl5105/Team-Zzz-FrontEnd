@@ -58,7 +58,6 @@ const Header = withRouter((props) => {
         />
         {path === "/asmr" || path === "/asmrPop" ? (
           <>
-            {/* asmr  */}
             <HoverImage
               src={mixList}
               alt="playList"

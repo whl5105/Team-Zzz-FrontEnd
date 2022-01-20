@@ -55,7 +55,6 @@ const updateNoticeDB = (notice, day = "AM", hour = 1, minutes = 0) => {
       .putNotice(notice, day, hour, (minutes = 50), userIdx, pushToken)
       .then((response) => console.log(response));
     dispatch(setNotice(info));
-    // history.push("/mypage");
   };
 };
 

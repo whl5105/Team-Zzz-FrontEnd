@@ -158,7 +158,6 @@ const PlayBar = withRouter((props) => {
           ) : (
             <>
               <Icon src={playBar_volume} onClick={asmrPopMove} />
-              {/* 임시이미지 적용중 */}
               <Icon src={playBar_pause} onClick={pause} />
             </>
           )}
