@@ -34,7 +34,7 @@ export const signupDB =
   (userId, password) =>
   async (dispatch, getState, { history }) => {
     try {
-      const res = await apis.signup(userId, password);
+      await apis.signup(userId, password);
       // console.log(res.retult);
       dispatch(signup());
       history.push("/login");

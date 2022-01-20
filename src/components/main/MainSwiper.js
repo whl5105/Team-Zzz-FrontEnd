@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { history } from "../../redux/configureStore";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Pagination, Autoplay } from "swiper/core";
+import SwiperCore, { Pagination, Autoplay } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
