@@ -16,7 +16,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "./shared/theme";
 
 //-- components --
-import Device from "./components/Device";
+import Device from "./shared/Device";
 
 ReactDOM.render(
   <ReactPWAInstallProvider enableLogging>

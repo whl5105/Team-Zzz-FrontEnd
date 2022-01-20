@@ -45,15 +45,13 @@ const Main = (props) => {
   //   // window.location.href = 'kakaotalk://inappbrowser/close';
   // }
 
-  isIPhone().then((result) => {
-    if (result) {
-      alert("크롬 또는 사파리에서 실행 시켜 주세요");
-    } else {
-      window.open(
-        "intent://www.zzzapp.co.kr#Intent;scheme=http;package=com.android.chrome;end"
-      );
-    }
-  });
+  if (isIPhone) {
+    alert("크롬 또는 사파리에서 실행 시켜 주세요");
+  } else {
+    window.open(
+      "intent://www.zzzapp.co.kr#Intent;scheme=http;package=com.android.chrome;end"
+    );
+  }
 
   getToken(messaging, {
     vapidKey: process.env.REACT_APP_VAPID_KEY,
