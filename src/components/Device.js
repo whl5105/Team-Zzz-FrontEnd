@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { useReactPWAInstall } from "react-pwa-install";
-import { logo } from "../static/images";
+import { install_logo } from "../static/images";
 
 import { isMobile } from "./DeviceDetector";
 import { use100vh } from "react-div-100vh";
@@ -13,23 +13,16 @@ import { web_phone, web_back, web_logo } from "../static/images/index";
 import { Button } from "../elements";
 
 const Device = ({ children }) => {
-  const { pwaInstall } = useReactPWAInstall();
+  const { pwaInstall, supported, isInstalled } = useReactPWAInstall();
   //모바일 높이
   const height = use100vh();
 
-  const installApp = () => {
+  const handleClick = () => {
     pwaInstall({
       title: "Zzz 다운받기",
-      logo: logo,
-      features: (
-        <ul>
-          <li>Cool feature 1</li>
-          <li>Cool feature 2</li>
-          <li>Even cooler feature</li>
-          <li>Works offline</li>
-        </ul>
-      ),
-      description: "This is a very good app that does a lot of useful stuff. ",
+      logo: install_logo,
+
+      description: "푸쉬알림 과 볼륨조절은 현재 IOS 미지원 서비스 입니다",
     })
       .then(() =>
         alert("App installed successfully or instructions for install shown")
@@ -38,13 +31,23 @@ const Device = ({ children }) => {
   };
 
   return isMobile ? (
-    <Mobile style={{ height: height }}>{children}</Mobile>
+    <>
+      {supported() && !isInstalled() && (
+        <>
+          <Button> 앱으로 다운받기</Button>
+          <Button> 모바일로 보기 </Button>
+        </>
+      )}
+      <Mobile style={{ height: height }}>{children}</Mobile>
+    </>
   ) : (
     <WebBackgroundWrapper>
-      <Button _onClick={installApp}>설치 버튼</Button>
-      <ClayPhone>
+      {supported() && !isInstalled() && (
+        <Button _onClick={handleClick}>설치 버튼</Button>
+      )}
+      <Phone>
         <WebViewLayout>{children}</WebViewLayout>
-      </ClayPhone>
+      </Phone>
     </WebBackgroundWrapper>
   );
 };
@@ -70,7 +73,7 @@ const WebBackgroundWrapper = styled.div`
   background-repeat: no-repeat;
 `;
 
-const ClayPhone = styled.div`
+const Phone = styled.div`
   width: 431px;
   height: 864px;
   position: fixed;
