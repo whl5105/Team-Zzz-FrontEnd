@@ -1,13 +1,13 @@
 import React from "react";
-import styled from "styled-components";
-import GlobalStyle from "../static/styles/GlobalStyle";
+import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
-import { Switch, Route } from "react-router-dom";
-import "./App.css";
-import ReactGA from "react-ga";
 
-// page
+import ReactGA from "react-ga";
+// -- style --
+import styled from "styled-components";
+
+// -- page --
 import NotFound from "../pages/NotFound";
 import Main from "../pages/Main";
 import OptimalSleepTime from "../pages/OptimalSleepTime";
@@ -24,11 +24,11 @@ import Header from "../components/Header";
 import MypageNotice from "../pages/MypageNotice";
 import PlayBar from "../components/PlayBar";
 
+//-- google analytics --
 ReactGA.event({
   category: "User",
   action: "Created an Account",
 });
-
 ReactGA.exception({
   description: "An error ocurred",
   fatal: true,
@@ -44,43 +44,39 @@ function App() {
   }, []);
 
   return (
-    <WrapBox id="app">
-      <GlobalStyle />
-      <Wrap className="App">
-        <ConnectedRouter history={history}>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/user/login" component={Login} />
-            <Route exact path="/user/signup" component={Signup} />
-            <Route
-              exact
-              path="/optimalSleepTime"
-              component={OptimalSleepTime}
-            />
-            <Route exact path="/asmr" component={Asmr} />
-            <Route
-              exact
-              path="/asmr/asmrVolumeControl"
-              component={AsmrVolumeControl}
-            />
-            <Route exact path="/diary" component={Diary} />
-            <Route exact path="/mypage" component={Mypage} />
-            <Route exact path="/mypage/mixList" component={MypageMixList} />
-            <Route
-              exact
-              path="/mypage/notification/:userIdx"
-              component={MyPageNotification}
-            />
-            <Route exact path="/mypage/notice" component={MypageNotice} />
-            <Route>
-              <NotFound />
-            </Route>
-          </Switch>
-          <PlayBar />
-          <Navigation />
-        </ConnectedRouter>
-      </Wrap>
+    <WrapBox className="App">
+      
+      {/* <Wrap > */}
+      <ConnectedRouter history={history}>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route exact path="/user/login" component={Login} />
+          <Route exact path="/user/signup" component={Signup} />
+          <Route exact path="/optimalSleepTime" component={OptimalSleepTime} />
+          <Route exact path="/asmr" component={Asmr} />
+          <Route
+            exact
+            path="/asmr/asmrVolumeControl"
+            component={AsmrVolumeControl}
+          />
+          <Route exact path="/diary" component={Diary} />
+          <Route exact path="/mypage" component={Mypage} />
+          <Route exact path="/mypage/mixList" component={MypageMixList} />
+          <Route
+            exact
+            path="/mypage/notification/:userIdx"
+            component={MyPageNotification}
+          />
+          <Route exact path="/mypage/notice" component={MypageNotice} />
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
+        <PlayBar />
+        <Navigation />
+      </ConnectedRouter>
+      {/* </Wrap> */}
     </WrapBox>
   );
 }
@@ -88,10 +84,6 @@ function App() {
 const WrapBox = styled.div`
   width: 100%;
   height: 100%;
-`;
-
-const Wrap = styled.div`
-  height: inherit;
 `;
 
 export default App;

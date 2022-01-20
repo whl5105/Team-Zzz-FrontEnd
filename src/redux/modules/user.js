@@ -5,15 +5,14 @@ import { apis } from "../../shared/api/apis";
 // -- actions --
 const SIGNUP = "SIGNUP";
 const FIRST_SIGNUP = "FIRST_SIGNUP";
-
-const ERR_SIGNUP = "ERR_SIGNUP";
 const SET_USER = "SET_USER";
+const ERR_SIGNUP = "ERR_SIGNUP";
 
 // -- action creators --
 const signup = createAction(SIGNUP);
 const firstSignup = createAction(FIRST_SIGNUP);
-const err_signup = createAction(ERR_SIGNUP, (err) => ({ err }));
 const setUser = createAction(SET_USER, (user) => ({ user }));
+const err_signup = createAction(ERR_SIGNUP, (err) => ({ err }));
 
 // -- initialState --
 const initialState = {
@@ -35,7 +34,6 @@ export const signupDB =
   async (dispatch, getState, { history }) => {
     try {
       await apis.signup(userId, password);
-      // console.log(res.retult);
       dispatch(signup());
       history.push("/user/login");
     } catch (err) {
@@ -73,7 +71,6 @@ export const socialLoginDB =
   async (dispatch, getState, { history }) => {
     try {
       const res = await apis.kakaoLogin(id);
-
       localStorage.setItem("userIdx", res.userInfo.userIdx);
       localStorage.setItem("noticeSet", res.userInfo.noticeSet);
       localStorage.setItem("token", res.userInfo.token);
@@ -89,11 +86,11 @@ export const socialLoginDB =
       history.replace("/");
     } catch (err) {
       window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
-      console.log(`오류 발생!${err}`);
+      console.log("socialLoginDB Error : ", err);
     }
   };
 
-//---- 로그아욱 DB ----
+//---- 로그아웃 DB ----
 const logoutDB = () => {
   return function (dispatch, getState, { history }) {
     localStorage.removeItem("userIdx");
@@ -118,14 +115,14 @@ export default handleActions(
       produce(state, (draft) => {
         draft.is_signup = false;
       }),
-    [ERR_SIGNUP]: (state, action) =>
-      produce(state, (draft) => {
-        draft.errMessage = action.payload.err;
-      }),
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
         draft.is_login = true;
+      }),
+    [ERR_SIGNUP]: (state, action) =>
+      produce(state, (draft) => {
+        draft.errMessage = action.payload.err;
       }),
   },
   initialState
