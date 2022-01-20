@@ -92,11 +92,11 @@ const getPlayListDB = () => {
 const DeletePlayListDB = (playlistIdx) => {
   return async function (dispatch, getState, { history }) {
     try {
-      console.log(typeof playlistIdx);
+      // console.log(typeof playlistIdx);
       const userIdx = localStorage.getItem("userIdx");
-      console.log(userIdx);
+      // console.log(userIdx);
       await apis.deletePlayList(playlistIdx, userIdx);
-      console.log(playlistIdx);
+      // console.log(playlistIdx);
       dispatch(delete_playList(playlistIdx));
     } catch (error) {
       console.log("deletePlayList Error : ", error);
@@ -108,8 +108,8 @@ const DeletePlayListDB = (playlistIdx) => {
 const editPlayListDB = (playlistIdx, mixTitle) => {
   return async function (dispatch, getState, { history }) {
     try {
-      console.log(playlistIdx, mixTitle);
-      console.log(playlistIdx);
+      // console.log(playlistIdx, mixTitle);
+      // console.log(playlistIdx);
       const userIdx = localStorage.getItem("userIdx");
       await apis.editPlayList(playlistIdx, userIdx, mixTitle);
       // console.log(res);
@@ -141,16 +141,16 @@ export default handleActions(
       }),
     [DELETE_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.playlistIdx);
-        console.log(typeof action.payload.playlistIdx);
-        console.log(draft.playList.playlistIdx);
-        console.log(typeof draft.playList.playlistIdx);
+        // console.log(action.payload.playlistIdx);
+        // console.log(typeof action.payload.playlistIdx);
+        // console.log(draft.playList.playlistIdx);
+        // console.log(typeof draft.playList.playlistIdx);
         const new_playList = draft.playList.filter((l, idx) => {
           return action.payload.playlistIdx !== l.playlistIdx;
         });
         draft.playList = new_playList;
-        console.log(new_playList);
-        console.log(draft.playList);
+        // console.log(new_playList);
+        // console.log(draft.playList);
       }),
     [EDIT_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {

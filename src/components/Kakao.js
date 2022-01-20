@@ -14,7 +14,7 @@ const Kakao = (props) => {
   // 소셜 로그인 성공
   const socialLoginSuccess = (res) => {
     console.log("소셜 로그인 성공");
-    console.log(res);
+    // console.log(res);
     dispatch(userActions.socialLoginDB(res.profile.id));
   };
 
@@ -32,7 +32,7 @@ const Kakao = (props) => {
   // 소셜 로그인 실패
   const socialLoginFail = (res) => {
     console.log("소셜 로그인 실패");
-    console.log(res);
+    // console.log(res);
   };
   return (
     <KakaoLogin

@@ -55,12 +55,12 @@ import playBar_volume from "./icons/playBar/playBar_volume.svg";
 import check from "./icons/toasts/check.png";
 
 //-- arrow --
-import arrow_B_G from "./icons/arrow/arrow_B_G.svg";
 import arrow_B_W from "./icons/arrow/arrow_B_W.svg";
 import arrow_L_W from "./icons/arrow/arrow_L_W.svg";
 import arrow_R_B from "./icons/arrow/arrow_R_B.svg";
 import arrow_R_W from "./icons/arrow/arrow_R_W.svg";
 import arrow_T_W from "./icons/arrow/arrow_T_W.svg";
+import arrow_B_G from "./icons/arrow/arrow_B_G.svg";
 
 // -- etc --
 import close from "./icons/close.svg";
@@ -118,12 +118,12 @@ export {
   playBar_play,
   playBar_volume,
   check,
-  arrow_B_G,
   arrow_B_W,
   arrow_L_W,
   arrow_R_B,
   arrow_R_W,
   arrow_T_W,
+  arrow_B_G,
   close,
   feedback,
   logo,

@@ -34,10 +34,9 @@ const Signup = (props) => {
 
   //---- 아이디 유효성 검사  ----
   const idCheck = (e) => {
-    const idRegExp = /^[a-zA-Z0-9]{5,10}$/;
     const idCurrent = e.target.value;
     setId(idCurrent);
-    if (!idRegExp.test(idCurrent)) {
+    if (!IdCheck) {
       setIdMessage("5글자 이상 10글자 미만으로 입력해주세요.");
       setIsId(false);
     } else {
@@ -48,13 +47,9 @@ const Signup = (props) => {
 
   //---- 비밀번호 유효성 검사  ----
   const onChangePassword = (e) => {
-    const passwordRegex =
-      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
-
     const passwordCurrent = e.target.value;
     setPwd(passwordCurrent);
-
-    if (!passwordRegex.test(passwordCurrent)) {
+    if (!PwdCheck) {
       setPwdMessage("비밀번호 영문,숫자,특수문자 조합 (8~20자)");
       setIsPassword(false);
     } else {

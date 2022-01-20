@@ -47,9 +47,9 @@ const Header = withRouter((props) => {
   };
 
   return (
-    <div>
+    <>
       <HeaderBox>
-        <img
+        <Logo
           src={logo}
           alt="logo"
           onClick={() => {
@@ -73,6 +73,7 @@ const Header = withRouter((props) => {
           <Icon src={feedback} alt="writing" _onClick={PageLink} />
         )}
       </HeaderBox>
+
       {requireLoginModal ? (
         <RequireLogin close={closeRequireModal} move={loginModal} />
       ) : (
@@ -83,7 +84,7 @@ const Header = withRouter((props) => {
           />
         )
       )}
-    </div>
+    </>
   );
 });
 
@@ -102,6 +103,11 @@ const HeaderBox = styled.div`
   z-index: 5;
 `;
 
+const Logo = styled.img`
+  float: left;
+  width: 67px;
+  height: 26px;
+`;
 const HoverImage = styled.img`
   width: 24px;
   height: 24px;

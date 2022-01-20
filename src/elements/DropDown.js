@@ -169,6 +169,9 @@ const DropdownContainer = styled.div`
   box-sizing: border-box;
   background-color: white;
   margin-right: 8px;
+  &:last-child {
+    margin-right: 0px;
+  }
 `;
 
 const DisabledDropDownContainer = styled.div`
