@@ -6,31 +6,17 @@ import Guidance from "../asmr/Guidance";
 import { volumeCircle, volumeLine, close } from "../../static/images/index";
 
 const SoundTrack = (props) => {
-  const {
-    deleteSong,
-    guidance,
-    guidanceTitle,
-    icon,
-    id,
-    setGuidance,
-    setGuidanceTitle,
-    setVolume,
-    song,
-    title,
-    volume,
-  } = props;
-
   const Mobile = () => {
     return (ios = /iPhone|iPad/i.test(navigator.userAgent));
   };
   const [effect, setEffect] = useState(false);
 
   const Click = () => {
-    dragElement(document.getElementById(id));
+    dragElement(document.getElementById(props.id));
   };
 
   useEffect(() => {
-    dragElement(document.getElementById(id));
+    dragElement(document.getElementById(props.id));
     setEffect(true);
   }, []);
 
@@ -46,12 +32,12 @@ const SoundTrack = (props) => {
 
     if (ios === false) {
       elmnt.ontouchstart = dragMouseDown;
-    } else if (ios === true && !guidance && effect) {
-      setGuidance(true);
-      setGuidanceTitle(title);
+    } else if (ios === true && !props.guidance && effect) {
+      props.setGuidance(true);
+      props.setGuidanceTitle(props.title);
       const timeout = setTimeout(() => {
-        setGuidance(false);
-        setGuidanceTitle(null);
+        props.setGuidance(false);
+        props.setGuidanceTitle(null);
       }, 2000);
 
       return () => {
@@ -78,9 +64,11 @@ const SoundTrack = (props) => {
         e.clientX = e.changedTouches[0].clientX;
       }
       clientX_gap = e.clientX - clientX;
+      clientX = e.clientX;
 
       let leftVal = 0;
       let parentElmnt = elmnt.parentNode;
+
       if (
         elmnt.offsetLeft + clientX_gap < 0 ||
         clientX < parentElmnt.offsetLeft
@@ -93,8 +81,8 @@ const SoundTrack = (props) => {
       }
       elmnt.style.left = leftVal + "px";
       b = elmnt.style.left.split("px")[0] * 0.006;
-      song.volume = b;
-      setVolume(b * 100);
+      props.song.volume = b;
+      props.setVolume(b * 100);
       setB(b);
     }
 
@@ -111,14 +99,16 @@ const SoundTrack = (props) => {
       <Record>
         <Sound>
           <IconImage>
-            <Image src={icon} alt="" />
-            <Text>{title}</Text>
+            <Image src={props.icon} alt="" />
+            <Text>{props.title}</Text>
           </IconImage>
         </Sound>
         <VolumeWrap>
           <Volume categoryImage={volumeLine}>
-            {guidanceTitle === title && <Guidance left={volume} />}
-            <Circle id={id} value={volume * 1.58}>
+            {props.guidanceTitle === props.title && (
+              <Guidance left={props.volume} />
+            )}
+            <Circle id={props.id} value={props.volume * 1.58}>
               <Span categoryImage={volumeCircle} onTouchStart={Click} />
             </Circle>
           </Volume>
@@ -126,7 +116,7 @@ const SoundTrack = (props) => {
         <Icon
           categoryImage={close}
           onClick={() => {
-            deleteSong(song);
+            props.deleteSong(props.song);
           }}
         />
       </Record>
