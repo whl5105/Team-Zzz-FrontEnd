@@ -77,7 +77,8 @@ import volumeLine from "./icons/volumeLine.svg";
 import fallBack from "./icons/fallBack.png";
 
 //-- install--
-import install_logo from "./icons/install_logo.png";
+import install_download from "./icons/install/install_download.png";
+import install_logo from "./icons/install/install_logo.png";
 
 export {
   asmr_category_all,
@@ -139,5 +140,6 @@ export {
   volumeCircle,
   volumeLine,
   fallBack,
+  install_download,
   install_logo,
 };
