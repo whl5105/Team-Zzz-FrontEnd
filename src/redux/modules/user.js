@@ -37,7 +37,7 @@ export const signupDB =
       await apis.signup(userId, password);
       // console.log(res.retult);
       dispatch(signup());
-      history.push("/login");
+      history.push("/user/login");
     } catch (err) {
       dispatch(err_signup(err.response.data.errorMessage));
     }

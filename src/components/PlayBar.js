@@ -133,7 +133,7 @@ const PlayBar = withRouter((props) => {
   };
 
   const asmrMove = () => {
-    if (props.location.pathname === "/asmrPop") {
+    if (props.location.pathname === "/asmr/asmrVolumeControl") {
       history.push("/asmr");
     }
   };
@@ -142,7 +142,7 @@ const PlayBar = withRouter((props) => {
     if (history.mixListModal) {
       history.setMixListModal(false);
     }
-    history.push("/asmrPop");
+    history.push("/asmr/asmrVolumeControl");
   };
 
   return (

@@ -35,7 +35,7 @@ const MainSwiper = withRouter((props) => {
 
   const loginModal = () => {
     setDiaryModal(false);
-    history.push("/login");
+    history.push("/user/login");
   };
 
   const swiperStyle = {
@@ -64,7 +64,7 @@ const MainSwiper = withRouter((props) => {
           </SwiperSlide>
           <SwiperSlide
             onClick={() => {
-              history.push("/clock");
+              history.push("/optimalSleepTime");
             }}
           >
             <BannerImg bannerImage={main_sleepTime} />
