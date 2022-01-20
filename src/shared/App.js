@@ -54,7 +54,6 @@ function App() {
       <Wrap className="App">
         <ConnectedRouter history={history}>
           <Header />
-
           <Switch>
             <Route path="/" exact component={Main} />
             <Route path="/clock" exact component={Clock} />
@@ -74,7 +73,6 @@ function App() {
               component={MyPageNotification}
             />
             <Route path="/notice" exact component={NoticePage} />
-            <Route path="/test" exact component={Test} />
             <Route>
               <NotFound />
             </Route>

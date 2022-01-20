@@ -14,29 +14,28 @@ import {
   main_space,
 } from "../static/images";
 
-import firebase from "firebase/compat/app";
+import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
 import { getMessaging, getToken } from "firebase/messaging";
 
 const config = {
-  apiKey: "AIzaSyD7vx1YcQDmd7Gom-mOGzB_j_oYD4qjR9M",
-  authDomain: "pushnotificationtest-9e21c.firebaseapp.com",
-  projectId: "pushnotificationtest-9e21c",
-  storageBucket: "pushnotificationtest-9e21c.appspot.com",
-  messagingSenderId: "1019872102596",
-  appId: "1:1019872102596:web:57ec3461348eca0ea1e191",
-  measurementId: "G-TFEDXNHVGY",
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 firebase.initializeApp(config);
 
 const messaging = getMessaging();
+console.log(process.env);
 
 const Main = (props) => {
   getToken(messaging, {
-    vapidKey:
-      "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
+    vapidKey: process.env.REACT_APP_VAPID_KEY,
   })
     .then((currentToken) => {
-      console.log(currentToken);
       if (currentToken) {
         permission = true;
         if (!noticeSet && token && !ios && permission) {
@@ -56,10 +55,10 @@ const Main = (props) => {
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
-
-  const [ios, setIos] = useState(Mobile());
+  const [ios, setIos] = useState(Mobile()); // IOS이면 true, 나머지는 false
   const [noticationModal, setNoticationModal] = useState(false);
   const location = useLocation();
+  // eslint-disable-next-line no-unused-vars
   let [permission, setPermission] = useState(false);
   const token = localStorage.getItem("token");
   const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
@@ -120,6 +119,7 @@ const Main = (props) => {
   );
 };
 
+// --- styled-components ---
 const Container = styled.div`
   width: 100%;
   height: inherit;
