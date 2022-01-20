@@ -74,7 +74,6 @@ function App() {
               component={MyPageNotification}
             />
             <Route path="/notice" exact component={NoticePage} />
-            <Route path="/test" exact component={Test} />
             <Route>
               <NotFound />
             </Route>
