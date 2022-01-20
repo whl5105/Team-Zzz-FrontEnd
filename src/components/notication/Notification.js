@@ -28,7 +28,6 @@ const Notifications = (props) => {
     state,
     setNoticationModal,
   } = props;
-  console.log(props);
 
   const dayItems = ["AM", "PM"];
   const hourItems = [
@@ -66,13 +65,6 @@ const Notifications = (props) => {
         dispatch(noticeActions.setNoticeDB(notice));
       } else {
         dispatch(noticeActions.setNoticeDB(notice, day, hour, minutes));
-        // axios
-        //   .get(`https://www.zzzback.shop/api/location/${history.pushtoken}`, {
-        //     headers: { authorization: `Bearer ${userToken}` },
-        //   })
-        //   .then((res) => {
-        //     console.log(res);
-        //   });
       }
 
       localStorage.setItem("noticeSet", true);
