@@ -5,6 +5,8 @@ import App from "./shared/App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 
+import ReactPWAInstallProvider from "react-pwa-install";
+
 import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
@@ -12,13 +14,16 @@ import Device from "./components/Device";
 import theme from "./shared/theme";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <Device>
-        <App />
-      </Device>
-    </ThemeProvider>
-  </Provider>,
+  <ReactPWAInstallProvider enableLogging>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Device>
+          <App />
+        </Device>
+      </ThemeProvider>
+    </Provider>
+  </ReactPWAInstallProvider>,
+
   document.getElementById("root")
 );
 

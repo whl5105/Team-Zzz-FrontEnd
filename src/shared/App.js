@@ -47,7 +47,7 @@ function App() {
     });
     // ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
-  
+
   return (
     <WrapBox id="app">
       <GlobalStyle />
@@ -87,7 +87,7 @@ function App() {
 
 const WrapBox = styled.div`
   width: 100%;
-  height: inherit;
+  height: 100%;
 `;
 
 const Wrap = styled.div`
