@@ -1,25 +1,47 @@
 import React from "react";
 import styled from "styled-components";
 
+import { useReactPWAInstall } from "react-pwa-install";
+import { logo } from "../static/images";
+
 import { isMobile } from "./DeviceDetector";
 import { use100vh } from "react-div-100vh";
 
 // --- images ---
 import { web_phone, web_back, web_logo } from "../static/images/index";
-import Navigation from "./Navigation";
+
+import { Button } from "../elements";
 
 const Device = ({ children }) => {
+  const { pwaInstall } = useReactPWAInstall();
+  //모바일 높이
   const height = use100vh();
-  return isMobile ? (
-    <>
-      <>
-        <Mobile style={{ height: height }}>{children}</Mobile>
-      </>
 
-      {/* <Navigation /> */}
-    </>
+  const installApp = () => {
+    pwaInstall({
+      title: "Zzz 다운받기",
+      logo: logo,
+      features: (
+        <ul>
+          <li>Cool feature 1</li>
+          <li>Cool feature 2</li>
+          <li>Even cooler feature</li>
+          <li>Works offline</li>
+        </ul>
+      ),
+      description: "This is a very good app that does a lot of useful stuff. ",
+    })
+      .then(() =>
+        alert("App installed successfully or instructions for install shown")
+      )
+      .catch(() => alert("User opted out from installing"));
+  };
+
+  return isMobile ? (
+    <Mobile style={{ height: height }}>{children}</Mobile>
   ) : (
     <WebBackgroundWrapper>
+      <Button _onClick={installApp}>설치 버튼</Button>
       <ClayPhone>
         <WebViewLayout>{children}</WebViewLayout>
       </ClayPhone>
