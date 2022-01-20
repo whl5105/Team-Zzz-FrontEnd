@@ -54,7 +54,6 @@ function App() {
       <Wrap className="App">
         <ConnectedRouter history={history}>
           <Header />
-
           <Switch>
             <Route path="/" exact component={Main} />
             <Route path="/clock" exact component={Clock} />
