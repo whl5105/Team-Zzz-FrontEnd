@@ -110,7 +110,7 @@ const Login = () => {
       <SignUp
         type="submit"
         onClick={() => {
-          history.push("/signup");
+          history.push("/user/signup");
         }}
       >
         <p>회원가입 하기</p>

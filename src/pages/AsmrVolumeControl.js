@@ -33,7 +33,7 @@ const AsmrPopUp = (props) => {
 
   const loginModal = () => {
     setRequireLoginModal(false);
-    history.push("/login");
+    history.push("/user/login");
   };
 
   const [guidance, setGuidance] = React.useState();

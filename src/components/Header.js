@@ -36,7 +36,7 @@ const Header = withRouter((props) => {
 
   const loginModal = () => {
     setRequireLoginModal(false);
-    history.push("/login");
+    history.push("/user/login");
   };
 
   const PageLink = () => {
@@ -56,7 +56,7 @@ const Header = withRouter((props) => {
             history.push("/");
           }}
         />
-        {path === "/asmr" || path === "/asmrPop" ? (
+        {path === "/asmr" || path === "/asmr/asmrVolumeControl" ? (
           <>
             {/* asmr  */}
             <HoverImage
