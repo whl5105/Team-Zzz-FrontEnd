@@ -6,7 +6,6 @@ import { use100vh } from "react-div-100vh";
 import { isMobile } from "./DeviceDetector";
 import { Button, Icon } from "../elements";
 
-// --- images ---
 import {
   web_phone,
   web_back,
@@ -20,7 +19,6 @@ const Device = ({ children }) => {
   const support = supported();
   const [isSupported, setIsSupported] = React.useState(null);
   const [webView, setWebView] = React.useState(true);
-  //모바일 높이
   const height = use100vh();
 
   const handleClick = () => {
@@ -29,15 +27,13 @@ const Device = ({ children }) => {
       logo: install_logo,
     })
       .then(() => {
-        // alert("앱 설치 성공");
         setWebView(true);
       })
       .catch(() => {
-        // alert("설치 취소");
+        console.log("설치 실패")
       });
   };
-  //support :지원여부
-  //installed : 설치여부
+
   React.useEffect(() => {
     setIsSupported(support);
   }, [support]);
@@ -48,7 +44,9 @@ const Device = ({ children }) => {
         <>
           {!isInstalled() && webView ? (
             <MobileInstallBtn>
-              <Button _onClick={handleClick}>앱으로 다운받기</Button>
+              <Button marginB="20" _onClick={handleClick}>
+                앱으로 다운받기
+              </Button>
               <Button
                 _onClick={() => {
                   setWebView(false);
@@ -90,10 +88,8 @@ const Content = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.bg};
-  & Button {
-    margin-bottom: 20px;
-  }
 `;
+
 const MobileInstallBtn = styled.div`
   padding: 20px;
 `;
@@ -119,13 +115,15 @@ const WebBackgroundWrapper = styled.div`
 `;
 
 const Phone = styled.div`
-  width: 431px;
-  height: 864px;
+  width: 426px;
+  height: 92%;
+  min-height: 750px;
   position: fixed;
   right: 50%;
   top: 50%;
   transform: translate(50%, -50%);
-  background: url(${web_phone}) no-repeat center/cover;
+  background: url(${web_phone}) no-repeat;
+  background-size: 100% 100%;
 
   @media screen and (min-width: 1120px) {
     right: 10%;
@@ -136,7 +134,7 @@ const Phone = styled.div`
 
 const WebViewLayout = styled.div`
   max-width: 375px;
-  height: 810px;
+  height: calc(100% - 43px);
   position: relative;
   top: 50%;
   left: 50%;
@@ -145,6 +143,7 @@ const WebViewLayout = styled.div`
   background-color: ${({ theme }) => theme.colors.bg};
   overflow: hidden;
 `;
+
 const WebInstallBtn = styled.div`
   width: 204px;
   height: 54px;

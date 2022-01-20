@@ -3,10 +3,8 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { withRouter } from "react-router-dom";
 
-// --- components ---
 import { deleteSong } from "../pages/Asmr";
 
-// --- images ---
 import {
   playBar_close,
   playBar_pause,
@@ -54,15 +52,14 @@ const PlayBar = withRouter((props) => {
         history.icon1 = "";
 
         history.setSong1(new Audio());
-        history.setPlay([]); // 모든 음원 리스트 리셋
+        history.setPlay([]); 
       }
 
-      //이곳에 플레이바 사라지게 하는 조건 변수 바뀌는거 추가,
       history.state1 = "";
       history.audio1 = "";
       history.title1 = "";
       history.icon1 = "";
-      history.setPlay([]); // 모든 음원 리스트 리셋
+      history.setPlay([]);
     }
     if (history.audio2) {
       history.audio2.pause();
@@ -74,15 +71,14 @@ const PlayBar = withRouter((props) => {
         history.icon2 = "";
 
         history.setSong2(new Audio());
-        history.setPlay([]); // 모든 음원 리스트 리셋
+        history.setPlay([]);
       }
 
-      //이곳에 플레이바 사라지게 하는 조건 변수 바뀌는거 추가,
       history.state2 = "";
       history.audio2 = "";
       history.title2 = "";
       history.icon2 = "";
-      history.setPlay([]); // 모든 음원 리스트 리셋
+      history.setPlay([]); 
     }
     if (history.audio3) {
       history.audio3.pause();
@@ -94,15 +90,14 @@ const PlayBar = withRouter((props) => {
         history.icon3 = "";
 
         history.setSong3(new Audio());
-        history.setPlay([]); // 모든 음원 리스트 리셋
+        history.setPlay([]); 
       }
 
-      //이곳에 플레이바 사라지게 하는 조건 변수 바뀌는거 추가,
       history.state3 = "";
       history.audio3 = "";
       history.title3 = "";
       history.icon3 = "";
-      history.setPlay([]); // 모든 음원 리스트 리셋
+      history.setPlay([]); 
       history.arr = [];
     }
     if (history.audio4) {
@@ -115,15 +110,14 @@ const PlayBar = withRouter((props) => {
         history.icon4 = "";
         history.arr = [];
         history.setSong4(new Audio());
-        history.setPlay([]); // 모든 음원 리스트 리셋
+        history.setPlay([]); 
       }
 
-      //이곳에 플레이바 사라지게 하는 조건 변수 바뀌는거 추가,
       history.state4 = "";
       history.audio4 = "";
       history.title4 = "";
       history.icon4 = "";
-      history.setPlay([]); // 모든 음원 리스트 리셋
+      history.setPlay([]);
       history.arr = [];
     }
     setPlaybar([]);
@@ -133,7 +127,7 @@ const PlayBar = withRouter((props) => {
   };
 
   const asmrMove = () => {
-    if (props.location.pathname === "/asmrPop") {
+    if (props.location.pathname === "/asmr/asmrVolumeControl") {
       history.push("/asmr");
     }
   };
@@ -142,7 +136,7 @@ const PlayBar = withRouter((props) => {
     if (history.mixListModal) {
       history.setMixListModal(false);
     }
-    history.push("/asmrPop");
+    history.push("/asmr/asmrVolumeControl");
   };
 
   return (
@@ -168,7 +162,6 @@ const PlayBar = withRouter((props) => {
   );
 });
 
-// --- styled-components ---
 const Wrap = styled.div`
   width: calc(100% - 40px);
   height: 72px;

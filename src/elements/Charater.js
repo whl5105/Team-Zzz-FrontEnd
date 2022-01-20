@@ -30,7 +30,6 @@ const Charater = (props) => {
     selectColor: selectColor,
   };
 
-  // 표정
   if (shape === "feel") {
     return (
       <>
@@ -90,7 +89,6 @@ const Charater = (props) => {
     );
   }
 
-  // 느낌
   if (shape === "sleep") {
     return (
       <div>
@@ -105,7 +103,6 @@ const Charater = (props) => {
     );
   }
 
-  // 혼합
   if (shape === "charater") {
     return (
       <>

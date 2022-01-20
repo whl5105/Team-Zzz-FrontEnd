@@ -138,7 +138,6 @@ const Toggle = (props) => {
     return outputArray;
   }
 
-  // --- jsx ---
   return (
     <>
       {props.label}

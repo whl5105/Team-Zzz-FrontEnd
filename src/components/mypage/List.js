@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- components ---
 import { Icon } from "../../elements";
 
-// --- images ---
 import { arrow_R_W } from "../../static/images/index";
 
 const List = (props) => {
@@ -26,7 +24,6 @@ List.defaultProps = {
   _onClick: () => {},
 };
 
-// --- styled-components ---
 const ListBox = styled.div`
   width: 100%;
   height: 56px;

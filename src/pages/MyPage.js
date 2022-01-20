@@ -38,13 +38,13 @@ const Mypage = (props) => {
         {ios ? null : (
           <>
             <AlarmBanner
-              _onClick={() => history.push(`/mypageNotice/${userIdx}`)}
+              _onClick={() => history.push(`/mypage/notification/${userIdx}`)}
             ></AlarmBanner>
             <Space></Space>
           </>
         )}
 
-        <List icon={notice} _onClick={() => history.push("/notice")}>
+        <List icon={notice} _onClick={() => history.push("/mypage/notice")}>
           공지사항
         </List>
         <List icon={mixList} _onClick={() => history.push("/myPage/mixList")}>
@@ -56,10 +56,10 @@ const Mypage = (props) => {
   return (
     <Container>
       <Title>마이페이지</Title>
-      <List _onClick={() => history.push("/login")} icon={user}>
+      <List _onClick={() => history.push("/user/login")} icon={user}>
         로그인 하기
       </List>
-      <List icon={notice} _onClick={() => history.push("/notice")}>
+      <List icon={notice} _onClick={() => history.push("/mypage/notice")}>
         공지사항
       </List>
     </Container>

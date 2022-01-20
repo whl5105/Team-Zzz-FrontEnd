@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
-// --- components ---
 import { Button, Icon, DropDown } from "../elements/index";
 
-// --- images ---
 import {
   arrow_R_W,
   sleepTime_B,
@@ -15,7 +13,7 @@ import {
   fallBack,
 } from "../static/images";
 
-const Clock = (props) => {
+const OptimalSleepTime = (props) => {
   const [ampm, setampm] = useState("");
   const [wakeup_hour, setwakeup_hour] = useState(0);
   const [wakeup_min, setwakeup_min] = useState(0);
@@ -319,7 +317,6 @@ const Clock = (props) => {
   );
 };
 
-// --- styled-components ---
 const Background = styled.div`
   width: 100%;
   height: inherit;
@@ -356,21 +353,10 @@ const Explanation = styled.p`
 `;
 
 const SleepTimeWrap = styled.div`
-  /* flex-direction: row; */
-
-  /* position: absolute; */
-  /* width: 335px;
-  right: 20px;
-  top: 354px; */
   width: 100%;
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-
   background: rgba(248, 248, 248, 0.1);
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  /* z-index: 1; */
   padding: 20px;
   box-sizing: border-box;
 `;
@@ -432,4 +418,4 @@ const Reset = styled.div`
   margin-top: 24px;
 `;
 
-export default Clock;
+export default OptimalSleepTime;

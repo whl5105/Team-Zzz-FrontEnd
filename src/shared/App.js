@@ -10,23 +10,19 @@ import ReactGA from "react-ga";
 // page
 import NotFound from "../pages/NotFound";
 import Main from "../pages/Main";
-import FirstNotification from "../pages/FirstNotification";
-import Clock from "../pages/Clock";
+import OptimalSleepTime from "../pages/OptimalSleepTime";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
-import Push from "./Push";
 import Diary from "../pages/Diary";
-import RequireLogin from "../components/RequireLogin";
 import Asmr from "../pages/Asmr";
-import AsmrPopUp from "../pages/AsmrPopUp";
+import AsmrVolumeControl from "../pages/AsmrVolumeControl";
 import Mypage from "../pages/MyPage";
-import MixList from "../pages/MixList";
+import MypageMixList from "../pages/MypageMixList";
 import MyPageNotification from "../pages/MyPageNotification";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
-import NoticePage from "../pages/NoticePage";
+import MypageNotice from "../pages/MypageNotice";
 import PlayBar from "../components/PlayBar";
-import Test from "../pages/Test";
 
 ReactGA.event({
   category: "User",
@@ -54,24 +50,29 @@ function App() {
         <ConnectedRouter history={history}>
           <Header />
           <Switch>
-            <Route path="/" exact component={Main} />
-            <Route path="/clock" exact component={Clock} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/signup" exact component={Signup} />
-            <Route path="/requireLogin" exact component={RequireLogin} />
-            <Route path="/push" exact component={Push} />
-            <Route path="/pushNotication" exact component={FirstNotification} />
-            <Route path="/diary" exact component={Diary} />
-            <Route path="/asmr" component={Asmr} />
-            <Route path="/asmrPop" exact component={AsmrPopUp} />
-            <Route path="/mypage" exact component={Mypage} />
-            <Route path="/mypage/mixList" exact component={MixList} />
+            <Route exact path="/" component={Main} />
+            <Route exact path="/user/login" component={Login} />
+            <Route exact path="/user/signup" component={Signup} />
             <Route
-              path="/mypageNotice/:userIdx"
               exact
+              path="/optimalSleepTime"
+              component={OptimalSleepTime}
+            />
+            <Route exact path="/asmr" component={Asmr} />
+            <Route
+              exact
+              path="/asmr/asmrVolumeControl"
+              component={AsmrVolumeControl}
+            />
+            <Route exact path="/diary" component={Diary} />
+            <Route exact path="/mypage" component={Mypage} />
+            <Route exact path="/mypage/mixList" component={MypageMixList} />
+            <Route
+              exact
+              path="/mypage/notification/:userIdx"
               component={MyPageNotification}
             />
-            <Route path="/notice" exact component={NoticePage} />
+            <Route exact path="/mypage/notice" component={MypageNotice} />
             <Route>
               <NotFound />
             </Route>
@@ -86,7 +87,7 @@ function App() {
 
 const WrapBox = styled.div`
   width: 100%;
-  height: inherit;
+  height: 100%;
 `;
 
 const Wrap = styled.div`

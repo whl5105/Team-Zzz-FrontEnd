@@ -15,22 +15,18 @@ const Signup = (props) => {
   const dispatch = useDispatch();
   const errMessage = useSelector((store) => store.user.errMessage);
 
-  //-- 아아디, 비밀번호, 비밀번호확인 , 이메일  --
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
   const [pwd_check, setPwdCheck] = useState("");
 
-  //-- 오류 메시지 상태저장--
   const [idMessage, setIdMessage] = useState("");
   const [pwdMessage, setPwdMessage] = useState("");
   const [pwdCheckMessage, setPwdCheckMessage] = useState("");
 
-  //-- 유효성 검사 --
   const [isId, setIsId] = useState(false);
   const [isPassword, setIsPassword] = useState(false);
   const [isPwdCheck, setIsPwdCheck] = useState(false);
 
-  //---- 아이디 유효성 검사  ----
   const idCheck = (e) => {
     const idCurrent = e.target.value;
     setId(idCurrent);
@@ -43,7 +39,6 @@ const Signup = (props) => {
     }
   };
 
-  //---- 비밀번호 유효성 검사  ----
   const onChangePassword = (e) => {
     const passwordCurrent = e.target.value;
     setPwd(passwordCurrent);
@@ -56,7 +51,6 @@ const Signup = (props) => {
     }
   };
 
-  //---- 비밀번호 중복 확인  ----
   const onChangePasswordCheck = (e) => {
     const pwdCurrent = e.target.value;
     setPwdCheck(pwdCurrent);
@@ -69,7 +63,6 @@ const Signup = (props) => {
     }
   };
 
-  // ---- 회원가입 버튼 클릭 ----
   const signUpClick = () => {
     if (!isId || !isPassword || !isPwdCheck) {
       window.alert("아이디, 패스워드를 정확하게  입력해주세요");
@@ -105,7 +98,6 @@ const Signup = (props) => {
         <Span>영문 대소문자(5-10자)</Span>
       )}
 
-      {/* -- 비밀번호 --  */}
       <Input
         resetInput
         placeholder="비밀번호"
@@ -126,7 +118,6 @@ const Signup = (props) => {
         <Span>비밀번호 영문,숫자,특수문자 조합 (8~20자)</Span>
       )}
 
-      {/* -- 비밀번호 확인 -- */}
       <Input
         placeholder="비밀번호 확인"
         type="password"
@@ -141,8 +132,9 @@ const Signup = (props) => {
       ) : (
         <Span>비밀번호 확인</Span>
       )}
-      {/* -- 회원가입 버튼 --*/}
+
       <Button onClick={signUpClick}>회원가입</Button>
+
       <Login
         type="submit"
         onClick={() => {

@@ -2,10 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
-// --- components ---
 import { Icon } from "../../elements";
 
-// --- images ---
 import { arrow_R_B, mypage_alarm } from "../../static/images/index";
 
 const AlarmBanner = (props) => {
@@ -42,7 +40,6 @@ const AlarmBanner = (props) => {
   );
 };
 
-// --- styled-components ---
 AlarmBanner.defaultProps = {
   _onClick: () => {},
 };

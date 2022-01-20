@@ -15,8 +15,8 @@ import { IdCheck, PwdCheck } from "../shared/common";
 import { reset } from "../static/images";
 const Login = () => {
   const dispatch = useDispatch();
-  const errMessage = useSelector((store) => store.user.errMessage); // 에러 메세지
-  const first_signup = useSelector((store) => store.user.is_signup); // 회원가입 완료
+  const errMessage = useSelector((store) => store.user.errMessage); 
+  const first_signup = useSelector((store) => store.user.is_signup); 
 
   const [inputs, setInputs] = useState({
     id: "",
@@ -35,10 +35,8 @@ const Login = () => {
     }
   }, []);
 
-  //-- 오류메시지 상태저장--
   const [Message, setMessage] = React.useState("");
 
-  //-- 유효성 검사 --
   const [isState, setIsState] = React.useState(true);
 
   const onChange = (e) => {
@@ -48,7 +46,6 @@ const Login = () => {
     });
   };
 
-  //-- input 초기화 --
   const onReset = (e) => {
     setInputs({
       ...inputs,
@@ -56,7 +53,6 @@ const Login = () => {
     });
   };
 
-  //-- 로그인 클릭시 --
   const loginClick = () => {
     if (!IdCheck(id) || !PwdCheck(pwd)) {
       setMessage("입력한 내용을 다시 확인해주세요");
@@ -110,7 +106,7 @@ const Login = () => {
       <SignUp
         type="submit"
         onClick={() => {
-          history.push("/signup");
+          history.push("/user/signup");
         }}
       >
         <p>회원가입 하기</p>

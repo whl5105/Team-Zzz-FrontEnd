@@ -8,7 +8,7 @@ import RequireLogin from "../components/RequireLogin";
 import PlayList from "../components/asmr/PlayList";
 import { Button, Icon } from "../elements/index";
 
-const AsmrPopUp = (props) => {
+const AsmrVolumeControl = (props) => {
   const [song1, setSong1] = useState(history.audio1 && history.audio1);
   const [song2, setSong2] = useState(history.audio2 && history.audio2);
   const [song3, setSong3] = useState(history.audio3 && history.audio3);
@@ -32,7 +32,7 @@ const AsmrPopUp = (props) => {
 
   const loginModal = () => {
     setRequireLoginModal(false);
-    history.push("/login");
+    history.push("/user/login");
   };
 
   const [guidance, setGuidance] = useState();
@@ -211,7 +211,7 @@ const AsmrPopUp = (props) => {
                     type="bgBtn"
                     size="16"
                     marginT="0"
-                    _onClick={titleWrite} //  나중에 볼륨 조절 한 거 데이터를 dispatch 해서 넣는 걸 하면 될 듯 하다
+                    _onClick={titleWrite} 
                   >
                     내 믹스 저장하기
                   </Button>
@@ -279,4 +279,4 @@ const SongList = styled.div`
   box-sizing: border-box;
 `;
 
-export default AsmrPopUp;
+export default AsmrVolumeControl;

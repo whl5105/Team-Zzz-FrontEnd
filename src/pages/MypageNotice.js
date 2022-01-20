@@ -6,7 +6,7 @@ import List from "../components/mypage/List";
 
 import { notice, arrow_B_W, arrow_T_W } from "../static/images";
 
-const NoticePage = (props) => {
+const MypageNotice = (props) => {
   const [toggle, setToggle] = useState(false);
 
   return (
@@ -72,4 +72,4 @@ const TextBox = styled.ul`
   }
 `;
 
-export default NoticePage;
+export default MypageNotice;

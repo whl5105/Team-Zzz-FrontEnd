@@ -15,9 +15,7 @@ function detectIphoneDevice(agent) {
   return mobileRegex.some((mobile) => agent.match(mobile));
 }
 
-//-- 모바일 디바이스 --
 const isMobile = detectMobileDevice(window.navigator.userAgent);
-//-- 아이폰 디바이스 --
 const isIPhone = detectIphoneDevice(window.navigator.userAgent);
 
 export { isMobile, isIPhone };

@@ -2,10 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-  const { type, text, _onClick, children, size, marginT, bg, color } =
+  const { type, text, _onClick, children, size, marginT, bg, color, marginB } =
     props;
 
-  const styles = { size: size, marginT: marginT, bg: bg, color: color };
+  const styles = {
+    size: size,
+    marginT: marginT,
+    marginB: marginB,
+    bg: bg,
+    color: color,
+  };
 
   if (type === "boderBtn") {
     return (
@@ -32,7 +38,6 @@ Button.defaultProps = {
   _onClick: () => {},
 };
 
-// --- styled-components ---
 const BgBtn = styled.button`
   width: 100%;
   height: ${(props) => (props.height ? ` ${props.height}px;` : "48px")};
@@ -43,6 +48,7 @@ const BgBtn = styled.button`
   font-size: ${(props) => (props.size ? ` ${props.size}px;` : "14px")};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   margin-top: ${(props) => props.marginT && `${props.marginT}px`};
+  margin-bottom: ${(props) => props.marginB && `${props.marginB}px`};
 `;
 
 const BorderBtn = styled.button`
@@ -54,6 +60,7 @@ const BorderBtn = styled.button`
   font-size: ${(props) => (props.size ? ` ${props.size}px;` : "14px")};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   margin-top: ${(props) => props.marginT && `${props.marginT}px`};
+  margin-bottom: ${(props) => props.marginB && `${props.marginB}px`};
 `;
 
 export default Button;

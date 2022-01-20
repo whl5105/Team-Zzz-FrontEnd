@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../../redux/configureStore";
 
-// --- components ---
 import { Icon } from "../../elements/index";
 
-// --- images ---
 import { mix_play } from "../../static/images/index";
 
 const MixSoundTrack = (props) => {
@@ -91,13 +89,13 @@ const MixSoundTrack = (props) => {
 
   const playSoundSetting = () => {
     if (mix1) {
-      song1.src = mix1.asmrUrl; // 음원 url
-      song1.volume = Math.ceil(mix1.sound * 100) / 100; // 볼륨
-      history.audio1 = song1; // 음원 audio 객체
-      history.setSong1 = setSong1; // 음원 setState
-      history.icon1 = mix1.iconUrl; // 아이콘 url
-      history.state1 = mix1.asmrUrl; //음원 url
-      history.title1 = mix1.title; // 음원 제목
+      song1.src = mix1.asmrUrl; 
+      song1.volume = Math.ceil(mix1.sound * 100) / 100;
+      history.audio1 = song1; 
+      history.setSong1 = setSong1; 
+      history.icon1 = mix1.iconUrl; 
+      history.state1 = mix1.asmrUrl; 
+      history.title1 = mix1.title;
       song1.play();
     }
 
@@ -165,7 +163,6 @@ const MixSoundTrack = (props) => {
   );
 };
 
-// --- styled-components ---
 const Wrap = styled.div`
   width: 295px;
   display: flex;

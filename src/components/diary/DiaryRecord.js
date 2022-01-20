@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- components ---
 import Charater from "../../elements/Charater";
 
 const DiaryRecord = (props) => {
@@ -48,8 +47,6 @@ const DiaryRecord = (props) => {
     </>
   );
 };
-
-// --- styled-components ---
 
 const Content = styled.div`
   display: grid;
