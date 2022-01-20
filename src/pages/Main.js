@@ -49,6 +49,7 @@ if(/android/i.test(navigator.userAgent)){
   })
     .then((currentToken) => {
       history.pushtoken = currentToken;
+      console.log(currentToken);
       if (currentToken) {
         permission = true;
         if (!noticeSet && token && !ios && permission) {
@@ -67,7 +68,7 @@ if(/android/i.test(navigator.userAgent)){
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
   const [ios, setIos] = useState(Mobile()); // IOS이면 true, 나머지는 false
-  const [noticationModal, setNoticationModal] = useState(false);
+  const [noticationModal, setNoticationModal] = useState(true);
   const location1 = useLocation();
   // eslint-disable-next-line no-unused-vars
   let [permission, setPermission] = useState(false);
