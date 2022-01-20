@@ -39,17 +39,10 @@ const RequireLogin = (props) => {
 const Wrap = styled.div`
   text-align: center;
   padding: 20px;
-  /* width: 100%;
-  height: 153px; */
 `;
 
 const Title = styled.p`
   margin-bottom: 12px;
-  /* width: 100%;
-  height: 27px;
-  margin-top: 20px;
-  margin-left: 20px; */
-  /* text-align: center; */
   color: ${({ theme }) => theme.colors.gray_9};
   font-size: ${({ theme }) => theme.fontSizes.lg};
   line-height: ${({ theme }) => theme.lineHeight.ssmall};
@@ -58,12 +51,7 @@ const Title = styled.p`
 `;
 
 const SubTitle = styled.p`
-margin-bottom: 24px;
-  /* width: 100%;
-  height: 22px;
-  margin-top: 12px;
-  margin-left: 20px; */
-  /* text-align: center; */
+  margin-bottom: 24px;
   color: ${({ theme }) => theme.colors.gray_7};
   font-size: ${({ theme }) => theme.fontSizes.small};
   line-height: ${({ theme }) => theme.lineHeight.ssmall}
@@ -74,8 +62,6 @@ margin-bottom: 24px;
 const Buttons = styled.div`
   width: 100%;
   display: flex;
-  /* margin-left: 20px;
-  margin-top: 24px; */
 `;
 
 const Button = styled.button`

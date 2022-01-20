@@ -18,18 +18,6 @@ const initialState = {
   },
 };
 
-// -- middleware actions --
-// const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0) => {
-//   return async function (dispatch, getState, { history }) {
-//     try {
-//       const response = await apis.postNotice(notice, day, hour, minutes);
-//       const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
-//       dispatch(setNotice(info));
-//     } catch (error) {
-//       console.log("noticeDB Error : ", error);
-//     }
-//   };
-// };
 const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
   const pushToken = history.pushtoken;
   hour = hour / 1;
@@ -45,9 +33,7 @@ const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
       );
 
       if (token) {
-        // console.log(token);
         const res = await apis.location(token);
-        // console.log(res);
       }
       const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
       dispatch(setNotice(info));

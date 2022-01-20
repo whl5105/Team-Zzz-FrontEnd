@@ -1,18 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-// -- components --
 import ModalPopUp from "../components/ModalPopUp";
 import Notifications from "../components/notication/Notification";
 
 const PushNoticationPop = (props) => {
-  // 설정된 알림 데이터
-  const [notice, setNotice] = React.useState(true); // 알림 유무
-  const [day, setDay] = React.useState("PM"); // 오전(true), 오후(false) 설정
-  const [hour, setHour] = React.useState(12); // 시 설정
-  const [minutes, setMinutes] = React.useState(0); // 분 설정
+  const [notice, setNotice] = React.useState(true);
+  const [day, setDay] = React.useState("PM");
+  const [hour, setHour] = React.useState(12);
+  const [minutes, setMinutes] = React.useState(0);
 
-  // DropDown 활성화 유무
   const [dayActive, setDayActive] = React.useState(false);
   const [hourActive, setHourActive] = React.useState(false);
   const [minutesActive, setMinutesActive] = React.useState(false);
@@ -52,10 +49,7 @@ const PushNoticationPop = (props) => {
 };
 
 const Wrap = styled.div`
-  /* width: 100%; */
-  /* position: absolute; */
   padding: 20px 20px;
-  /* box-sizing: border-box; */
 `;
 
 export default PushNoticationPop;

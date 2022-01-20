@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -7,10 +7,8 @@ import { history } from "../redux/configureStore.js";
 
 import { IdCheck, PwdCheck } from "../shared/common";
 
-// --- compoentns ---
 import { Input } from "../elements";
 
-// --- images ---
 import { reset } from "../static/images";
 
 const Signup = (props) => {
@@ -18,19 +16,19 @@ const Signup = (props) => {
   const errMessage = useSelector((store) => store.user.errMessage);
 
   //-- 아아디, 비밀번호, 비밀번호확인 , 이메일  --
-  const [id, setId] = React.useState("");
-  const [pwd, setPwd] = React.useState("");
-  const [pwd_check, setPwdCheck] = React.useState("");
+  const [id, setId] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [pwd_check, setPwdCheck] = useState("");
 
   //-- 오류 메시지 상태저장--
-  const [idMessage, setIdMessage] = React.useState("");
-  const [pwdMessage, setPwdMessage] = React.useState("");
-  const [pwdCheckMessage, setPwdCheckMessage] = React.useState("");
+  const [idMessage, setIdMessage] = useState("");
+  const [pwdMessage, setPwdMessage] = useState("");
+  const [pwdCheckMessage, setPwdCheckMessage] = useState("");
 
   //-- 유효성 검사 --
-  const [isId, setIsId] = React.useState(false);
-  const [isPassword, setIsPassword] = React.useState(false);
-  const [isPwdCheck, setIsPwdCheck] = React.useState(false);
+  const [isId, setIsId] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
+  const [isPwdCheck, setIsPwdCheck] = useState(false);
 
   //---- 아이디 유효성 검사  ----
   const idCheck = (e) => {
@@ -78,14 +76,9 @@ const Signup = (props) => {
       return;
     }
     dispatch(userActions.signupDB(id, pwd));
-
-    // //중복 아이디 일 경우
-    // if (errMessage) {
-    //   setIdMessage("중복된 아이디 입니다");
-    //   setIsId(false);
-    // }
   };
-  React.useEffect(() => {
+
+  useEffect(() => {
     setIsId(false);
     setIdMessage(errMessage);
   }, [errMessage]);
@@ -164,7 +157,6 @@ const Signup = (props) => {
   );
 };
 
-// --- styled-components ---
 const Container = styled.div`
   padding: 0 ${({ theme }) => theme.paddings.xxxxl};
 `;
@@ -183,9 +175,11 @@ const Span = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   display: flex;
   margin-bottom: ${({ theme }) => theme.margins.xxxxl};
+
   &.success {
     color: #4791ff;
   }
+
   &.error {
     color: #ff473d;
   }
@@ -211,9 +205,11 @@ const Login = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.Regular};
   box-sizing: border-box;
   cursor: pointer;
+
   & p {
     display: inline-block;
     position: relative;
+
     ::before {
       content: "";
       width: 100%;
@@ -224,6 +220,7 @@ const Login = styled.div`
       z-index: 100;
       background-color: ${({ theme }) => theme.colors.white};
     }
+
     & span {
       color: ${({ theme }) => theme.colors.main_1};
     }

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// ---
 const ModalPopUp = (props) => {
   const { children, close, backgroundNull, zIndex, marginNull, width } = props;
   const styles = {

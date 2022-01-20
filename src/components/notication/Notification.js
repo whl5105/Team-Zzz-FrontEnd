@@ -9,8 +9,6 @@ import axios from "axios";
 import { DropDown, Toggle, Button } from "../../elements/index";
 
 const Notifications = (props) => {
-  const userToken = localStorage.getItem("token");
-
   const dispatch = useDispatch();
   const history = useHistory();
 

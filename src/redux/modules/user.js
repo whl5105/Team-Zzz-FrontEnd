@@ -49,9 +49,6 @@ export const loginDB =
   async (dispatch, getState, { history }) => {
     try {
       const res = await apis.login(userId, password);
-      // console.log(res);
-      // let username = res.data[0].userId;
-      //로컬 스토리지 저장
       localStorage.setItem("userIdx", res.userIdx);
       localStorage.setItem("noticeSet", res.noticeSet);
       localStorage.setItem("token", res.token);
@@ -63,14 +60,10 @@ export const loginDB =
           noticeSet: res.noticeSet,
         })
       );
-      // window.alert(`${username}님 환영합니다`);
       history.replace("/");
     } catch (err) {
-      // window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
       window.alert(err.response.data.errorMessage);
-      // console.log(err.response.data.errorMessage);
       dispatch(err_signup(err.response.data.errorMessage));
-      // console.log(err.response.data.errorMessage);
     }
   };
 
@@ -80,9 +73,7 @@ export const socialLoginDB =
   async (dispatch, getState, { history }) => {
     try {
       const res = await apis.kakaoLogin(id);
-      // console.log(res);
 
-      //로컬 스토리지 저장
       localStorage.setItem("userIdx", res.userInfo.userIdx);
       localStorage.setItem("noticeSet", res.userInfo.noticeSet);
       localStorage.setItem("token", res.userInfo.token);
@@ -113,7 +104,6 @@ const logoutDB = () => {
     }
     alert("로그아웃 되었습니다.");
     history.push("/");
-    // window.location.reload();
   };
 };
 
@@ -130,9 +120,7 @@ export default handleActions(
       }),
     [ERR_SIGNUP]: (state, action) =>
       produce(state, (draft) => {
-        // draft.errMessage = "중복된 아이디 입니다 ";
         draft.errMessage = action.payload.err;
-        // console.log(draft.errMessage);
       }),
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
