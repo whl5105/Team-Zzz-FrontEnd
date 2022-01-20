@@ -1,25 +1,102 @@
 import React from "react";
 import styled from "styled-components";
+import { useReactPWAInstall } from "react-pwa-install";
+import { use100vh } from "react-div-100vh";
 
 import { isMobile } from "./DeviceDetector";
-import Div100vh from "react-div-100vh";
+import { Button, Icon } from "../elements";
 
 // --- images ---
-import { web_phone, web_back, web_logo } from "../static/images/index";
+import {
+  web_phone,
+  web_back,
+  web_logo,
+  install_logo,
+  install_download,
+} from "../static/images";
 
 const Device = ({ children }) => {
+  const { pwaInstall, supported, isInstalled } = useReactPWAInstall();
+  const support = supported();
+  const [isSupported, setIsSupported] = React.useState(null);
+  const [webView, setWebView] = React.useState(true);
+  //모바일 높이
+  const height = use100vh();
+
+  const handleClick = () => {
+    pwaInstall({
+      title: "Zzz 다운받기",
+      logo: install_logo,
+    })
+      .then(() => {
+        // alert("앱 설치 성공");
+        setWebView(true);
+      })
+      .catch(() => {
+        // alert("설치 취소");
+      });
+  };
+  //support :지원여부
+  //installed : 설치여부
+  React.useEffect(() => {
+    setIsSupported(support);
+  }, [support]);
+
   return isMobile ? (
-    <Div100vh>
-      <Mobile>{children}</Mobile>
-    </Div100vh>
+    <Content>
+      {isSupported ? (
+        <>
+          {!isInstalled() && webView ? (
+            <MobileInstallBtn>
+              <Button _onClick={handleClick}>앱으로 다운받기</Button>
+              <Button
+                _onClick={() => {
+                  setWebView(false);
+                  alert(isSupported);
+                  alert("webView", webView);
+                }}
+              >
+                모바일 웹으로 이용하러 가기
+              </Button>
+            </MobileInstallBtn>
+          ) : (
+            <Mobile style={{ height: height }}>{children}</Mobile>
+          )}
+        </>
+      ) : (
+        <Mobile style={{ height: height }}>{children}</Mobile>
+      )}
+    </Content>
   ) : (
     <WebBackgroundWrapper>
-      <ClayPhone>
+      {isSupported ? (
+        <>
+          {!isInstalled() ? (
+            <WebInstallBtn onClick={handleClick}>
+              <Icon src={install_download}></Icon>
+              <p>앱 다운로드</p>
+            </WebInstallBtn>
+          ) : null}
+        </>
+      ) : null}
+      <Phone>
         <WebViewLayout>{children}</WebViewLayout>
-      </ClayPhone>
+      </Phone>
     </WebBackgroundWrapper>
   );
 };
+
+const Content = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.bg};
+  & Button {
+    margin-bottom: 20px;
+  }
+`;
+const MobileInstallBtn = styled.div`
+  padding: 20px;
+`;
 
 const Mobile = styled.div`
   display: flex;
@@ -28,7 +105,6 @@ const Mobile = styled.div`
   width: 100%;
   max-width: 640px;
   min-width: 280px;
-  /* height: 100vh; */
   overflow: hidden;
   background-color: ${({ theme }) => theme.colors.bg};
 `;
@@ -38,11 +114,11 @@ const WebBackgroundWrapper = styled.div`
   height: 100vh;
   background: url(${web_logo}), url(${web_back});
   background-size: 300px 144px, cover;
-  background-position: 190px 230px, 0% 100%;
+  background-position: 326px 230px, 0% 100%;
   background-repeat: no-repeat;
 `;
 
-const ClayPhone = styled.div`
+const Phone = styled.div`
   width: 431px;
   height: 864px;
   position: fixed;
@@ -68,6 +144,29 @@ const WebViewLayout = styled.div`
   border-radius: 40px;
   background-color: ${({ theme }) => theme.colors.bg};
   overflow: hidden;
+`;
+const WebInstallBtn = styled.div`
+  width: 204px;
+  height: 54px;
+  position: relative;
+  top: 420px;
+  left: 380px;
+  border-radius: 32px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: ${({ theme }) => theme.fontSizes.xxxl};
+  font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  font-family: "Noto Sans KR", sans-serif;
+  color: #101340;
+  cursor: pointer;
+
+  & img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
 `;
 
 export default Device;
