@@ -45,7 +45,7 @@ const Toggle = (props) => {
       .subscribe({
         userVisibleOnly: true,
         applicationServerKey:
-          "BHpAKY7pMnF5to1B-R9DDGRn5w6a5APBojAnwVr1ZyW56w4sPQGqIoCZphWfSHyohcOmKeuvvJHPj8B2KAZT4Ko",
+        process.env.REACT_APP_APPLICATION_SERVER_KEY,
       })
       .then((subscription) => {
         console.log("User is subscribed.");
