@@ -85,6 +85,7 @@ const Signup = (props) => {
     //   setIsId(false);
     // }
   };
+
   React.useEffect(() => {
     setIsId(false);
     setIdMessage(errMessage);
@@ -183,9 +184,11 @@ const Span = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   display: flex;
   margin-bottom: ${({ theme }) => theme.margins.xxxxl};
+  
   &.success {
     color: #4791ff;
   }
+
   &.error {
     color: #ff473d;
   }
@@ -211,9 +214,11 @@ const Login = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.Regular};
   box-sizing: border-box;
   cursor: pointer;
+
   & p {
     display: inline-block;
     position: relative;
+
     ::before {
       content: "";
       width: 100%;
@@ -224,6 +229,7 @@ const Login = styled.div`
       z-index: 100;
       background-color: ${({ theme }) => theme.colors.white};
     }
+
     & span {
       color: ${({ theme }) => theme.colors.main_1};
     }

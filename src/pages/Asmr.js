@@ -18,10 +18,6 @@ import {
   asmr_category_object,
   asmr_category_space,
 } from "../static/images";
-// import All from "../static/images/asmr/background/asmr_category_all.png";
-// import Nature from "../static/images/asmr/background/asmr_category_nature.png";
-// import Place from "../static/images/asmr/background/asmr_category_space.png";
-// import Object from "../static/images/asmr/background/asmr_category_object.png";
 
 export const deleteSong = (url) => {
   const deleteItem = document.getElementById(url);
@@ -82,23 +78,17 @@ const Asmr = (props) => {
   }, [getCategory]);
 
   React.useEffect(() => {
-    // 1) 카테고리별 활성화 유무
     const arr = ["전체", "네이쳐", "플레이스", "오브젝트"];
 
-    // 2) 음원 데이터 유무
     if (!asmrInfo || asmrInfo.length === 0) {
-      // 음원 데이터가 없을 때
       dispatch(asmrActions.getAsmrDB());
     } else {
-      // 음원 데이터가 있을 때
       arr.forEach((arrItem) => {
         if (arrItem !== getCategory) {
-          // 비활성화
           document.getElementById(arrItem).style.backgroundColor = "#272a52";
         }
-        document.getElementById(getCategory).style.backgroundColor = "#FBC037"; // 활성화
+        document.getElementById(getCategory).style.backgroundColor = "#FBC037";
 
-        // 3) 음원을 출력하기 전에 카테고리에 맞게 필터링
         if (getCategory === "전체") {
           setSoundTrack(asmrInfo);
         } else if (getCategory === "네이쳐") {
@@ -129,7 +119,6 @@ const Asmr = (props) => {
 
   const select = (asmrUrl, iconUrl, title) => {
     if (play.includes(asmrUrl)) {
-      // 비활성화
       let arr = [...play];
       arr = arr.filter((item) => {
         if (asmrUrl !== item) {
@@ -137,8 +126,8 @@ const Asmr = (props) => {
         }
       });
       setPlay(arr);
-      history.setPlaybar(arr); // 버튼 비활성화시 플레이어바 arr 도 바뀌게 해줌
-      // 비활성화 시 음원도 해당 음원 재생 정지
+      history.setPlaybar(arr);
+
       if (song1.src.indexOf(asmrUrl) !== -1) {
         song1.pause();
         setSong1(new Audio());
@@ -169,11 +158,9 @@ const Asmr = (props) => {
         history.icon4 = "";
       }
 
-      // 선택한 음원 비활성화 style
       const deleteItem = document.getElementById(asmrUrl);
       deleteItem.style.backgroundColor = "#3A3E74";
     } else {
-      // 활성화
       if (play.length > 3) {
         window.alert("음원은 최대 4개까지만 담으실 수 있습니다.");
       } else {
@@ -182,9 +169,7 @@ const Asmr = (props) => {
 
         history.play = arr;
         history.setPlay = setPlay;
-        history.setPlaybar(arr); // 플레이어바 활성화 비활성화를 위한 array를 담는다.
-
-        // 음원 선택 시 활성화 되면서 음원 재생
+        history.setPlaybar(arr);
         if (!song1.src) {
           song1.src = asmrUrl;
           song1.volume = 0.1;
@@ -227,7 +212,6 @@ const Asmr = (props) => {
           history.setSong4 = setSong4;
         }
 
-        // 선택한 음원 활성화 style
         const selectItem = document.getElementById(asmrUrl);
         selectItem.style.backgroundColor = "#FBC037";
       }
@@ -240,7 +224,6 @@ const Asmr = (props) => {
         <Spinner />
       ) : (
         <PageWrap imgUrl={imageUrl}>
-          {/* 나중에 여기로 전체 크기 핸드폰 사이즈로 바꿔야함 */}
           <AsmrCategory setCategory={setCategory} />
           <AsmrList
             soundTrack={soundTrack}

@@ -7,9 +7,6 @@ import List from "../components/mypage/List";
 
 // --- images ---
 import { notice, arrow_B_W, arrow_T_W } from "../static/images";
-// import notes from "../static/images/mypage/notes_white.svg";
-// import path_B from "../static/images/mypage/arrow_B_W.svg";
-// import path_T from "../static/images/mypage/arrow_T_W.svg";
 
 const NoticePage = (props) => {
   const [toggle, setToggle] = React.useState(false);
