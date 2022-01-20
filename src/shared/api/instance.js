@@ -5,6 +5,7 @@ const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
 });
 
+//-- request --
 instance.interceptors.request.use(
   (config) => {
     const USER_TOKEN = `Bearer ${localStorage.getItem("token")}`;
@@ -20,20 +21,13 @@ instance.interceptors.request.use(
   }
 );
 
-// response
+//-- response --
 instance.interceptors.response.use(
   (response) => {
     const res = response.data;
-    console.log(res);
-
     return res;
   },
   (error) => {
-    // console.log(error);
-    console.log(error.response.data.errorMessage);
-    console.log(error.response.data);
-    console.log(error.response.status);
-    console.log(error.response.headers);
     return Promise.reject(error);
   }
 );

@@ -3,12 +3,12 @@ import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
 
 // -- actions --
+const SET_WRITE = "SETWRITE";
 const GET_ASMR = "GETASMR";
 const SET_PLAYLIST = "SETPLAYLIST";
 const GET_PLAYLIST = "GETPLAYLIST";
-const SET_WRITE = "SETWRITE";
-const DELETE_PLAYLIST = "DELETEPLAYLIST";
 const EDIT_PLAYLIST = "EDITPLAYLIST";
+const DELETE_PLAYLIST = "DELETEPLAYLIST";
 
 // -- action creators --
 const get_asmr = createAction(GET_ASMR, (asmrListInfo) => ({
@@ -40,6 +40,7 @@ const initialState = {
 };
 
 // -- middleware actions --
+//-- 음원 요청 DB --
 const getAsmrDB = () => {
   return async function (dispatch, getState, { history }) {
     try {
@@ -51,7 +52,7 @@ const getAsmrDB = () => {
   };
 };
 
-//-- 믹스 리스트 추가 --
+//-- 믹스리스트 생성 DB --
 const setPlayListDB = (playLists) => {
   return async function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
@@ -61,12 +62,12 @@ const setPlayListDB = (playLists) => {
       dispatch(getPlayListDB(userIdx));
       history.push("/asmr");
     } catch (error) {
-      console.log("setPlayList Error : ", error);
+      console.log("setPlayListDB Error : ", error);
     }
   };
 };
 
-//-- 믹스 리스트 GET 요청 --
+//-- 믹스리스트 요청 DB--
 const getPlayListDB = () => {
   return async function (dispatch, getState, { history }) {
     try {
@@ -74,12 +75,23 @@ const getPlayListDB = () => {
       const res = await apis.getPlayList(userIdx);
       dispatch(get_playList(res));
     } catch (error) {
-      console.log("getPlayList Error : ", error);
+      console.log("getPlayListDB Error : ", error);
     }
   };
 };
-
-//-- 믹스 리스트 삭제 --
+//-- 믹스리스트 수정 DB --
+const editPlayListDB = (playlistIdx, mixTitle) => {
+  return async function (dispatch, getState, { history }) {
+    try {
+      const userIdx = localStorage.getItem("userIdx");
+      await apis.editPlayList(playlistIdx, userIdx, mixTitle);
+      dispatch(edit_playList(playlistIdx, mixTitle));
+    } catch (error) {
+      console.log("editPlayListDB Error : ", error);
+    }
+  };
+};
+//-- 믹스리스트 삭제 DB --
 const DeletePlayListDB = (playlistIdx) => {
   return async function (dispatch, getState, { history }) {
     try {
@@ -88,19 +100,6 @@ const DeletePlayListDB = (playlistIdx) => {
       dispatch(delete_playList(playlistIdx));
     } catch (error) {
       console.log("deletePlayList Error : ", error);
-    }
-  };
-};
-
-//-- 믹스 리스트 제목 수정 --
-const editPlayListDB = (playlistIdx, mixTitle) => {
-  return async function (dispatch, getState, { history }) {
-    try {
-      const userIdx = localStorage.getItem("userIdx");
-      await apis.editPlayList(playlistIdx, userIdx, mixTitle);
-      dispatch(edit_playList(playlistIdx, mixTitle));
-    } catch (error) {
-      console.log("setPlayList Error : ", error);
     }
   };
 };

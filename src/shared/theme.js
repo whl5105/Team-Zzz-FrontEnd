@@ -8,7 +8,6 @@ const fontSizes = {
   xl: calcRem(20),
   xxl: calcRem(22),
   xxxl: calcRem(24),
-  // titleSize: calcRem(50),
 };
 
 const lineHeight = {
@@ -19,7 +18,6 @@ const lineHeight = {
   xl: "30px",
   xxl: "22px",
   xxxl: "34px",
-  // titleSize: calcRem(50),
 };
 
 const fontWeight = {
