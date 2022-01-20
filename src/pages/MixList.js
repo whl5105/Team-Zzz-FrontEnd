@@ -1,34 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 
-// --- components ---
 import Title from "../components/Title";
 import List from "../components/mypage/List";
 import MixBox from "../components/mypage/MixBox";
 import NoMixList from "../components/mixList/NoMixList";
 
-// --- images ---
 import { mixList, arrow_B_W, arrow_T_W } from "../static/images";
 
 const MixList = (props) => {
   const dispatch = useDispatch();
   const playListInfo = useSelector((state) => state.asmr.playList);
-  const [playList, setPlayList] = React.useState(
-    playListInfo ? playListInfo : []
-  );
+  const [playList, setPlayList] = useState(playListInfo ? playListInfo : []);
   const [toggle, setToggle] = React.useState({});
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (playList) {
       return;
     }
     dispatch(asmrActions.getPlayListDB());
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setPlayList(playListInfo ? playListInfo : []);
   }, [playListInfo]);
 

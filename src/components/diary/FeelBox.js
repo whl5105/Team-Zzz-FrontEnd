@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 // --- components ---
@@ -6,7 +6,7 @@ import Charater from "../../elements/Charater";
 
 const FeelBox = (props) => {
   const { previewFeel, feelNumber } = props;
-  const [arr, setArr] = React.useState([
+  const [arr, setArr] = useState([
     { text: "찌뿌등", score: 1, color: "#6CA8FF" },
     { text: "피곤", score: 3, color: "#90D3CC" },
     { text: "개운", score: 5, color: "#FCD371" },

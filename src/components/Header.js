@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore.js";
 import { withRouter } from "react-router-dom";
@@ -13,8 +13,8 @@ import { logo, feedback, mixList, myMix } from "../static/images/index";
 
 const Header = withRouter((props) => {
   const path = props.location.pathname;
-  const [mixListModal, setMixListModal] = React.useState(false);
-  const [requireLoginModal, setRequireLoginModal] = React.useState(false);
+  const [mixListModal, setMixListModal] = useState(false);
+  const [requireLoginModal, setRequireLoginModal] = useState(false);
 
   const playListPopUp = () => {
     const token = localStorage.getItem("token");
@@ -69,7 +69,6 @@ const Header = withRouter((props) => {
             <Image src={myMix} className="playListHover" alt="" />
           </>
         ) : (
-          // 피드백
           <Icon src={feedback} alt="writing" _onClick={PageLink} />
         )}
       </HeaderBox>

@@ -15,6 +15,7 @@ const MixDeletePopup = (props) => {
     dispatch(asmrActions.DeletePlayListDB(data.playlistIdx));
     close();
   };
+  
   return (
     <ModalPopUp close={props.close}>
       <Container>

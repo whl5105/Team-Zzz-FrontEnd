@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../../redux/configureStore";
 
@@ -11,18 +11,18 @@ import { mix_play } from "../../static/images/index";
 const MixSoundTrack = (props) => {
   const { mixTitle, mixList } = props;
 
-  const [song1, setSong1] = React.useState(new Audio());
-  const [song2, setSong2] = React.useState(new Audio());
-  const [song3, setSong3] = React.useState(new Audio());
-  const [song4, setSong4] = React.useState(new Audio());
-  const [play, setPlay] = React.useState([]);
+  const [song1, setSong1] = useState(new Audio());
+  const [song2, setSong2] = useState(new Audio());
+  const [song3, setSong3] = useState(new Audio());
+  const [song4, setSong4] = useState(new Audio());
+  const [play, setPlay] = useState([]);
 
   const mix1 = mixList[0];
   const mix2 = mixList[1];
   const mix3 = mixList[2];
   const mix4 = mixList[3];
 
-  React.useEffect(() => {
+  useEffect(() => {
     let arr = [];
 
     if (mix1) {
