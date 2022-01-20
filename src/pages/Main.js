@@ -6,7 +6,7 @@ import { history } from "../redux/configureStore";
 import FirstNotification from "../pages/FirstNotification";
 import Swiper from "../components/main/MainSwiper";
 import Category from "../components/main/Category";
-import { isIPhone } from "../shared/DeviceDetector";
+import { isIPhone, isMobile } from "../shared/DeviceDetector";
 
 import {
   main_all,
@@ -17,7 +17,6 @@ import {
 
 import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
 import { getMessaging, getToken } from "firebase/messaging";
-// window.open("intent://www.naver.com#Intent;scheme=http;package=com.android.chrome;end");
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -31,36 +30,23 @@ const config = {
 firebase.initializeApp(config);
 
 const messaging = getMessaging();
-console.log(process.env);
 
 const Main = (props) => {
-  // if (/android/i.test(navigator.userAgent)) {
-  //   window.open(
-  //     "intent://www.zzzapp.co.kr#Intent;scheme=http;package=com.android.chrome;end"
-  //   );
-  //   // window.open("googlechrome:////www.zzzapp.co.kr");
-  // } else if (/iPhone|iPad/i.test(navigator.userAgent)) {
-  //   // window.open("googlechrome:////www.zzzapp.co.kr");
-  //   alert("크롬또는 사파리에서 실행시켜주세요");
-  //   // window.location.href = 'kakaotalk://inappbrowser/close';
-  // }
-
-  isIPhone().then((result) => {
-    if (result) {
+  if (isMobile) {
+    if (isIPhone) {
       alert("크롬 또는 사파리에서 실행 시켜 주세요");
     } else {
       window.open(
         "intent://www.zzzapp.co.kr#Intent;scheme=http;package=com.android.chrome;end"
       );
     }
-  });
+  }
 
   getToken(messaging, {
     vapidKey: process.env.REACT_APP_VAPID_KEY,
   })
     .then((currentToken) => {
       history.pushtoken = currentToken;
-      console.log(currentToken);
       if (currentToken) {
         permission = true;
         if (!noticeSet && token && !ios && permission) {
@@ -79,22 +65,16 @@ const Main = (props) => {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
   const [ios, setIos] = useState(Mobile()); // IOS이면 true, 나머지는 false
-  const [noticationModal, setNoticationModal] = useState(true);
-  const location1 = useLocation();
+  const [noticationModal, setNoticationModal] = useState(false);
+  const location = useLocation();
   // eslint-disable-next-line no-unused-vars
   let [permission, setPermission] = useState(false);
   const token = localStorage.getItem("token");
   const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
 
   useEffect(() => {
-    console.log(token, ios, permission);
-
-    // if (!noticeSet && token && !ios && permission) {
-    //   setNoticationModal(true);
-    // }
-
-    if (location1.route) {
-      history.push(location1.route);
+    if (location.route) {
+      history.push(location.route);
     }
   }, []);
 
