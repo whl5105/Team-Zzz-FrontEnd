@@ -57,13 +57,13 @@ const Notifications = (props) => {
             props.minutes
           )
         );
-        axios
-          .get(`https://www.zzzback.shop/api/location/${history.pushtoken}`, {
-            headers: { authorization: `Bearer ${userToken}` },
-          })
-          .then((res) => {
-            console.log(res);
-          });
+        // axios
+        //   .get(`https://www.zzzback.shop/api/location/${history.pushtoken}`, {
+        //     headers: { authorization: `Bearer ${userToken}` },
+        //   })
+        //   .then((res) => {
+        //     console.log(res);
+        //   });
       }
 
       localStorage.setItem("noticeSet", true);

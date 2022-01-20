@@ -37,7 +37,7 @@ const Kakao = (props) => {
   return (
     <KakaoLogin
       // rest api 키가 아닌 js 키를 사용해야 합니다.
-      jskey={"c51fcbffb9ee44d3b90e755eff2bf5b6"}
+      jskey={process.env.REACT_APP_JS_KEY}
       onSuccess={(res) => socialLoginSuccess(res)}
       onFailure={(res) => socialLoginFail(res)}
       // getPofile 속성을 주지 않으면 유저 정보를 받을 수 없습니다.

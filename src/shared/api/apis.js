@@ -1,4 +1,5 @@
 import instance from "./instance";
+import { history } from "../../redux/configureStore";
 
 export const apis = {
   // -- 사용자 --
@@ -9,19 +10,21 @@ export const apis = {
   kakaoLogin: (id) => instance.post("/api/kakaologin", { id }), // 카카오로그인 : 백과 이야기 후 api수정 필요함
 
   getNotice: (userIdx) => instance.get(`/api/notice/users/${userIdx}`), //수면기록 팝업창 :백과 이야기 후 api수정 필요함
-  postNotice: (sleepChk, timePA, hour, min) =>
+  postNotice: (sleepChk, timePA, hour, min, pushToken) =>
     instance.post("/api/notice", {
       sleepChk,
       timePA,
       hour,
       min,
+      pushToken,
     }),
-  putNotice: (sleepChk, timePA, hour, min, userIdx) =>
+  putNotice: (sleepChk, timePA, hour, min, userIdx, pushToken) =>
     instance.put(`/api/notice/users/${userIdx}`, {
       sleepChk,
       timePA,
       hour,
       min,
+      pushToken,
     }),
 
   // -- ASMR --

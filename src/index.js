@@ -5,7 +5,7 @@ import App from "./shared/App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 
-import ReactPWAInstallProvider, { useReactPWAInstall } from "react-pwa-install";
+import ReactPWAInstallProvider from "react-pwa-install";
 
 import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
@@ -23,6 +23,7 @@ ReactDOM.render(
       </ThemeProvider>
     </Provider>
   </ReactPWAInstallProvider>,
+
   document.getElementById("root")
 );
 

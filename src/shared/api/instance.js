@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   timeout: 3000,
-  baseURL: "https://www.zzzback.shop",
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
 
 instance.interceptors.request.use(

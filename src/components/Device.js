@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { useReactPWAInstall } from "react-pwa-install";
@@ -14,6 +14,10 @@ import { Button } from "../elements";
 
 const Device = ({ children }) => {
   const { pwaInstall, supported, isInstalled } = useReactPWAInstall();
+  const [support, setSupport] = React.useState(supported());
+  const [installed, setInstalled] = React.useState(isInstalled());
+  const [install, setInstall] = React.useState(false);
+  console.log(install);
   //모바일 높이
   const height = use100vh();
 
@@ -24,25 +28,37 @@ const Device = ({ children }) => {
 
       description: "푸쉬알림 과 볼륨조절은 현재 IOS 미지원 서비스 입니다",
     })
-      .then(() =>
-        alert("App installed successfully or instructions for install shown")
+      .then(
+        () =>
+          alert("App installed successfully or instructions for install shown")
+        // setInstall(true)
       )
       .catch(() => alert("User opted out from installing"));
+    // setInstall(true);
   };
+  //support :지원여부
+  //installed : 설치여부
 
   return isMobile ? (
-    <>
-      {supported() && !isInstalled() && (
+    <div>
+      {support && !installed ? (
         <>
-          <Button> 앱으로 다운받기</Button>
-          <Button> 모바일로 보기 </Button>
+          <Button _onClick={handleClick}>설치 버튼</Button>
+          <Button
+            _onClick={() => {
+              setInstall(true);
+            }}
+          >
+            웹으로 보기
+          </Button>
         </>
+      ) : (
+        <Mobile style={{ height: height }}>{children}</Mobile>
       )}
-      <Mobile style={{ height: height }}>{children}</Mobile>
-    </>
+    </div>
   ) : (
     <WebBackgroundWrapper>
-      {supported() && !isInstalled() && (
+      {supported && !isInstalled() && (
         <Button _onClick={handleClick}>설치 버튼</Button>
       )}
       <Phone>
