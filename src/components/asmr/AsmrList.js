@@ -59,7 +59,7 @@ const AsmrList = (props) => {
                 select(item.asmrUrl, item.iconUrl, item.title);
               }}
             >
-              <Icon src={item.iconUrl} />
+              <Icon src={item.iconUrl} alt={item.title} />
               <Text>{item.title}</Text>
             </Sound>
           );

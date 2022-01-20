@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -43,13 +43,13 @@ const Asmr = (props) => {
   const playListInfo = useSelector((state) => state.asmr.playList);
   const [play, setPlay] = useState([]);
 
-  useEffect(() => {
+  useCallback(() => {
     if (!playListInfo) {
       dispatch(asmrActions.getPlayListDB());
     }
   }, []);
 
-  useEffect(() => {
+  useCallback(() => {
     if (success === true) {
       dispatch(asmrActions.writeInitial());
       const timeout = setTimeout(() => {
@@ -127,94 +127,108 @@ const Asmr = (props) => {
       setPlay(arr);
       history.setPlaybar(arr);
 
-      if (song1.src.indexOf(asmrUrl) !== -1) {
-        song1.pause();
-        setSong1(new Audio());
-        history.state1 = "";
-        history.audio1 = "";
-        history.title1 = "";
-        history.icon1 = "";
-      } else if (song2.src.indexOf(asmrUrl) !== -1) {
-        song2.pause();
-        setSong2(new Audio());
-        history.state2 = "";
-        history.audio2 = "";
-        history.title2 = "";
-        history.icon2 = "";
-      } else if (song3.src.indexOf(asmrUrl) !== -1) {
-        song3.pause();
-        setSong3(new Audio());
-        history.state3 = "";
-        history.audio3 = "";
-        history.title3 = "";
-        history.icon3 = "";
-      } else if (song4.src.indexOf(asmrUrl) !== -1) {
-        song4.pause();
-        setSong4(new Audio());
-        history.state4 = "";
-        history.audio4 = "";
-        history.title4 = "";
-        history.icon4 = "";
-      }
-
-      const deleteItem = document.getElementById(asmrUrl);
-      deleteItem.style.backgroundColor = "#3A3E74";
+      songInitialzation(asmrUrl);
+      songDelete(asmrUrl);
     } else {
       if (play.length > 3) {
         window.alert("음원은 최대 4개까지만 담으실 수 있습니다.");
       } else {
-        const arr = [...play, asmrUrl];
-        setPlay(arr);
-
-        history.play = arr;
-        history.setPlay = setPlay;
-        history.setPlaybar(arr);
-        if (!song1.src) {
-          song1.src = asmrUrl;
-          song1.volume = 0.1;
-          song1.loop = true;
-          song1.play();
-          history.state1 = asmrUrl;
-          history.audio1 = song1;
-          history.icon1 = iconUrl;
-          history.title1 = title;
-          history.setSong1 = setSong1;
-        } else if (!song2.src) {
-          song2.src = asmrUrl;
-          song2.volume = 0.1;
-          song2.loop = true;
-          song2.play();
-          history.state2 = asmrUrl;
-          history.audio2 = song2;
-          history.icon2 = iconUrl;
-          history.title2 = title;
-          history.setSong2 = setSong2;
-        } else if (!song3.src) {
-          song3.src = asmrUrl;
-          song3.volume = 0.1;
-          song3.loop = true;
-          song3.play();
-          history.state3 = asmrUrl;
-          history.audio3 = song3;
-          history.icon3 = iconUrl;
-          history.title3 = title;
-          history.setSong3 = setSong3;
-        } else if (!song4.src) {
-          song4.src = asmrUrl;
-          song4.volume = 0.1;
-          song4.loop = true;
-          song4.play();
-          history.state4 = asmrUrl;
-          history.audio4 = song4;
-          history.icon4 = iconUrl;
-          history.title4 = title;
-          history.setSong4 = setSong4;
-        }
-
-        const selectItem = document.getElementById(asmrUrl);
-        selectItem.style.backgroundColor = "#FBC037";
+        songSetting(asmrUrl, iconUrl, title);
+        songSelect(asmrUrl);
       }
     }
+  };
+
+  const songInitialzation = (asmrUrl) => {
+    if (song1.src.indexOf(asmrUrl) !== -1) {
+      song1.pause();
+      setSong1(new Audio());
+      history.state1 = "";
+      history.audio1 = "";
+      history.title1 = "";
+      history.icon1 = "";
+    } else if (song2.src.indexOf(asmrUrl) !== -1) {
+      song2.pause();
+      setSong2(new Audio());
+      history.state2 = "";
+      history.audio2 = "";
+      history.title2 = "";
+      history.icon2 = "";
+    } else if (song3.src.indexOf(asmrUrl) !== -1) {
+      song3.pause();
+      setSong3(new Audio());
+      history.state3 = "";
+      history.audio3 = "";
+      history.title3 = "";
+      history.icon3 = "";
+    } else if (song4.src.indexOf(asmrUrl) !== -1) {
+      song4.pause();
+      setSong4(new Audio());
+      history.state4 = "";
+      history.audio4 = "";
+      history.title4 = "";
+      history.icon4 = "";
+    }
+  };
+
+  const songDelete = (asmrUrl) => {
+    const deleteItem = document.getElementById(asmrUrl);
+    deleteItem.style.backgroundColor = "#3A3E74";
+  };
+
+  const songSetting = (asmrUrl, iconUrl, title) => {
+    const arr = [...play, asmrUrl];
+    setPlay(arr);
+
+    history.play = arr;
+    history.setPlay = setPlay;
+    history.setPlaybar(arr);
+    if (!song1.src) {
+      song1.src = asmrUrl;
+      song1.volume = 0.1;
+      song1.loop = true;
+      song1.play();
+      history.state1 = asmrUrl;
+      history.audio1 = song1;
+      history.icon1 = iconUrl;
+      history.title1 = title;
+      history.setSong1 = setSong1;
+    } else if (!song2.src) {
+      song2.src = asmrUrl;
+      song2.volume = 0.1;
+      song2.loop = true;
+      song2.play();
+      history.state2 = asmrUrl;
+      history.audio2 = song2;
+      history.icon2 = iconUrl;
+      history.title2 = title;
+      history.setSong2 = setSong2;
+    } else if (!song3.src) {
+      song3.src = asmrUrl;
+      song3.volume = 0.1;
+      song3.loop = true;
+      song3.play();
+      history.state3 = asmrUrl;
+      history.audio3 = song3;
+      history.icon3 = iconUrl;
+      history.title3 = title;
+      history.setSong3 = setSong3;
+    } else if (!song4.src) {
+      song4.src = asmrUrl;
+      song4.volume = 0.1;
+      song4.loop = true;
+      song4.play();
+      history.state4 = asmrUrl;
+      history.audio4 = song4;
+      history.icon4 = iconUrl;
+      history.title4 = title;
+      history.setSong4 = setSong4;
+    }
+  };
+
+  const songSelect = (asmrUrl) => {
+    const selectItem = document.getElementById(asmrUrl);
+    selectItem.style.backgroundColor = "#FBC037";
   };
 
   return (

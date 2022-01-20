@@ -13,6 +13,7 @@ const Icon = (props) => {
     position,
     marginR,
     padding,
+    alt,
   } = props;
 
   const styles = {
@@ -29,7 +30,7 @@ const Icon = (props) => {
 
   return (
     <>
-      <ArrowIcon {...styles} onClick={_onClick} />
+      <ArrowIcon {...styles} alt={alt} onClick={_onClick} />
     </>
   );
 };

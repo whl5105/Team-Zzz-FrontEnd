@@ -69,7 +69,6 @@ const Header = withRouter((props) => {
             <Image src={myMix} className="playListHover" alt="" />
           </>
         ) : (
-          // 피드백
           <Icon src={feedback} alt="writing" _onClick={PageLink} />
         )}
       </HeaderBox>
