@@ -36,13 +36,12 @@ const Main = (props) => {
     vapidKey: process.env.REACT_APP_VAPID_KEY,
   })
     .then((currentToken) => {
+      history.pushtoken = currentToken;
       if (currentToken) {
         permission = true;
         if (!noticeSet && token && !ios && permission) {
           setNoticationModal(true);
         }
-
-        history.pushtoken = currentToken;
       }
     })
     .catch((err) => {
@@ -66,9 +65,9 @@ const Main = (props) => {
   useEffect(() => {
     console.log(token, ios, permission);
 
-    if (!noticeSet && token && !ios && permission) {
-      setNoticationModal(true);
-    }
+    // if (!noticeSet && token && !ios && permission) {
+    //   setNoticationModal(true);
+    // }
 
     if (location.route) {
       history.push(location.route);
