@@ -30,7 +30,7 @@ const Device = ({ children }) => {
         setWebView(true);
       })
       .catch(() => {
-        console.log("설치 실패")
+        console.log("설치 실패");
       });
   };
 
@@ -50,8 +50,6 @@ const Device = ({ children }) => {
               <Button
                 _onClick={() => {
                   setWebView(false);
-                  alert(isSupported);
-                  alert("webView", webView);
                 }}
               >
                 모바일 웹으로 이용하러 가기
