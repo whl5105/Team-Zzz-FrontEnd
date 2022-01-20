@@ -63,7 +63,7 @@ const Main = (props) => {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
   const [ios, setIos] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
-  const [noticationModal, setNoticationModal] = React.useState(true);
+  const [noticationModal, setNoticationModal] = React.useState(false);
   const location = useLocation();
   // eslint-disable-next-line no-unused-vars
   let [permission, setPermission] = React.useState(false);
