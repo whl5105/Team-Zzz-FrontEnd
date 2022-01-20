@@ -32,32 +32,27 @@ const config = {
 firebase.initializeApp(config);
 
 const messaging = getMessaging();
-console.log(process.env)
+console.log(process.env);
 
 const Main = (props) => {
-
-      getToken(messaging, {
-        vapidKey:
-          process.env.REACT_APP_VAPID_KEY,
-      })
-        .then((currentToken) => {
-          console.log(currentToken);
-          if (currentToken) {
-            
-            permission = true;
-            if (!noticeSet && token && !ios && permission) {
-              setNoticationModal(true);
-            }
-
-            history.pushtoken = currentToken;
-          }
-        })
-        .catch((err) => {
-          if(!ios){
-          console.log("An error occurred while retrieving token. ", err);
-          alert("푸쉬알림을 위해 알림권한을 허용하셔야합니다.");
+  getToken(messaging, {
+    vapidKey: process.env.REACT_APP_VAPID_KEY,
+  })
+    .then((currentToken) => {
+      history.pushtoken = currentToken;
+      if (currentToken) {
+        permission = true;
+        if (!noticeSet && token && !ios && permission) {
+          setNoticationModal(true);
         }
-        });
+      }
+    })
+    .catch((err) => {
+      if (!ios) {
+        console.log("An error occurred while retrieving token. ", err);
+        alert("푸쉬알림을 위해 알림권한을 허용하셔야합니다.");
+      }
+    });
 
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
@@ -73,9 +68,9 @@ const Main = (props) => {
   React.useEffect(() => {
     console.log(token, ios, permission);
 
-    if (!noticeSet && token && !ios && permission) {
-      setNoticationModal(true);
-    }
+    // if (!noticeSet && token && !ios && permission) {
+    //   setNoticationModal(true);
+    // }
 
     if (location.route) {
       history.push(location.route);

@@ -31,11 +31,18 @@ const initialState = {
 //   };
 // };
 const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
-  const pushToken = history.pushtoken
-  console.log(pushToken);
+  const pushToken = history.pushtoken;
+  hour = hour / 1;
+  minutes = minutes / 1;
   return async function (dispatch, getState, { history }) {
     try {
-      const response = await apis.postNotice(notice, day, hour, minutes, pushToken);
+      const response = await apis.postNotice(
+        notice,
+        day,
+        hour,
+        minutes,
+        pushToken
+      );
 
       if (token) {
         // console.log(token);
@@ -44,6 +51,7 @@ const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
       }
       const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
       dispatch(setNotice(info));
+      // dispatch(updateNoticeDB(notice, day, hour, minutes))
     } catch (error) {
       console.log("noticeDB Error : ", error);
     }
@@ -51,15 +59,17 @@ const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
 };
 
 const updateNoticeDB = (notice, day = "AM", hour = 1, minutes = 0) => {
-  const pushToken = history.pushtoken
+  const pushToken = history.pushtoken;
+  console.log("1");
+  console.log(notice, day, hour, minutes);
   return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
     const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
     apis
-      .putNotice(notice, day, hour, minutes, userIdx, pushToken)
+      .putNotice(notice, day, hour, (minutes = 50), userIdx, pushToken)
       .then((response) => console.log(response));
     dispatch(setNotice(info));
-    history.push("/mypage");
+    // history.push("/mypage");
   };
 };
 
