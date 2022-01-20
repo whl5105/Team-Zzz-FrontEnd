@@ -41,7 +41,7 @@ const Main = (props) => {
           process.env.REACT_APP_VAPID_KEY,
       })
         .then((currentToken) => {
-          // console.log(currentToken);
+          console.log(currentToken);
           if (currentToken) {
             
             permission = true;
