@@ -1,22 +1,17 @@
 import axios from "axios";
-import { getCookie } from "../Cookie";
-
-// const USER_TOKEN = `Bearer ${getToken("authorization")}`;
-const USER_TOKEN = getCookie("authorization");
 
 const instance = axios.create({
   timeout: 3000,
-  baseURL: "",
-  headers: {
-    "Content-Type": "application/json; charset=utf-8",
-    "X-Requested-With": "XMLHttpRequest",
-    authorization: USER_TOKEN,
-    Accept: "application/json",
-  },
+  baseURL: process.env.REACT_APP_BASE_URL,
 });
-//request
+
 instance.interceptors.request.use(
   (config) => {
+    const USER_TOKEN = `Bearer ${localStorage.getItem("token")}`;
+    config.headers["Content-Type"] = "application/json; charset=utf-8";
+    config.headers["X-Requested-With"] = "XMLHttpRequest";
+    config.headers["Authorization"] = USER_TOKEN ? USER_TOKEN : "";
+    config.headers.Accept = "application/json";
     return config;
   },
   (error) => {
@@ -24,17 +19,23 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-//response
+
+// response
 instance.interceptors.response.use(
   (response) => {
     const res = response.data;
+    console.log(res);
+
     return res;
   },
   (error) => {
-    console.log(error);
+    // console.log(error);
+    console.log(error.response.data.errorMessage);
+    console.log(error.response.data);
+    console.log(error.response.status);
+    console.log(error.response.headers);
     return Promise.reject(error);
   }
 );
-
 
 export default instance;

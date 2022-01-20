@@ -5,13 +5,25 @@ import App from "./shared/App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 
+import ReactPWAInstallProvider from "react-pwa-install";
+
+import { ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
+import Device from "./components/Device";
+import theme from "./shared/theme";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <ReactPWAInstallProvider enableLogging>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Device>
+          <App />
+        </Device>
+      </ThemeProvider>
+    </Provider>
+  </ReactPWAInstallProvider>,
+
   document.getElementById("root")
 );
 
@@ -24,3 +36,17 @@ serviceWorkerRegistration.register();
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+// navigator.serviceWorker.register('service-worker.js')  //푸시알림 추가할지 안할지 테스트하면서 볼것
+// .then(function(registration) {
+//   return registration.pushManager.getSubscription()
+//   .then(async function(subscription) {
+//       // registration part
+//   });
+// })
+// .then(function(subscription) {
+//     // subscription part
+//     if(subscription) {
+//       return subscription;
+//   }
+// });
