@@ -32,7 +32,8 @@ firebase.initializeApp(config);
 const messaging = getMessaging();
 
 const Main = (props) => {
-  if (isMobile) {
+  let chrome = /Chrome/i.test(navigator.userAgent);
+  if (isMobile && !chrome) {
     if (isIPhone) {
       // alert("크롬 또는 사파리에서 실행 시켜 주세요");
     } else {
