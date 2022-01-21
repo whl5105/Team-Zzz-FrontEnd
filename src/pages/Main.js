@@ -6,7 +6,7 @@ import { history } from "../redux/configureStore";
 import FirstNotification from "../pages/FirstNotification";
 import Swiper from "../components/main/MainSwiper";
 import Category from "../components/main/Category";
-import { isIPhone, isMobile } from "../shared/DeviceDetector";
+import { isIPhone, isMobile, isInapp } from "../shared/DeviceDetector";
 
 import {
   main_all,
@@ -18,50 +18,39 @@ import {
 import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
 import { getMessaging, getToken } from "firebase/messaging";
 
-const config = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
-};
-firebase.initializeApp(config);
-
-const messaging = getMessaging();
-
 const Main = (props) => {
-  let chrome = /Chrome/i.test(navigator.userAgent);
-  if (isMobile && !chrome) {
-    if (isIPhone) {
-      // alert("크롬 또는 사파리에서 실행 시켜 주세요");
-    } else {
-      window.open(
-        "intent://www.zzzapp.co.kr#Intent;scheme=http;package=com.android.chrome;end"
-      );
-    }
-  }
+  if (!isIPhone) {
+    const config = {
+      apiKey: process.env.REACT_APP_API_KEY,
+      authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+      projectId: process.env.REACT_APP_PROJECT_ID,
+      storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+      messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+      appId: process.env.REACT_APP_APP_ID,
+      measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+    };
+    firebase.initializeApp(config);
 
-  getToken(messaging, {
-    vapidKey: process.env.REACT_APP_VAPID_KEY,
-  })
-    .then((currentToken) => {
-      localStorage.setItem("pushtoken", currentToken);
-      if (currentToken) {
-        permission = true;
-        if (!noticeSet && token && !ios && permission) {
-          setNoticationModal(true);
-        }
-      }
+    const messaging = getMessaging();
+
+    getToken(messaging, {
+      vapidKey: process.env.REACT_APP_VAPID_KEY,
     })
-    .catch((err) => {
-      if (!ios) {
-        console.log("An error occurred while retrieving token. ", err);
-        alert("푸쉬알림을 위해 알림권한을 허용하셔야합니다.");
-      }
-    });
-
+      .then((currentToken) => {
+        localStorage.setItem("pushtoken", currentToken);
+        if (currentToken) {
+          permission = true;
+          if (!noticeSet && token && !ios && permission) {
+            setNoticationModal(true);
+          }
+        }
+      })
+      .catch((err) => {
+        if (!ios) {
+          console.log("An error occurred while retrieving token. ", err);
+        }
+      });
+  }
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
@@ -74,6 +63,14 @@ const Main = (props) => {
   const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));
 
   useEffect(() => {
+    if (isMobile && isInapp) {
+      if (!isIPhone) {
+        window.close();
+        window.location.href =
+          "intent://www.zzzapp.co.kr#Intent;scheme=http;package=com.android.chrome;end)";
+      }
+    }
+
     if (location.route) {
       history.push(location.route);
     }
