@@ -78,7 +78,6 @@ const Main = (props) => {
       history.push(location.route);
     }
   }, []);
-
   return (
     <>
       <Container>
