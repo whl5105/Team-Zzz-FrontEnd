@@ -6,20 +6,20 @@
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
   <meta property="og:title" content="잠이 드는 시간 Zzz" />
   <meta property="og:description" content="잠에 쉽게 들지 못한다면 마음에 안정을 주는 ASMR 듣고 수면 기록도 매일 남겨봐요!" />
-  <!-- <meta property="og:image" content="{{ url_for('public', filename='ogimage.jpg') }}" /> -->
+  <meta property="og:image" content="%PUBLIC_URL%/ogimage.png" />
   <meta name="theme-color" content="#101340" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="잠에 쉽게 들지 못한다면 마음에 안정을 주는 ASMR 듣고 수면 기록도 매일 남겨봐요!" />
-  <!-- kakao -->
-  <script type=" text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js">
-  </script>
-  <script>
-    Kakao.init("c51fcbffb9ee44d3b90e755eff2bf5b6");
-  </script>
+
   <!-- manifest -->
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="apple-touch-startup-image" href="logo192.png" />
   <link rel="apple-touch-icon" sizes="192x192" href="logo192.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="logo512.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Zzz" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="#101340" />
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-05KE6WCMTW"></script>
   <script>
@@ -36,12 +36,14 @@
 </head>
 
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <noscript>스크립트가 차단되어, 이 사이트의 기능을 이용할 수 없습니다.</noscript>
   <div id="root"></div>
+  <!-- kakao -->
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script>
     Kakao.init("c51fcbffb9ee44d3b90e755eff2bf5b6");
   </script>
+  <!-- FCM -->
   <script type="module" src="firebase-messaging-sw.js"></script>
 </body>
 

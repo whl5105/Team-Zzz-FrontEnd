@@ -138,7 +138,7 @@ const Signup = (props) => {
       <Login
         type="submit"
         onClick={() => {
-          history.push("/login");
+          history.push("/user/login");
         }}
       >
         <p>
