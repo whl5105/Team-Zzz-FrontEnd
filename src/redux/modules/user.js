@@ -58,6 +58,8 @@ export const loginDB =
           noticeSet: res.noticeSet,
         })
       );
+
+      history.push("/");
     } catch (err) {
       window.alert(err.response.data.errorMessage);
       dispatch(err_signup(err.response.data.errorMessage));

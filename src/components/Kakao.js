@@ -15,9 +15,14 @@ const Kakao = (props) => {
 
   const socialLoginSuccess = (res) => {
     console.log("소셜 로그인 성공");
-    dispatch(userActions.socialLoginDB(res.profile.id));
     setKakaoLoging(true);
-    history.push("/");
+    dispatch(userActions.socialLoginDB(res.profile.id));
+
+    const kakaoLoading = setTimeout(() => {
+      setKakaoLoging(false);
+    }, 2000);
+
+    clearTimeout(kakaoLoading);
   };
 
   const socialLoginStyle = {
@@ -48,9 +53,7 @@ const Kakao = (props) => {
         카카오 로그인
       </KakaoLogin>
 
-      {kakaoLoging && (
-        <Success alt="로그인 또는 회원가입 중" text="조금만 기다려 주세요" />
-      )}
+      {kakaoLoging && <Success alt="loading" text="조금만 기다려 주세요" />}
     </>
   );
 };
