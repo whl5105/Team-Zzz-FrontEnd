@@ -34,7 +34,7 @@ const messaging = getMessaging();
 const Main = (props) => {
   if (isMobile) {
     if (isIPhone) {
-      alert("크롬 또는 사파리에서 실행 시켜 주세요");
+      // alert("크롬 또는 사파리에서 실행 시켜 주세요");
     } else {
       window.open(
         "intent://www.zzzapp.co.kr#Intent;scheme=http;package=com.android.chrome;end"
