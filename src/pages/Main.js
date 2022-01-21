@@ -57,7 +57,6 @@ const Main = (props) => {
   const [ios, setIos] = useState(Mobile()); // IOS이면 true, 나머지는 false
   const [noticationModal, setNoticationModal] = useState(false);
   const location = useLocation();
-  // eslint-disable-next-line no-unused-vars
   let [permission, setPermission] = useState(false);
   const token = localStorage.getItem("token");
   const noticeSet = JSON.parse(localStorage.getItem("noticeSet"));

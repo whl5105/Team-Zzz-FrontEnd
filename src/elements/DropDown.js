@@ -105,17 +105,18 @@ const Dropdown = (props) => {
     <DropdownContainer
       id={`${condition === "" ? "AM/PM" : condition}`}
       ref={timeRef}
+      onClick={onActiveToggle}
     >
       <DropdownBody>
         {select ? (
           <>
             <p>{`${select}${condition}`}</p>
-            <img onClick={onActiveToggle} src={arrow_B_G} alt="" />
+            <img src={arrow_B_G} alt="" />
           </>
         ) : (
           <>
             <p>{`${title}${condition}`}</p>
-            <img onClick={onActiveToggle} src={arrow_B_G} alt="" />
+            <img src={arrow_B_G} alt="" />
           </>
         )}
       </DropdownBody>
@@ -184,6 +185,8 @@ const DropdownContainer = styled.div`
   &:last-child {
     margin-right: 0px;
   }
+
+  cursor: pointer;
 `;
 
 const DisabledDropDownContainer = styled.div`
