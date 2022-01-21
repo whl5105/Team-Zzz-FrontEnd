@@ -6,9 +6,6 @@ self.addEventListener("message", (event) => {
 
 // Any other custom service worker logic can go here.
 self.addEventListener("push", function (event) {
-  console.log("Push " + event.data.text());
-  console.log(event.data.json().notification);
-
   const title = event.data.json().notification.title;
   const options = {
     body: event.data.json().notification.body,
@@ -20,7 +17,6 @@ self.addEventListener("push", function (event) {
 
 self.addEventListener("notificationclick", function (event) {
   event.notification.close();
-
   event.waitUntil(
     self.clients.openWindow("https://zzzapp.co.kr") // 예시로 일단 로컬호스트로 링크 누르면 가지는걸로 해놨다.
   );

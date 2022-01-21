@@ -23,9 +23,9 @@ const Toggle = (props) => {
     swRegist.pushManager.getSubscription().then(function (subscription) {
       isSubscribed = !(subscription === null); // null 이면 true 이니 !true 가 false 로 해서 isSubscribed 가 false 라는뜻
       if (isSubscribed) {
-        console.log("User IS subscribed.");
+        // console.log("User IS subscribed.");
       } else {
-        console.log("User is NOT subscribed.");
+        // console.log("User is NOT subscribed.");
       }
     });
   };
@@ -38,8 +38,6 @@ const Toggle = (props) => {
         applicationServerKey: process.env.REACT_APP_APPLICATION_SERVER_KEY,
       })
       .then((subscription) => {
-        console.log("User is subscribed.");
-
         isSubscribed = true; // 구독정보를 반아온 경우 구독을 정상적으로 한 상황이므로 true로 변경
       })
       .catch((err) => {
@@ -55,9 +53,7 @@ const Toggle = (props) => {
         if (subscription) {
           return swRegist.pushManager // 토글시 메세지 안날라오게 하는 방법
             .unsubscribe()
-            .then((res) => {
-              console.log(res);
-            })
+            .then((res) => {})
             .catch((err) => {
               console.log(err);
             });
@@ -67,7 +63,6 @@ const Toggle = (props) => {
         console.log("Error unsubscribing", error);
       })
       .then(() => {
-        console.log("User is unsubscribed.");
         isSubscribed = false;
       });
   }
