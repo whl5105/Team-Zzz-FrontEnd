@@ -42,9 +42,9 @@ const Device = ({ children }) => {
   return isMobile ? (
     <Content>
       {isSupported ? (
-        <MobileInstall>
+        <>
           {!isInstalled() && webView ? (
-            <>
+            <MobileInstall>
               <img src={logo} alt="logo" style={{ width: "100px" }} />
               <h1 style={{ fontWeight: "700", paddingTop: "20px" }}>
                 잠이드는 시간 Zzz
@@ -65,11 +65,11 @@ const Device = ({ children }) => {
                   모바일 웹으로 이용하러 가기
                 </Button>
               </MobileInstallBtn>
-            </>
+            </MobileInstall>
           ) : (
             <Mobile style={{ height: height }}>{children}</Mobile>
           )}
-        </MobileInstall>
+        </>
       ) : (
         <Mobile style={{ height: height }}>{children}</Mobile>
       )}
@@ -102,8 +102,8 @@ const Content = styled.div`
 const MobileInstall = styled.div`
   color: #fff;
   text-align: center;
-  padding: 50px 20px;
   font-weight: 700;
+  padding: 50px;
 `;
 const MobileInstallBtn = styled.div`
   padding: 30px 0;
