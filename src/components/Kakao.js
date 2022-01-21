@@ -12,7 +12,7 @@ const Kakao = (props) => {
 
   const socialLoginSuccess = (res) => {
     console.log("소셜 로그인 성공");
-    dispatch(userActions.socialLoginDB(res.profile.id));
+    dispatch(userActions.socialLoginDB(String(res.profile.id)));
   };
 
   const socialLoginStyle = {
@@ -32,7 +32,7 @@ const Kakao = (props) => {
 
   return (
     <KakaoLogin
-      jskey={process.env.REACT_APP_JS_KEY}
+      token={process.env.REACT_APP_JS_KEY}
       onSuccess={(res) => socialLoginSuccess(res)}
       onFailure={(res) => socialLoginFail(res)}
       getProfile={true}
