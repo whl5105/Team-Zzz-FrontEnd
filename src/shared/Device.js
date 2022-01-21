@@ -3,69 +3,36 @@ import styled from "styled-components";
 import { useReactPWAInstall } from "react-pwa-install";
 import { use100vh } from "react-div-100vh";
 
-import { isMobile } from "./DeviceDetector";
-import { Button, Icon } from "../elements";
+import MobileInstall from "../pages/MobileInstall";
+import PwaInstall from "../components/PwaInstall";
 
-import {
-  web_phone,
-  web_back,
-  web_logo,
-  install_logo,
-  install_download,
-  logo,
-} from "../static/images";
+import { isMobile } from "./DeviceDetector";
+import { web_phone, web_back, web_logo } from "../static/images";
 
 const Device = ({ children }) => {
-  const { pwaInstall, supported, isInstalled } = useReactPWAInstall();
-  const support = supported();
+  const { supported, isInstalled } = useReactPWAInstall();
   const [isSupported, setIsSupported] = React.useState(null);
   const [webView, setWebView] = React.useState(true);
+  const support = supported();
   const height = use100vh();
-
-  const handleClick = () => {
-    pwaInstall({
-      title: "Zzz 다운받기",
-      logo: install_logo,
-    })
-      .then(() => {
-        setWebView(true);
-      })
-      .catch(() => {
-        console.log("설치 실패");
-      });
-  };
 
   React.useEffect(() => {
     setIsSupported(support);
   }, [support]);
 
   return isMobile ? (
-    <Content>
+    <>
       {isSupported ? (
         <>
           {!isInstalled() && webView ? (
-            <MobileInstall>
-              <img src={logo} alt="logo" style={{ width: "100px" }} />
-              <h1 style={{ fontWeight: "700", paddingTop: "20px" }}>
-                잠이드는 시간 Zzz
-              </h1>
-              <p style={{ paddingTop: "10px" }}>
-                잠에 쉽게 들지 못한다면 <br />
-                마음에 안정을 주는 ASMR 듣고 수면 기록도 매일 남겨봐요!
-              </p>
-              <MobileInstallBtn>
-                <Button marginB="20" _onClick={handleClick}>
-                  앱으로 다운받기
-                </Button>
-                <Button
-                  _onClick={() => {
-                    setWebView(false);
-                  }}
-                >
-                  모바일 웹으로 이용하러 가기
-                </Button>
-              </MobileInstallBtn>
-            </MobileInstall>
+            <>
+              <MobileInstall
+                webView={webView}
+                _onClick={() => {
+                  setWebView(false);
+                }}
+              />
+            </>
           ) : (
             <Mobile style={{ height: height }}>{children}</Mobile>
           )}
@@ -73,42 +40,20 @@ const Device = ({ children }) => {
       ) : (
         <Mobile style={{ height: height }}>{children}</Mobile>
       )}
-    </Content>
+    </>
   ) : (
-    <WebBackgroundWrapper>
+    <Web>
       {isSupported ? (
-        <>
-          {!isInstalled() ? (
-            <WebInstallBtn onClick={handleClick}>
-              <Icon src={install_download}></Icon>
-              <p>앱 다운로드</p>
-            </WebInstallBtn>
-          ) : null}
-        </>
+        <>{!isInstalled() ? <PwaInstall web text="앱 다운로드" /> : null}</>
       ) : null}
       <Phone>
         <WebViewLayout>{children}</WebViewLayout>
       </Phone>
-    </WebBackgroundWrapper>
+    </Web>
   );
 };
 
-const Content = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: ${({ theme }) => theme.colors.bg};
-`;
-
-const MobileInstall = styled.div`
-  color: #fff;
-  text-align: center;
-  font-weight: 700;
-  padding: 50px;
-`;
-const MobileInstallBtn = styled.div`
-  padding: 30px 0;
-`;
-
+//모바일 디바이스
 const Mobile = styled.div`
   display: flex;
   position: relative;
@@ -120,7 +65,8 @@ const Mobile = styled.div`
   background-color: ${({ theme }) => theme.colors.bg};
 `;
 
-const WebBackgroundWrapper = styled.div`
+//웹 브라우저
+const Web = styled.div`
   width: 100vw;
   height: 100vh;
   background: url(${web_logo}), url(${web_back});
@@ -128,7 +74,6 @@ const WebBackgroundWrapper = styled.div`
   background-position: 326px 230px, 0% 100%;
   background-repeat: no-repeat;
 `;
-
 const Phone = styled.div`
   width: 426px;
   height: 92%;
@@ -146,7 +91,6 @@ const Phone = styled.div`
     transform: translate(0%, -50%);
   }
 `;
-
 const WebViewLayout = styled.div`
   max-width: 375px;
   height: calc(100% - 43px);
@@ -157,30 +101,6 @@ const WebViewLayout = styled.div`
   border-radius: 40px;
   background-color: ${({ theme }) => theme.colors.bg};
   overflow: hidden;
-`;
-
-const WebInstallBtn = styled.div`
-  width: 204px;
-  height: 54px;
-  position: relative;
-  top: 420px;
-  left: 380px;
-  border-radius: 32px;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: ${({ theme }) => theme.fontSizes.xxxl};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  font-family: "Noto Sans KR", sans-serif;
-  color: #101340;
-  cursor: pointer;
-
-  & img {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-  }
 `;
 
 export default Device;
