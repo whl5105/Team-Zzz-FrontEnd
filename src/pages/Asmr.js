@@ -132,7 +132,7 @@ const Asmr = (props) => {
       songDelete(asmrUrl);
     } else {
       if (play.length > 3) {
-        window.alert("음원은 최대 4개까지만 담으실 수 있습니다.");
+        window.alert("음원은 최대 4개까지 담으실 수 있습니다.");
       } else {
         songSetting(asmrUrl, iconUrl, title);
         songSelect(asmrUrl);
