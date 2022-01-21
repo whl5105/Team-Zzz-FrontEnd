@@ -30,7 +30,7 @@ const Signup = (props) => {
   const idCheck = (e) => {
     const idCurrent = e.target.value;
     setId(idCurrent);
-    if (!IdCheck) {
+    if (!IdCheck(idCurrent)) {
       setIdMessage("5글자 이상 10글자 미만으로 입력해주세요.");
       setIsId(false);
     } else {
@@ -42,7 +42,8 @@ const Signup = (props) => {
   const onChangePassword = (e) => {
     const passwordCurrent = e.target.value;
     setPwd(passwordCurrent);
-    if (!PwdCheck) {
+
+    if (!PwdCheck(passwordCurrent)) {
       setPwdMessage("비밀번호 영문,숫자,특수문자 조합 (8~20자)");
       setIsPassword(false);
     } else {
