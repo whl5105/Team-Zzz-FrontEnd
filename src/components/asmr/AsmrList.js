@@ -16,6 +16,7 @@ const AsmrList = (props) => {
   } = props;
 
   useEffect(() => {
+    console.log(history.play);
     let playArr = [];
     if (history.play && soundTrack) {
       soundTrack.forEach((item) => {
