@@ -15,7 +15,7 @@ const MobileInstall = (props) => {
       </p>
       <>
         <PwaInstall text="편하게 앱 이용하기" />
-        <span onClick={_onClick}>모바일 웹으로 이용하러 가기</span>
+        <span onClick={_onClick}>모바일웹 이용하기</span>
       </>
     </Content>
   );
