@@ -12,6 +12,7 @@ import {
   web_logo,
   install_logo,
   install_download,
+  logo,
 } from "../static/images";
 
 const Device = ({ children }) => {
@@ -41,24 +42,34 @@ const Device = ({ children }) => {
   return isMobile ? (
     <Content>
       {isSupported ? (
-        <>
+        <MobileInstall>
           {!isInstalled() && webView ? (
-            <MobileInstallBtn>
-              <Button marginB="20" _onClick={handleClick}>
-                앱으로 다운받기
-              </Button>
-              <Button
-                _onClick={() => {
-                  setWebView(false);
-                }}
-              >
-                모바일 웹으로 이용하러 가기
-              </Button>
-            </MobileInstallBtn>
+            <>
+              <img src={logo} alt="logo" style={{ width: "100px" }} />
+              <h1 style={{ fontWeight: "700", paddingTop: "20px" }}>
+                잠이드는 시간 Zzz
+              </h1>
+              <p style={{ paddingTop: "10px" }}>
+                잠에 쉽게 들지 못한다면 <br />
+                마음에 안정을 주는 ASMR 듣고 수면 기록도 매일 남겨봐요!
+              </p>
+              <MobileInstallBtn>
+                <Button marginB="20" _onClick={handleClick}>
+                  앱으로 다운받기
+                </Button>
+                <Button
+                  _onClick={() => {
+                    setWebView(false);
+                  }}
+                >
+                  모바일 웹으로 이용하러 가기
+                </Button>
+              </MobileInstallBtn>
+            </>
           ) : (
             <Mobile style={{ height: height }}>{children}</Mobile>
           )}
-        </>
+        </MobileInstall>
       ) : (
         <Mobile style={{ height: height }}>{children}</Mobile>
       )}
@@ -88,8 +99,14 @@ const Content = styled.div`
   background-color: ${({ theme }) => theme.colors.bg};
 `;
 
+const MobileInstall = styled.div`
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px;
+  font-weight: 700;
+`;
 const MobileInstallBtn = styled.div`
-  padding: 20px;
+  padding: 30px 0;
 `;
 
 const Mobile = styled.div`

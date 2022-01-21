@@ -23,8 +23,8 @@ ReactDOM.render(
   <ReactPWAInstallProvider enableLogging>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <Device>
-          <GlobalStyle />
           <App />
         </Device>
       </ThemeProvider>
