@@ -36,7 +36,7 @@ ReactGA.exception({
 
 function App() {
   React.useEffect(() => {
-    ReactGA.initialize("user id");
+    ReactGA.initialize("299861253");
     history.listen((location) => {
       ReactGA.set({ page: location.pathname });
       ReactGA.pageview(location.pathname);
@@ -45,7 +45,6 @@ function App() {
 
   return (
     <WrapBox className="App">
-      
       {/* <Wrap > */}
       <ConnectedRouter history={history}>
         <Header />
