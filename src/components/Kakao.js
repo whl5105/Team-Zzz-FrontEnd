@@ -9,9 +9,12 @@ import { kakao } from "../static/images/index";
 
 const Kakao = (props) => {
   const dispatch = useDispatch();
-
+  const token = "c51fcbffb9ee44d3b90e755eff2bf5b6";
   const socialLoginSuccess = (res) => {
     console.log("소셜 로그인 성공");
+    console.log(res);
+    const id = String(res.profile.id);
+    console.log(typeof id);
     dispatch(userActions.socialLoginDB(res.profile.id));
   };
 
@@ -32,11 +35,13 @@ const Kakao = (props) => {
 
   return (
     <KakaoLogin
-      jskey={process.env.REACT_APP_JS_KEY}
+      token={token}
       onSuccess={(res) => socialLoginSuccess(res)}
       onFailure={(res) => socialLoginFail(res)}
       getProfile={true}
       style={socialLoginStyle}
+      onLogout={console.info}
+      id="kakao"
     >
       <Icon></Icon>
       카카오 로그인
