@@ -32,7 +32,7 @@ const Kakao = (props) => {
 
   return (
     <KakaoLogin
-      token={process.env.REACT_APP_JS_KEY}
+      jsKey={process.env.REACT_APP_JS_KEY}
       onSuccess={(res) => socialLoginSuccess(res)}
       onFailure={(res) => socialLoginFail(res)}
       getProfile={true}

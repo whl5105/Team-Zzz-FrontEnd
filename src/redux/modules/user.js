@@ -70,18 +70,20 @@ export const socialLoginDB =
   (id) =>
   async (dispatch, getState, { history }) => {
     try {
-      const res = await apis.kakaoLogin(id);
-      localStorage.setItem("userIdx", res.userInfo.userIdx);
-      localStorage.setItem("noticeSet", res.userInfo.noticeSet);
-      localStorage.setItem("token", res.userInfo.token);
-      dispatch(
-        setUser({
-          userIdx: res.userInfo.userIdx,
-          userId: res.userInfo.userId,
-          loginCnt: res.userInfo.loginCnt,
-          noticeSet: res.userInfo.noticeSet,
-        })
-      );
+      apis.kakaoLogin(id).then((res) => {
+        localStorage.setItem("userIdx", res.userInfo.userIdx);
+        localStorage.setItem("noticeSet", res.userInfo.noticeSet);
+        localStorage.setItem("token", res.userInfo.token);
+
+        dispatch(
+          setUser({
+            userIdx: res.userInfo.userIdx,
+            userId: res.userInfo.userId,
+            loginCnt: res.userInfo.loginCnt,
+            noticeSet: res.userInfo.noticeSet,
+          })
+        );
+      });
 
       history.push("/");
     } catch (err) {
