@@ -58,7 +58,6 @@ export const loginDB =
           noticeSet: res.noticeSet,
         })
       );
-      history.replace("/");
     } catch (err) {
       window.alert(err.response.data.errorMessage);
       dispatch(err_signup(err.response.data.errorMessage));
@@ -70,25 +69,25 @@ export const socialLoginDB =
   (id) =>
   async (dispatch, getState, { history }) => {
     try {
-      apis.kakaoLogin(id).then((res) => {
-        localStorage.setItem("userIdx", res.userInfo.userIdx);
-        localStorage.setItem("noticeSet", res.userInfo.noticeSet);
-        localStorage.setItem("token", res.userInfo.token);
+      const res = await apis.kakaoLogin(id);
 
-        dispatch(
-          setUser({
-            userIdx: res.userInfo.userIdx,
-            userId: res.userInfo.userId,
-            loginCnt: res.userInfo.loginCnt,
-            noticeSet: res.userInfo.noticeSet,
-          })
-        );
-      });
+      localStorage.setItem("userIdx", res.userInfo.userIdx);
+      localStorage.setItem("noticeSet", res.userInfo.noticeSet);
+      localStorage.setItem("token", res.userInfo.token);
+
+      dispatch(
+        setUser({
+          userIdx: res.userInfo.userIdx,
+          userId: res.userInfo.userId,
+          loginCnt: res.userInfo.loginCnt,
+          noticeSet: res.userInfo.noticeSet,
+        })
+      );
 
       history.push("/");
-    } catch (err) {
+    } catch (error) {
       window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
-      window.alert("socialLoginDB Error : ", err);
+      console.log("socialLoginDB Error : ", error);
     }
   };
 

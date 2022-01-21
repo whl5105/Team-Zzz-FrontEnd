@@ -143,7 +143,7 @@ const Signup = (props) => {
         }}
       >
         <p>
-          이미계정이 있으신가요? <span>로그인</span>
+          이미 계정이 있으신가요? <span>로그인</span>
         </p>
       </Login>
     </Container>
