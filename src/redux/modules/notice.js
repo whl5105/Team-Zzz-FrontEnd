@@ -44,7 +44,7 @@ const updateNoticeDB = (notice, day = "AM", hour = 1, minutes = 0) => {
     const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
     apis
       .putNotice(notice, day, hour, minutes, userIdx, pushToken)
-      .then((response) => console.log(response));
+      .then(() => {});
     dispatch(setNotice(info));
   };
 };
