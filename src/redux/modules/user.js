@@ -83,10 +83,10 @@ export const socialLoginDB =
         })
       );
 
-      history.replace("/");
+      history.push("/");
     } catch (err) {
       window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
-      console.log("socialLoginDB Error : ", err);
+      window.alert("socialLoginDB Error : ", err);
     }
   };
 
