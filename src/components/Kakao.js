@@ -1,18 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from "../redux/configureStore.js";
 
 import { kakao } from "../static/images/index";
+import Success from "../components/Success";
 
 const Kakao = (props) => {
   const dispatch = useDispatch();
+  const [kakaoLoging, setKakaoLoging] = useState(false);
 
   const socialLoginSuccess = (res) => {
     console.log("소셜 로그인 성공");
+    setKakaoLoging(true);
     dispatch(userActions.socialLoginDB(res.profile.id));
+
+    const kakaoLoading = setTimeout(() => {
+      setKakaoLoging(false);
+    }, 2000);
+
+    clearTimeout(kakaoLoading);
   };
 
   const socialLoginStyle = {
@@ -31,16 +41,20 @@ const Kakao = (props) => {
   };
 
   return (
-    <KakaoLogin
-      jskey={process.env.REACT_APP_JS_KEY}
-      onSuccess={(res) => socialLoginSuccess(res)}
-      onFailure={(res) => socialLoginFail(res)}
-      getProfile={true}
-      style={socialLoginStyle}
-    >
-      <Icon></Icon>
-      카카오 로그인
-    </KakaoLogin>
+    <>
+      <KakaoLogin
+        jsKey={process.env.REACT_APP_JS_KEY}
+        onSuccess={(res) => socialLoginSuccess(res)}
+        onFailure={(res) => socialLoginFail(res)}
+        getProfile={true}
+        style={socialLoginStyle}
+      >
+        <Icon></Icon>
+        카카오 로그인
+      </KakaoLogin>
+
+      {kakaoLoging && <Success alt="loading" text="조금만 기다려 주세요" />}
+    </>
   );
 };
 
