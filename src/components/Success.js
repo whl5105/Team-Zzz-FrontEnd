@@ -19,7 +19,7 @@ const Success = (props) => {
 };
 
 const SuccessBtn = styled.button`
-  width: ${(props) => (props.isClock ? "210px" : "235px")};
+  width: ${(props) => (props.isClock ? "200px" : "235px")};
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.bg};
   font-size: ${({ theme }) => theme.fontSizes.small};
