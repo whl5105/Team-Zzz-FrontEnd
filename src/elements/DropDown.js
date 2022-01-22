@@ -221,7 +221,7 @@ const DropdownBody = styled.div`
 
   & > p {
     width: 100%;
-    line-height: 44px;
+    padding: 0px;
     text-align: center;
   }
 
