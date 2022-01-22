@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- images ---
 import {diary_NoRecord} from "../../static/images/index";
 
 const NoRecord = (props) => {
@@ -12,7 +11,6 @@ const NoRecord = (props) => {
   );
 };
 
-// --- styled-components ---
 const Wrap = styled.div`
   height: 100vh;
 `;
@@ -22,7 +20,7 @@ const Image = styled.div`
   height: inherit;
   background: url(${diary_NoRecord});
   background-size: 100%;
-  background-position: 100%;
+  background-position: 80;
   background-repeat: no-repeat;
 `;
 

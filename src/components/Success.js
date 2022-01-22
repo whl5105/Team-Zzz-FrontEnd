@@ -1,23 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- images ---
-import { check } from "../static/images/index";
+import { check, clock } from "../static/images/index";
 
 const Success = (props) => {
-  const { text, alt } = props;
+  const { text, alt, isClock } = props;
 
   return (
-    <SuccessBtn>
-      <img src={check} alt={alt} width="24px" height="24px" />
+    <SuccessBtn isClock>
+      {isClock ? (
+        <img src={clock} alt={alt} width="24px" height="24px" />
+      ) : (
+        <img src={check} alt={alt} width="24px" height="24px" />
+      )}
       <p>{text}</p>
     </SuccessBtn>
   );
 };
 
 const SuccessBtn = styled.button`
-  width: 235px;
-  border: none;
+  width: ${(props) => (props.isClock ? "210px" : "235px")};
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.bg};
   font-size: ${({ theme }) => theme.fontSizes.small};
@@ -26,7 +28,7 @@ const SuccessBtn = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 27px 12px 20px;
+  padding: 12px 20px;
   box-sizing: border-box;
   position: absolute;
 

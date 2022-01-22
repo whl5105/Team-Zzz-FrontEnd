@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- images ---
 import { notSupported } from "../../static/images/index";
 
 const Guidance = (props) => {
-  return <GuidanceBtn src={notSupported} left={props.left} />;
+  const { left } = props;
+
+  return <GuidanceBtn src={notSupported} left={left} />;
 };
 
 const GuidanceBtn = styled.div`
-  width: 110px;
-  height: 30px;
+  width: 120px;
+  height: 35px;
 
   background-image: url(${(props) => props.src});
   background-repeat: no-repeat;
@@ -22,7 +23,7 @@ const GuidanceBtn = styled.div`
   transform: translateX(-50%);
   opacity: 0;
   z-index: 200;
-  animation: Guidance 5s ease-in-out alternate;
+  animation: Guidance 2s ease-in-out alternate;
 
   @keyframes Guidance {
     40% {

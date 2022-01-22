@@ -1,15 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useHistory, withRouter } from "react-router-dom";
 import RequireLogin from "../components/RequireLogin";
 
-// 아이콘 이미지 import
-// import {
-//   home as Main,
-//   asmr as Asmr,
-//   diary as Diary,
-//   myPage as MyPage,
-// } from "../static/images/index";
 import { ReactComponent as Main } from "../static/images/icons/navigation/home.svg";
 import { ReactComponent as Asmr } from "../static/images/icons/navigation/asmr.svg";
 import { ReactComponent as Diary } from "../static/images/icons/navigation/diary.svg";
@@ -18,8 +11,8 @@ import { ReactComponent as MyPage } from "../static/images/icons/navigation/myPa
 const Navigation = withRouter((props) => {
   const pathName = props.location.pathname;
   const history = useHistory();
-  const [diaryModal, setDiaryModal] = React.useState(false);
-  const [select, setSelect] = React.useState(
+  const [diaryModal, setDiaryModal] = useState(false);
+  const [select, setSelect] = useState(
     pathName.split("/")[1] === "" ? "main" : pathName.split("/")[1]
   );
 
@@ -38,15 +31,15 @@ const Navigation = withRouter((props) => {
 
   const loginModal = () => {
     setDiaryModal(false);
-    history.push("/login");
+    history.push("/user/login");
   };
 
   React.useEffect(() => {
-    if (pathName === "/clock" || pathName === "/") {
+    if (pathName === "/optimalSleepTime" || pathName === "/") {
       setSelect("main");
     } else if (pathName === "/myPage/mixList") {
       setSelect("mypage");
-    } else if (pathName === "/asmrPop") {
+    } else if (pathName === "/asmr/asmrVolumeControl") {
       setSelect("asmr");
     } else {
       setSelect(pathName.split("/")[1]);
@@ -143,9 +136,11 @@ const Box = styled.div`
   & > Div:nth-child(1) {
     color: ${(props) => (props.select !== "null" ? "#FBC037" : "#ffffff")};
   }
+
   cursor: pointer;
   display: flex;
   flex-direction: column;
+
   & svg {
     margin: 0 auto;
   }

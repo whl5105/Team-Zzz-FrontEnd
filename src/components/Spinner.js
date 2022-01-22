@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- images ---
 import { Loading_B, Loading_C, Loading_T } from "../static/images/index";
 
 const Spinner = (props) => {
+  const { height } = props;
+
   return (
     <>
-      <Outter height={props.height}>
+      <Outter height={height}>
         <Inner>
           <img src={Loading_C} alt="spinner" />
           <div>
@@ -24,18 +25,20 @@ const Spinner = (props) => {
   );
 };
 
-// --- styled-components ---
 const Outter = styled.div`
   width: 100%;
   height: inherit;
   background-image: url(${Loading_B}), url(${Loading_T});
   background-size: 110vh, 35vh;
-  background-position: 50% 140%, 50% 15%;
+  background-position: 50% 200%, 50% 15%;
   background-repeat: no-repeat;
 
-  @media (max-width: 500px) {
-    background-size: 70vh, 30vh;
-    background-position: 50% 90%, 50% 15%;
+  @media (max-height: 670px){
+    background-position: 50% 150%, 50% 15%;
+  }
+
+  @media (max-height: 920px){
+    background-position: 50% 120%, 50% 15%;
   }
 `;
 

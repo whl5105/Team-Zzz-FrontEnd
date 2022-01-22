@@ -14,6 +14,8 @@ import sleepTime_T_R from "./background/sleepTime_T_R.png";
 import web_back from "./background/web_back.png";
 import web_logo from "./background/web_logo.png";
 import web_phone from "./background/web_phone.png";
+import mobile_back from "./background/mobile_back.png";
+import mobile_logo from "./background/mobile_logo.png";
 
 //-- banner --
 import main_all from "./banner/main_all.png";
@@ -39,6 +41,7 @@ import kakao from "./social/kakao.png";
 //-- tooltop --
 import myMix from "./tooltip/myMix.png";
 import notSupported from "./tooltip/notSupported.png";
+import leaveFeedback from "./tooltip/leaveFeedback.png";
 
 //-- icons --
 import asmr from "./icons/navigation/asmr.svg";
@@ -53,6 +56,7 @@ import playBar_volume from "./icons/playBar/playBar_volume.svg";
 
 //-- toasts --
 import check from "./icons/toasts/check.png";
+import clock from "./icons/toasts/clock.png";
 
 //-- arrow --
 import arrow_B_W from "./icons/arrow/arrow_B_W.svg";
@@ -96,6 +100,8 @@ export {
   web_back,
   web_logo,
   web_phone,
+  mobile_back,
+  mobile_logo,
   main_all,
   main_diary,
   main_feedback,
@@ -112,6 +118,7 @@ export {
   feel5,
   myMix,
   notSupported,
+  leaveFeedback,
   kakao,
   asmr,
   diary,
@@ -122,6 +129,7 @@ export {
   playBar_play,
   playBar_volume,
   check,
+  clock,
   arrow_B_W,
   arrow_L_W,
   arrow_R_B,

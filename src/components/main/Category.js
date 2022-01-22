@@ -2,28 +2,28 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
-// --- components ---
 import { Icon } from "../../elements/index";
 
-// --- images ---
 import { arrow_R_W } from "../../static/images/index";
 
 const Category = (props) => {
   const history = useHistory();
+  const { bannerImage, category, path, subTitle, title } = props;
+
   return (
     <CategoryStyle
       onClick={() => {
         history.push({
-          pathname: `${props.path}`,
-          category: `${props.category}`,
+          pathname: `${path}`,
+          category: `${category}`,
         });
       }}
-      bannerImage={props.bannerImage}
+      bannerImage={bannerImage}
     >
       <TextBox>
         <div>
-          <h2>{props.title}</h2>
-          <small>{props.subTitle}</small>
+          <h2>{title}</h2>
+          <p>{subTitle}</p>
         </div>
 
         <div>
@@ -34,7 +34,6 @@ const Category = (props) => {
   );
 };
 
-// --- styled-components ---
 const CategoryStyle = styled.div`
   height: 125px;
   border-radius: 12px;
@@ -54,6 +53,14 @@ const TextBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  & h2 {
+    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  }
+  & p {
+    font-size: ${({ theme }) => theme.fontSizes.small};
+    font-weight: ${({ theme }) => theme.fontWeight.Regular};
+  }
 `;
 
 export default Category;

@@ -1,21 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-// --- components ---
 import Title from "../components/Title";
 import List from "../components/mypage/List";
 
-// --- images ---
 import { notice, arrow_B_W, arrow_T_W } from "../static/images";
-// import notes from "../static/images/mypage/notes_white.svg";
-// import path_B from "../static/images/mypage/arrow_B_W.svg";
-// import path_T from "../static/images/mypage/arrow_T_W.svg";
 
-const NoticePage = (props) => {
-  const [toggle, setToggle] = React.useState(false);
+const MypageNotice = (props) => {
+  const [toggle, setToggle] = useState(false);
 
   return (
-    <React.Fragment>
+    <>
       <Container>
         <Title backIcon>공지사항</Title>
         {!toggle ? (
@@ -52,11 +47,10 @@ const NoticePage = (props) => {
           </>
         )}
       </Container>
-    </React.Fragment>
+    </>
   );
 };
 
-// --- styled-components ---
 const Container = styled.div`
   height: inherit;
   box-sizing: border-box;
@@ -78,4 +72,4 @@ const TextBox = styled.ul`
   }
 `;
 
-export default NoticePage;
+export default MypageNotice;

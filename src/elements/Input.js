@@ -87,7 +87,6 @@ Input.defaultProps = {
   height: "60px",
 };
 
-// --- styled-components ---
 const InputGrop = styled.div`
   width: 100%;
   height: ${(props) => props.height};

@@ -5,15 +5,14 @@ import { apis } from "../../shared/api/apis";
 // -- actions --
 const SIGNUP = "SIGNUP";
 const FIRST_SIGNUP = "FIRST_SIGNUP";
-
-const ERR_SIGNUP = "ERR_SIGNUP";
 const SET_USER = "SET_USER";
+const ERR_SIGNUP = "ERR_SIGNUP";
 
 // -- action creators --
 const signup = createAction(SIGNUP);
 const firstSignup = createAction(FIRST_SIGNUP);
-const err_signup = createAction(ERR_SIGNUP, (err) => ({ err }));
 const setUser = createAction(SET_USER, (user) => ({ user }));
+const err_signup = createAction(ERR_SIGNUP, (err) => ({ err }));
 
 // -- initialState --
 const initialState = {
@@ -35,9 +34,8 @@ export const signupDB =
   async (dispatch, getState, { history }) => {
     try {
       await apis.signup(userId, password);
-      // console.log(res.retult);
       dispatch(signup());
-      history.push("/login");
+      history.push("/user/login");
     } catch (err) {
       dispatch(err_signup(err.response.data.errorMessage));
     }
@@ -49,9 +47,6 @@ export const loginDB =
   async (dispatch, getState, { history }) => {
     try {
       const res = await apis.login(userId, password);
-      // console.log(res);
-      // let username = res.data[0].userId;
-      //로컬 스토리지 저장
       localStorage.setItem("userIdx", res.userIdx);
       localStorage.setItem("noticeSet", res.noticeSet);
       localStorage.setItem("token", res.token);
@@ -63,14 +58,11 @@ export const loginDB =
           noticeSet: res.noticeSet,
         })
       );
-      // window.alert(`${username}님 환영합니다`);
-      history.replace("/");
+
+      history.push("/");
     } catch (err) {
-      // window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
       window.alert(err.response.data.errorMessage);
-      // console.log(err.response.data.errorMessage);
       dispatch(err_signup(err.response.data.errorMessage));
-      // console.log(err.response.data.errorMessage);
     }
   };
 
@@ -80,12 +72,11 @@ export const socialLoginDB =
   async (dispatch, getState, { history }) => {
     try {
       const res = await apis.kakaoLogin(id);
-      // console.log(res);
 
-      //로컬 스토리지 저장
       localStorage.setItem("userIdx", res.userInfo.userIdx);
       localStorage.setItem("noticeSet", res.userInfo.noticeSet);
       localStorage.setItem("token", res.userInfo.token);
+
       dispatch(
         setUser({
           userIdx: res.userInfo.userIdx,
@@ -95,14 +86,15 @@ export const socialLoginDB =
         })
       );
 
-      history.replace("/");
+      history.push("/");
     } catch (err) {
+      window.alert(err);
       window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
-      console.log(`오류 발생!${err}`);
+      console.log("socialLoginDB Error : ", err);
     }
   };
 
-//---- 로그아욱 DB ----
+//---- 로그아웃 DB ----
 const logoutDB = () => {
   return function (dispatch, getState, { history }) {
     localStorage.removeItem("userIdx");
@@ -113,7 +105,6 @@ const logoutDB = () => {
     }
     alert("로그아웃 되었습니다.");
     history.push("/");
-    // window.location.reload();
   };
 };
 
@@ -128,16 +119,14 @@ export default handleActions(
       produce(state, (draft) => {
         draft.is_signup = false;
       }),
-    [ERR_SIGNUP]: (state, action) =>
-      produce(state, (draft) => {
-        // draft.errMessage = "중복된 아이디 입니다 ";
-        draft.errMessage = action.payload.err;
-        // console.log(draft.errMessage);
-      }),
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.user = action.payload.user;
         draft.is_login = true;
+      }),
+    [ERR_SIGNUP]: (state, action) =>
+      produce(state, (draft) => {
+        draft.errMessage = action.payload.err;
       }),
   },
   initialState

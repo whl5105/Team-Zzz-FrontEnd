@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { history } from "../../redux/configureStore";
@@ -9,7 +9,6 @@ import "swiper/css/pagination";
 
 import RequireLogin from "../RequireLogin";
 
-// --- images ---
 import {
   main_diary,
   main_sleepTime,
@@ -20,7 +19,7 @@ SwiperCore.use([Pagination, Autoplay]);
 
 const MainSwiper = withRouter((props) => {
   const token = localStorage.getItem("token");
-  const [diaryModal, setDiaryModal] = React.useState(false);
+  const [diaryModal, setDiaryModal] = useState(false);
   const diaryClick = () => {
     if (!token) {
       setDiaryModal(true);
@@ -35,7 +34,7 @@ const MainSwiper = withRouter((props) => {
 
   const loginModal = () => {
     setDiaryModal(false);
-    history.push("/login");
+    history.push("/user/login");
   };
 
   const swiperStyle = {
@@ -64,7 +63,7 @@ const MainSwiper = withRouter((props) => {
           </SwiperSlide>
           <SwiperSlide
             onClick={() => {
-              history.push("/clock");
+              history.push("/optimalSleepTime");
             }}
           >
             <BannerImg bannerImage={main_sleepTime} />
@@ -86,7 +85,6 @@ const MainSwiper = withRouter((props) => {
   );
 });
 
-// --- styled-components ---
 const Main = styled.div`
   margin-top: ${({ theme }) => theme.margins.xxxxl};
 `;

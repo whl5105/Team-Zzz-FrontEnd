@@ -28,7 +28,6 @@ const AsmrCategory = (props) => {
   );
 };
 
-// --- styled-components ---
 const Wrap = styled.div`
   border-radius: 12px;
   display: flex;

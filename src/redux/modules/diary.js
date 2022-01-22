@@ -27,8 +27,31 @@ const initialState = {
 };
 
 // -- middleware actions --
+// -- 다이어리 생성 DB --
+const addDiaryDB = (year, month, diaryListInfo) => {
+  return async function (dispatch, getState, { history }) {
+    let yearMonth = "";
+    if (month < 10) {
+      yearMonth = `${year}0${month}`;
+    } else {
+      yearMonth = `${year}${month}`;
+    }
 
-//-- 기록 가져오기 --
+    try {
+      await apis.addDiary(
+        yearMonth,
+        diaryListInfo.day,
+        diaryListInfo.feelScore,
+        diaryListInfo.sleepScore,
+        diaryListInfo.comment
+      );
+      dispatch(getDiaryDB(year, month));
+    } catch (error) {
+      console.log("addDiaryDB Error : ", error);
+    }
+  };
+};
+//-- 다이어리 요청 DB --
 const getDiaryDB = (year, month) => {
   return async function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
@@ -38,12 +61,10 @@ const getDiaryDB = (year, month) => {
     } else {
       yearMonth = `${year}${month}`;
     }
-
     try {
       // 다이어리 기록 불러오기
       const diaryListRes = await apis.getDiaryList(userIdx, yearMonth);
       const diaryList = diaryListRes.errorMessage ? [] : diaryListRes;
-
       // 다이어리 점수 불러오기
       const diaryScoreRes = await apis.getDiaryScore(userIdx);
       const diaryScore = diaryScoreRes.errorMessage
@@ -57,50 +78,16 @@ const getDiaryDB = (year, month) => {
   };
 };
 
-// -- 추가 --
-const addDiaryDB = (year, month, diaryListInfo) => {
-  return async function (dispatch, getState, { history }) {
-    // console.log(year, month, diaryListInfo);
-    let yearMonth = "";
-    if (month < 10) {
-      yearMonth = `${year}0${month}`;
-    } else {
-      yearMonth = `${year}${month}`;
-    }
-
-    try {
-      const res = await apis.addDiary(
-        yearMonth,
-        diaryListInfo.day,
-        diaryListInfo.feelScore,
-        diaryListInfo.sleepScore,
-        diaryListInfo.comment
-      );
-      console.log("addDiaryDB response : ", res);
-      dispatch(getDiaryDB(year, month));
-    } catch (error) {
-      console.log("addDiaryDB Error : ", error);
-    }
-  };
-};
-
-// -- 수정 --
+// -- 다이어리 수정 DB --
 const editDiaryDB = (diaryListInfo) => {
   return function (dispatch, getState, { history }) {
     try {
-      // console.log(
-      //   diaryListInfo.diaryIdx,
-      //   diaryListInfo.feelScore,
-      //   diaryListInfo.sleepScore,
-      //   diaryListInfo.comment
-      // );
-      const res = apis.editDiaryDB(
+      apis.editDiaryDB(
         diaryListInfo.diaryIdx,
         diaryListInfo.feelScore,
         diaryListInfo.sleepScore,
         diaryListInfo.comment
       );
-      console.log("editDiaryDB response : ", res);
       dispatch(edit_diary(diaryListInfo));
     } catch (error) {
       console.log("editDiaryDB Error : ", error);
@@ -108,13 +95,11 @@ const editDiaryDB = (diaryListInfo) => {
   };
 };
 
-// -- 삭제 --
+// -- 다이어리 삭제 DB --
 const deleteDiaryDB = (diaryIdx) => {
   return function (dispatch, getState, { history }) {
-    // console.log(diaryIdx);
     try {
-      const res = apis.deleteDiary(diaryIdx);
-      console.log("deleteDiaryDB response : ", res);
+      apis.deleteDiary(diaryIdx);
       dispatch(delete_diary(diaryIdx));
     } catch (error) {
       console.log("deleteDiaryDB Error : ", error);
@@ -142,7 +127,6 @@ export default handleActions(
       }),
     [DELETE_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        // console.log(typeof action.payload.day);
         const new_diaryList = draft.diaryList.filter((d, idx) => {
           return action.payload.diaryIdx !== d.diaryIdx;
         });

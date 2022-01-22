@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- components ---
 import Icon from "../../elements/Icon";
 
-// --- images ---
 import { arrow_R_W, arrow_L_W } from "../../static/images/index";
 
 const DiaryDate = (props) => {
@@ -23,7 +21,6 @@ const DiaryDate = (props) => {
             src={arrow_L_W}
           />
           <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
-          {/* YYYY는 년도 MM 은 달입니다. */}
           <Icon
             position="relative"
             top="15px"
@@ -39,7 +36,6 @@ const DiaryDate = (props) => {
   );
 };
 
-// --- styled-components ---
 const WrapBox = styled.div`
   margin: 0 20px;
   margin-top: 70px;

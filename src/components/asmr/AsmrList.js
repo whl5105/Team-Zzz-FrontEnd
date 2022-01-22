@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../../redux/configureStore";
 
-// -- components --
 import { Icon } from "../../elements/index";
 
 const AsmrList = (props) => {
@@ -16,7 +15,7 @@ const AsmrList = (props) => {
     setPlay,
   } = props;
 
-  React.useEffect(() => {
+  useEffect(() => {
     let playArr = [];
     if (history.play && soundTrack) {
       soundTrack.forEach((item) => {
@@ -59,7 +58,7 @@ const AsmrList = (props) => {
                 select(item.asmrUrl, item.iconUrl, item.title);
               }}
             >
-              <Icon src={item.iconUrl} />
+              <Icon src={item.iconUrl} alt={item.title} />
               <Text>{item.title}</Text>
             </Sound>
           );
@@ -69,7 +68,6 @@ const AsmrList = (props) => {
   );
 };
 
-// --- styled-components ---
 const SoundSelect = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

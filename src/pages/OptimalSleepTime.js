@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
-// --- components ---
 import { Button, Icon, DropDown } from "../elements/index";
 
-// --- images ---
 import {
   arrow_R_W,
   sleepTime_B,
@@ -15,28 +13,28 @@ import {
   fallBack,
 } from "../static/images";
 
-const Clock = (props) => {
-  const [ampm, setampm] = React.useState("");
-  const [wakeup_hour, setwakeup_hour] = React.useState(0);
-  const [wakeup_min, setwakeup_min] = React.useState(0);
-  const [ampm2, setampm2] = React.useState("");
-  const [wakeup_hour2, setwakeup_hour2] = React.useState(0);
-  const [wakeup_min2, setwakeup_min2] = React.useState(0);
-  const [ampm3, setampm3] = React.useState("");
-  const [wakeup_hour3, setwakeup_hour3] = React.useState(0);
-  const [wakeup_min3, setwakeup_min3] = React.useState(0);
-  const [ampm4, setampm4] = React.useState("");
-  const [wakeup_hour4, setwakeup_hour4] = React.useState(0);
-  const [wakeup_min4, setwakeup_min4] = React.useState(0);
-  const [toggle, setToggle] = React.useState(true);
+const OptimalSleepTime = (props) => {
+  const [ampm, setampm] = useState("");
+  const [wakeup_hour, setwakeup_hour] = useState(0);
+  const [wakeup_min, setwakeup_min] = useState(0);
+  const [ampm2, setampm2] = useState("");
+  const [wakeup_hour2, setwakeup_hour2] = useState(0);
+  const [wakeup_min2, setwakeup_min2] = useState(0);
+  const [ampm3, setampm3] = useState("");
+  const [wakeup_hour3, setwakeup_hour3] = useState(0);
+  const [wakeup_min3, setwakeup_min3] = useState(0);
+  const [ampm4, setampm4] = useState("");
+  const [wakeup_hour4, setwakeup_hour4] = useState(0);
+  const [wakeup_min4, setwakeup_min4] = useState(0);
+  const [toggle, setToggle] = useState(true);
 
-  const [dayActive, setDayActive] = React.useState(false);
-  const [hourActive, setHourActive] = React.useState(false);
-  const [minutesActive, setMinutesActive] = React.useState(false);
+  const [dayActive, setDayActive] = useState(false);
+  const [hourActive, setHourActive] = useState(false);
+  const [minutesActive, setMinutesActive] = useState(false);
 
-  const [day, setDay] = React.useState("오후"); // 오전(true), 오후(false) 설정
-  const [hour, setHour] = React.useState(12); // 시 설정
-  const [minutes, setMinutes] = React.useState("00"); // 분 설정
+  const [day, setDay] = useState("오후");
+  const [hour, setHour] = useState(12);
+  const [minutes, setMinutes] = useState("00");
 
   const dayItems = ["오전", "오후"];
   const hourItems = [
@@ -76,8 +74,6 @@ const Clock = (props) => {
 
     if (date === "오후") {
       let setTime = new Date(2021, 11, 27, hours + 12, minute);
-      // setTime.setMinutes(0);
-      // console.log(setTime);
       let res4 = new Date(setTime.getTime() - 270 * 60000);
       let res3 = new Date(res4.getTime() - 90 * 60000);
       let res2 = new Date(res3.getTime() - 90 * 60000);
@@ -321,7 +317,6 @@ const Clock = (props) => {
   );
 };
 
-// --- styled-components ---
 const Background = styled.div`
   width: 100%;
   height: inherit;
@@ -358,21 +353,10 @@ const Explanation = styled.p`
 `;
 
 const SleepTimeWrap = styled.div`
-  /* flex-direction: row; */
-
-  /* position: absolute; */
-  /* width: 335px;
-  right: 20px;
-  top: 354px; */
   width: 100%;
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-
   background: rgba(248, 248, 248, 0.1);
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  /* z-index: 1; */
   padding: 20px;
   box-sizing: border-box;
 `;
@@ -434,4 +418,4 @@ const Reset = styled.div`
   margin-top: 24px;
 `;
 
-export default Clock;
+export default OptimalSleepTime;

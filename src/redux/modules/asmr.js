@@ -3,12 +3,12 @@ import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
 
 // -- actions --
+const SET_WRITE = "SETWRITE";
 const GET_ASMR = "GETASMR";
 const SET_PLAYLIST = "SETPLAYLIST";
 const GET_PLAYLIST = "GETPLAYLIST";
-const SET_WRITE = "SETWRITE";
-const DELETE_PLAYLIST = "DELETEPLAYLIST";
 const EDIT_PLAYLIST = "EDITPLAYLIST";
+const DELETE_PLAYLIST = "DELETEPLAYLIST";
 
 // -- action creators --
 const get_asmr = createAction(GET_ASMR, (asmrListInfo) => ({
@@ -40,16 +40,7 @@ const initialState = {
 };
 
 // -- middleware actions --
-const writeInitial = () => {
-  return async function (dispatch, getState, { history }) {
-    try {
-      await dispatch(set_write());
-    } catch (error) {
-      console.log("writeInitial Error : ", error);
-    }
-  };
-};
-
+//-- 음원 요청 DB --
 const getAsmrDB = () => {
   return async function (dispatch, getState, { history }) {
     try {
@@ -61,21 +52,22 @@ const getAsmrDB = () => {
   };
 };
 
-//-- 믹스 리스트 추가 --
+//-- 믹스리스트 생성 DB --
 const setPlayListDB = (playLists) => {
   return async function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
     try {
       await apis.postPlayList(playLists.mixTitle, playLists.mixList);
-      dispatch(set_playList(true)); // 애니메이션
-      dispatch(getPlayListDB(userIdx)); // 찜 목록 불러오기
+      dispatch(set_playList(true));
+      dispatch(getPlayListDB(userIdx));
       history.push("/asmr");
     } catch (error) {
-      console.log("setPlayList Error : ", error);
+      console.log("setPlayListDB Error : ", error);
     }
   };
 };
-//-- 믹스 리스트 GET 요청 --
+
+//-- 믹스리스트 요청 DB--
 const getPlayListDB = () => {
   return async function (dispatch, getState, { history }) {
     try {
@@ -83,39 +75,31 @@ const getPlayListDB = () => {
       const res = await apis.getPlayList(userIdx);
       dispatch(get_playList(res));
     } catch (error) {
-      console.log("getPlayList Error : ", error);
+      console.log("getPlayListDB Error : ", error);
     }
   };
 };
-
-//-- 믹스 리스트 삭제 --
-const DeletePlayListDB = (playlistIdx) => {
-  return async function (dispatch, getState, { history }) {
-    try {
-      // console.log(typeof playlistIdx);
-      const userIdx = localStorage.getItem("userIdx");
-      // console.log(userIdx);
-      await apis.deletePlayList(playlistIdx, userIdx);
-      // console.log(playlistIdx);
-      dispatch(delete_playList(playlistIdx));
-    } catch (error) {
-      console.log("deletePlayList Error : ", error);
-    }
-  };
-};
-
-//-- 믹스 리스트 제목 수정 --
+//-- 믹스리스트 수정 DB --
 const editPlayListDB = (playlistIdx, mixTitle) => {
   return async function (dispatch, getState, { history }) {
     try {
-      // console.log(playlistIdx, mixTitle);
-      // console.log(playlistIdx);
       const userIdx = localStorage.getItem("userIdx");
       await apis.editPlayList(playlistIdx, userIdx, mixTitle);
-      // console.log(res);
       dispatch(edit_playList(playlistIdx, mixTitle));
     } catch (error) {
-      console.log("setPlayList Error : ", error);
+      console.log("editPlayListDB Error : ", error);
+    }
+  };
+};
+//-- 믹스리스트 삭제 DB --
+const DeletePlayListDB = (playlistIdx) => {
+  return async function (dispatch, getState, { history }) {
+    try {
+      const userIdx = localStorage.getItem("userIdx");
+      await apis.deletePlayList(playlistIdx, userIdx);
+      dispatch(delete_playList(playlistIdx));
+    } catch (error) {
+      console.log("deletePlayList Error : ", error);
     }
   };
 };
@@ -141,16 +125,10 @@ export default handleActions(
       }),
     [DELETE_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
-        // console.log(action.payload.playlistIdx);
-        // console.log(typeof action.payload.playlistIdx);
-        // console.log(draft.playList.playlistIdx);
-        // console.log(typeof draft.playList.playlistIdx);
         const new_playList = draft.playList.filter((l, idx) => {
           return action.payload.playlistIdx !== l.playlistIdx;
         });
         draft.playList = new_playList;
-        // console.log(new_playList);
-        // console.log(draft.playList);
       }),
     [EDIT_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
@@ -168,7 +146,7 @@ const actionCreators = {
   getAsmrDB,
   setPlayListDB,
   getPlayListDB,
-  writeInitial,
+  set_write,
   DeletePlayListDB,
   editPlayListDB,
 };

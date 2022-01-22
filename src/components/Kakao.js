@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from "../redux/configureStore.js";
 
-// --- images ---
 import { kakao } from "../static/images/index";
+import Success from "../components/Success";
 
 const Kakao = (props) => {
   const dispatch = useDispatch();
+  const [kakaoLoging, setKakaoLoging] = useState(false);
+  const kakaoKey = process.env.REACT_APP_JS_KEY;
 
-  // 소셜 로그인 성공
   const socialLoginSuccess = (res) => {
     console.log("소셜 로그인 성공");
-    // console.log(res);
+    setKakaoLoging(true);
     dispatch(userActions.socialLoginDB(res.profile.id));
+
+    const kakaoLoading = setTimeout(() => {
+      setKakaoLoging(false);
+    }, 2000);
+
+    clearTimeout(kakaoLoading);
   };
 
   const socialLoginStyle = {
@@ -29,24 +37,25 @@ const Kakao = (props) => {
     width: "100%",
   };
 
-  // 소셜 로그인 실패
   const socialLoginFail = (res) => {
     console.log("소셜 로그인 실패");
-    // console.log(res);
   };
+
   return (
-    <KakaoLogin
-      // rest api 키가 아닌 js 키를 사용해야 합니다.
-      jskey={process.env.REACT_APP_JS_KEY}
-      onSuccess={(res) => socialLoginSuccess(res)}
-      onFailure={(res) => socialLoginFail(res)}
-      // getPofile 속성을 주지 않으면 유저 정보를 받을 수 없습니다.
-      getProfile={true}
-      style={socialLoginStyle}
-    >
-      <Icon></Icon>
-      카카오 로그인
-    </KakaoLogin>
+    <>
+      <KakaoLogin
+        jsKey={kakaoKey}
+        onSuccess={(res) => socialLoginSuccess(res)}
+        onFailure={(res) => socialLoginFail(res)}
+        getProfile={true}
+        style={socialLoginStyle}
+      >
+        <Icon></Icon>
+        카카오 로그인
+      </KakaoLogin>
+
+      {kakaoLoging && <Success isClock alt="loading" text="조금만 기다려주세요" />}
+    </>
   );
 };
 

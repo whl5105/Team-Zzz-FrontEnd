@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
-//-- module (import module 여기에 모아주세요!)--
+//-- module --
 import User from "./modules/user";
 import Notice from "./modules/notice";
 import Diary from "./modules/diary";

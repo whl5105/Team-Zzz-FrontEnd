@@ -1,29 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 
-// --- images ---
 import { arrow_L_W } from "../static/images";
-
-// --- components ---
 import SoundTrack from "../components/asmr/SoundTrack";
 import RequireLogin from "../components/RequireLogin";
 import PlayList from "../components/asmr/PlayList";
 import { Button, Icon } from "../elements/index";
 
-const AsmrPopUp = (props) => {
-  const [song1, setSong1] = React.useState(history.audio1 && history.audio1);
-  const [song2, setSong2] = React.useState(history.audio2 && history.audio2);
-  const [song3, setSong3] = React.useState(history.audio3 && history.audio3);
-  const [song4, setSong4] = React.useState(history.audio4 && history.audio4);
-  const [volume1, setVolume1] = React.useState(song1 && song1.volume * 100);
-  const [volume2, setVolume2] = React.useState(song2 && song2.volume * 100);
-  const [volume3, setVolume3] = React.useState(song3 && song3.volume * 100);
-  const [volume4, setVolume4] = React.useState(song4 && song4.volume * 100);
-  const [songList, setSongList] = React.useState(history.play);
+const AsmrVolumeControl = (props) => {
+  const [song1, setSong1] = useState(history.audio1 && history.audio1);
+  const [song2, setSong2] = useState(history.audio2 && history.audio2);
+  const [song3, setSong3] = useState(history.audio3 && history.audio3);
+  const [song4, setSong4] = useState(history.audio4 && history.audio4);
+  const [volume1, setVolume1] = useState(song1 && song1.volume * 100);
+  const [volume2, setVolume2] = useState(song2 && song2.volume * 100);
+  const [volume3, setVolume3] = useState(song3 && song3.volume * 100);
+  const [volume4, setVolume4] = useState(song4 && song4.volume * 100);
+  const [songList, setSongList] = useState(history.play);
 
-  const [playListModal, setPlayListModal] = React.useState(false);
-  const [requireLoginModal, setRequireLoginModal] = React.useState(false);
+  const [playListModal, setPlayListModal] = useState(false);
+  const [requireLoginModal, setRequireLoginModal] = useState(false);
 
   const closePlayListModal = () => {
     setPlayListModal(false);
@@ -35,11 +32,11 @@ const AsmrPopUp = (props) => {
 
   const loginModal = () => {
     setRequireLoginModal(false);
-    history.push("/login");
+    history.push("/user/login");
   };
 
-  const [guidance, setGuidance] = React.useState();
-  const [guidanceTitle, setGuidanceTitle] = React.useState();
+  const [guidance, setGuidance] = useState();
+  const [guidanceTitle, setGuidanceTitle] = useState();
 
   const deleteSong = (song) => {
     let arr = [];
@@ -53,7 +50,6 @@ const AsmrPopUp = (props) => {
       history.setSong1(new Audio());
 
       if (songList.includes(song1.src)) {
-        // 비활성화
         arr = songList.filter((item) => {
           if (song1.src !== item) {
             return item;
@@ -71,7 +67,6 @@ const AsmrPopUp = (props) => {
       history.setSong2(new Audio());
 
       if (songList.includes(song2.src)) {
-        // 비활성화
         arr = songList.filter((item) => {
           if (song2.src !== item) {
             return item;
@@ -89,7 +84,6 @@ const AsmrPopUp = (props) => {
       history.setSong3(new Audio());
 
       if (songList.includes(song3.src)) {
-        // 비활성화
         arr = songList.filter((item) => {
           if (song3.src !== item) {
             return item;
@@ -107,7 +101,6 @@ const AsmrPopUp = (props) => {
       history.setSong4(new Audio());
 
       if (history.play.includes(song4.src)) {
-        // 비활성화
         arr = songList.filter((item) => {
           if (song4.src !== item) {
             return item;
@@ -218,7 +211,7 @@ const AsmrPopUp = (props) => {
                     type="bgBtn"
                     size="16"
                     marginT="0"
-                    _onClick={titleWrite} //  나중에 볼륨 조절 한 거 데이터를 dispatch 해서 넣는 걸 하면 될 듯 하다
+                    _onClick={titleWrite} 
                   >
                     내 믹스 저장하기
                   </Button>
@@ -240,7 +233,6 @@ const AsmrPopUp = (props) => {
   );
 };
 
-// styled-components
 const Container = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.bg};
@@ -287,4 +279,4 @@ const SongList = styled.div`
   box-sizing: border-box;
 `;
 
-export default AsmrPopUp;
+export default AsmrVolumeControl;

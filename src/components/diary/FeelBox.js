@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-// --- components ---
 import Charater from "../../elements/Charater";
 
 const FeelBox = (props) => {
-  const { previewFeel, feelNumber } = props;
-  const [arr, setArr] = React.useState([
+  const { previewFeel, edit, _onClick, feelNumber } = props;
+  const [arr, setArr] = useState([
     { text: "찌뿌등", score: 1, color: "#6CA8FF" },
     { text: "피곤", score: 3, color: "#90D3CC" },
     { text: "개운", score: 5, color: "#FCD371" },
@@ -17,8 +16,7 @@ const FeelBox = (props) => {
   return (
     <Container>
       <h3>자고 일어난후 느낌</h3>
-      {/* 편집 onClick on:off */}
-      {props.edit ? (
+      {edit ? (
         <Feel>
           {arr.map((arr, idx) => {
             return (
@@ -29,7 +27,7 @@ const FeelBox = (props) => {
                   score={arr.score}
                   feelNumber={idx + 1}
                   scoreColor="#c4c4c4"
-                  _onClick={props._onClick}
+                  _onClick={_onClick}
                   is_click={previewFeel === idx + 1 ? true : false}
                   text={arr.text}
                 />
@@ -47,7 +45,7 @@ const FeelBox = (props) => {
                   size="35"
                   score={arr.score}
                   feelNumber={idx + 1}
-                  display={props.feelNumber}
+                  display={feelNumber}
                   scoreColor="#c4c4c4"
                   is_click={previewFeel === idx + 1 ? true : false}
                   text={arr.text}
@@ -61,7 +59,6 @@ const FeelBox = (props) => {
   );
 };
 
-// --- styled-components ---
 const Container = styled.div`
   text-align: center;
   font-size: ${({ theme }) => theme.fontSizes.small};

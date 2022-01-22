@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { actionCreators as asmrActions } from "../../redux/modules/asmr";
 import { useDispatch } from "react-redux";
 
-// --- components ---
 import ModalPopUp from "../ModalPopUp";
 import { Button } from "../../elements";
 
@@ -15,8 +14,9 @@ const MixDeletePopup = (props) => {
     dispatch(asmrActions.DeletePlayListDB(data.playlistIdx));
     close();
   };
+
   return (
-    <ModalPopUp close={props.close}>
+    <ModalPopUp close={close}>
       <Container>
         <h3>이 믹스를 정말로 삭제 할까요?</h3>
         <ButtonBox>

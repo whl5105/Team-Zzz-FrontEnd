@@ -16,7 +16,6 @@ const NoMixList = (props) => {
   );
 };
 
-// --- styled-components ---
 const Wrap = styled.div`
   position: absolute;
   top: 50%;

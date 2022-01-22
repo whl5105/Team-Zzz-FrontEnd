@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore.js";
 import { withRouter } from "react-router-dom";
 
-// --- components ---
-import { Icon } from "../elements/index";
 import MixListPopUp from "../components/mixList/MixListPopUp";
 import RequireLogin from "../components/RequireLogin";
 
-// --- images ---
-import { logo, feedback, mixList, myMix } from "../static/images/index";
+import {
+  logo,
+  feedback,
+  mixList,
+  myMix,
+  leaveFeedback,
+} from "../static/images/index";
 
 const Header = withRouter((props) => {
   const path = props.location.pathname;
-  const [mixListModal, setMixListModal] = React.useState(false);
-  const [requireLoginModal, setRequireLoginModal] = React.useState(false);
+  const [mixListModal, setMixListModal] = useState(false);
+  const [requireLoginModal, setRequireLoginModal] = useState(false);
 
   const playListPopUp = () => {
     const token = localStorage.getItem("token");
@@ -36,10 +39,10 @@ const Header = withRouter((props) => {
 
   const loginModal = () => {
     setRequireLoginModal(false);
-    history.push("/login");
+    history.push("/user/login");
   };
 
-  const PageLink = () => {
+  const pageLink = () => {
     window.open(
       "https://docs.google.com/forms/d/e/1FAIpQLSfdn7OIKJYKQLfzNScDvBSCvv07yH9cuyjORoNyE_GNHfaG_w/viewform?vc=0&c=0&w=1&flr=0",
       "_blank"
@@ -56,21 +59,28 @@ const Header = withRouter((props) => {
             history.push("/");
           }}
         />
-        {path === "/asmr" || path === "/asmrPop" ? (
+        {path === "/asmr" || path === "/asmr/asmrVolumeControl" ? (
           <>
-            {/* asmr  */}
             <HoverImage
               src={mixList}
-              alt="playList"
+              alt="mixList"
               position="absolute"
               right="23px"
               onClick={playListPopUp}
             />
-            <Image src={myMix} className="playListHover" alt="" />
+            <Image src={myMix} alt="playListToolTip" />
           </>
         ) : (
-          // 피드백
-          <Icon src={feedback} alt="writing" _onClick={PageLink} />
+          <>
+            <HoverImage
+              src={feedback}
+              alt="leaveFeedback"
+              position="absolute"
+              right="23px"
+              onClick={pageLink}
+            />
+            <Image src={leaveFeedback} alt="writingToolTip" />
+          </>
         )}
       </HeaderBox>
 
@@ -88,7 +98,6 @@ const Header = withRouter((props) => {
   );
 });
 
-// --- styled-components ---
 const HeaderBox = styled.div`
   width: 100%;
   height: 50px;
@@ -108,6 +117,7 @@ const Logo = styled.img`
   width: 67px;
   height: 26px;
 `;
+
 const HoverImage = styled.img`
   width: 24px;
   height: 24px;

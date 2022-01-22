@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../../redux/modules/diary";
 
-// --- components ---
 import ModalPopUp from "../ModalPopUp";
 import FeelBox from "../diary/FeelBox";
 import SleepBox from "../diary/SleepBox";
 import { Input, Button, Charater } from "../../elements/index";
 
-// --- images ---
 import { reset } from "../../static/images/index";
 
 const DiaryWrite = (props) => {
@@ -25,58 +23,52 @@ const DiaryWrite = (props) => {
   ];
 
   const newData = `${props.data.year}/${props.data.month}/${props.data.day}`;
-  const diaryList = useSelector((state) => state.diary.diaryList); //다이어리 데이터
-  const diaryDayId = props.data.day; //선택된 일자
+  const diaryList = useSelector((state) => state.diary.diaryList); 
+  const diaryDayId = props.data.day; 
   const isDay = diaryDayId ? true : false;
   let diaryData = isDay
     ? diaryList.find((data) => data.day === diaryDayId)
-    : null; //다이어리 해당일자 데이터 찾기
+    : null; 
   const [dayData, setDayData] = React.useState(diaryData ? diaryData : null);
 
-  // 디이어리 수정
   const [edit, setEdit] = React.useState(false);
 
-  //-- 다이어리 데이터 --
   const [data, setData] = React.useState({
-    //다이어리에 데이터가 없으면 기본 0을 가짐
     comment: "",
     day: 0,
-    feel: 0, //이미지 번호
+    feel: 0, 
     feelScore: 0,
-    sleep: 0, //이미지 번호
+    sleep: 0, 
     sleepScore: 0,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     const scoreList = [1, 3, 5, 4, 2];
     if (dayData) {
       setData({
         ...dayData,
-        feel: scoreList.indexOf(dayData.feelScore) + 1, //이미지 번호
-        sleep: scoreList.indexOf(dayData.sleepScore) + 1, //이미지 번호
+        feel: scoreList.indexOf(dayData.feelScore) + 1,
+        sleep: scoreList.indexOf(dayData.sleepScore) + 1,
       });
     }
   }, []);
 
-  // -- 선택된 아이콘 feel --
   const feelClick = (e) => {
     setData({
       ...data,
-      feel: Number(e.target.dataset.value), //이미지 번호
+      feel: Number(e.target.dataset.value),
       feelScore: Number(e.target.dataset.score),
     });
   };
 
-  //-- 다이어리 선택된 아이콘 sleep --
   const sleepClick = (e) => {
     setData({
       ...data,
-      sleep: Number(e.target.dataset.value), //이미지 번호
+      sleep: Number(e.target.dataset.value),
       sleepScore: Number(e.target.dataset.score),
     });
   };
 
-  //-- input 코멘트 입력 --
   const inputChange = (e) => {
     setData({
       ...data,
@@ -84,7 +76,6 @@ const DiaryWrite = (props) => {
     });
   };
 
-  //--input 코멘트 Reset --
   const onReset = (e) => {
     setData({
       ...data,
@@ -95,7 +86,6 @@ const DiaryWrite = (props) => {
   const { feel, sleep, feelScore, sleepScore } = data;
   const { close } = props;
 
-  //--  추가 클릭 --
   const addClick = async () => {
     if (feel === 0 || sleep === 0) {
       window.alert("두개 다 선택 해야 합니다.");
@@ -117,7 +107,6 @@ const DiaryWrite = (props) => {
     }
   };
 
-  //-- 수정 클릭 --
   const editClick = async () => {
     const diaryListInfo = {
       feelScore: feelScore,
@@ -129,7 +118,6 @@ const DiaryWrite = (props) => {
     close();
   };
 
-  //-- 삭제 클릭 --
   const deleteClick = async () => {
     await dispatch(diaryActions.deleteDiaryDB(dayData.diaryIdx));
     close();
@@ -174,7 +162,6 @@ const DiaryWrite = (props) => {
           </>
         ) : (
           <>
-            {/* 수정중  */}
             {edit ? (
               <>
                 <DayCharater
@@ -264,14 +251,13 @@ function DayCharater(props) {
       <Charater
         shape="charater"
         size="85"
-        feelNumber={feel} //이미지 번호
-        scoreColor={scoreColor} //이미지 색상
+        feelNumber={feel} 
+        scoreColor={scoreColor} 
       />
     </CharaterBox>
   );
 }
 
-// --- styled-components ---
 const Container = styled.div`
   width: 100%;
   padding: ${({ theme }) => theme.paddings.xxxxl};

@@ -1,30 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
-// --- components ---
 import Notifications from "../components/notication/Notification";
 import Title from "../components/Title";
 
 const MyPageNotification = (props) => {
-  // 기존 알림 데이터
   const notices = useSelector((state) => state.notice.time.sleepChk);
   const days = useSelector((state) => state.notice.time.timePA);
   const hours = useSelector((state) => state.notice.time.hour);
   const minute = useSelector((state) => state.notice.time.min);
 
-  // 설정된 알림 데이터
-  const [notice, setNotice] = React.useState(notices);
-  const [day, setDay] = React.useState(days);
-  const [hour, setHour] = React.useState(hours);
-  const [minutes, setMinutes] = React.useState(minute);
+  const [notice, setNotice] = useState(notices);
+  const [day, setDay] = useState(days);
+  const [hour, setHour] = useState(hours);
+  const [minutes, setMinutes] = useState(minute);
 
-  // DropDown 활성화 유무
-  const [dayActive, setDayActive] = React.useState(false);
-  const [hourActive, setHourActive] = React.useState(false);
-  const [minutesActive, setMinutesActive] = React.useState(false);
+  const [dayActive, setDayActive] = useState(false);
+  const [hourActive, setHourActive] = useState(false);
+  const [minutesActive, setMinutesActive] = useState(false);
 
-  // -- jsx --
   return (
     <Container>
       <Title backIcon>알림 편집</Title>
@@ -51,7 +46,6 @@ const MyPageNotification = (props) => {
   );
 };
 
-// --- styled-components ---
 const Container = styled.div`
   height: inherit;
   box-sizing: border-box;

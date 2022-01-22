@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-// --- components ---
 import { Button, Icon } from "../../elements";
 import MixDeletePopup from "./MixDeletePopup";
 import PlayList from "../asmr/PlayList";
 
 const MixBox = (props) => {
-  const [deletemodal, setDeletemodal] = React.useState(false);
-  const [editmodal, setEditmodal] = React.useState(false);
-  const [modalData, setModalData] = React.useState();
+  const [deletemodal, setDeletemodal] = useState(false);
+  const [editmodal, setEditmodal] = useState(false);
+  const [modalData, setModalData] = useState();
+  const { mixList, mixTitle, playlistIdx, toggle } = props;
 
   const deleteClick = () => {
     setDeletemodal(true);
     const data = {
-      mixList: props.mixList,
-      playlistIdx: props.playlistIdx,
+      mixList: mixList,
+      playlistIdx: playlistIdx,
     };
     setModalData(data);
   };
@@ -23,8 +23,8 @@ const MixBox = (props) => {
   const editClick = () => {
     setEditmodal(true);
     const data = {
-      mixName: props.mixTitle,
-      playlistIdx: props.playlistIdx,
+      mixName: mixTitle,
+      playlistIdx: playlistIdx,
     };
     setModalData(data);
   };
@@ -37,7 +37,7 @@ const MixBox = (props) => {
   return (
     <>
       <Box>
-        {props.mixList.map((item, idx) => {
+        {mixList.map((item, idx) => {
           return (
             <Item key={idx}>
               <IconBox>

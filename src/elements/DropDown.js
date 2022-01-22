@@ -1,155 +1,168 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
-// --- images ---
 import { arrow_B_G } from "../static/images";
 
 const Dropdown = (props) => {
-  const [select, setSelect] = React.useState(null);
+  const [select, setSelect] = useState(null);
+  const timeRef = useRef();
+  const {
+    condition,
+    dayActive,
+    hourActive,
+    minutesActive,
+    dayItems,
+    hourItems,
+    minutesItems,
+    setDayActive,
+    setHourActive,
+    setMinutesActive,
+    state,
+    title,
+  } = props;
 
   const onActiveToggle = () => {
-    const am_pm = document.getElementById("AM/PM");
-    const day = document.getElementById("시");
-    const hour = document.getElementById("분");
-    const currentStatus = props.condition;
+    const refId = timeRef.current.id;
 
-    if (currentStatus === "") {
-      if (am_pm.style.borderColor === "rgb(251, 192, 55)") {
-        am_pm.style.borderColor = "gray";
-      } else {
-        am_pm.style.borderColor = "#fbc037";
-      }
-      day.style.borderColor = "gray";
-      hour.style.borderColor = "gray";
-
-      dayChange();
-    } else if (currentStatus === "시") {
-      am_pm.style.borderColor = "gray";
-      if (day.style.borderColor === "rgb(251, 192, 55)") {
-        day.style.borderColor = "gray";
-      } else {
-        day.style.borderColor = "#fbc037";
-      }
-      hour.style.borderColor = "gray";
-
-      hourChange();
-    } else if (currentStatus === "분") {
-      am_pm.style.borderColor = "gray";
-      day.style.borderColor = "gray";
-      if (hour.style.borderColor === "rgb(251, 192, 55)") {
-        hour.style.borderColor = "gray";
-      } else {
-        hour.style.borderColor = "#fbc037";
-      }
-
-      minutesChange();
+    if (refId === "AM/PM") {
+      colorConversion();
+      disabledDopDown("시");
+      disabledDopDown("분");
+      dayActivition();
+    } else if (refId === "시") {
+      colorConversion();
+      disabledDopDown("AM/PM");
+      disabledDopDown("분");
+      hourActivition();
+    } else if (refId === "분") {
+      colorConversion();
+      disabledDopDown("AM/PM");
+      disabledDopDown("시");
+      minutesActivition();
     }
   };
 
-  const dayChange = () => {
-    props.setDayActive(!props.dayActive);
-    props.setHourActive(false);
-    props.setMinutesActive(false);
+  const colorConversion = () => {
+    const borderColor = timeRef.current.style.borderColor;
+
+    if (borderColor === "rgb(251, 192, 55)") {
+      timeRef.current.style = "border-color: gray;";
+    } else {
+      timeRef.current.style = "border-color: #fbc037;";
+    }
   };
 
-  const hourChange = () => {
-    props.setDayActive(false);
-    props.setHourActive(!props.hourActive);
-    props.setMinutesActive(false);
+  const disabledDopDown = (id) => {
+    document.getElementById(id).style.borderColor = "gray";
   };
 
-  const minutesChange = () => {
-    props.setDayActive(false);
-    props.setHourActive(false);
-    props.setMinutesActive(!props.minutesActive);
+  const dayActivition = () => {
+    setDayActive(!dayActive);
+    setHourActive(false);
+    setMinutesActive(false);
+  };
+
+  const hourActivition = () => {
+    setDayActive(false);
+    setHourActive(!hourActive);
+    setMinutesActive(false);
+  };
+
+  const minutesActivition = () => {
+    setDayActive(false);
+    setHourActive(false);
+    setMinutesActive(!minutesActive);
   };
 
   const onSelectItem = (name) => {
     setSelect(name);
-    props.state(name);
+    state(name);
 
-    if (props.dayActive) {
-      props.setDayActive(!props.dayActive);
-    } else if (props.hourActive) {
-      props.setHourActive(!props.hourActive);
-    } else if (props.minutesActive) {
-      props.setMinutesActive(!props.minutesActive);
+    if (dayActive) {
+      setDayActive(!dayActive);
+      timeRef.current.style = "border-color: gray;";
+    } else if (hourActive) {
+      setHourActive(!hourActive);
+      timeRef.current.style = "border-color: gray;";
+    } else if (minutesActive) {
+      setMinutesActive(!minutesActive);
+      timeRef.current.style = "border-color: gray;";
     }
   };
 
-  // 알림 비활성화일 때
-  if (props.state === "disabled") {
+  if (state === "disabled") {
     return (
       <DisabledDropDownContainer>
         <DropdownBody color="gray">
-          <p>{`${props.title}${props.condition}`}</p>
+          <p>{`${title}${condition}`}</p>
           <img src={arrow_B_G} alt="" />
         </DropdownBody>
       </DisabledDropDownContainer>
     );
   }
 
-  // 알림 활성화일 때
   return (
     <DropdownContainer
-      id={`${props.condition === "" ? "AM/PM" : props.condition}`}
+      id={`${condition === "" ? "AM/PM" : condition}`}
+      ref={timeRef}
+      onClick={onActiveToggle}
     >
       <DropdownBody>
         {select ? (
           <>
-            <p>{`${select}${props.condition}`}</p>
-            <img onClick={onActiveToggle} src={arrow_B_G} alt="" />
+            <p>{`${select}${condition}`}</p>
+            <img src={arrow_B_G} alt="" />
           </>
         ) : (
           <>
-            <p>{`${props.title}${props.condition}`}</p>
-            <img onClick={onActiveToggle} src={arrow_B_G} alt="" />
+            <p>{`${title}${condition}`}</p>
+            <img src={arrow_B_G} alt="" />
           </>
         )}
       </DropdownBody>
-      {props.dayActive && (
-        <DropdownMenu height="67px" id="type2" isActive={props.dayActive}>
-          {props.dayItems &&
-            props.dayItems.map((item) => (
+      {dayActive && (
+        <DropdownMenu height="67px" id="type2" isActive={dayActive}>
+          {dayItems &&
+            dayItems.map((item) => (
               <DropdownItemContainer
                 key={item}
                 onClick={() => {
                   onSelectItem(item);
                 }}
               >
-                <p>{`${item}${props.condition}`}</p>
+                <p>{`${item}${condition}`}</p>
               </DropdownItemContainer>
             ))}
         </DropdownMenu>
       )}
 
-      {props.hourActive && (
-        <DropdownMenu height="100px" id="type2" isActive={props.hourActive}>
-          {props.hourItems &&
-            props.hourItems.map((item) => (
+      {hourActive && (
+        <DropdownMenu height="100px" id="type2" isActive={hourActive}>
+          {hourItems &&
+            hourItems.map((item) => (
               <DropdownItemContainer
                 key={item}
                 onClick={() => {
                   onSelectItem(item);
                 }}
               >
-                <p>{`${item}${props.condition}`}</p>
+                <p>{`${item}${condition}`}</p>
               </DropdownItemContainer>
             ))}
         </DropdownMenu>
       )}
 
-      {props.minutesActive && (
-        <DropdownMenu height="100px" id="type2" isActive={props.minutesActive}>
-          {props.minutesItems &&
-            props.minutesItems.map((item) => (
+      {minutesActive && (
+        <DropdownMenu height="100px" id="type2" isActive={minutesActive}>
+          {minutesItems &&
+            minutesItems.map((item) => (
               <DropdownItemContainer
                 key={item}
                 onClick={() => {
                   onSelectItem(item);
                 }}
               >
-                <p>{`${item}${props.condition}`}</p>
+                <p>{`${item}${condition}`}</p>
               </DropdownItemContainer>
             ))}
         </DropdownMenu>
@@ -158,7 +171,6 @@ const Dropdown = (props) => {
   );
 };
 
-// --- styled-components ---
 const DropdownContainer = styled.div`
   width: 100%;
   max-height: 48px;
@@ -167,11 +179,14 @@ const DropdownContainer = styled.div`
     ${(props) => (props.borderColor ? props.borderColor : "gray")};
   border-radius: 10px;
   box-sizing: border-box;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.white};
   margin-right: 8px;
+
   &:last-child {
     margin-right: 0px;
   }
+
+  cursor: pointer;
 `;
 
 const DisabledDropDownContainer = styled.div`
@@ -193,9 +208,12 @@ const DisabledDropDownContainer = styled.div`
     width: 20px;
     height: 20px;
   }
+
+  &:last-child {
+    margin-right: 0px;
+  }
 `;
 
-// 닫힌 부분
 const DropdownBody = styled.div`
   align-items: center;
   line-height: 48px;
@@ -206,6 +224,7 @@ const DropdownBody = styled.div`
     line-height: 44px;
     text-align: center;
   }
+
   & > img {
     position: absolute;
     top: 15px;
@@ -216,7 +235,6 @@ const DropdownBody = styled.div`
   }
 `;
 
-//열린부분 목록
 const DropdownMenu = styled.ul`
   display: ${(props) => (props.isActive ? `block` : `none`)};
   height: ${(props) => props.height};
@@ -230,9 +248,11 @@ const DropdownMenu = styled.ul`
   &::-webkit-scrollbar {
     width: 3px;
   }
+
   &::-webkit-scrollbar-track {
     background-color: none;
   }
+
   &::-webkit-scrollbar-thumb {
     height: 10px;
     border-radius: 100px;
@@ -240,7 +260,6 @@ const DropdownMenu = styled.ul`
   }
 `;
 
-//열린부분 각 요소
 const DropdownItemContainer = styled.li`
   padding: 5px 0;
 `;

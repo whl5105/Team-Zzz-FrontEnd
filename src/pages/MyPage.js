@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../redux/modules/notice";
 
-// --- images ---
 import { user, notice, mixList } from "../static/images";
 
-// --- components ---
 import Title from "../components/Title";
 import List from "../components/mypage/List";
 import AlarmBanner from "../components/mypage/AlarmBanner";
@@ -16,14 +14,14 @@ const Mypage = (props) => {
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
-  const [ios, setIos] = React.useState(Mobile()); // IOS이면 true, 나머지는 false
+  const [ios, setIos] = useState(Mobile());
 
   const dispatch = useDispatch();
   const userIdx = localStorage.getItem("userIdx");
   const token = localStorage.getItem("token");
-  const [is_token, setLogin] = React.useState(token);
+  const [is_token, setLogin] = useState(token);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setLogin(token);
     if (token && !ios) {
       dispatch(noticeActions.getNoticeDB());
@@ -40,13 +38,13 @@ const Mypage = (props) => {
         {ios ? null : (
           <>
             <AlarmBanner
-              _onClick={() => history.push(`/mypageNotice/${userIdx}`)}
+              _onClick={() => history.push(`/mypage/notification/${userIdx}`)}
             ></AlarmBanner>
             <Space></Space>
           </>
         )}
 
-        <List icon={notice} _onClick={() => history.push("/notice")}>
+        <List icon={notice} _onClick={() => history.push("/mypage/notice")}>
           공지사항
         </List>
         <List icon={mixList} _onClick={() => history.push("/myPage/mixList")}>
@@ -58,10 +56,10 @@ const Mypage = (props) => {
   return (
     <Container>
       <Title>마이페이지</Title>
-      <List _onClick={() => history.push("/login")} icon={user}>
+      <List _onClick={() => history.push("/user/login")} icon={user}>
         로그인 하기
       </List>
-      <List icon={notice} _onClick={() => history.push("/notice")}>
+      <List icon={notice} _onClick={() => history.push("/mypage/notice")}>
         공지사항
       </List>
     </Container>

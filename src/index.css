@@ -1,11 +1,4 @@
-body {
+body{
   margin: 0;
-  font-family: 'NotoSansKR', 'Roboto'sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
-
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */

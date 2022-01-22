@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// --- components ---
 import Charater from "../../elements/Charater";
 
 const DiaryRecord = (props) => {
@@ -49,14 +48,12 @@ const DiaryRecord = (props) => {
   );
 };
 
-// --- styled-components ---
-
 const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   background-color: ${({ theme }) => theme.colors.bg}};
   color: ${({ theme }) => theme.colors.white};
-  max-height: 470px;
+  max-height: 440px;
   margin: 5px auto;
   margin-bottom: 15px;
   text-align: center;
@@ -66,6 +63,14 @@ const Content = styled.div`
   
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  @media (max-height:750px){
+    max-height: 380px;
+  }
+
+  @media (max-height:670px){
+    max-height: 350px;
   }
 `;
 

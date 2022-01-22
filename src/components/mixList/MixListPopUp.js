@@ -1,36 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { history } from "../../redux/configureStore";
 import { useSelector } from "react-redux";
 
-// --- components ---
 import ModalPopUp from "../ModalPopUp";
 import MixSoundTrack from "./MixSoundTrack";
 import NoMixList from "./NoMixList";
 import { Icon } from "../../elements/index";
 
-// --- images ----
 import { mix_setting } from "../../static/images/index";
 
 const MixListPopUp = (props) => {
   const playListInfo = useSelector((state) => state.asmr.playList);
-  const [playList, setPlayList] = React.useState(
-    playListInfo ? playListInfo : []
-  );
+  const [playList, setPlayList] = useState(playListInfo ? playListInfo : []);
+  const { close, setMixListModal } = props;
 
-  React.useEffect(() => {
+  useEffect(() => {
     history.mixListModal = true;
-    history.setMixListModal = props.setMixListModal;
+    history.setMixListModal = setMixListModal;
   }, []);
 
   const myPageMixList = () => {
-    props.close();
+    close();
     history.push("/myPage/mixList");
   };
 
   return (
     <ModalPopUp
-      close={props.close}
+      close={close}
       backgroundNull
       zIndex="120"
       width="100%"
@@ -63,7 +60,6 @@ const MixListPopUp = (props) => {
   );
 };
 
-// --- styled-components ---
 const Container = styled.div`
   width: inherit;
   height: 75vh;
