@@ -15,8 +15,8 @@ import { IdCheck, PwdCheck } from "../shared/common";
 import { reset } from "../static/images";
 const Login = () => {
   const dispatch = useDispatch();
-  const errMessage = useSelector((store) => store.user.errMessage); 
-  const first_signup = useSelector((store) => store.user.is_signup); 
+  const errMessage = useSelector((store) => store.user.errMessage);
+  const first_signup = useSelector((store) => store.user.is_signup);
 
   const [inputs, setInputs] = useState({
     id: "",

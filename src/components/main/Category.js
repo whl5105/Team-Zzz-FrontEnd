@@ -23,7 +23,7 @@ const Category = (props) => {
       <TextBox>
         <div>
           <h2>{title}</h2>
-          <small>{subTitle}</small>
+          <p>{subTitle}</p>
         </div>
 
         <div>
@@ -53,6 +53,14 @@ const TextBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  & h2 {
+    font-size: ${({ theme }) => theme.fontSizes.lg};
+    font-weight: ${({ theme }) => theme.fontWeight.Bold};
+  }
+  & p {
+    font-size: ${({ theme }) => theme.fontSizes.small};
+    font-weight: ${({ theme }) => theme.fontWeight.Regular};
+  }
 `;
 
 export default Category;

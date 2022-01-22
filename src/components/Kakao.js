@@ -12,6 +12,7 @@ import Success from "../components/Success";
 const Kakao = (props) => {
   const dispatch = useDispatch();
   const [kakaoLoging, setKakaoLoging] = useState(false);
+  const kakaoKey = process.env.REACT_APP_JS_KEY;
 
   const socialLoginSuccess = (res) => {
     console.log("소셜 로그인 성공");
@@ -43,7 +44,7 @@ const Kakao = (props) => {
   return (
     <>
       <KakaoLogin
-        jsKey={process.env.REACT_APP_JS_KEY}
+        jsKey={kakaoKey}
         onSuccess={(res) => socialLoginSuccess(res)}
         onFailure={(res) => socialLoginFail(res)}
         getProfile={true}
