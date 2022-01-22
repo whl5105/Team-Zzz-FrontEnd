@@ -56,6 +56,7 @@ import playBar_volume from "./icons/playBar/playBar_volume.svg";
 
 //-- toasts --
 import check from "./icons/toasts/check.png";
+import clock from "./icons/toasts/clock.png";
 
 //-- arrow --
 import arrow_B_W from "./icons/arrow/arrow_B_W.svg";
@@ -128,6 +129,7 @@ export {
   playBar_play,
   playBar_volume,
   check,
+  clock,
   arrow_B_W,
   arrow_L_W,
   arrow_R_B,
