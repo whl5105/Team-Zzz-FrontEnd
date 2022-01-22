@@ -32,6 +32,14 @@ const Outter = styled.div`
   background-size: 110vh, 35vh;
   background-position: 50% 200%, 50% 15%;
   background-repeat: no-repeat;
+
+  @media (max-height: 670px){
+    background-position: 50% 150%, 50% 15%;
+  }
+
+  @media (max-height: 920px){
+    background-position: 50% 120%, 50% 15%;
+  }
 `;
 
 const Inner = styled.div`
