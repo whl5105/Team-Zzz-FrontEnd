@@ -25,14 +25,16 @@ export const deleteSong = (url) => {
 const Asmr = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
+  //애니메이션
   const [success, setSuccess] = useState(
     useSelector((state) => state.asmr.is_write)
   );
-
+  //음원조절
   const [song1, setSong1] = useState(new Audio());
   const [song2, setSong2] = useState(new Audio());
   const [song3, setSong3] = useState(new Audio());
   const [song4, setSong4] = useState(new Audio());
+  //카테고리
   const [getCategory, setCategory] = useState(
     location.category === undefined ? "전체" : location.category
   );

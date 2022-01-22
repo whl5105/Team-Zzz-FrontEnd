@@ -137,7 +137,6 @@ const Signup = (props) => {
       <Button onClick={signUpClick}>회원가입</Button>
 
       <Login
-        type="submit"
         onClick={() => {
           history.push("/user/login");
         }}
