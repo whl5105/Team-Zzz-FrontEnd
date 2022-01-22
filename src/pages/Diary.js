@@ -14,7 +14,7 @@ const Diary = () => {
   const [getMoment, setMoment] = useState(moment());
   const yearMonth = getMoment.format("YYYYMM");
   const diaryInItialState = useSelector((state) => state.diary.diaryList);
-  const sleepAvg = useSelector((state) => state.diary.sleepAvg);
+  const [sleepAvg, setSleepAvg] = useState("오늘은 잘 못주무셨네요");
   const [monthDay, setMonthDay] = useState(0);
   const arr = new Array(monthDay).fill(1);
   const [list, setList] = useState(arr);
@@ -107,14 +107,13 @@ const Diary = () => {
 
   const changeDiaryRecord = () => {
     arr.forEach((arrItem, arrIndex) => {
-      diaryInItialState[yearMonth].diaryRecord.forEach(
-        (diaryItem, diaryIndex) => {
-          if (arrIndex + 1 === diaryItem.day) {
-            arr[arrIndex] = diaryItem;
-          }
+      diaryInItialState[yearMonth].diaryRecord.forEach((diaryItem) => {
+        if (arrIndex + 1 === diaryItem.day) {
+          arr[arrIndex] = diaryItem;
         }
-      );
+      });
     });
+    setSleepAvg(diaryInItialState[yearMonth].diaryScore);
   };
 
   const closeModal = () => {

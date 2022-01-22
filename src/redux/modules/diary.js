@@ -22,7 +22,6 @@ const delete_diary = createAction(DELETE_DIARY, (diaryIdx) => ({
 // -- initialState --
 const initialState = {
   diaryList: {},
-  sleepAvg: "오늘은 잠을 못주무셨네요",
   modal: true,
 };
 
@@ -63,7 +62,6 @@ const getDiaryDB = (year, month) => {
       } else {
         yearMonth = `${year}${month}`;
       }
-      console.log(yearMonth);
 
       // 다이어리 기록 불러오기
       const diaryListRes = await apis.getDiaryList(userIdx, yearMonth);
@@ -75,7 +73,7 @@ const getDiaryDB = (year, month) => {
         : diaryScoreRes.sleepAvg;
 
       const diaryInfo = {
-        diaryRecord : diaryList,
+        diaryRecord: diaryList,
         diaryScore: diaryScore,
       };
 
