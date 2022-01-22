@@ -1,0 +1,50 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CICD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a one-line script
+        uses: actions/checkout@v2
+        
+      - name: Cache node modules 
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+
+      - name: Install Dependencies
+        run: yarn install
+        
+      - name: Build                  
+        run: yarn build
+      
+      - name: Deploy                
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.SECRET_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+        run: |
+          aws s3 cp --recursive --region ap-northeast-2 build s3://zzzapp.co.kr
+      
+      - uses: actions/checkout@main
+      - uses: awact/cloudfront-action@main
+        env:
+         SOURCE_PATH: './public'
+         AWS_REGION: 'us-east-1'
+         AWS_ACCESS_KEY_ID: ${{ secrets.SECRET_KEY }}
+         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+         DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
