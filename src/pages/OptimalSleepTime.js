@@ -36,36 +36,6 @@ const OptimalSleepTime = (props) => {
   const [hour, setHour] = useState(12);
   const [minutes, setMinutes] = useState("00");
 
-  const dayItems = ["오전", "오후"];
-  const hourItems = [
-    "01",
-    "02",
-    "03",
-    "04",
-    "05",
-    "06",
-    "07",
-    "08",
-    "09",
-    "10",
-    "11",
-    "12",
-  ];
-  const minutesItems = [
-    "00",
-    "05",
-    "10",
-    "15",
-    "20",
-    "25",
-    "30",
-    "35",
-    "40",
-    "45",
-    "50",
-    "55",
-  ];
-
   function search() {
     setToggle(false);
     const date = day;
@@ -224,9 +194,7 @@ const OptimalSleepTime = (props) => {
           {toggle ? (
             <SleepTimeWrap>
               <WrapInside>
-                <div style={{ textAlign: "center" }}>
-                  <Title>평소 일어나는 시간을 입력해주세요</Title>
-                </div>
+                <Title>평소 일어나는 시간을 입력해주세요</Title>
               </WrapInside>
 
               <SelectTimeWrap>
@@ -238,7 +206,6 @@ const OptimalSleepTime = (props) => {
                     setMinutesActive={setMinutesActive}
                     condition={""}
                     title={day}
-                    dayItems={dayItems}
                     state={setDay}
                   ></DropDown>
                 </MarginRight>
@@ -250,7 +217,6 @@ const OptimalSleepTime = (props) => {
                     setMinutesActive={setMinutesActive}
                     condition={"시"}
                     title={hour}
-                    hourItems={hourItems}
                     state={setHour}
                   ></DropDown>
                 </MarginRight>
@@ -261,7 +227,6 @@ const OptimalSleepTime = (props) => {
                   setMinutesActive={setMinutesActive}
                   condition={"분"}
                   title={minutes}
-                  minutesItems={minutesItems}
                   state={setMinutes}
                 ></DropDown>
               </SelectTimeWrap>

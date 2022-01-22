@@ -79,6 +79,7 @@ const getPlayListDB = () => {
     }
   };
 };
+
 //-- 믹스리스트 수정 DB --
 const editPlayListDB = (playlistIdx, mixTitle) => {
   return async function (dispatch, getState, { history }) {

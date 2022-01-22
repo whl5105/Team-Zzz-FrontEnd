@@ -8,9 +8,9 @@ const EDIT_DIARY = "EDIT_DIARY";
 const DELETE_DIARY = "POST_DDELETE_DIARYIARY";
 
 // -- action creators --
-const get_diary = createAction(GET_DIARY, (diaryList, diaryScore) => ({
-  diaryList,
-  diaryScore,
+const get_diary = createAction(GET_DIARY, (yearMonth, diaryInfo) => ({
+  yearMonth,
+  diaryInfo,
 }));
 const edit_diary = createAction(EDIT_DIARY, (diaryListInfo) => ({
   diaryListInfo,
@@ -21,8 +21,7 @@ const delete_diary = createAction(DELETE_DIARY, (diaryIdx) => ({
 
 // -- initialState --
 const initialState = {
-  diaryList: [],
-  sleepAvg: "오늘은 잠을 못주무셨네요",
+  diaryList: {},
   modal: true,
 };
 
@@ -51,17 +50,19 @@ const addDiaryDB = (year, month, diaryListInfo) => {
     }
   };
 };
+
 //-- 다이어리 요청 DB --
 const getDiaryDB = (year, month) => {
   return async function (dispatch, getState, { history }) {
-    const userIdx = localStorage.getItem("userIdx");
-    let yearMonth = "";
-    if (month < 10) {
-      yearMonth = `${year}0${month}`;
-    } else {
-      yearMonth = `${year}${month}`;
-    }
     try {
+      const userIdx = localStorage.getItem("userIdx");
+      let yearMonth = "";
+      if (month < 10) {
+        yearMonth = `${year}0${month}`;
+      } else {
+        yearMonth = `${year}${month}`;
+      }
+
       // 다이어리 기록 불러오기
       const diaryListRes = await apis.getDiaryList(userIdx, yearMonth);
       const diaryList = diaryListRes.errorMessage ? [] : diaryListRes;
@@ -71,7 +72,12 @@ const getDiaryDB = (year, month) => {
         ? "아직 기록이 없습니다."
         : diaryScoreRes.sleepAvg;
 
-      dispatch(get_diary(diaryList, diaryScore));
+      const diaryInfo = {
+        diaryRecord: diaryList,
+        diaryScore: diaryScore,
+      };
+
+      dispatch(get_diary(yearMonth, diaryInfo));
     } catch (error) {
       console.log("getDiaryDB Error : ", error);
     }
@@ -112,8 +118,10 @@ export default handleActions(
   {
     [GET_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        draft.diaryList = action.payload.diaryList;
-        draft.sleepAvg = action.payload.diaryScore;
+        draft.diaryList = {
+          ...draft.diaryList,
+          [action.payload.yearMonth]: action.payload.diaryInfo,
+        };
       }),
     [EDIT_DIARY]: (state, action) =>
       produce(state, (draft) => {

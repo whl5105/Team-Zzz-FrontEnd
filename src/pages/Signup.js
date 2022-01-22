@@ -6,7 +6,6 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore.js";
 
 import { IdCheck, PwdCheck } from "../shared/common";
-
 import { Input } from "../elements";
 
 import { reset } from "../static/images";

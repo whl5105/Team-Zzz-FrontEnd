@@ -51,9 +51,11 @@ const Main = (props) => {
         }
       });
   }
+
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
+
   const [ios, setIos] = useState(Mobile()); // IOS이면 true, 나머지는 false
   const [noticationModal, setNoticationModal] = useState(false);
   const location = useLocation();
@@ -74,10 +76,10 @@ const Main = (props) => {
       history.push(location.route);
     }
   }, []);
+
   return (
     <>
       <Container>
-        {/* <br></br> */}
         <Swiper />
         <Title>당신의 편안한 밤을 위해</Title>
         <Category
