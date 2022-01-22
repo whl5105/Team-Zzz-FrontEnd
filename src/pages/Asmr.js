@@ -43,7 +43,7 @@ const Asmr = (props) => {
   const playListInfo = useSelector((state) => state.asmr.playList);
   const [play, setPlay] = useState([]);
 
-  useCallback(() => {
+  useEffect(() => {
     if (!playListInfo) {
       dispatch(asmrActions.getPlayListDB());
     }
