@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Button, Icon } from "../../elements";
 import MixDeletePopup from "./MixDeletePopup";
-import PlayList from "../asmr/PlayList";
+import PlayList from "../mixList/MixTitle";
 
 const MixBox = (props) => {
   const [deletemodal, setDeletemodal] = useState(false);

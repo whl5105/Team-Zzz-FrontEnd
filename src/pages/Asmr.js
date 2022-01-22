@@ -129,7 +129,7 @@ const Asmr = (props) => {
       history.play = arr;
 
       songInitialzation(asmrUrl);
-      songDelete(asmrUrl);
+      deleteSong(asmrUrl);
     } else {
       if (play.length > 3) {
         window.alert("음원은 최대 4개까지 담으실 수 있습니다.");
@@ -170,11 +170,6 @@ const Asmr = (props) => {
       history.title4 = "";
       history.icon4 = "";
     }
-  };
-
-  const songDelete = (asmrUrl) => {
-    const deleteItem = document.getElementById(asmrUrl);
-    deleteItem.style.backgroundColor = "#3A3E74";
   };
 
   const songSetting = (asmrUrl, iconUrl, title) => {
