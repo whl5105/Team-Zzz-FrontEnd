@@ -41,6 +41,7 @@ import kakao from "./social/kakao.png";
 //-- tooltop --
 import myMix from "./tooltip/myMix.png";
 import notSupported from "./tooltip/notSupported.png";
+import leaveFeedback from "./tooltip/leaveFeedback.png";
 
 //-- icons --
 import asmr from "./icons/navigation/asmr.svg";
@@ -116,6 +117,7 @@ export {
   feel5,
   myMix,
   notSupported,
+  leaveFeedback,
   kakao,
   asmr,
   diary,
