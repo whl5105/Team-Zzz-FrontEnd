@@ -54,7 +54,7 @@ const Kakao = (props) => {
         카카오 로그인
       </KakaoLogin>
 
-      {kakaoLoging && <Success alt="loading" text="조금만 기다려주세요" />}
+      {kakaoLoging && <Success isClock alt="loading" text="조금만 기다려주세요" />}
     </>
   );
 };
