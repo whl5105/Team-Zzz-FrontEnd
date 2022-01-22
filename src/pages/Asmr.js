@@ -126,6 +126,7 @@ const Asmr = (props) => {
       });
       setPlay(arr);
       history.setPlaybar(arr);
+      history.play = arr;
 
       songInitialzation(asmrUrl);
       songDelete(asmrUrl);
