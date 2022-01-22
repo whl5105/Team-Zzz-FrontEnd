@@ -20,7 +20,7 @@ const Image = styled.div`
   height: inherit;
   background: url(${diary_NoRecord});
   background-size: 100%;
-  background-position: 100%;
+  background-position: 80;
   background-repeat: no-repeat;
 `;
 
