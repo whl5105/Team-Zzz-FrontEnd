@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { history } from "../../redux/configureStore";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination, Autoplay } from "swiper";
 import "swiper/css";
@@ -45,41 +46,39 @@ const MainSwiper = withRouter((props) => {
 
   return (
     <Main className="ExampleComponent">
-      <div className="main-wrap">
-        <Swiper
-          style={{
-            ...swiperStyle,
+      <Swiper
+        style={{
+          ...swiperStyle,
+        }}
+        spaceBetween={0}
+        initialSlide={1}
+        centeredSlides={true}
+        pagination={{
+          clickable: true,
+        }}
+        autoplay={{ delay: 3000 }}
+      >
+        <SwiperSlide onClick={diaryClick}>
+          <BannerImg bannerImage={main_diary} />
+        </SwiperSlide>
+        <SwiperSlide
+          onClick={() => {
+            history.push("/optimalSleepTime");
           }}
-          spaceBetween={0}
-          initialSlide={1}
-          centeredSlides={true}
-          pagination={{
-            clickable: true,
-          }}
-          autoplay={{ delay: 3000 }}
         >
-          <SwiperSlide onClick={diaryClick}>
-            <BannerImg bannerImage={main_diary} />
-          </SwiperSlide>
-          <SwiperSlide
-            onClick={() => {
-              history.push("/optimalSleepTime");
-            }}
-          >
-            <BannerImg bannerImage={main_sleepTime} />
-          </SwiperSlide>
-          <SwiperSlide
-            onClick={() => {
-              window.open(
-                "https://docs.google.com/forms/d/e/1FAIpQLSfdn7OIKJYKQLfzNScDvBSCvv07yH9cuyjORoNyE_GNHfaG_w/viewform?vc=0&c=0&w=1&flr=0",
-                "_blank"
-              );
-            }}
-          >
-            <BannerImg bannerImage={main_feedback} />
-          </SwiperSlide>
-        </Swiper>
-      </div>
+          <BannerImg bannerImage={main_sleepTime} />
+        </SwiperSlide>
+        <SwiperSlide
+          onClick={() => {
+            window.open(
+              "https://docs.google.com/forms/d/e/1FAIpQLSfdn7OIKJYKQLfzNScDvBSCvv07yH9cuyjORoNyE_GNHfaG_w/viewform?vc=0&c=0&w=1&flr=0",
+              "_blank"
+            );
+          }}
+        >
+          <BannerImg bannerImage={main_feedback} />
+        </SwiperSlide>
+      </Swiper>
       {diaryModal && <RequireLogin close={closeModal} move={loginModal} />}
     </Main>
   );
