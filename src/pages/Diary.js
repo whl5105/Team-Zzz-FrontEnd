@@ -11,9 +11,10 @@ import DiaryRecord from "../components/diary/DiaryRecord";
 
 const Diary = () => {
   const dispatch = useDispatch();
-  const diaryList = useSelector((state) => state.diary.diaryList);
-  const sleepAvg = useSelector((state) => state.diary.sleepAvg);
   const [getMoment, setMoment] = useState(moment());
+  const yearMonth = getMoment.format("YYYYMM");
+  const diaryInItialState = useSelector((state) => state.diary.diaryList);
+  const [sleepAvg, setSleepAvg] = useState("오늘은 잘 못주무셨네요");
   const [monthDay, setMonthDay] = useState(0);
   const arr = new Array(monthDay).fill(1);
   const [list, setList] = useState(arr);
@@ -43,7 +44,12 @@ const Diary = () => {
   };
 
   useEffect(() => {
-    getData();
+    if (
+      Object.keys(diaryInItialState).length === 0 ||
+      !diaryInItialState[yearMonth]
+    ) {
+      getData();
+    }
 
     const today_date = new Date(moment());
     const todayCondition =
@@ -90,16 +96,25 @@ const Diary = () => {
   };
 
   useEffect(() => {
+    if (
+      Object.keys(diaryInItialState).length > 0 &&
+      diaryInItialState[yearMonth]
+    ) {
+      changeDiaryRecord();
+      setList(arr);
+    }
+  }, [monthDay, diaryInItialState]);
+
+  const changeDiaryRecord = () => {
     arr.forEach((arrItem, arrIndex) => {
-      diaryList.forEach((diaryItem, diaryIndex) => {
-        if (arrIndex + 1 === parseInt(diaryList[diaryIndex].day)) {
-          arr[arrIndex] = diaryList[diaryIndex];
+      diaryInItialState[yearMonth].diaryRecord.forEach((diaryItem) => {
+        if (arrIndex + 1 === diaryItem.day) {
+          arr[arrIndex] = diaryItem;
         }
       });
     });
-
-    setList(arr);
-  }, [diaryList]);
+    setSleepAvg(diaryInItialState[yearMonth].diaryScore);
+  };
 
   const closeModal = () => {
     setModalOpen(false);

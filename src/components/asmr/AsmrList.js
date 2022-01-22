@@ -17,6 +17,7 @@ const AsmrList = (props) => {
 
   useEffect(() => {
     let playArr = [];
+    
     if (history.play && soundTrack) {
       soundTrack.forEach((item) => {
         if (history.play.includes(item.asmrUrl)) {

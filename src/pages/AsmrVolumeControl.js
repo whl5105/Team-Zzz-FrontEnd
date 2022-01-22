@@ -5,7 +5,7 @@ import { history } from "../redux/configureStore";
 import { arrow_L_W } from "../static/images";
 import SoundTrack from "../components/asmr/SoundTrack";
 import RequireLogin from "../components/RequireLogin";
-import PlayList from "../components/asmr/PlayList";
+import PlayList from "../components/mixList/MixTitle";
 import { Button, Icon } from "../elements/index";
 
 const AsmrVolumeControl = (props) => {

@@ -43,7 +43,7 @@ const MixListPopUp = (props) => {
           {playList.length > 0 ? (
             playList.map((item) => {
               return (
-                <div key={item.mixIdx}>
+                <div key={item.playlistIdx}>
                   <MixSoundTrack
                     mixTitle={item.mixTitle}
                     mixList={item.mixList}

@@ -7,16 +7,16 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 import Success from "../components/Success";
 import Kakao from "../components/Kakao";
-
 import { Input } from "../elements";
-
 import { IdCheck, PwdCheck } from "../shared/common";
 
 import { reset } from "../static/images";
+
 const Login = () => {
   const dispatch = useDispatch();
   const errMessage = useSelector((store) => store.user.errMessage);
   const first_signup = useSelector((store) => store.user.is_signup);
+  console.log(errMessage)
 
   const [inputs, setInputs] = useState({
     id: "",
@@ -37,7 +37,6 @@ const Login = () => {
   }, []);
 
   const [Message, setMessage] = React.useState("");
-
   const [isState, setIsState] = React.useState(true);
 
   //아이디 ,비밀번호

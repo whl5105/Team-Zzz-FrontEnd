@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -45,7 +45,7 @@ const Asmr = (props) => {
   const playListInfo = useSelector((state) => state.asmr.playList);
   const [play, setPlay] = useState([]);
 
-  useCallback(() => {
+  useEffect(() => {
     if (!playListInfo) {
       dispatch(asmrActions.getPlayListDB());
     }
@@ -131,7 +131,7 @@ const Asmr = (props) => {
       history.play = arr;
 
       songInitialzation(asmrUrl);
-      songDelete(asmrUrl);
+      deleteSong(asmrUrl);
     } else {
       if (play.length > 3) {
         window.alert("음원은 최대 4개까지 담으실 수 있습니다.");
@@ -172,11 +172,6 @@ const Asmr = (props) => {
       history.title4 = "";
       history.icon4 = "";
     }
-  };
-
-  const songDelete = (asmrUrl) => {
-    const deleteItem = document.getElementById(asmrUrl);
-    deleteItem.style.backgroundColor = "#3A3E74";
   };
 
   const songSetting = (asmrUrl, iconUrl, title) => {

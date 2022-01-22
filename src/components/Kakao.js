@@ -4,7 +4,6 @@ import styled from "styled-components";
 import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { history } from "../redux/configureStore.js";
 
 import { kakao } from "../static/images/index";
 import Success from "../components/Success";

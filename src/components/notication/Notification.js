@@ -29,36 +29,6 @@ const Notifications = (props) => {
     setNoticationModal,
   } = props;
 
-  const dayItems = ["AM", "PM"];
-  const hourItems = [
-    "01",
-    "02",
-    "03",
-    "04",
-    "05",
-    "06",
-    "07",
-    "08",
-    "09",
-    "10",
-    "11",
-    "12",
-  ];
-  const minutesItems = [
-    "00",
-    "05",
-    "10",
-    "15",
-    "20",
-    "25",
-    "30",
-    "35",
-    "40",
-    "45",
-    "50",
-    "55",
-  ];
-
   const send = () => {
     if (state === "set") {
       if (!notice) {
@@ -100,7 +70,6 @@ const Notifications = (props) => {
               setMinutesActive={setMinutesActive}
               condition={""}
               title={day}
-              dayItems={dayItems}
               state={setDay}
             />
             <DropDown
@@ -110,7 +79,6 @@ const Notifications = (props) => {
               setMinutesActive={setMinutesActive}
               condition={"시"}
               title={hour}
-              hourItems={hourItems}
               state={setHour}
             />
             <DropDown
@@ -120,7 +88,6 @@ const Notifications = (props) => {
               setMinutesActive={setMinutesActive}
               condition={"분"}
               title={minutes === 0 ? "00" : minutes}
-              minutesItems={minutesItems}
               state={setMinutes}
             />
           </Wrap>
