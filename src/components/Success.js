@@ -7,7 +7,7 @@ const Success = (props) => {
   const { text, alt, isClock } = props;
 
   return (
-    <SuccessBtn>
+    <SuccessBtn isClock>
       {isClock ? (
         <img src={clock} alt={alt} width="24px" height="24px" />
       ) : (
@@ -19,7 +19,7 @@ const Success = (props) => {
 };
 
 const SuccessBtn = styled.button`
-  width: 235px;
+  width: ${(props) => (props.isClock ? "210px" : "235px")};
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.bg};
   font-size: ${({ theme }) => theme.fontSizes.small};
