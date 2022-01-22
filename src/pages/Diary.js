@@ -66,12 +66,12 @@ const Diary = () => {
     } else if (nextYearCondition) {
       nextYearOrMonth();
     } else if (previousYearCondition) {
-      previousYear();
+      previousYearOrThisMonth();
     } else {
       if (nextMonthCondition) {
         nextYearOrMonth();
       } else {
-        thisMonth();
+        previousYearOrThisMonth();
       }
     }
   }, [getMoment]);
@@ -85,12 +85,7 @@ const Diary = () => {
     setMonthDay(0);
   };
 
-  const previousYear = () => {
-    const days = new Date(day.getFullYear(), day.getMonth() + 1, 0).getDate(); // 사용한 선택한 날짜의 일수
-    setMonthDay(days);
-  };
-
-  const thisMonth = () => {
+  const previousYearOrThisMonth = () => {
     const days = new Date(day.getFullYear(), day.getMonth() + 1, 0).getDate();
     setMonthDay(days);
   };
