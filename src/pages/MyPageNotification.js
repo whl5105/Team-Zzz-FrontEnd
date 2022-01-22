@@ -27,7 +27,7 @@ const MyPageNotification = (props) => {
         <Notifications
           notice={notice}
           setNotice={setNotice}
-          day={day}
+          day={day === "AM" ? "오전" : "오후"}
           setDay={setDay}
           hour={hour}
           setHour={setHour}
