@@ -1,72 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { getMessaging, getToken } from "firebase/messaging";
-
-let isSubscribed = false;
-let swRegist = null;
 const Toggle = (props) => {
-  const messaging = getMessaging();
-
-  getToken(messaging, {
-    vapidKey: process.env.REACT_APP_VAPID_KEY,
-  }).then(() => {
-    swRegist = messaging.swRegistration;
-  });
-
-  // Push 초기화
-  const initPush = (isSubscribed) => {
-    if (isSubscribed) {
-      unsubscribe();
-    } else {
-      subscribe();
-    }
-    swRegist.pushManager.getSubscription().then(function (subscription) {
-      isSubscribed = !(subscription === null); // null 이면 true 이니 !true 가 false 로 해서 isSubscribed 가 false 라는뜻
-      if (isSubscribed) {
-        // console.log("User IS subscribed.");
-      } else {
-        // console.log("User is NOT subscribed.");
-      }
-    });
-  };
-
-  // 알림 구독
-  function subscribe() {
-    swRegist.pushManager
-      .subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: process.env.REACT_APP_APPLICATION_SERVER_KEY,
-      })
-      .then((subscription) => {
-        isSubscribed = true; // 구독정보를 반아온 경우 구독을 정상적으로 한 상황이므로 true로 변경
-      })
-      .catch((err) => {
-        console.log("Failed to subscribe the user: ", err);
-      });
-  }
-
-  //알림 구독 취소
-  function unsubscribe() {
-    swRegist.pushManager
-      .getSubscription()
-      .then((subscription) => {
-        if (subscription) {
-          return swRegist.pushManager // 토글시 메세지 안날라오게 하는 방법
-            .unsubscribe()
-            .then((res) => {})
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-      })
-      .catch((error) => {
-        console.log("Error unsubscribing", error);
-      })
-      .then(() => {
-        isSubscribed = false;
-      });
-  }
-
   return (
     <>
       {props.label}
@@ -79,7 +13,6 @@ const Toggle = (props) => {
           checked={props.notice}
           onChange={() => {
             props.setNotice(!props.notice);
-            initPush(props.notice);
           }}
         />
         <Label className="label" htmlFor={props.label}>
