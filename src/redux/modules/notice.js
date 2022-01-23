@@ -10,12 +10,6 @@ const setNotice = createAction(SET_NOTICE, (notice) => ({ notice }));
 
 // -- initialState --
 const initialState = {
-  time: {
-    sleepChk: false,
-    timePA: "AM",
-    hour: 12,
-    min: 0,
-  },
 };
 
 // -- API --

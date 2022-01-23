@@ -16,20 +16,20 @@ const AlarmBanner = (props) => {
         <p>알림</p>
         <TimeList>
           <Time>
-            {userNotice.time.sleepChk === false && "알림 OFF"}
-            {userNotice.time.sleepChk
+            {userNotice.time?userNotice.time.sleepChk === false && "알림 OFF":"알림 OFF"}
+            {userNotice.time?userNotice.time.sleepChk
               ? userNotice.time.timePA === "AM"
                 ? "오전"
                 : "오후"
-              : null}
+              : null:null}
             &nbsp;
             <span>
-              {userNotice.time.sleepChk ? `${userNotice.time.hour}:`: null}
-              {userNotice.time.sleepChk
+              {userNotice.time?userNotice.time.sleepChk ? `${userNotice.time.hour}:`: null:null}
+              {userNotice.time?userNotice.time.sleepChk
                 ? userNotice.time.min < 10
                   ? "0" + userNotice.time.min
                   : userNotice.time.min
-                : null}
+                : null:null}
             </span>
           </Time>
           <Icon src={arrow_R_B} />
