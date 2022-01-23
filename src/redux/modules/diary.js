@@ -66,6 +66,7 @@ const getDiaryDB = (year, month) => {
       // 다이어리 기록 불러오기
       const diaryListRes = await apis.getDiaryList(userIdx, yearMonth);
       const diaryList = diaryListRes.errorMessage ? [] : diaryListRes;
+
       // 다이어리 점수 불러오기
       const diaryScoreRes = await apis.getDiaryScore(userIdx);
       const diaryScore = diaryScoreRes.errorMessage

@@ -11,6 +11,7 @@ import DiaryRecord from "../components/diary/DiaryRecord";
 
 const Diary = () => {
   const dispatch = useDispatch();
+
   const [getMoment, setMoment] = useState(moment());
   const yearMonth = getMoment.format("YYYYMM");
   const diaryInItialState = useSelector((state) => state.diary.diaryList);
