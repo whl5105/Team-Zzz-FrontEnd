@@ -37,7 +37,6 @@ const MyPageNotification = (props) => {
   const [dayActive, setDayActive] = useState(false);
   const [hourActive, setHourActive] = useState(false);
   const [minutesActive, setMinutesActive] = useState(false);
-console.log(days, hours, minute)
   React.useEffect(()=>{
     dispatch(noticeActions.getNoticeDB());
     if(notices===null){
