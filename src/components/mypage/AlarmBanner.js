@@ -24,8 +24,7 @@ const AlarmBanner = (props) => {
               : null}
             &nbsp;
             <span>
-              {userNotice.time.sleepChk ? userNotice.time.hour : null}
-              {userNotice.time.sleepChk ? `:` : null}
+              {userNotice.time.sleepChk ? `${userNotice.time.hour}:`: null}
               {userNotice.time.sleepChk
                 ? userNotice.time.min < 10
                   ? "0" + userNotice.time.min
