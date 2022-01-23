@@ -83,7 +83,6 @@ const Notifications = (props) => {
   }
 
   const send = () => {
-    console.log(notice);
     initPush(notice);
     if (state === "set") {
       if (!notice) {
@@ -105,7 +104,6 @@ const Notifications = (props) => {
       history.replace("/myPage");
     }
   };
-
 
   return (
     <>
