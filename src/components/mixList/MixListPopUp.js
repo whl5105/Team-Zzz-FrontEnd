@@ -13,6 +13,7 @@ import { mix_setting } from "../../static/images/index";
 const MixListPopUp = (props) => {
   const playListInfo = useSelector((state) => state.asmr.playList);
   const [playList, setPlayList] = useState(playListInfo ? playListInfo : []);
+
   const { close, setMixListModal } = props;
 
   useEffect(() => {
