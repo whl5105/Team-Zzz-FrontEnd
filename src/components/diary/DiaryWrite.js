@@ -52,6 +52,7 @@ const DiaryWrite = ({ modalData, close }) => {
         feelScore: dayData.feelScore,
         sleep: scoreList.indexOf(dayData.sleepScore) + 1,
         sleepScore: dayData.sleepScore,
+        comment: dayData.comment,
       });
     }
   }, []);
@@ -279,9 +280,6 @@ const ButtonBox = styled.div`
   }
   & Button:last-child {
     margin-right: 0;
-  }
-  & Button {
-    max-width: 141px;
   }
 `;
 
