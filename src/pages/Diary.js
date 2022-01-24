@@ -124,6 +124,7 @@ const Diary = () => {
     setModalOpen(true);
     const day = new Date(getMoment);
     const data = {
+      yearMonth: yearMonth,
       year: day.getFullYear(),
       month: day.getMonth() + 1,
       day: index,

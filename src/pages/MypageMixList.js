@@ -14,18 +14,17 @@ import { mixList, arrow_B_W, arrow_T_W } from "../static/images";
 const MypageMixList = (props) => {
   const dispatch = useDispatch();
   const playListInfo = useSelector((state) => state.asmr.playList);
-  const [playList, setPlayList] = useState(playListInfo ? playListInfo : []);
+  const [myMixList, setMyMixList] = useState(
+    playListInfo ? playListInfo : null
+  );
+  console.log(myMixList);
   const [toggle, setToggle] = React.useState({});
 
   useEffect(() => {
-    if (playList) {
-      return;
+    if (!myMixList) {
+      dispatch(asmrActions.getPlayListDB());
+      setMyMixList(playListInfo ? playListInfo : null);
     }
-    dispatch(asmrActions.getPlayListDB());
-  }, []);
-
-  useEffect(() => {
-    setPlayList(playListInfo ? playListInfo : []);
   }, [playListInfo]);
 
   const toggleComment = (idx) => {
@@ -39,9 +38,9 @@ const MypageMixList = (props) => {
     <Container>
       <Title backIcon>나의 믹스</Title>
       <MixContent>
-        {playList.length > 0 ? (
+        {myMixList ? (
           <>
-            {playList.map((item, idx) => {
+            {myMixList.map((item, idx) => {
               return (
                 <div key={idx}>
                   <List

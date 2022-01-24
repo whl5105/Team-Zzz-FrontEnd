@@ -3,7 +3,9 @@ import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
 
 // -- actions --
+
 const GET_DIARY = "GETDIARY";
+const ADD_DIARY = "ADD_DIARY";
 const EDIT_DIARY = "EDIT_DIARY";
 const DELETE_DIARY = "POST_DDELETE_DIARYIARY";
 
@@ -12,6 +14,14 @@ const get_diary = createAction(GET_DIARY, (yearMonth, diaryInfo) => ({
   yearMonth,
   diaryInfo,
 }));
+const add_diary = createAction(
+  ADD_DIARY,
+  (yearMonth, diaryListRes, diaryScoreRes) => ({
+    yearMonth,
+    diaryListRes,
+    diaryScoreRes,
+  })
+);
 const edit_diary = createAction(EDIT_DIARY, (diaryListInfo) => ({
   diaryListInfo,
 }));
@@ -29,6 +39,7 @@ const initialState = {
 // -- 다이어리 생성 DB --
 const addDiaryDB = (year, month, diaryListInfo) => {
   return async function (dispatch, getState, { history }) {
+    const userIdx = localStorage.getItem("userIdx");
     let yearMonth = "";
     if (month < 10) {
       yearMonth = `${year}0${month}`;
@@ -37,14 +48,19 @@ const addDiaryDB = (year, month, diaryListInfo) => {
     }
 
     try {
-      await apis.addDiary(
+      const diaryListRes = await apis.addDiary(
         yearMonth,
         diaryListInfo.day,
         diaryListInfo.feelScore,
         diaryListInfo.sleepScore,
         diaryListInfo.comment
       );
-      dispatch(getDiaryDB(year, month));
+      const diaryScoreRes = await apis.getDiaryScore(userIdx);
+      dispatch(add_diary(yearMonth, diaryListRes, diaryScoreRes));
+      console.log(diaryListRes);
+      // dispatch(getDiaryDB(year, month));
+
+      console.log(diaryScoreRes);
     } catch (error) {
       console.log("addDiaryDB Error : ", error);
     }
@@ -121,6 +137,19 @@ export default handleActions(
         draft.diaryList = {
           ...draft.diaryList,
           [action.payload.yearMonth]: action.payload.diaryInfo,
+        };
+      }),
+    [ADD_DIARY]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload.diaryListRes);
+        console.log(action.payload.diaryScoreRes);
+        console.log(action.payload.yearMonth);
+        // draft.diaryList[action.payload.yearMonth.diaryRecord].unshift(
+        //   action.payload.diaryListRes
+        // );
+        draft.diaryList = {
+          ...draft.diaryList,
+          // [action.payload.yearMonth] :
         };
       }),
     [EDIT_DIARY]: (state, action) =>

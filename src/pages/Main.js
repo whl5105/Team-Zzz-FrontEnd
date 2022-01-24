@@ -51,11 +51,7 @@ const Main = (props) => {
         }
       });
   }
-<<<<<<< HEAD
   
-=======
-
->>>>>>> 3931b7b8f4e442c2915c7e2d7a2a3283661ebc32
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }

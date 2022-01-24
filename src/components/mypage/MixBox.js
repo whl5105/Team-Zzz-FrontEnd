@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Button, Icon } from "../../elements";
-import MixDeletePopup from "./MixDeletePopup";
+import MixDeletePopup from "../mixList/MixDeletePopup";
 import PlayList from "../mixList/MixTitle";
 
 const MixBox = (props) => {

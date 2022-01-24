@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as diaryActions } from "../../redux/modules/diary";
@@ -21,24 +21,29 @@ const DiaryWrite = (props) => {
     "#EE8BA7",
     "#C793DC",
   ];
-
-  const newData = `${props.data.year}/${props.data.month}/${props.data.day}`;
-  const diaryList = useSelector((state) => state.diary.diaryList); 
-  const diaryDayId = props.data.day; 
-  const isDay = diaryDayId ? true : false;
+  //props 일자 저장
+  const [recordDate, setRecordDate] = useState({
+    Data: `${props.data.year}/${props.data.month}/${props.data.day}`,
+    yearMonth: props.data.yearMonth,
+    year: props.data.year,
+    month: props.data.month,
+    day: props.data.day,
+  });
+  const diaryList = useSelector((state) => state.diary.diaryList);
+  const isDay = recordDate ? true : false;
   let diaryData = isDay
-    ? diaryList.find((data) => data.day === diaryDayId)
-    : null; 
+    ? diaryList[recordDate.yearMonth].diaryRecord.find(
+        (data) => data.day === recordDate.day
+      )
+    : null;
   const [dayData, setDayData] = React.useState(diaryData ? diaryData : null);
-
   const [edit, setEdit] = React.useState(false);
-
   const [data, setData] = React.useState({
     comment: "",
     day: 0,
-    feel: 0, 
+    feel: 0,
     feelScore: 0,
-    sleep: 0, 
+    sleep: 0,
     sleepScore: 0,
   });
 
@@ -122,14 +127,13 @@ const DiaryWrite = (props) => {
     await dispatch(diaryActions.deleteDiaryDB(dayData.diaryIdx));
     close();
   };
-
   return (
     <ModalPopUp close={props.close} height="100%">
       <Container>
         {!dayData ? (
           <>
             <DayCharater
-              newData={newData}
+              newData={recordDate.Data}
               feel={feel}
               scoreColor={scoreColor[sleep]}
             />
@@ -165,11 +169,10 @@ const DiaryWrite = (props) => {
             {edit ? (
               <>
                 <DayCharater
-                  newData={newData}
+                  newData={recordDate.Data}
                   feel={feel}
                   scoreColor={scoreColor[sleep]}
                 />
-
                 <Input
                   resetInput
                   placeholder="메모를 남겨보세요(최대22자)"
@@ -202,7 +205,7 @@ const DiaryWrite = (props) => {
             ) : (
               <>
                 <DayCharater
-                  newData={newData}
+                  newData={recordDate.Data}
                   feel={feel}
                   scoreColor={scoreColor[sleep]}
                 />
@@ -251,8 +254,8 @@ function DayCharater(props) {
       <Charater
         shape="charater"
         size="85"
-        feelNumber={feel} 
-        scoreColor={scoreColor} 
+        feelNumber={feel}
+        scoreColor={scoreColor}
       />
     </CharaterBox>
   );
