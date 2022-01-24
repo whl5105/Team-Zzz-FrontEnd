@@ -147,6 +147,7 @@ const Dropdown = (props) => {
           </>
         )}
       </DropdownBody>
+      
       {dayActive && (
         <DropdownMenu height="67px" id="type2" isActive={dayActive}>
           {dayItems &&

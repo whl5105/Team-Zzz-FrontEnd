@@ -37,7 +37,9 @@ const SuccessBtn = styled.button`
   opacity: 0;
   z-index: 200;
   animation: Success 2s ease-in-out alternate;
-
+  & img {
+    padding-right: 10px;
+  }
   @keyframes Success {
     40% {
       bottom: 93px;

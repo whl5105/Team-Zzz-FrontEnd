@@ -24,6 +24,7 @@ const Login = () => {
   });
   const { id, pwd } = inputs;
 
+  //첫 로그인 유저
   useEffect(() => {
     if (first_signup === true) {
       const timeout = setTimeout(() => {
@@ -38,6 +39,7 @@ const Login = () => {
   const [Message, setMessage] = React.useState("");
   const [isState, setIsState] = React.useState(true);
 
+  //아이디 ,비밀번호
   const onChange = (e) => {
     setInputs({
       ...inputs,
@@ -45,6 +47,7 @@ const Login = () => {
     });
   };
 
+  //리셋 선택
   const onReset = (e) => {
     setInputs({
       ...inputs,
@@ -52,6 +55,7 @@ const Login = () => {
     });
   };
 
+  //로그인 체크
   const loginClick = () => {
     if (!IdCheck(id) || !PwdCheck(pwd)) {
       setMessage("입력한 내용을 다시 확인해주세요");
@@ -61,7 +65,7 @@ const Login = () => {
       dispatch(userActions.loginDB(id, pwd));
     }
   };
-
+  //에러메세지
   useEffect(() => {
     setIsState(false);
     setMessage(errMessage);
