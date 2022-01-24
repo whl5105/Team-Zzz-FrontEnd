@@ -7,12 +7,12 @@ import { history } from "../redux/configureStore.js";
 
 import { IdCheck, PwdCheck } from "../shared/common";
 import { Input } from "../elements";
-
 import { reset } from "../static/images";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
-  const errMessage = useSelector((store) => store.user.errMessage);
+  const errMessage = useSelector((store) => store.user.signup_errMessage);
+  console.log(errMessage);
 
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
@@ -72,6 +72,8 @@ const Signup = (props) => {
   };
 
   useEffect(() => {
+    // console.log("에러발생");
+    console.log(errMessage);
     setIsId(false);
     setIdMessage(errMessage);
   }, [errMessage]);
