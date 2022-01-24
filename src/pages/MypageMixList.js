@@ -17,7 +17,6 @@ const MypageMixList = (props) => {
   const [myMixList, setMyMixList] = useState(
     playListInfo ? playListInfo : null
   );
-  console.log(myMixList);
   const [toggle, setToggle] = React.useState({});
 
   useEffect(() => {

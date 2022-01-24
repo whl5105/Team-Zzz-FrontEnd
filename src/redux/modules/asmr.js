@@ -5,7 +5,7 @@ import { apis } from "../../shared/api/apis";
 // -- actions --
 const SET_WRITE = "SETWRITE";
 const GET_ASMR = "GETASMR";
-const SET_PLAYLIST = "SETPLAYLIST";
+const ADD_PLAYLIST = "ADDPLAYLIST";
 const GET_PLAYLIST = "GETPLAYLIST";
 const EDIT_PLAYLIST = "EDITPLAYLIST";
 const DELETE_PLAYLIST = "DELETEPLAYLIST";
@@ -15,8 +15,9 @@ const get_asmr = createAction(GET_ASMR, (asmrListInfo) => ({
   asmrListInfo,
 }));
 
-const set_playList = createAction(SET_PLAYLIST, (is_write) => ({
+const add_playList = createAction(ADD_PLAYLIST, (is_write, playListInfo) => ({
   is_write,
+  playListInfo,
 }));
 
 const get_playList = createAction(GET_PLAYLIST, (playList) => ({
@@ -52,14 +53,15 @@ const getAsmrDB = () => {
   };
 };
 
-//-- 믹스리스트 생성 DB --
+//-- 믹스 음원 생성 DB --
 const setPlayListDB = (playLists) => {
   return async function (dispatch, getState, { history }) {
-    const userIdx = localStorage.getItem("userIdx");
     try {
-      await apis.postPlayList(playLists.mixTitle, playLists.mixList);
-      dispatch(set_playList(true));
-      dispatch(getPlayListDB(userIdx));
+      const res = await apis.postPlayList(
+        playLists.mixTitle,
+        playLists.mixList
+      );
+      await dispatch(add_playList(true, ...res));
       history.push("/asmr");
     } catch (error) {
       console.log("setPlayListDB Error : ", error);
@@ -67,7 +69,7 @@ const setPlayListDB = (playLists) => {
   };
 };
 
-//-- 믹스리스트 요청 DB--
+//-- 믹스 리스트 불러오기 DB--
 const getPlayListDB = () => {
   return async function (dispatch, getState, { history }) {
     try {
@@ -80,7 +82,7 @@ const getPlayListDB = () => {
   };
 };
 
-//-- 믹스리스트 수정 DB --
+//-- 믹스 음원 수정 DB --
 const editPlayListDB = (playlistIdx, mixTitle) => {
   return async function (dispatch, getState, { history }) {
     try {
@@ -92,8 +94,9 @@ const editPlayListDB = (playlistIdx, mixTitle) => {
     }
   };
 };
-//-- 믹스리스트 삭제 DB --
-const DeletePlayListDB = (playlistIdx) => {
+
+//-- 믹스 음원 삭제 DB --
+const deletePlayListDB = (playlistIdx) => {
   return async function (dispatch, getState, { history }) {
     try {
       const userIdx = localStorage.getItem("userIdx");
@@ -112,13 +115,16 @@ export default handleActions(
       produce(state, (draft) => {
         draft.asmrList = action.payload.asmrListInfo;
       }),
-    [SET_PLAYLIST]: (state, action) =>
-      produce(state, (draft) => {
-        draft.is_write = action.payload.is_write;
-      }),
     [GET_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
         draft.playList = action.payload.playList;
+      }),
+    [ADD_PLAYLIST]: (state, action) =>
+      produce(state, (draft) => {
+        const playList = draft.playList;
+        playList.push(action.payload.playListInfo);
+        draft.playList = playList;
+        draft.is_write = action.payload.is_write;
       }),
     [SET_WRITE]: (state, action) =>
       produce(state, (draft) => {
@@ -137,7 +143,6 @@ export default handleActions(
           (l) => l.playlistIdx === action.payload.playlistIdx
         );
         draft.playList[idx].mixTitle = action.payload.mixTitle;
-        console.log(draft.playList[idx].mixTitle);
       }),
   },
   initialState
@@ -149,7 +154,7 @@ const actionCreators = {
   setPlayListDB,
   getPlayListDB,
   set_write,
-  DeletePlayListDB,
+  deletePlayListDB,
   editPlayListDB,
 };
 

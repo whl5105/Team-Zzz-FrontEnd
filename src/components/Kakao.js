@@ -23,7 +23,6 @@ const Kakao = (props) => {
   }, []);
 
   const socialLoginSuccess = (res) => {
-    console.log("소셜 로그인 성공");
     setKakaoLoging(true);
     dispatch(userActions.socialLoginDB(res.profile.id));
 

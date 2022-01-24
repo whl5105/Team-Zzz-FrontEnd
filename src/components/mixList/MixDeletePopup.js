@@ -11,7 +11,7 @@ const MixDeletePopup = (props) => {
   const { close, data } = props;
 
   const deleteMix = () => {
-    dispatch(asmrActions.DeletePlayListDB(data.playlistIdx));
+    dispatch(asmrActions.deletePlayListDB(data.playlistIdx));
     close();
   };
 
