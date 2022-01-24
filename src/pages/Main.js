@@ -17,7 +17,6 @@ import {
 
 import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
 import { getMessaging, getToken } from "firebase/messaging";
-
 const Main = (props) => {
   if (!isIPhone) {
     const config = {
@@ -32,31 +31,25 @@ const Main = (props) => {
     firebase.initializeApp(config);
 
     const messaging = getMessaging();
-
     getToken(messaging, {
       vapidKey: process.env.REACT_APP_VAPID_KEY,
     })
       .then((currentToken) => {
         localStorage.setItem("pushtoken", currentToken);
         if (currentToken) {
-          permission = true;
-          if (!noticeSet && token && !ios && permission) {
+          setPermission(true);
+          if (!noticeSet && token && !isIPhone && permission) {
             setNoticationModal(true);
           }
         }
       })
       .catch((err) => {
-        if (!ios) {
+        if (!isIPhone) {
           console.log("An error occurred while retrieving token. ", err);
         }
       });
   }
 
-  function Mobile() {
-    return /iPhone|iPad/i.test(navigator.userAgent);
-  }
-
-  const [ios, setIos] = useState(Mobile()); // IOS이면 true, 나머지는 false
   const [noticationModal, setNoticationModal] = useState(false);
   const location = useLocation();
   let [permission, setPermission] = useState(false);
