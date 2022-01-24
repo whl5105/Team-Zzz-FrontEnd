@@ -27,7 +27,7 @@ import "./index.css";
 import Device from "./shared/Device";
 
 Sentry.init({
-  dsn: "https://90b5be8daff3422fabce8a049f52beca@o1124980.ingest.sentry.io/6163454",
+  dsn: process.env.REACT_APP_SENTRY_DNS,
   integrations: [new Integrations.BrowserTracing()],
 
   tracesSampleRate: 1.0,

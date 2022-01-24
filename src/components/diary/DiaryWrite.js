@@ -24,6 +24,7 @@ const DiaryWrite = ({ modalData, close }) => {
     sleep: 0,
     sleepScore: 0,
   });
+
   const { Data, yearMonth, day, comment, feel, feelScore, sleep, sleepScore } =
     recordDate;
   const isDay = recordDate ? true : false;
@@ -48,7 +49,9 @@ const DiaryWrite = ({ modalData, close }) => {
       setRecordDate({
         ...recordDate,
         feel: scoreList.indexOf(dayData.feelScore) + 1,
+        feelScore: dayData.feelScore,
         sleep: scoreList.indexOf(dayData.sleepScore) + 1,
+        sleepScore: dayData.sleepScore,
       });
     }
   }, []);
