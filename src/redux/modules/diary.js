@@ -7,7 +7,7 @@ import { apis } from "../../shared/api/apis";
 const GET_DIARY = "GETDIARY";
 const ADD_DIARY = "ADD_DIARY";
 const EDIT_DIARY = "EDIT_DIARY";
-const DELETE_DIARY = "POST_DDELETE_DIARYIARY";
+const DELETE_DIARY = "POST_DELETE_DIARYIARY";
 
 // -- action creators --
 const get_diary = createAction(
@@ -20,20 +20,29 @@ const get_diary = createAction(
 );
 const add_diary = createAction(
   ADD_DIARY,
-  (yearMonth, diaryListRes, diaryScoreRes) => ({
+  (yearMonth, diaryListRes, diaryScoreRes, diaryScore) => ({
     yearMonth,
     diaryListRes,
     diaryScoreRes,
+    diaryScore,
   })
 );
-const edit_diary = createAction(EDIT_DIARY, (yearMonth, diaryListInfo) => ({
-  yearMonth,
-  diaryListInfo,
-}));
-const delete_diary = createAction(DELETE_DIARY, (yearMonth, diaryIdx) => ({
-  yearMonth,
-  diaryIdx,
-}));
+const edit_diary = createAction(
+  EDIT_DIARY,
+  (yearMonth, diaryListInfo, diaryScore) => ({
+    yearMonth,
+    diaryListInfo,
+    diaryScore,
+  })
+);
+const delete_diary = createAction(
+  DELETE_DIARY,
+  (yearMonth, diaryIdx, diaryScore) => ({
+    yearMonth,
+    diaryIdx,
+    diaryScore,
+  })
+);
 
 // -- initialState --
 const initialState = {
@@ -56,7 +65,10 @@ const addDiaryDB = (yearMonth, diaryListInfo) => {
         diaryListInfo.comment
       );
       const diaryScoreRes = await apis.getDiaryScore(userIdx);
-      dispatch(add_diary(yearMonth, diaryListRes, diaryScoreRes));
+      const diaryScore = diaryScoreRes.errorMessage
+        ? "아직 기록이 없습니다."
+        : diaryScoreRes.sleepAvg;
+      dispatch(add_diary(yearMonth, diaryListRes, diaryScoreRes, diaryScore));
     } catch (error) {
       console.log("addDiaryDB Error : ", error);
     }
@@ -93,7 +105,8 @@ const getDiaryDB = (year, month) => {
 
 // -- 다이어리 수정 DB --
 const editDiaryDB = (yearMonth, diaryListInfo) => {
-  return function (dispatch, getState, { history }) {
+  return async function (dispatch, getState, { history }) {
+    const userIdx = localStorage.getItem("userIdx");
     try {
       apis.editDiaryDB(
         diaryListInfo.diaryIdx,
@@ -101,7 +114,12 @@ const editDiaryDB = (yearMonth, diaryListInfo) => {
         diaryListInfo.sleepScore,
         diaryListInfo.comment
       );
-      dispatch(edit_diary(yearMonth, diaryListInfo));
+      const diaryScoreRes = await apis.getDiaryScore(userIdx);
+      const diaryScore = diaryScoreRes.errorMessage
+        ? "아직 기록이 없습니다."
+        : diaryScoreRes.sleepAvg;
+      console.log(diaryScore);
+      dispatch(edit_diary(yearMonth, diaryListInfo, diaryScore));
     } catch (error) {
       console.log("editDiaryDB Error : ", error);
     }
@@ -110,10 +128,16 @@ const editDiaryDB = (yearMonth, diaryListInfo) => {
 
 // -- 다이어리 삭제 DB --
 const deleteDiaryDB = (yearMonth, diaryIdx) => {
-  return function (dispatch, getState, { history }) {
+  return async function (dispatch, getState, { history }) {
+    const userIdx = localStorage.getItem("userIdx");
     try {
       apis.deleteDiary(diaryIdx);
-      dispatch(delete_diary(yearMonth, diaryIdx));
+      const diaryScoreRes = await apis.getDiaryScore(userIdx);
+      const diaryScore = diaryScoreRes.errorMessage
+        ? "아직 기록이 없습니다."
+        : diaryScoreRes.sleepAvg;
+      console.log(diaryScore);
+      dispatch(delete_diary(yearMonth, diaryIdx, diaryScore));
     } catch (error) {
       console.log("deleteDiaryDB Error : ", error);
     }
@@ -136,6 +160,7 @@ export default handleActions(
         draft.diaryList[action.payload.yearMonth].unshift(
           action.payload.diaryListRes
         );
+        draft.sleepAvg = action.payload.diaryScore;
       }),
     [EDIT_DIARY]: (state, action) =>
       produce(state, (draft) => {
@@ -146,6 +171,7 @@ export default handleActions(
           ...draft.diaryList[action.payload.yearMonth][idx],
           ...action.payload.diaryListInfo,
         };
+        draft.sleepAvg = action.payload.diaryScore;
       }),
     [DELETE_DIARY]: (state, action) =>
       produce(state, (draft) => {
@@ -158,6 +184,7 @@ export default handleActions(
           ...draft.diaryList,
           [action.payload.yearMonth]: new_diaryList,
         };
+        draft.sleepAvg = action.payload.diaryScore;
       }),
   },
   initialState
