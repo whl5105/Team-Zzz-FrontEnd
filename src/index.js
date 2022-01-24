@@ -34,7 +34,7 @@ Sentry.init({
 });
 
 ReactDOM.render(
-  <ReactPWAInstallProvider enableLogging>
+  <ReactPWAInstallProvider>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
