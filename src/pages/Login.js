@@ -14,9 +14,7 @@ import { reset } from "../static/images";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const errMessage = useSelector((store) => store.user.errMessage);
   const first_signup = useSelector((store) => store.user.is_signup);
-  console.log(errMessage)
 
   const [inputs, setInputs] = useState({
     id: "",
@@ -65,11 +63,6 @@ const Login = () => {
       dispatch(userActions.loginDB(id, pwd));
     }
   };
-  //에러메세지
-  useEffect(() => {
-    setIsState(false);
-    setMessage(errMessage);
-  }, [errMessage]);
 
   return (
     <Container>

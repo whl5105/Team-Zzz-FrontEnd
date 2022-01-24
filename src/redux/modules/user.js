@@ -21,7 +21,8 @@ const initialState = {
     userId: "test01",
     noticeSet: false,
   },
-  errMessage: "",
+  login_errMessage: "",
+  signup_errMessage: "",
   is_login: false,
   is_signup: false,
 };
@@ -62,7 +63,6 @@ export const loginDB =
       history.push("/");
     } catch (err) {
       window.alert(err.response.data.errorMessage);
-      dispatch(err_signup(err.response.data.errorMessage));
     }
   };
 
@@ -125,7 +125,7 @@ export default handleActions(
       }),
     [ERR_SIGNUP]: (state, action) =>
       produce(state, (draft) => {
-        draft.errMessage = action.payload.err;
+        draft.signup_errMessage = action.payload.err;
       }),
   },
   initialState
