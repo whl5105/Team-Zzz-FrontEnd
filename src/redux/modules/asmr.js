@@ -137,6 +137,7 @@ export default handleActions(
           (l) => l.playlistIdx === action.payload.playlistIdx
         );
         draft.playList[idx].mixTitle = action.payload.mixTitle;
+        console.log(draft.playList[idx].mixTitle);
       }),
   },
   initialState
