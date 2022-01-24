@@ -25,7 +25,7 @@ import "./index.css";
 import Device from "./shared/Device";
 
 ReactDOM.render(
-  <ReactPWAInstallProvider enableLogging>
+  <ReactPWAInstallProvider>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />

@@ -35,7 +35,7 @@ export const apis = {
     instance.get(`/api/diaries/${yearMonth}/users/${userIdx}`), // 월별 다이어리 데이터
   getDiaryScore: (userIdx) => instance.get(`/api/scores/users/${userIdx}`),
   addDiary: (yearMonth, day, feelScore, sleepScore, comment) =>
-    instance.post("/api/diaries", {
+    instance.post("/api/diaries/", {
       yearMonth,
       day,
       feelScore,

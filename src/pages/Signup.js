@@ -55,7 +55,7 @@ const Signup = (props) => {
     const pwdCurrent = e.target.value;
     setPwdCheck(pwdCurrent);
     if (pwd === pwdCurrent) {
-      setPwdCheckMessage("비밀번호를 똑같이 입력했어요 : )");
+      setPwdCheckMessage("비밀번호를 똑같이 입력했어요 :)");
       setIsPwdCheck(true);
     } else {
       setPwdCheckMessage("비밀번호가 틀려요. 다시 확인해주세요 ㅜ ㅜ");
@@ -136,7 +136,6 @@ const Signup = (props) => {
       <Button onClick={signUpClick}>회원가입</Button>
 
       <Login
-        type="submit"
         onClick={() => {
           history.push("/user/login");
         }}
