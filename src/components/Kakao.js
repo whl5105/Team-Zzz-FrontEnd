@@ -14,7 +14,6 @@ const Kakao = (props) => {
   const kakaoKey = process.env.REACT_APP_JS_KEY;
 
   const socialLoginSuccess = (res) => {
-    console.log("소셜 로그인 성공");
     setKakaoLoging(true);
     dispatch(userActions.socialLoginDB(res.profile.id));
 

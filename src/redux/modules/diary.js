@@ -118,7 +118,6 @@ const editDiaryDB = (yearMonth, diaryListInfo) => {
       const diaryScore = diaryScoreRes.errorMessage
         ? "아직 기록이 없습니다."
         : diaryScoreRes.sleepAvg;
-      console.log(diaryScore);
       dispatch(edit_diary(yearMonth, diaryListInfo, diaryScore));
     } catch (error) {
       console.log("editDiaryDB Error : ", error);
@@ -136,7 +135,6 @@ const deleteDiaryDB = (yearMonth, diaryIdx) => {
       const diaryScore = diaryScoreRes.errorMessage
         ? "아직 기록이 없습니다."
         : diaryScoreRes.sleepAvg;
-      console.log(diaryScore);
       dispatch(delete_diary(yearMonth, diaryIdx, diaryScore));
     } catch (error) {
       console.log("deleteDiaryDB Error : ", error);
