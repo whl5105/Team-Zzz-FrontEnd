@@ -19,6 +19,7 @@ const DiaryDate = (props) => {
               setMoment(getMoment.clone().subtract(1, "month"));
             }}
             src={arrow_L_W}
+            alt="left"
           />
           <YearMonth>{getMoment.format("YYYY.MM")}</YearMonth>
           <Icon
@@ -28,6 +29,7 @@ const DiaryDate = (props) => {
               setMoment(getMoment.clone().add(1, "month"));
             }}
             src={arrow_R_W}
+            alt="right"
           />
         </Wrap>
         {!nextMonth && <SleepAvgText>{sleepAvg}</SleepAvgText>}

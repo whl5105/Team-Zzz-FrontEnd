@@ -11,10 +11,10 @@ const List = (props) => {
   return (
     <ListBox onClick={_onClick}>
       <ListTitle>
-        <Icon src={icon} marginR="10px" />
+        <Icon src={icon} marginR="10px" alt="titleIcon" />
         {children}
       </ListTitle>
-      <Icon src={src ? src : arrow_R_W} />
+      <Icon src={src ? src : arrow_R_W} alt="rightIcon" />
     </ListBox>
   );
 };

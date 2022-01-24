@@ -20,13 +20,6 @@ const MypageMixList = (props) => {
   console.log(myMixList);
   const [toggle, setToggle] = React.useState({});
 
-  // useEffect(() => {
-  //   if (!myMixList) {
-  //     dispatch(asmrActions.getPlayListDB());
-  //     setMyMixList(playListInfo ? playListInfo : null);
-  //   }
-  // }, [playListInfo]);
-
   useEffect(() => {
     if (!myMixList) {
       dispatch(asmrActions.getPlayListDB());

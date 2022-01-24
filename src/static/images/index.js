@@ -1,31 +1,31 @@
 //-- background --
-import asmr_category_all from "./background/asmr_category_all.png";
-import asmr_category_nature from "./background/asmr_category_nature.png";
-import asmr_category_object from "./background/asmr_category_object.png";
-import asmr_category_space from "./background/asmr_category_space.png";
-import diary_NoRecord from "./background/diary_NoRecord.png";
-import Loading_B from "./background/Loading_B.png";
-import Loading_C from "./background/Loading_C.png";
-import Loading_T from "./background/Loading_T.png";
-import sleepTime_B from "./background/sleepTime_B.png";
-import sleepTime_T_C from "./background/sleepTime_T_C.png";
-import sleepTime_T_L from "./background/sleepTime_T_L.png";
-import sleepTime_T_R from "./background/sleepTime_T_R.png";
-import web_back from "./background/web_back.png";
-import web_logo from "./background/web_logo.png";
-import web_phone from "./background/web_phone.png";
-import mobile_back from "./background/mobile_back.png";
-import mobile_logo from "./background/mobile_logo.png";
+import asmr_category_all from "./background/asmr_category_all.webp";
+import asmr_category_nature from "./background/asmr_category_nature.webp";
+import asmr_category_object from "./background/asmr_category_object.webp";
+import asmr_category_space from "./background/asmr_category_space.webp";
+import diary_NoRecord from "./background/diary_NoRecord.webp";
+import Loading_B from "./background/Loading_B.webp";
+import Loading_C from "./background/Loading_C.webp";
+import Loading_T from "./background/Loading_T.webp";
+import sleepTime_B from "./background/sleepTime_B.webp";
+import sleepTime_T_C from "./background/sleepTime_T_C.webp";
+import sleepTime_T_L from "./background/sleepTime_T_L.webp";
+import sleepTime_T_R from "./background/sleepTime_T_R.webp";
+import web_back from "./background/web_back.webp";
+import web_logo from "./background/web_logo.webp";
+import web_phone from "./background/web_phone.webp";
+import mobile_back from "./background/mobile_back.webp";
+import mobile_logo from "./background/mobile_logo.webp";
 
 //-- banner --
-import main_all from "./banner/main_all.png";
-import main_diary from "./banner/main_diary.png";
-import main_feedback from "./banner/main_feedback.png";
-import main_nature from "./banner/main_nature.png";
-import main_object from "./banner/main_object.png";
-import main_sleepTime from "./banner/main_sleepTime.png";
-import main_space from "./banner/main_space.png";
-import mypage_alarm from "./banner/mypage_alarm.png";
+import main_all from "./banner/main_all.webp";
+import main_diary from "./banner/main_diary.webp";
+import main_feedback from "./banner/main_feedback.webp";
+import main_nature from "./banner/main_nature.webp";
+import main_object from "./banner/main_object.webp";
+import main_sleepTime from "./banner/main_sleepTime.webp";
+import main_space from "./banner/main_space.webp";
+import mypage_alarm from "./banner/mypage_alarm.webp";
 
 //-- character--
 import feel0 from "./character/feel0.svg";
@@ -36,12 +36,12 @@ import feel4 from "./character/feel4.svg";
 import feel5 from "./character/feel4.svg";
 
 //-- social --
-import kakao from "./social/kakao.png";
+import kakao from "./social/kakao.webp";
 
 //-- tooltop --
-import myMix from "./tooltip/myMix.png";
-import notSupported from "./tooltip/notSupported.png";
-import leaveFeedback from "./tooltip/leaveFeedback.png";
+import myMix from "./tooltip/myMix.webp";
+import notSupported from "./tooltip/notSupported.webp";
+import leaveFeedback from "./tooltip/leaveFeedback.webp";
 
 //-- icons --
 import asmr from "./icons/navigation/asmr.svg";
@@ -55,8 +55,8 @@ import playBar_play from "./icons/playBar/playBar_play.svg";
 import playBar_volume from "./icons/playBar/playBar_volume.svg";
 
 //-- toasts --
-import check from "./icons/toasts/check.png";
-import clock from "./icons/toasts/clock.png";
+import check from "./icons/toasts/check.webp";
+import clock from "./icons/toasts/clock.webp";
 
 //-- arrow --
 import arrow_B_W from "./icons/arrow/arrow_B_W.svg";
@@ -70,19 +70,19 @@ import arrow_B_G from "./icons/arrow/arrow_B_G.svg";
 import close from "./icons/close.svg";
 import feedback from "./icons/feedback.svg";
 import logo from "./icons/logo.svg";
-import mix_play from "./icons/mix_play.png";
+import mix_play from "./icons/mix_play.webp";
 import mix_setting from "./icons/mix_setting.svg";
 import mixList from "./icons/mixList.svg";
 import notice from "./icons/notice.svg";
-import reset from "./icons/reset.png";
+import reset from "./icons/reset.webp";
 import user from "./icons/user.svg";
 import volumeCircle from "./icons/volumeCircle.svg";
 import volumeLine from "./icons/volumeLine.svg";
-import fallBack from "./icons/fallBack.png";
+import fallBack from "./icons/fallBack.webp";
 
 //-- install--
-import install_download from "./icons/install/install_download.png";
-import install_logo from "./icons/install/install_logo.png";
+import install_download from "./icons/install/install_download.webp";
+import install_logo from "./icons/install/install_logo.webp";
 
 export {
   asmr_category_all,

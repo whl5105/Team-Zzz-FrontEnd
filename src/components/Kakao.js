@@ -13,6 +13,15 @@ const Kakao = (props) => {
   const [kakaoLoging, setKakaoLoging] = useState(false);
   const kakaoKey = process.env.REACT_APP_JS_KEY;
 
+  React.useEffect(() => {
+    if (!window.Kakao.isInitialized()) {
+      // JavaScript key를 인자로 주고 SDK 초기화
+      window.Kakao.init(kakaoKey);
+      // SDK 초기화 여부를 확인하자.
+      console.log(window.Kakao.isInitialized());
+    }
+  }, []);
+
   const socialLoginSuccess = (res) => {
     console.log("소셜 로그인 성공");
     setKakaoLoging(true);
@@ -53,7 +62,9 @@ const Kakao = (props) => {
         카카오 로그인
       </KakaoLogin>
 
-      {kakaoLoging && <Success isClock alt="loading" text="조금만 기다려주세요" />}
+      {kakaoLoging && (
+        <Success isClock alt="loading" text="조금만 기다려주세요" />
+      )}
     </>
   );
 };

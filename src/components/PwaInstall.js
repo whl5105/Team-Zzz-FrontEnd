@@ -67,8 +67,7 @@ const WebInstallButton = styled.div`
   color: #101340;
   cursor: pointer;
 
-  & img {
-  }
+  
 `;
 const MobileInstallButton = styled.div`
   width: 200px;
