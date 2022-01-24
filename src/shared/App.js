@@ -47,7 +47,7 @@ function App() {
     <WrapBox className="App">
       <ConnectedRouter history={history}>
         <Header />
-        <Suspense fallback={<Spinner></Spinner>}>
+        <Suspense fallback={<Spinner />}>
           <Switch>
             <Route exact path="/" component={Main} />
             <Route exact path="/user/login" component={Login} />

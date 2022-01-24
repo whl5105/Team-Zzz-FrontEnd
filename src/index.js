@@ -14,6 +14,8 @@ import reportWebVitals from "./reportWebVitals";
 import ReactPWAInstallProvider from "react-pwa-install";
 
 // -- sentry --
+import * as Sentry from "@sentry/react";
+import { Integrations } from "@sentry/tracing";
 
 // -- style --
 import GlobalStyle from "./static/styles/GlobalStyle";
@@ -23,6 +25,13 @@ import "./index.css";
 
 // -- components --
 import Device from "./shared/Device";
+
+Sentry.init({
+  dsn: "https://90b5be8daff3422fabce8a049f52beca@o1124980.ingest.sentry.io/6163454",
+  integrations: [new Integrations.BrowserTracing()],
+
+  tracesSampleRate: 1.0,
+});
 
 ReactDOM.render(
   <ReactPWAInstallProvider>
