@@ -10,10 +10,14 @@ const EDIT_DIARY = "EDIT_DIARY";
 const DELETE_DIARY = "POST_DDELETE_DIARYIARY";
 
 // -- action creators --
-const get_diary = createAction(GET_DIARY, (yearMonth, diaryInfo) => ({
-  yearMonth,
-  diaryInfo,
-}));
+const get_diary = createAction(
+  GET_DIARY,
+  (yearMonth, diaryList, diaryScore) => ({
+    yearMonth,
+    diaryList,
+    diaryScore,
+  })
+);
 const add_diary = createAction(
   ADD_DIARY,
   (yearMonth, diaryListRes, diaryScoreRes) => ({
@@ -22,34 +26,30 @@ const add_diary = createAction(
     diaryScoreRes,
   })
 );
-const edit_diary = createAction(EDIT_DIARY, (diaryListInfo) => ({
+const edit_diary = createAction(EDIT_DIARY, (yearMonth, diaryListInfo) => ({
+  yearMonth,
   diaryListInfo,
 }));
-const delete_diary = createAction(DELETE_DIARY, (diaryIdx) => ({
+const delete_diary = createAction(DELETE_DIARY, (yearMonth, diaryIdx) => ({
+  yearMonth,
   diaryIdx,
 }));
 
 // -- initialState --
 const initialState = {
   diaryList: {},
+  sleepAvg: "",
   modal: true,
 };
 
 // -- middleware actions --
 // -- 다이어리 생성 DB --
-const addDiaryDB = (year, month, diaryListInfo) => {
+const addDiaryDB = (yearMonth, diaryListInfo) => {
   return async function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
-    let yearMonth = "";
-    if (month < 10) {
-      yearMonth = `${year}0${month}`;
-    } else {
-      yearMonth = `${year}${month}`;
-    }
-
     try {
       const diaryListRes = await apis.addDiary(
-        yearMonth,
+        String(yearMonth),
         diaryListInfo.day,
         diaryListInfo.feelScore,
         diaryListInfo.sleepScore,
@@ -57,10 +57,6 @@ const addDiaryDB = (year, month, diaryListInfo) => {
       );
       const diaryScoreRes = await apis.getDiaryScore(userIdx);
       dispatch(add_diary(yearMonth, diaryListRes, diaryScoreRes));
-      console.log(diaryListRes);
-      // dispatch(getDiaryDB(year, month));
-
-      console.log(diaryScoreRes);
     } catch (error) {
       console.log("addDiaryDB Error : ", error);
     }
@@ -70,30 +66,25 @@ const addDiaryDB = (year, month, diaryListInfo) => {
 //-- 다이어리 요청 DB --
 const getDiaryDB = (year, month) => {
   return async function (dispatch, getState, { history }) {
+    const userIdx = localStorage.getItem("userIdx");
+    let yearMonth = "";
+    if (month < 10) {
+      yearMonth = `${year}0${month}`;
+    } else {
+      yearMonth = `${year}${month}`;
+    }
     try {
-      const userIdx = localStorage.getItem("userIdx");
-      let yearMonth = "";
-      if (month < 10) {
-        yearMonth = `${year}0${month}`;
-      } else {
-        yearMonth = `${year}${month}`;
-      }
-
       // 다이어리 기록 불러오기
       const diaryListRes = await apis.getDiaryList(userIdx, yearMonth);
       const diaryList = diaryListRes.errorMessage ? [] : diaryListRes;
+
       // 다이어리 점수 불러오기
       const diaryScoreRes = await apis.getDiaryScore(userIdx);
       const diaryScore = diaryScoreRes.errorMessage
         ? "아직 기록이 없습니다."
         : diaryScoreRes.sleepAvg;
 
-      const diaryInfo = {
-        diaryRecord: diaryList,
-        diaryScore: diaryScore,
-      };
-
-      dispatch(get_diary(yearMonth, diaryInfo));
+      dispatch(get_diary(yearMonth, diaryList, diaryScore));
     } catch (error) {
       console.log("getDiaryDB Error : ", error);
     }
@@ -101,7 +92,7 @@ const getDiaryDB = (year, month) => {
 };
 
 // -- 다이어리 수정 DB --
-const editDiaryDB = (diaryListInfo) => {
+const editDiaryDB = (yearMonth, diaryListInfo) => {
   return function (dispatch, getState, { history }) {
     try {
       apis.editDiaryDB(
@@ -110,7 +101,7 @@ const editDiaryDB = (diaryListInfo) => {
         diaryListInfo.sleepScore,
         diaryListInfo.comment
       );
-      dispatch(edit_diary(diaryListInfo));
+      dispatch(edit_diary(yearMonth, diaryListInfo));
     } catch (error) {
       console.log("editDiaryDB Error : ", error);
     }
@@ -118,11 +109,11 @@ const editDiaryDB = (diaryListInfo) => {
 };
 
 // -- 다이어리 삭제 DB --
-const deleteDiaryDB = (diaryIdx) => {
+const deleteDiaryDB = (yearMonth, diaryIdx) => {
   return function (dispatch, getState, { history }) {
     try {
       apis.deleteDiary(diaryIdx);
-      dispatch(delete_diary(diaryIdx));
+      dispatch(delete_diary(yearMonth, diaryIdx));
     } catch (error) {
       console.log("deleteDiaryDB Error : ", error);
     }
@@ -136,38 +127,37 @@ export default handleActions(
       produce(state, (draft) => {
         draft.diaryList = {
           ...draft.diaryList,
-          [action.payload.yearMonth]: action.payload.diaryInfo,
+          [action.payload.yearMonth]: action.payload.diaryList,
         };
+        draft.sleepAvg = action.payload.diaryScore;
       }),
     [ADD_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.diaryListRes);
-        console.log(action.payload.diaryScoreRes);
-        console.log(action.payload.yearMonth);
-        // draft.diaryList[action.payload.yearMonth.diaryRecord].unshift(
-        //   action.payload.diaryListRes
-        // );
-        draft.diaryList = {
-          ...draft.diaryList,
-          // [action.payload.yearMonth] :
-        };
+        draft.diaryList[action.payload.yearMonth].unshift(
+          action.payload.diaryListRes
+        );
       }),
     [EDIT_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        let idx = draft.diaryList.findIndex(
+        let idx = draft.diaryList[action.payload.yearMonth].findIndex(
           (d) => d.diaryIdx === action.payload.diaryListInfo.diaryIdx
         );
-        draft.diaryList[idx] = {
-          ...draft.diaryList[idx],
+        draft.diaryList[action.payload.yearMonth][idx] = {
+          ...draft.diaryList[action.payload.yearMonth][idx],
           ...action.payload.diaryListInfo,
         };
       }),
     [DELETE_DIARY]: (state, action) =>
       produce(state, (draft) => {
-        const new_diaryList = draft.diaryList.filter((d, idx) => {
-          return action.payload.diaryIdx !== d.diaryIdx;
-        });
-        draft.diaryList = new_diaryList;
+        const new_diaryList = draft.diaryList[action.payload.yearMonth].filter(
+          (d, idx) => {
+            return action.payload.diaryIdx !== d.diaryIdx;
+          }
+        );
+        draft.diaryList = {
+          ...draft.diaryList,
+          [action.payload.yearMonth]: new_diaryList,
+        };
       }),
   },
   initialState

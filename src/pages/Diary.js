@@ -11,10 +11,11 @@ import DiaryRecord from "../components/diary/DiaryRecord";
 
 const Diary = () => {
   const dispatch = useDispatch();
+
   const [getMoment, setMoment] = useState(moment());
   const yearMonth = getMoment.format("YYYYMM");
   const diaryInItialState = useSelector((state) => state.diary.diaryList);
-  const [sleepAvg, setSleepAvg] = useState("오늘은 잘 못주무셨네요");
+  const sleepAvg = useSelector((state) => state.diary.sleepAvg);
   const [monthDay, setMonthDay] = useState(0);
   const arr = new Array(monthDay).fill(1);
   const [list, setList] = useState(arr);
@@ -66,12 +67,12 @@ const Diary = () => {
     } else if (nextYearCondition) {
       nextYearOrMonth();
     } else if (previousYearCondition) {
-      previousYear();
+      previousYearOrThisMonth();
     } else {
       if (nextMonthCondition) {
         nextYearOrMonth();
       } else {
-        thisMonth();
+        previousYearOrThisMonth();
       }
     }
   }, [getMoment]);
@@ -85,12 +86,7 @@ const Diary = () => {
     setMonthDay(0);
   };
 
-  const previousYear = () => {
-    const days = new Date(day.getFullYear(), day.getMonth() + 1, 0).getDate(); // 사용한 선택한 날짜의 일수
-    setMonthDay(days);
-  };
-
-  const thisMonth = () => {
+  const previousYearOrThisMonth = () => {
     const days = new Date(day.getFullYear(), day.getMonth() + 1, 0).getDate();
     setMonthDay(days);
   };
@@ -107,13 +103,12 @@ const Diary = () => {
 
   const changeDiaryRecord = () => {
     arr.forEach((arrItem, arrIndex) => {
-      diaryInItialState[yearMonth].diaryRecord.forEach((diaryItem) => {
+      diaryInItialState[yearMonth].forEach((diaryItem) => {
         if (arrIndex + 1 === diaryItem.day) {
           arr[arrIndex] = diaryItem;
         }
       });
     });
-    setSleepAvg(diaryInItialState[yearMonth].diaryScore);
   };
 
   const closeModal = () => {
@@ -157,7 +152,7 @@ const Diary = () => {
           )}
         </>
       )}
-      {modalOpen && <DiaryWrite close={closeModal} data={modalData} />}
+      {modalOpen && <DiaryWrite close={closeModal} modalData={modalData} />}
     </>
   );
 };

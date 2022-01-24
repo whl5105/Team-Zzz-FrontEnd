@@ -14,19 +14,10 @@ import {
 } from "../static/images";
 
 const OptimalSleepTime = (props) => {
-  const [ampm, setampm] = useState("");
-  const [wakeup_hour, setwakeup_hour] = useState(0);
-  const [wakeup_min, setwakeup_min] = useState(0);
-  const [ampm2, setampm2] = useState("");
-  const [wakeup_hour2, setwakeup_hour2] = useState(0);
-  const [wakeup_min2, setwakeup_min2] = useState(0);
-  const [ampm3, setampm3] = useState("");
-  const [wakeup_hour3, setwakeup_hour3] = useState(0);
-  const [wakeup_min3, setwakeup_min3] = useState(0);
-  const [ampm4, setampm4] = useState("");
-  const [wakeup_hour4, setwakeup_hour4] = useState(0);
-  const [wakeup_min4, setwakeup_min4] = useState(0);
   const [toggle, setToggle] = useState(true);
+  const [wakeup_hours, setwakeup_hours] = useState([0, 0, 0, 0]);
+  const [wakeup_mins, setwakeup_mins] = useState([0, 0, 0, 0]);
+  const [ampms, setampms] = useState(["", "", "", ""]);
 
   const [dayActive, setDayActive] = useState(false);
   const [hourActive, setHourActive] = useState(false);
@@ -44,132 +35,50 @@ const OptimalSleepTime = (props) => {
 
     if (date === "오후") {
       let setTime = new Date(2021, 11, 27, hours + 12, minute);
-      let res4 = new Date(setTime.getTime() - 270 * 60000);
-      let res3 = new Date(res4.getTime() - 90 * 60000); 
-      let res2 = new Date(res3.getTime() - 90 * 60000);
-      let res1 = new Date(res2.getTime() - 90 * 60000);
-
-      let restime1 = res1.getHours();
-      setwakeup_hour(res1.getHours());
-      setwakeup_min(res1.getMinutes());
-      if (restime1 >= 12) {
-        if (restime1 === 12) {
-          setampm("PM");
-          setwakeup_hour(restime1);
-        } else {
-          setampm("PM");
-          restime1 -= 12;
-          setwakeup_hour(restime1);
-        }
-      } else {
-        setampm("AM");
-        setwakeup_hour(restime1);
+      let res = [];
+      res[3] = new Date(setTime.getTime() - 270 * 60000);
+      for (let i = 3; i > 0; i--) {
+        res[i - 1] = new Date(res[i].getTime() - 90 * 60000);
       }
-
-      let restime2 = res2.getHours();
-      setwakeup_hour2(res2.getHours());
-      setwakeup_min2(res2.getMinutes());
-      if (restime2 >= 12) {
-        if (restime2 === 12) {
-          setampm2("PM");
-          setwakeup_hour2(restime2);
+      let restime = [];
+      for (let i = 0; i < 4; i++) {
+        restime[i] = res[i].getHours();
+        wakeup_hours[i] = res[i].getHours();
+        wakeup_mins[i] = res[i].getMinutes();
+        if (restime[i] >= 12) {
+          if (restime[i] === 12) {
+            ampms[i] = "PM";
+            wakeup_hours[i] = restime[i];
+          } else {
+            ampms[i] = "PM";
+            restime[i] -= 12;
+            wakeup_hours[i] = restime[i];
+          }
         } else {
-          setampm2("PM");
-          restime2 -= 12;
-          setwakeup_hour2(restime2);
+          ampms[i] = "AM";
+          wakeup_hours[i] = restime[i];
         }
-      } else {
-        setampm2("AM");
-        setwakeup_hour2(restime2);
-      }
-
-      let restime3 = res3.getHours();
-      setwakeup_hour3(res3.getHours());
-      setwakeup_min3(res3.getMinutes());
-      if (restime3 >= 12) {
-        if (restime3 === 12) {
-          setampm3("PM");
-          setwakeup_hour3(restime3);
-        } else {
-          setampm3("PM");
-          restime3 -= 12;
-          setwakeup_hour3(restime3);
-        }
-      } else {
-        setampm3("AM");
-        setwakeup_hour3(restime3);
-      }
-
-      let restime4 = res4.getHours();
-      setwakeup_hour4(res4.getHours());
-      setwakeup_min4(res4.getMinutes());
-      if (restime4 >= 12) {
-        if (restime4 === 12) {
-          setampm4("PM");
-          setwakeup_hour4(restime4);
-        } else {
-          setampm4("PM");
-          restime4 -= 12;
-          setwakeup_hour4(restime4);
-        }
-      } else {
-        setampm4("AM");
-        setwakeup_hour4(restime4);
       }
     } else {
-      let setTime = new Date(2021, 11, 27, hour, minute);
-
-      let res4 = new Date(setTime.getTime() - 270 * 60000);
-      let res3 = new Date(res4.getTime() - 90 * 60000);
-      let res2 = new Date(res3.getTime() - 90 * 60000);
-      let res1 = new Date(res2.getTime() - 90 * 60000);
-
-      let restime1 = res1.getHours();
-      setwakeup_hour(res1.getHours());
-      setwakeup_min(res1.getMinutes());
-      if (restime1 >= 12) {
-        setampm("PM");
-        restime1 -= 12;
-        setwakeup_hour(restime1);
-      } else {
-        setampm("AM");
-        setwakeup_hour(restime1);
+      let setTime = new Date(2021, 11, 27, hours, minute);
+      let res = [];
+      res[3] = new Date(setTime.getTime() - 270 * 60000);
+      for (let i = 3; i > 0; i--) {
+        res[i - 1] = new Date(res[i].getTime() - 90 * 60000);
       }
-
-      let restime2 = res2.getHours();
-      setwakeup_hour2(res2.getHours());
-      setwakeup_min2(res2.getMinutes());
-      if (restime2 >= 12) {
-        setampm2("PM");
-        restime2 -= 12;
-        setwakeup_hour2(restime2);
-      } else {
-        setampm2("AM");
-        setwakeup_hour2(restime2);
-      }
-
-      let restime3 = res3.getHours();
-      setwakeup_hour3(res3.getHours());
-      setwakeup_min3(res3.getMinutes());
-      if (restime3 >= 12) {
-        setampm3("PM");
-        restime3 -= 12;
-        setwakeup_hour3(restime3);
-      } else {
-        setampm3("AM");
-        setwakeup_hour3(restime3);
-      }
-
-      let restime4 = res4.getHours();
-      setwakeup_hour4(res4.getHours());
-      setwakeup_min4(res4.getMinutes());
-      if (restime4 >= 12) {
-        setampm4("PM");
-        restime4 -= 12;
-        setwakeup_hour4(restime4);
-      } else {
-        setampm4("AM");
-        setwakeup_hour4(restime4);
+      let restime = [];
+      for (let i = 0; i < 4; i++) {
+        restime[i] = res[i].getHours();
+        wakeup_hours[i] = res[i].getHours();
+        wakeup_mins[i] = res[i].getMinutes();
+        if (restime[i] >= 12) {
+          ampms[i] = "PM";
+          restime[i] -= 12;
+          wakeup_hours[i] = restime[i];
+        } else {
+          ampms[i] = "AM";
+          wakeup_hours[i] = restime[i];
+        }
       }
     }
   }
@@ -242,22 +151,22 @@ const OptimalSleepTime = (props) => {
                   <Title>아래 시간 중 선택해서 잠드는게 좋아요!</Title>
                 </WrapInside>
                 <Time marginB="15px">
-                  <BestSleepTime>{`${wakeup_hour}:${
-                    wakeup_min < 10 ? "0" + wakeup_min : wakeup_min
-                  } ${ampm}`}</BestSleepTime>
+                  <BestSleepTime>{`${wakeup_hours[0]}:${
+                    wakeup_mins[0] < 10 ? "0" + wakeup_mins[0] : wakeup_mins[0]
+                  } ${ampms[0]}`}</BestSleepTime>
                   <Or>{`or`}</Or>
-                  <BestSleepTime>{`${wakeup_hour2}:${
-                    wakeup_min2 < 10 ? "0" + wakeup_min2 : wakeup_min2
-                  } ${ampm2}`}</BestSleepTime>
+                  <BestSleepTime>{`${wakeup_hours[1]}:${
+                    wakeup_mins[1] < 10 ? "0" + wakeup_mins[1] : wakeup_mins[1]
+                  } ${ampms[1]}`}</BestSleepTime>
                 </Time>
                 <Time>
-                  <BestSleepTime>{`${wakeup_hour3}:${
-                    wakeup_min3 < 10 ? "0" + wakeup_min3 : wakeup_min3
-                  } ${ampm3}`}</BestSleepTime>
+                  <BestSleepTime>{`${wakeup_hours[2]}:${
+                    wakeup_mins[2] < 10 ? "0" + wakeup_mins[2] : wakeup_mins[2]
+                  } ${ampms[2]}`}</BestSleepTime>
                   <Or>{`or`}</Or>
-                  <BestSleepTime>{`${wakeup_hour4}:${
-                    wakeup_min4 < 10 ? "0" + wakeup_min4 : wakeup_min4
-                  } ${ampm4}`}</BestSleepTime>
+                  <BestSleepTime>{`${wakeup_hours[3]}:${
+                    wakeup_mins[3] < 10 ? "0" + wakeup_mins[3] : wakeup_mins[3]
+                  } ${ampms[3]}`}</BestSleepTime>
                 </Time>
                 <Reset>
                   <Icon

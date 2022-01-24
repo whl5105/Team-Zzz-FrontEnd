@@ -10,12 +10,6 @@ const setNotice = createAction(SET_NOTICE, (notice) => ({ notice }));
 
 // -- initialState --
 const initialState = {
-  time: {
-    sleepChk: false,
-    timePA: "AM",
-    hour: 12,
-    min: 0,
-  },
 };
 
 // -- API --
@@ -23,7 +17,6 @@ const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
   const pushToken = localStorage.getItem("pushtoken");
   hour = hour / 1;
   minutes = minutes / 1;
-  console.log(hour, minutes);
   return async function (dispatch, getState, { history }) {
     try {
       await apis.postNotice(notice, day, hour, minutes, pushToken);

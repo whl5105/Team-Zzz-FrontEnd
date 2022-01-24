@@ -10,8 +10,28 @@ import { Input, Button, Charater } from "../../elements/index";
 
 import { reset } from "../../static/images/index";
 
-const DiaryWrite = (props) => {
+const DiaryWrite = ({ modalData, close }) => {
   const dispatch = useDispatch();
+  const diaryList = useSelector((state) => state.diary.diaryList);
+  // 다이어리 정보
+  const [recordDate, setRecordDate] = useState({
+    Data: `${modalData.year}/${modalData.month}/${modalData.day}`,
+    yearMonth: modalData.yearMonth,
+    day: modalData.day,
+    comment: "",
+    feel: 0,
+    feelScore: 0,
+    sleep: 0,
+    sleepScore: 0,
+  });
+  const { Data, yearMonth, day, comment, feel, feelScore, sleep, sleepScore } =
+    recordDate;
+  const isDay = recordDate ? true : false;
+  let diaryData = isDay
+    ? diaryList[yearMonth].find((data) => data.day === day)
+    : null;
+  const [dayData, setDayData] = React.useState(diaryData ? diaryData : null);
+  const [edit, setEdit] = React.useState(false);
 
   const scoreColor = [
     "#A1A1A1",
@@ -21,119 +41,80 @@ const DiaryWrite = (props) => {
     "#EE8BA7",
     "#C793DC",
   ];
-  //props 일자 저장
-  const [recordDate, setRecordDate] = useState({
-    Data: `${props.data.year}/${props.data.month}/${props.data.day}`,
-    yearMonth: props.data.yearMonth,
-    year: props.data.year,
-    month: props.data.month,
-    day: props.data.day,
-  });
-  const diaryList = useSelector((state) => state.diary.diaryList);
-  const isDay = recordDate ? true : false;
-  let diaryData = isDay
-    ? diaryList[recordDate.yearMonth].diaryRecord.find(
-        (data) => data.day === recordDate.day
-      )
-    : null;
-  const [dayData, setDayData] = React.useState(diaryData ? diaryData : null);
-  const [edit, setEdit] = React.useState(false);
-  const [data, setData] = React.useState({
-    comment: "",
-    day: 0,
-    feel: 0,
-    feelScore: 0,
-    sleep: 0,
-    sleepScore: 0,
-  });
 
   useEffect(() => {
     const scoreList = [1, 3, 5, 4, 2];
     if (dayData) {
-      setData({
-        ...dayData,
+      setRecordDate({
+        ...recordDate,
         feel: scoreList.indexOf(dayData.feelScore) + 1,
         sleep: scoreList.indexOf(dayData.sleepScore) + 1,
       });
     }
   }, []);
 
+  //자고 일어난후 느낌 클릭시
   const feelClick = (e) => {
-    setData({
-      ...data,
+    setRecordDate({
+      ...recordDate,
       feel: Number(e.target.dataset.value),
       feelScore: Number(e.target.dataset.score),
     });
   };
-
+  //수면시간 클릭시
   const sleepClick = (e) => {
-    setData({
-      ...data,
+    setRecordDate({
+      ...recordDate,
       sleep: Number(e.target.dataset.value),
       sleepScore: Number(e.target.dataset.score),
     });
   };
-
+  //comment 입력
   const inputChange = (e) => {
-    setData({
-      ...data,
+    setRecordDate({
+      ...recordDate,
       comment: e.target.value,
     });
   };
-
+  //comment 초기화
   const onReset = (e) => {
-    setData({
-      ...data,
+    setRecordDate({
+      ...recordDate,
       [e.target.name]: "",
     });
   };
-
-  const { feel, sleep, feelScore, sleepScore } = data;
-  const { close } = props;
-
   const addClick = async () => {
     if (feel === 0 || sleep === 0) {
       window.alert("두개 다 선택 해야 합니다.");
     } else {
-      const diaryListInfo = {
-        day: props.data.day,
-        feelScore: feelScore,
-        sleepScore: sleepScore,
-        comment: data.comment,
-      };
-      await dispatch(
-        diaryActions.addDiaryDB(
-          props.data.year,
-          props.data.month,
-          diaryListInfo
-        )
-      );
+      const diaryListInfo = { day, feelScore, sleepScore, comment };
+      await dispatch(diaryActions.addDiaryDB(yearMonth, diaryListInfo));
       close();
     }
   };
 
   const editClick = async () => {
     const diaryListInfo = {
-      feelScore: feelScore,
-      sleepScore: sleepScore,
-      comment: data.comment,
+      feelScore,
+      sleepScore,
+      comment,
       diaryIdx: dayData.diaryIdx,
     };
-    await dispatch(diaryActions.editDiaryDB(diaryListInfo));
+    await dispatch(diaryActions.editDiaryDB(yearMonth, diaryListInfo));
     close();
   };
 
   const deleteClick = async () => {
-    await dispatch(diaryActions.deleteDiaryDB(dayData.diaryIdx));
+    await dispatch(diaryActions.deleteDiaryDB(yearMonth, dayData.diaryIdx));
     close();
   };
   return (
-    <ModalPopUp close={props.close} height="100%">
+    <ModalPopUp close={close} height="100%">
       <Container>
         {!dayData ? (
           <>
             <DayCharater
-              newData={recordDate.Data}
+              newData={Data}
               feel={feel}
               scoreColor={scoreColor[sleep]}
             />
@@ -141,7 +122,7 @@ const DiaryWrite = (props) => {
               resetInput
               placeholder="메모를 남겨보세요(최대22자)"
               name="comment"
-              value={data.comment}
+              value={comment}
               onChange={inputChange}
               src={reset}
               alt="resetButton"
@@ -169,7 +150,7 @@ const DiaryWrite = (props) => {
             {edit ? (
               <>
                 <DayCharater
-                  newData={recordDate.Data}
+                  newData={Data}
                   feel={feel}
                   scoreColor={scoreColor[sleep]}
                 />
@@ -177,7 +158,7 @@ const DiaryWrite = (props) => {
                   resetInput
                   placeholder="메모를 남겨보세요(최대22자)"
                   name="comment"
-                  value={data.comment}
+                  value={comment}
                   onChange={inputChange}
                   src={reset}
                   alt="resetButton"
@@ -205,15 +186,15 @@ const DiaryWrite = (props) => {
             ) : (
               <>
                 <DayCharater
-                  newData={recordDate.Data}
+                  newData={Data}
                   feel={feel}
                   scoreColor={scoreColor[sleep]}
                 />
 
-                {data.comment.length > 0 && (
+                {comment.length > 0 && (
                   <Input
                     type="text"
-                    placeholder={data.comment}
+                    placeholder={comment}
                     height="52px"
                     disabled
                   />
@@ -246,8 +227,7 @@ const DiaryWrite = (props) => {
   );
 };
 
-function DayCharater(props) {
-  const { feel, scoreColor, newData } = props;
+function DayCharater({ feel, scoreColor, newData }) {
   return (
     <CharaterBox>
       <p>{newData}</p>
