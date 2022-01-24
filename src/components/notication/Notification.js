@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../../redux/modules/notice";
-import axios from "axios";
 import { getMessaging, getToken } from "firebase/messaging";
 
 import { DropDown, Toggle, Button } from "../../elements/index";
@@ -161,7 +160,6 @@ const Notifications = (props) => {
   );
 };
 
-// --- styled-components ---
 const Wrap = styled.div`
   display: flex;
   justify-content: space-evenly;

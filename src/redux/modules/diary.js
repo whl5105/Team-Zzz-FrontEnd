@@ -8,10 +8,14 @@ const EDIT_DIARY = "EDIT_DIARY";
 const DELETE_DIARY = "POST_DDELETE_DIARYIARY";
 
 // -- action creators --
-const get_diary = createAction(GET_DIARY, (yearMonth, diaryInfo) => ({
-  yearMonth,
-  diaryInfo,
-}));
+const get_diary = createAction(
+  GET_DIARY,
+  (yearMonth, diaryList, diaryScore) => ({
+    yearMonth,
+    diaryList,
+    diaryScore,
+  })
+);
 const edit_diary = createAction(EDIT_DIARY, (diaryListInfo) => ({
   diaryListInfo,
 }));
@@ -22,6 +26,7 @@ const delete_diary = createAction(DELETE_DIARY, (diaryIdx) => ({
 // -- initialState --
 const initialState = {
   diaryList: {},
+  sleepAvg: "",
   modal: true,
 };
 
@@ -66,18 +71,15 @@ const getDiaryDB = (year, month) => {
       // 다이어리 기록 불러오기
       const diaryListRes = await apis.getDiaryList(userIdx, yearMonth);
       const diaryList = diaryListRes.errorMessage ? [] : diaryListRes;
+
       // 다이어리 점수 불러오기
       const diaryScoreRes = await apis.getDiaryScore(userIdx);
       const diaryScore = diaryScoreRes.errorMessage
         ? "아직 기록이 없습니다."
         : diaryScoreRes.sleepAvg;
+        console.log(diaryScore)
 
-      const diaryInfo = {
-        diaryRecord: diaryList,
-        diaryScore: diaryScore,
-      };
-
-      dispatch(get_diary(yearMonth, diaryInfo));
+      dispatch(get_diary(yearMonth, diaryList, diaryScore));
     } catch (error) {
       console.log("getDiaryDB Error : ", error);
     }
@@ -120,8 +122,9 @@ export default handleActions(
       produce(state, (draft) => {
         draft.diaryList = {
           ...draft.diaryList,
-          [action.payload.yearMonth]: action.payload.diaryInfo,
+          [action.payload.yearMonth]: action.payload.diaryList,
         };
+        draft.sleepAvg = action.payload.diaryScore;
       }),
     [EDIT_DIARY]: (state, action) =>
       produce(state, (draft) => {
