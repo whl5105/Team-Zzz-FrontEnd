@@ -45,6 +45,7 @@ const Charater = (props) => {
                 {...styles}
                 style={{ zIndex: "3" }}
                 src={require(`../static/images/character/feel${props.feelNumber}.svg`)}
+                alt="Icon"
               />
             )}
             {props.feelNumber === 1 && (
@@ -114,6 +115,7 @@ const Charater = (props) => {
               style={{ zIndex: "3" }}
               data-value={props.feelNumber}
               src={require(`../static/images/character/feel${props.feelNumber}.svg`)}
+              alt="Icon"
             />
           )}
           {props.feelNumber === 1 && (

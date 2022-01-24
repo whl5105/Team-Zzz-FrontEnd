@@ -59,14 +59,14 @@ const MainSwiper = withRouter((props) => {
         autoplay={{ delay: 3000 }}
       >
         <SwiperSlide onClick={diaryClick}>
-          <BannerImg bannerImage={main_diary} />
+          <BannerImg bannerImage={main_diary} alt="BannerImg" />
         </SwiperSlide>
         <SwiperSlide
           onClick={() => {
             history.push("/optimalSleepTime");
           }}
         >
-          <BannerImg bannerImage={main_sleepTime} />
+          <BannerImg bannerImage={main_sleepTime} alt="BannerImg" />
         </SwiperSlide>
         <SwiperSlide
           onClick={() => {
@@ -76,7 +76,7 @@ const MainSwiper = withRouter((props) => {
             );
           }}
         >
-          <BannerImg bannerImage={main_feedback} />
+          <BannerImg bannerImage={main_feedback} alt="BannerImg" />
         </SwiperSlide>
       </Swiper>
       {diaryModal && <RequireLogin close={closeModal} move={loginModal} />}
