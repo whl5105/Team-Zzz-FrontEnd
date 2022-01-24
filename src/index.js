@@ -1,22 +1,27 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./shared/App";
-//-- redux --
+
+// -- redux --
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
 
-//-- serviceWorker --
+// -- serviceWorker --
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
-//-- PWA --
+
+// -- PWA --
 import ReactPWAInstallProvider from "react-pwa-install";
+
+// -- sentry --
+
 // -- style --
 import GlobalStyle from "./static/styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import theme from "./shared/theme";
 import "./index.css";
 
-//-- components --
+// -- components --
 import Device from "./shared/Device";
 
 ReactDOM.render(

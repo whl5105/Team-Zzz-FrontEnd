@@ -3,11 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../../redux/modules/notice";
-<<<<<<< HEAD
-=======
-import axios from "axios";
 import { getMessaging, getToken } from "firebase/messaging";
->>>>>>> cd18766a9befaf05b62a0dd011ca2b0077d65f7d
 
 import { DropDown, Toggle, Button } from "../../elements/index";
 
