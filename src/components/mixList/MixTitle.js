@@ -70,7 +70,6 @@ const PlayList = (props) => {
       });
     }
 
-    console.log("playList")
     dispatch(asmrActions.setPlayListDB(playLists));
     close();
   };
