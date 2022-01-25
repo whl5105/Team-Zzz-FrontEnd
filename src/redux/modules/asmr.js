@@ -61,7 +61,10 @@ const setPlayListDB = (playLists) => {
         playLists.mixTitle,
         playLists.mixList
       );
-      await dispatch(add_playList(true, ...res));
+      const playList = getState().asmr.playList;
+      const arr = [...playList];
+      arr.push(res);
+      await dispatch(add_playList(true, arr));
       history.push("/asmr");
     } catch (error) {
       console.log("setPlayListDB Error : ", error);
@@ -121,9 +124,7 @@ export default handleActions(
       }),
     [ADD_PLAYLIST]: (state, action) =>
       produce(state, (draft) => {
-        const playList = draft.playList;
-        playList.push(action.payload.playListInfo);
-        draft.playList = playList;
+        draft.playList = action.payload.playListInfo;
         draft.is_write = action.payload.is_write;
       }),
     [SET_WRITE]: (state, action) =>
