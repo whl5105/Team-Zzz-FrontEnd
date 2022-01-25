@@ -11,7 +11,8 @@ import Success from "../components/Success";
 const Kakao = (props) => {
   const dispatch = useDispatch();
   const [kakaoLoging, setKakaoLoging] = useState(false);
-  const kakaoKey = process.env.REACT_APP_JS_KEY;
+  // const kakaoKey = process.env.REACT_APP_JS_KEY;
+  const kakaoKey = "c51fcbffb9ee44d3b90e755eff2bf5b6";
 
   React.useEffect(() => {
     if (!window.Kakao.isInitialized()) {
@@ -25,7 +26,9 @@ const Kakao = (props) => {
   const socialLoginSuccess = (res) => {
     setKakaoLoging(true);
     dispatch(userActions.socialLoginDB(res.profile.id));
+  };
 
+  const loading = () => {
     const kakaoLoading = setTimeout(() => {
       setKakaoLoging(false);
     }, 2000);
@@ -50,16 +53,18 @@ const Kakao = (props) => {
 
   return (
     <>
-      <KakaoLogin
-        jsKey={kakaoKey}
-        onSuccess={(res) => socialLoginSuccess(res)}
-        onFailure={(res) => socialLoginFail(res)}
-        getProfile={true}
-        style={socialLoginStyle}
-      >
-        <Icon></Icon>
-        카카오 로그인
-      </KakaoLogin>
+      <div onClick={loading}>
+        <KakaoLogin
+          jsKey={kakaoKey}
+          onSuccess={(res) => socialLoginSuccess(res)}
+          onFailure={(res) => socialLoginFail(res)}
+          getProfile={true}
+          style={socialLoginStyle}
+        >
+          <Icon></Icon>
+          카카오 로그인
+        </KakaoLogin>
+      </div>
 
       {kakaoLoging && (
         <Success isClock alt="loading" text="조금만 기다려주세요" />
