@@ -26,12 +26,12 @@ import "./index.css";
 // -- components --
 import Device from "./shared/Device";
 
-Sentry.init({
-  dsn: process.env.REACT_APP_SENTRY_DNS,
-  integrations: [new Integrations.BrowserTracing()],
+// Sentry.init({
+//   dsn: process.env.REACT_APP_SENTRY_DNS,
+//   integrations: [new Integrations.BrowserTracing()],
 
-  tracesSampleRate: 1.0,
-});
+//   tracesSampleRate: 1.0,
+// });
 
 ReactDOM.render(
   <ReactPWAInstallProvider>
