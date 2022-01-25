@@ -14,16 +14,13 @@ const DELETE_PLAYLIST = "DELETEPLAYLIST";
 const get_asmr = createAction(GET_ASMR, (asmrListInfo) => ({
   asmrListInfo,
 }));
-
 const add_playList = createAction(ADD_PLAYLIST, (is_write, playListInfo) => ({
   is_write,
   playListInfo,
 }));
-
 const get_playList = createAction(GET_PLAYLIST, (playList) => ({
   playList,
 }));
-
 const set_write = createAction(SET_WRITE, () => ({}));
 const delete_playList = createAction(DELETE_PLAYLIST, (playlistIdx) => ({
   playlistIdx,
