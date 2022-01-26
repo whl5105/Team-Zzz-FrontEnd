@@ -15,31 +15,37 @@ const AlarmBanner = (props) => {
       <Alarm onClick={_onClick}>
         <p>알림</p>
         <TimeList>
-          <Time>
-            {userNotice.time
-              ? userNotice.time.sleepChk === false && "알림 OFF"
-              : "알림 OFF"}
-            {userNotice.time
-              ? userNotice.time.sleepChk
-                ? userNotice.time.timePA
-                : null
-              : null}
-            &nbsp;
-            <span>
+          {Notification.permission === "granted" ? (
+            <Time>
+              {userNotice.time
+                ? userNotice.time.sleepChk === false && "알림 OFF"
+                : "알림 OFF"}
               {userNotice.time
                 ? userNotice.time.sleepChk
-                  ? `${userNotice.time.hour}:`
+                  ? userNotice.time.timePA
                   : null
                 : null}
-              {userNotice.time
-                ? userNotice.time.sleepChk
-                  ? userNotice.time.min < 10
-                    ? "0" + userNotice.time.min
-                    : userNotice.time.min
-                  : null
-                : null}
-            </span>
-          </Time>
+              &nbsp;
+              <span>
+                {userNotice.time
+                  ? userNotice.time.sleepChk
+                    ? `${userNotice.time.hour}:`
+                    : null
+                  : null}
+                {userNotice.time
+                  ? userNotice.time.sleepChk
+                    ? userNotice.time.min < 10
+                      ? "0" + userNotice.time.min
+                      : userNotice.time.min
+                    : null
+                  : null}
+              </span>
+            </Time>
+          ) : (
+            <Time style={{ fontSize: "20px" }}>
+              {"알림권한을 허용해주세요."}
+            </Time>
+          )}
           <Icon src={arrow_R_B} alt="arrow_R_B" />
         </TimeList>
       </Alarm>
