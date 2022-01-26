@@ -99,9 +99,7 @@ const logoutDB = () => {
     localStorage.removeItem("userIdx");
     localStorage.removeItem("token");
     localStorage.removeItem("noticeSet");
-    if (localStorage.getItem("kakao_065a0e826bf13ae48eda84268edde2d6")) {
-      localStorage.removeItem("kakao_065a0e826bf13ae48eda84268edde2d6");
-    }
+    
     alert("로그아웃 되었습니다.");
     history.push("/");
   };

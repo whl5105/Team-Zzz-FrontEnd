@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { history } from "../../redux/configureStore";
@@ -15,15 +15,15 @@ const PlayList = (props) => {
   const [title, setTitle] = useState(is_edit ? data.mixName : "");
   const dispatch = useDispatch();
 
-  const titleChange = useCallback((e) => {
+  const titleChange = (e) => {
     setTitle(e.target.value);
-  }, []);
+  };
 
-  const titleReset = useCallback((e) => {
+  const titleReset = (e) => {
     setTitle("");
-  }, []);
+  };
 
-  const titleSubmit = useCallback(() => {
+  const titleSubmit = () => {
     let mixTitle = title;
     if (!title) {
       mixTitle = "나의 믹스";
@@ -72,7 +72,7 @@ const PlayList = (props) => {
 
     dispatch(asmrActions.setPlayListDB(playLists));
     close();
-  }, [title]);
+  };
 
   const editTilteSubmit = () => {
     let mixTitle = title;

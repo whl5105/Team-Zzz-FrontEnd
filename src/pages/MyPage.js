@@ -24,6 +24,7 @@ const Mypage = (props) => {
 
   useEffect(() => {
     setLogin(token);
+
     if (token && !ios) {
       dispatch(noticeActions.getNoticeDB());
     }
@@ -72,7 +73,6 @@ const Mypage = (props) => {
   );
 };
 
-// --- styled-components ---
 const Container = styled.div`
   width: 100%;
   height: 100vh;

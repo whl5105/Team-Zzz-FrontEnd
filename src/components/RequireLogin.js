@@ -4,6 +4,7 @@ import React from "react";
 import ModalPopUp from "./ModalPopUp";
 
 const RequireLogin = (props) => {
+  
   const { close, move } = props;
 
   return (

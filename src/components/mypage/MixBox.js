@@ -65,6 +65,7 @@ const MixBox = (props) => {
     </>
   );
 };
+
 const Box = styled.div`
   background: #22265e;
   font-size: ${({ theme }) => theme.fontSizes.ssmall};

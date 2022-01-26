@@ -20,9 +20,11 @@ const MobileInstall = (props) => {
     </Content>
   );
 };
+
 MobileInstall.defaultProps = {
   _onClick: () => {},
 };
+
 const Content = styled.div`
   width: 100vw;
   height: 100vh;
@@ -36,16 +38,20 @@ const Content = styled.div`
   text-align: center;
   padding-top:144px ;
   box-sizing: border-box;
+
   & img {
     width: 130px;
   }
+
   & p {
     padding: 40px 0;
   }
+
   & span {
     display: inline-block;
     position: relative;
     cursor: pointer;
+
     ::before {
       content: "";
       width: 100%;
@@ -57,4 +63,5 @@ const Content = styled.div`
       background-color: ${({ theme }) => theme.colors.white};
     }
 `;
+
 export default MobileInstall;

@@ -82,4 +82,5 @@ const Sleep = styled.div`
 const SleepItem = styled.div`
   width: 20%;
 `;
+
 export default SleepBox;

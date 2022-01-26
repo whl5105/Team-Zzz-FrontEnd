@@ -19,8 +19,10 @@ import {
 SwiperCore.use([Pagination, Autoplay]);
 
 const MainSwiper = withRouter((props) => {
+  
   const token = localStorage.getItem("token");
   const [diaryModal, setDiaryModal] = useState(false);
+
   const diaryClick = () => {
     if (!token) {
       setDiaryModal(true);

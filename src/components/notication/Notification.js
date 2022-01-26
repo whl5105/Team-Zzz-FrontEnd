@@ -60,13 +60,13 @@ const Notifications = (props) => {
       });
   }
 
-  //알림 구독 취소
+  // 알림 구독 취소
   function unsubscribe() {
     swRegist.pushManager
       .getSubscription()
       .then((subscription) => {
         if (subscription) {
-          return subscription // 토글시 메세지 안날라오게 하는 방법
+          return subscription // 토글 시 메세지 안날라오게 하는 방법
             .unsubscribe()
             .then((res) => {})
             .catch((err) => {
@@ -146,7 +146,7 @@ const Notifications = (props) => {
         </>
       ) : (
         <Wrap>
-          <DropDown state="disabled" condition={""} title={"PM"} />
+          <DropDown state="disabled" condition={""} title={"오후"} />
           <DropDown state="disabled" condition={"시"} title={"12"} />
           <DropDown state="disabled" condition={"분"} title={"00"} />
         </Wrap>

@@ -12,8 +12,8 @@ import { reset } from "../../static/images/index";
 
 const DiaryWrite = ({ modalData, close }) => {
   const dispatch = useDispatch();
+
   const diaryList = useSelector((state) => state.diary.diaryList);
-  // 다이어리 정보
   const [recordDate, setRecordDate] = useState({
     Data: `${modalData.year}/${modalData.month}/${modalData.day}`,
     yearMonth: modalData.yearMonth,
@@ -24,7 +24,6 @@ const DiaryWrite = ({ modalData, close }) => {
     sleep: 0,
     sleepScore: 0,
   });
-
   const { Data, yearMonth, day, comment, feel, feelScore, sleep, sleepScore } =
     recordDate;
   const isDay = recordDate ? true : false;
@@ -57,7 +56,7 @@ const DiaryWrite = ({ modalData, close }) => {
     }
   }, []);
 
-  //자고 일어난후 느낌 클릭시
+  // 자고 일어난후 느낌 클릭 시
   const feelClick = (e) => {
     setRecordDate({
       ...recordDate,
@@ -65,7 +64,8 @@ const DiaryWrite = ({ modalData, close }) => {
       feelScore: Number(e.target.dataset.score),
     });
   };
-  //수면시간 클릭시
+
+  // 수면시간 클릭시 
   const sleepClick = (e) => {
     setRecordDate({
       ...recordDate,
@@ -73,20 +73,23 @@ const DiaryWrite = ({ modalData, close }) => {
       sleepScore: Number(e.target.dataset.score),
     });
   };
-  //comment 입력
+
+  // comment 입력
   const inputChange = (e) => {
     setRecordDate({
       ...recordDate,
       comment: e.target.value,
     });
   };
-  //comment 초기화
+
+  // comment 초기화
   const onReset = (e) => {
     setRecordDate({
       ...recordDate,
       [e.target.name]: "",
     });
   };
+
   const addClick = async () => {
     if (feel === 0 || sleep === 0) {
       window.alert("두개 다 선택 해야 합니다.");
@@ -104,6 +107,7 @@ const DiaryWrite = ({ modalData, close }) => {
       comment,
       diaryIdx: dayData.diaryIdx,
     };
+
     await dispatch(diaryActions.editDiaryDB(yearMonth, diaryListInfo));
     close();
   };
@@ -112,6 +116,7 @@ const DiaryWrite = ({ modalData, close }) => {
     await dispatch(diaryActions.deleteDiaryDB(yearMonth, dayData.diaryIdx));
     close();
   };
+
   return (
     <ModalPopUp close={close} height="100%">
       <Container>
@@ -278,6 +283,7 @@ const ButtonBox = styled.div`
   & Button {
     margin-right: 9px;
   }
+  
   & Button:last-child {
     margin-right: 0;
   }

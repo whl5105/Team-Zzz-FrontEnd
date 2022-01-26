@@ -5,7 +5,6 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 
 import { Icon } from "../elements";
-
 import { arrow_L_W } from "../static/images/index";
 
 const Title = (props) => {
@@ -52,6 +51,7 @@ const TilteBox = styled.div`
     font-size: 22px;
     font-weight: ${({ theme }) => theme.fontWeight.Bold};
   }
+  
   & p {
     font-size: 14px;
     font-weight: ${({ theme }) => theme.fontWeight.Medium};

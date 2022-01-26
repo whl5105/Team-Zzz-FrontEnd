@@ -43,7 +43,7 @@ const AlarmBanner = (props) => {
             </Time>
           ) : (
             <Time style={{ fontSize: "20px" }}>
-              {"알림권한을 허용해주세요."}
+              {"알림 권한을 허용 해주세요."}
             </Time>
           )}
           <Icon src={arrow_R_B} alt="arrow_R_B" />
@@ -71,8 +71,8 @@ const Alarm = styled.div`
   padding: 20px 30px;
   box-sizing: border-box;
   border-radius: 12px;
-
   color: white;
+
   & p {
     font-weight: ${({ theme }) => theme.fontWeight.Medium};
     font-size: 14px;
@@ -89,6 +89,7 @@ const TimeList = styled.div`
 const Time = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   font-size: 26px;
+  
   & span {
     font-family: "Roboto";
   }
