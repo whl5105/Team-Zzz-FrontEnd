@@ -44,7 +44,6 @@ const MyPageNotification = (props) => {
     }
     
   })
-console.log(day)
   return (
     <Container>
       <Title backIcon>알림 편집</Title>
