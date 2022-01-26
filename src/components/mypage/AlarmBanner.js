@@ -21,9 +21,7 @@ const AlarmBanner = (props) => {
               : "알림 OFF"}
             {userNotice.time
               ? userNotice.time.sleepChk
-                ? userNotice.time.timePA === "AM"
-                  ? "오전"
-                  : "오후"
+                ? userNotice.time.timePA
                 : null
               : null}
             &nbsp;
