@@ -7,7 +7,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 import Success from "../components/Success";
 import Kakao from "../components/Kakao";
-import { Input } from "../elements";
+import { Input, Button } from "../elements";
 import { IdCheck, PwdCheck } from "../shared/common";
 
 import { reset } from "../static/images";
@@ -94,10 +94,7 @@ const Login = () => {
       </InputBox>
 
       {!isState ? <Span>{Message}</Span> : <Span />}
-
-      <Button type="submit" onClick={loginClick}>
-        로그인
-      </Button>
+      <Button text="로그인" _onClick={loginClick}></Button>
 
       <SignUp
         type="submit"
@@ -144,18 +141,6 @@ const Span = styled.span`
   color: #ff473d;
   transition: opacity 2s ease 5s;
 `;
-
-const Button = styled.button`
-  width: 100%;
-  height: 50px;
-  border: none;
-  border-radius: 8px;
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  background-color: ${({ theme }) => theme.colors.main_1};
-`;
-
 const SignUp = styled.div`
   margin: 20px auto;
   text-align: center;
