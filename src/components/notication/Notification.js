@@ -30,7 +30,6 @@ const Notifications = (props) => {
     state,
     setNoticationModal,
   } = props;
-
   const messaging = getMessaging();
 
   getToken(messaging, {
