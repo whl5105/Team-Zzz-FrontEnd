@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -22,12 +22,12 @@ const MypageMixList = (props) => {
     }
   }, []);
 
-  const toggleComment = (idx) => {
+  const toggleComment = useCallback((idx) => {
     setToggle((prevToggle) => ({
       ...prevToggle,
       [idx]: !prevToggle[idx],
     }));
-  };
+  }, []);
 
   return (
     <Container>
@@ -71,6 +71,7 @@ const Container = styled.div`
   box-sizing: border-box;
   padding: 50px 0;
 `;
+
 const MixContent = styled.div`
   width: 100%;
   height: calc(100vh - 291px);

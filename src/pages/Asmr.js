@@ -28,6 +28,7 @@ const Asmr = (props) => {
   const [success, setSuccess] = useState(
     useSelector((state) => state.asmr.is_write)
   );
+  const playList = useSelector((state) => state.asmr.playList);
 
   const [song1, setSong1] = useState(new Audio());
   const [song2, setSong2] = useState(new Audio());
@@ -42,6 +43,12 @@ const Asmr = (props) => {
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const [soundTrack, setSoundTrack] = useState([]);
   const [play, setPlay] = useState([]);
+
+  useEffect(() => {
+    if (!playList) {
+      dispatch(asmrActions.getPlayListDB());
+    }
+  }, []);
 
   useEffect(() => {
     if (success === true) {

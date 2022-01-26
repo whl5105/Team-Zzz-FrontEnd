@@ -39,6 +39,7 @@ const Container = styled.div`
   width: 331px;
   padding: 20px;
   box-sizing: border-box;
+
   & h3 {
     color: ${({ theme }) => theme.colors.gray_9};
     font-size: ${({ theme }) => theme.fontSizes.lg};
@@ -50,9 +51,11 @@ const Container = styled.div`
 const ButtonBox = styled.div`
   display: flex;
   margin-top: 24px;
+
   & Button {
     margin-right: 10px;
   }
+
   & Button:last-child {
     margin-right: 0;
   }

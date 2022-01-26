@@ -72,6 +72,7 @@ const Box = styled.div`
   padding: 20px;
   color: #aaa;
   flex-direction: column;
+
   & div:nth-child(4) {
     margin-right: 0;
   }
@@ -94,6 +95,7 @@ const IconBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   & p {
     padding-top: 2px;
   }
@@ -106,9 +108,11 @@ const Sound = styled.div`
 const ButtonBox = styled.div`
   display: flex;
   margin-top: 20px;
+  
   & Button {
     margin-right: 10px;
   }
+
   & Button:last-child {
     margin-right: 0;
   }

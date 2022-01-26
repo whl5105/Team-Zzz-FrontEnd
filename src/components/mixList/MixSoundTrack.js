@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import styled from "styled-components";
 import { history } from "../../redux/configureStore";
 
@@ -40,9 +40,9 @@ const MixSoundTrack = (props) => {
     }
 
     setPlay(arr);
-  }, [history.play]);
+  }, []);
 
-  const playInitial = () => {
+  const playInitial = useCallback(() => {
     if (history.audio1) {
       song1.pause();
       history.audio1.pause();
@@ -85,16 +85,16 @@ const MixSoundTrack = (props) => {
 
     history.setPlaybar([]);
     history.setToggle(false);
-  };
+  }, [song1, song2, song3, song4]);
 
-  const playSoundSetting = () => {
+  const playSoundSetting = useCallback(() => {
     if (mix1) {
-      song1.src = mix1.asmrUrl; 
+      song1.src = mix1.asmrUrl;
       song1.volume = Math.ceil(mix1.sound * 100) / 100;
-      history.audio1 = song1; 
-      history.setSong1 = setSong1; 
-      history.icon1 = mix1.iconUrl; 
-      history.state1 = mix1.asmrUrl; 
+      history.audio1 = song1;
+      history.setSong1 = setSong1;
+      history.icon1 = mix1.iconUrl;
+      history.state1 = mix1.asmrUrl;
       history.title1 = mix1.title;
       song1.play();
     }
@@ -131,15 +131,15 @@ const MixSoundTrack = (props) => {
       history.title4 = mix4.title;
       song4.play();
     }
-  };
+  }, [mix1, mix2, mix3, mix4, song1, song2, song3, song4]);
 
-  const playSoundTrack = () => {
+  const playSoundTrack = useCallback(() => {
     playInitial();
     playSoundSetting();
     history.play = play;
     history.setPlay = setPlay;
     history.setPlaybar(play);
-  };
+  }, [play, playInitial, playSoundSetting]);
 
   return (
     <>
