@@ -45,7 +45,9 @@ const Mypage = (props) => {
           </>
         ) : (
           <>
-            <AlarmBanner></AlarmBanner>
+            <AlarmBanner
+              _onClick={()=> alert('알림권한 허용 후 이용 가능합니다.')}
+            ></AlarmBanner>
             <Space></Space>
           </>
         )}
