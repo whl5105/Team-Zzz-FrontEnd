@@ -9,11 +9,9 @@ const MixBox = (props) => {
   const [deletemodal, setDeletemodal] = useState(false);
   const [editmodal, setEditmodal] = useState(false);
   const [modalData, setModalData] = useState();
-  const { mixList, mixTitle, playlistIdx, toggle } = props;
-  console.log(mixList);
-  console.log(props);
-  console.log(playlistIdx);
-
+  
+  const { mixList, mixTitle, playlistIdx } = props;
+  
   const deleteClick = () => {
     setDeletemodal(true);
     const data = {
@@ -75,6 +73,7 @@ const Box = styled.div`
   padding: 20px;
   color: #aaa;
   flex-direction: column;
+
   & div:nth-child(4) {
     margin-right: 0;
   }
@@ -97,6 +96,7 @@ const IconBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   & p {
     padding-top: 2px;
   }
@@ -109,9 +109,11 @@ const Sound = styled.div`
 const ButtonBox = styled.div`
   display: flex;
   margin-top: 20px;
+  
   & Button {
     margin-right: 10px;
   }
+
   & Button:last-child {
     margin-right: 0;
   }

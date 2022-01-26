@@ -9,14 +9,14 @@ const SET_NOTICE = "SET_NOTICE";
 const setNotice = createAction(SET_NOTICE, (notice) => ({ notice }));
 
 // -- initialState --
-const initialState = {
-};
+const initialState = {};
 
 // -- API --
 const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
   const pushToken = localStorage.getItem("pushtoken");
   hour = hour / 1;
   minutes = minutes / 1;
+
   return async function (dispatch, getState, { history }) {
     try {
       await apis.postNotice(notice, day, hour, minutes, pushToken);
@@ -28,13 +28,26 @@ const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
   };
 };
 
-const updateNoticeDB = (notice, day = "AM", hour = 1, minutes = 0) => {
+const updateNoticeDB = (notice, day = "PM", hour = 1, minutes = 0) => {
   const pushToken = localStorage.getItem("pushtoken");
   hour = hour / 1;
   minutes = minutes / 1;
+
   return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
-    const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
+
+    let timePA = "";
+
+    if (day === "오전") {
+      timePA = "AM";
+    } else if (day === "오후") {
+      timePA = "PM";
+    } else {
+      timePA = day;
+    }
+
+    const info = { sleepChk: notice, timePA: timePA, hour: hour, min: minutes };
+    
     apis
       .putNotice(notice, day, hour, minutes, userIdx, pushToken)
       .then(() => {});

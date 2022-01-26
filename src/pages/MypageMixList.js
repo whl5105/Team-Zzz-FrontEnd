@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -13,10 +13,7 @@ import { mixList, arrow_B_W, arrow_T_W } from "../static/images";
 
 const MypageMixList = (props) => {
   const dispatch = useDispatch();
-  const playListInfo = useSelector((state) => state.asmr.playList);
-  const [myMixList, setMyMixList] = useState(
-    playListInfo ? playListInfo : null
-  );
+  const myMixList = useSelector((state) => state.asmr.playList);
   const [toggle, setToggle] = React.useState({});
 
   useEffect(() => {
@@ -24,27 +21,23 @@ const MypageMixList = (props) => {
       dispatch(asmrActions.getPlayListDB());
     }
   }, []);
-  console.log(myMixList);
-  useEffect(() => {
-    setMyMixList(playListInfo ? playListInfo : null);
-  }, [playListInfo]);
 
-  const toggleComment = (idx) => {
+  const toggleComment = useCallback((idx) => {
     setToggle((prevToggle) => ({
       ...prevToggle,
       [idx]: !prevToggle[idx],
     }));
-  };
+  }, []);
 
   return (
     <Container>
       <Title backIcon>나의 믹스</Title>
       <MixContent>
-        {myMixList ? (
+        {myMixList && myMixList.length > 0 ? (
           <>
-            {myMixList.map((item, idx) => {
+            {myMixList.map((item) => {
               return (
-                <div key={idx}>
+                <div key={item.playlistIdx}>
                   <List
                     icon={mixList}
                     src={toggle[item.playlistIdx] ? arrow_T_W : arrow_B_W}
@@ -78,6 +71,7 @@ const Container = styled.div`
   box-sizing: border-box;
   padding: 50px 0;
 `;
+
 const MixContent = styled.div`
   width: 100%;
   height: calc(100vh - 291px);
