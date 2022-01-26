@@ -43,7 +43,7 @@ const AlarmBanner = (props) => {
             </Time>
           ) : (
             <Time style={{ fontSize: "20px" }}>
-              {"알림권한을 허용해주세요."}
+              {"알림 OFF"}
             </Time>
           )}
           <Icon src={arrow_R_B} alt="arrow_R_B" />
