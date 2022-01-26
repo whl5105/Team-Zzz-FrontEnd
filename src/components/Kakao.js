@@ -11,15 +11,11 @@ import Success from "../components/Success";
 const Kakao = (props) => {
   const dispatch = useDispatch();
   const [kakaoLoging, setKakaoLoging] = useState(false);
-  // const kakaoKey = process.env.REACT_APP_JS_KEY;
-  const kakaoKey = "c51fcbffb9ee44d3b90e755eff2bf5b6";
+  const token = process.env.REACT_APP_JS_KEY;
 
   React.useEffect(() => {
     if (!window.Kakao.isInitialized()) {
-      // JavaScript key를 인자로 주고 SDK 초기화
-      window.Kakao.init(kakaoKey);
-      // SDK 초기화 여부를 확인하자.
-      console.log(window.Kakao.isInitialized());
+      window.Kakao.init(token);
     }
   }, []);
 
@@ -55,7 +51,7 @@ const Kakao = (props) => {
     <>
       <div onClick={loading}>
         <KakaoLogin
-          jsKey={kakaoKey}
+          token={token}
           onSuccess={(res) => socialLoginSuccess(res)}
           onFailure={(res) => socialLoginFail(res)}
           getProfile={true}
