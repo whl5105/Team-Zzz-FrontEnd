@@ -12,6 +12,7 @@ const MixBox = (props) => {
   const { mixList, mixTitle, playlistIdx, toggle } = props;
   console.log(mixList);
   console.log(props);
+  console.log(playlistIdx);
 
   const deleteClick = () => {
     setDeletemodal(true);
