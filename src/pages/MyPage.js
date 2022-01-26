@@ -11,6 +11,7 @@ import List from "../components/mypage/List";
 import AlarmBanner from "../components/mypage/AlarmBanner";
 
 const Mypage = (props) => {
+  console.log(Notification.permission);
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
@@ -35,11 +36,16 @@ const Mypage = (props) => {
           마이페이지
         </Title>
 
-        {ios ? null : (
+        {ios ? null : Notification.permission === "granted" ? (
           <>
             <AlarmBanner
               _onClick={() => history.push(`/mypage/notification/${userIdx}`)}
             ></AlarmBanner>
+            <Space></Space>
+          </>
+        ) : (
+          <>
+            <AlarmBanner></AlarmBanner>
             <Space></Space>
           </>
         )}
