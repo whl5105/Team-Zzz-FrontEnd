@@ -9,8 +9,9 @@ const MixBox = (props) => {
   const [deletemodal, setDeletemodal] = useState(false);
   const [editmodal, setEditmodal] = useState(false);
   const [modalData, setModalData] = useState();
+  
   const { mixList, mixTitle, playlistIdx } = props;
-
+  
   const deleteClick = () => {
     setDeletemodal(true);
     const data = {
