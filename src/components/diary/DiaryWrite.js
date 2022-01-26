@@ -6,6 +6,7 @@ import { actionCreators as diaryActions } from "../../redux/modules/diary";
 import ModalPopUp from "../ModalPopUp";
 import FeelBox from "../diary/FeelBox";
 import SleepBox from "../diary/SleepBox";
+import DayCharater from "../diary/DayCharater";
 import { Input, Button, Charater } from "../../elements/index";
 
 import { reset } from "../../static/images/index";
@@ -236,38 +237,10 @@ const DiaryWrite = ({ modalData, close }) => {
   );
 };
 
-function DayCharater({ feel, scoreColor, newData }) {
-  return (
-    <CharaterBox>
-      <p>{newData}</p>
-      <Charater
-        shape="charater"
-        size="85"
-        feelNumber={feel}
-        scoreColor={scoreColor}
-      />
-    </CharaterBox>
-  );
-}
-
 const Container = styled.div`
   width: 100%;
   padding: ${({ theme }) => theme.paddings.xxxxl};
   box-sizing: border-box;
-`;
-
-const CharaterBox = styled.div`
-  padding: ${({ theme }) => theme.margins.base};
-  background: ${({ theme }) => theme.colors.gray_1};
-  text-align: center;
-
-  & p {
-    padding-bottom: ${({ theme }) => theme.margins.base};
-    font-family: "Roboto", sans-serif;
-    font-size: ${({ theme }) => theme.fontSizes.lg};
-    line-height: ${({ theme }) => theme.lineHeight.lg};
-    font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  }
 `;
 
 const ScoreGrop = styled.div`
