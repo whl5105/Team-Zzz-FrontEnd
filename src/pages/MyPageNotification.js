@@ -44,7 +44,7 @@ const MyPageNotification = (props) => {
     }
     
   })
-
+console.log(day)
   return (
     <Container>
       <Title backIcon>알림 편집</Title>
@@ -52,7 +52,7 @@ const MyPageNotification = (props) => {
         <Notifications
           notice={notice}
           setNotice={setNotice}
-          day={day === "AM" ? "오전" : "오후"}
+          day={day}
           setDay={setDay}
           hour={hour}
           setHour={setHour}
