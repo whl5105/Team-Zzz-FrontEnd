@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { history } from "../../redux/configureStore";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as asmrActions } from "../../redux/modules/asmr";
 
 import ModalPopUp from "../ModalPopUp";
 import MixSoundTrack from "./MixSoundTrack";
@@ -11,12 +12,16 @@ import { Icon } from "../../elements/index";
 import { mix_setting } from "../../static/images/index";
 
 const MixListPopUp = (props) => {
-  const playListInfo = useSelector((state) => state.asmr.playList);
-  const [playList, setPlayList] = useState(playListInfo ? playListInfo : []);
+  const dispatch = useDispatch();
+  const playList = useSelector((state) => state.asmr.playList);
 
   const { close, setMixListModal } = props;
 
   useEffect(() => {
+    if (!playList) {
+      dispatch(asmrActions.getPlayListDB());
+    }
+
     history.mixListModal = true;
     history.setMixListModal = setMixListModal;
   }, []);
@@ -41,7 +46,7 @@ const MixListPopUp = (props) => {
           <Icon src={mix_setting} alt="환경설정" _onClick={myPageMixList} />
         </Title>
         <MixList>
-          {playList.length > 0 ? (
+          {playList && playList.length > 0 ? (
             playList.map((item) => {
               return (
                 <div key={item.playlistIdx}>
