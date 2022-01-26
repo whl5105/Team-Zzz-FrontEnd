@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory, withRouter } from "react-router-dom";
 import RequireLogin from "../components/RequireLogin";
@@ -34,7 +34,7 @@ const Navigation = withRouter((props) => {
     history.push("/user/login");
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (pathName === "/optimalSleepTime" || pathName === "/") {
       setSelect("main");
     } else if (pathName === "/myPage/mixList") {
@@ -118,6 +118,7 @@ const Gnb = styled.div`
   text-align: center;
   box-sizing: border-box;
   color: ${({ theme }) => theme.colors.white};
+
   ::before {
     content: "";
     width: 100%;
@@ -133,6 +134,7 @@ const Gnb = styled.div`
 const Box = styled.div`
   width: 75px;
   color: ${(props) => (props.select !== "null" ? "#FBC037" : "#ffffff")};
+  
   & > Div:nth-child(1) {
     color: ${(props) => (props.select !== "null" ? "#FBC037" : "#ffffff")};
   }

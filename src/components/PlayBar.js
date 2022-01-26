@@ -177,6 +177,7 @@ const Wrap = styled.div`
   justify-content: space-evenly;
   padding: 18px 20px;
   box-sizing: border-box;
+  
   & .lastIcon:last-child {
     margin: 0;
   }

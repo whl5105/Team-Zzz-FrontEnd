@@ -18,9 +18,11 @@ const Bg = styled.div`
   height: 100vh;
   position: absolute;
   overflow: hidden;
+
   @media (max-width: 500px) {
     display:none;
   }
+  
   & img {
     position: absolute;
     cursor: default;

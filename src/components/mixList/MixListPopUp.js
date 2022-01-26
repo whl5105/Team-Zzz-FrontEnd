@@ -79,6 +79,7 @@ const Container = styled.div`
 const MixList = styled.div`
   max-height: 65%;
   overflow-y: scroll;
+  
   &::-webkit-scrollbar {
     display: none;
   }

@@ -15,8 +15,9 @@ import {
   main_space,
 } from "../static/images";
 
-import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
+import firebase from "firebase/compat/app"; 
 import { getMessaging, getToken } from "firebase/messaging";
+
 const Main = (props) => {
   if (!isIPhone) {
     const config = { 
@@ -49,6 +50,7 @@ const Main = (props) => {
         }
       });
   }
+
   const [noticationModal, setNoticationModal] = useState(false);
   const location = useLocation();
   let [permission, setPermission] = useState(false);
@@ -122,6 +124,7 @@ const Container = styled.div`
   position: relative;
   top: 0;
   left: 0;
+  
   &::-webkit-scrollbar {
     display: none;
   }

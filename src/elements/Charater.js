@@ -195,6 +195,7 @@ const ImgIcon = styled.img`
   border-radius: 50%;
   ${(props) => (props.is_click ? `border : 1px solid red;` : ``)};
   fill: ${(props) => (props.bg ? props.bg : "#F3F3F3")};
+
   svg path {
     fill: ${(props) => props.sleepColor};
   }
@@ -221,6 +222,7 @@ const FeelBox = styled.div`
   height: 50px;
   display: flex;
   justify-content: center;
+  
   & p {
     display: black;
   }

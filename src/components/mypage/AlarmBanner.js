@@ -42,9 +42,7 @@ const AlarmBanner = (props) => {
               </span>
             </Time>
           ) : (
-            <Time style={{ fontSize: "20px" }}>
-              {"알림 OFF"}
-            </Time>
+            <Time style={{ fontSize: "20px" }}>{"알림 OFF"}</Time>
           )}
           <Icon src={arrow_R_B} alt="arrow_R_B" />
         </TimeList>
@@ -71,8 +69,8 @@ const Alarm = styled.div`
   padding: 20px 30px;
   box-sizing: border-box;
   border-radius: 12px;
-
   color: white;
+
   & p {
     font-weight: ${({ theme }) => theme.fontWeight.Medium};
     font-size: 14px;
@@ -89,6 +87,7 @@ const TimeList = styled.div`
 const Time = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   font-size: 26px;
+
   & span {
     font-family: "Roboto";
   }

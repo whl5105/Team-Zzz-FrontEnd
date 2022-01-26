@@ -147,7 +147,7 @@ const Dropdown = (props) => {
           </>
         )}
       </DropdownBody>
-      
+
       {dayActive && (
         <DropdownMenu height="67px" id="type2" isActive={dayActive}>
           {dayItems &&
@@ -226,9 +226,11 @@ const DisabledDropDownContainer = styled.div`
   border-radius: 10px;
   box-sizing: border-box;
   margin-right: 8px;
+
   &:last-child {
     margin-right: 0px;
   }
+
   & > img {
     position: absolute;
     top: 30%;

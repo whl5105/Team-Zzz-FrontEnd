@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -9,10 +9,8 @@ import { history } from "../redux/configureStore";
 import Notifications from "../components/notication/Notification";
 import Title from "../components/Title";
 
-
-
 const MyPageNotification = (props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const config = {
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -24,10 +22,18 @@ const MyPageNotification = (props) => {
   };
   firebase.initializeApp(config);
 
-  const notices = useSelector((state) => state.notice.time?state.notice.time.sleepChk:null);
-  const days = useSelector((state) => state.notice.time?state.notice.time.timePA:null);
-  const hours = useSelector((state) => state.notice.time?state.notice.time.hour:null);
-  const minute = useSelector((state) => state.notice.time?state.notice.time.min:null);
+  const notices = useSelector((state) =>
+    state.notice.time ? state.notice.time.sleepChk : null
+  );
+  const days = useSelector((state) =>
+    state.notice.time ? state.notice.time.timePA : null
+  );
+  const hours = useSelector((state) =>
+    state.notice.time ? state.notice.time.hour : null
+  );
+  const minute = useSelector((state) =>
+    state.notice.time ? state.notice.time.min : null
+  );
 
   const [notice, setNotice] = useState(notices);
   const [day, setDay] = useState(days);
@@ -37,13 +43,15 @@ const MyPageNotification = (props) => {
   const [dayActive, setDayActive] = useState(false);
   const [hourActive, setHourActive] = useState(false);
   const [minutesActive, setMinutesActive] = useState(false);
-  React.useEffect(()=>{
+
+  useEffect(() => {
     dispatch(noticeActions.getNoticeDB());
-    if(notices===null){
-      history.push('/mypage')
+
+    if (notices === null) {
+      history.push("/mypage");
     }
-    
-  })
+  });
+
   return (
     <Container>
       <Title backIcon>알림 편집</Title>
