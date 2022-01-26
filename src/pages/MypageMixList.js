@@ -24,7 +24,7 @@ const MypageMixList = (props) => {
       dispatch(asmrActions.getPlayListDB());
     }
   }, []);
-
+  console.log(myMixList);
   useEffect(() => {
     setMyMixList(playListInfo ? playListInfo : null);
   }, [playListInfo]);
