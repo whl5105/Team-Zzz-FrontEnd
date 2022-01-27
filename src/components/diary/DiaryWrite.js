@@ -128,6 +128,7 @@ const DiaryWrite = ({ modalData, close }) => {
               feel={feel}
               scoreColor={scoreColor[sleep]}
             />
+
             <Input
               resetInput
               placeholder="메모를 남겨보세요(최대22자)"
