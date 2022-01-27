@@ -21,7 +21,7 @@ const PlayBar = withRouter((props) => {
   useEffect(() => {
     play();
     setToggle(false);
-  }, []);
+  }, [playbar]);
 
   const play = () => {
     setToggle(false);
