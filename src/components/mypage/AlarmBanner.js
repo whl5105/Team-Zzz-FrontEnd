@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
@@ -6,7 +6,12 @@ import { Icon } from "../../elements";
 
 import { arrow_R_B, mypage_alarm } from "../../static/images/index";
 
+
 const AlarmBanner = (props) => {
+  function Mobile() {
+    return /iPhone|iPad/i.test(navigator.userAgent);
+  }
+  const [ios, setIos] = useState(Mobile());
   const { _onClick } = props;
   const userNotice = useSelector((state) => state.notice);
 
@@ -15,7 +20,7 @@ const AlarmBanner = (props) => {
       <Alarm onClick={_onClick}>
         <p>알림</p>
         <TimeList>
-          {Notification.permission === "granted" ? (
+          {!ios?Notification.permission === "granted" ? (
             <Time>
               {userNotice.time
                 ? userNotice.time.sleepChk === false && "알림 OFF"
@@ -43,7 +48,7 @@ const AlarmBanner = (props) => {
             </Time>
           ) : (
             <Time style={{ fontSize: "20px" }}>{"알림 OFF"}</Time>
-          )}
+          ): null}
           <Icon src={arrow_R_B} alt="arrow_R_B" />
         </TimeList>
       </Alarm>
