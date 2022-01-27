@@ -37,9 +37,10 @@ function detectInAppBrowser(agent) {
   ];
   return inappRegex.some((mobile) => agent.match(mobile));
 }
+const isInapp = detectInAppBrowser(window.navigator.userAgent);
 
 const isMobile = detectMobileDevice(window.navigator.userAgent);
 const isIPhone = detectIphoneDevice(window.navigator.userAgent);
-const isInapp = detectInAppBrowser(window.navigator.userAgent);
+
 
 export { isMobile, isIPhone, isInapp };

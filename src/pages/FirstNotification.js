@@ -1,22 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import ModalPopUp from "../components/ModalPopUp";
 import Notifications from "../components/notication/Notification";
 
 const PushNoticationPop = (props) => {
-  const [notice, setNotice] = React.useState(true);
-  const [day, setDay] = React.useState("PM");
-  const [hour, setHour] = React.useState(12);
-  const [minutes, setMinutes] = React.useState(0);
+  const [notice, setNotice] = useState(true);
+  const [day, setDay] = useState("오후");
+  const [hour, setHour] = useState(12);
+  const [minutes, setMinutes] = useState(0);
 
-  const [dayActive, setDayActive] = React.useState(false);
-  const [hourActive, setHourActive] = React.useState(false);
-  const [minutesActive, setMinutesActive] = React.useState(false);
+  const [dayActive, setDayActive] = useState(false);
+  const [hourActive, setHourActive] = useState(false);
+  const [minutesActive, setMinutesActive] = useState(false);
 
   const { setNoticationModal } = props;
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!notice) {
       setDayActive(false);
       setHourActive(false);

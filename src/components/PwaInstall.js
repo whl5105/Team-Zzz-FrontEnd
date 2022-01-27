@@ -7,15 +7,15 @@ import { Icon } from "../elements";
 import { install_logo, install_download } from "../static/images";
 
 const PwaInstall = (props) => {
-  const { pwaInstall, supported, isInstalled } = useReactPWAInstall();
-  // const [webView, setWebView] = React.useState(true);
+  const { pwaInstall } = useReactPWAInstall();
+
   const handleClick = () => {
     pwaInstall({
       title: "Zzz 다운받기",
       logo: install_logo,
     })
       .then(() => {
-        // setWebView(true);
+        // 설치 성공
       })
       .catch(() => {
         console.log("설치 실패");
@@ -46,9 +46,11 @@ const PwaInstall = (props) => {
     </InstallBox>
   );
 };
+
 const InstallBox = styled.div`
   cursor: pointer;
 `;
+
 const WebInstall = styled.div`
   width: 204px;
   height: 54px;
@@ -61,14 +63,14 @@ const WebInstall = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const WebInstallButton = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.xxxl};
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   color: #101340;
   cursor: pointer;
-
-  
 `;
+
 const MobileInstallButton = styled.div`
   width: 200px;
   height: 48px;
@@ -81,4 +83,5 @@ const MobileInstallButton = styled.div`
   margin: 0 auto;
   margin-bottom: 20px;
 `;
+
 export default PwaInstall;

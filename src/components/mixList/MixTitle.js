@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { history } from "../../redux/configureStore";
@@ -12,7 +12,7 @@ import { reset } from "../../static/images/index";
 
 const PlayList = (props) => {
   const { data, is_edit, close } = props;
-  const [title, setTitle] = React.useState(is_edit ? data.mixName : "");
+  const [title, setTitle] = useState(is_edit ? data.mixName : "");
   const dispatch = useDispatch();
 
   const titleChange = (e) => {

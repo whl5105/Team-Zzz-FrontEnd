@@ -1,7 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { apis } from "../../shared/api/apis";
-import { history } from "../configureStore";
+
 // -- actions --
 const SET_NOTICE = "SET_NOTICE";
 
@@ -9,17 +9,27 @@ const SET_NOTICE = "SET_NOTICE";
 const setNotice = createAction(SET_NOTICE, (notice) => ({ notice }));
 
 // -- initialState --
-const initialState = {
-};
+const initialState = {};
 
 // -- API --
 const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
   const pushToken = localStorage.getItem("pushtoken");
   hour = hour / 1;
   minutes = minutes / 1;
+
   return async function (dispatch, getState, { history }) {
     try {
-      await apis.postNotice(notice, day, hour, minutes, pushToken);
+      let timePA = "";
+
+      if (day === "오전") {
+        timePA = "AM";
+      } else if (day === "오후") {
+        timePA = "PM";
+      } else {
+        timePA = day;
+      }
+
+      await apis.postNotice(notice, timePA, hour, minutes, pushToken);
       const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
       dispatch(setNotice(info));
     } catch (error) {
@@ -28,15 +38,28 @@ const setNoticeDB = (notice, day = "PM", hour = 0, minutes = 0, token) => {
   };
 };
 
-const updateNoticeDB = (notice, day = "AM", hour = 1, minutes = 0) => {
+const updateNoticeDB = (notice, day = "PM", hour = 1, minutes = 0) => {
   const pushToken = localStorage.getItem("pushtoken");
   hour = hour / 1;
   minutes = minutes / 1;
+
   return function (dispatch, getState, { history }) {
     const userIdx = localStorage.getItem("userIdx");
+
+    let timePA = "";
+
+    if (day === "오전") {
+      timePA = "AM";
+    } else if (day === "오후") {
+      timePA = "PM";
+    } else {
+      timePA = day;
+    }
+
     const info = { sleepChk: notice, timePA: day, hour: hour, min: minutes };
+
     apis
-      .putNotice(notice, day, hour, minutes, userIdx, pushToken)
+      .putNotice(notice, timePA, hour, minutes, userIdx, pushToken)
       .then(() => {});
     dispatch(setNotice(info));
   };
@@ -48,7 +71,7 @@ const getNoticeDB = () => {
     apis.getNotice(userIdx).then((response) => {
       const info = {
         sleepChk: response[0].sleepChk,
-        timePA: response[0].timePA,
+        timePA: response[0].timePA === "AM" ? "오전" : "오후",
         hour: response[0].hour,
         min: response[0].min,
       };

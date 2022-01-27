@@ -25,10 +25,10 @@ export const deleteSong = (url) => {
 const Asmr = (props) => {
   const location = useLocation();
   const dispatch = useDispatch();
-
   const [success, setSuccess] = useState(
     useSelector((state) => state.asmr.is_write)
   );
+  const playList = useSelector((state) => state.asmr.playList);
 
   const [song1, setSong1] = useState(new Audio());
   const [song2, setSong2] = useState(new Audio());
@@ -40,13 +40,12 @@ const Asmr = (props) => {
   );
 
   const [imageUrl, setImageUrl] = useState(asmr_category_all);
-  const [soundTrack, setSoundTrack] = useState([]);
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
-  const playListInfo = useSelector((state) => state.asmr.playList);
+  const [soundTrack, setSoundTrack] = useState([]);
   const [play, setPlay] = useState([]);
 
   useEffect(() => {
-    if (!playListInfo) {
+    if (!playList) {
       dispatch(asmrActions.getPlayListDB());
     }
   }, []);
@@ -62,7 +61,7 @@ const Asmr = (props) => {
         clearTimeout(timeout);
       };
     }
-  }, [success]);
+  }, []);
 
   useEffect(() => {
     if (getCategory === "전체") {
@@ -135,10 +134,14 @@ const Asmr = (props) => {
     } else {
       if (play.length > 3) {
         window.alert("음원은 최대 4개까지 담으실 수 있습니다.");
+
+        return;
       } else {
         songSetting(asmrUrl, iconUrl, title);
         songSelect(asmrUrl);
       }
+
+      history.setToggle(false);
     }
   };
 

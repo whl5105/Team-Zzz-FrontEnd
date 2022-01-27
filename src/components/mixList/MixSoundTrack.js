@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { history } from "../../redux/configureStore";
 
 import { Icon } from "../../elements/index";
-
 import { mix_play } from "../../static/images/index";
 
 const MixSoundTrack = (props) => {
@@ -40,7 +39,7 @@ const MixSoundTrack = (props) => {
     }
 
     setPlay(arr);
-  }, [history.play]);
+  }, []);
 
   const playInitial = () => {
     if (history.audio1) {
@@ -89,12 +88,12 @@ const MixSoundTrack = (props) => {
 
   const playSoundSetting = () => {
     if (mix1) {
-      song1.src = mix1.asmrUrl; 
+      song1.src = mix1.asmrUrl;
       song1.volume = Math.ceil(mix1.sound * 100) / 100;
-      history.audio1 = song1; 
-      history.setSong1 = setSong1; 
-      history.icon1 = mix1.iconUrl; 
-      history.state1 = mix1.asmrUrl; 
+      history.audio1 = song1;
+      history.setSong1 = setSong1;
+      history.icon1 = mix1.iconUrl;
+      history.state1 = mix1.asmrUrl;
       history.title1 = mix1.title;
       song1.play();
     }

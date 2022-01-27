@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { actionCreators as asmrActions } from "../../redux/modules/asmr";
+
+import { actionCreators as asmrActions } from "../redux/modules/asmr";
 import { useDispatch } from "react-redux";
 
-import ModalPopUp from "../ModalPopUp";
-import { Button } from "../../elements";
+import ModalPopUp from "./ModalPopUp";
+import { Button } from "../elements";
 
 const MixDeletePopup = (props) => {
   const dispatch = useDispatch();
-  const { close, data } = props;
+  const { close, data, diary, deleteClick } = props;
 
   const deleteMix = () => {
     dispatch(asmrActions.deletePlayListDB(data.playlistIdx));
@@ -18,7 +19,11 @@ const MixDeletePopup = (props) => {
   return (
     <ModalPopUp close={close}>
       <Container>
-        <h3>이 믹스를 정말로 삭제 할까요?</h3>
+        <h3>
+          {diary
+            ? "기록을 정말로 삭제 할까요?"
+            : "이 믹스를 정말로 삭제 할까요?"}
+        </h3>
         <ButtonBox>
           <Button
             type="boderBtn"
@@ -27,7 +32,11 @@ const MixDeletePopup = (props) => {
               close();
             }}
           />
-          <Button text="삭제" _onClick={deleteMix} />
+          {diary ? (
+            <Button text="삭제" _onClick={deleteClick} />
+          ) : (
+            <Button text="삭제" _onClick={deleteMix} />
+          )}
         </ButtonBox>
       </Container>
     </ModalPopUp>
@@ -36,9 +45,9 @@ const MixDeletePopup = (props) => {
 
 const Container = styled.div`
   position: relative;
-  width: 331px;
   padding: 20px;
   box-sizing: border-box;
+
   & h3 {
     color: ${({ theme }) => theme.colors.gray_9};
     font-size: ${({ theme }) => theme.fontSizes.lg};
@@ -50,9 +59,11 @@ const Container = styled.div`
 const ButtonBox = styled.div`
   display: flex;
   margin-top: 24px;
+
   & Button {
     margin-right: 10px;
   }
+
   & Button:last-child {
     margin-right: 0;
   }

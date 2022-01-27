@@ -11,7 +11,6 @@ import List from "../components/mypage/List";
 import AlarmBanner from "../components/mypage/AlarmBanner";
 
 const Mypage = (props) => {
-  console.log(Notification.permission);
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
@@ -24,6 +23,7 @@ const Mypage = (props) => {
 
   useEffect(() => {
     setLogin(token);
+
     if (token && !ios) {
       dispatch(noticeActions.getNoticeDB());
     }
@@ -74,7 +74,6 @@ const Mypage = (props) => {
   );
 };
 
-// --- styled-components ---
 const Container = styled.div`
   width: 100%;
   height: 100vh;

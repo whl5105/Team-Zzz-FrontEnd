@@ -7,14 +7,15 @@ import ModalPopUp from "../ModalPopUp";
 import FeelBox from "../diary/FeelBox";
 import SleepBox from "../diary/SleepBox";
 import DayCharater from "../diary/DayCharater";
+import DeletePopup from "../DeletePopup";
 import { Input, Button, Charater } from "../../elements/index";
 
 import { reset } from "../../static/images/index";
 
 const DiaryWrite = ({ modalData, close }) => {
   const dispatch = useDispatch();
+
   const diaryList = useSelector((state) => state.diary.diaryList);
-  // 다이어리 정보
   const [recordDate, setRecordDate] = useState({
     Data: `${modalData.year}/${modalData.month}/${modalData.day}`,
     yearMonth: modalData.yearMonth,
@@ -25,7 +26,6 @@ const DiaryWrite = ({ modalData, close }) => {
     sleep: 0,
     sleepScore: 0,
   });
-
   const { Data, yearMonth, day, comment, feel, feelScore, sleep, sleepScore } =
     recordDate;
   const isDay = recordDate ? true : false;
@@ -34,6 +34,7 @@ const DiaryWrite = ({ modalData, close }) => {
     : null;
   const [dayData, setDayData] = React.useState(diaryData ? diaryData : null);
   const [edit, setEdit] = React.useState(false);
+  const [deletePopup, setDeletePopup] = React.useState(false);
 
   const scoreColor = [
     "#A1A1A1",
@@ -58,7 +59,7 @@ const DiaryWrite = ({ modalData, close }) => {
     }
   }, []);
 
-  //자고 일어난후 느낌 클릭시
+  // 자고 일어난후 느낌 클릭 시
   const feelClick = (e) => {
     setRecordDate({
       ...recordDate,
@@ -66,7 +67,8 @@ const DiaryWrite = ({ modalData, close }) => {
       feelScore: Number(e.target.dataset.score),
     });
   };
-  //수면시간 클릭시
+
+  // 수면시간 클릭시
   const sleepClick = (e) => {
     setRecordDate({
       ...recordDate,
@@ -74,20 +76,23 @@ const DiaryWrite = ({ modalData, close }) => {
       sleepScore: Number(e.target.dataset.score),
     });
   };
-  //comment 입력
+
+  // comment 입력
   const inputChange = (e) => {
     setRecordDate({
       ...recordDate,
       comment: e.target.value,
     });
   };
-  //comment 초기화
+
+  // comment 초기화
   const onReset = (e) => {
     setRecordDate({
       ...recordDate,
       [e.target.name]: "",
     });
   };
+
   const addClick = async () => {
     if (feel === 0 || sleep === 0) {
       window.alert("두개 다 선택 해야 합니다.");
@@ -105,132 +110,149 @@ const DiaryWrite = ({ modalData, close }) => {
       comment,
       diaryIdx: dayData.diaryIdx,
     };
+
     await dispatch(diaryActions.editDiaryDB(yearMonth, diaryListInfo));
     close();
   };
 
   const deleteClick = async () => {
+    console.log("ddsds");
     await dispatch(diaryActions.deleteDiaryDB(yearMonth, dayData.diaryIdx));
     close();
   };
 
+  const closeModal = () => {
+    setDeletePopup(false);
+  };
   return (
-    <ModalPopUp close={close} height="100%">
-      <Container>
-        {!dayData ? (
-          <>
-            <DayCharater
-              newData={Data}
-              feel={feel}
-              scoreColor={scoreColor[sleep]}
-            />
-
-            <Input
-              resetInput
-              placeholder="메모를 남겨보세요(최대22자)"
-              name="comment"
-              value={comment}
-              onChange={inputChange}
-              src={reset}
-              alt="resetButton"
-              onClick={onReset}
-              height="52px"
-              marginT="20px"
-            />
-            <ScoreGrop>
-              <FeelBox edit _onClick={feelClick} previewFeel={feel} />
-              <SleepBox edit _onClick={sleepClick} previewSleep={sleep} />
-            </ScoreGrop>
-            <ButtonBox>
-              <Button
-                type="boderBtn"
-                _onClick={() => {
-                  close();
-                }}
-                text="취소"
+    <>
+      <ModalPopUp close={close} height="100%">
+        <Container>
+          {!dayData ? (
+            <>
+              <DayCharater
+                newData={Data}
+                feel={feel}
+                scoreColor={scoreColor[sleep]}
               />
-              <Button _onClick={addClick} text="완료" />
-            </ButtonBox>
-          </>
-        ) : (
-          <>
-            {edit ? (
-              <>
-                <DayCharater
-                  newData={Data}
-                  feel={feel}
-                  scoreColor={scoreColor[sleep]}
-                />
-                <Input
-                  resetInput
-                  placeholder="메모를 남겨보세요(최대22자)"
-                  name="comment"
-                  value={comment}
-                  onChange={inputChange}
-                  src={reset}
-                  alt="resetButton"
-                  onClick={onReset}
-                  height="52px"
-                  marginT="20px"
-                />
-                <ScoreGrop>
-                  <FeelBox edit _onClick={feelClick} previewFeel={feel} />
-                  <SleepBox edit _onClick={sleepClick} previewSleep={sleep} />
-                </ScoreGrop>
-                <ButtonBox>
-                  <Button
-                    type="boderBtn"
-                    _onClick={() => {
-                      close();
-                    }}
-                    text="취소"
-                  >
-                    취소
-                  </Button>
-                  <Button text="완료" _onClick={editClick} />
-                </ButtonBox>
-              </>
-            ) : (
-              <>
-                <DayCharater
-                  newData={Data}
-                  feel={feel}
-                  scoreColor={scoreColor[sleep]}
-                />
 
-                {comment.length > 0 && (
-                  <Input
-                    type="text"
-                    placeholder={comment}
-                    height="52px"
-                    disabled
+              <Input
+                resetInput
+                placeholder="메모를 남겨보세요(최대22자)"
+                name="comment"
+                value={comment}
+                onChange={inputChange}
+                src={reset}
+                alt="resetButton"
+                onClick={onReset}
+                height="52px"
+                marginT="20px"
+              />
+              <ScoreGrop>
+                <FeelBox edit _onClick={feelClick} previewFeel={feel} />
+                <SleepBox edit _onClick={sleepClick} previewSleep={sleep} />
+              </ScoreGrop>
+              <ButtonBox>
+                <Button
+                  type="boderBtn"
+                  _onClick={() => {
+                    close();
+                  }}
+                  text="취소"
+                />
+                <Button _onClick={addClick} text="완료" />
+              </ButtonBox>
+            </>
+          ) : (
+            <>
+              {edit ? (
+                <>
+                  <DayCharater
+                    newData={Data}
+                    feel={feel}
+                    scoreColor={scoreColor[sleep]}
                   />
-                )}
-                <ScoreGrop>
-                  <FeelBox previewFeel={feel} />
-                  <SleepBox previewSleep={sleep} />
-                </ScoreGrop>
-                <ButtonBox>
-                  <Button
-                    type="boderBtn"
-                    text="기록 삭제"
-                    _onClick={deleteClick}
-                  ></Button>
-                  <Button
-                    text="수정"
-                    _onClick={() => {
-                      setEdit(!edit);
-                    }}
-                  >
-                    수정
-                  </Button>
-                </ButtonBox>
-              </>
-            )}
-          </>
+                  <Input
+                    resetInput
+                    placeholder="메모를 남겨보세요(최대22자)"
+                    name="comment"
+                    value={comment}
+                    onChange={inputChange}
+                    src={reset}
+                    alt="resetButton"
+                    onClick={onReset}
+                    height="52px"
+                    marginT="20px"
+                  />
+                  <ScoreGrop>
+                    <FeelBox edit _onClick={feelClick} previewFeel={feel} />
+                    <SleepBox edit _onClick={sleepClick} previewSleep={sleep} />
+                  </ScoreGrop>
+                  <ButtonBox>
+                    <Button
+                      type="boderBtn"
+                      _onClick={() => {
+                        close();
+                      }}
+                      text="취소"
+                    >
+                      취소
+                    </Button>
+                    <Button text="완료" _onClick={editClick} />
+                  </ButtonBox>
+                </>
+              ) : (
+                <>
+                  <DayCharater
+                    newData={Data}
+                    feel={feel}
+                    scoreColor={scoreColor[sleep]}
+                  />
+
+                  {comment.length > 0 && (
+                    <Input
+                      type="text"
+                      placeholder={comment}
+                      height="52px"
+                      disabled
+                    />
+                  )}
+                  <ScoreGrop>
+                    <FeelBox previewFeel={feel} />
+                    <SleepBox previewSleep={sleep} />
+                  </ScoreGrop>
+                  <ButtonBox>
+                    <Button
+                      type="boderBtn"
+                      text="기록 삭제"
+                      _onClick={() => {
+                        setDeletePopup(true);
+                      }}
+                    ></Button>
+                    <Button
+                      text="수정"
+                      _onClick={() => {
+                        setEdit(!edit);
+                      }}
+                    >
+                      수정
+                    </Button>
+                  </ButtonBox>
+                </>
+              )}
+            </>
+          )}
+        </Container>
+        {deletePopup && (
+          <DeletePopup
+            diary
+            deleteClick={deleteClick}
+            setDeletePopup={setDeletePopup}
+            close={closeModal}
+          />
         )}
-      </Container>
-    </ModalPopUp>
+      </ModalPopUp>
+    </>
   );
 };
 
@@ -253,6 +275,7 @@ const ButtonBox = styled.div`
   & Button {
     margin-right: 9px;
   }
+
   & Button:last-child {
     margin-right: 0;
   }
