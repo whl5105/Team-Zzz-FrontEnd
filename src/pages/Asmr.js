@@ -118,13 +118,6 @@ const Asmr = (props) => {
   }, [asmrInfo, getCategory]);
 
   const select = (asmrUrl, iconUrl, title) => {
-    if (play.length > 3) {
-      window.alert("음원은 최대 4개까지 담으실 수 있습니다.");
-      return;
-    }
-
-    history.setToggle(false);
-
     if (play.includes(asmrUrl)) {
       let arr = [...play];
       arr = arr.filter((item) => {
@@ -138,10 +131,18 @@ const Asmr = (props) => {
 
       songInitialzation(asmrUrl);
       deleteSong(asmrUrl);
-    }
+    } else {
+      if (play.length > 3) {
+        window.alert("음원은 최대 4개까지 담으실 수 있습니다.");
 
-    songSetting(asmrUrl, iconUrl, title);
-    songSelect(asmrUrl);
+        return;
+      } else {
+        songSetting(asmrUrl, iconUrl, title);
+        songSelect(asmrUrl);
+      }
+
+      history.setToggle(false);
+    }
   };
 
   const songInitialzation = (asmrUrl) => {
