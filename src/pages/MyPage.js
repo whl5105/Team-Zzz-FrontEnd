@@ -11,7 +11,6 @@ import List from "../components/mypage/List";
 import AlarmBanner from "../components/mypage/AlarmBanner";
 
 const Mypage = (props) => {
-  console.log(Notification.permission);
   function Mobile() {
     return /iPhone|iPad/i.test(navigator.userAgent);
   }
