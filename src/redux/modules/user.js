@@ -21,7 +21,8 @@ const initialState = {
     userId: "test01",
     noticeSet: false,
   },
-  errMessage: "",
+  login_errMessage: "",
+  signup_errMessage: "",
   is_login: false,
   is_signup: false,
 };
@@ -62,7 +63,6 @@ export const loginDB =
       history.push("/");
     } catch (err) {
       window.alert(err.response.data.errorMessage);
-      dispatch(err_signup(err.response.data.errorMessage));
     }
   };
 
@@ -88,8 +88,7 @@ export const socialLoginDB =
 
       history.push("/");
     } catch (err) {
-      window.alert(err);
-      window.alert("없는 회원정보 입니다! 회원가입을 해주세요!");
+      window.alert("회원가입에 실패 했습니다! 다시 한번 시도 해주세요");
       console.log("socialLoginDB Error : ", err);
     }
   };
@@ -100,9 +99,7 @@ const logoutDB = () => {
     localStorage.removeItem("userIdx");
     localStorage.removeItem("token");
     localStorage.removeItem("noticeSet");
-    if (localStorage.getItem("kakao_065a0e826bf13ae48eda84268edde2d6")) {
-      localStorage.removeItem("kakao_065a0e826bf13ae48eda84268edde2d6");
-    }
+    
     alert("로그아웃 되었습니다.");
     history.push("/");
   };
@@ -126,7 +123,7 @@ export default handleActions(
       }),
     [ERR_SIGNUP]: (state, action) =>
       produce(state, (draft) => {
-        draft.errMessage = action.payload.err;
+        draft.signup_errMessage = action.payload.err;
       }),
   },
   initialState

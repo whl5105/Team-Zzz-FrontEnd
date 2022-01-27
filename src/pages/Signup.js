@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -6,14 +6,12 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore.js";
 
 import { IdCheck, PwdCheck } from "../shared/common";
-
 import { Input } from "../elements";
-
 import { reset } from "../static/images";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
-  const errMessage = useSelector((store) => store.user.errMessage);
+  const errMessage = useSelector((store) => store.user.signup_errMessage);
 
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
@@ -56,7 +54,7 @@ const Signup = (props) => {
     const pwdCurrent = e.target.value;
     setPwdCheck(pwdCurrent);
     if (pwd === pwdCurrent) {
-      setPwdCheckMessage("비밀번호를 똑같이 입력했어요 : )");
+      setPwdCheckMessage("비밀번호를 똑같이 입력했어요 :)");
       setIsPwdCheck(true);
     } else {
       setPwdCheckMessage("비밀번호가 틀려요. 다시 확인해주세요 ㅜ ㅜ");
@@ -81,7 +79,7 @@ const Signup = (props) => {
     <Container>
       <Title>회원가입</Title>
       <Input
-        resetInput
+        resetInput={id === "" || id === undefined ? false : true}
         placeholder="아이디"
         type="text"
         value={id}
@@ -92,6 +90,18 @@ const Signup = (props) => {
           setId("");
         }}
       />
+      {/* <Input
+        ref={id}
+        resetInput={id === "" || id === undefined ? false : true}
+        placeholder="아이디"
+        type="text"
+        name="id"
+        value={id}
+        onChange={onChange}
+        src={reset}
+        alt="resetButton"
+        onClick={onReset}
+      /> */}
 
       {id.length > 0 ? (
         <Span className={`${isId ? "success" : "error"}`}>{idMessage}</Span>
@@ -100,7 +110,7 @@ const Signup = (props) => {
       )}
 
       <Input
-        resetInput
+        resetInput={pwd === "" || pwd === undefined ? false : true}
         placeholder="비밀번호"
         type="password"
         value={pwd}
@@ -120,11 +130,16 @@ const Signup = (props) => {
       )}
 
       <Input
+        resetInput={pwd_check === "" || pwd_check === undefined ? false : true}
         placeholder="비밀번호 확인"
         type="password"
         value={pwd_check}
         onChange={onChangePasswordCheck}
+        src={reset}
         height="60px"
+        onClick={() => {
+          setPwdCheck("");
+        }}
       />
       {pwd_check.length > 0 ? (
         <Span className={`${isPwdCheck ? "success" : "error"}`}>
@@ -137,7 +152,6 @@ const Signup = (props) => {
       <Button onClick={signUpClick}>회원가입</Button>
 
       <Login
-        type="submit"
         onClick={() => {
           history.push("/user/login");
         }}

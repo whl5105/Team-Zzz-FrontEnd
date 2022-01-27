@@ -6,13 +6,13 @@ import Guidance from "../asmr/Guidance";
 import { volumeCircle, volumeLine, close } from "../../static/images/index";
 
 const SoundTrack = (props) => {
-  const Mobile = () => {
-    return (ios = /iPhone|iPad/i.test(navigator.userAgent));
-  };
   const [effect, setEffect] = useState(false);
 
-  const Click = () => {
-    dragElement(document.getElementById(props.id));
+  let [b, setB] = useState(0);
+  let [ios, setMobile] = useState(false);
+
+  const Mobile = () => {
+    return (ios = /iPhone|iPad/i.test(navigator.userAgent));
   };
 
   useEffect(() => {
@@ -20,8 +20,9 @@ const SoundTrack = (props) => {
     setEffect(true);
   }, []);
 
-  let [b, setB] = useState(0);
-  let [ios, setMobile] = useState(false);
+  const Click = () => {
+    dragElement(document.getElementById(props.id));
+  };
 
   function dragElement(elmnt) {
     Mobile();

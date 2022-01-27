@@ -15,12 +15,12 @@ import {
   main_space,
 } from "../static/images";
 
-import firebase from "firebase/compat/app"; //firebase모듈을 import해줘야 합니다.
+import firebase from "firebase/compat/app"; 
 import { getMessaging, getToken } from "firebase/messaging";
 
 const Main = (props) => {
   if (!isIPhone) {
-    const config = {
+    const config = { 
       apiKey: process.env.REACT_APP_API_KEY,
       authDomain: process.env.REACT_APP_AUTH_DOMAIN,
       projectId: process.env.REACT_APP_PROJECT_ID,
@@ -32,29 +32,25 @@ const Main = (props) => {
     firebase.initializeApp(config);
 
     const messaging = getMessaging();
-
     getToken(messaging, {
       vapidKey: process.env.REACT_APP_VAPID_KEY,
     })
       .then((currentToken) => {
         localStorage.setItem("pushtoken", currentToken);
         if (currentToken) {
-          permission = true;
-          if (!noticeSet && token && !ios && permission) {
+          setPermission(true);
+          if (!noticeSet && token && !isIPhone && permission) {
             setNoticationModal(true);
           }
         }
       })
       .catch((err) => {
-        if (!ios) {
+        if (!isIPhone) {
           console.log("An error occurred while retrieving token. ", err);
         }
       });
   }
-  function Mobile() {
-    return /iPhone|iPad/i.test(navigator.userAgent);
-  }
-  const [ios, setIos] = useState(Mobile()); // IOS이면 true, 나머지는 false
+
   const [noticationModal, setNoticationModal] = useState(false);
   const location = useLocation();
   let [permission, setPermission] = useState(false);
@@ -74,10 +70,10 @@ const Main = (props) => {
       history.push(location.route);
     }
   }, []);
+
   return (
     <>
       <Container>
-        {/* <br></br> */}
         <Swiper />
         <Title>당신의 편안한 밤을 위해</Title>
         <Category
@@ -128,6 +124,7 @@ const Container = styled.div`
   position: relative;
   top: 0;
   left: 0;
+  
   &::-webkit-scrollbar {
     display: none;
   }

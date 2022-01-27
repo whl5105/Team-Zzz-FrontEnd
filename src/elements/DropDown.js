@@ -11,15 +11,42 @@ const Dropdown = (props) => {
     dayActive,
     hourActive,
     minutesActive,
-    dayItems,
-    hourItems,
-    minutesItems,
     setDayActive,
     setHourActive,
     setMinutesActive,
     state,
     title,
   } = props;
+
+  const dayItems = ["오전", "오후"];
+  const hourItems = [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+  ];
+  const minutesItems = [
+    "00",
+    "05",
+    "10",
+    "15",
+    "20",
+    "25",
+    "30",
+    "35",
+    "40",
+    "45",
+    "50",
+    "55",
+  ];
 
   const onActiveToggle = () => {
     const refId = timeRef.current.id;
@@ -120,6 +147,7 @@ const Dropdown = (props) => {
           </>
         )}
       </DropdownBody>
+
       {dayActive && (
         <DropdownMenu height="67px" id="type2" isActive={dayActive}>
           {dayItems &&
@@ -198,9 +226,11 @@ const DisabledDropDownContainer = styled.div`
   border-radius: 10px;
   box-sizing: border-box;
   margin-right: 8px;
+
   &:last-child {
     margin-right: 0px;
   }
+
   & > img {
     position: absolute;
     top: 30%;
@@ -221,7 +251,7 @@ const DropdownBody = styled.div`
 
   & > p {
     width: 100%;
-    line-height: 44px;
+    padding: 0px;
     text-align: center;
   }
 

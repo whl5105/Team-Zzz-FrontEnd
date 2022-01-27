@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, Profiler, useCallback } from "react";
 import styled from "styled-components";
 
 import { ReactComponent as Feel1 } from "../static/images/character/feel1.svg";
@@ -7,7 +7,7 @@ import { ReactComponent as Feel3 } from "../static/images/character/feel3.svg";
 import { ReactComponent as Feel4 } from "../static/images/character/feel4.svg";
 import { ReactComponent as Feel5 } from "../static/images/character/feel5.svg";
 
-const Charater = (props) => {
+function Charater(props) {
   const {
     shape,
     size,
@@ -33,58 +33,61 @@ const Charater = (props) => {
   if (shape === "feel") {
     return (
       <>
-        <FeelBox>
-          <ClickBox
-            onClick={_onClick}
-            data-score={props.score}
-            data-value={props.feelNumber}
-          />
-          <Feel {...styles}>
-            {props.feelNumber === 0 && (
-              <ImgIcon
-                {...styles}
-                style={{ zIndex: "3" }}
-                src={require(`../static/images/character/feel${props.feelNumber}.svg`)}
-              />
-            )}
-            {props.feelNumber === 1 && (
-              <Feel1
-                fill={props.scoreColor}
-                width={props.size}
-                height={props.size}
-              />
-            )}
-            {props.feelNumber === 2 && (
-              <Feel2
-                fill={props.scoreColor}
-                width={props.size}
-                height={props.size}
-              />
-            )}
-            {props.feelNumber === 3 && (
-              <Feel3
-                fill={props.scoreColor}
-                width={props.size}
-                height={props.size}
-              />
-            )}
-            {props.feelNumber === 4 && (
-              <Feel4
-                fill={props.scoreColor}
-                width={props.size}
-                height={props.size}
-              />
-            )}
-            {props.feelNumber === 5 && (
-              <Feel5
-                fill={props.scoreColor}
-                width={props.size}
-                height={props.size}
-              />
-            )}
-          </Feel>
-        </FeelBox>
-        <p>{props.text}</p>
+        {/* <Profiler id="DayCharater" onRender={onRenderCallback}> */}
+          <FeelBox>
+            <ClickBox
+              onClick={_onClick}
+              data-score={props.score}
+              data-value={props.feelNumber}
+            />
+            <Feel {...styles}>
+              {props.feelNumber === 0 && (
+                <ImgIcon
+                  {...styles}
+                  style={{ zIndex: "3" }}
+                  src={require(`../static/images/character/feel${props.feelNumber}.svg`)}
+                  alt="Icon"
+                />
+              )}
+              {props.feelNumber === 1 && (
+                <Feel1
+                  fill={props.scoreColor}
+                  width={props.size}
+                  height={props.size}
+                />
+              )}
+              {props.feelNumber === 2 && (
+                <Feel2
+                  fill={props.scoreColor}
+                  width={props.size}
+                  height={props.size}
+                />
+              )}
+              {props.feelNumber === 3 && (
+                <Feel3
+                  fill={props.scoreColor}
+                  width={props.size}
+                  height={props.size}
+                />
+              )}
+              {props.feelNumber === 4 && (
+                <Feel4
+                  fill={props.scoreColor}
+                  width={props.size}
+                  height={props.size}
+                />
+              )}
+              {props.feelNumber === 5 && (
+                <Feel5
+                  fill={props.scoreColor}
+                  width={props.size}
+                  height={props.size}
+                />
+              )}
+            </Feel>
+          </FeelBox>
+          <p>{props.text}</p>
+        {/* </Profiler> */}
       </>
     );
   }
@@ -106,6 +109,7 @@ const Charater = (props) => {
   if (shape === "charater") {
     return (
       <>
+        {/* <Profiler id="DayCharater" onRender={onRenderCallback}> */}
         <IconBox {...styles}>
           {props.feelNumber === 0 && (
             <ImgIcon
@@ -114,6 +118,7 @@ const Charater = (props) => {
               style={{ zIndex: "3" }}
               data-value={props.feelNumber}
               src={require(`../static/images/character/feel${props.feelNumber}.svg`)}
+              alt="Icon"
             />
           )}
           {props.feelNumber === 1 && (
@@ -157,12 +162,13 @@ const Charater = (props) => {
             />
           )}
         </IconBox>
+        {/* </Profiler> */}
       </>
     );
   }
 
   return <></>;
-};
+}
 
 Charater.defaultProps = {
   shape: "circle",
@@ -193,6 +199,7 @@ const ImgIcon = styled.img`
   border-radius: 50%;
   ${(props) => (props.is_click ? `border : 1px solid red;` : ``)};
   fill: ${(props) => (props.bg ? props.bg : "#F3F3F3")};
+
   svg path {
     fill: ${(props) => props.sleepColor};
   }
@@ -219,6 +226,7 @@ const FeelBox = styled.div`
   height: 50px;
   display: flex;
   justify-content: center;
+  
   & p {
     display: black;
   }
@@ -247,4 +255,4 @@ const ClickBox = styled.div`
   top: 0;
 `;
 
-export default Charater;
+export default memo(Charater);

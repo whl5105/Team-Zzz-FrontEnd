@@ -63,10 +63,12 @@ const TextBox = styled.ul`
   font-weight: ${({ theme }) => theme.fontWeight.Medium};
   padding: 30px 30px 22px;
   color: #aaa;
+
   & li {
     list-style: none;
     padding-bottom: 10px;
   }
+  
   & li::before {
     content: "• ";
   }

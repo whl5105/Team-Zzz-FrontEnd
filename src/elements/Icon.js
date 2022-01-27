@@ -28,11 +28,7 @@ const Icon = (props) => {
     padding: padding,
   };
 
-  return (
-    <>
-      <ArrowIcon {...styles} alt={alt} onClick={_onClick} />
-    </>
-  );
+  return <ArrowIcon {...styles} alt={alt} onClick={_onClick} />;
 };
 
 Icon.defaultProps = {

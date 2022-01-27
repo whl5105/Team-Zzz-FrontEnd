@@ -3,9 +3,11 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as noticeActions } from "../../redux/modules/notice";
-import axios from "axios";
+import { getMessaging, getToken } from "firebase/messaging";
 
 import { DropDown, Toggle, Button } from "../../elements/index";
+
+let swRegist = null;
 
 const Notifications = (props) => {
   const dispatch = useDispatch();
@@ -28,38 +30,58 @@ const Notifications = (props) => {
     state,
     setNoticationModal,
   } = props;
+  const messaging = getMessaging();
 
-  const dayItems = ["AM", "PM"];
-  const hourItems = [
-    "01",
-    "02",
-    "03",
-    "04",
-    "05",
-    "06",
-    "07",
-    "08",
-    "09",
-    "10",
-    "11",
-    "12",
-  ];
-  const minutesItems = [
-    "00",
-    "05",
-    "10",
-    "15",
-    "20",
-    "25",
-    "30",
-    "35",
-    "40",
-    "45",
-    "50",
-    "55",
-  ];
+  getToken(messaging, {
+    vapidKey: process.env.REACT_APP_VAPID_KEY,
+  }).then(() => {
+    swRegist = messaging.swRegistration;
+  });
+
+  // Push 초기화
+  const initPush = (isSubscribed) => {
+    if (isSubscribed) {
+      subscribe();
+    } else {
+      unsubscribe();
+    }
+  };
+
+  // 알림 구독
+  function subscribe() {
+    swRegist.pushManager
+      .subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: process.env.REACT_APP_APPLICATION_SERVER_KEY,
+      })
+      .then((subscription) => {})
+      .catch((err) => {
+        console.log("Failed to subscribe the user: ", err);
+      });
+  }
+
+  // 알림 구독 취소
+  function unsubscribe() {
+    swRegist.pushManager
+      .getSubscription()
+      .then((subscription) => {
+        if (subscription) {
+          return subscription // 토글 시 메세지 안날라오게 하는 방법
+            .unsubscribe()
+            .then((res) => {})
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      })
+      .then(() => {})
+      .catch((error) => {
+        console.log("Error unsubscribing", error);
+      });
+  }
 
   const send = () => {
+    initPush(notice);
     if (state === "set") {
       if (!notice) {
         dispatch(noticeActions.setNoticeDB(notice));
@@ -100,7 +122,6 @@ const Notifications = (props) => {
               setMinutesActive={setMinutesActive}
               condition={""}
               title={day}
-              dayItems={dayItems}
               state={setDay}
             />
             <DropDown
@@ -110,7 +131,6 @@ const Notifications = (props) => {
               setMinutesActive={setMinutesActive}
               condition={"시"}
               title={hour}
-              hourItems={hourItems}
               state={setHour}
             />
             <DropDown
@@ -120,14 +140,13 @@ const Notifications = (props) => {
               setMinutesActive={setMinutesActive}
               condition={"분"}
               title={minutes === 0 ? "00" : minutes}
-              minutesItems={minutesItems}
               state={setMinutes}
             />
           </Wrap>
         </>
       ) : (
         <Wrap>
-          <DropDown state="disabled" condition={""} title={"PM"} />
+          <DropDown state="disabled" condition={""} title={"오후"} />
           <DropDown state="disabled" condition={"시"} title={"12"} />
           <DropDown state="disabled" condition={"분"} title={"00"} />
         </Wrap>
@@ -140,7 +159,6 @@ const Notifications = (props) => {
   );
 };
 
-// --- styled-components ---
 const Wrap = styled.div`
   display: flex;
   justify-content: space-evenly;

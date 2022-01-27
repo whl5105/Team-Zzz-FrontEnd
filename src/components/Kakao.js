@@ -4,7 +4,6 @@ import styled from "styled-components";
 import KakaoLogin from "react-kakao-login";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { history } from "../redux/configureStore.js";
 
 import { kakao } from "../static/images/index";
 import Success from "../components/Success";
@@ -12,13 +11,20 @@ import Success from "../components/Success";
 const Kakao = (props) => {
   const dispatch = useDispatch();
   const [kakaoLoging, setKakaoLoging] = useState(false);
-  const kakaoKey = process.env.REACT_APP_JS_KEY;
+  const token = process.env.REACT_APP_JS_KEY;
+
+  React.useEffect(() => {
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init(token);
+    }
+  }, []);
 
   const socialLoginSuccess = (res) => {
-    console.log("소셜 로그인 성공");
     setKakaoLoging(true);
     dispatch(userActions.socialLoginDB(res.profile.id));
+  };
 
+  const loading = () => {
     const kakaoLoading = setTimeout(() => {
       setKakaoLoging(false);
     }, 2000);
@@ -37,24 +43,24 @@ const Kakao = (props) => {
     width: "100%",
   };
 
-  const socialLoginFail = (res) => {
-    console.log("소셜 로그인 실패");
-  };
-
   return (
     <>
-      <KakaoLogin
-        jsKey={kakaoKey}
-        onSuccess={(res) => socialLoginSuccess(res)}
-        onFailure={(res) => socialLoginFail(res)}
-        getProfile={true}
-        style={socialLoginStyle}
-      >
-        <Icon></Icon>
-        카카오 로그인
-      </KakaoLogin>
+      <div onClick={loading}>
+        <KakaoLogin
+          token={token}
+          onSuccess={(res) => socialLoginSuccess(res)}
+          onFailure={(res) => console.log("소셜 로그인 실패")}
+          getProfile={true}
+          style={socialLoginStyle}
+        >
+          <Icon></Icon>
+          카카오 로그인
+        </KakaoLogin>
+      </div>
 
-      {kakaoLoging && <Success isClock alt="loading" text="조금만 기다려주세요" />}
+      {kakaoLoging && (
+        <Success isClock alt="loading" text="조금만 기다려주세요" />
+      )}
     </>
   );
 };

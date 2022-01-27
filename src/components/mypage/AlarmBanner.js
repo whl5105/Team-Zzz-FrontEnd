@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
@@ -6,7 +6,12 @@ import { Icon } from "../../elements";
 
 import { arrow_R_B, mypage_alarm } from "../../static/images/index";
 
+
 const AlarmBanner = (props) => {
+  function Mobile() {
+    return /iPhone|iPad/i.test(navigator.userAgent);
+  }
+  const [ios, setIos] = useState(Mobile());
   const { _onClick } = props;
   const userNotice = useSelector((state) => state.notice);
 
@@ -15,25 +20,36 @@ const AlarmBanner = (props) => {
       <Alarm onClick={_onClick}>
         <p>알림</p>
         <TimeList>
-          <Time>
-            {userNotice.time.sleepChk === false && "알림 OFF"}
-            {userNotice.time.sleepChk
-              ? userNotice.time.timePA === "AM"
-                ? "오전"
-                : "오후"
-              : null}
-            &nbsp;
-            <span>
-              {userNotice.time.sleepChk ? userNotice.time.hour : null}
-              {userNotice.time.sleepChk ? `:` : null}
-              {userNotice.time.sleepChk
-                ? userNotice.time.min < 10
-                  ? "0" + userNotice.time.min
-                  : userNotice.time.min
+          {!ios?Notification.permission === "granted" ? (
+            <Time>
+              {userNotice.time
+                ? userNotice.time.sleepChk === false && "알림 OFF"
+                : "알림 OFF"}
+              {userNotice.time
+                ? userNotice.time.sleepChk
+                  ? userNotice.time.timePA
+                  : null
                 : null}
-            </span>
-          </Time>
-          <Icon src={arrow_R_B} />
+              &nbsp;
+              <span>
+                {userNotice.time
+                  ? userNotice.time.sleepChk
+                    ? `${userNotice.time.hour}:`
+                    : null
+                  : null}
+                {userNotice.time
+                  ? userNotice.time.sleepChk
+                    ? userNotice.time.min < 10
+                      ? "0" + userNotice.time.min
+                      : userNotice.time.min
+                    : null
+                  : null}
+              </span>
+            </Time>
+          ) : (
+            <Time style={{ fontSize: "20px" }}>{"알림 OFF"}</Time>
+          ): null}
+          <Icon src={arrow_R_B} alt="arrow_R_B" />
         </TimeList>
       </Alarm>
     </AlarmBox>
@@ -58,8 +74,8 @@ const Alarm = styled.div`
   padding: 20px 30px;
   box-sizing: border-box;
   border-radius: 12px;
-
   color: white;
+
   & p {
     font-weight: ${({ theme }) => theme.fontWeight.Medium};
     font-size: 14px;
@@ -76,6 +92,7 @@ const TimeList = styled.div`
 const Time = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.Bold};
   font-size: 26px;
+
   & span {
     font-family: "Roboto";
   }

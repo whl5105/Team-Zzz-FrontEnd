@@ -21,10 +21,10 @@ const PlayBar = withRouter((props) => {
   useEffect(() => {
     play();
     setToggle(false);
-  }, []);
+  }, [playbar]);
 
   const play = () => {
-    setToggle(!toggle);
+    setToggle(false);
 
     history.audio1 && history.audio1.play();
     history.audio2 && history.audio2.play();
@@ -33,7 +33,7 @@ const PlayBar = withRouter((props) => {
   };
 
   const pause = () => {
-    setToggle(!toggle);
+    setToggle(true);
 
     history.audio1 && history.audio1.pause();
     history.audio2 && history.audio2.pause();
@@ -177,6 +177,7 @@ const Wrap = styled.div`
   justify-content: space-evenly;
   padding: 18px 20px;
   box-sizing: border-box;
+  
   & .lastIcon:last-child {
     margin: 0;
   }

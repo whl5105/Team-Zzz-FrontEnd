@@ -27,7 +27,6 @@ const Device = ({ children }) => {
           {!isInstalled() && webView ? (
             <>
               <MobileInstall
-                webView={webView}
                 _onClick={() => {
                   setWebView(false);
                 }}

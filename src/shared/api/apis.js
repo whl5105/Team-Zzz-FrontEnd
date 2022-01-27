@@ -1,13 +1,13 @@
 import instance from "./instance";
 
 export const apis = {
-  // -- user --
+  // user
   signup: (userId, password) =>
     instance.post("/api/register", { userId, password }),
   login: (userId, password) =>
     instance.post("/api/login", { userId, password }),
   kakaoLogin: (id) => instance.post("/api/kakaologin", { id }),
-  //-- 알림 --
+
   getNotice: (userIdx) => instance.get(`/api/notice/users/${userIdx}`),
   postNotice: (sleepChk, timePA, hour, min, pushToken) =>
     instance.post("/api/notice", {
@@ -25,17 +25,18 @@ export const apis = {
       min,
       pushToken,
     }),
-  // -- ASMR --
+
+  // asmr
   getAsmr: () => instance.get("/api/asmrTracks"),
   getAsmrCategory: (categoryId) =>
     instance.get(`/api/asmrTracks/categories/${categoryId}`),
 
-  // -- 다이어리 --
+  // diary
   getDiaryList: (userIdx, yearMonth) =>
-    instance.get(`/api/diaries/${yearMonth}/users/${userIdx}`), // 월별 다이어리 데이터
+    instance.get(`/api/diaries/${yearMonth}/users/${userIdx}`),
   getDiaryScore: (userIdx) => instance.get(`/api/scores/users/${userIdx}`),
   addDiary: (yearMonth, day, feelScore, sleepScore, comment) =>
-    instance.post("/api/diaries", {
+    instance.post("/api/diaries/", {
       yearMonth,
       day,
       feelScore,
@@ -46,7 +47,8 @@ export const apis = {
     instance.put(`/api/diaries/${userIdx}`, { feelScore, sleepScore, comment }),
   deleteDiary: (userIdx, yearMonth, day) =>
     instance.delete(`/api/diaries/${userIdx}`, { yearMonth, day }),
-  // -- ASMR Mix --
+
+  // playList
   getPlayList: (userIdx) => instance.get(`/api/playlists/users/${userIdx}`),
   postPlayList: (mixTitle, mixList) =>
     instance.post(`/api/playlists`, { mixTitle, mixList }),

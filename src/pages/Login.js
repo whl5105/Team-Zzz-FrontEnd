@@ -7,15 +7,13 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 import Success from "../components/Success";
 import Kakao from "../components/Kakao";
-
-import { Input } from "../elements";
-
+import { Input, Button } from "../elements";
 import { IdCheck, PwdCheck } from "../shared/common";
 
 import { reset } from "../static/images";
+
 const Login = () => {
   const dispatch = useDispatch();
-  const errMessage = useSelector((store) => store.user.errMessage);
   const first_signup = useSelector((store) => store.user.is_signup);
 
   const [inputs, setInputs] = useState({
@@ -36,7 +34,6 @@ const Login = () => {
   }, []);
 
   const [Message, setMessage] = React.useState("");
-
   const [isState, setIsState] = React.useState(true);
 
   const onChange = (e) => {
@@ -63,17 +60,12 @@ const Login = () => {
     }
   };
 
-  useEffect(() => {
-    setIsState(false);
-    setMessage(errMessage);
-  }, [errMessage]);
-
   return (
     <Container>
       <Title>로그인</Title>
       <InputBox>
         <Input
-          resetInput
+          resetInput={id === "" || id === undefined ? false : true}
           placeholder="아이디를 입력해주세요"
           name="id"
           value={id}
@@ -85,7 +77,7 @@ const Login = () => {
       </InputBox>
       <InputBox>
         <Input
-          resetInput
+          resetInput={pwd === "" || pwd === undefined ? false : true}
           placeholder="비밀번호를 입력해주세요"
           type="password"
           name="pwd"
@@ -98,10 +90,7 @@ const Login = () => {
       </InputBox>
 
       {!isState ? <Span>{Message}</Span> : <Span />}
-
-      <Button type="submit" onClick={loginClick}>
-        로그인
-      </Button>
+      <Button text="로그인" _onClick={loginClick}></Button>
 
       <SignUp
         type="submit"
@@ -148,18 +137,6 @@ const Span = styled.span`
   color: #ff473d;
   transition: opacity 2s ease 5s;
 `;
-
-const Button = styled.button`
-  width: 100%;
-  height: 50px;
-  border: none;
-  border-radius: 8px;
-  color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.base};
-  font-weight: ${({ theme }) => theme.fontWeight.Bold};
-  background-color: ${({ theme }) => theme.colors.main_1};
-`;
-
 const SignUp = styled.div`
   margin: 20px auto;
   text-align: center;
@@ -168,6 +145,7 @@ const SignUp = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.Regular};
   box-sizing: border-box;
   cursor: pointer;
+
   & p {
     display: inline-block;
     border-bottom: 1px solid ${({ theme }) => theme.colors.white};
@@ -181,6 +159,7 @@ const Social = styled.div`
   font-family: "Roboto", sans-serif;
   font-size: ${({ theme }) => theme.fontSizes.ssmall};
   font-weight: ${({ theme }) => theme.fontWeight.Medium};
+
   ::before,
   ::after {
     content: "";
@@ -190,9 +169,11 @@ const Social = styled.div`
     top: 57%;
     background-color: ${({ theme }) => theme.colors.gray_7};
   }
+
   ::before {
     left: 0;
   }
+
   ::after {
     right: 0;
   }

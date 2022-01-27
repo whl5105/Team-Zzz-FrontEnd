@@ -6,9 +6,9 @@ import { web_back, web_logo, web_phone } from "../../static/images/index";
 const Background = () => {
   return (
     <Bg>
-      <Bg1 src={web_back} />
-      <Bg2 src={web_phone} />
-      <Logo src={web_logo} />
+      <Bg1 src={web_back} alt="background" />
+      <Bg2 src={web_phone} alt="background" />
+      <Logo src={web_logo} alt="background" />
     </Bg>
   );
 };
@@ -18,9 +18,11 @@ const Bg = styled.div`
   height: 100vh;
   position: absolute;
   overflow: hidden;
+
   @media (max-width: 500px) {
     display:none;
   }
+  
   & img {
     position: absolute;
     cursor: default;

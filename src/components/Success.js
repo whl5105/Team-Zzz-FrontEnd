@@ -7,7 +7,7 @@ const Success = (props) => {
   const { text, alt, isClock } = props;
 
   return (
-    <SuccessBtn isClock>
+    <SuccessBtn isClock={isClock ? true : false}>
       {isClock ? (
         <img src={clock} alt={alt} width="24px" height="24px" />
       ) : (
@@ -19,7 +19,7 @@ const Success = (props) => {
 };
 
 const SuccessBtn = styled.button`
-  width: ${(props) => (props.isClock ? "210px" : "235px")};
+  width: ${(props) => (props.isClock ? "200px" : "235px")};
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.bg};
   font-size: ${({ theme }) => theme.fontSizes.small};
@@ -27,8 +27,7 @@ const SuccessBtn = styled.button`
   background-color: ${({ theme }) => theme.colors.main_5};
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
+  padding: 12px 17px 12px 20px;
   box-sizing: border-box;
   position: absolute;
 
@@ -38,7 +37,7 @@ const SuccessBtn = styled.button`
   opacity: 0;
   z-index: 200;
   animation: Success 2s ease-in-out alternate;
-
+  
   @keyframes Success {
     40% {
       bottom: 93px;
