@@ -24,7 +24,7 @@ const PlayBar = withRouter((props) => {
   }, []);
 
   const play = () => {
-    setToggle(!toggle);
+    setToggle(false);
 
     history.audio1 && history.audio1.play();
     history.audio2 && history.audio2.play();
@@ -33,7 +33,7 @@ const PlayBar = withRouter((props) => {
   };
 
   const pause = () => {
-    setToggle(!toggle);
+    setToggle(true);
 
     history.audio1 && history.audio1.pause();
     history.audio2 && history.audio2.pause();
