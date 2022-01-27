@@ -14,7 +14,6 @@ const FeelBox = (props) => {
   ]);
   const previewFeelClick = useCallback(
     (idx) => {
-      // console.log(previewFeel === idx + 1);
       return previewFeel === idx + 1 ? true : false;
     },
     [previewFeel]
