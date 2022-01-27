@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import styled from "styled-components";
 
 import Charater from "../../elements/Charater";
@@ -12,6 +12,13 @@ const FeelBox = (props) => {
     { text: "상쾌", score: 4, color: "#EE8BA7" },
     { text: "몽롱", score: 2, color: "#C793DC" },
   ]);
+  const previewFeelClick = useCallback(
+    (idx) => {
+      // console.log(previewFeel === idx + 1);
+      return previewFeel === idx + 1 ? true : false;
+    },
+    [previewFeel]
+  );
 
   return (
     <Container>
@@ -28,7 +35,7 @@ const FeelBox = (props) => {
                   feelNumber={idx + 1}
                   scoreColor="#c4c4c4"
                   _onClick={_onClick}
-                  is_click={previewFeel === idx + 1 ? true : false}
+                  is_click={previewFeelClick(idx)}
                   text={arr.text}
                 />
               </FleepItem>
@@ -47,7 +54,7 @@ const FeelBox = (props) => {
                   feelNumber={idx + 1}
                   display={feelNumber}
                   scoreColor="#c4c4c4"
-                  is_click={previewFeel === idx + 1 ? true : false}
+                  is_click={previewFeelClick(idx)}
                   text={arr.text}
                 />
               </FleepItem>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -79,7 +79,7 @@ const Signup = (props) => {
     <Container>
       <Title>회원가입</Title>
       <Input
-        resetInput
+        resetInput={id === "" || id === undefined ? false : true}
         placeholder="아이디"
         type="text"
         value={id}
@@ -90,6 +90,18 @@ const Signup = (props) => {
           setId("");
         }}
       />
+      {/* <Input
+        ref={id}
+        resetInput={id === "" || id === undefined ? false : true}
+        placeholder="아이디"
+        type="text"
+        name="id"
+        value={id}
+        onChange={onChange}
+        src={reset}
+        alt="resetButton"
+        onClick={onReset}
+      /> */}
 
       {id.length > 0 ? (
         <Span className={`${isId ? "success" : "error"}`}>{idMessage}</Span>
@@ -98,7 +110,7 @@ const Signup = (props) => {
       )}
 
       <Input
-        resetInput
+        resetInput={pwd === "" || pwd === undefined ? false : true}
         placeholder="비밀번호"
         type="password"
         value={pwd}
@@ -118,11 +130,16 @@ const Signup = (props) => {
       )}
 
       <Input
+        resetInput={pwd_check === "" || pwd_check === undefined ? false : true}
         placeholder="비밀번호 확인"
         type="password"
         value={pwd_check}
         onChange={onChangePasswordCheck}
+        src={reset}
         height="60px"
+        onClick={() => {
+          setPwdCheck("");
+        }}
       />
       {pwd_check.length > 0 ? (
         <Span className={`${isPwdCheck ? "success" : "error"}`}>
