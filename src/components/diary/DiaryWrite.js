@@ -113,6 +113,7 @@ const DiaryWrite = ({ modalData, close }) => {
     await dispatch(diaryActions.deleteDiaryDB(yearMonth, dayData.diaryIdx));
     close();
   };
+
   return (
     <ModalPopUp close={close} height="100%">
       <Container>
@@ -123,6 +124,7 @@ const DiaryWrite = ({ modalData, close }) => {
               feel={feel}
               scoreColor={scoreColor[sleep]}
             />
+
             <Input
               resetInput
               placeholder="메모를 남겨보세요(최대22자)"
