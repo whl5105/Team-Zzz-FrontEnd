@@ -87,7 +87,6 @@ const editPlayListDB = (playlistIdx, mixTitle) => {
   return async function (dispatch, getState, { history }) {
     try {
       const userIdx = localStorage.getItem("userIdx");
-      console.log(playlistIdx, mixTitle);
       await apis.editPlayList(playlistIdx, userIdx, mixTitle);
       dispatch(edit_playList(playlistIdx, mixTitle));
     } catch (error) {

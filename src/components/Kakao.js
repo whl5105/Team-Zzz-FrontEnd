@@ -9,7 +9,6 @@ import { kakao } from "../static/images/index";
 import Success from "../components/Success";
 
 const Kakao = (props) => {
-  
   const dispatch = useDispatch();
   const [kakaoLoging, setKakaoLoging] = useState(false);
   const token = process.env.REACT_APP_JS_KEY;
@@ -44,17 +43,13 @@ const Kakao = (props) => {
     width: "100%",
   };
 
-  const socialLoginFail = (res) => {
-    console.log("소셜 로그인 실패");
-  };
-
   return (
     <>
       <div onClick={loading}>
         <KakaoLogin
           token={token}
           onSuccess={(res) => socialLoginSuccess(res)}
-          onFailure={(res) => socialLoginFail(res)}
+          onFailure={(res) => console.log("소셜 로그인 실패")}
           getProfile={true}
           style={socialLoginStyle}
         >
