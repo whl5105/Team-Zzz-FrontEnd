@@ -52,7 +52,7 @@ const PlayBar = withRouter((props) => {
         history.icon1 = "";
 
         history.setSong1(new Audio());
-        history.setPlay([]); 
+        history.setPlay([]);
       }
 
       history.state1 = "";
@@ -78,7 +78,7 @@ const PlayBar = withRouter((props) => {
       history.audio2 = "";
       history.title2 = "";
       history.icon2 = "";
-      history.setPlay([]); 
+      history.setPlay([]);
     }
     if (history.audio3) {
       history.audio3.pause();
@@ -90,14 +90,14 @@ const PlayBar = withRouter((props) => {
         history.icon3 = "";
 
         history.setSong3(new Audio());
-        history.setPlay([]); 
+        history.setPlay([]);
       }
 
       history.state3 = "";
       history.audio3 = "";
       history.title3 = "";
       history.icon3 = "";
-      history.setPlay([]); 
+      history.setPlay([]);
       history.arr = [];
     }
     if (history.audio4) {
@@ -110,7 +110,7 @@ const PlayBar = withRouter((props) => {
         history.icon4 = "";
         history.arr = [];
         history.setSong4(new Audio());
-        history.setPlay([]); 
+        history.setPlay([]);
       }
 
       history.state4 = "";
@@ -143,7 +143,9 @@ const PlayBar = withRouter((props) => {
     <>
       {playbar.length > 0 ? (
         <Wrap>
-          <Text>{toggle ? "pause..." : "편안하게 소리를 감상해보세요"}</Text>
+          <Text>
+            {toggle ? "음원 일시정지 중입니다" : "편안하게 소리를 감상해보세요"}
+          </Text>
           {toggle ? (
             <>
               <Icon src={playBar_volume} onClick={asmrPopMove} />
@@ -177,7 +179,7 @@ const Wrap = styled.div`
   justify-content: space-evenly;
   padding: 18px 20px;
   box-sizing: border-box;
-  
+
   & .lastIcon:last-child {
     margin: 0;
   }
