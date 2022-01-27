@@ -48,5 +48,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-serviceWorkerRegistration.register();
 reportWebVitals();

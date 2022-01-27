@@ -65,7 +65,7 @@ const Login = () => {
       <Title>로그인</Title>
       <InputBox>
         <Input
-          resetInput
+          resetInput={id === "" || id === undefined ? false : true}
           placeholder="아이디를 입력해주세요"
           name="id"
           value={id}
@@ -77,7 +77,7 @@ const Login = () => {
       </InputBox>
       <InputBox>
         <Input
-          resetInput
+          resetInput={pwd === "" || pwd === undefined ? false : true}
           placeholder="비밀번호를 입력해주세요"
           type="password"
           name="pwd"
