@@ -52,16 +52,6 @@
 * Git
 * GitHub
 
-## ✌🏻 개인 역할 및 트러블슈팅 해결과정
-
-<code>최수인</code>
-
-<code>김태언</code> 
-
-<code>오은희</code> 
-
-</br>
-
 ## 📝 후기 및 팀 노션 페이지
 
 <code>최수인</code>
