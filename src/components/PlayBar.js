@@ -28,14 +28,6 @@ const PlayBar = withRouter((props) => {
     setToggle,
     playbar,
     setPlaybar,
-    title1,
-    title2,
-    title3,
-    title4,
-    icon1,
-    icon2,
-    icon3,
-    icon4,
   } = useContext(ThemeContext);
 
   useEffect(() => {
@@ -65,61 +57,61 @@ const PlayBar = withRouter((props) => {
     if (song1.src) {
       if (history.location.pathname === "/asmr") {
         deleteSong(song1.src);
-        title1 = "";
-        icon1 = "";
+        history.title1 = "";
+        history.icon1 = "";
       }
 
       song1.pause();
       setSong1(new Audio());
       setPlay([]);
 
-      title1 = "";
-      icon1 = "";
+      history.title1 = "";
+      history.icon1 = "";
     }
 
     if (song2.src) {
       if (history.location.pathname === "/asmr") {
         deleteSong(song2.src);
-        title2 = "";
-        icon2 = "";
+        history.title2 = "";
+        history.icon2 = "";
       }
 
       song2.pause();
       setSong2(new Audio());
       setPlay([]);
 
-      title2 = "";
-      icon2 = "";
+      history.title2 = "";
+      history.icon2 = "";
     }
 
     if (song3.src) {
       if (history.location.pathname === "/asmr") {
         deleteSong(song3.src);
-        title3 = "";
-        icon3 = "";
+        history.title3 = "";
+        history.icon3 = "";
       }
 
       song3.pause();
       setSong3(new Audio());
       setPlay([]);
 
-      title3 = "";
-      icon3 = "";
+      history.title3 = "";
+      history.icon3 = "";
     }
 
     if (song4.src) {
       if (history.location.pathname === "/asmr") {
         deleteSong(song4.src);
-        title4 = "";
-        icon4 = "";
+        history.title4 = "";
+        history.icon4 = "";
       }
 
       song4.pause();
       setSong4(new Audio());
       setPlay([]);
 
-      title4 = "";
-      icon4 = "";
+      history.title4 = "";
+      history.icon4 = "";
     }
 
     setPlaybar([]);
