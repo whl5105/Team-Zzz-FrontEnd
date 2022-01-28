@@ -15,7 +15,7 @@
 
 
 ## 🎥 시연 영상
- [![Hnet-image](https://user-images.githubusercontent.com/90129613/145665770-a2eb072f-3148-4e3b-afd9-0f9a8105c322.gif)](https://www.youtube.com/watch?v=n08_pEMKvvQ)<br>
+ [![Hnet-image](https://chrome-armadillo-b80.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F847c6a66-495b-49be-a0c8-8a201ae81e82%2FDesktop_-_3_(1).png?table=block&id=6dcdbc79-e932-44f9-9324-2c9270ba062a&spaceId=1eec11c7-0781-4865-8b4a-24bc588d11be&width=2000&userId=&cache=v2)](https://www.youtube.com/watch?v=D4G0D7asSYU&feature=emb_logo)<br>
 이미지를 클릭하시면 유튜브 영상으로 이동됩니다.
 
 ## 🧑🏼‍💻 개발기간 및 팀원소개
