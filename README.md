@@ -56,7 +56,8 @@
 
 <code>최수인</code>
 
-<code>김태언</code> 
+<code>김태언</code>
+https://youngble.tistory.com/
 
 <code>오은희</code> 
 https://chrome-armadillo-b80.notion.site/f85caa16cc1d4d2bbe6a186b99b32d53
