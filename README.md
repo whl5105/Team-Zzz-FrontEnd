@@ -23,14 +23,14 @@
 </br>
 
 ### Front-end   
-   <p><a href="https://github.com/whl5105" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=React&message=최수인&color=61dafb&style=for-the-badge&>"/></a></p>
-   <p><a href="https://github.com/Taeeon-kim" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=React&message=김태언&color=61dafb&style=for-the-badge&>"/></a></p>
-   <p><a href="https://github.com/eundol0519" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=React&message=오은희&color=61dafb&style=for-the-badge&>"/></a></p>
+   <p><a href="https://github.com/whl5105" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=React&message=최수인&color=61dafb&style=for-the-badge&>"/></a>최수인</p>
+   <p><a href="https://github.com/Taeeon-kim" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=React&message=김태언&color=61dafb&style=for-the-badge&>"/></a>김태언</p>
+   <p><a href="https://github.com/eundol0519" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=React&message=오은희&color=61dafb&style=for-the-badge&>"/></a>오은희</p>
    
   
 ### Back-end
-<p><a href="https://github.com/huitopia" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=김다희&color=08CE5D&style=for-the-badge&>"/></a></p>
-   <p><a href="https://github.com/skylermbang" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=방민수&color=08CE5D&style=for-the-badge&>"/></a></p>
+<p><a href="https://github.com/huitopia" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=김다희&color=08CE5D&style=for-the-badge&>"/></a>김다희</p>
+   <p><a href="https://github.com/skylermbang" target="_blank"><img width="150"  src="https://img.shields.io/static/v1?label=Spring&message=방민수&color=08CE5D&style=for-the-badge&>"/></a>방민수</p>
   
 
 </br>
