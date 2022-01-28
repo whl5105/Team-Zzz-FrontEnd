@@ -44,8 +44,15 @@ const Asmr = (props) => {
     setPlay,
     setToggle,
     setPlaybar,
+    setTitle1,
+    setTitle2,
+    setTitle3,
+    setTitle4,
+    setIcon1,
+    setIcon2,
+    setIcon3,
+    setIcon4,
   } = useContext(ThemeContext);
-
   const [getCategory, setCategory] = useState(
     location.category === undefined ? "전체" : location.category
   );
@@ -158,23 +165,23 @@ const Asmr = (props) => {
     if (song1.src.indexOf(asmrUrl) !== -1) {
       song1.pause();
       setSong1(new Audio());
-      history.title1 = "";
-      history.icon1 = "";
+      setTitle1("");
+      setIcon1("");
     } else if (song2.src.indexOf(asmrUrl) !== -1) {
       song2.pause();
       setSong2(new Audio());
-      history.title2 = "";
-      history.icon2 = "";
+      setTitle2("");
+      setIcon2("");
     } else if (song3.src.indexOf(asmrUrl) !== -1) {
       song3.pause();
       setSong3(new Audio());
-      history.title3 = "";
-      history.icon3 = "";
+      setTitle3("");
+      setIcon3("");
     } else if (song4.src.indexOf(asmrUrl) !== -1) {
       song4.pause();
       setSong4(new Audio());
-      history.title4 = "";
-      history.icon4 = "";
+      setTitle4("");
+      setIcon4("");
     }
   };
 
@@ -188,29 +195,29 @@ const Asmr = (props) => {
       song1.volume = 0.1;
       song1.loop = true;
       song1.play();
-      history.icon1 = iconUrl;
-      history.title1 = title;
+      setIcon1(iconUrl);
+      setTitle1(title);
     } else if (!song2.src) {
       song2.src = asmrUrl;
       song2.volume = 0.1;
       song2.loop = true;
       song2.play();
-      history.icon2 = iconUrl;
-      history.title2 = title;
+      setIcon2(iconUrl);
+      setTitle2(title);
     } else if (!song3.src) {
       song3.src = asmrUrl;
       song3.volume = 0.1;
       song3.loop = true;
       song3.play();
-      history.icon3 = iconUrl;
-      history.title3 = title;
+      setIcon3(iconUrl);
+      setTitle3(title);
     } else if (!song4.src) {
       song4.src = asmrUrl;
       song4.volume = 0.1;
       song4.loop = true;
       song4.play();
-      history.icon4 = iconUrl;
-      history.title4 = title;
+      setIcon4(iconUrl);
+      setTitle4(title);
     }
   };
 

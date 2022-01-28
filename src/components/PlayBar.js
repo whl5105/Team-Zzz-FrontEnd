@@ -28,6 +28,7 @@ const PlayBar = withRouter((props) => {
     setToggle,
     playbar,
     setPlaybar,
+    title1,
   } = useContext(ThemeContext);
 
   useEffect(() => {
@@ -37,20 +38,21 @@ const PlayBar = withRouter((props) => {
 
   const playSound = () => {
     setToggle(false);
-
-    song1 && song1.play();
-    song2 && song2.play();
-    song3 && song3.play();
-    song4 && song4.play();
+    // song1.muted = true;
+    
+    song1.src && song1.play();
+    song2.src && song2.play();
+    song3.src && song3.play();
+    song4.src && song4.play();
   };
 
   const pause = () => {
     setToggle(true);
 
-    song1 && song1.pause();
-    song2 && song2.pause();
-    song3 && song3.pause();
-    song4 && song4.pause();
+    song1.src && song1.pause();
+    song2.src && song2.pause();
+    song3.src && song3.pause();
+    song4.src && song4.pause();
   };
 
   const reset = () => {

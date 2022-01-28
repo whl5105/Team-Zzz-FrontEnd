@@ -22,6 +22,22 @@ const AsmrVolumeControl = (props) => {
     play,
     setPlay,
     setPlaybar,
+    title1,
+    title2,
+    title3,
+    title4,
+    setTitle1,
+    setTitle2,
+    setTitle3,
+    setTitle4,
+    icon1,
+    icon2,
+    icon3,
+    icon4,
+    setIcon1,
+    setIcon2,
+    setIcon3,
+    setIcon4,
   } = useContext(ThemeContext);
 
   const [volume1, setVolume1] = useState(song1 && song1.volume * 100);
@@ -51,31 +67,31 @@ const AsmrVolumeControl = (props) => {
 
   const deleteSong = (song) => {
     if (song.src === song1.src) {
-      history.title1 = "";
-      history.icon1 = "";
+      setTitle1("");
+      setIcon1("");
       song1.pause();
       setSong1(new Audio());
 
       deleteSoundTrack(song1.src);
     } else if (song.src === song2.src) {
-      history.title2 = "";
-      history.icon2 = "";
+      setTitle2("");
+      setIcon2("");
       song2.pause();
 
       deleteSoundTrack(song2.src);
 
       setSong2(new Audio());
     } else if (song.src === song3.src) {
-      history.title3 = "";
-      history.icon3 = "";
+      setTitle3("");
+      setIcon3("");
       song3.pause();
 
       deleteSoundTrack(song3.src);
 
       setSong3(new Audio());
     } else if (song.src === song4.src) {
-      history.title4 = "";
-      history.icon4 = "";
+      setTitle4("");
+      setIcon4("");
       song4.pause();
 
       deleteSoundTrack(song4.src);
@@ -130,8 +146,8 @@ const AsmrVolumeControl = (props) => {
                     <SoundTrack
                       setVolume={setVolume1}
                       song={song1}
-                      icon={history.icon1}
-                      title={history.title1}
+                      icon={icon1}
+                      title={title1}
                       id="volume1"
                       volume={volume1}
                       deleteSong={deleteSong}
@@ -145,8 +161,8 @@ const AsmrVolumeControl = (props) => {
                     <SoundTrack
                       setVolume={setVolume2}
                       song={song2}
-                      icon={history.icon2}
-                      title={history.title2}
+                      icon={icon2}
+                      title={title2}
                       id="volume2"
                       volume={volume2}
                       deleteSong={deleteSong}
@@ -160,8 +176,8 @@ const AsmrVolumeControl = (props) => {
                     <SoundTrack
                       setVolume={setVolume3}
                       song={song3}
-                      icon={history.icon3}
-                      title={history.title3}
+                      icon={icon3}
+                      title={title3}
                       id="volume3"
                       volume={volume3}
                       deleteSong={deleteSong}
@@ -175,8 +191,8 @@ const AsmrVolumeControl = (props) => {
                     <SoundTrack
                       setVolume={setVolume4}
                       song={song4}
-                      icon={history.icon4}
-                      title={history.title4}
+                      icon={icon4}
+                      title={title4}
                       id="volume4"
                       volume={volume4}
                       deleteSong={deleteSong}

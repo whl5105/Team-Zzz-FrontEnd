@@ -45,6 +45,18 @@ function App() {
   const [toggle, setToggle] = useState(false);
   const [playbar, setPlaybar] = useState([]);
 
+  let [title1, setTitle1] = useState("d");
+  const [title2, setTitle2] = useState("");
+  const [title3, setTitle3] = useState("");
+  const [title4, setTitle4] = useState("");
+  
+  const [icon1, setIcon1] = useState("");
+  const [icon2, setIcon2] = useState("");
+  const [icon3, setIcon3] = useState("");
+  const [icon4, setIcon4] = useState("");
+  
+  // let icon1="", icon2="", icon3="", icon4="";
+  
   useEffect(() => {
     ReactGA.initialize("299861253");
     history.listen((location) => {
@@ -71,6 +83,22 @@ function App() {
           setToggle,
           playbar,
           setPlaybar,
+          title1,
+          setTitle1,
+          title2,
+          setTitle2,
+          title3,
+          setTitle3,
+          title4,
+          setTitle4,
+          icon1,
+          setIcon1,
+          icon2,
+          setIcon2,
+          icon3,
+          setIcon3,
+          icon4,
+          setIcon4,
         }}
       >
         <ConnectedRouter history={history}>
