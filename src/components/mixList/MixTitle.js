@@ -16,7 +16,7 @@ const PlayList = (props) => {
   const [title, setTitle] = useState(is_edit ? data.mixName : "");
   const dispatch = useDispatch();
 
-  const { song1, song2, song3, song4 } = useContext(ThemeContext);
+  const { song1, song2, song3, song4 , icon1, icon2, icon3, icon4, title1, title2, title3, title4 } = useContext(ThemeContext);
 
   const titleChange = (e) => {
     setTitle(e.target.value);
@@ -41,8 +41,8 @@ const PlayList = (props) => {
       playLists.mixList.push({
         asmrUrl: song1.src,
         sound: String(song1.volume),
-        iconUrl: history.icon1,
-        title: history.title1,
+        iconUrl: icon1,
+        title: title1,
       });
     }
 
@@ -50,8 +50,8 @@ const PlayList = (props) => {
       playLists.mixList.push({
         asmrUrl: song2.src,
         sound: String(song2.volume),
-        iconUrl: history.icon2,
-        title: history.title2,
+        iconUrl: icon2,
+        title: title2,
       });
     }
 
@@ -59,8 +59,8 @@ const PlayList = (props) => {
       playLists.mixList.push({
         asmrUrl: song3.src,
         sound: String(song3.volume),
-        iconUrl: history.icon3,
-        title: history.title3,
+        iconUrl: icon3,
+        title: title3,
       });
     }
 
@@ -68,8 +68,8 @@ const PlayList = (props) => {
       playLists.mixList.push({
         asmrUrl: song4.src,
         sound: String(song4.volume),
-        iconUrl: history.icon4,
-        title: history.title4,
+        iconUrl: icon4,
+        title: title4,
       });
     }
 
