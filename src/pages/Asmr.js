@@ -44,14 +44,6 @@ const Asmr = (props) => {
     setPlay,
     setToggle,
     setPlaybar,
-    title1,
-    title2,
-    title3,
-    title4,
-    icon1,
-    icon2,
-    icon3,
-    icon4,
   } = useContext(ThemeContext);
 
   const [getCategory, setCategory] = useState(
@@ -166,23 +158,23 @@ const Asmr = (props) => {
     if (song1.src.indexOf(asmrUrl) !== -1) {
       song1.pause();
       setSong1(new Audio());
-      title1 = "";
-      icon1 = "";
+      history.title1 = "";
+      history.icon1 = "";
     } else if (song2.src.indexOf(asmrUrl) !== -1) {
       song2.pause();
       setSong2(new Audio());
-      title2 = "";
-      icon2 = "";
+      history.title2 = "";
+      history.icon2 = "";
     } else if (song3.src.indexOf(asmrUrl) !== -1) {
       song3.pause();
       setSong3(new Audio());
-      title3 = "";
-      icon3 = "";
+      history.title3 = "";
+      history.icon3 = "";
     } else if (song4.src.indexOf(asmrUrl) !== -1) {
       song4.pause();
       setSong4(new Audio());
-      title4 = "";
-      icon4 = "";
+      history.title4 = "";
+      history.icon4 = "";
     }
   };
 
@@ -196,29 +188,29 @@ const Asmr = (props) => {
       song1.volume = 0.1;
       song1.loop = true;
       song1.play();
-      icon1 = iconUrl;
-      title1 = title;
+      history.icon1 = iconUrl;
+      history.title1 = title;
     } else if (!song2.src) {
       song2.src = asmrUrl;
       song2.volume = 0.1;
       song2.loop = true;
       song2.play();
-      icon2 = iconUrl;
-      title2 = title;
+      history.icon2 = iconUrl;
+      history.title2 = title;
     } else if (!song3.src) {
       song3.src = asmrUrl;
       song3.volume = 0.1;
       song3.loop = true;
       song3.play();
-      icon3 = iconUrl;
-      title3 = title;
+      history.icon3 = iconUrl;
+      history.title3 = title;
     } else if (!song4.src) {
       song4.src = asmrUrl;
       song4.volume = 0.1;
       song4.loop = true;
       song4.play();
-      icon4 = iconUrl;
-      title4 = title;
+      history.icon4 = iconUrl;
+      history.title4 = title;
     }
   };
 

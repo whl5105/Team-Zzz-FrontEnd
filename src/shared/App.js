@@ -45,9 +45,6 @@ function App() {
   const [toggle, setToggle] = useState(false);
   const [playbar, setPlaybar] = useState([]);
 
-  let [title1, title2, title3, title4] = "";
-  let [icon1, icon2, icon3, icon4] = "";
-
   useEffect(() => {
     ReactGA.initialize("299861253");
     history.listen((location) => {
@@ -74,14 +71,6 @@ function App() {
           setToggle,
           playbar,
           setPlaybar,
-          title1,
-          title2,
-          title3,
-          title4,
-          icon1,
-          icon2,
-          icon3,
-          icon4,
         }}
       >
         <ConnectedRouter history={history}>

@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 
 import { history } from "../../redux/configureStore";
 import { useDispatch } from "react-redux";
 import { actionCreators as asmrActions } from "../../redux/modules/asmr";
+import { ThemeContext } from "../../shared/ThemeContext";
 
 import ModalPopUp from "../ModalPopUp";
 import { Input, Button } from "../../elements/index";
@@ -14,6 +15,8 @@ const PlayList = (props) => {
   const { data, is_edit, close } = props;
   const [title, setTitle] = useState(is_edit ? data.mixName : "");
   const dispatch = useDispatch();
+
+  const { song1, song2, song3, song4 } = useContext(ThemeContext);
 
   const titleChange = (e) => {
     setTitle(e.target.value);
@@ -34,37 +37,37 @@ const PlayList = (props) => {
       mixList: [],
     };
 
-    if (history.audio1) {
+    if (song1.src) {
       playLists.mixList.push({
-        asmrUrl: history.audio1.src,
-        sound: String(history.audio1.volume),
+        asmrUrl: song1.src,
+        sound: String(song1.volume),
         iconUrl: history.icon1,
         title: history.title1,
       });
     }
 
-    if (history.audio2) {
+    if (song2.src) {
       playLists.mixList.push({
-        asmrUrl: history.audio2.src,
-        sound: String(history.audio2.volume),
+        asmrUrl: song2.src,
+        sound: String(song2.volume),
         iconUrl: history.icon2,
         title: history.title2,
       });
     }
 
-    if (history.audio3) {
+    if (song3.src) {
       playLists.mixList.push({
-        asmrUrl: history.audio3.src,
-        sound: String(history.audio3.volume),
+        asmrUrl: song3.src,
+        sound: String(song3.volume),
         iconUrl: history.icon3,
         title: history.title3,
       });
     }
 
-    if (history.audio4) {
+    if (song4.src) {
       playLists.mixList.push({
-        asmrUrl: history.audio4.src,
-        sound: String(history.audio4.volume),
+        asmrUrl: song4.src,
+        sound: String(song4.volume),
         iconUrl: history.icon4,
         title: history.title4,
       });
