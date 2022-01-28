@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { actionCreators as asmrActions } from "../redux/modules/asmr";
 import { history } from "../redux/configureStore";
+import { ThemeContext } from "../shared/ThemeContext";
 
 import Spinner from "../components/Spinner";
 import AsmrCategory from "../components/asmr/AsmrCategory";
@@ -30,10 +31,28 @@ const Asmr = (props) => {
   );
   const playList = useSelector((state) => state.asmr.playList);
 
-  const [song1, setSong1] = useState(new Audio());
-  const [song2, setSong2] = useState(new Audio());
-  const [song3, setSong3] = useState(new Audio());
-  const [song4, setSong4] = useState(new Audio());
+  const {
+    song1,
+    setSong1,
+    song2,
+    setSong2,
+    song3,
+    setSong3,
+    song4,
+    setSong4,
+    play,
+    setPlay,
+    setToggle,
+    setPlaybar,
+    title1,
+    title2,
+    title3,
+    title4,
+    icon1,
+    icon2,
+    icon3,
+    icon4,
+  } = useContext(ThemeContext);
 
   const [getCategory, setCategory] = useState(
     location.category === undefined ? "전체" : location.category
@@ -42,7 +61,6 @@ const Asmr = (props) => {
   const [imageUrl, setImageUrl] = useState(asmr_category_all);
   const asmrInfo = useSelector((state) => state.asmr.asmrList);
   const [soundTrack, setSoundTrack] = useState([]);
-  const [play, setPlay] = useState([]);
 
   useEffect(() => {
     if (!playList) {
@@ -126,8 +144,7 @@ const Asmr = (props) => {
         }
       });
       setPlay(arr);
-      history.setPlaybar(arr);
-      history.play = arr;
+      setPlaybar(arr);
 
       songInitialzation(asmrUrl);
       deleteSong(asmrUrl);
@@ -141,7 +158,7 @@ const Asmr = (props) => {
         songSelect(asmrUrl);
       }
 
-      history.setToggle(false);
+      setToggle(false);
     }
   };
 
@@ -149,81 +166,59 @@ const Asmr = (props) => {
     if (song1.src.indexOf(asmrUrl) !== -1) {
       song1.pause();
       setSong1(new Audio());
-      history.state1 = "";
-      history.audio1 = "";
-      history.title1 = "";
-      history.icon1 = "";
+      title1 = "";
+      icon1 = "";
     } else if (song2.src.indexOf(asmrUrl) !== -1) {
       song2.pause();
       setSong2(new Audio());
-      history.state2 = "";
-      history.audio2 = "";
-      history.title2 = "";
-      history.icon2 = "";
+      title2 = "";
+      icon2 = "";
     } else if (song3.src.indexOf(asmrUrl) !== -1) {
       song3.pause();
       setSong3(new Audio());
-      history.state3 = "";
-      history.audio3 = "";
-      history.title3 = "";
-      history.icon3 = "";
+      title3 = "";
+      icon3 = "";
     } else if (song4.src.indexOf(asmrUrl) !== -1) {
       song4.pause();
       setSong4(new Audio());
-      history.state4 = "";
-      history.audio4 = "";
-      history.title4 = "";
-      history.icon4 = "";
+      title4 = "";
+      icon4 = "";
     }
   };
 
   const songSetting = (asmrUrl, iconUrl, title) => {
     const arr = [...play, asmrUrl];
-    setPlay(arr);
 
-    history.play = arr;
-    history.setPlay = setPlay;
-    history.setPlaybar(arr);
+    setPlay(arr);
+    setPlaybar(arr);
     if (!song1.src) {
       song1.src = asmrUrl;
       song1.volume = 0.1;
       song1.loop = true;
       song1.play();
-      history.state1 = asmrUrl;
-      history.audio1 = song1;
-      history.icon1 = iconUrl;
-      history.title1 = title;
-      history.setSong1 = setSong1;
+      icon1 = iconUrl;
+      title1 = title;
     } else if (!song2.src) {
       song2.src = asmrUrl;
       song2.volume = 0.1;
       song2.loop = true;
       song2.play();
-      history.state2 = asmrUrl;
-      history.audio2 = song2;
-      history.icon2 = iconUrl;
-      history.title2 = title;
-      history.setSong2 = setSong2;
+      icon2 = iconUrl;
+      title2 = title;
     } else if (!song3.src) {
       song3.src = asmrUrl;
       song3.volume = 0.1;
       song3.loop = true;
       song3.play();
-      history.state3 = asmrUrl;
-      history.audio3 = song3;
-      history.icon3 = iconUrl;
-      history.title3 = title;
-      history.setSong3 = setSong3;
+      icon3 = iconUrl;
+      title3 = title;
     } else if (!song4.src) {
       song4.src = asmrUrl;
       song4.volume = 0.1;
       song4.loop = true;
       song4.play();
-      history.state4 = asmrUrl;
-      history.audio4 = song4;
-      history.icon4 = iconUrl;
-      history.title4 = title;
-      history.setSong4 = setSong4;
+      icon4 = iconUrl;
+      title4 = title;
     }
   };
 
@@ -239,15 +234,7 @@ const Asmr = (props) => {
       ) : (
         <PageWrap imgUrl={imageUrl}>
           <AsmrCategory setCategory={setCategory} />
-          <AsmrList
-            soundTrack={soundTrack}
-            select={select}
-            setSong1={setSong1}
-            setSong2={setSong2}
-            setSong3={setSong3}
-            setSong4={setSong4}
-            setPlay={setPlay}
-          />
+          <AsmrList soundTrack={soundTrack} select={select} />
 
           {success && (
             <Wrap>
