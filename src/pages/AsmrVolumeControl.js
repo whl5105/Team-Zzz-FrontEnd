@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
+import { ThemeContext } from "../shared/ThemeContext";
 
 import { arrow_L_W } from "../static/images";
 import SoundTrack from "../components/asmr/SoundTrack";
@@ -9,15 +10,40 @@ import PlayList from "../components/mixList/MixTitle";
 import { Button, Icon } from "../elements/index";
 
 const AsmrVolumeControl = (props) => {
-  const [song1, setSong1] = useState(history.audio1 && history.audio1);
-  const [song2, setSong2] = useState(history.audio2 && history.audio2);
-  const [song3, setSong3] = useState(history.audio3 && history.audio3);
-  const [song4, setSong4] = useState(history.audio4 && history.audio4);
+  const {
+    song1,
+    setSong1,
+    song2,
+    setSong2,
+    song3,
+    setSong3,
+    song4,
+    setSong4,
+    play,
+    setPlay,
+    setPlaybar,
+    title1,
+    title2,
+    title3,
+    title4,
+    setTitle1,
+    setTitle2,
+    setTitle3,
+    setTitle4,
+    icon1,
+    icon2,
+    icon3,
+    icon4,
+    setIcon1,
+    setIcon2,
+    setIcon3,
+    setIcon4,
+  } = useContext(ThemeContext);
+
   const [volume1, setVolume1] = useState(song1 && song1.volume * 100);
   const [volume2, setVolume2] = useState(song2 && song2.volume * 100);
   const [volume3, setVolume3] = useState(song3 && song3.volume * 100);
   const [volume4, setVolume4] = useState(song4 && song4.volume * 100);
-  const [songList, setSongList] = useState(history.play);
 
   const [playListModal, setPlayListModal] = useState(false);
   const [requireLoginModal, setRequireLoginModal] = useState(false);
@@ -37,84 +63,54 @@ const AsmrVolumeControl = (props) => {
 
   const [guidance, setGuidance] = useState();
   const [guidanceTitle, setGuidanceTitle] = useState();
+  let arr = [];
 
   const deleteSong = (song) => {
-    let arr = [];
-
     if (song.src === song1.src) {
-      history.state1 = "";
-      history.audio1 = "";
-      history.title1 = "";
-      history.icon1 = "";
+      setTitle1("");
+      setIcon1("");
       song1.pause();
-      history.setSong1(new Audio());
+      setSong1(new Audio());
 
-      if (songList.includes(song1.src)) {
-        arr = songList.filter((item) => {
-          if (song1.src !== item) {
-            return item;
-          }
-        });
-
-        setSong1(new Audio());
-      }
+      deleteSoundTrack(song1.src);
     } else if (song.src === song2.src) {
-      history.state2 = "";
-      history.audio2 = "";
-      history.title2 = "";
-      history.icon2 = "";
+      setTitle2("");
+      setIcon2("");
       song2.pause();
-      history.setSong2(new Audio());
 
-      if (songList.includes(song2.src)) {
-        arr = songList.filter((item) => {
-          if (song2.src !== item) {
-            return item;
-          }
-        });
+      deleteSoundTrack(song2.src);
 
-        setSong2(new Audio());
-      }
+      setSong2(new Audio());
     } else if (song.src === song3.src) {
-      history.state3 = "";
-      history.audio3 = "";
-      history.title3 = "";
-      history.icon3 = "";
+      setTitle3("");
+      setIcon3("");
       song3.pause();
-      history.setSong3(new Audio());
 
-      if (songList.includes(song3.src)) {
-        arr = songList.filter((item) => {
-          if (song3.src !== item) {
-            return item;
-          }
-        });
+      deleteSoundTrack(song3.src);
 
-        setSong3(new Audio());
-      }
+      setSong3(new Audio());
     } else if (song.src === song4.src) {
-      history.state4 = "";
-      history.audio4 = "";
-      history.title4 = "";
-      history.icon4 = "";
+      setTitle4("");
+      setIcon4("");
       song4.pause();
-      history.setSong4(new Audio());
 
-      if (history.play.includes(song4.src)) {
-        arr = songList.filter((item) => {
-          if (song4.src !== item) {
-            return item;
-          }
-        });
+      deleteSoundTrack(song4.src);
 
-        setSong4(new Audio());
-      }
+      setSong4(new Audio());
     }
 
-    history.setPlay(arr);
-    history.setPlaybar(arr);
-    history.play = arr;
-    setSongList(arr);
+    setPlay(arr);
+    setPlaybar(arr);
+  };
+
+  const deleteSoundTrack = (src) => {
+    if (play.includes(src)) {
+      arr = play.filter((item) => {
+        if (src !== item) {
+          return item;
+        }
+      });
+    }
   };
 
   const close = () => {
@@ -134,9 +130,9 @@ const AsmrVolumeControl = (props) => {
     <>
       <Container>
         <Icon src={arrow_L_W} top="22px" position="relative" _onClick={close} />
-        {songList ? (
+        {play ? (
           <>
-            {songList.length === 0 ? (
+            {play.length === 0 ? (
               <NoSoundList>
                 <p id="content">선택된 소리가 없어요!</p>
                 <p id="subContent">
@@ -150,8 +146,8 @@ const AsmrVolumeControl = (props) => {
                     <SoundTrack
                       setVolume={setVolume1}
                       song={song1}
-                      icon={history.icon1}
-                      title={history.title1}
+                      icon={icon1}
+                      title={title1}
                       id="volume1"
                       volume={volume1}
                       deleteSong={deleteSong}
@@ -165,8 +161,8 @@ const AsmrVolumeControl = (props) => {
                     <SoundTrack
                       setVolume={setVolume2}
                       song={song2}
-                      icon={history.icon2}
-                      title={history.title2}
+                      icon={icon2}
+                      title={title2}
                       id="volume2"
                       volume={volume2}
                       deleteSong={deleteSong}
@@ -180,8 +176,8 @@ const AsmrVolumeControl = (props) => {
                     <SoundTrack
                       setVolume={setVolume3}
                       song={song3}
-                      icon={history.icon3}
-                      title={history.title3}
+                      icon={icon3}
+                      title={title3}
                       id="volume3"
                       volume={volume3}
                       deleteSong={deleteSong}
@@ -195,8 +191,8 @@ const AsmrVolumeControl = (props) => {
                     <SoundTrack
                       setVolume={setVolume4}
                       song={song4}
-                      icon={history.icon4}
-                      title={history.title4}
+                      icon={icon4}
+                      title={title4}
                       id="volume4"
                       volume={volume4}
                       deleteSong={deleteSong}
@@ -211,7 +207,7 @@ const AsmrVolumeControl = (props) => {
                     type="bgBtn"
                     size="16"
                     marginT="0"
-                    _onClick={titleWrite} 
+                    _onClick={titleWrite}
                   >
                     내 믹스 저장하기
                   </Button>

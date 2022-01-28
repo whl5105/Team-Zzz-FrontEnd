@@ -1,18 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { history } from "../../redux/configureStore";
 
 import { Icon } from "../../elements/index";
 import { mix_play } from "../../static/images/index";
+import { ThemeContext } from "../../shared/ThemeContext";
 
 const MixSoundTrack = (props) => {
   const { mixTitle, mixList } = props;
+  const {
+    song1,
+    setSong1,
+    song2,
+    setSong2,
+    song3,
+    setSong3,
+    song4,
+    setSong4,
+    play,
+    setPlay,
+    setTitle1,
+    setTitle2,
+    setTitle3,
+    setTitle4,
+    setIcon1,
+    setIcon2,
+    setIcon3,
+    setIcon4,
+    setPlaybar,
+    setToggle,
 
-  const [song1, setSong1] = useState(new Audio());
-  const [song2, setSong2] = useState(new Audio());
-  const [song3, setSong3] = useState(new Audio());
-  const [song4, setSong4] = useState(new Audio());
-  const [play, setPlay] = useState([]);
+  
+  }= useContext(ThemeContext);
+
+  // const [song1, setSong1] = useState(new Audio());
+  // const [song2, setSong2] = useState(new Audio());
+  // const [song3, setSong3] = useState(new Audio());
+  // const [song4, setSong4] = useState(new Audio());
+  // const [play, setPlay] = useState([]);
 
   const mix1 = mixList[0];
   const mix2 = mixList[1];
@@ -42,92 +67,81 @@ const MixSoundTrack = (props) => {
   }, []);
 
   const playInitial = () => {
-    if (history.audio1) {
+    if (song1.src) {
       song1.pause();
-      history.audio1.pause();
-      history.audio1 = "";
-      history.icon1 = "";
-      history.setSong1 = "";
-      history.title1 = "";
+      song1.pause();
+      setSong1("");
+      setIcon1("");
+      setTitle1("");
       history.state1 = "";
     }
 
-    if (history.audio2) {
+    if (song2.src) {
       song2.pause();
-      history.audio2.pause();
-      history.audio2 = "";
-      history.icon2 = "";
-      history.setSong2 = "";
-      history.title2 = "";
+      setSong2("");
+      setIcon2("");
+      setTitle2("");
       history.state2 = "";
     }
 
-    if (history.audio3) {
+    if (song3.src) {
       song3.pause();
-      history.audio3.pause();
-      history.audio3 = "";
-      history.icon3 = "";
-      history.setSong3 = "";
-      history.title3 = "";
+      setSong3("");
+      setIcon3("");
+      setTitle3("");
       history.state3 = "";
     }
 
-    if (history.audio4) {
+    if (song4.src) {
       song4.pause();
-      history.audio4.pause();
-      history.audio4 = "";
-      history.icon4 = "";
-      history.setSong4 = "";
-      history.title4 = "";
+      setSong4("");
+      setIcon4("");
+      setTitle4("");
       history.state4 = "";
     }
 
-    history.setPlaybar([]);
-    history.setToggle(false);
+    setPlaybar([]);
+    setToggle(false);
   };
 
   const playSoundSetting = () => {
     if (mix1) {
       song1.src = mix1.asmrUrl;
       song1.volume = Math.ceil(mix1.sound * 100) / 100;
-      history.audio1 = song1;
-      history.setSong1 = setSong1;
-      history.icon1 = mix1.iconUrl;
+      setSong1(song1);
+      setIcon1(mix1.iconUrl);
       history.state1 = mix1.asmrUrl;
-      history.title1 = mix1.title;
+      setTitle1(mix1.title);
       song1.play();
     }
 
     if (mix2) {
       song2.src = mix2.asmrUrl;
       song2.volume = Math.ceil(mix2.sound * 100) / 100;
-      history.audio2 = song2;
-      history.setSong2 = setSong2;
-      history.icon2 = mix2.iconUrl;
+      setSong2(song2);
+      setIcon2(mix2.iconUrl);
       history.state2 = mix2.asmrUrl;
-      history.title2 = mix2.title;
+      setTitle2(mix2.title);
       song2.play();
     }
 
     if (mix3) {
       song3.src = mix3.asmrUrl;
       song3.volume = Math.ceil(mix3.sound * 100) / 100;
-      history.audio3 = song3;
-      history.setSong3 = setSong3;
-      history.icon3 = mix3.iconUrl;
+      setSong3(song3);
+      setIcon3(mix3.iconUrl);
       history.state3 = mix3.asmrUrl;
-      history.title3 = mix3.title;
+      setTitle3(mix3.title);
       song3.play();
     }
 
     if (mix4) {
       song4.src = mix4.asmrUrl;
       song4.volume = Math.ceil(mix4.sound * 100) / 100;
-      history.audio4 = song4;
-      history.setSong4 = setSong4;
-      history.icon4 = mix4.iconUrl;
+      setSong4(song4);
+      setIcon4(mix4.iconUrl);
       history.state4 = mix4.asmrUrl;
-      history.title4 = mix4.title;
+      setTitle4(mix3.title);
       song4.play();
     }
   };
@@ -135,9 +149,7 @@ const MixSoundTrack = (props) => {
   const playSoundTrack = () => {
     playInitial();
     playSoundSetting();
-    history.play = play;
-    history.setPlay = setPlay;
-    history.setPlaybar(play);
+    setPlaybar(play);
   };
 
   return (

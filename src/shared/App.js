@@ -1,7 +1,8 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
+import { ThemeContext } from "../shared/ThemeContext";
 
 import ReactGA from "react-ga";
 import styled from "styled-components";
@@ -35,7 +36,28 @@ ReactGA.exception({
 });
 
 function App() {
-  React.useEffect(() => {
+  const [song1, setSong1] = useState(new Audio());
+  const [song2, setSong2] = useState(new Audio());
+  const [song3, setSong3] = useState(new Audio());
+  const [song4, setSong4] = useState(new Audio());
+  const [play, setPlay] = useState([]);
+
+  const [toggle, setToggle] = useState(false);
+  const [playbar, setPlaybar] = useState([]);
+
+  let [title1, setTitle1] = useState("d");
+  const [title2, setTitle2] = useState("");
+  const [title3, setTitle3] = useState("");
+  const [title4, setTitle4] = useState("");
+  
+  const [icon1, setIcon1] = useState("");
+  const [icon2, setIcon2] = useState("");
+  const [icon3, setIcon3] = useState("");
+  const [icon4, setIcon4] = useState("");
+  
+  // let icon1="", icon2="", icon3="", icon4="";
+  
+  useEffect(() => {
     ReactGA.initialize("299861253");
     history.listen((location) => {
       ReactGA.set({ page: location.pathname });
@@ -45,41 +67,76 @@ function App() {
 
   return (
     <WrapBox className="App">
-      <ConnectedRouter history={history}>
-        <Header />
-        <Suspense fallback={<Spinner />}>
-          <Switch>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/user/login" component={Login} />
-            <Route exact path="/user/signup" component={Signup} />
-            <Route
-              exact
-              path="/optimalSleepTime"
-              component={OptimalSleepTime}
-            />
-            <Route exact path="/asmr" component={Asmr} />
-            <Route
-              exact
-              path="/asmr/asmrVolumeControl"
-              component={AsmrVolumeControl}
-            />
-            <Route exact path="/diary" component={Diary} />
-            <Route exact path="/mypage" component={Mypage} />
-            <Route exact path="/mypage/mixList" component={MypageMixList} />
-            <Route
-              exact
-              path="/mypage/notification/:userIdx"
-              component={MyPageNotification}
-            />
-            <Route exact path="/mypage/notice" component={MypageNotice} />
-            <Route>
-              <NotFound />
-            </Route>
-          </Switch>
-        </Suspense>
-        <PlayBar />
-        <Navigation />
-      </ConnectedRouter>
+      <ThemeContext.Provider
+        value={{
+          song1,
+          setSong1,
+          song2,
+          setSong2,
+          song3,
+          setSong3,
+          song4,
+          setSong4,
+          play,
+          setPlay,
+          toggle,
+          setToggle,
+          playbar,
+          setPlaybar,
+          title1,
+          setTitle1,
+          title2,
+          setTitle2,
+          title3,
+          setTitle3,
+          title4,
+          setTitle4,
+          icon1,
+          setIcon1,
+          icon2,
+          setIcon2,
+          icon3,
+          setIcon3,
+          icon4,
+          setIcon4,
+        }}
+      >
+        <ConnectedRouter history={history}>
+          <Header />
+          <Suspense fallback={<Spinner />}>
+            <Switch>
+              <Route exact path="/" component={Main} />
+              <Route exact path="/user/login" component={Login} />
+              <Route exact path="/user/signup" component={Signup} />
+              <Route
+                exact
+                path="/optimalSleepTime"
+                component={OptimalSleepTime}
+              />
+              <Route exact path="/asmr" component={Asmr} />
+              <Route
+                exact
+                path="/asmr/asmrVolumeControl"
+                component={AsmrVolumeControl}
+              />
+              <Route exact path="/diary" component={Diary} />
+              <Route exact path="/mypage" component={Mypage} />
+              <Route exact path="/mypage/mixList" component={MypageMixList} />
+              <Route
+                exact
+                path="/mypage/notification/:userIdx"
+                component={MyPageNotification}
+              />
+              <Route exact path="/mypage/notice" component={MypageNotice} />
+              <Route>
+                <NotFound />
+              </Route>
+            </Switch>
+          </Suspense>
+          <PlayBar />
+          <Navigation />
+        </ConnectedRouter>
+      </ThemeContext.Provider>
     </WrapBox>
   );
 }

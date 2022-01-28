@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { withRouter } from "react-router-dom";
+import { ThemeContext } from "../shared/ThemeContext";
 
 import { deleteSong } from "../pages/Asmr";
 
@@ -13,116 +14,109 @@ import {
 } from "../static/images/index";
 
 const PlayBar = withRouter((props) => {
-  const [toggle, setToggle] = useState(false);
-  const [playbar, setPlaybar] = useState([]);
-  history.setPlaybar = setPlaybar;
-  history.setToggle = setToggle;
+  const {
+    song1,
+    setSong1,
+    song2,
+    setSong2,
+    song3,
+    setSong3,
+    song4,
+    setSong4,
+    setPlay,
+    toggle,
+    setToggle,
+    playbar,
+    setPlaybar,
+    title1,
+  } = useContext(ThemeContext);
 
   useEffect(() => {
-    play();
+    playSound();
     setToggle(false);
   }, [playbar]);
 
-  const play = () => {
+  const playSound = () => {
     setToggle(false);
-
-    history.audio1 && history.audio1.play();
-    history.audio2 && history.audio2.play();
-    history.audio3 && history.audio3.play();
-    history.audio4 && history.audio4.play();
+    // song1.muted = true;
+    
+    song1.src && song1.play();
+    song2.src && song2.play();
+    song3.src && song3.play();
+    song4.src && song4.play();
   };
 
   const pause = () => {
     setToggle(true);
 
-    history.audio1 && history.audio1.pause();
-    history.audio2 && history.audio2.pause();
-    history.audio3 && history.audio3.pause();
-    history.audio4 && history.audio4.pause();
+    song1.src && song1.pause();
+    song2.src && song2.pause();
+    song3.src && song3.pause();
+    song4.src && song4.pause();
   };
 
   const reset = () => {
-    if (history.audio1) {
-      history.audio1.pause();
+    if (song1.src) {
       if (history.location.pathname === "/asmr") {
-        deleteSong(history.state1);
-        history.state1 = "";
-        history.audio1 = "";
+        deleteSong(song1.src);
         history.title1 = "";
         history.icon1 = "";
-
-        history.setSong1(new Audio());
-        history.setPlay([]);
       }
 
-      history.state1 = "";
-      history.audio1 = "";
+      song1.pause();
+      setSong1(new Audio());
+      setPlay([]);
+
       history.title1 = "";
       history.icon1 = "";
-      history.setPlay([]);
     }
-    if (history.audio2) {
-      history.audio2.pause();
+
+    if (song2.src) {
       if (history.location.pathname === "/asmr") {
-        deleteSong(history.state2);
-        history.state2 = "";
-        history.audio2 = "";
+        deleteSong(song2.src);
         history.title2 = "";
         history.icon2 = "";
-
-        history.setSong2(new Audio());
-        history.setPlay([]);
       }
 
-      history.state2 = "";
-      history.audio2 = "";
+      song2.pause();
+      setSong2(new Audio());
+      setPlay([]);
+
       history.title2 = "";
       history.icon2 = "";
-      history.setPlay([]);
     }
-    if (history.audio3) {
-      history.audio3.pause();
+
+    if (song3.src) {
       if (history.location.pathname === "/asmr") {
-        deleteSong(history.state3);
-        history.state3 = "";
-        history.audio3 = "";
+        deleteSong(song3.src);
         history.title3 = "";
         history.icon3 = "";
-
-        history.setSong3(new Audio());
-        history.setPlay([]);
       }
 
-      history.state3 = "";
-      history.audio3 = "";
+      song3.pause();
+      setSong3(new Audio());
+      setPlay([]);
+
       history.title3 = "";
       history.icon3 = "";
-      history.setPlay([]);
-      history.arr = [];
     }
-    if (history.audio4) {
-      history.audio4.pause();
+
+    if (song4.src) {
       if (history.location.pathname === "/asmr") {
-        deleteSong(history.state4);
-        history.state4 = "";
-        history.audio4 = "";
+        deleteSong(song4.src);
         history.title4 = "";
         history.icon4 = "";
-        history.arr = [];
-        history.setSong4(new Audio());
-        history.setPlay([]);
       }
 
-      history.state4 = "";
-      history.audio4 = "";
+      song4.pause();
+      setSong4(new Audio());
+      setPlay([]);
+
       history.title4 = "";
       history.icon4 = "";
-      history.setPlay([]);
-      history.arr = [];
     }
-    setPlaybar([]);
-    history.play = [];
 
+    setPlaybar([]);
     asmrMove();
   };
 
@@ -149,7 +143,7 @@ const PlayBar = withRouter((props) => {
           {toggle ? (
             <>
               <Icon src={playBar_volume} onClick={asmrPopMove} />
-              <Icon src={playBar_play} onClick={play} />
+              <Icon src={playBar_play} onClick={playSound} />
             </>
           ) : (
             <>
