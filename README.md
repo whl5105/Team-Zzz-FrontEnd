@@ -11,15 +11,17 @@
   
   Web Site : https://zzzapp.co.kr/
 </br>
-
+</br>
 
 ## 🎥 시연 영상
  [![Hnet-image](https://chrome-armadillo-b80.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F847c6a66-495b-49be-a0c8-8a201ae81e82%2FDesktop_-_3_(1).png?table=block&id=6dcdbc79-e932-44f9-9324-2c9270ba062a&spaceId=1eec11c7-0781-4865-8b4a-24bc588d11be&width=2000&userId=&cache=v2)](https://www.youtube.com/watch?v=D4G0D7asSYU&feature=emb_logo)<br>
 이미지를 클릭하시면 유튜브 영상으로 이동됩니다.
+</br>
 
 ## 🧑🏼‍💻 개발기간 및 팀원소개
 ### 기간: 2021.12.19 ~ 2021.1.28
 </br>
+
 
 ### Front-end   
    <p><a href="https://github.com/whl5105"><img width="15px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566557331/noticon/d5hqar2idkoefh6fjtpu.png"/> 최수인</a></p>
