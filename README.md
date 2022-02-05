@@ -1,31 +1,31 @@
-# Zzz
+
+
+
+
+<h3 align="center" > 잠이드는 시간 Zzz </h1>
+
 <p align="center"><img width="300"  alt="스크린샷 2021-12-09 오후 2 32 42" src="https://chrome-armadillo-b80.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F976ba2e3-cd1d-46fb-a14b-9ec08b53f337%2FFrame.png?table=block&id=d66f0aa8-5d36-464e-b2ae-21e27b0429c0&spaceId=1eec11c7-0781-4865-8b4a-24bc588d11be&width=250&userId=&cache=v2">
  </p>
+ 
+<br/>
+
+### <div align="center">[🔗 Zzz 사이트 보러 가기](https://zzzapp.co.kr/)</div>
+### <div align="center">[🎥 시연영상 보러가기](https://www.youtube.com/watch?v=D4G0D7asSYU&feature=emb_logo)</div>
+### <div align="center">[💤 Team Notion](https://www.notion.so/4-Zzz-329e8b67d7084050b688608e59c715de)</div>
+
+<br/>
 
 
-## 프로젝트 소개
+## Zzz 프로젝트 소개
 매년 불면증으로 고생하는 사람들이 증가하고 있고,
 특히 코로나로 인해 더욱 더 심리적인 긴장과 불안으로 많은 사람들이 수면 장애를 겪고 있습니다.
 저희는 이런 어려움을 겪는 사람들을 위해 안정을 줄 수 있는 **ASMR을 제공**하고그날의 **수면 기록**을 남길 수 있는 서비스입니다.
 
-
-## 주요기능 
-- 유저가 원하는 시간에 맞춰 푸쉬알림을 받을 수 있습니다
-- 수면에 도움을주는 ASMR음원의 볼륨을 직접 커스텀 할 수 있습니다.
-- 유저의 수면 패턴을 다이어리에 기록하며 확인 할 수 있습니다 
-
-  Web Site : https://zzzapp.co.kr/
-</br>
-</br>
-
-## 🎥 시연 영상
-이미지를 클릭하시면 유튜브 영상으로 이동됩니다.
- [![Hnet-image](https://chrome-armadillo-b80.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F847c6a66-495b-49be-a0c8-8a201ae81e82%2FDesktop_-_3_(1).png?table=block&id=6dcdbc79-e932-44f9-9324-2c9270ba062a&spaceId=1eec11c7-0781-4865-8b4a-24bc588d11be&width=2000&userId=&cache=v2)](https://www.youtube.com/watch?v=D4G0D7asSYU&feature=emb_logo)<br>
-
-</br>
+</br> 
 
 ## 🧑🏼‍💻 개발기간
-### 2021.12.19 ~ 2021.1.28
+### 2021.12.19 ~ 2021.1.28 (6주)
+
 </br>
 
 ## 팀원 소개
@@ -39,37 +39,55 @@
 |  BE  | 김다희 | [https://github.com/huitopia][BE1]   |
 |  BE  | 방민수 | [https://github.com/skylermbang][BE2]|
 
+</br>
 
 
 
-<!-- ### Front-end   
-   <p><a href="https://github.com/whl5105"><img width="15px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566557331/noticon/d5hqar2idkoefh6fjtpu.png"/> 최수인</a></p>
-   <p><a href="https://github.com/Taeeon-kim"><img width="15px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566557331/noticon/d5hqar2idkoefh6fjtpu.png"/> 김태언</a></p>
-   <p><a href="https://github.com/eundol0519"><img width="15px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1566557331/noticon/d5hqar2idkoefh6fjtpu.png"/> 오은희</a></p>
-  
-### Back-end
-   <p><a href="https://github.com/huitopia"><img width="15px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1634264836/noticon/uxvdxcyvs5ocrxhacfj6.png"/> 김다희</a></p>
-   <p><a href="https://github.com/skylermbang"><img width="15px" src="https://noticon-static.tammolo.com/dgggcrkxq/image/upload/v1634264836/noticon/uxvdxcyvs5ocrxhacfj6.png"/> 방민수</a></p>
-  -->
+## 핵심기능
++ **PWA push notifications**
+    + 유저가 원하는 시간에 맞춰 백그라운드 푸쉬알림 서비스 
++ **ASMR 음원 커스텀**
+    * 최대 4개의 음원 디테일 볼륨조절가능 
+    * 믹스 음원 저장가능 
+    * 모든 페이지에서 음원 스트리밍 가능 
++ **수면 다이어리**
+    * 유저의 수면 패턴을 다이어리에 기록 
+    * 저번주와 이번주 수면 평균 통계 확인
+     
+</br>   
 
-</br> 
 
-
-## 🔨사용한 기술 스택
+## 🔨 기술 스택
 
 <code> Front-end </code>
- * React 
- * JavaScript
- * CSS
- * Axios
+ * React ,Redux, Styled-components, firebase(FCM) , PWA, AWS S3, Cloud Front , Sentry
 
 <code> Back-end </code>
 * [Back-end 개발 Page](https://github.com/ZzzProject0/zzzGit)
 
 
 <code>Tool</code>
-* Git
-* GitHub
+* Git , GitHub
+
+</br> 
+
+## UX Flow
+![flow](https://user-images.githubusercontent.com/73993670/152635422-877a92f5-52d2-41e3-8751-7c1bc1a74978.png)
+
+
+</br> 
+
+## 아키텍처
+<img width="1341" alt="스크린샷 2022-02-05 오후 6 44 02" src="https://user-images.githubusercontent.com/73993670/152636666-05db154b-445d-4b07-8e07-7c47c1425edc.png">
+
+
+
+
+
+
+
+</br> 
+
 
 ## 📝 후기 및 팀 노션 페이지 Link
 
