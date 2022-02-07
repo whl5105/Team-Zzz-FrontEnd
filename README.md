@@ -95,7 +95,7 @@
 https://puzzled-empress-d3f.notion.site/Zzz-4ac70594e110402393db7c80400251e9
 
 <code>김태언</code>
-https://youngble.tistory.com/
+https://innovative-sunshine-4ce.notion.site/Zzz-76d1b5d54cd3442c88f05b80456705cb
 
 <code>오은희</code> 
 https://chrome-armadillo-b80.notion.site/f85caa16cc1d4d2bbe6a186b99b32d53
