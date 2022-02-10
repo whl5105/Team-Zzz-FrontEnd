@@ -60,7 +60,7 @@
 ## 🔨 기술 스택
 
 <code> Front-end </code>
- * React ,Redux, Styled-components, firebase(FCM) , PWA, AWS S3, Cloud Front , Sentry
+ * React ,Redux, Styled-components, Firebase Cloud Messaging(FCM) , PWA, AWS S3, Cloud Front , Sentry
 
 <code> Back-end </code>
 * [Back-end 개발 Page](https://github.com/ZzzProject0/zzzGit)
