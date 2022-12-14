@@ -12,7 +12,7 @@
 
 [**💤 Team Notion**](https://www.notion.so/4-Zzz-329e8b67d7084050b688608e59c715de)
 
-{% embed url="https://www.youtube.com/watch?v=D4G0D7asSYU" %}
+#### 🎨 [와이어프레임 및 디자인 소스파일 ](https://www.figma.com/file/Olg6eHxodc6GGrybOCcd66/Zzz\_Design-Asset?node-id=157%3A19056\&t=vwcc1TSYzsuBcS3i-1)
 
 #### 🧑🏼‍💻 타임라인 및 개발기간
 
@@ -62,10 +62,6 @@
 #### 🧑🏼‍💻 UX Flow
 
 ![flow](https://user-images.githubusercontent.com/73993670/152635422-877a92f5-52d2-41e3-8751-7c1bc1a74978.png)
-
-#### 🧑🏼‍💻 와이어프레임 및 디자인 소스파일&#x20;
-
-{% embed url="https://www.figma.com/file/Olg6eHxodc6GGrybOCcd66/Zzz_Design-Asset?node-id=157:19056&t=vwcc1TSYzsuBcS3i-1" %}
 
 #### 🧑🏼‍💻 아키텍처
 
