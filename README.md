@@ -13,7 +13,7 @@
     </p>
     <a href="https://www.notion.so/4-Zzz-329e8b67d7084050b688608e59c715de" target="_blank">팀노션</a> &nbsp; &nbsp; |&nbsp; &nbsp; 
     <a href="https://www.youtube.com/watch?v=D4G0D7asSYU\&feature=emb\_logo" target="_blank">시연영상</a> &nbsp; &nbsp; |&nbsp; &nbsp; 
-    <a href="https://www.figma.com/file/Olg6eHxodc6GGrybOCcd66/Zzz\_Design-Asset?node-id=157%3A19056\&t=vwcc1TSYzsuBcS3i-1" target="_blank">디자인</a>  &nbsp; &nbsp; |&nbsp; &nbsp; 
+    <a href="https://www.figma.com/design/Olg6eHxodc6GGrybOCcd66/Zzz_Design-Asset?node-id=157%3A19056&t=nduj4d1hRMXhDRes-1" target="_blank">디자인</a>  &nbsp; &nbsp; |&nbsp; &nbsp; 
    <a href="https://github.com/ZzzProject0/zzzGit" target="_blank">백엔드 레포 </a>  &nbsp; &nbsp; 
 </div>
 
